@@ -1,5 +1,5 @@
 jobs:
-  deploy:
+    deploy:
     runs-on: ubuntu-latest
     steps:
     - name: Set up PHP

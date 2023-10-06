@@ -837,12 +837,13 @@ section {
 --------------------------------------------------------------*/
 .contact {
   padding-bottom: 130px;
+  width: 100%; /* Set the width to 100% to make it wider */
 }
 
 .contact .info {
   padding: 30px;
   background: #fff;
-  width: 100%;
+  width: 100%; /* Set the width to 100% to make it wider */
   box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.12);
 }
 
