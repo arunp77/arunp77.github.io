@@ -32,6 +32,14 @@
     'port' => '587'
   );
   */
+  $contact->smtp = array(
+    'host' => 'smtp.gmail.com',
+    'username' => $_ENV['GMAIL_USERNAME'], // Use an environment variable for Gmail username
+    'password' => $_ENV['GMAIL_PASSWORD'], // Use an environment variable for Gmail password
+    'port' => '587',
+    'encryption' => 'tls' // Use TLS encryption for Gmail
+);
+
 
   $contact->add_message( $_POST['name'], 'From');
   $contact->add_message( $_POST['email'], 'Email');

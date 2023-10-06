@@ -1,0 +1,21 @@
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+
+    - name: Configure SMTP
+      run: |
+        echo "::add-mask::$GMAIL_PASSWORD"
+        echo "::set-env name=SMTP_USERNAME::${{ secrets.GMAIL_USERNAME }}"
+        echo "::set-env name=SMTP_PASSWORD::${{ secrets.GMAIL_PASSWORD }}"
+
+    - name: Run PHP Script
+      run: |
+        php your-script.php
+      env:
+        SMTP_USERNAME: ${{ env.SMTP_USERNAME }}
+        SMTP_PASSWORD: ${{ env.SMTP_PASSWORD }}
