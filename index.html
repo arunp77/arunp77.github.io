@@ -44,7 +44,23 @@
 </head>
 
 <body>
-
+  <script>
+    $(document).ready(function () {
+      var $container = $('.portfolio-container');
+      $container.isotope({
+        itemSelector: '.portfolio-item',
+        layoutMode: 'fitRows'
+      });
+  
+      $('#portfolio-flters li').on('click', function () {
+        $('#portfolio-flters li').removeClass('filter-active');
+        $(this).addClass('filter-active');
+  
+        var selector = $(this).data('filter');
+        $container.isotope({ filter: selector });
+      });
+    });
+  </script>
   <!-- ======= Mobile nav toggle button ======= -->
   <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
 
@@ -63,10 +79,10 @@
           <a href="https://medium.com/@arunp77" class="medium"><i class="bx bxl-medium"></i></a>
         </div>
       </div>
-
+      <!-- Start .nav-menu -->
       <nav id="navbar" class="nav-menu navbar">
         <ul>
-          <li><a href="index.html" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+          <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
           <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
           <li><a href="#skills-and-tools" class="nav-link scrollto"><i class="bx bx-wrench"></i> <span>Skills and Tools</span></a></li>
           <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
@@ -77,7 +93,7 @@
           <li><a href="#extra-curricular" class="nav-link scrollto"><i class="bx bx-rocket"></i> <span>Extra-Curricular Activities</span></a></li>
           <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
         </ul>
-      </nav><!-- .nav-menu -->
+      </nav><!--end .nav-menu -->
     </div>
   </header><!-- End Header -->
 
@@ -155,7 +171,7 @@
           <p>Explore my abilities and accomplishments:</p>
         </div>
 
-        <div class="row">
+        <div class="row no-gutters">
 
           <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up">
             <div class="count-box">
@@ -245,59 +261,6 @@
       </div>
     </section><!-- End Achievement Section -->
 
-
-    
-    <!-- ======= Facts Section ======= -->
-    <!--
-    <section id="facts" class="facts">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Facts</h2>
-          <p>Func fact about me:</p>
-        </div>
-
-        <div class="row no-gutters">
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up">
-            <div class="count-box">
-              <i class="bi bi-emoji-smile"></i>
-              <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Happy Clients</strong> consequuntur quae</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="100">
-            <div class="count-box">
-              <i class="bi bi-journal-richtext"></i>
-              <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Projects</strong> adipisci atque cum quia aut</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="200">
-            <div class="count-box">
-              <i class="bi bi-headset"></i>
-              <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Hours Of Support</strong> aut commodi quaerat</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="300">
-            <div class="count-box">
-              <i class="bi bi-people"></i>
-              <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Hard Workers</strong> rerum asperiores dolor</p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-    -->
-    <!-- End Facts Section -->
-
     <!-- Skills and Tools Section -->
     <section id="skills-and-tools" class="skills section-bg">
       <div class="container">
@@ -307,8 +270,8 @@
           <p>Here are some of other skills I specialize in:</p>
         </div>
 
-        <div class="row">
-          <div class="col-lg-6">
+        <div class="row skills-content">
+          <div class="col-lg-6" data-aos="fade-up">
             <ul class="list-unstyled">
               <li><i class="bi bi-check"></i> <b>Python: </b> (Numpy, Pandas, Seaborn, Matplotlib, Statsmodels, Scipy, Plotly, sklearn, xarray)</li>
               <li><i class="bi bi-check"></i> <b>Machine Learning: </b> (Linear & Logistic Regression, Decision Trees, ARIMA, Tensorflow)</li>
