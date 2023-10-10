@@ -23,3 +23,4 @@ Feel free to explore the website, and if you have any feedback or questions, don
 
 Thank you for being part of this exciting journey with me. Let's connect and explore the world of data together! 🌐💡
 
+Let's connect on Linkedin: <a href="https://www.linkedin.com/in/arunp77/" target="_blank">My linkedin account</a>
