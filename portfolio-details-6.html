@@ -188,7 +188,7 @@
                 <img src="assets/img/portfolio/AWS-extract-load.png" alt="Project Architecture" style="width: 900px; height: auto;">
 
                 <ul class="indented-list">
-                    <li>Created an AWS Lambda function named "spotify_api_data_extract". Here is the lambda function which:</li>
+                    <li>Created an AWS Lambda function named "spotify_api_data_extract". Here is the lambda function:</li>
                     <pre>
                         <code class="python">
                             import json, os, spotify, boto3
@@ -212,11 +212,23 @@
                                     Body = json.dumps(spotify_data)
                                     )                    
                         </code>
-                        </pre>
+                    </pre>
                     <li>This function extracts data from the Spotify playlist and saves it in the "raw_data/to_processed/"" folder within the S3 bucket.</li>
                     <li>The extraction process is performed using the Spotify API.</li>
                     <li>You may have to create event at <a href="https://docs.aws.amazon.com/lambda/latest/dg/services-cloudwatchevents.html" target="_blank">
                         AWS Cloudwatch</a> to trigger the functio to extract the data from the source (if any data file at the spotify is updated).</li>
+                    <li><b>Code explanation:</b></li>
+                        <ul>
+                            <li><p><span style="color: blue;">json</span>: Used for working with JSON data,</p> 
+                                <p><span style="color: blue;">os</span>: Used for accessing environment variables,  </p>
+                                <p><span style="color: blue;">spotify</span>: The spotipy library, which is used for working with the Spotify Web API, </p>
+                                <p><span style="color: blue;">boto3</span>: The AWS SDK for Python, used for interacting with AWS services.
+                                <p><span style="color: blue;">datetime</span>: Used for generating a timestamp.</p>
+                                </li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
                 </ul>
 
                 <h5>Data Transformation and Loading (AWS Lambda - "spotify_transformation_load_function")</h5>
