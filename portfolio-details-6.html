@@ -435,70 +435,127 @@
             <p>Insights and observations obtained from the data, such as statistics, patterns, or visualizations will be written once the project is complete.</p>
 
             <h3>Challenges Faced</h3> 
+                <div>
                 <p>While working on this Spotify ETL project, I encountered several challenges that required creative problem-solving and continuous 
                     learning. Some of the main challenges included:</p>
+                    <ul>
+                        <h5>1. Spotify API Integration</h5>
+                        <p><strong>Challenge:</strong> Integrating the Spotify API to access and retrieve data from the playlist was a learning curve. 
+                            It required understanding the authentication mechanisms and handling rate limits. Navigating the intricacies of a third-party 
+                            API was a challenge in itself.</p>
+                        <p><strong>Solution:</strong> I conducted in-depth research, read through the <a href="https://developer.spotify.com/documentation/web-api" target="_blank"> API documentation</a>, and experimented with various 
+                            authentication methods. Additionally, I implemented error handling to gracefully manage rate limits and ensure the data extraction process runs smoothly.</p>
+                    </ul>
+                    <ul>
+                        <h5>2. Data Transformation</h5>
+                        <p><strong>Challenge:</strong> Transforming the raw data into structured formats involved complex data manipulation. This included 
+                            dealing with nested 
+                            <a href="https://javaee.github.io/tutorial/jsonp001.html#:~:text=JSON%20defines%20only%20two%20data,true%2C%20false%2C%20and%20null" target="_blank">JSON 
+                                data structure</a> and converting them into usable data frames using <a href="https://pandas.pydata.org/" target="_blank">Pandas library of the python</a>.
+                                Ensuring that the transformed data was accurate and error-free presented its own set of challenges (more about the databases and 
+                                data structure can be obtained in <a href="https://github.com/arunsinp/Databases-data-pipeline/tree/main/4.0-Database" target="_blank">
+                                    my Github repository</a>).</p>
+                        <p><strong>Solution:</strong> To tackle this, I created separate functions for parsing albums, artists, and songs. These functions 
+                            efficiently transformed the data and converted it into data frames, making it more manageable. Additionally, I implemented data 
+                            cleaning operations to handle issues like duplicate entries and data type conversions. 
+                            In the end each files were saved in the respective data folders of the 
+                            <a href="https://aws.amazon.com/s3/" target="_blank"> AWS s3 bucket</a>.</p>
+                    </ul>
+                    <ul>
+                        <h5>3. Automating ETL Process</h5>
+                        <p><strong>Challenge:</strong> Designing an automated ETL process that continuously updates the data from Spotify to the S3 bucket 
+                            and triggers transformations posed a unique challenge. Ensuring that the process is both efficient and reliable was a significant task.</p>
+                        <p><strong>Solution:</strong> I implemented a trigger-based mechanism for the extraction function, which activates the transformation 
+                            function as soon as new data is extracted. This ensures that the dataset is always up-to-date without manual intervention.</p>
+                            <ul>
+                                <b>Step-by-step guide to creating a trigger to automate your ETL process:</b>
+                                <h6><b>Step 1: Set Up the Trigger</b></h6>
+                                <ul>
+                                    <li>Go to the AWS Management Console and navigate to the Amazon CloudWatch service.</li>
+                                    <li>In the CloudWatch dashboard, choose "Rules" from the left-hand navigation pane.</li>
+                                    <li>Click "Create Rule" to define a new rule that will trigger your Lambda function.</li>
+                                </ul>
+                                    
+                                <h6><b>Step 2: Define the Trigger Rule</b></h6>
+                                <ul>
+                                    <li>In the "Create Rule" page, choose an event source. For a time-based trigger, you can select "Event Source" as "Schedule."</li>
+                                    <li>Specify the schedule for your ETL process. You can use cron expressions to set the exact time and frequency (e.g., daily at midnight).</li>
+                                    <li>Under "Targets," choose "<a href="https://aws.amazon.com/lambda/?p=pm&c=la&z=4" target="_blank">lambda function</a>" 
+                                        and select the Lambda function you created</li>
+                                    <li>Configure any other settings or conditions for your trigger, such as error handling or retries.</li>
+                                    <li>You may find some error regarding the "Timed out" while running lambda function. You may need to increase the 
+                                        timeout for your Lambda function. You can do this by adjusting the "Timeout" setting in your Lambda configuration. 
+                                        Make sure it allows enough time for your function to complete its tasks.</li>
+                                    <li> If you're dealing with a large amount of data, consider processing it in smaller batches. 
+                                        This can help distribute the workload and prevent timeouts.</li>
+                                    <li>You can configure your Lambda function to run concurrently. This can be helpful if you have multiple items to 
+                                        process and want to speed up the execution.</li>
+                                    <li>Depending on your use case, you might consider using AWS Step Functions or SNS to trigger the Lambda function asynchronously, 
+                                        allowing it to continue processing after the initial function call returns.</li>
+                                </ul>
+                            </ul>
+                    </ul>
+                    <ul>
+                        <h5>4. Data Cleaning</h5>
+                        <ul>
+                            <li><strong>Challenge:</strong> Managing and cleaning the data to remove duplicates, handle missing values, and ensure data consistency 
+                                required careful attention. Any inconsistencies in the data could lead to inaccuracies in our analyses.</li>
+                            <li><strong>Solution:</strong> I developed robust data cleaning procedures that addressed issues like duplicate records, missing values, 
+                                and data type discrepancies. This ensured that the data remained accurate and reliable throughout the ETL process.</li>
+                                <pre>
+                                    <code class="python">
+                                        album_df = pd.DataFrame.from_dict(album_list)
+                                        album_df = album_df.drop_duplicates(subset=['album_id'])
 
-                <h5>1. Spotify API Integration</h5>
-                <ul>
-                <p><strong>Challenge:</strong> Integrating the Spotify API to access and retrieve data from the playlist was a learning curve. 
-                    It required understanding the authentication mechanisms and handling rate limits. Navigating the intricacies of a third-party 
-                    API was a challenge in itself.</p>
-                <p><strong>Solution:</strong> I conducted in-depth research, read through the API documentation, and experimented with various 
-                    authentication methods. Additionally, I implemented error handling to gracefully manage rate limits and ensure the data extraction process runs smoothly.</p>
+                                        
+                                        artist_df = pd.DataFrame.from_dict(artist_list)
+                                        artist_df = artist_df.drop_duplicates(subset=['artist_id'])
 
-                <h5>2. Data Transformation</h5>
-                <p><strong>Challenge:</strong> Transforming the raw data into structured formats involved complex data manipulation. This included 
-                    dealing with nested JSON structures and converting them into usable data frames. Ensuring that the transformed data was accurate 
-                    and error-free presented its own set of challenges.</p>
-                <p><strong>Solution:</strong> To tackle this, I created separate functions for parsing albums, artists, and songs. These functions 
-                    efficiently transformed the data and converted it into data frames, making it more manageable. Additionally, I implemented data 
-                    cleaning operations to handle issues like duplicate entries and data type conversions.</p>
+                                        
+                                        song_df = pd.DataFrame.from_dict(song_list)
+                                        
+                                        album_df['release_date'] = pd.to_datetime(album_df['release_date'])
+                                        song_df['song_added'] = pd.to_datetime(song_df['song_added'])
+                                    </code>
+                                    </pre>
+                        </ul>
+                    </ul>
+                    <ul>
+                        <h5>5. Error Handling</h5>
+                        <ul>
+                            <li><strong>Challenge:</strong> Building robust error handling mechanisms to gracefully manage failures and ensure the pipeline 
+                                runs smoothly was a critical aspect of the project. Failures could occur at various stages, and handling them effectively 
+                                was essential.</li>
+                            <li><strong>Solution:</strong> I implemented thorough error handling throughout the project, with detailed logging and notification 
+                                systems to alert me to any issues. This proactive approach allowed me to address problems promptly and keep the ETL pipeline 
+                                running smoothly.</li>
+                        </ul>
+                    </ul>
+                    <p>Overcoming these challenges not only improved my technical skills but also enhanced my problem-solving abilities. It's essential 
+                        to acknowledge that facing and conquering these hurdles was an integral part of the learning process. These experiences have 
+                        reinforced the importance of adaptability, persistence, and continuous learning in the world of data engineering and ETL processes.</p>
+                </div>
 
-                <h5>3. Automating ETL Process</h5>
-                <p><strong>Challenge:</strong> Designing an automated ETL process that continuously updates the data from Spotify to the S3 bucket 
-                    and triggers transformations posed a unique challenge. Ensuring that the process is both efficient and reliable was a significant task.</p>
-                <p><strong>Solution:</strong> I implemented a trigger-based mechanism for the extraction function, which activates the transformation 
-                    function as soon as new data is extracted. This ensures that the dataset is always up-to-date without manual intervention.</p>
-
-                <h5>4. Data Cleaning</h5>
-                <p><strong>Challenge:</strong> Managing and cleaning the data to remove duplicates, handle missing values, and ensure data consistency 
-                    required careful attention. Any inconsistencies in the data could lead to inaccuracies in our analyses.</p>
-                <p><strong>Solution:</strong> I developed robust data cleaning procedures that addressed issues like duplicate records, missing values, 
-                    and data type discrepancies. This ensured that the data remained accurate and reliable throughout the ETL process.</p>
-
-                <h5>5. Error Handling</h5>
-                <p><strong>Challenge:</strong> Building robust error handling mechanisms to gracefully manage failures and ensure the pipeline 
-                    runs smoothly was a critical aspect of the project. Failures could occur at various stages, and handling them effectively 
-                    was essential.</p>
-                <p><strong>Solution:</strong> I implemented thorough error handling throughout the project, with detailed logging and notification 
-                    systems to alert me to any issues. This proactive approach allowed me to address problems promptly and keep the ETL pipeline 
-                    running smoothly.</p>
-
-                <p>Overcoming these challenges not only improved my technical skills but also enhanced my problem-solving abilities. It's essential 
-                    to acknowledge that facing and conquering these hurdles was an integral part of the learning process. These experiences have 
-                    reinforced the importance of adaptability, persistence, and continuous learning in the world of data engineering and ETL processes.</p>
-                </ul>
             <h3>Future Improvements</h3>
-                <p>Our Spotify ETL project is continually evolving, and we have exciting plans to enhance its capabilities. Here are some areas we're 
+                <p>My Spotify ETL project is continually evolving, and I have some exciting plans to enhance its capabilities. Here are some areas I am 
                     focusing on for future improvements:</p>
-                <ul>
-                    <li>Real-time Data Updates: We aim to implement real-time data extraction to ensure our dataset is always up-to-date, syncing with 
+                <ul class="indented-list">
+                    <li><strong>Real-time Data Updates:</strong> My aim  is to implement real-time data extraction to ensure the dataset is always up-to-date, syncing with 
                         changes in the Spotify playlist as they occur.</li>
-                    <li>Efficient Parallel Processing: We're working on enabling parallel processing to efficiently handle larger datasets, improving 
-                        our project's scalability.</li>
-                    <li>Data Quality Assurance: To maintain data integrity, we're planning to implement data quality checks and monitoring to swiftly 
+                    <li><strong>Efficient Parallel Processing:</strong> I am also working on enabling parallel processing to efficiently handle larger datasets, improving 
+                        my project's scalability.</li>
+                    <li><strong>Data Quality Assurance:</strong> To maintain data integrity, I am planning to implement data quality checks and monitoring to swiftly 
                         identify and address any issues.</li>
-                    <li>Streaming Analytics: Exploring streaming data platforms will provide us with real-time insights and opportunities for immediate 
+                    <li><strong>Streaming Analytics:</strong> Exploring streaming data platforms will provide us with real-time insights and opportunities for immediate 
                         actions.</li>
-                    <li>Advanced Analytics: Expanding our project's capabilities to include features like recommendation engines and sentiment analysis 
+                    <li><strong>Advanced Analytics:</strong> Expanding the project's capabilities to include features like recommendation engines and sentiment analysis 
                         will offer richer data insights.</li>
-                    <li>User-Friendly Dashboard: We're considering the development of an intuitive dashboard for data visualization, making our project 
+                    <li><strong>User-Friendly Dashboard:</strong> I am also considering the development of an intuitive dashboard for data visualization, making my project's 
                         more user-friendly.</li>
-                    <li>Community Collaboration: We welcome and encourage contributions from the community to foster collaborative improvements and new 
+                    <li><strong>Community Collaboration:</strong> I welcome and encourage contributions from the community to foster collaborative improvements and new 
                         ideas.</li>
-                    <li>Cost Optimization: Continuously managing AWS service costs to ensure efficient resource allocation is a priority.</li>
-                    <li>Documentation and Tutorials: We're committed to providing comprehensive project documentation and tutorials, making it easier 
-                        for users and contributors to understand and engage with our project.</li> 
+                    <li><strong>Documentation and Tutorials:</strong> I am committed to providing comprehensive project documentation and tutorials, making it easier 
+                        for others and contributors to understand and engage with my project.</li> 
                 </ul>
         </div>
       </div>
