@@ -25,6 +25,20 @@ h6 {
   font-family: "Raleway", sans-serif;
 }
 
+.indented-list {
+  margin-left: 20px; /* Adjust the indentation as needed */
+}
+pre {
+  background-color: #f7f7f7;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+code.python {
+  font-family: 'Courier New', monospace;
+}
+
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/
