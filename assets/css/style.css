@@ -536,9 +536,21 @@ section {
 /*--------------------------------------------------------------
 # Portfolio
 --------------------------------------------------------------*/
-.portfolio .portfolio-item {
-  margin-bottom: 30px;
+.portfolio {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Adjust the alignment as needed */
+  margin: 0 -15px; /* Add negative margin for spacing between items */
 }
+
+
+.portfolio .portfolio-item {
+  margin: 0 15px; /* Add margin to each item to separate them */
+  text-align: center;
+  flex: 0 0 calc(33.33% - 30px); /* Adjust the width for different screen sizes */
+  max-width: calc(33.33% - 30px); /* Set the maximum width for responsiveness */
+}
+
 
 .portfolio #portfolio-flters {
   padding: 0;
@@ -577,6 +589,7 @@ section {
   position: relative;
   overflow: hidden;
   z-index: 1;
+  margin-bottom: 30px; /* Add margin between items */
 }
 
 .portfolio .portfolio-wrap::before {
@@ -632,6 +645,13 @@ section {
 .portfolio .portfolio-wrap:hover .portfolio-links {
   opacity: 1;
   bottom: 0;
+}
+
+.portfolio-title {
+  text-align: center;
+  font-size: 24px; /* Adjust the font size as needed */
+  font-weight: bold;
+  margin: 10px 0; /* Adjust margin as needed */
 }
 
 /*--------------------------------------------------------------
