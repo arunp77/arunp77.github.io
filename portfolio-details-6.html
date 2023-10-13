@@ -110,33 +110,29 @@
             <h3>Prerequisites</h3>
             <p>Before diving into the project, you'll need the following prerequisites:</p>
             <ul style="list-style-type: disc; margin-left: 30px;">
-                <li>An AWS account with the necessary permissions to create and manage services.</li>
+                <li>An <a href="https://signin.aws.amazon.com/" target="_blank"> AWS account</a> with the necessary permissions to create and manage services.</li>
                 <li>Basic knowledge of AWS services like S3, Lambda, Glue, and Athena.</li>
-                <li>Python programming skills.</li>
-                <li>Spotify API access.</li>
+                <li><a href="https://github.com/arunsinp/Python-programming" target="_blank">Python programming skills</a>.</li>
+                <li><a href="https://developer.spotify.com/documentation/web-api" target="_blank">API access</a>.</li>
             </ul>
                 
             <h3>Project overview</h3>
             <p>This project is an end-to-end ETL (Extract, Transform, Load) pipeline designed to automate the extraction of data from a Spotify playlist 
                 and process it using various AWS services. The goal is to showcase proficiency in data engineering and AWS, with a focus on data extraction, 
                 transformation, and automated processing.</p>
-            <p>This project consists of the following key steps:</p>
+            <p>I have successfully completed the Spotify ETL pipeline project on AWS, and here's an overview of the key steps:</p>
             <ul style="list-style-type: disc; margin-left: 30px;">
-                <li><span style="font-weight: normal;"><b>Data Extraction:</b></span> I'll use AWS Lambda functions to interact with the Spotify API, 
-                    retrieve data on globally famous songs at spotify, and store it in an Amazon S3 bucket.</li>
-                <li><span style="font-weight: normal;"><b>Data Transformation:</b></span> Next, I'll develop Lambda functions to transform the raw Spotify 
-                    data into structured datasets. This involves parsing JSON responses, creating dataframes, and applying data cleaning operations.</li>
-                <li><span style="font-weight: normal;"><b>Data Loading:</b></span> The transformed data will be loaded back into the S3 bucket, ready 
-                    for analysis.</li>
-                <li><span style="font-weight: normal;"><b>Automated Processing:</b></span> To keep the data up-to-date, I'll implement automated 
-                    processes to periodically fetch new data from Spotify and update the datasets by creating Amazon cloudwatch and trigger.
-                    To keep the music data current, I have implemented automated processes that actively fetch new data from Spotify and dynamically 
-                    update the datasets. Whenever a new dataset is added to the S3 bucket, 
-                    an AWS S3 trigger is automatically activated to initiate the data transformation process. Once the data is transformed, 
-                    it is then loaded into a specific order or destination.
+                <li><span style="font-weight: normal;"><b>Data Extraction:</b></span> AWS Lambda functions were employed to interact with the Spotify API, 
+                    fetching data on globally famous songs, and storing it in an Amazon S3 bucket.</li>
+                <li><span style="font-weight: normal;"><b>Data Transformation:</b></span> The raw Spotify data underwent a transformation phase through Lambda 
+                    functions. This process included parsing JSON responses, creating structured data frames, and applying various data cleaning operations.</li>
+                <li><span style="font-weight: normal;"><b>Data Loading:</b></span> The transformed data was loaded back into the S3 bucket, making it ready for analysis.</li>
+                <li><span style="font-weight: normal;"><b>Automated Processing:</b></span> For keeping the music data current, I implemented automated processes that
+                     actively fetched new data from Spotify and dynamically updated the datasets. An AWS S3 trigger was configured to initiate the data transformation 
+                     process whenever a new dataset was added to the S3 bucket. Subsequently, the transformed data was loaded into a designated destination or folder.
                 </li>
-                <li><span style="font-weight: normal;"><b>Data Analysis:</b></span> With the data ready, you can explore music trends, artist 
-                    popularity, genre distribution, and more.</li>
+                <li><span style="font-weight: normal;"><b>Data Analysis:</b></span>With the data in its prepared formats, it's now possible to explore music trends, artist popularity, 
+                    genre distribution, and more.</li>
             </ul>
                 
             <h3>Project Architecture</h3>
@@ -179,7 +175,8 @@
                                     <li>songs_data/</li>
                                 </ul>
                             </li>
-                        </ul>        
+                        </ul>
+                        <img src="assets/img/portfolio/AWS-directory.png" alt="Project Architecture" style="width: 700px; height: auto;">
                     </ul>
                 </ul>
 
