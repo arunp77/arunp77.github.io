@@ -23,6 +23,9 @@
   <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <!-- Creating a python code section-->
+  <link rel="stylesheet" href="assets/css/prism.css">
+  <script src="assets/js/prism.js"></script>
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
@@ -181,7 +184,7 @@
                 </ul>
 
             <h3>Key Components</h3>
-                <h5>Data Extraction (AWS Lambda - "spotify_api_data_extract")</h5>
+                <h5>Data Extraction (AWS Lambda - "<span style="color: rgb(128, 20, 45);">spotify_api_data_extract</span>")</h5>
                 <p>In this Lambda function, we extract data from the Spotify API and save it in the raw data folder within the S3 bucket. 
                     The function uses the Spotify API credentials to access song information.</p>
                     
@@ -190,7 +193,7 @@
                 <ul class="indented-list">
                     <li>Created an AWS Lambda function named "spotify_api_data_extract". Here is the lambda function:</li>
                     <pre>
-                        <code class="python">
+                        <code class="language-python">
                             import json, os, spotify, boto3
                             from datetime import datetime
                             from spotipy.oauth2 import SpotifyClientCredentials
@@ -225,13 +228,19 @@
                                 <p><span style="color: blue;">boto3</span>: The AWS SDK for Python, used for interacting with AWS services.
                                 <p><span style="color: blue;">datetime</span>: Used for generating a timestamp.</p>
                                 </li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
+                            <li><p><span style="color: blue;">lambda_handler</span>: function is the entry point for the Lambda function which takes arguments: 
+                                'event' and 'context'. This function retrieve spotify API credentials from environment variables 'client_id' and 'client_secret' via 
+                                'SpotifyClientCredentials' function. The 'client_id' and 'client_secret' are necessary for authenticating with the SpotifyWeb API 
+                            and 'SpotifyClientCredentials' is used an access token for the Spotify API.</p> </li>
+                            <li><p><span style="color: blue;">sp</span>: This object is used to interact witth the Spotify API, and created with the 'client_credentials_manager'</p> </li>
+                            <li><p><span style="color: blue;">boto3</span>: The 'boto3' is used to create to interact with AWS s3 bucket,</p> </li>
+                            <li>The 'client.put_object' function of the lambda function is used to dump extracted data from Spotify playlist to
+                                the 'raw_data/to_processed' directory of the AWS s3 bucket (in my case "spotify-etl-project-arun" bucket). 
+                                Here extracted data is first converted to JSON style (unstructured format) and then uploaded to the specified location </li>
                         </ul>
                 </ul>
 
-                <h5>Data Transformation and Loading (AWS Lambda - "spotify_transformation_load_function")</h5>
+                <h5>Data Transformation and Loading (AWS Lambda - "<span style="color: rgb(128, 20, 45);">spotify_transformation_load_function</span>")</h5>
                 <p>This Lambda function is responsible for the transformation of raw data. It parses JSON responses, converts them into 
                     dataframes, and applies data cleaning operations such as removing duplicates and converting data types.</p>
                 
@@ -240,7 +249,7 @@
                 <ul class="indented-list">
                     <li>Developed an AWS Lambda function named spotify_transformation_load_function". Here is the lambda function which:</li>
                     <pre>
-                        <code class="python">
+                        <code class="language-python">
                             import json, boto3, 
                             import pandas as pd
                             from datetime import datetime
@@ -389,12 +398,33 @@
                             <li>songs_data/</li>
                         </ul>
                         <li>The data transformation involves:</li>
-                        <ul style="list-style-type: disc; margin-left: 20px;"></ul>
-                            <li>Parsing the raw JSON data.</li>
-                            <li>Creating separate functions for albums, artists, and songs.</li>
-                            <li>Using these functions to transform the data and convert it into dataframes.</li>
-                            <li>Applying data cleaning operations such as dropping duplicates and converting data types (e.g., datetime).</li>
-                            <li>Saving the transformed data as CSV files in their respective folders.</li>
+                            <ul>
+                                <li>Parsing the raw JSON data.</li>
+                                <li>Creating separate functions for albums, artists, and songs.</li>
+                                <li>Using these functions to transform the data and convert it into dataframes.</li>
+                                <li>Applying data cleaning operations such as dropping duplicates and converting data types (e.g., datetime).</li>
+                                <li>Saving the transformed data as CSV files in their respective folders.</li>
+                            </ul>
+                        <li><b>Code explanation:</b></li>
+                        <ul>
+                            <li>The code can be divided into </li>
+                            <ul>
+                                <li>Loading important libraries</li>
+                                <li>Creating functions like 'album', 'artist' and 'song's function to extract particular object items and then appending them
+                                    as a list object. </li>
+                                <li>Next the lambda function 'lambda_handler(event, context)' are used to do following things:</li>
+                                    <ul>
+                                        <li><span style="color: blue;">s3 = boto3.client('s3')</span> = Create an S3 Client. The S3 client is used to interact with Amazon S3, 
+                                            allowing you to list objects, upload/download files, and perform various 
+                                            other S3 operations, like trasforming the datasets to a dataframe using pandas, making right datatypes of certain 
+                                        items, removing or updating any missing or NaN values.</li>
+                                        <li>And in the end, the filtered, and trasnformed datsets are saved as '.csv' file in the AWS s3 bucket 
+                                            (in my case, bucket name is spotify-etl-project-arun) and in the 'raw_data/processed/' folder. </li>
+                                            <li>Each time a new data comes to the 'raw_data/to_processed/' folder, the trigger function in the 
+                                                "spotify_transformation_load_function" function start reporcessing the data and saving again it to the processed folder and deleting 
+                                            any existing older file in the the 'to_processed' folder.</li>
+                                    </ul>
+                            </ul>
                         </ul>
                 </ul>
                 
@@ -444,8 +474,26 @@
                 </ul>
 
             <h3>Project Results</h3>
-            <p>Insights and observations obtained from the data, such as statistics, patterns, or visualizations will be written once the project is complete.</p>
-
+                <ul class="indented-list">
+                    <li><strong>Data Extraction:</strong> The Spotify ETL pipeline successfully extracted data from the target Spotify playlist, which included [number] songs. The data was sourced from [Spotify playlist URL].</li>
+                    <li><strong>Data Transformation:</strong> The raw data was meticulously transformed, including JSON to data frame conversion, data cleaning, and data type adjustments. This transformation process resulted in clean and structured data for further analysis.</li>
+                    <li><strong>Data Loading:</strong> Processed data was efficiently loaded back into AWS, utilizing the S3 bucket named [Bucket Name] with a structured folder hierarchy.</li>
+                    <li><strong>Automation:</strong> Our ETL pipeline is fully automated, ensuring that any updates to the playlist are processed seamlessly without manual intervention.</li>
+                    <li><strong>Performance:</strong> The pipeline demonstrates remarkable performance, with rapid processing of new data and the potential for scaling to handle larger datasets.</li>
+                    <li><strong>AWS Services:</strong> AWS Glue served as the cornerstone of data cataloging and ETL, while AWS Athena facilitated querying and data analysis.</li>
+                    <li><strong>Data Catalog:</strong> The AWS Glue data catalog has significantly improved our ability to discover and manage data, streamlining the entire process.</li>
+                    <li><strong>Queries and Analytics:</strong> We ran a series of insightful queries using Athena, uncovering valuable insights about the playlist and the songs it contains. For example, [example query and finding].</li>
+                    <li><strong>Visualization:</strong> We harnessed visualization tools like Tableau to create compelling charts and graphs, enhancing our understanding of the data. [Include a sample visualization].</li>
+                    <li><strong>Challenges Overcome:</strong> Throughout the project, we encountered challenges such as [mention challenges], but our team's determination and problem-solving skills ensured successful outcomes.</li>
+                    <li><strong>Future Improvements:</strong> We envision further improvements, including [mention future enhancements], to make the pipeline even more robust and capable of handling larger datasets.</li>
+                    <li><strong>Data Security and Compliance:</strong> Our project adheres to AWS best practices and security measures to ensure data integrity and compliance.</li>
+                    <li><strong>Feedback and Contributions:</strong> We welcome feedback, recommendations, and contributions from the community. If you're interested in collaborating or have suggestions, feel free to reach out to us.</li>
+                </ul>
+                <ul>
+                    <p>This section highlights the key achievements and outcomes of our Spotify ETL project on AWS, showcasing the power of data engineering and AWS services in action.</p>
+                    <p>Insights and observations obtained from the data, such as statistics, patterns, or visualizations will be written once the project is complete.</p>
+                </ul>
+                
             <h3>Challenges Faced</h3> 
                 <div>
                 <p>While working on this Spotify ETL project, I encountered several challenges that required creative problem-solving and continuous 
@@ -515,7 +563,7 @@
                             <li><strong>Solution:</strong> I developed robust data cleaning procedures that addressed issues like duplicate records, missing values, 
                                 and data type discrepancies. This ensured that the data remained accurate and reliable throughout the ETL process.</li>
                                 <pre>
-                                    <code class="python">
+                                    <code class="language-python">
                                         album_df = pd.DataFrame.from_dict(album_list)
                                         album_df = album_df.drop_duplicates(subset=['album_id'])
 
