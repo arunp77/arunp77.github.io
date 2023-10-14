@@ -334,6 +334,16 @@ code.python {
   max-width: 100%; /* Ensure the image doesn't exceed its container */
 }
 
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+  transition: transform 0.3s; /* Add a smooth transition effect */
+}
+
+.img-responsive:hover {
+  transform: scale(1.1); /* Scale the image to 110% of its original size on hover */
+}
+
 /*--------------------------------------------------------------
 # Sections General
 --------------------------------------------------------------*/
