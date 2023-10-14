@@ -309,6 +309,31 @@ code.python {
   }
 }
 
+.flex-container {
+  display: flex;
+  align-items: center; /* Vertically center content */
+}
+
+.text {
+  flex: 1; /* Take up all available space on the left */
+  padding: 20px;
+}
+
+.image {
+  flex: 1; /* Take up all available space on the right */
+  padding: 20px;
+}
+
+/* Optional: Add CSS styles to format your text and image */
+.text p {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.image img {
+  max-width: 100%; /* Ensure the image doesn't exceed its container */
+}
+
 /*--------------------------------------------------------------
 # Sections General
 --------------------------------------------------------------*/
