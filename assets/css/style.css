@@ -1180,3 +1180,21 @@ section {
   padding: 10px;
   margin-bottom: 10px;
 }
+
+
+
+table {
+  border-collapse: collapse;
+}
+
+td {
+  padding: 10px;
+  border: 1px solid #000;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
