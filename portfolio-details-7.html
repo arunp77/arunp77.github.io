@@ -100,12 +100,10 @@
         <div class="row gy-4">
           <h1> Building a Data Pipeline for Analyzing Top 50 Albums using Spotify API, AWS, and Snowflake</h1>
             <h3>Introduction</h3>
-            <p>Music is a universal language that transcends borders and cultures. <a href="https://open.spotify.com/" target="_blank">Spotify</a>
-                one of the world's leading music streaming platforms, offers a treasure trove of data on the most globally famous songs. 
-                Analyzing this data can provide valuable insights into music trends, artist popularity, and more. In this project, we'll walk 
-                you through building an automated data pipeline on <a href="https://aws.amazon.com/" target="_blank">Amazon Web Services (AWS)</a>
-                to <a href="https://aws.amazon.com/what-is/etl/#:~:text=Extract%2C%20transform%2C%20and%20load%20(,and%20machine%20learning%20(ML)." target="_blank">extract, transform, and load (ETL)</a>
-                data from Spotify, empowering you to explore and analyze globally famous songs.</p>
+            <p>In my recent data project, I leveraged the power of Snowflake, a cloud-based data warehousing platform, in combination with 
+                the versatility of Amazon S3 (Simple Storage Service) to efficiently and seamlessly load data for analysis. The project 
+                involved the extraction of data stored in an S3 bucket and its integration into Snowflake for further processing and analysis. 
+                This integration of S3 with Snowflake allowed for a robust and flexible data pipeline that met the project's data processing needs.</p>
 
             
         <div class="flex-container">
@@ -113,10 +111,11 @@
             <h3>Prerequisites</h3>
             <p>Before diving into the project, you'll need the following prerequisites:</p>
             <ul style="list-style-type: disc; margin-left: 30px;">
-                <li>An <a href="https://signin.aws.amazon.com/" target="_blank"> AWS account</a> with the necessary permissions to create and manage services.</li>
-                <li>Basic knowledge of AWS services like S3, Lambda, Glue, and Athena.</li>
-                <li><a href="https://github.com/arunsinp/Python-programming" target="_blank">Python programming skills</a>.</li>
-                <li><a href="https://developer.spotify.com/documentation/web-api" target="_blank">API access</a>.</li>
+                <li>An <a href="https://www.snowflake.com/en/" target="_blank">Snowflake account</a> with the necessary permissions to create and manage services.</li>
+                <li>Basic knowledge of <a href="https://aws.amazon.com/" target="_blank">AWS services</a> like <a href="https://aws.amazon.com/s3/" target="_blank">s3</a>,
+                    <a href="https://aws.amazon.com/iam/" target="_blank">IAM</a>.</li>
+                <li><a href="https://github.com/arunsinp/Databases-data-pipeline" target="_blank">SQL, databases and data warehouses</a>.</li>
+                <li><a href="https://developer.spotify.com/documentation/web-api" target="_blank">Spotify API access</a>.</li>
             </ul>
             </div>
             <div class="image">
@@ -135,24 +134,32 @@
             <h3>Project overview</h3>
             <p>This project is an end-to-end ETL (Extract, Transform, Load) pipeline designed to automate the extraction of data from a Spotify playlist 
                 and process it using various AWS services. The goal is to showcase proficiency in data engineering and AWS, with a focus on data extraction, 
-                transformation, and automated processing.</p>
-            <p>I have successfully completed the Spotify ETL pipeline project on AWS, and here's an overview of the key steps:</p>
+                transformation, and automated processing. I have successfully completed the Spotify ETL pipeline project on AWS, and here's an overview 
+                of the key steps:</p>
             <ul style="list-style-type: disc; margin-left: 30px;">
-                <li><span style="font-weight: normal;"><b>Data Extraction:</b></span> AWS Lambda functions were employed to interact with the Spotify API, 
-                    fetching data on globally famous songs, and storing it in an Amazon S3 bucket.</li>
-                <li><span style="font-weight: normal;"><b>Data Transformation:</b></span> The raw Spotify data underwent a transformation phase through Lambda 
-                    functions. This process included parsing JSON responses, creating structured data frames, and applying various data cleaning operations.</li>
-                <li><span style="font-weight: normal;"><b>Data Loading:</b></span> The transformed data was loaded back into the S3 bucket, making it ready for analysis.</li>
-                <li><span style="font-weight: normal;"><b>Automated Processing:</b></span> For keeping the music data current, I implemented automated processes that
-                     actively fetched new data from Spotify and dynamically updated the datasets. An AWS S3 trigger was configured to initiate the data transformation 
-                     process whenever a new dataset was added to the S3 bucket. Subsequently, the transformed data was loaded into a designated destination or folder.
-                </li>
-                <li><span style="font-weight: normal;"><b>Data Analysis:</b></span>With the data in its prepared formats, it's now possible to explore music trends, artist popularity, 
-                    genre distribution, and more.</li>
+                <li><span style="font-weight: normal;"><b>Data Source and S3 Integration: </b></span>The project began by sourcing data from a spotify API of globally famous top 50 songs
+                    and storing it in an Amazon S3 bucket. Amazon S3 provided an ideal repository for the data due to its scalability, durability, 
+                    and cost-effectiveness. This cloud-based storage solution ensured that the data was easily accessible and highly available for the subsequent 
+                    stages of the project.</li> 
+                <li><span style="font-weight: normal;"><b>Setting Up Snowflake External Stages: </b></span>To enable the efficient loading of data from the S3 bucket 
+                    into Snowflake, I created Snowflake external stages. These stages act as bridges between the cloud storage and Snowflake, allowing the seamless 
+                    transfer of data. By configuring the external stages to point to the specific location of the data in the S3 bucket, I established a direct 
+                    connection between the two platforms. This configuration also included defining the necessary access credentials for secure data transfer.</li>
+                <li><span style="font-weight: normal;"><b>Automated Data Loading with Snowpipe: </b></span>One of the standout features of the project was the 
+                    utilization of Snowpipe, a powerful Snowflake feature designed for continuous, automated data loading. With Snowpipe, new data added to the S3 
+                    bucket was automatically detected and ingested into Snowflake. This real-time data ingestion mechanism reduced manual intervention and minimized 
+                    the latency between data arrival and availability for analysis. Snowpipe's event-driven model ensured that data was always up-to-date in 
+                    Snowflake.</li>
             </ul>
                 
+            <h3>Benefits of the S3 and Snowflake Integration</h3>
+            <p>The integration of Amazon S3 with Snowflake delivered numerous advantages. It provided a scalable and cost-effective solution for data storage, allowing the 
+                project to grow seamlessly with the increasing volume of data. The use of Snowflake's data warehousing capabilities ensured efficient data 
+                processing and analysis. Additionally, the automated data loading through Snowpipe enhanced operational efficiency and maintained data accuracy.</p>
+
+
             <h3>Project Architecture</h3>
-            <img src="assets/img/portfolio/AWS-2.png" class="img-responsive" alt="Project Architecture" style="width: 800px; height: auto;">
+            <img src="assets/img/portfolio/aws-snowflake-pipeline.png" class="img-responsive" alt="Project Architecture" style="width: 800px; height: auto;">
 
             <h3>Project Setup</h3>
                 <h5>Spotify Playlist and API:</h5>
