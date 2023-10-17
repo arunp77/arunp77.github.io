@@ -26,6 +26,15 @@
   <!-- Creating a python code section-->
   <link rel="stylesheet" href="assets/css/prism.css">
   <script src="assets/js/prism.js"></script>
+  <!-- Creating a sql code section-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/default.min.css">
+  <link rel="stylesheet" href="copy.css"> <!-- Link to your custom CSS file -->
+
+
+
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
@@ -244,6 +253,13 @@
                         <ul>
                             <li>
                                 <p><b>Configure AWS Integration: </b>Within your Snowflake account, navigate to "Account" and then "Security Integration." Click on "Set Up Third-Party Integration."</p>
+                                <button id="copy-sql-button">Copy SQL</button>
+                                <pre class="language-sql">
+                                    <code id="sql-code">
+                                      SELECT * FROM your_table
+                                      WHERE condition = 'your_condition';
+                                    </code>
+                                  </pre>                                                                    
                             </li>
             
                             <li>
@@ -322,6 +338,24 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script>
+    // Function to copy SQL code to clipboard
+    function copySQLCode() {
+      const sqlCode = document.getElementById("sql-code").textContent;
+      const tempInput = document.createElement("input");
+      tempInput.value = sqlCode;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand("copy");
+      document.body.removeChild(tempInput);
+    }
+  
+    // Add a click event listener to the "Copy" button
+    document.getElementById("copy-sql-button").addEventListener("click", copySQLCode);
+  </script>
+  
+
 
 </body>
 
