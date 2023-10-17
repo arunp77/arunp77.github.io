@@ -341,22 +341,61 @@
 
                 <table>
                     <tr>
-                        <td><img src="assets/img/portfolio/AWS-1.png" alt="Image 1"></td>
-                        <td><img src="assets/img/portfolio/AWS-1.png" alt="Image 2"></td>
+                        <td><img src="assets/img/portfolio/data-analysis-1.png" alt="Image 1"></td>
+                        <td><img src="assets/img/portfolio/data-analysis-2.png" alt="Image 2"></td>
                     </tr>
                     <tr>
-                        <td><img src="assets/img/portfolio/AWS-1.png" alt="Image 3"></td>
-                        <td><img src="assets/img/portfolio/AWS-1.png" alt="Image 4"></td>
+                        <td><img src="assets/img/portfolio/data-analysis-3.png" alt="Image 3"></td>
+                        <td><img src="assets/img/portfolio/data-analysis-4.png" alt="Image 4"></td>
                     </tr>
                     <tr>
-                        <td><img src="assets/img/portfolio/AWS-1.png" alt="Image 5"></td>
-                        <td><img src="assets/img/portfolio/AWS-1.png" alt="Image 6"></td>
+                        <td><img src="assets/img/portfolio/data-analysis-5.png" alt="Image 5"></td>
+                        <td><img src="assets/img/portfolio/data-analysis-6.png" alt="Image 6"></td>
                     </tr>
                 </table>
+
+                <p>(More detailed query for the data analysis can be found at 
+                <a href="https://github.com/arunsinp/Databases-data-pipeline/tree/main/4.0-Database/Spotify-project" target="_blank">my github repository</a>)</p>
                 
             <h3><b>Challenges Faced</b></h3> 
+            <ul style="list-style-type: disc; margin-left: 30px;"></ul>
+                <li>
+                    <b>Context:</b> During the data transformation phase, we encountered significant delays in processing large volumes of data from the Spotify API. The delays were mainly due to the API rate limits and the sheer amount of data to process.
+                </li>
+                <li>
+                    <b>Impact:</b> These delays threatened to disrupt the automated data processing pipeline and hindered our ability to provide timely data to analysts and stakeholders.
+                </li>
+                <li>
+                    <b>Solution:</b> To address this challenge, we implemented a rate-limiting mechanism in our Python script to adhere to the API's rate limits. Additionally, we optimized the data transformation code to improve its efficiency.
+                </li>
+                <li>
+                    <b>Results:</b> These modifications significantly reduced the processing time and minimized data delays. As a result, we were able to maintain a consistent flow of data, ensuring that our analysts had up-to-date information for their analysis.
+                </li>
+                <li>
+                    <b>Key Takeaways:</b> This challenge taught us the importance of robust error handling and efficiency in data processing pipelines. We also learned to closely monitor API usage to ensure compliance with rate limits, which is critical for real-time data extraction and processing.
+                </li>
+            </ul>
  
             <h3><b>Future Improvements</b></h3>
+
+            <ul style="list-style-type: disc; margin-left: 30px;"></ul>
+                <li>
+                    <b>Enhanced Data Sources:</b> Expanding the data sources beyond Spotify to include other music streaming platforms, enabling a broader and more comprehensive dataset for analysis.
+                </li>
+                <li>
+                    <b>Real-time Data Updates:</b> Implementing a real-time data processing mechanism to ensure that analysts and stakeholders have access to the most up-to-date information without delay.
+                </li>
+                <li>
+                    <b>Data Validation and Quality Checks:</b> Developing a system for automated data validation and quality checks to ensure the integrity and accuracy of the data before analysis.
+                </li>
+                <li>
+                    <b>User-friendly Dashboard:</b> Creating a user-friendly dashboard or visualization tool that allows non-technical users to access and interact with the data for insights and reporting.
+                </li>
+                <li>
+                    <b>Scalability:</b> Designing the data pipeline to be highly scalable, enabling it to handle larger datasets and increased traffic as the project grows.
+                </li>
+            </ul>
+            
 
         </div>
       </div>
