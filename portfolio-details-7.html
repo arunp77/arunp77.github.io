@@ -27,11 +27,10 @@
   <link rel="stylesheet" href="assets/css/prism.css">
   <script src="assets/js/prism.js"></script>
   <!-- Creating a sql code section-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js"></script>
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/default.min.css">
-  <link rel="stylesheet" href="copy.css"> <!-- Link to your custom CSS file -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/languages/sql.min.js"></script>
+
 
 
 
@@ -237,29 +236,45 @@
             
                     <li>
                         <p><b>Create a Workspace:</b> Click on the "Workspaces" tab and create a new workspace named "Spotify-data-analysis."</p>
+                        <div class="image">
+                            <img src="assets/img/portfolio/snowflake-workspace.png" alt="Image Description">
+                        </div>
                     </li>
             
                     <li>
-                        
                         <p><b>Create a Database: </b> Within your workspace, create a new database named "SPOTIFY_ETL_PIPELINE."</p>
+                        <div class="image">
+                            <img src="assets/img/portfolio/snowflake-database.png" alt="Image Description">
+                        </div>
                     </li>
             
                     <li>
-                        <p><b>Define Tables and Schema: </b>Create the necessary tables within your database, defining the schema for your data. This schema should match the structure of your data files in the S3 bucket.</p>
+                        <p><b>Define Tables and Schema: </b>Create the necessary tables within your database, defining the schema ('SPOTIFY_DATA_ANALYSIS_SCHEMA') for your data. This schema should match 
+                            the structure of your data files in the S3 bucket.</p>
+                            <div class="image">
+                                <img src="assets/img/portfolio/snowflake-schema.png" alt="Image Description">
+                            </div>
                     </li>
             
                     <li>
-                        <p><b>Set Up AWS Integration: </b>Setting up the AWS integration allows Snowflake to access your AWS S3 bucket and pull data into your Snowflake tables.</p>
+                        <p><b><a href="https://docs.snowflake.com/en/user-guide/data-load-s3-config-aws-iam-role" target="_blank"> Set Up AWS Integration:</a> </b>
+                            Setting up the AWS integration allows Snowflake to access your AWS S3 bucket and pull data into your Snowflake tables.</p>
                         <ul>
                             <li>
-                                <p><b>Configure AWS Integration: </b>Within your Snowflake account, navigate to "Account" and then "Security Integration." Click on "Set Up Third-Party Integration."</p>
-                                <button id="copy-sql-button">Copy SQL</button>
+                                <p><b>Configure AWS Integration: </b>  It is important to note that an ACCOUNTADMIN is required for this task. A storage integration in 
+                                    Snowflake is an object that stores a generated identity for the external cloud storage.
+                                    Within the Snowflake account, navigate to "Account" and then "Security Integration." Click on "Set Up Third-Party Integration." This can also be done through following 
+                                query: </p>
                                 <pre class="language-sql">
                                     <code id="sql-code">
-                                      SELECT * FROM your_table
-                                      WHERE condition = 'your_condition';
+                                        create storage integration "integration_name"
+                                            type = external_stage
+                                            storage_provider = s3
+                                            storage_aws_role_arn = '"role ARN"'
+                                            enabled = true
+                                            storage_allowed_locations = ('s3://bucket_name/');
                                     </code>
-                                  </pre>                                                                    
+                                  </pre>                                                             
                             </li>
             
                             <li>
@@ -281,7 +296,34 @@
                             <li>
                                 <p><b>Validate and Save: </b> Review the integration details to ensure they are correct. Click "Finish" to save the integration.</p>
                             </li>
+                            <div class="image">
+                                <img src="assets/img/portfolio/Snowflake-aws-integration2.png" alt="Image Description">
+                            </div>     
                         </ul>
+                    </li>
+
+                    <li><p><b>Create a Trust Relationship for the Storage Integration: </b>Afterward, we can execute the following query to retrieve information about the storage integration:</p>
+                        <pre class="language-sql">
+                            <code id="sql-code">
+                             desc integration "integration_name";
+                            </code>
+                        </pre>   
+                    </li>
+
+                    <li><p><b>Create an External Stage: </b> With the above setup, we can now create an external stage using the following SQL statement:</p> 
+                        <pre class="language-sql">
+                            <code id="sql-code">
+                                create stage "stage_name"
+                                    storage_integration = "integration_name"
+                                    url = 's3:// "bucket_name"/';
+                            </code>
+                        </pre> 
+                        <p>We can check all the available files at s3 bucket using:</p>
+                        <pre class="language-sql">
+                            <code id="sql-code">
+                             List @stage_name; 
+                            </code>
+                        </pre>  
                     </li>
             
                     <li>
@@ -340,20 +382,11 @@
   <script src="assets/js/main.js"></script>
 
   <script>
-    // Function to copy SQL code to clipboard
-    function copySQLCode() {
-      const sqlCode = document.getElementById("sql-code").textContent;
-      const tempInput = document.createElement("input");
-      tempInput.value = sqlCode;
-      document.body.appendChild(tempInput);
-      tempInput.select();
-      document.execCommand("copy");
-      document.body.removeChild(tempInput);
-    }
-  
-    // Add a click event listener to the "Copy" button
-    document.getElementById("copy-sql-button").addEventListener("click", copySQLCode);
+    document.addEventListener("DOMContentLoaded", function () {
+      hljs.initHighlightingOnLoad();
+    });
   </script>
+
   
 
 
