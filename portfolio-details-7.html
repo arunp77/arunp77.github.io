@@ -174,6 +174,7 @@
                         <li>Go to the <a href="https://developer.spotify.com/documentation/web-api" target="_blank">Snowflake website</a> and click on "Get Free Trial."</li>
                         <li>Follow the on-screen instructions to set up your Snowflake account.</li>
                         <li>Note any specific considerations or tips during the signup process.</li>
+                        <li>Once your account is created, you can access the Snowflake web interface by logging in.</li>
                     </ul>
                 </ul>
                 
@@ -216,9 +217,65 @@
 
             <!-- Key component start here-->
             <h3><b>Key Components</b></h3>
-                
-
-
+                <ul style="list-style-type: disc; margin-left: 30px;">
+                    <li><b>AWS s3 data: </b>I assume that data is already extracted, trasnformed and then loaded to the AWS s3 bucket, in folders: album_data, artist_data
+                        and songs_data.</li>
+                    <li><b>Automation with AWS Lambda: </b> AWS Lambda functions were used to automate data processing tasks. Triggers were set up to initiate these processes when new data was added to the S3 buckets.</li>
+                    <li><b>Data Loading to Snowflake from aws s3 bucket: </b>Next we would do the creation of snowpipes.</li>
+                    <li>
+                        <p><b>Access Your Snowflake Account:</b> Log in to your Snowflake account using your credentials.</p>
+                    </li>
+            
+                    <li>
+                        <p><b>Create a Workspace:</b> Click on the "Workspaces" tab and create a new workspace named "Spotify-data-analysis."</p>
+                    </li>
+            
+                    <li>
+                        
+                        <p><b>Create a Database: </b> Within your workspace, create a new database named "SPOTIFY_ETL_PIPELINE."</p>
+                    </li>
+            
+                    <li>
+                        <p><b>Define Tables and Schema: </b>Create the necessary tables within your database, defining the schema for your data. This schema should match the structure of your data files in the S3 bucket.</p>
+                    </li>
+            
+                    <li>
+                        <p><b>Set Up AWS Integration: </b>Setting up the AWS integration allows Snowflake to access your AWS S3 bucket and pull data into your Snowflake tables.</p>
+                        <ul>
+                            <li>
+                                <p><b>Configure AWS Integration: </b>Within your Snowflake account, navigate to "Account" and then "Security Integration." Click on "Set Up Third-Party Integration."</p>
+                            </li>
+            
+                            <li>
+                                <p><b>Choose AWS as the Cloud Provider: </b>Select AWS as your cloud provider. You may be prompted to enter AWS access and secret keys for authentication.</p>
+                            </li>
+            
+                            <li>
+                                <p><b>Define the Integration Name</b> Create a name for your integration, such as "Spotify-AWS-Integration."</p>
+                            </li>
+            
+                            <li>
+                                <p><b>Define a Role ARN: </b> Specify the Amazon Resource Name (ARN) for the role that has permissions to access your S3 bucket. This role should have read access to the bucket where your data is stored.</p>
+                            </li>
+            
+                            <li>
+                                <p><b>Configure External Stage: </b> Set up an external stage that points to your AWS S3 bucket. Provide the bucket name and any other required configuration settings.</p>
+                            </li>
+            
+                            <li>
+                                <p><b>Validate and Save: </b> Review the integration details to ensure they are correct. Click "Finish" to save the integration.</p>
+                            </li>
+                        </ul>
+                    </li>
+            
+                    <li>
+                        <p><b>Load Data from S3 to Snowflake: </b>Now that your integration is set up, you can use Snowflake's COPY INTO command to load data from your S3 bucket into Snowflake tables. Ensure that you have the necessary permissions to perform this operation.</p>
+                    </li>
+            
+                    <li>
+                        <p><b>Data Analysis: </b>With your data successfully loaded into Snowflake, you can now perform data analysis using SQL queries and other tools within Snowflake.</p>
+                    </li>
+                </ul>
 
 
             <h3><b>Project Results</b></h3>
