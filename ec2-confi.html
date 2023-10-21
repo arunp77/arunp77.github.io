@@ -99,16 +99,105 @@
       <div class="container">
         <div class="row gy-4">
           <h1>AWS-EC2 configuration</h1>
-            <h3><b>Introduction</b></h3>
+            <h3>Step-by-Step Guide to Create an AWS EC2 Instance</h3>
+            <ul>
+                <ol>
+                    <li>Create or login in to AWS Console:
+                        <ul>
+                            <li>Go to the <a href="https://aws.amazon.com/" target="_blank">AWS Management Console</a>.</li>
+                            <ul>
+                                <ol>
+                                    <li>Visit the AWS Registration Page:
+                                        <ul>
+                                            <li>Go to the <a href="https://aws.amazon.com/" target="_blank">AWS website</a>.</li>
+                                            <li>Click on the "Create an AWS Account" button.</li>
+                                        </ul>
+                                    </li>
+                                    <li>Provide Your Account Information:
+                                        <ul>
+                                            <li>Enter your email address and create a secure password for your AWS account.</li>
+                                            <li>Choose a unique AWS account name.</li>
+                                            <li>Provide your contact information, including your name and phone number.</li>
+                                        </ul>
+                                    </li>
+                                    <li>Verify Your Identity:
+                                        <ul>
+                                            <li>Verify your identity by providing a valid phone number. You'll receive a verification code via SMS or voice call.</li>
+                                            <li>Enter the verification code to proceed.</li>
+                                        </ul>
+                                    </li>
+                                    <li>Choose a Support Plan:
+                                        <ul>
+                                            <li>Choose a support plan based on your needs. You can select the free basic support plan or a premium plan with additional features 
+                                                (for a starter, free version works perfectly).</li>
+                                            <li>Review and accept the AWS Customer Agreement and AWS Service Terms.</li>
+                                        </ul>
+                                    </li>
+                                    <li>Payment Information:
+                                        <ul>
+                                            <li>Provide your payment information, including credit card details. AWS may charge a small amount to verify your card. For a free plan, 
+                                                you will not be charge until unless you exceeds the limits of that particular AWS service (for charges, you can visit official 
+                                                AWS website <a href="https://aws.amazon.com/free/compute/lightsail/?trk=be4c6119-fb07-4f51-9f48-21e2c72b3d51&sc_channel=ps&ef_id=EAIaIQobChMI2LySs42IggMV1YZoCR339w1UEAAYASAAEgImlPD_BwE:G:s&s_kwcid=AL!4422!3!645133581981!e!!g!!amazon%20web%20services%20pricing!19579657655!148952120567" target="_blank">
+                                                    AWS Free Tier </a>)
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>Identity Verification:
+                                        <ul>
+                                            <li>As part of security verification, you may be asked to provide a scanned copy of your ID for further validation.</li>
+                                        </ul>
+                                    </li>
+                                    <li>Set Up Multi-Factor Authentication (MFA) (Recommended):
+                                        <ul>
+                                            <li>Enable MFA for added security by configuring it using a smartphone app or a hardware device. In my case, I used the google authenticator
+                                                (you can find it in your <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en&gl=US" target="_blank">andorid playstore</a> 
+                                                or <a href="https://apps.apple.com/de/app/google-authenticator/id388497605" target="_blank">ios play store</a>).
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>Complete Registration:
+                                        <ul>
+                                            <li>Review your information and confirm your registration.</li>
+                                            <li>You will receive a confirmation email from AWS once the registration process is complete.</li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                            </ul>
+                            <li>Once, the login is done, sign in with your AWS account credentials.</li>
+                        </ul>
+                    </li>
+                    <li>Choose Region:
+                        <ul>
+                            <li>Select the region where you want to launch your EC2 instance. Choose a region that's geographically close to your target audience for lower latency.</li>
+                        </ul>
+                    </li>
+                    <li>Navigate to EC2 Dashboard:
+                        <ul>
+                            <li>In the AWS Management Console, search for "EC2" in the services search bar, and click on "EC2" to access the EC2 Dashboard.</li>
+                            <div class="image">
+                                <img src="assets/img/portfolio/ec2-account.png" alt="Image Description">
+                            </div>    
+                        </ul>
+                    </li>
+                    <li>Launch an Instance:
+                        <ul>
+                            <li>Click the "Instances" link on the left navigation pane.</li>
+                            <li>Click the "Launch Instances" button.</li>
+                            <img src="assets/img/portfolio/launch-ec2.png" alt="Image Description">
+                            <li>Give a unique "Name and tags"</li>
+                            <li>In the "Application and OS Images (Amazon Machine Image)", section choose  either of the operating systems as per your requirement. In my case, 
+                                I choose 'Amazon Linux'. Normally, I prefer Ubuntu or Amazon linux as they contains all the required software configuration.
+                            </li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </li>
+                </ol>
+            </ul>
 
 
-
-
-
-
-
-
-    
     
         </section><!-- End Portfolio Details Section -->
 </main><!-- End #main -->
