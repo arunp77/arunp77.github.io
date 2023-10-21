@@ -138,7 +138,6 @@
         <!-- project Architecture starts here-->
         <h3><b>Project Architecture</b></h3>
         <p>The architecture of our project involves several interconnected components:</p>
-        <img src="assets/img/portfolio/AWS-snowpipe-1.png" alt="Project Architecture" style="width: 800px; height: auto;">
         <ul style="list-style-type: disc; margin-left: 30px;">
           <li><b>EC2 Instance</b>: This serves as the foundation of the project, where we deploy our Docker container and essential tools.</li>
           <li><b>Docker Container</b>: Housed within the EC2 instance, this container contains Python, Apache Nifi, and Apache ZooKeeper, ensuring a consistent and easily replicable environment.</li>
@@ -148,6 +147,7 @@
           <li><b>Data Streaming to AWS S3</b>: Apache Nifi was used to establish connections for transferring the generated data to an AWS S3 bucket, providing scalable storage and real-time access.</li>
           <li><b>Real-Time Data Processing with Snowflake</b>: Leveraging Snowpipe, we ensured that any new data or changes in existing data were automatically incorporated into the dataset. Slowly changing dimensions were used to track these changes.</li>
           <li><b>Target Table Creation</b>: A task was executed to create target tables, ensuring the final dataset was always up-to-date and accurate.</li>
+          <img src="assets/img/portfolio/AWS-snowpipe-1.png" alt="Project Architecture" style="width: 800px; height: auto;">
         </ul>
         <!-- project Architecture ends here-->
 
