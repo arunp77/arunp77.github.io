@@ -86,7 +86,7 @@
         <div class="d-flex justify-content-between align-items-center">
           <h2>Portfoio Details</h2>
           <ol>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="portfolio-details-8.html">Go back</a></li>
             <li>Portfoio Details</li>
           </ol>
         </div>
@@ -104,6 +104,7 @@
             computing service that enables users to launch and manage virtual servers, known as EC2 instances, in the AWS cloud. 
             These instances can be used to run applications, host websites, and perform a wide range of computing tasks. </p>
           <h3>Key features of EC2 include: </h3>
+          <p>Key features of EC2 include:</p>
           <ul style="list-style-type: disc; margin-left: 30px;">
             <li><b>Scalability:</b> Users can easily scale the number of instances up or down based on workload demands. This makes it suitable for both small applications and large-scale, 
                 high-performance computing tasks.</li>
@@ -121,6 +122,8 @@
             <li><b>Integration:</b> EC2 can be integrated with other AWS services like RDS (Relational Database Service), S3 (Simple Storage Service), and more to build comprehensive cloud-based solutions.</li>
             <li><b>Pay-as-You-Go Pricing:</b> Users are billed based on the actual compute capacity they use, and they can choose from various pricing models, including on-demand, reserved, and spot instances.</li>
           </ul>
+          <p>Amazon EC2 is a fundamental building block of AWS and is widely used for a wide range of applications, from web hosting and development environments to scientific 
+            computing and data analytics. It provides the flexibility and control needed to deploy virtually any application in the cloud.</p>
           <h3>AWS-EC2 configuration</h3>
             <ul>
                 <ol>
@@ -210,9 +213,13 @@
                             <li>In the "Application and OS Images (Amazon Machine Image)", section choose  either of the operating systems as per your requirement. In my case, 
                                 I choose 'Amazon Linux'. Normally, I prefer Ubuntu or Amazon linux as they contains all the required software configuration.
                             </li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
+                            <li>Next choose from the "Instance type" as per your requirements. In the case of real-time dataset streaming, you may need higher configuration. 
+                                In my case, I choose 't2.large' (2 CPU, 8GB ram with minimal charges per hours).
+                            </li>
+                            <li>In the network setting, I choose ssh, https and http traffic. </li>
+                            <li>Keep other settings as it is and click "Launch Instance". It will create the instance, where we first need to install the Docker image,
+                                containg all the necessary dependencies.
+                            </li>
                             <li></li>
                         </ul>
                     </li>
@@ -261,10 +268,7 @@
         hljs.initHighlightingOnLoad();
       });
     </script>
-  
-    
-  
-  
+
   </body>
   
   </html>
