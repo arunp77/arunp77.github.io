@@ -26,10 +26,7 @@
   <!-- Creating a python code section-->
   <link rel="stylesheet" href="assets/css/prism.css">
   <script src="assets/js/prism.js"></script>
-  <!-- Creating a sql code section-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/default.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/languages/sql.min.js"></script>
+
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
@@ -108,108 +105,156 @@
               aiming to build a smart system. This system not only generates random data but also swiftly sends it to an AWS S3 storage space. Then, it processes this data 
               instantly with Snowflake, all under the watchful eye of Apache Nifi, which acts as the conductor of this intricate data symphony.
             </p> 
-        <div class="flex-container">
-            <div class="text">
-            <h3><b>Prerequisites</b></h3>
-            <p>Before diving into the project, you'll need the following prerequisites:</p>
-            <ul style="list-style-type: disc; margin-left: 30px;">
-              <li>Access to AWS services.</li>
-              <li>An <a href="https://docs.aws.amazon.com/ec2/" target="_blank">EC2 instance</a> with specific configurations: 8GB RAM, 32GB memory space.</li>
-              <li><a href="https://docs.docker.com/desktop/" target="_blank">Docker container</a> expertise.</li>
-              <li>Proficiency in <a href="https://github.com/arunsinp/Python-programming" target="_blank"> Python</a>, including the 
-                '<a href="https://faker.readthedocs.io/en/master/" target="_blank">Faker</a>' library.</li>
-              <li>Familiarity with <a href="https://docs.snowflake.com/en/user-guide/intro-key-concepts" target="_blank">Snowflake for cloud data warehousing</a>.</li>
-              <li><a href="https://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-zookeeper.html" target="_blank">Basic understaidng of Apache ZooKeeper</a></li>
-              <li>Apache Nifi setup and configuration.</li>
-              <li>Stream & Task Processing</li>
-              <li>Version Control (Git)</li>
-              <li>SQL for Data Manipulation</li>
-            </ul>
-            </div>
-            <div class="image">
-                <img src="assets/img/portfolio/Apache-nifi-logo.png" alt="Image Description">
-            </div>
+          <div class="flex-container">
+              <div class="text">
+              <h3><b>Prerequisites</b></h3>
+              <p>Before diving into the project, you'll need the following prerequisites:</p>
+              <ul style="list-style-type: disc; margin-left: 30px;">
+                <li>Access to AWS services.</li>
+                <li>An <a href="https://docs.aws.amazon.com/ec2/" target="_blank">EC2 instance</a> with specific configurations: 8GB RAM, 32GB memory space.</li>
+                <li><a href="https://docs.docker.com/desktop/" target="_blank">Docker container</a> expertise.</li>
+                <li>Proficiency in <a href="https://github.com/arunsinp/Python-programming" target="_blank"> Python</a>, including the 
+                  '<a href="https://faker.readthedocs.io/en/master/" target="_blank">Faker</a>' library.</li>
+                <li>Familiarity with <a href="https://docs.snowflake.com/en/user-guide/intro-key-concepts" target="_blank">Snowflake for cloud data warehousing</a>.</li>
+                <li><a href="https://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-zookeeper.html" target="_blank">Basic understaidng of Apache ZooKeeper</a>.</li>
+                <li><a href="https://nifi.apache.org/docs.html" target="_blank">Apache Nifi</a> setup and configuration.</li>
+                <li><a href="https://quickstarts.snowflake.com/guide/getting_started_with_streams_and_tasks/index.html#0" target="_blank">Streaming & Task Processing</a>.</li>
+                <li>Understanding of <a href="https://github.com/arunsinp/Learning-git" target="_blank"> Version Control (Git)</a>.</li>
+                <li>Basic understanding of <a href="https://github.com/arunsinp/SQL" target="_blank">SQL</a> for Data Manipulation</li>
+              </ul>
+          </div>
+          <div class="image">
+              <img src="assets/img/portfolio/Apache-nifi-logo.png" alt="Image Description">
+          </div>
         </div>
-    
-                
+            
+        <!-- project overview start here-->
         <h3><b>Project overview</b></h3>
-        <p>Write about the project over view:</p>
-        <ul style="list-style-type: disc; margin-left: 30px;">
-            <li><span style="font-weight: normal;"><b><a href="https://www.google.com" target="_blank">
-                Heading</a>: </b></span>write something....</li> 
-        </ul>
+        <p>This project demonstrates my ability to design and implement a real-time data streaming pipeline using Apache Nifi, AWS, Snowpipe, 
+          Stream, and Task. The pipeline continuously ingests data from a JupyterLab notebook, processes it using Apache Nifi, and loads it into a Snowflake 
+          data warehouse. The pipeline is designed to handle both new data and updates to existing data.</p>
+        <!-- project overview ends here-->
 
+        <!-- project Architecture starts here-->
         <h3><b>Project Architecture</b></h3>
+        <p>The architecture of our project involves several interconnected components:</p>
         <img src="assets/img/portfolio/AWS-snowpipe-1.png" alt="Project Architecture" style="width: 800px; height: auto;">
+        <ul style="list-style-type: disc; margin-left: 30px;">
+          <li><b>EC2 Instance</b>: This serves as the foundation of the project, where we deploy our Docker container and essential tools.</li>
+          <li><b>Docker Container</b>: Housed within the EC2 instance, this container contains Python, Apache Nifi, and Apache ZooKeeper, ensuring a consistent and easily replicable environment.</li>
+          <li><b>JupyterLab and Apache Nifi</b>: These are the workstations for data engineers. JupyterLab is accessible at 'IP/4888,' and Apache Nifi is reachable at 'IP/2080' (where IP is the
+            <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html" target="_blank">EC2 machine IP</a>).</li>
+          <li><b>Data Generation</b>: Using Python in JupyterLab, we utilized the 'Faker' library to create random data records, including customer information.</li>
+          <li><b>Data Streaming to AWS S3</b>: Apache Nifi was used to establish connections for transferring the generated data to an AWS S3 bucket, providing scalable storage and real-time access.</li>
+          <li><b>Real-Time Data Processing with Snowflake</b>: Leveraging Snowpipe, we ensured that any new data or changes in existing data were automatically incorporated into the dataset. Slowly changing dimensions were used to track these changes.</li>
+          <li><b>Target Table Creation</b>: A task was executed to create target tables, ensuring the final dataset was always up-to-date and accurate.</li>
+        </ul>
+        <!-- project Architecture ends here-->
 
         <!-- project setup start here-->
         <h3><b>Project Setup</b></h3>
-            <h4>Snowflake resources</h4>
-            <ul style="list-style-type: disc; margin-left: 30px;">
-                <li><h5>Snowflake Edition:</h5> </li>I used the Snowflake Free Trial edition for this project.</p> 
-                <li><h5>Signup Process:</h5></li>
-                <ul style="list-style-type: disc; margin-left: 30px;">
-                    <li>Go to the <a href="https://developer.spotify.com/documentation/web-api" target="_blank">Snowflake website</a> and click on "Get Free Trial."</li>
-                    <li>Follow the on-screen instructions to set up your Snowflake account.</li>
-                    <li>Note any specific considerations or tips during the signup process.</li>
-                    <li>Once your account is created, you can access the Snowflake web interface by logging in.</li>
-                </ul>
-            </ul>
-            
-
-            <h4>AWS Resources</h4>
-            <ul style="list-style-type: disc; margin-left: 20px;">
-                <li>Create an <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-bucket.html" target="_blank">Amazon S3 bucket to store the data</a>
-                (you can follow the step by step guide provided at official AWS documnetation page)</li>
-                <li>Configure folder structures within the S3 bucket for raw and transformed data.</li>
-                <li>Set up necessary Lambda functions for data extraction and transformation.</li>
-                <li>In the project, I created follwoing folders in s3 bucket on AWS cloud:</li>
-                <ul>
-                    <p><h6><strong>Amazon S3 Bucket:</strong></h6></p>
-                    <ul style="list-style-type: disc; margin-left: 20px;">
-                        <li>Set up an Amazon S3 bucket named "spotify-etl-project-arun."</li>
-                        <li>This bucket contains all the data files obtained from the spotify API.</li>
-                    </ul>
-                    <p><h6><b>Folder Structure:</b></h6></p>
-                    <p>Within the S3 bucket, established a structured folder hierarchy:</p>
-                    <ul style="list-style-type: disc; margin-left: 20px;">
-                        <li>raw_data/
-                            <ul style="list-style-type: disc; margin-left: 10px;">
-                                <li>processed/</li>
-                                <li>to_processed/</li>
-                            </ul>
-                        </li>
-                        <li>transformed_data/
-                            <ul style="list-style-type: disc; margin-left: 10px;">
-                                <li>album_data/</li>
-                                <li>artist_data/</li>
-                                <li>songs_data/</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </ul>
-                <li>You can find more details on how to extract, trasnform and load the data from the spotify to amazon s3 bucket from my 
-                    <a href="https://arunsinp.github.io/Arun-Kumar-Pandey/portfolio-details-6.html" target="_blank">AWS-etl-datapipeline project</a>.</li>
-            </ul>
+          <p>Let's dive into the details of the setup, like taking a closer look at the instruments in our orchestra:</p>
+          <ul style="list-style-type: disc; margin-left: 30px;">
+            <li><b>EC2 Instance Configuration:</b></li>
+            <li><b></b> I meticulously configured an AWS EC2 instance with 8GB RAM and 32GB memory space, choosing a t2.xlarge instance for optimal performance. 
+              Ports 4000-38888 were opened, and SSH access was set up. This is where we set up our concert hall.</li>
+            <li><b>Docker Container Setup:</b> Within the EC2 instance, a Docker container was created and populated with Python, Apache Nifi, and Apache ZooKeeper. 
+              Think of it as preparing our instruments, tuning them to perfection.</li>
+            <li><b>JupyterLab and Apache Nifi Configuration:</b>JupyterLab and Apache Nifi were configured to run on specific ports, making them accessible for data processing and orchestration. 
+              It's like setting up the conductor's podium and the sheet music stand just right.</li>
+            <li><b>Data Generation: </b>In JupyterLab, Python code was crafted to generate random data, simulating customer information. This is where the composer writes the notes.</li>
+            <li><b>Data Streaming: </b>Apache Nifi was utilized to set up connections, ensuring the seamless transfer of generated data to an AWS S3 bucket. It's the conductor guiding the instruments.</li>
+            <li><b>Real-Time Data Processing: </b>Snowpipe, Snowflake streams, and tasks were set up to handle real-time data processing, enabling automatic updates as new data arrived. 
+              It's the conductor guiding the orchestra to play in harmony.</li>
+          </ul>
         <!-- project setup end here-->
-
+        
         <!-- Key component start here-->
         <h3><b>Key Components</b></h3>
+        <p>The key components are like our orchestra members:</p>
             <ul style="list-style-type: disc; margin-left: 30px;">
-                <li><b>Heading: </b>jekwdskskj</li>
-                <li>
-                    <p><b>Access Your Snowflake Account:</b> Log in to your Snowflake account using your credentials.</p>
+                <li><b>AWS EC2: The Stage Where the Symphony is Performed </b>The AWS EC2 instance serves as the stage for our data symphony. Here's how 
+                  it was created and configured for the project:
+                  <ul style="list-style-type: disc; margin-left: 20px;">
+                    <li><b>Creation: </b> To set up an EC2 instance, I began by accessing the AWS Management Console and launched an EC2 instance. 
+                      I selected an instance type with 8GB of RAM and 32GB of memory space, specifically choosing a t2.xlarge instance for optimal performance. </li>
+                    <li><b>Storage and Security: </b> In the process, I configured the instance with 32GB of storage, ensuring that there was sufficient space to store data and project components. Additionally, I created a security group that allowed incoming traffic on the 
+                      specified ports (4000-38888) and enabled SSH access for remote management.</li>
+                    <li><b>Connection: </b> After launching the EC2 instance, I connected to it via SSH, providing a secure channel for executing commands and configuring the environment.</li>
+                  </ul>
                 </li>
-        
-                <li>
-                    <p><b><a href="https://docs.snowflake.com/en/user-guide/data-load-s3-config-aws-iam-role" target="_blank"> title...:</a> </b>
-                        xyz...</p>
-                    <ul>
+                <li><b>Docker: </b>The Instruments and Their Maintenance</li>
+                    <p>Docker played a crucial role in maintaining the tools and dependencies used in the project. Here's how it was set up:</p>
+                    <ul style="list-style-type: disc; margin-left: 20px;">
+                      <li><b>Installation:</b> To prepare the EC2 instance for Docker, I executed a series of commands:</li>
+                        <pre>
+                          <code class="language-python">
+                            sudo yum update -y
+                            sudo yum install docker                          
+                          </code>
+                        </pre>   
+                      <li><b>Installing Docker Compose:</b> I also installed Docker Compose to manage multi-container Docker applications. 
+                        This was achieved with the following commands:</li>
+                        <pre>
+                          <code class="language-python">
+                            sudo curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+                            sudo chmod +x /usr/local/bin/docker-compose                                                   
+                          </code>
+                        </pre> 
+                      <li><b>Adding User to Docker Group:</b> To ensure that I had the necessary permissions to interact with Docker without using sudo, 
+                        I added my user to the Docker group and activated the changes with:</li>
+                        <pre>
+                          <code class="language-python">
+                            sudo gpasswd -a $USER docker
+                            newgrp docker             
+                          </code>
+                        </pre> 
+                      <li>Python and Docker Compose: For Docker Compose to function seamlessly, I installed Python and the required package:</li>
+                      <pre>
+                        <code class="language-python">
+                          sudo yum install python-pip
+                          sudo pip install docker-compose
+                        </code>
+                      </pre> 
+                    </ul>
+                <li><b>Apache Nifi: The Conductor </b>
+                  <p>Apache Nifi was the conductor of our data symphony, orchestrating the flow of data. To set up Apache Nifi, I followed these steps:</p>
+                  <ul style="list-style-type: disc; margin-left: 20px;">
+                    <li>Download and Installation: I downloaded the Apache Nifi binary and installed it on the EC2 instance. This step usually 
+                      involves extracting the downloaded files and configuring the appropriate environment variables.</li>
+                    <li>Port Configuration: I ensured that Apache Nifi was accessible on port 'IP/2080,' where 'IP' represents the EC2 instance's IP address. 
+                      This step allowed for convenient interaction with Nifi.</li>
+                  </ul>
                 </li>
             </ul>
-            </div>
-        </div>
+            <p>The orchestration of these components is analogous to preparing an orchestra for a grand performance. The EC2 instance serves as the stage, 
+              Docker maintains our instruments, and Apache Nifi conducts the symphony of data, guiding it through the intricacies of real-time processing and streaming.</p>
+
+        <h3><b>Project Results</b></h3>
+          <p>The project successfully achieved real-time data generation, streaming, and processing, showcasing the efficiency and scalability of the architecture. 
+            It exemplified my proficiency in working with a diverse set of tools and technologies. Like any symphony, it was a harmonious blend of various elements, 
+              each playing its role to create a beautiful performance.</p>
+
+
+        <h3><b>Challenges Faced:</b></h3>
+            <p>While the project was a resounding success, there were some challenges. It's like perfecting a complex musical piece. Challenges included optimizing data 
+              processing pipelines for large datasets, ensuring the robustness of the real-time processing components, and maintaining the tempo of the data symphony. 
+              These challenges were addressed through meticulous testing and fine-tuning, just like a composer refining a symphony.</p>
+
+        <h3><b>Future Improvements</b></h3>
+          <p>To further enhance this project, future improvements may include:</p>
+          <ul style="list-style-type: disc; margin-left: 30px;">
+            <li>Implementing data quality checks for ensuring data accuracy.</li>
+            <li>Integrating machine learning models for more sophisticated data analysis.</li>
+            <li>Automating deployment and scaling of the architecture for handling larger and more extensive data streams, much like a symphony growing in scale and grandeur.</li>
+          </ul>
+        
+          <p>This project is a testament to my expertise in data engineering and real-time data processing. 
+            It's more than just a project; it's a data symphony, where diverse tools and technologies come together to create a harmonious and ever-evolving performance.</p>
+
     </section><!-- End Portfolio Details Section -->
+
+
 
   </main><!-- End #main -->
 
