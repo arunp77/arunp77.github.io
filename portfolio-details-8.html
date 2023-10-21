@@ -147,7 +147,7 @@
           <li><b>Data Streaming to AWS S3</b>: Apache Nifi was used to establish connections for transferring the generated data to an AWS S3 bucket, providing scalable storage and real-time access.</li>
           <li><b>Real-Time Data Processing with Snowflake</b>: Leveraging Snowpipe, we ensured that any new data or changes in existing data were automatically incorporated into the dataset. Slowly changing dimensions were used to track these changes.</li>
           <li><b>Target Table Creation</b>: A task was executed to create target tables, ensuring the final dataset was always up-to-date and accurate.</li>
-          <img src="assets/img/portfolio/AWS-snowpipe-1.png" alt="Project Architecture" style="width: 800px; height: auto;">
+          <img src="assets/img/portfolio/aws-nifi-snowflake.png" alt="Project Architecture" style="width: 800px; height: auto;">
         </ul>
         <!-- project Architecture ends here-->
 
@@ -155,9 +155,8 @@
         <h3><b>Project Setup</b></h3>
           <p>Let's dive into the details of the setup, like taking a closer look at the instruments in our orchestra:</p>
           <ul style="list-style-type: disc; margin-left: 30px;">
-            <li><b>EC2 Instance Configuration:</b></li>
-            <li><b></b> I meticulously configured an AWS EC2 instance with 8GB RAM and 32GB memory space, choosing a t2.xlarge instance for optimal performance. 
-              Ports 4000-38888 were opened, and SSH access was set up. This is where we set up our concert hall.</li>
+            <li><b>EC2 Instance Configuration:</b> I meticulously configured an AWS EC2 instance with 8GB RAM and 32GB memory space, choosing a t2.xlarge instance for optimal performance. 
+                Ports 4000-38888 were opened, and SSH access was set up. This is where we set up our concert hall.</li>  
             <li><b>Docker Container Setup:</b> Within the EC2 instance, a Docker container was created and populated with Python, Apache Nifi, and Apache ZooKeeper. 
               Think of it as preparing our instruments, tuning them to perfection.</li>
             <li><b>JupyterLab and Apache Nifi Configuration:</b>JupyterLab and Apache Nifi were configured to run on specific ports, making them accessible for data processing and orchestration. 
