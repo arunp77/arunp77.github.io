@@ -1199,3 +1199,16 @@ img {
   margin: 0 auto;
 }
 
+.clickable-box {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007BFF; /* Background color of the box */
+  color: #fff; /* Text color */
+  text-decoration: none;
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s; /* Smooth color transition on hover */
+}
+
+.clickable-box:hover {
+  background-color: #0056b3; /* Change background color on hover */
+}

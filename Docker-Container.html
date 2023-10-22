@@ -128,25 +128,134 @@
                     whether you're working on a small-scale project or managing complex microservices architectures.</p>
             </ul>
             <h3>Prerequisites</h3>
-            <ul>
-                <p>Before we embark on the journey of setting up Docker and creating our container, there are a few prerequisites to ensure a smooth installation process. 
-                    Please make sure you have the following in place:</p>
-                <ul>
-                    <li><b>A Supported Linux OS:</b> This guide assumes that you are using a Linux-based operating system, such as Ubuntu or CentOS. Ensure that you have a running instance of 
-                        the supported Linux OS.</li>
-                    <li><b>Root or Sudo Access:</b> You'll need root or sudo access to install and configure Docker. If you don't have root access, make sure you can run sudo commands.</li>
-                    <li><b>Internet Connection:</b> A working internet connection is essential to download Docker and its dependencies.</li>
-                </ul>
-                <p>With these prerequisites in place, you're ready to begin your Docker journey. Let's proceed with the installation and container setup.</p>
-            </ul>
+              <ul style="list-style-type: disc; margin-left: 30px;">
+                <li>You have installed the latest version of <a href="https://docs.docker.com/get-docker/" target="_blank">Docker Desktop</a></li>
+                <li>You have installed a <a href="https://git-scm.com/downloads" target="_blank">Git client</a></li>
+                <li>You have an IDE or a text editor to edit files. I normally use VS studio code. You can use nano or vi editor. In ubuntu systems, you can you 'gedit'.</li>
+                <li>On windows systems, you may need to install <a href="https://learn.microsoft.com/en-us/windows/wsl/install" target="_blank">Windows Subsystem for Linux (WSL)</a> to run the
+                linux like commands and access docker on windows systems.</li>
+                <li>For this, you can just find the linux-distributio (of your choice) in search bar, and click it. A new command prompt will open, where you may have
+                  to provide the username and password (set at the time of installation as discussed in above link for WSL). </li>
+              </ul>
+            <h3>Docket installation</h3>
+              <ul style="list-style-type: disc; margin-left: 30px;">
+                <li>Visit the <a href="https://docs.docker.com/engine/install/" target="_blank">Docker download page</a> and choose the version compatible to your operating system.</li>
+                <li>After the installation file is downloaded on your local system, install it as per the suggestions given on the above link.</li>
+                <li>Once Docker is installed, launch Docker Desktop. You will see the Docker icon in the system tray when it's running. Next create a account and login into it at the 
+                  docker desktop.</li>
+                <li>Create a directory on your system where you'll work on your Docker project. You can use File Explorer or the command prompt for this.</li>
+                <li>Inside your project directory, create a file named "Dockerfile" (without a file extension) using a text editor or the command prompt.</li>
+                <li>Open the Dockerfile in your preferred text editor.</li>
+                <li><b>Create a Dockerfile:</b></li>
+                  <ul style="list-style-type: disc; margin-left: 30px;">
+                    <li>Create a directory on your local system where you'll work on your Docker project. You can use the command prompt for this.</li>
+                    <li>Inside your project directory, create a file named 'Dockerfile' (without a file extension) using a text editor or the command prompt.</li>
+                    <li>Open the 'Dockerfile' in your preferred text editor.</li>
+                    <li>In the 'Dockerfile', define the instructions to build your container. Save the Dockerfile. For example:</li>
+                      <pre><code>
+                        FROM node:18-alpine
+                        WORKDIR /app
+                        COPY . .
+                        RUN yarn install --production
+                        CMD ["node", "src/index.js"]
+                        EXPOSE 3000
+                      </code></pre>
+                    <li>Build the image using the following commands:</li>
+                      <pre><code>docker build -t my-image .</code></pre>
+                    <li>Start an app container:</li>
+                      <pre><code>docker run -d -p 3000:3000 my-image</code></pre>
+                    <li>After a few seconds, open your web browser to http://localhost:3000.</li>
+                  </ul>
+
+              <h3>Installation of Jupyerlab, apache nifi, zookeeper on EC2 machine</h3>
+              <p>We can do this in following steps:</p>
+              <p><b>Step-1:</b> Creating a customized Docketfile.</p>
+              <p>A docker-compose.yml file is a configuration file used with Docker Compose, a tool that simplifies the management of multi-container Docker applications. 
+                This file defines the services, networks, and volumes for your application, allowing you to specify how different Docker containers interact and share resources</p>
+              <ul style="list-style-type: disc; margin-left: 30px;">
+                <li>To create a Docker container that includes Jupyter Lab with the specified ports, ZooKeeper, and NiFi with the specified ports, 
+                  you can use a "docker-compose.yml" file to define and run these services together.</li>
+                <li> You can create a docket-compose.yml and save the docker-compose.yml file to your working directory: </li>
+                  <pre><code>
+                      version: "3.6"
+                      volumes:
+                        shared-workspace:
+                          name: "hadoop-distributed-file-system"
+                          driver: local
+                      services:
+                        jupyterlab:
+                          image: jupyter/datascience-notebook  # Other options:jupyter/base-notebook, or scipy-notebook, or all-spark-notebook or scipy-notebook
+                          container_name: jupyterlab
+                          ports:
+                            - 4888:4888
+                            - 4040:4040
+                            - 8050:8050
+                            volumes:
+                            - /path/on/host/jupyterlab:/path/in/container
+                        zookeeper:
+                          image: bitnami/zookeeper
+                          container_name: zookeeper
+                          ports:
+                            - 2181:2181
+                          environment:
+                            - ALLOW_ANONYMOUS_LOGIN=yes
+                            volumes:
+                            - /path/on/host/zookeeper:/path/in/container
+                        nifi:
+                          image: apache/nifi:1.14.0  # Use an appropriate NiFi image
+                          container_name: nifi
+                          ports:
+                            - 2080:2080
+                          environment:
+                            - NIFI_WEB_HTTP_PORT=2080
+                            - NIFI_CLUSTER_IS_NODE=true
+                            - NIFI_CLUSTER_NODE_PROTOCOL_PORT=2084
+                            - NIFI_ZK_CONNECT_STRING=zookeeper:2181
+                            - NIFI_ELECTION_MAX_WAIT=1 min
+                            - NIFI_SENSITIVE_PROPS_KEY=vvvvvvvvvvvv
+                            volumes:
+                            - /path/on/host/nifi:/path/in/container
+                    </code></pre> 
+
+                  <ul style="list-style-type: circle;">
+                    <li>The version specifies the version of the Docker Compose file.</li>
+                    <li>Under the services section, we define three services: jupyterlab, zookeeper, and nifi.</li>
+                    <li>Replace `/path/on/host` with the path on your host (EC2 instance) where you want to create the volumes</li>
+                    <li>For each service: image specifies the Docker image to use for that service. </li>
+                    <li>`container_name` sets the name for the container.</li>
+                    <li>`ports` map the host machine's ports to the container's ports. The format is `host_port:container_port`.</li>
+                    <li>For the zookeeper service, we set the environment variable ALLOW_ANONYMOUS_LOGIN to "yes" to allow anonymous logins. Adjust environment 
+                      variables as needed for your specific ZooKeeper and NiFi configurations.</li>
+                  </ul>
+              </ul>
+
+              <p><b>Step-2: </b> Transfer the docker-compose.yml File</p>
+              <ul style="list-style-type: disc; margin-left: 30px;">
+                <li>Open a terminal and navigate to the directory where the docker-compose.yml is located.</li>
+                <li>Transfer the `docker-compose.yml` file to your EC2 instance using `SCP` or a similar method. Replace [`your-key.pem`] with the path to your 
+                  private key and [`your-ec2-instance-ip`] with the public IP or DNS name of your instance.</li>
+                <li>Run the following command to start the services:</li>
+                  <pre><code>scp -i [your-key.pem] docker-compose.yml ec2-user@[your-ec2-instance-ip]:/path/to/destination</code>
+                  </pre>
+                  <ul style="list-style-type: circle;">
+                    <p>It is to be noted here that the `.pem` file is obtained, when you set the IAM user at yout AWS account. You need to save this file in a secret place
+                      and never shared it with anyone. </p>
+                    <p>It has normally two values: {"Key": "ExampleKey", "Value": "ExampleValue"}'</p>
+                  </ul>
+                <li>To start the container, you just need to run following command in the ec2 instance:</li>
+                <pre><code>docker-compose up</code></pre>
+                <li>The Jupyterlab and the APache nifi can be access in your browser using:</li>
+                <pre><code>Jupyter Lab at: http://ip_address:4888/lab? </code></pre> 
+                and
+                <pre><code>NiFi at: http://ip_address:2080/nifi/</code></pre>
+              </ul>
 
 
+              
+              
 
 
-
-
-
-
+              <a href="portfolio-details-8.html" class="clickable-box">Go back</a>
 
 
    
