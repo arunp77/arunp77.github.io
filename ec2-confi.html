@@ -106,6 +106,7 @@
             In simpler terms, it allows you to create and manage virtual servers, known as instances, on-demand. Amazon EC2 is a scalable and flexible cloud 
             computing service that enables users to launch and manage virtual servers, known as EC2 instances, in the AWS cloud. 
             These instances can be used to run applications, host websites, and perform a wide range of computing tasks. </p>
+            
           <h3>Key features of EC2 include: </h3>
           <p>Key features of EC2 include:</p>
           <ul style="list-style-type: disc; margin-left: 30px;">
@@ -127,10 +128,11 @@
           </ul>
           <p>Amazon EC2 is a fundamental building block of AWS and is widely used for a wide range of applications, from web hosting and development environments to scientific 
             computing and data analytics. It provides the flexibility and control needed to deploy virtually any application in the cloud.</p>
+          
           <h3>AWS-EC2 configuration</h3>
             <ul>
                 <ol>
-                    <li>Create or login in to AWS Console:
+                    <li><b>Create or login in to AWS Console:</b>
                         <ul>
                             <li>Go to the <a href="https://aws.amazon.com/" target="_blank">AWS Management Console</a>.</li>
                             <ul>
@@ -194,12 +196,14 @@
                             <li>Once, the login is done, sign in with your AWS account credentials.</li>
                         </ul>
                     </li>
-                    <li>Choose Region:
+
+                    <li><b>Choose Region:</b>
                         <ul>
                             <li>Select the region where you want to launch your EC2 instance. Choose a region that's geographically close to your target audience for lower latency.</li>
                         </ul>
                     </li>
-                    <li>Navigate to EC2 Dashboard:
+
+                    <li><b>Navigate to EC2 Dashboard:</b>
                         <ul>
                             <li>In the AWS Management Console, search for "EC2" in the services search bar, and click on "EC2" to access the EC2 Dashboard.</li>
                             <div class="image">
@@ -207,7 +211,8 @@
                             </div>    
                         </ul>
                     </li>
-                    <li>Launch an Instance:
+
+                    <li><b>Launch an Instance:</b>
                         <ul>
                             <li>Click the "Instances" link on the left navigation pane.</li>
                             <li>Click the "Launch Instances" button.</li>
@@ -223,14 +228,117 @@
                             <li>Keep other settings as it is and click "Launch Instance". It will create the instance, where we first need to install the Docker image,
                                 containg all the necessary dependencies.
                             </li>
-                            <li></li>
+                            <li>Now we need to connect to this instance. To do this, click the created instance and then find the "connect" button at top right corner. </li>
+                            <li><b>Ways to Connect to an AWS EC2 Instance:</b> Here you will get multiple way to connect with the created instance.
+                              <ul>
+                                <li><strong>SSH:</strong> You can use SSH to connect to your EC2 instance from a terminal. To do this, you will need the public IP 
+                                  address of your EC2 instance and the SSH key pair that you created when you launched the instance.</li>
+                                  <ul>
+                                    <li>You need to go to the directory, where 'your-key.pem' is saved.</li>
+                                    <li>You need to find the public IPv4 DNS to connect with the instance from the local directory.</li>
+                                    <li>A public instance's IPv4 DNS (Domain Name System) name typically follows the format "ec2-instance-id.region.compute.amazonaws.com." 
+                                      Here's an example of a public IPv4 DNS for an EC2 instance:
+                                    <pre><code>ec2-1-23456789abcdef0.region.compute.amazonaws.com</code></pre>
+                                    </li>
+                                    <li>The connection is made from your local terminal or command prompt/terminal using a command like:</li>
+                                    <pre><code>ssh -i /path/to/your-key.pem ec2-user@your-instance-public-ip</code></pre>
+                                    <li>You replace `/path/to/your-key.pem` with the path to your private key and ec2-user with the appropriate username for your instance.</li>
+                                    <li>After you pressed the enter key, it will show a message: Amazon Linux 2023.</li>
+                                    <li>It is noted that sometimes, you may need to provide reading and execution of the private-key.pem via (in linux or a mac OS):
+                                      <pre><code>chmod 400 private-key.pem</code></pre>
+                                    </li>
+                                  </ul>
+                                <li><strong>AWS Console:</strong> You can also connect to your EC2 instance from the AWS Console. To do this, go to the EC2 service page 
+                                  and select the instance that you want to connect to. Then, click on the "Connect" button.</li>
+                                <li><strong>Remote Desktop:</strong> If you have a Windows computer, you can use Remote Desktop to connect to your EC2 instance. To do this, 
+                                  you will need the public IP address of your EC2 instance and the username and password that you created when you launched the instance.</li>
+                              </ul>
+                            </li>
+                            <li>After this step, you are connected to the ec2 instance using ssh commands from a local directory.</li>
+                            <li>In your terminal, you will see the terminal starts with:</li>
+                            <pre><code>ec2-user@ip-private-IP</code></pre>
+                            <p>here 'private-IP' is the private IP of the machine provided at aws cloud. Now you are inside the ec2 instance and you can do multiple things like checking 
+                              existing files (ls - la) or creating a directory (mkdir directory-name) etc.
+                            </p>
+
+                            <li>After connecting to the instance, first thing we need to do is to update the software present in the machine at aws (here we are using 
+                              <b>amazon linux</b> as OS, a Red Hat-based distributions)
+                              <pre><code>sudo yum update -y</code></pre>
+                              <p>Next we need to install the docker.
+                                <pre><code>sudo yum install docker </code></pre>
+                              </p>
+                              <p>Next we need to install docket composer (for more details, you can look at docker compose install at various platform at 
+                                <a href="https://docs.docker.com/compose/install/" target="_blank">Official website</a>) via:
+                                <pre><code>sudo curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+                                </code></pre>
+                              </p>
+                              <p><b>Note:</b> Docker Compose is a tool for defining and running multi-container Docker applications. It allows you to define complex applications, 
+                                their services, networks, and volumes in a single file, making it easier to manage and run multiple Docker containers as a single unit.</p>
+                              <p>Creating a user: adding the current user to the "docker" group to allow them to run Docker commands without sudo.</p>
+                              <pre><code>sudo gpasswd -a $USER docker</code></pre>
+                              <p>Next activating the group membership changes immediately without requiring you to log out and log back in.</p>
+                              <pre><code>newgrp docker</code></pre>
+                            </li>
+                            <li>If you have selected <b>Ubuntu linux</b> for your instance, you have to use:
+                              <pre><code>sudo apt update</code></pre>
+                              <p>Next to upgrade it using:</p>
+                              <pre><code>sudo apt upgrade</code></pre>
+                              <p><strong>Install Required Packages: </strong> Install the packages that allow you to install software over HTTPS and manage repositories:</p>
+                              <pre><code>sudo apt install apt-transport-https ca-certificates curl software-properties-common</code></pre>
+                              <p><strong>Add Docker Repository: </strong>Add the official Docker repository to your system:</p>
+                              <pre><code>curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg</code></pre>
+                              <pre><code>echo "deb [signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null</code></pre>
+                              <p><strong>Install Docker:</strong>Update the package list again and then install Docker:</p>
+                              <pre><code>
+                                sudo apt update
+                                sudo apt install docker-ce
+                              </code></pre>
+                              <p><strong>Start and Enable Docker: </strong>Start the Docker service and enable it to start on boot:</p>
+                              <pre>
+                                <code>
+                                  sudo systemctl start docker
+                                  sudo systemctl enable docker
+                                </code>
+                              </pre>
+                              <p><strong>Verify Docker Installation: </strong>Check that Docker is installed and running:</p>
+                              <pre><code>sudo docker --version</code></pre>
+                              <p><strong>Creating a User Account:</strong></p>
+                              <ul>
+                                <li>Create a New User:</li>
+                                <pre><code>sudo adduser 'username'</code></pre>
+                                <p>give a User name in place of 'username'</p>
+                                <li>Add the new user to the "docker" group to run Docker commands without sudo: </li>
+                                <pre><code>sudo usermod -aG docker 'username'</code></pre>
+                              </ul>
+                              <li>Next we need to copy the locally created docker-compoase.yml file on the ec2 machine via:</li>
+                              <pre><code>scp -r -i secret-key.pem docker-exp ec2-user@Your-own-Public-IPv4-DNS-of-your-instance.compute.amazonaws.com:/home/ec2-user/docker_exp</code></pre>
+                              <p>for more details on this, please check the Docker configuration page.</p>
+                              <p>Here my docker-compoase file is kept inside docker-exp folder in my local direactory. This command will copy this folder to ec2 machine 
+                                and save it as a docker_exp folder.</p>
+                              <p>We need to keep in mind that before copying the docker_exp folder to ec2 machine, we need to go to that directory in your terminal via "cd /go to directory"
+                                and then use the copy command to copy it to ec2 machine.</p>
+                              <li>To install the docker-compoase, we choose a container, which contains all the necessary tools for the current projects,
+                                you just need to run following command in the ec2 instance (just go to "docker_exp folder and use following command"):</li>
+                              <pre><code>docker-compose up</code></pre>
+                            </li>  
                         </ul>
                     </li>
+                  <li><b>For more details on docker and it's launch on EC2 machine follow: </b><a href="Docker-Container.html" target="_blank"> Docker configuration</a></li>
+                  <li>Installation of Python and </li>
                 </ol>
             </ul>
 
           </div>
-          <a href="portfolio-details-8.html" class="clickable-box">Go back</a>
+
+          <div class="navigation">
+            <a href="portfolio-details-8.html" class="clickable-box">
+                <span class="arrow-left">Go Back</span>
+            </a>
+            <a href="Docker-Container.html" class="clickable-box">
+                <span class="arrow-right">Go to Docker Configuration</span>
+            </a>
+        </div>
+
       </div>
   </section><!-- End Portfolio Details Section -->
 </main><!-- End #main -->

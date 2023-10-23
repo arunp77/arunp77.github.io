@@ -1213,3 +1213,13 @@ img {
   background-color: #0056b3; /* Change background color on hover */
 }
 
+
+/* Style for the arrow on the right */
+.arrow-right::before {
+  content: " → "; /* Unicode right arrow character */
+}
+
+/* Style for the arrow on the left */
+.arrow-left::before {
+  content: " ← "; /* Unicode left arrow character */
+}
