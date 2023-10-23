@@ -234,12 +234,23 @@
                                 I choose 'Amazon Linux'. Normally, I prefer Ubuntu or Amazon linux as they contains all the required software configuration.
                             </li>
                             <li>Next choose from the "Instance type" as per your requirements. In the case of real-time dataset streaming, you may need higher configuration. 
-                                In my case, I choose 't2.large' (2 CPU, 8GB ram and 100 GB storage which has a minimal charges per hours).
+                                In my case, I choose 't2.large' (2 CPU, and 8GB ram which has a minimal charges per hours).
+                            </li>
+                            <li> Now, create a key-value pair, by clicking on “Create new key pair”. A window will pop up for creating key pair as shown below. The key value 
+                              pair plays a major role while connecting to the EC2-Instance it will act as an SSH-Key to connect to the instance. 
+                              Create Key-PairEnter name>>Select “.pem” and create. Automatically key pair which was created will be downloaded. Select the created key pair.
+                              <img src="assets/img/portfolio/create-pem-key.png" alt="Image Description" width="400" height="300">
+                              <p>Save this file as 'your-key.pem' at a secret place and it should not be saved. This is used to connect the ec2 instance with the
+                                docker and other tools.
+                              </p>
                             </li>
                             <li>In the network setting, I choose ssh, https and http traffic. </li>
+                            <li>For the current project, I choose 100 GB. However a Free tier eligible can get up to 30 GB of 
+                              <a href="https://aws.amazon.com/ebs/" target="_blank">EBS Storage</a> </li>
                             <li>Keep other settings as it is and click "Launch Instance". It will create the instance, where we first need to install the Docker image,
-                                containg all the necessary dependencies.
+                                containg all the necessary dependencies.                            
                             </li>
+                            <img src="assets/img/portfolio/ec2-instance-launch.png" alt="Image Description">
 
                             <li>Now we need to connect to this instance. To do this, click the created instance and then find the "connect" button at top right corner. </li>
                             <li><b>Ways to Connect to an AWS EC2 Instance:</b> Here you will get multiple way to connect with the created instance.

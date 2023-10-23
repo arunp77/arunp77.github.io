@@ -122,17 +122,37 @@
                     <!-- setting up the Jupyterlab -->
                     <h3>Setting up Jupyter lab on EC2 machine</h3>
                     <ul style="list-style-type: disc; margin-left: 30px;">
-                        <li>Once you have setup the Jupyterlab on the ec2 machine, you just need to run `docker-compose up -d` so as to start the Jupyter lab kernal 
-                            (The `-d` flag runs the containers in detached mode, allowing them to run in the background).</li>
+                        <li>Let's review first. After creating the ec2 machine, you need to do following in order (this decription is for <strong>Amazon Linux</strong>.
+                           For other OS, you can look at the official aws ec2 machine):
+                          <ol type="I">
+                            <li>Update the ec2 machine </li>
+                            <pre><code>sudo yum update -y</code></pre>
+                            <li>Install docker</li>
+                            <pre><code>sudo yum install docker</code></pre>
+                            <li>Transfer the docker-compose.yml file to ec2 instance (for more details see <a href="Docker-Container.html" target="_blank">Docker configuration page</a>).</li>
+                            <pre><code>scp -i [your-key.pem] docker-compose.yml ec2-user@[your-ec2-instance-ip]:/path/to/destination</code></pre>
+                            <li>Create a docker container and docker user:</li>
+                            <pre><code>sudo gpasswd -a $USER docker</code></pre>
+                            <pre><code>newgrp docker</code></pre>
+                            <li>Next start the docker:</li>
+                            <pre><code>sudo systemctl start docker</code></pre>
+                            <li>Once you have setup the Jupyterlab on the ec2 machine, you just need to run `docker-compose up -d` so as to start the Jupyter lab kernal 
+                              (The `-d` flag runs the containers in detached mode, allowing them to run in the background).</li>
+                            <pre><code>docker-compose up -d</code></pre>
+                            <li>Install python:</li>
+                            <pre><code>sudo yum install python-pip</code></pre>
+                            
+                          </ol>
+                        </li>
+                        
                         <li>Once the Docker Compose services are up and running, you can access JupyterLab in your web browser. By default, JupyterLab is often available at port 8888.</li>
-                        <li>Open a web browser and navigate to:
+                        <li>Open a web browser and navigate to:</li>
                             <pre><code></code>http://[your-ec2-instance-ip]:4888/lab?</pre>
-                            You should be able to access JupyterLab.</li>
-                        <li>When you access JupyterLab for the first time, it maybe asked to provide an authentication token or password. You can find this token in the logs or terminal 
+                          <p>When you access JupyterLab for the first time, it maybe asked to provide an authentication token or password. You can find this token in the logs or terminal 
                             output when you ran docker-compose up `-d`. Look for a line that starts with "token=" and contains a long string of characters. Copy and paste this 
-                            token when prompted in your web browser.</li>
+                            token when prompted in your web browser.</p>
                         <li> Once you've authenticated, you can start using JupyterLab to run notebooks and perform data analysis or development tasks.</li>
-                        <li>In our cases, we have faked a data using following python code:
+                        <li>In our cases, we have generated a fake dataset using the python library 'Faker'. To install this library on ec2 machine, use:</li>
                             <pre>
                                 <code>
                                     # Install Faker library
@@ -181,7 +201,7 @@
                             </pre>
                             <li>The generated CSV files will be saved in the same directory where your JupyterLab notebook is running on your EC2 instance.</li>
                             <li>So, the generated CSV files will be saved in a directory named "FakeDataset" within the directory where your JupyterLab notebook is running. </li>
-                        </li>
+
                     </ul>
                     
                     <!-- setting up the Apache Nifi --> 
