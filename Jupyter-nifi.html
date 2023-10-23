@@ -188,10 +188,10 @@
                     <h3>Setting up Apache nifi on EC2 machine</h3>
                     <i>Using Apache NiFi to Transfer CSV Files to AWS S3</i>
                     <ul style="list-style-type: disc; margin-left: 30px;">
-                        <h4>Step 1: Prepare Your EC2 Instance</h4>
+                        <li><b>Step 1: Prepare Your EC2 Instance</b></li>
                         <p>Ensure that you have Apache NiFi installed and running on your EC2 instance. You can download and set up Apache NiFi by following the official documentation: <a href="https://nifi.apache.org/docs/nifi-docs/html/getting-started.html">NiFi Getting Started</a></p>
 
-                        <h4>Step 2: Configure NiFi for S3</h4>
+                        <li><b>Step 2: Configure NiFi for S3</b></li>
                         <p>1. Start the NiFi UI by navigating to <a href="http://<your-ec2-instance-ip>:8080/nifi">http://<your-ec2-instance-ip>:2080/nifi</a>.</p>
                         <p>2. In the NiFi UI, you will design a flow to ingest data from your Jupyter Notebook to an S3 bucket.</p>
                         <p>3. Create a processor group (a container for processors) in NiFi to organize your flow.</p>
@@ -205,14 +205,14 @@
                         GetFile -> PutS3Object
                         </pre>
 
-                        <h4>Step 3: Configure GetFile Processor</h4>
+                        <li><b>Step 3: Configure GetFile Processor</b></li>
                         <p>1. Double-click on the <strong>GetFile</strong> processor and configure the properties:</p>
                         <ul>
                             <li>Set the Input Directory to the directory where your Jupyter Notebook saves the CSV files.</li>
                         </ul>
                         <p>2. Configure the Scheduling tab to determine how often the processor checks for new files.</p>
 
-                        <h4>Step 4: Configure PutS3Object Processor</h4>
+                        <li><b>Step 4: Configure PutS3Object Processor</b></li>
                         <p>1. Double-click on the <strong>PutS3Object</strong> processor and configure the properties:</p>
                         <ul>
                             <li>Set the AWS Credentials Provider Service to an AWS credentials provider that has access to the S3 bucket.</li>
@@ -221,10 +221,10 @@
                         </ul>
                         <p>2. Configure the Scheduling tab to determine how often the processor should run.</p>
 
-                        <h4>Step 5: Start the Flow</h4>
+                        <li><b>Step 5: Start the Flow</b></li>
                         <p>Start the processor group to activate the flow. NiFi will begin monitoring the directory for new files and uploading them to the S3 bucket as they arrive.</p>
 
-                        <h4>Step 6: Monitor and Troubleshoot</h4>
+                        <li><b>Step 6: Monitor and Troubleshoot</b></li>
                         <p>You can monitor the status of the processors and view logs in the NiFi UI to ensure that the data flow is working correctly. Additionally, inspect the S3 bucket to confirm that the CSV files are being uploaded as expected.</p>
                     </ul>
 
