@@ -209,12 +209,19 @@
                     <i>Using Apache NiFi to Transfer CSV Files to AWS S3</i>
                     <ul style="list-style-type: disc; margin-left: 30px;">
                         <li><b>Step 1: Prepare Your EC2 Instance</b></li>
-                        <p>Ensure that you have Apache NiFi installed and running on your EC2 instance. You can download and set up Apache NiFi by following the official documentation: <a href="https://nifi.apache.org/docs/nifi-docs/html/getting-started.html">NiFi Getting Started</a></p>
-
+                        <p>Ensure that you have Apache NiFi installed and running on your EC2 instance. You can download and set up Apache NiFi by following the official 
+                          documentation: <a href="https://nifi.apache.org/docs/nifi-docs/html/getting-started.html">NiFi Getting Started</a></p> 
                         <li><b>Step 2: Configure NiFi for S3</b></li>
-                        <p>1. Start the NiFi UI by navigating to <a href="http://<your-ec2-instance-ip>:8080/nifi">http://<your-ec2-instance-ip>:2080/nifi</a>.</p>
+                        <p>1. Start the NiFi UI by navigating to <a href="http://your-ec2-instance-ip:8080/nifi">http://your-ec2-instance-ip:2080/nifi</a>.</p>
                         <p>2. In the NiFi UI, you will design a flow to ingest data from your Jupyter Notebook to an S3 bucket.</p>
+
+                        <img src="assets/img/portfolio/apache-nifi-home.png" alt="Image Description" style="width: 700px; height: 400px;">
+                        
+                        <p></p>
                         <p>3. Create a processor group (a container for processors) in NiFi to organize your flow.</p>
+
+                        <img src="assets/img/portfolio/apache-nifi-processor.png" alt="Image Description">
+
                         <p>4. Inside the processor group, add the following processors:</p>
                         <ul>
                             <li><strong>GetFile:</strong> Use this processor to fetch the generated CSV files from a local directory on your EC2 instance. Configure it to monitor the directory where your Jupyter Notebook saves the files.</li>
