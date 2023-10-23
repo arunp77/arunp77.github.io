@@ -217,7 +217,7 @@
                         </code>
                       </pre> 
                     </ul>
-                <li><b>Apache Nifi: The Conductor </b>
+                <li><b>Apache Nifi: The Conductor </b></li>
                   <p>Apache Nifi was the conductor of our data symphony, orchestrating the flow of data. To set up Apache Nifi, I followed these steps:</p>
                   <ul style="list-style-type: disc; margin-left: 20px;">
                     <li>Download and Installation: I downloaded the Apache Nifi binary and installed it on the EC2 instance. This step usually 
@@ -225,7 +225,18 @@
                     <li>Port Configuration: I ensured that Apache Nifi was accessible on port 'IP/2080,' where 'IP' represents the EC2 instance's IP address. 
                       This step allowed for convenient interaction with Nifi.</li>
                   </ul>
-                </li>
+
+                <li><b>Snowflake, snowpipe, snowflake stream and Task</b></li>
+                <ul style="list-style-type: circle;">
+                  <li><b>Snowpipe:</b> Automates the process of ingesting data from your S3 bucket into Snowflake. It continuously loads data as it arrives, making it an 
+                    ideal solution for real-time data processing.</li>
+                  <li><b>Snowflake Stream:</b> Captures changes to specific tables, including new data generated in JupyterLab and transferred to S3 by Apache NiFi. This stream ensures you're always working with the latest data.</li>
+                  <li><b>Snowflake Task: </b> These tasks are configured to automatically execute SQL statements or stored procedures in response to changes in Snowflake Streams. 
+                    They enable real-time data processing and transformations, ensuring that new data is immediately available for analysis.</li>
+                  <p></p>
+                  <p>In my workflow, this combination of Snowflake, Snowpipe, Streams, and Tasks enables the seamless automation of data loading and processing as new data arrives,
+                     eliminating manual intervention and ensuring up-to-the-minute data availability for your analytics and reporting needs.</p>
+                </ul>
             </ul>
             <p>The orchestration of these components is analogous to preparing an orchestra for a grand performance. The EC2 instance serves as the stage, 
               Docker maintains our instruments, and Apache Nifi conducts the symphony of data, guiding it through the intricacies of real-time processing and streaming.</p>
@@ -237,9 +248,9 @@
 
 
         <h3><b>Challenges Faced:</b></h3>
-            <p>While the project was a resounding success, there were some challenges. It's like perfecting a complex musical piece. Challenges included optimizing data 
-              processing pipelines for large datasets, ensuring the robustness of the real-time processing components, and maintaining the tempo of the data symphony. 
-              These challenges were addressed through meticulous testing and fine-tuning, just like a composer refining a symphony.</p>
+            <p>Although the project achieved great results, we encountered some hurdles. Think of it as fine-tuning a complex musical performance. 
+              We had to make our data processing pipelines work faster for big datasets, ensure our real-time components were strong, and keep everything 
+              moving smoothly. We tackled these challenges by carefully testing and making adjustments, just like a composer perfecting a symphony.</p>
 
         <h3><b>Future Improvements</b></h3>
           <p>To further enhance this project, future improvements may include:</p>
