@@ -218,6 +218,18 @@
                             <li>Click the "Launch Instances" button.</li>
                             <img src="assets/img/portfolio/launch-ec2.png" alt="Image Description">
                             <li>Give a unique "Name and tags"</li>
+                            <li>Next you need to go to "Application and OS Images (Amazon Machine Image)" section. For more infromation on AMI, check the 
+                              <a href="" target="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html" target="_blank">official aws document section</a>. 
+                              AWS offers a set of AMIs for OSes, including the following:
+                              <ul class="circle-bullets">
+                                <li>Amazon Linux</li>
+                                <li>Ubuntu</li>
+                                <li>Apple macOS</li>
+                                <li>Red Hat Enterprise Linux</li>
+                                <li>Microsoft Windows</li>
+                              </ul>
+                              <p>AWS Marketplace allows external vendors to publish their own AMIs and make them available to AWS customers.</p>
+                            </li>
                             <li>In the "Application and OS Images (Amazon Machine Image)", section choose  either of the operating systems as per your requirement. In my case, 
                                 I choose 'Amazon Linux'. Normally, I prefer Ubuntu or Amazon linux as they contains all the required software configuration.
                             </li>
@@ -228,12 +240,13 @@
                             <li>Keep other settings as it is and click "Launch Instance". It will create the instance, where we first need to install the Docker image,
                                 containg all the necessary dependencies.
                             </li>
+
                             <li>Now we need to connect to this instance. To do this, click the created instance and then find the "connect" button at top right corner. </li>
                             <li><b>Ways to Connect to an AWS EC2 Instance:</b> Here you will get multiple way to connect with the created instance.
-                              <ul>
+                              <ul class="circle-bullets">
                                 <li><strong>SSH:</strong> You can use SSH to connect to your EC2 instance from a terminal. To do this, you will need the public IP 
                                   address of your EC2 instance and the SSH key pair that you created when you launched the instance.</li>
-                                  <ul>
+                                  <ul class="hyphen-bullets">
                                     <li>You need to go to the directory, where 'your-key.pem' is saved.</li>
                                     <li>You need to find the public IPv4 DNS to connect with the instance from the local directory.</li>
                                     <li>A public instance's IPv4 DNS (Domain Name System) name typically follows the format "ec2-instance-id.region.compute.amazonaws.com." 
@@ -324,7 +337,7 @@
                         </ul>
                     </li>
                   <li><b>For more details on docker and it's launch on EC2 machine follow: </b><a href="Docker-Container.html" target="_blank"> Docker configuration</a></li>
-                  <li>Installation of Python and </li>
+                  <li>Installation of Python and apache nifi can be found at <a href="Jupyter-nifi.html">Jupyter and Apache Nifi configuration page</a>.</li>
                 </ol>
             </ul>
 
@@ -337,6 +350,9 @@
             <a href="Docker-Container.html" class="clickable-box">
                 <span class="arrow-right">Go to Docker Configuration</span>
             </a>
+            <a href="Jupyter-nifi.html" class="clickable-box">
+              <span class="arrow-right">Go to Jupyter & Nifi Configuration</span>
+          </a>
         </div>
 
       </div>

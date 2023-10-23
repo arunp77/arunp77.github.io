@@ -1223,3 +1223,19 @@ img {
 .arrow-left::before {
   content: " ← "; /* Unicode left arrow character */
 }
+
+.circle-bullets {
+  list-style-type: circle;
+}
+
+.hyphen-bullets {
+  list-style-type: none; /* Remove the default disc bullet */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+}
+
+.hyphen-bullets li::before {
+  content: " - "; /* Set the content before each list item */
+  font-weight: bold; /* Optionally, make the hyphen bold */
+  margin-right: 5px; /* Optionally, add spacing between hyphen and text */
+}
