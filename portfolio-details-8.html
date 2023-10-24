@@ -111,7 +111,7 @@
               <p>Before diving into the project, you'll need the following prerequisites:</p>
               <ul style="list-style-type: disc; margin-left: 30px;">
                 <li>Access to AWS services.</li>
-                <li>An <a href="https://docs.aws.amazon.com/ec2/" target="_blank">EC2 instance</a> with specific configurations: 8GB RAM, 32GB memory space.</li>
+                <li>An <a href="https://docs.aws.amazon.com/ec2/" target="_blank">EC2 instance</a> with specific configurations: 8GB RAM, 100GB memory space.</li>
                 <li><a href="https://docs.docker.com/desktop/" target="_blank">Docker container</a> expertise.</li>
                 <li>Proficiency in <a href="https://github.com/arunsinp/Python-programming" target="_blank"> Python</a>, including the 
                   '<a href="https://faker.readthedocs.io/en/master/" target="_blank">Faker</a>' library.</li>
@@ -156,10 +156,10 @@
           <p>Let's dive into the details of the setup, like taking a closer look at the instruments in our orchestra:</p>
           <ul style="list-style-type: disc; margin-left: 30px;">
             <li><b><a href="ec2-confi.html">EC2 Instance Configuration</a>:</b>
-              I meticulously configured an AWS EC2 instance with 8GB RAM and 32GB memory space, choosing a t2.xlarge instance for optimal performance. 
-                Ports 4000-38888 were opened, and SSH access was set up. This is where we set up our concert hall.</li>  
-            <li><b><a href="Docker-Container.html">Docker Container Setup</a>:</b> Within the EC2 instance, a Docker container was created and populated with Python, Apache Nifi, and Apache ZooKeeper. 
-              Think of it as preparing our instruments, tuning them to perfection.</li>
+              I carefully set up an AWS EC2 instance with 8GB of RAM, selecting a powerful t2.xlarge instance for the best performance on the Amazon Linux system. 
+              We opened ports from 4000 to 38888 and established SSH access. Think of it as preparing a concert hall for our performance.</li>  
+            <li><b><a href="Docker-Container.html">Docker Container Setup</a>:</b> Within the EC2 instance, a Docker container was created and populated with Python, 
+              Apache Nifi, and Apache ZooKeeper. Think of it as preparing our instruments, tuning them to perfection.</li>
             <li><b><a href="Jupyter-nifi.html">JupyterLab and Apache Nifi Configuration</a>: </b>JupyterLab and Apache Nifi were configured to run on specific ports, making them accessible for data processing and orchestration. 
               It's like setting up the conductor's podium and the sheet music stand just right.</li>
             <li><b>Data Generation: </b>In JupyterLab, Python code was crafted to generate random data, simulating customer information. This is where the composer writes the notes.</li>
@@ -177,14 +177,13 @@
                   it was created and configured for the project:
                   <ul style="list-style-type: disc; margin-left: 20px;">
                     <li><b>Creation: </b> To set up an EC2 instance, I began by accessing the AWS Management Console and launched an EC2 instance. 
-                      I selected an instance type with 8GB of RAM and 32GB of memory space, specifically choosing a t2.xlarge instance for optimal performance. </li>
-                    <li><b>Storage and Security: </b> In the process, I configured the instance with 32GB of storage, ensuring that there was sufficient space to store data and project components. Additionally, I created a security group that allowed incoming traffic on the 
-                      specified ports (4000-38888) and enabled SSH access for remote management.</li>
+                      I selected an instance type with 8GB of RAM and 100GB of memory space, specifically choosing a t2.xlarge instance for optimal performance. </li>
+                    <li><b>Storage and Security: </b> In the process, I configured the instance with 100GB of storage, ensuring that there was sufficient space to store data and project components. Additionally, I created a security group that allowed incoming traffic on the 
+                      specified ports and enabled SSH access for remote management.</li>
                     <li><b>Connection: </b> After launching the EC2 instance, I connected to it via SSH, providing a secure channel for executing commands and configuring the environment.</li>
                   </ul>
                 </li>
-                <li><b>Docker: </b>The Instruments and Their Maintenance</li>
-                    <p>Docker played a crucial role in maintaining the tools and dependencies used in the project. Here's how it was set up:</p>
+                <li><b>Docker: </b>ocker played a crucial role in maintaining the tools and dependencies used in the project. Here's how it was set up:</li>
                     <ul style="list-style-type: disc; margin-left: 20px;">
                       <li><b>Installation:</b> To prepare the EC2 instance for Docker, I executed a series of commands:</li>
                         <pre>
@@ -209,23 +208,26 @@
                             newgrp docker             
                           </code>
                         </pre> 
-                      <li>Python and Docker Compose: For Docker Compose to function seamlessly, I installed Python and the required package:</li>
+                      <li><b>Python installation:</b>I installed Python and the required package:</li>
                       <pre>
                         <code class="language-python">
                           sudo yum install python-pip
-                          sudo pip install docker-compose
                         </code>
                       </pre> 
+                      <li><b>Docker-compose: </b>I've installed a customized Docker container that includes essential images for JupyterLab and Apache NiFi. A docker-compose
+                      file is configuration file used with Docker compose, a tool that simplifies the management of multi-container Docker applications. </li>
+                      <p>To start the continer:</p>
+                      <pre><code>docker-compose up</code></pre>
                     </ul>
-                <li><b>Apache Nifi: The Conductor </b></li>
-                  <p>Apache Nifi was the conductor of our data symphony, orchestrating the flow of data. To set up Apache Nifi, I followed these steps:</p>
-                  <ul style="list-style-type: disc; margin-left: 20px;">
-                    <li>Download and Installation: I downloaded the Apache Nifi binary and installed it on the EC2 instance. This step usually 
-                      involves extracting the downloaded files and configuring the appropriate environment variables.</li>
-                    <li>Port Configuration: I ensured that Apache Nifi was accessible on port 'IP/2080,' where 'IP' represents the EC2 instance's IP address. 
-                      This step allowed for convenient interaction with Nifi.</li>
-                  </ul>
+            
+                <li><b>Jupyterlab</b></li>
+                <p>The JupyterLab can be access in browser:</p>
+                <pre><code>http://[your-ec2-instance-ip]:4888/lab?</code></pre>
 
+                <li><b>Apache Nifi: The Conductor </b></li>
+                  <p>Apache Nifi was the conductor of our data symphony, orchestrating the flow of data. The apache-nifi can be access in browser:</p>
+                  <pre><code>http://[your-ec2-instance-ip]:2080/nifi?</code></pre>
+                  
                 <li><b>Snowflake, snowpipe, snowflake stream and Task</b></li>
                 <ul style="list-style-type: circle;">
                   <li><b>Snowpipe:</b> Automates the process of ingesting data from your S3 bucket into Snowflake. It continuously loads data as it arrives, making it an 
