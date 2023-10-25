@@ -120,6 +120,15 @@
                     </div>
 
                     <!-- setting up the Jupyterlab -->
+                    <h2><a href="https://jupyter.org/" target="_blank">Introduction to Jupterlab</a></h2>
+                    <p>JupyterLab is a web-based user interface for working with Jupyter notebooks, code, data, and other documents. 
+                      It allows you to create, edit, run, and share your notebooks, as well as explore and visualize your data in various
+                      ways. JupyterLab is designed to be flexible, integrated, and extensible, with a modular architecture that supports 
+                      extensions and custom components. </p>
+
+                      <img src="assets/img/portfolio/jupyterlab-home.png" alt="Image Description" style="width: 700px; height: 400px;">
+                      
+
                     <h3>Setting up Jupyter lab on EC2 machine</h3>
                     <ul style="list-style-type: disc; margin-left: 30px;">
                         <li>Let's review first. After creating the ec2 machine, you need to do following in order (this decription is for <strong>Amazon Linux</strong>.
@@ -205,20 +214,72 @@
                     </ul>
                     
                     <!-- setting up the Apache Nifi --> 
+                    <h2><a href="https://nifi.apache.org/docs.html" target="_blank">Introduction to Apache Nifi</a></h2>
+                    <ul>
+                    <p>Apache NiFi is an open-source data integration tool that provides an intuitive and powerful way to automate the flow of data between systems. It was 
+                      developed by the Apache Software Foundation and is designed to solve the challenges of data routing, transformation, and system connectivity in a 
+                      scalable and extensible manner. NiFi's primary goal is to enable the automation of data flow, making it an essential tool for data ingestion, 
+                      transformation, and routing in various scenarios.</p>
+                      <p>Apache NiFi is a real time data ingestion platform, which can transfer and manage data transfer between different sources and destination systems.</p>
+                    </ul>
+
+                    <ol style="margin-left: 30px;">
+                      <li><b>Apache NiFi- General Features:</b> </li>
+                        <ul>
+                          <li>Apache NiFi provides a web-based user interface, which provides seamless experience between design, control, feedback, and monitoring.</li>
+                          <li>It is highly configurable. This helps users with guaranteed delivery, low latency, high throughput, dynamic prioritization, back pressure 
+                            and modify flows on runtime.</li>
+                          <li>It also provides data provenance module to track and monitor data from the start to the end of the flow.</li>
+                          <li>Developers can create their own custom processors and reporting tasks according to their needs.</li>
+                          <li>NiFi also provides support to secure protocols like SSL, HTTPS, SSH and other encryptions.</li>
+                          <li>It also supports user and role management and also can be configured with LDAP for authorization.</li>
+                        </ul>
+                      <li><b>Apache NiFi -Key Concepts:</b></li>
+                        <ul>
+                          <li><strong>Process Group</strong> − It is a group of NiFi flows, which helps a user to manage and keep flows in hierarchical manner.</li>
+                          <li><strong>Flow</strong> − It is created connecting different processors to transfer and modify data if required from one data source or sources to 
+                            another destination data sources.</li>
+                          <li><strong>Processor</strong> − A processor is a java module responsible for either fetching data from sourcing system or storing it in destination 
+                            system. Other processors are also used to add attributes or change content in flowfile.</li>
+                          <li><strong>Flowfile</strong> − It is the basic usage of NiFi, which represents the single object of the data picked from source system in NiFi. 
+                            NiFiprocessormakes changes to flowfile while it moves from the source processor to the destination. Different events like CREATE, 
+                            CLONE, RECEIVE, etc. are performed on flowfile by different processors in a flow.</li>
+                          <li><strong>Event</strong> − Events represent the change in flowfile while traversing through a NiFi Flow. These events are tracked in data provenance.</li>
+                          <li><strong>Data provenance</strong> − It is a repository.It also has a UI, which enables users to check the information about a flowfile and helps in 
+                            troubleshooting if any issues that arise during the processing of a flowfile.</li>
+                        </ul>
+                      <li><strong>Apache NiFi Advantages:</strong></ul>
+                        <ul>
+                            <li>Apache NiFi enables data fetching from remote machines by using SFTP and guarantees data lineage.</li>
+                            <li>Apache NiFi supports clustering, so it can work on multiple nodes with the same flow processing different data, which increases the performance of data processing.</li>
+                            <li>It also provides security policies on the user level, process group level, and other modules too.</li>
+                            <li>Its UI can also run on HTTPS, which makes the interaction of users with NiFi secure.</li>
+                            <li>NiFi supports around 188 processors, and a user can also create custom plugins to support a wide variety of data systems.</li>
+                        </ul>
+                      <li><strong>Apache NiFi Disadvantages:</strong></li>
+                        <ul>
+                          <li>When node gets disconnected from NiFi cluster while a user is making any changes in it, then the flow.xml becomes invalid.Anode cannot 
+                            connect back to the cluster unless admin manually copies flow.xml from the connected node.</li>
+                          <li>Apache NiFi have state persistence issue in case of primary node switch, which sometimes makes processors not able to fetch data from sourcing systems.</li>
+                        </ul>
+                    </ol>
+
+                    <strong>NiFi UI:</strong>
+                        <img src="assets/img/portfolio/apache-nifi-home-2.png" alt="Image Description" style="width: 1000px; height: 520px;">
+                    
+
                     <h3>Setting up Apache nifi on EC2 machine</h3>
                     <i>Using Apache NiFi to Transfer CSV Files to AWS S3</i>
                     <ul style="list-style-type: disc; margin-left: 30px;">
                         <li><b>Step 1: Prepare Your EC2 Instance</b></li>
                         <p>Ensure that you have Apache NiFi installed and running on your EC2 instance. You can download and set up Apache NiFi by following the official 
                           documentation: <a href="https://nifi.apache.org/docs/nifi-docs/html/getting-started.html">NiFi Getting Started</a></p> 
-                        <li><b>Step 2: Configure NiFi for S3</b></li>
+                        <li><b>Step 2: Create a NiFi Flow::</b></li>
                         <p>1. Start the NiFi UI by navigating to <a href="http://your-ec2-instance-ip:8080/nifi">http://your-ec2-instance-ip:2080/nifi</a>.</p>
-                        <p>2. In the NiFi UI, you will design a flow to ingest data from your Jupyter Notebook to an S3 bucket.</p>
-
-                        <img src="assets/img/portfolio/apache-nifi-home.png" alt="Image Description" style="width: 700px; height: 400px;">
+                        <p>2. In the NiFi UI, you need to create a data flow that fetches and uploads the CSV files to your S3 bucket.</p>
                         
                         <p></p>
-                        <p>3. Create a processor group (a container for processors) in NiFi to organize your flow.</p>
+                        <p>3. Create a processor group (a container for processors) in NiFi to organize your flow. Drag the 'processor' to the canvas.</p>
 
                         <img src="assets/img/portfolio/apache-nifi-processor.png" alt="Image Description">
 
@@ -226,38 +287,40 @@
 
                         <img src="assets/img/portfolio/apache-nifi-processes-creation.png" alt="Image Description">
 
-                        <p>4. Inside the processor group, add the following processors:</p>
-                        <ul>
-                            <li><strong>GetFile:</strong> Use this processor to fetch the generated CSV files from a local directory on your EC2 instance. Configure it to monitor the directory where your Jupyter Notebook saves the files.</li>
-                            <li><strong>PutS3Object:</strong> Use this processor to upload the files to an S3 bucket. Configure it with your AWS credentials and the target S3 bucket information.</li>
-                        </ul>
-                        <p>5. Connect the processors within your processor group to create the data flow. The flow should look like this:</p>
-                        <pre>
-                        GetFile -> PutS3Object
-                        </pre>
-
                         <li><b>Step 3: Configure GetFile Processor</b></li>
-                        <p>1. Double-click on the <strong>GetFile</strong> processor and configure the properties:</p>
-                        <ul>
-                            <li>Set the Input Directory to the directory where your Jupyter Notebook saves the CSV files.</li>
-                        </ul>
-                        <p>2. Configure the Scheduling tab to determine how often the processor checks for new files.</p>
+                        <p>Select the "GetFile" processor from the list of available processors and drag it onto your canvas.
+                          This processor will retrieve the CSV files from the local directory. Configure it as follows:</p>
+                          <ul>
+                              <li>Specify the input directory where your JupyterLab generated CSV files are located (e.g., "FakeDataset").</li>
+                              <li>Set a polling schedule to check for new files at regular intervals.</li>
+                              <li>Provide error and success output relationships.</li>
+                          </ul>
+                        
 
                         <li><b>Step 4: Configure PutS3Object Processor</b></li>
-                        <p>1. Double-click on the <strong>PutS3Object</strong> processor and configure the properties:</p>
-                        <ul>
-                            <li>Set the AWS Credentials Provider Service to an AWS credentials provider that has access to the S3 bucket.</li>
-                            <li>Specify the Bucket to the S3 bucket where you want to upload the CSV files.</li>
-                            <li>Set the Key to the desired path in the S3 bucket where you want to store the files.</li>
-                        </ul>
-                        <p>2. Configure the Scheduling tab to determine how often the processor should run.</p>
+                        <p>Add a "PutS3Object" processor to your flow. This processor will upload the fetched CSV files to your S3 bucket. Configure it as follows:</p>
+                          <ul>
+                            <li>Set the AWS credentials, including your access key and secret key.</li>
+                            <li>Specify the S3 bucket name where you want to upload the files.</li>
+                            <li>Configure the destination directory within the S3 bucket.</li>
+                            <li>Map the incoming flow file attributes to the S3 object properties.</li>
+                          </ul>
 
-                        <li><b>Step 5: Start the Flow</b></li>
+                        <li><b>Step 5: Connect Processors:</b></li>
+                          <p>Connect the "GetFile" processor to the "PutS3Object" processor using relationships. Ensure that the data flow follows the intended sequence.</p>
+
+                        <li><b>Step 6: Start the Flow</b></li>
                         <p>Start the processor group to activate the flow. NiFi will begin monitoring the directory for new files and uploading them to the S3 bucket as they arrive.</p>
 
                         <li><b>Step 6: Monitor and Troubleshoot</b></li>
-                        <p>You can monitor the status of the processors and view logs in the NiFi UI to ensure that the data flow is working correctly. Additionally, inspect the S3 bucket to confirm that the CSV files are being uploaded as expected.</p>
+                        <p>You can monitor the status of the processors and view logs in the NiFi UI to ensure that the data flow is working correctly. Additionally, inspect 
+                          the S3 bucket to confirm that the CSV files are being uploaded as expected.</p>
                     </ul>
+
+                    <p>Your Apache NiFi data flow is now set up to ingest CSV files generated in JupyterLab and store them in your AWS S3 bucket as they are created. 
+                      Make sure to configure and test it properly to suit your specific requirements.</p>
+
+                    <p></p><p></p>
 
 
 
