@@ -1182,16 +1182,27 @@ section {
 }
 
 
-
+/*--------------------------------------------------------------
+# Creating a table with header
+--------------------------------------------------------------*/
 table {
   border-collapse: collapse;
+  width: 90%;
 }
 
-td {
-  padding: 10px;
-  border: 1px solid #000;
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
 }
 
+th {
+  background-color: #f2f2f2;
+}
+
+/*--------------------------------------------------------------
+# Creating a image box
+--------------------------------------------------------------*/
 img {
   max-width: 100%;
   height: auto;
