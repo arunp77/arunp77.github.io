@@ -137,16 +137,16 @@
                 transformation, and automated processing.</p>
             <p>I have successfully completed the Spotify ETL pipeline project on AWS, and here's an overview of the key steps:</p>
             <ul style="list-style-type: disc; margin-left: 30px;">
-                <li><span style="font-weight: normal;"><b>Data Extraction:</b></span> AWS Lambda functions were employed to interact with the Spotify API, 
+                <li><b>Data Extraction:</b> AWS Lambda functions were employed to interact with the Spotify API, 
                     fetching data on globally famous songs, and storing it in an Amazon S3 bucket.</li>
-                <li><span style="font-weight: normal;"><b>Data Transformation:</b></span> The raw Spotify data underwent a transformation phase through Lambda 
+                <li><b>Data Transformation:</b> The raw Spotify data underwent a transformation phase through Lambda 
                     functions. This process included parsing JSON responses, creating structured data frames, and applying various data cleaning operations.</li>
-                <li><span style="font-weight: normal;"><b>Data Loading:</b></span> The transformed data was loaded back into the S3 bucket, making it ready for analysis.</li>
-                <li><span style="font-weight: normal;"><b>Automated Processing:</b></span> For keeping the music data current, I implemented automated processes that
+                <li><b>Data Loading:</b> The transformed data was loaded back into the S3 bucket, making it ready for analysis.</li>
+                <li><b>Automated Processing:</b> For keeping the music data current, I implemented automated processes that
                      actively fetched new data from Spotify and dynamically updated the datasets. An AWS S3 trigger was configured to initiate the data transformation 
                      process whenever a new dataset was added to the S3 bucket. Subsequently, the transformed data was loaded into a designated destination or folder.
                 </li>
-                <li><span style="font-weight: normal;"><b>Data Analysis:</b></span>With the data in its prepared formats, it's now possible to explore music trends, artist popularity, 
+                <li><b>Data Analysis:</b>With the data in its prepared formats, it's now possible to explore music trends, artist popularity, 
                     genre distribution, and more.</li>
             </ul>
                 
