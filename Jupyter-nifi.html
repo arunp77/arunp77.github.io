@@ -290,6 +290,7 @@
                         <li><b>Step 3: Configure GetFile Processor</b></li>
                         <p>Select the "GetFile" processor from the list of available processors and drag it onto your canvas.
                           This processor will retrieve the CSV files from the local directory. Configure it as follows:</p>
+                          <img src="assets/img/portfolio/getfile.jpg" alt="Image Description">
                           <ul>
                               <li>Specify the input directory where your JupyterLab generated CSV files are located (e.g., "FakeDataset").</li>
                               <li>Set a polling schedule to check for new files at regular intervals.</li>
@@ -396,6 +397,8 @@
 
                         <li><b>Step 4: Configure PutS3Object Processor</b></li>
                         <p>Add a "PutS3Object" processor to your flow. This processor will upload the fetched CSV files to your S3 bucket. Configure it as follows:</p>
+                        <p>In the 'Put S3 Object' section of your pipeline configuration, you will need to configure an AWS credentials provider.</p>
+                        <img src="assets/img/portfolio/PutS3Object.png" alt="Image Description" style="width: 450px; height: 200px;">
                           <ul>
                             <li>Set the AWS credentials, including your access key and secret key.</li>
                             <li>Specify the S3 bucket name where you want to upload the files.</li>
