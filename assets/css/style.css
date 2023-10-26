@@ -582,8 +582,8 @@ section {
 .portfolio .portfolio-item {
   margin: 0 15px; /* Add margin to each item to separate them */
   text-align: center;
-  flex: 0 0 calc(33.33% - 30px); /* Adjust the width for different screen sizes */
-  max-width: calc(33.33% - 30px); /* Set the maximum width for responsiveness */
+  flex: 0 0 calc(25% - 30px); /* Adjust the width for different screen sizes */
+  max-width: calc(25% - 30px); /* Set the maximum width for responsiveness */
 }
 
 
@@ -594,7 +594,7 @@ section {
   text-align: center;
   background: #fff;
   border-radius: 50px;
-  padding: 2px 15px;
+  /*padding: 2px 15px; */
 }
 
 .portfolio #portfolio-flters li {
@@ -624,7 +624,7 @@ section {
   position: relative;
   overflow: hidden;
   z-index: 1;
-  margin-bottom: 30px; /* Add margin between items */
+  margin-bottom: 25px; /* Add margin between items */
 }
 
 .portfolio .portfolio-wrap::before {
@@ -693,7 +693,7 @@ section {
 # Portfolio Details
 --------------------------------------------------------------*/
 .portfolio-details {
-  padding-top: 40px;
+  padding-top: 30px;
 }
 
 .portfolio-details .portfolio-details-slider img {
