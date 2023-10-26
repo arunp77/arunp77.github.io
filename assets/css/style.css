@@ -1207,14 +1207,11 @@ img {
   text-decoration: none;
   border-radius: 5px; /* Rounded corners */
   transition: background-color 0.3s; /* Smooth color transition on hover */
-  text-decoration: none;
 }
 
 .clickable-box:hover {
   background-color: #0056b3; /* Change background color on hover */
-  color: #0056b3; /* Hover color */
 }
-
 
 
 /* Style for the arrow on the right */
@@ -1241,15 +1238,4 @@ img {
   content: " - "; /* Set the content before each list item */
   font-weight: bold; /* Optionally, make the hyphen bold */
   margin-right: 5px; /* Optionally, add spacing between hyphen and text */
-}
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-th, td {
-  border: 1px solid #888; /* Add border to cells */
-  padding: 8px;
-  text-align: left;
 }
