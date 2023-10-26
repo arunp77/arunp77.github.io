@@ -110,7 +110,7 @@
               <h3><b>Prerequisites</b></h3>
               <p>Before diving into the project, you'll need the following prerequisites:</p>
               <ul style="list-style-type: disc; margin-left: 30px;">
-                <li>Access to AWS services.</li>
+                <li>Access to <a href="amazon-s3.html">AWS services</a>.</li>
                 <li>An <a href="https://docs.aws.amazon.com/ec2/" target="_blank">EC2 instance</a> with specific configurations: 8GB RAM, 100GB memory space.</li>
                 <li><a href="https://docs.docker.com/desktop/" target="_blank">Docker container</a> expertise.</li>
                 <li>Proficiency in <a href="https://github.com/arunsinp/Python-programming" target="_blank"> Python</a>, including the 
@@ -144,7 +144,7 @@
           <li><b>JupyterLab and Apache Nifi</b>: These are the workstations for data engineers. JupyterLab is accessible at 'IP/4888,' and Apache Nifi is reachable at 'IP/2080' (where IP is the
             <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html" target="_blank">EC2 machine IP</a>).</li>
           <li><b>Data Generation</b>: Using Python in JupyterLab, we utilized the 'Faker' library to create random data records, including customer information.</li>
-          <li><b>Data Streaming to AWS S3</b>: Apache Nifi was used to establish connections for transferring the generated data to an AWS S3 bucket, providing scalable storage and real-time access.</li>
+          <li><b>Data Streaming to <a href="amazon-s3.html">AWS S3</a></b>: Apache Nifi was used to establish connections for transferring the generated data to an AWS S3 bucket, providing scalable storage and real-time access.</li>
           <li><b>Real-Time Data Processing with Snowflake</b>: Leveraging Snowpipe, we ensured that any new data or changes in existing data were automatically incorporated into the dataset. Slowly changing dimensions were used to track these changes.</li>
           <li><b>Target Table Creation</b>: A task was executed to create target tables, ensuring the final dataset was always up-to-date and accurate.</li>
           <img src="assets/img/portfolio/ec2-nifi-snowflake-pipeline.png" alt="Project Architecture" style="width: 800px; height: auto;">
@@ -187,7 +187,7 @@
         <h3><b>Key Components</b></h3>
         <p>The key components are like our orchestra members:</p>
             <ul style="list-style-type: disc; margin-left: 30px;">
-                <li><b>AWS EC2: The Stage Where the Symphony is Performed </b>The AWS EC2 instance serves as the stage for our data symphony. Here's how 
+                <li><b><a href="amazon-s3.html">AWS EC2</a>:</b> (The Stage Where the Symphony is Performed) The AWS EC2 instance serves as the stage for our data symphony. Here's how 
                   it was created and configured for the project:
                   <ul style="list-style-type: disc; margin-left: 20px;">
                     <li><b>Creation: </b> To set up an EC2 instance, I began by accessing the AWS Management Console and launched an EC2 instance. 
