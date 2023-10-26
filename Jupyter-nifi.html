@@ -263,6 +263,68 @@
                           <li>Apache NiFi have state persistence issue in case of primary node switch, which sometimes makes processors not able to fetch data from sourcing systems.</li>
                         </ul>
                     </ol>
+                    <uL>
+                      <p><strong>Apache NiFi - Processors Categorization</strong></p>
+                      <p>Various available processors in Apache Nifi are as follows:</p>
+                    </uL>
+                    <table>
+                      <tr>
+                        <th>Processor Category</th>
+                        <th>Processor category Explanation</th>
+                        <th>Processor Names</th>
+                      </tr>
+                      <tr>
+                        <td>Data Ingestion Processors</td>
+                        <td>The processors under Data Ingestion category are used to ingest data into the NiFi data flow. These are mainly the starting point of any data flow in Apache NiFi. Some of the processors that belong to these categories are GetFile, GetHTTP, GetFTP, GetKAFKA, etc.</td>
+                        <td>GetFile, GetHTTP, GetFTP, GetKAFKA, etc.</td>
+                      </tr>
+                      <tr>
+                        <td>Routing and Mediation Processors</td>
+                        <td>Routing and Mediation processors are used to route the flowfiles to different processors or data flows according to the information in attributes or content of those flowfiles. These processors are also responsible to control the NiFi data flows. Some of the processors that belong to this category are RouteOnAttribute, RouteOnContent, ControlRate, RouteText, etc.</td>
+                        <td>RouteOnAttribute, RouteOnContent, ControlRate, RouteText, etc.</td>
+                      </tr>
+                      <tr>
+                        <td>Database Access Processors</td>
+                        <td>The processors of this Database Access category are capable of selecting or inserting data or executing and preparing other SQL statements from the database. These processors mainly use the data connection pool controller setting of Apache NiFi. Some of the processors that belong to this category are ExecuteSQL, PutSQL, PutDatabaseRecord, ListDatabaseTables, etc.</td>
+                        <td>ExecuteSQL, PutSQL, PutDatabaseRecord, ListDatabaseTables, etc.</td>
+                      </tr>
+                      <tr>
+                        <td>Attribute Extraction Processors</td>
+                        <td>Attribute Extraction Processors are responsible for extracting, analyzing, and changing flowfile attributes processing in the NiFi data flow. Some of the processors that belong to this category are UpdateAttribute, EvaluateJSONPath, ExtractText, AttributesToJSON, etc.</td>
+                        <td>UpdateAttribute, EvaluateJSONPath, ExtractText, AttributesToJSON, etc.</td>
+                      </tr>
+                      <tr>
+                        <td>System Interaction Processors</td>
+                        <td>System Interaction processors are used to run processes or commands in any operating system. These processors also run scripts in many languages to interact with a variety of systems. Some of the processors that belong to this category are ExecuteScript, ExecuteProcess, ExecuteGroovyScript, ExecuteStreamCommand, etc.</td>
+                        <td>ExecuteScript, ExecuteProcess, ExecuteGroovyScript, ExecuteStreamCommand, etc.</td>
+                      </tr>
+                      <tr>
+                        <td>Data Transformation Processors</td>
+                        <td>Processors that belong to Data Transformation are capable of altering the content of the flowfiles. These can be used to fully replace the data of a flowfile, normally used when a user has to send a flowfile as an HTTP body to InvokeHTTP processor. Some of the processors that belong to this category are ReplaceText, JoltTransformJSON, etc.</td>
+                        <td>ReplaceText, JoltTransformJSON, etc.</td>
+                      </tr>
+                      <tr>
+                        <td>Sending Data Processors</td>
+                        <td>Sending Data Processors are generally the end processors in a data flow. These processors are responsible for storing or sending data to the destination server. After successfully storing or sending the data, these processors DROP the flowfile with the success relationship. Some of the processors that belong to this category are PutEmail, PutKafka, PutSFTP, PutFile, PutFTP, etc.</td>
+                        <td>PutEmail, PutKafka, PutSFTP, PutFile, PutFTP, etc.</td>
+                      </tr>
+                      <tr>
+                        <td>Splitting and Aggregation Processors</td>
+                        <td>These processors are used to split and merge the content present in a flowfile. Some of the processors that belong to this category are SplitText, SplitJson, SplitXml, MergeContent, SplitContent, etc.</td>
+                        <td>SplitText, SplitJson, SplitXml, MergeContent, SplitContent, etc.</td>
+                      </tr>
+                      <tr>
+                        <td>HTTP Processors</td>
+                        <td>These processors deal with HTTP and HTTPS calls. Some of the processors that belong to this category are InvokeHTTP, PostHTTP, ListenHTTP, etc.</td>
+                        <td>InvokeHTTP, PostHTTP, ListenHTTP, etc.</td>
+                      </tr>
+                      <tr>
+                        <td>AWS Processors</td>
+                        <td>AWS processors are responsible for interacting with the Amazon Web Services system. Some of the processors that belong to this category are GetSQS, PutSNS, PutS3Object, FetchS3Object, etc.</td>
+                        <td>GetSQS, PutSNS, PutS3Object, FetchS3Object, etc.</td>
+                      </tr>
+                    </table>
+                    
 
                     <strong>NiFi UI:</strong>
                         <img src="assets/img/portfolio/apache-nifi-home-2.png" alt="Image Description" style="width: 1000px; height: 520px;">
