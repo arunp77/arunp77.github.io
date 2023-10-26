@@ -1239,3 +1239,14 @@ img {
   font-weight: bold; /* Optionally, make the hyphen bold */
   margin-right: 5px; /* Optionally, add spacing between hyphen and text */
 }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid #888; /* Add border to cells */
+  padding: 8px;
+  text-align: left;
+}

@@ -162,10 +162,24 @@
               Apache Nifi, and Apache ZooKeeper. Think of it as preparing our instruments, tuning them to perfection.</li>
             <li><b><a href="Jupyter-nifi.html">JupyterLab and Apache Nifi Configuration</a>: </b>JupyterLab and Apache Nifi were configured to run on specific ports, making them accessible for data processing and orchestration. 
               It's like setting up the conductor's podium and the sheet music stand just right.</li>
-            <li><b>Data Generation: </b>In JupyterLab, Python code was crafted to generate random data, simulating customer information. This is where the composer writes the notes.</li>
-            <li><b>Data Streaming: </b>Apache Nifi was utilized to set up connections, ensuring the seamless transfer of generated data to an AWS S3 bucket. It's the conductor guiding the instruments.</li>
+              <ul>
+                <li><b>Data Generation: </b>In JupyterLab, Python code was crafted to generate random data, simulating customer information. This is where the composer writes the notes.</li>
+                <li><b>Data Streaming: </b>Apache Nifi was utilized to set up connections, ensuring the seamless transfer of generated data to an AWS S3 bucket. It's the conductor guiding the instruments.</li>
+              </ul>
             <li><b><a href="snowflake-task=stream.html">Real-Time Data Processing</a>: </b>Snowpipe, Snowflake streams, and tasks were set up to handle real-time data processing, enabling automatic updates as new data arrived. 
               It's the conductor guiding the orchestra to play in harmony.</li>
+            
+            <li><strong><a href="https://github.com/arunsinp/Database-datapipeline-ETL/tree/main/Database" target="_blank">Slowly Changing Dimensions (SCD) 
+              Implementation</a>:</strong></li>
+              <p>Within our orchestration, we employed the concept of Slowly Changing Dimensions (SCD) in Snowflake to maintain the integrity and history of our datasets. 
+                Think of it as a conductor's keen ear for detecting subtle changes in the music.</p>
+              <ul>
+                <li><strong>SCD-1 Method (Flagging Changes):</strong> With the SCD-1 approach, we tracked changes by flagging modified records. It's akin to marking specific musical 
+                  notes that need adjustment. As data evolved, we efficiently identified and marked the records that underwent changes, ensuring data accuracy.</li>
+                <li><strong>SCD-2 Method (Historical Versioning):</strong> In parallel, we implemented the SCD-2 method, creating a symphony of historical versions for our datasets. 
+                  Each change introduced a new version, preserving a complete history of our data, much like recording various performances of a musical composition. 
+                  We maintained records with attributes such as start dates, end dates, and version numbers, allowing us to trace the evolution of our datasets over time.</li>
+              </ul>
           </ul>
         <!-- project setup end here-->
         

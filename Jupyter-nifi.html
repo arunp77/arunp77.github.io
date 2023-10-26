@@ -293,8 +293,105 @@
                           <ul>
                               <li>Specify the input directory where your JupyterLab generated CSV files are located (e.g., "FakeDataset").</li>
                               <li>Set a polling schedule to check for new files at regular intervals.</li>
-                              <li>Provide error and success output relationships.</li>
+                              <li>You have to provide few of these from the table, inside the configuration processor.</li>
+                              <li>(<a href="https://nifi.apache.org/docs/nifi-docs/components/org.apache.nifi/nifi-standard-nar/1.23.2/org.apache.nifi.processors.standard.GetFile/index.html" target="_blank">More information</a>)</li>
                           </ul>
+                          <table>
+                            <tr>
+                              <th>Display Name</th>
+                              <th>API Name</th>
+                              <th>Default Value</th>
+                              <th>Allowable Values</th>
+                              <th>Description</th>
+                            </tr>
+                            <tr>
+                              <td>Input Directory</td>
+                              <td>Input Directory</td>
+                              <td></td>
+                              <td></td>
+                              <td>The input directory from which to pull files</td>
+                            </tr>
+                            <tr>
+                              <td>File Filter</td>
+                              <td>File Filter</td>
+                              <td>[^\.].*</td>
+                              <td></td>
+                              <td>Only files whose names match the given regular expression will be picked up</td>
+                            </tr>
+                            <tr>
+                              <td>Path Filter</td>
+                              <td>Path Filter</td>
+                              <td></td>
+                              <td></td>
+                              <td>When Recurse Subdirectories is true, then only subdirectories whose path matches the given regular expression will be scanned</td>
+                            </tr>
+                            <tr>
+                              <td>Batch Size</td>
+                              <td>Batch Size</td>
+                              <td>10</td>
+                              <td></td>
+                              <td>The maximum number of files to pull in each iteration</td>
+                            </tr>
+                            <tr>
+                              <td>Keep Source File</td>
+                              <td>Keep Source File</td>
+                              <td>false</td>
+                              <td>True, False</td>
+                              <td>If true, the file is not deleted after it has been copied to the Content Repository; this causes the file to be picked up continually 
+                                and is useful for testing purposes. If not keeping original NiFi will need write permissions on the directory it is pulling from otherwise 
+                                it will ignore the file.</td>
+                            </tr>
+                            <tr>
+                              <td>Recurse Subdirectories</td>
+                              <td>Recurse Subdirectories</td>
+                              <td>true</td>
+                              <td>True, False</td>
+                              <td>Indicates whether or not to pull files from subdirectories</td>
+                            </tr>
+                            <tr>
+                              <td>Polling Interval</td>
+                              <td>Polling Interval</td>
+                              <td>0 sec</td>
+                              <td></td>
+                              <td>Indicates how long to wait before performing a directory listing</td>
+                            </tr>
+                            <tr>
+                              <td>Ignore Hidden Files</td>
+                              <td>Ignore Hidden Files</td>
+                              <td>true</td>
+                              <td>True, False</td>
+                              <td>Indicates whether or not hidden files should be ignored</td>
+                            </tr>
+                            <tr>
+                              <td>Minimum File Age</td>
+                              <td>Minimum File Age</td>
+                              <td>0 sec</td>
+                              <td></td>
+                              <td>The minimum age that a file must be in order to be pulled; any file younger than this amount of time (according to last modification date) will be ignored</td>
+                            </tr>
+                            <tr>
+                              <td>Maximum File Age</td>
+                              <td>Maximum File Age</td>
+                              <td></td>
+                              <td></td>
+                              <td>The maximum age that a file must be in order to be pulled; any file older than this amount of time (according to last modification date) will be ignored</td>
+                            </tr>
+                            <tr>
+                              <td>Minimum File Size</td>
+                              <td>Minimum File Size</td>
+                              <td>0 B</td>
+                              <td></td>
+                              <td>The minimum size that a file must be in order to be pulled</td>
+                            </tr>
+                            <tr>
+                              <td>Maximum File Size</td>
+                              <td>Maximum File Size</td>
+                              <td></td>
+                              <td></td>
+                              <td>The maximum size that a file can be in order to be pulled</td>
+                            </tr>
+                          </table>
+                          
                         
 
                         <li><b>Step 4: Configure PutS3Object Processor</b></li>
@@ -304,7 +401,90 @@
                             <li>Specify the S3 bucket name where you want to upload the files.</li>
                             <li>Configure the destination directory within the S3 bucket.</li>
                             <li>Map the incoming flow file attributes to the S3 object properties.</li>
+                            <li>(<a href="https://nifi.apache.org/docs/nifi-docs/components/org.apache.nifi/nifi-aws-nar/1.23.2/org.apache.nifi.processors.aws.s3.PutS3Object/index.html" target="_blank">More infromation</a>)</li>
                           </ul>
+
+                          <table>
+                            <tr>
+                              <th>Display Name</th>
+                              <th>API Name</th>
+                              <th>Default Value</th>
+                              <th>Allowable Values</th>
+                              <th>Description</th>
+                            </tr>
+                            <tr>
+                              <td>Object Key</td>
+                              <td>Object Key</td>
+                              <td>${filename}</td>
+                              <td></td>
+                              <td>The S3 Object Key to use. This is analogous to a filename for traditional file systems.</td>
+                            </tr>
+                            <tr>
+                              <td>Bucket</td>
+                              <td>Bucket</td>
+                              <td></td>
+                              <td></td>
+                              <td>The S3 Bucket to interact with.</td>
+                            </tr>
+                            <tr>
+                              <td>Content Type</td>
+                              <td>Content Type</td>
+                              <td></td>
+                              <td></td>
+                              <td>Sets the Content-Type HTTP header indicating the type of content stored in the associated object. The value of this header is a standard MIME type. AWS S3 Java client will attempt to determine the correct content type if one hasn't been set yet. Users are responsible for ensuring a suitable content type is set when uploading streams. If no content type is provided and cannot be determined by the filename, the default content type "application/octet-stream" will be used.
+                              Supports Expression Language: true (will be evaluated using flow file attributes and variable registry)</td>
+                            </tr>
+                            <tr>
+                              <td>Content Disposition</td>
+                              <td>Content Disposition</td>
+                              <td></td>
+                              <td>inline, attachment</td>
+                              <td>Sets the Content-Disposition HTTP header indicating if the content is intended to be displayed inline or should be downloaded. Possible values are 'inline' or 'attachment'. If this property is not specified, object's content-disposition will be set to filename. When 'attachment' is selected, '; filename=' plus object key are automatically appended to form the final value 'attachment; filename="filename.jpg"'</td>
+                            </tr>
+                            <tr>
+                              <td>Cache Control</td>
+                              <td>Cache Control</td>
+                              <td></td>
+                              <td></td>
+                              <td>Sets the Cache-Control HTTP header indicating the caching directives of the associated object. Multiple directives are comma-separated.
+                              Supports Expression Language: true (will be evaluated using flow file attributes and variable registry)</td>
+                            </tr>
+                            <tr>
+                              <td>Access Key ID</td>
+                              <td>Access Key</td>
+                              <td></td>
+                              <td></td>
+                              <td>No Description Provided.
+                              Sensitive Property: true
+                              Supports Expression Language: true (will be evaluated using variable registry only)</td>
+                            </tr>
+                            <tr>
+                              <td>Secret Access Key</td>
+                              <td>Secret Key</td>
+                              <td></td>
+                              <td></td>
+                              <td>No Description Provided.
+                              Sensitive Property: true
+                              Supports Expression Language: true (will be evaluated using variable registry only)</td>
+                            </tr>
+                            <tr>
+                              <td>Credentials File</td>
+                              <td>Credentials File</td>
+                              <td></td>
+                              <td></td>
+                              <td>Path to a file containing AWS access key and secret key in properties file format.
+                              This property requires exactly one file to be provided.</td>
+                            </tr>
+                            <tr>
+                              <td>AWS Credentials Provider Service</td>
+                              <td>AWS Credentials Provider service</td>
+                              <td></td>
+                              <td>Controller Service API: AWSCredentialsProviderService
+                              Implementation: AWSCredentialsProviderControllerService</td>
+                              <td>The Controller Service that is used to obtain AWS credentials provider</td>
+                            </tr>
+                          </table>
+                          
 
                         <li><b>Step 5: Connect Processors:</b></li>
                           <p>Connect the "GetFile" processor to the "PutS3Object" processor using relationships. Ensure that the data flow follows the intended sequence.</p>
