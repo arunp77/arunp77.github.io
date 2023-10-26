@@ -624,7 +624,7 @@ section {
   position: relative;
   overflow: hidden;
   z-index: 1;
-  margin-bottom: 25px; /* Add margin between items */
+  margin-bottom: 20px; /* Add margin between items */
 }
 
 .portfolio .portfolio-wrap::before {
@@ -684,16 +684,24 @@ section {
 
 .portfolio-title {
   text-align: center;
-  font-size: 24px; /* Adjust the font size as needed */
+  font-size: 20px; /* Adjust the font size as needed */
   font-weight: bold;
-  margin: 10px 0; /* Adjust margin as needed */
+  margin: 8px 0; /* Adjust margin as needed */
 }
 
+/* Adjustments for Responsiveness */
+@media (max-width: 768px) {
+  .portfolio {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+  
 /*--------------------------------------------------------------
 # Portfolio Details
 --------------------------------------------------------------*/
 .portfolio-details {
-  padding-top: 30px;
+  padding-top: 20px;
 }
 
 .portfolio-details .portfolio-details-slider img {
@@ -706,8 +714,8 @@ section {
 }
 
 .portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   background-color: #fff;
   opacity: 1;
   border: 1px solid #149ddd;
@@ -755,8 +763,8 @@ section {
 }
 
 .portfolio-image {
-  width: 300px; /* Adjust the width as needed */
-  height: 300px; /* Adjust the height as needed */
+  width: 250px; /* Adjust the width as needed */
+  height: 250px; /* Adjust the height as needed */
 }
 
 /*--------------------------------------------------------------
