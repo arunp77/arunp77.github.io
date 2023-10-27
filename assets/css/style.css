@@ -471,7 +471,7 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Akills
+# Skills
 --------------------------------------------------------------*/
 .skills .progress {
   height: 60px;
@@ -582,8 +582,8 @@ section {
 .portfolio .portfolio-item {
   margin: 0 15px; /* Add margin to each item to separate them */
   text-align: center;
-  flex: 0 0 calc(25% - 30px); /* Adjust the width for different screen sizes */
-  max-width: calc(25% - 30px); /* Set the maximum width for responsiveness */
+  flex: 0 0 calc(33.33% - 30px); /* Adjust the width for different screen sizes */
+  max-width: calc(33.33% - 30px); /* Set the maximum width for responsiveness */
 }
 
 
@@ -624,7 +624,7 @@ section {
   position: relative;
   overflow: hidden;
   z-index: 1;
-  margin-bottom: 20px; /* Add margin between items */
+  margin-bottom: 30px; /* Add margin between items */
 }
 
 .portfolio .portfolio-wrap::before {
@@ -684,24 +684,18 @@ section {
 
 .portfolio-title {
   text-align: center;
-  font-size: 20px; /* Adjust the font size as needed */
+  font-size: 24px; /* Adjust the font size as needed */
   font-weight: bold;
-  margin: 8px 0; /* Adjust margin as needed */
+  margin: 10px 0; /* Adjust margin as needed */
 }
 
-/* Adjustments for Responsiveness */
-@media (max-width: 768px) {
-  .portfolio {
-    flex-direction: column;
-    align-items: center;
-  }
-}
+
   
 /*--------------------------------------------------------------
 # Portfolio Details
 --------------------------------------------------------------*/
 .portfolio-details {
-  padding-top: 20px;
+  padding-top: 40px;
 }
 
 .portfolio-details .portfolio-details-slider img {
@@ -714,8 +708,8 @@ section {
 }
 
 .portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   background-color: #fff;
   opacity: 1;
   border: 1px solid #149ddd;
@@ -763,8 +757,8 @@ section {
 }
 
 .portfolio-image {
-  width: 250px; /* Adjust the width as needed */
-  height: 250px; /* Adjust the height as needed */
+  width: 300px; /* Adjust the width as needed */
+  height: 300px; /* Adjust the height as needed */
 }
 
 /*--------------------------------------------------------------
@@ -1218,6 +1212,11 @@ img {
   margin: 0 auto;
 }
 
+/*--------------------------------------------------------------
+# Creating a clickable box
+--------------------------------------------------------------*/
+
+
 .clickable-box {
   display: inline-block;
   padding: 10px 20px;
@@ -1230,17 +1229,6 @@ img {
 
 .clickable-box:hover {
   background-color: #0056b3; /* Change background color on hover */
-}
-
-
-/* Style for the arrow on the right */
-.arrow-right::before {
-  content: " → "; /* Unicode right arrow character */
-}
-
-/* Style for the arrow on the left */
-.arrow-left::before {
-  content: " ← "; /* Unicode left arrow character */
 }
 
 .circle-bullets {
