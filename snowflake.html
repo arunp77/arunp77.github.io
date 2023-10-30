@@ -90,7 +90,7 @@
         <div class="d-flex justify-content-between align-items-center">
           <h2>Portfolio Details</h2>
           <ol>
-            <li><a href="portfolio-details-8.html" class="clickable-box">Go to Project page <i class="fas fa-arrow-right"></i></a></li>
+            <li><a href="portfolio-details-7.html" class="clickable-box">Go to Project page</a></li>
             <li><a href="index.html#portfolio" class="clickable-box">Go to portfolio</a></li>
           </ol>
         </div>
@@ -180,7 +180,7 @@
                 </ul>
                 
                 <h2>Getting started with Snowflake</h2>
-                <ol  style="list-style-type: disc; margin-left: 30px;">
+                <ol style="list-style-type: disc; margin-left: 30px;">
                     <li><strong>Access Snowflake:</strong> <a href="https://www.snowflake.com/login/" target="_blank">Log in to your Snowflake account</a>.</li>
                     <li><strong>Create a Database:</strong> If you don't have one already, create a database to store your data.</li>
                     <li><strong>Data Loading:</strong>
@@ -216,31 +216,46 @@
                     <li><strong>Collaboration:</strong> Share insights and findings with your team or stakeholders as necessary.</li>
                 </ol>
 
-
-                
-
-                <h3>Create Snowflake objects</h3>
-                <p>Following objects needs to be created before delving into snowflake data analytics:</p>
+                <h2>Connect to Snowflake</h2>
+                <p>Snowflake provides several different methods to interact with the Snowflake database including Snowsight, SnowSQL and the Snowflake Classic Console.</p>
                 <ul style="list-style-type: disc; margin-left: 30px;">
-                    <li>A database (sf_tuts) and a table (emp_basic). You load sample data into this table.</li>
-                    <li>A virtual warehouse (sf_tuts_wh). This warehouse provides the compute resources needed to load data into the table and query the table.</li>
+                    <li>Snowflake Ecosystem: SnowSQL (command line interface), connectors for Python and Spark, and drivers for Node.js, JDBC, ODBC, and more.</li>
+                    <li>Snowsight: <a href="https://docs.snowflake.com/en/user-guide/ui-snowsight" target="_blank">Snowflake Web Interface</a></li>
+                    <li><a href="https://docs.snowflake.com/en/user-guide/snowsql" target="_blank">SnowSQL (CLI Client)</a></li>
+                    <li>Classic Console</li>
+                    <li>Snowflake Extension for Visual Studio Code</li>
                 </ul>
+                <ol style="list-style-type: disc; margin-left: 30px;">
+                    <li><strong>Snowflake Ecosystem:</strong>
+                        <ul>
+                            <li><strong><a href="https://docs.snowflake.com/en/user-guide/snowsql" target="_blank">SnowSQL</a> (Command Line Interface):</strong> SnowSQL is a 
+                                command-line client provided by Snowflake, allowing you to manage your Snowflake account, execute SQL queries, and perform administrative tasks. 
+                                It's a versatile tool for command-line interactions.</li>
+                            <li><strong>Connectors for <a href="https://docs.snowflake.com/developer-guide/python-connector/python-connector" target="_blank">Python</a> 
+                                and <a href="https://docs.snowflake.com/en/user-guide/spark-connector" target="_blank">Spark</a>:</strong> Snowflake offers connectors for 
+                                python and Spark, enabling seamless integration of Snowflake into data analysis workflows. They provide an interface for connecting, querying, 
+                                and data transfer.</li>
+                            <li><strong>Drivers for <a href="https://docs.snowflake.com/en/developer-guide/node-js/nodejs-driver" target="_blank">Node.js</a>, 
+                                <a href="https://docs.snowflake.com/en/developer-guide/jdbc/jdbc" target="_blank">JDBC</a>, 
+                                <a href="https://docs.snowflake.com/en/developer-guide/odbc/odbc" target="_blank">ODBC</a>, and More:</strong> Snowflake provides drivers for 
+                                multiple programming languages, facilitating connections from various applications.</li>
+                        </ul>
+                    </li>
+                    <li><strong><a href="https://docs.snowflake.com/en/user-guide/ui-snowsight-gs" target="_blank">Snowsight (Snowflake Web Interface)</a>:</strong> Snowsight 
+                        is a web-based user interface for Snowflake, offering an easy way to interact with Snowflake directly in your web browser.</li>
+                    <li><strong><a href="https://docs.snowflake.com/en/user-guide/ui-using" target="_blank">Classic Console</a>:</strong> The Classic Console provides a 
+                        web-based interface similar to Snowsight, and it's accessible for users who prefer it.</li>
+                    <li><strong><a href="https://docs.snowflake.com/en/user-guide/vscode-ext" target="_blank">Snowflake Extension for Visual Studio Code</a>:</strong> 
+                        This extension enhances your Snowflake development experience in Visual Studio Code with 
+                        features like SQL code highlighting and autocompletion.</li>
+                </ol>
 
 
 
                     
 
                     
-                <pre><code class="language-sql">
-                    CREATE OR REPLACE TABLE emp_basic (
-                      first_name STRING,
-                      last_name STRING,
-                      email STRING,
-                      streetaddress STRING,
-                      city STRING,
-                      start_date DATE
-                    );
-                        </code></pre>
+                
 
 
 
