@@ -1246,3 +1246,37 @@ img {
   font-weight: bold; /* Optionally, make the hyphen bold */
   margin-right: 5px; /* Optionally, add spacing between hyphen and text */
 }
+
+
+
+/*--------------------------------------------------------------
+# Creating a right side content
+--------------------------------------------------------------*/
+
+.right-side-list {
+  position: fixed; /* Fix the list to the right side of the page */
+  top: 50%; /* Adjust this value to position it vertically */
+  right: 0;
+  transform: translate(0, -50%);
+  background-color: #222; /* Background color for the list */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.right-side-list ul {
+  list-style: none; /* Remove default list styles */
+  padding: 0;
+}
+
+.right-side-list li {
+  margin-bottom: 10px;
+}
+
+.right-side-list a {
+  text-decoration: none;
+  color: #fff; /* Text color for the links */
+}
+
+.right-side-list a:hover {
+  color: #ffcc00; /* Color when hovered */
+}
