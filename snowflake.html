@@ -250,6 +250,125 @@
                         features like SQL code highlighting and autocompletion.</li>
                 </ol>
 
+                <h3>Creating a Snowflake Warehouse and Users</h3>
+                <ul>
+                    <h5>Creating a Warehouse:</h5>
+                    <p>A virtual warehouse, often referred to simply as a “warehouse”, is a cluster of compute resources in Snowflake. A virtual warehouse is available in two types:
+                        <ul>
+                            <li>Standard</li>
+                            <li>Snowpark-optimized</li>
+                        </ul>
+                    </p>
+                    <ol>
+                        <li><strong>Log in to Snowflake</strong>: Log in to your Snowflake account through the web interface or SnowSQL.</li>
+                        <li><strong>Access the Snowflake Web Interface</strong>: If you're using the web interface, click on the "Warehouses" tab.</li>
+                        <li><strong>Create a Warehouse:</strong>
+                            <ul>
+                                <li><strong>Using Snowflake Web Interface</strong>:
+                                    <ol>
+                                        <li>Click the "Create" button in the "Warehouses" tab.</li>
+                                        <li>Fill out the warehouse details, including the name, size, and auto-pause settings.</li>
+                                        <li>Click "Create Warehouse."</li>
+                                    </ol>
+                                </li>
+                                <li><strong>Using SnowSQL</strong>:
+                                    <ol>
+                                        <p>Run a SQL command to create a warehouse. For example:
+        <!--- Here sql code is shifted to left so as it look well fitted-->
+        <pre class="language-sql"><code id="sql-code">
+            CREATE WAREHOUSE <warehouse_name>
+                WAREHOUSE_TYPE = { STANDARD | SNOWPARK-OPTIMIZED }
+                WAREHOUSE_SIZE = { XSMALL | SMALL | MEDIUM | LARGE | XLARGE | XXLARGE | XXXLARGE | X4LARGE | X5LARGE | X6LARGE }
+                MAX_CLUSTER_COUNT = {1 to 10}
+                MIN_CLUSTER_COUNT = {1 to 10}
+                SCALING_POLICY = { STANDARD | ECONOMY }
+                AUTO_SUSPEND = { Any integer 0 or greater, | NULL }
+                AUTO_RESUME = { TRUE | FALSE }         -- TRUE(Default): The warehouse resumes when a new query is submitted.
+                INITIALLY_SUSPENDED = { TRUE | FALSE }; -- FALSE(Default): The warehouse starts running after it is created. --
+        </code></pre>
+                                        <p>For example:</p>
+        <pre class="language-sql"><code id="sql-code">
+                CREATE WAREHOUSE my_warehouse
+                WAREHOUSE_SIZE = 'X-SMALL'
+                AUTO_SUSPEND = 1800
+                AUTO_RESUME = TRUE;
+                                            </code></pre>
+                                        <p>here, you can find the different sizes available in snowflake by object 'WAREHOUSE_SIZE': 
+                                            <a href="https://docs.snowflake.com/en/user-guide/warehouses-overview" target="_blank">go to warehouse configuration page.</a></p>
+                                        </p>                                        
+                                        <img src="assets/img/portfolio/warehouse-size.png" alt="Image 1">
+                                    </ol>
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h5>Creating Users for the Warehouse:</h5>
+                    <ol>
+                        <li><strong>Access the Snowflake Web Interface</strong>: Click on the "Users and Roles" tab.</li>
+                        <li><strong>Create a Role</strong>:
+                            <ul>
+                                <li>Click on the "Roles" tab and then the "Create" button.</li>
+                                <li>Provide a name and description for the role.</li>
+                                <li>Configure the role's privileges and access.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Create a User</strong>:
+                            <ul>
+                                <li>Click on the "Users" tab and then the "Create" button.</li>
+                                <li>Provide a username, password, and other user details.</li>
+                                <li>Assign the user to the role you created.</li>
+                            </ul>
+                            <p> User can also be created using <a href="https://docs.snowflake.com/en/sql-reference/sql/create-user" target="_blank">user management</a>:</p>
+    <pre class="language-sql"><code id="sql-code">
+        CREATE USER 'username'                --Required Parameters --
+        PASSWORD = 'user_password'            --Optional --
+        LOGIN_NAME = 'name'                   --Optional --
+        DISPLAY_NAME = 'display name'         --Optional --
+        FIRST_NAME = 'First name'             --Optional --
+        MIDDLE_NAME = 'Middle name'           --Optional --
+        LAST_NAME = 'Last name'               --Optional --
+        EMAIL = 'give email id'               --Optional --
+        MUST_CHANGE_PASSWORD = TRUE | FALSE;  -- If True, specifies whether the user is forced to change their password on next login --
+    </code></pre>
+                        </li>
+                    </ol>
+
+                    <h5>Assigning the Warehouse to a User:</h5>
+                    <ol>
+                        <li><strong>Access the Snowflake Web Interface</strong>: Navigate to the "Users and Roles" tab.</li>
+                        <li><strong>Edit User Privileges</strong>:
+                            <ul>
+                                <li>Find the user you created and click on their name.</li>
+                                <li>Click the "Change Roles" button to assign the user to a role that has access to the warehouse you created.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Access Control for Warehouse</strong>:
+                            <ul>
+                                <li>Ensure that the role assigned to the user has the appropriate access control for the warehouse. You can manage these permissions in the role settings.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Save Changes</strong>: Save your changes, and the user will have access to the warehouse.</li>
+                    </ol>
+                    <p>We can also write a sql code to assign the warehouse to a user:</p>
+<pre class="language-sql"><code id="sql-code">
+-- Assign a Warehouse to a User
+USE ROLE ACCOUNTADMIN; -- You may need the appropriate role privileges to perform this operation
+
+-- Modify the User's Role to Include Warehouse Access
+GRANT ROLE <role_name> TO USER <username>;
+
+-- Grant Appropriate Warehouse Privileges to the Role
+GRANT USAGE ON WAREHOUSE <warehouse_name> TO ROLE <role_name>;
+
+-- Optionally, you can grant additional privileges if needed:
+-- GRANT EXECUTE TASK ON WAREHOUSE <warehouse_name> TO ROLE <role_name>;
+-- GRANT MONITOR ON WAREHOUSE <warehouse_name> TO ROLE <role_name>;
+
+-- Make sure the user's session uses the assigned role (OPTIONAL)
+ALTER USER <username> SET DEFAULT_ROLE = <role_name>;
+</code></pre>
+                </ul>
 
 
                     
