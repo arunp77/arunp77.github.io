@@ -163,7 +163,7 @@
                             <p>In Snowflake, data is organized within databases and schemas. A database acts as a logical container for your data, while a schema is a logical 
                                 container within a database. You should ensure that you have the appropriate database and schema created to receive the incoming real-time data. 
                                 This step is crucial for structuring your data in a way that aligns with your analysis requirements.</p>
-                            <pre><code>
+                            <pre><code class="language-sql">
                                 create database if not exists scd_demo;
                                 use database scd_demo;
                                 create schema if not exists scd2;
@@ -211,7 +211,7 @@
                         <li><strong>Step 3: Snowpipe: </strong>Snowpipe is a feature in Snowflake that automates the ingestion of data from external stages (like S3 buckets). 
                             You'll configure Snowpipe to monitor a specific S3 bucket for new data files.</li>
                             <p>Next is to set connection between the s3 bucket and the snowflake:</p>
-                            <pre><code>
+                            <pre><code class="language-sql">
                                 // Creating external stage (create your own bucket)
                                 CREATE OR REPLACE STAGE SCD_DEMO.SCD2.customer_ext_stage
                                     url='s3://[bucket-name]/path-to-data-folder'
@@ -248,7 +248,7 @@
                             <p>A Snowflake stream is a vital component for tracking changes in a table or a set of tables. It acts as a changelog or transaction log that records 
                                 all data modifications, such as inserts, updates, and deletes. To enable real-time data loading, you'll create a Snowflake stream for the table 
                                 where you want to continuously ingest and analyze data. This stream captures changes, ensuring that you have access to the latest data for analysis.</p>
-                            <pre><code>
+                            <pre><code class="language-sql">
                                 merge into customer c 
                                 using customer_raw cr
                                 on  c.customer_id = cr.customer_id
