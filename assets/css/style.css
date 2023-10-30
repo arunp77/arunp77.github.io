@@ -1256,11 +1256,11 @@ img {
   position: fixed; /* Fix the list to the right side of the page */
   top: 50%; /* Adjust this value to position it vertically */
   right: 0;
-  transform: translate(0, -50%);
-  background-color: #222; /* Background color for the list */
-  padding: 10px;
-  border-radius: 5px;
-  z-index: 1000; /* Adjust the z-index as needed */
+    transform: translate(0, -50%);
+    background-color: rgba(34, 34, 34, 0.8); /* Background color with reduced transparency */
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1000; /* Adjust the z-index as needed */
 }
 
 .right-side-list ul {
