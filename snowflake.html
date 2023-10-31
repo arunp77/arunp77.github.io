@@ -262,9 +262,15 @@
                     <ol>
                         <li><strong>Log in to Snowflake</strong>: Log in to your Snowflake account through the web interface or SnowSQL.</li>
                         <li><strong>Access the Snowflake Web Interface</strong>: If you're using the web interface, click on the "Warehouses" tab.</li>
-                        <li><strong>Create a Warehouse:</strong>
+                        <li><strong><a href="https://docs.snowflake.com/en/user-guide/warehouses-tasks" target="_blank">Create a Warehouse</a> :</strong>
+                            <p>A warehouse can be created through the web interface or using SQL:</p>
                             <ul>
-                                <li><strong>Using Snowflake Web Interface</strong>:
+                                <li><strong>Classic Console:</strong>
+                                    <p><mark style="font-size: 1.3em;">Select <b>Warehouses</b> <i class="fas fa-database"></i> » <b>Create</b></mark></p>
+
+                                </li>
+                                <li><strong>Snowsight:</strong> Using Snowflake Web Interface:<p></p>
+                                    <p><mark style="font-size: 1.3em;">Select <b>Admin</b> » <b>Warehouses</b> » <b>Warehouse</b></mark></p>
                                     <ol>
                                         <li>Click the "Create" button in the "Warehouses" tab.</li>
                                         <li>Fill out the warehouse details, including the name, size, and auto-pause settings.</li>
@@ -272,8 +278,8 @@
                                     </ol>
                                 </li>
                                 <li><strong>Using SnowSQL</strong>:
+                                    <p>Execute a  <mark style="font-size: 1.3em;">CREATE WAREHOUSE command</mark></p>
                                     <ol>
-                                        <p>Run a SQL command to create a warehouse. For example:
         <!--- Here sql code is shifted to left so as it look well fitted-->
         <pre class="language-sql"><code id="sql-code">
             CREATE WAREHOUSE <warehouse_name>
@@ -291,8 +297,7 @@
                 CREATE WAREHOUSE my_warehouse
                 WAREHOUSE_SIZE = 'X-SMALL'
                 AUTO_SUSPEND = 1800
-                AUTO_RESUME = TRUE;
-                                            </code></pre>
+                AUTO_RESUME = TRUE;</code></pre>
                                         <p>here, you can find the different sizes available in snowflake by object 'WAREHOUSE_SIZE': 
                                             <a href="https://docs.snowflake.com/en/user-guide/warehouses-overview" target="_blank">go to warehouse configuration page.</a></p>
                                         </p>                                        
@@ -320,17 +325,17 @@
                                 <li>Assign the user to the role you created.</li>
                             </ul>
                             <p> User can also be created using <a href="https://docs.snowflake.com/en/sql-reference/sql/create-user" target="_blank">user management</a>:</p>
-    <pre class="language-sql"><code id="sql-code">
-        CREATE USER 'username'                --Required Parameters --
-        PASSWORD = 'user_password'            --Optional --
-        LOGIN_NAME = 'name'                   --Optional --
-        DISPLAY_NAME = 'display name'         --Optional --
-        FIRST_NAME = 'First name'             --Optional --
-        MIDDLE_NAME = 'Middle name'           --Optional --
-        LAST_NAME = 'Last name'               --Optional --
-        EMAIL = 'give email id'               --Optional --
-        MUST_CHANGE_PASSWORD = TRUE | FALSE;  -- If True, specifies whether the user is forced to change their password on next login --
-    </code></pre>
+        <pre class="language-sql"><code id="sql-code">
+            CREATE USER 'username'                --Required Parameters --
+            PASSWORD = 'user_password'            --Optional --
+            LOGIN_NAME = 'name'                   --Optional --
+            DISPLAY_NAME = 'display name'         --Optional --
+            FIRST_NAME = 'First name'             --Optional --
+            MIDDLE_NAME = 'Middle name'           --Optional --
+            LAST_NAME = 'Last name'               --Optional --
+            EMAIL = 'give email id'               --Optional --
+            MUST_CHANGE_PASSWORD = TRUE | FALSE;  -- If True, specifies whether the user is forced to change their password on next login --
+        </code></pre>
                         </li>
                     </ol>
 
@@ -350,23 +355,23 @@
                         </li>
                         <li><strong>Save Changes</strong>: Save your changes, and the user will have access to the warehouse.</li>
                     </ol>
-                    <p>We can also write a sql code to assign the warehouse to a user:</p>
+                    <p><strong>Example:</strong> A example of creating a user as ACCOUNTADMIN, or a role, or granting a appropriate privileges:</p>
 <pre class="language-sql"><code id="sql-code">
--- Assign a Warehouse to a User
-USE ROLE ACCOUNTADMIN; -- You may need the appropriate role privileges to perform this operation
+    -- Assign a Warehouse to a User
+    USE ROLE ACCOUNTADMIN; -- You may need the appropriate role privileges to perform this operation
 
--- Modify the User's Role to Include Warehouse Access
-GRANT ROLE <role_name> TO USER <username>;
+    -- Modify the User's Role to Include Warehouse Access
+    GRANT ROLE 'role_name' TO USER 'username';
 
--- Grant Appropriate Warehouse Privileges to the Role
-GRANT USAGE ON WAREHOUSE <warehouse_name> TO ROLE <role_name>;
+    -- Grant Appropriate Warehouse Privileges to the Role
+    GRANT USAGE ON WAREHOUSE 'warehouse_name' TO ROLE 'role_name';
 
--- Optionally, you can grant additional privileges if needed:
--- GRANT EXECUTE TASK ON WAREHOUSE <warehouse_name> TO ROLE <role_name>;
--- GRANT MONITOR ON WAREHOUSE <warehouse_name> TO ROLE <role_name>;
+    -- Optionally, you can grant additional privileges if needed:
+    -- GRANT EXECUTE TASK ON WAREHOUSE 'warehouse_name' TO ROLE 'role_name';
+    -- GRANT MONITOR ON WAREHOUSE 'warehouse_name' TO ROLE 'role_name';
 
--- Make sure the user's session uses the assigned role (OPTIONAL)
-ALTER USER <username> SET DEFAULT_ROLE = <role_name>;
+    -- Make sure the user's session uses the assigned role (OPTIONAL)
+    ALTER USER 'username' SET DEFAULT_ROLE = 'role_name';
 </code></pre>
                 </ul>
 
