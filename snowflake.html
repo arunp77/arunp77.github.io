@@ -697,6 +697,8 @@ VALUES (1, PARSE_JSON('{"key": "value"}'));
             
             <h4>Loading structured data</h4>
             <ul>
+
+
                 <li><strong>AWS S3 Example: </strong>
 <pre  class="language-sql"><code>
 -- Create a Snowflake table
@@ -725,6 +727,8 @@ FROM @your_s3_stage/your-data-file.csv
 FILE_FORMAT = (FORMAT_NAME = your_file_format);
 </code></pre>
                 </li>
+
+
                 <li><strong>Azure Blob Storage Example: </strong>
 <pre  class="language-sql"><code>
     -- Create a Snowflake table
@@ -751,6 +755,8 @@ FILE_FORMAT = (FORMAT_NAME = your_file_format);
     FROM @your_azure_stage/your-data-file.csv
     FILE_FORMAT = (FORMAT_NAME = your_file_format);
 </code></pre></li>
+
+
                 <li><strong>Google Cloud Storage Example: </strong>
 <pre  class="language-sql"><code>
     -- Create a Snowflake table
@@ -776,33 +782,13 @@ FILE_FORMAT = (FORMAT_NAME = your_file_format);
     COPY INTO your_table
     FROM @your_gcs_stage/your-data-file.csv
     FILE_FORMAT = (FORMAT_NAME = your_file_format);
-    
 </code></pre></li>
             </ul>
             <p>It's important to note that while Snowflake can handle semi-structured and unstructured data to some extent, it may not 
                 be as efficient as specialized systems designed for unstructured data, like data lakes or NoSQL databases. 
                 Snowflake's strength lies in structured and semi-structured data processing.</p>
 
-                
-
-                    
-
-                    
-                
-
-
-
-
-
-
-
-
-
-
-
-
-
-                
+       
             </div>
             <a href="portfolio-details-8.html" class="clickable-box">Go back</a>
         </div>
