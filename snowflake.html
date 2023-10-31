@@ -691,9 +691,6 @@ VALUES (1, PARSE_JSON('{"key": "value"}'));
                                         them using SQL in Snowflake.</li>
                                 </ul>
                             </ul>
-                    <p>It's important to note that while Snowflake can handle semi-structured and unstructured data to some extent, it may not 
-                        be as efficient as specialized systems designed for unstructured data, like data lakes or NoSQL databases. 
-                        Snowflake's strength lies in structured and semi-structured data processing.</p>
                     <p>The choice of method depends on your specific use case and data processing requirements. While Snowflake is capable 
                         of handling semi-structured data, sometimes external preprocessing may be necessary to ensure the data aligns with your needs before loading it into Snowflake.</p>
                 </ul>
@@ -782,6 +779,9 @@ FILE_FORMAT = (FORMAT_NAME = your_file_format);
     
 </code></pre></li>
             </ul>
+            <p>It's important to note that while Snowflake can handle semi-structured and unstructured data to some extent, it may not 
+                be as efficient as specialized systems designed for unstructured data, like data lakes or NoSQL databases. 
+                Snowflake's strength lies in structured and semi-structured data processing.</p>
 
                 
 
