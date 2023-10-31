@@ -659,7 +659,43 @@ FILE_FORMAT = (TYPE = 'JSON');
                                     <p>Replace the placeholders (your_stage, your-bucket, your-access-key, etc.) with your specific information.</p>
                                     </ul>
                                 </li>
+                                <li><strong>Semi-Structured Data Types: </strong> Snowflake provides data types like VARIANT and OBJECT that can be
+                                    used to handle semi-structured data. VARIANT is particularly useful for storing unstructured content like JSON 
+                                    data within a structured table.</li>
+                                <ul>
+                                    <li>Create a table with a VARIANT or OBJECT column to store unstructured data</li>
+                                    <li>Use the INSERT statement or other data manipulation techniques to populate the table with your unstructured data</li>
+                                    <li>Here's an example:</li>
+<pre class="language-sql"><code>
+-- Create a table with a VARIANT column
+CREATE OR REPLACE TABLE my_table (
+  id NUMBER,
+  data VARIANT
+);
+
+-- Insert unstructured JSON data into the table
+INSERT INTO my_table (id, data)
+VALUES (1, PARSE_JSON('{"key": "value"}'));
+</code></pre>
+                                </ul>
+                                <li><strong>Preprocessing and Loading:</strong>Preprocess the unstructured data externally using scripting or ETL tools 
+                                    before loading it into Snowflake. Following steps are usually followed:</li>
+                                <ul>
+                                    <li><strong>Preprocess Data: </strong>Use a scripting language (e.g., Python, JavaScript) or ETL tools to parse, 
+                                        structure, and transform the unstructured data into a structured format (e.g., CSV, JSON).</li>
+                                    <li><strong> Create a Snowflake Table: </strong>Define a structured Snowflake table that matches the format of 
+                                        the preprocessed data</li>
+                                    <li><strong>Load Structured Data: </strong>Use Snowflake's native loading methods, such as COPY INTO, to load 
+                                        the preprocessed structured data into the table</li>
+                                    <li><strong>Data Transformation: </strong>If additional data transformations are required, you can perform 
+                                        them using SQL in Snowflake.</li>
+                                </ul>
                             </ul>
+                    <p>It's important to note that while Snowflake can handle semi-structured and unstructured data to some extent, it may not 
+                        be as efficient as specialized systems designed for unstructured data, like data lakes or NoSQL databases. 
+                        Snowflake's strength lies in structured and semi-structured data processing.</p>
+                    <p>The choice of method depends on your specific use case and data processing requirements. While Snowflake is capable 
+                        of handling semi-structured data, sometimes external preprocessing may be necessary to ensure the data aligns with your needs before loading it into Snowflake.</p>
                 </ul>
             
             <h4>Loading structured data</h4>
