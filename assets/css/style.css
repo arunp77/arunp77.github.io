@@ -1280,3 +1280,11 @@ img {
 .right-side-list a:hover {
   color: #ffcc00; /* Color when hovered */
 }
+
+
+.key {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 3px 4px;
+  border-radius: 5px;
+}

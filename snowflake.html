@@ -375,6 +375,123 @@
 </code></pre>
                 </ul>
 
+                <h3>Data types</h3>
+                <h4><a href="https://docs.snowflake.com/en/user-guide/semistructured-intro" target="_blank">Semi-structured Data</a></h4>
+
+                <ul>
+                    <li>Data can come from many sources, including applications, sensors, and mobile devices. To support these diverse data sources, semi-structured data formats have become 
+                        popular standards for transporting and storing data. Snowflake provides built-in support for importing data from (and exporting data to) the following semi-structured data formats:</li>
+                    <ul>
+                        <li>JSON</li>
+                        <li>Avro</li>
+                        <li>ORC</li>
+                        <li>Parquet</li>
+                        <li>XML</li>
+                    </ul>
+                    <p>Snowflake provides native data types (ARRAY, OBJECT, and VARIANT) for storing semi-structured data.</p>
+                    <li><strong>JSON data structure:</strong> JSON (JavaScript Object Notation) is a lightweight data-interchange format that is easy for humans to read and write and easy for machines to parse 
+                        and generate. It's a widely used data structure in various applications, including web services, configuration files, and data storage. JSON data is represented as a collection of 
+                        key-value pairs, similar to Python dictionaries or JavaScript objects.</li>
+                        <ul>
+                            <li><strong>Object:</strong> A JSON object is enclosed in curly braces <span class="key">'{}'</span> and contains a collection of key-value pairs. Each key is a string, followed by a colon, and then the 
+                                associated value.</li>
+                            <li><strong>Array:</strong> A JSON array is enclosed in square brackets <span class="key">'[]'</span> and contains an ordered list of values. Values can be strings, numbers, objects, arrays, booleans, 
+                                null, or other valid JSON data types.</li>
+                            <li><strong>String:</strong> A JSON string is a sequence of characters enclosed in double quotes. Strings are used for keys and values.</li>
+                            <li><strong>Number:</strong> JSON numbers can be integers or floating-point numbers.</li>
+                            <li><strong>Boolean:</strong> JSON has two boolean values: true and false.</li>
+                            <li><strong>Null:</strong> The null value represents the absence of a value.</li>
+                            <pre class="language-json"><code>
+                                {
+                                "name": "John Doe",
+                                "age": 30,
+                                "isStudent": false,
+                                "address": {
+                                    "street": "123 Main St",
+                                    "city": "Anytown",
+                                    "zipCode": "12345"
+                                },
+                                "hobbies": ["reading", "hiking", "painting"],
+                                "contacts": [
+                                    {
+                                    "type": "email",
+                                    "value": "john.doe@email.com"
+                                    },
+                                    {
+                                    "type": "phone",
+                                    "value": "555-123-4567"
+                                    }
+                                ]
+                                }
+                                </code></pre>
+                        </ul>
+                        <li><strong>Loading Semi-structured Data</strong>:</li>
+                        <p>Snowflake is primarily designed for structured data, but it can handle semi-structured and unstructured data to some extent. When working with unstructured data in Snowflake, 
+                            you typically use one of the following approaches:</p>
+                            <ul>
+                                <li><strong>Using External Stages:</strong>
+                                    <p>Snowflake allows you to use external stages to load data from cloud storage services like Amazon S3, Azure Blob Storage, or Google Cloud Storage. You can load unstructured data files (e.g., CSV, JSON, Parquet) 
+                                        into Snowflake tables, treating them as semi-structured data.</p>
+                                    <ul>
+                                        <li>Define an external stage pointing to your cloud storage location.</li>
+                                        <li>Use the COPY INTO statement to load data from the external stage into a Snowflake table.</li>
+                                        <li>You might need to use a VARIANT data type or a similar semi-structured data type to store unstructured content.</li>
+                                        <li><strong>Example (AWS):</strong></li>
+<pre class="language-sql"><code>                                         
+-- Create a file format for JSON data (if not already created)
+CREATE OR REPLACE FILE FORMAT json_format
+    TYPE = 'JSON';
+
+-- Create an external stage
+CREATE OR REPLACE STAGE my_stage
+  URL = 's3://your-bucket/path-to-data/'
+  CREDENTIALS = (AWS_KEY_ID = 'your-key' AWS_SECRET_KEY = 'your-secret-key');
+
+-- Copy JSON data into a Snowflake table
+COPY INTO my_table
+FROM @my_stage/file.json
+FILE_FORMAT = (TYPE = 'JSON');
+</code></pre>
+                                        <li><strong>Azure Blob Storage External Stage:</strong></li>
+<pre class="language-sql"><code>
+-- Create a file format for JSON data (if not already created)
+CREATE OR REPLACE FILE FORMAT json_format
+    TYPE = 'JSON';
+    
+CREATE OR REPLACE STAGE your_stage
+URL = 'azure://your-container@your-storageaccount/path-to-data/'
+CREDENTIALS = (
+    AZURE_SAS_TOKEN = 'your-sas-token'
+);
+-- Copy JSON data from the external stage to a Snowflake table
+COPY INTO your_snowflake_table
+FROM @your_stage/file.json
+FILE_FORMAT = (TYPE = 'JSON');
+</code></pre>
+                                        <li><strong>Google Cloud Storage External Stage:</strong></li>
+<pre class="language-sql"><code>
+    -- Create a file format for JSON data (if not already created)
+    CREATE OR REPLACE FILE FORMAT json_format
+    TYPE = 'JSON';
+
+    CREATE OR REPLACE STAGE your_stage
+    URL = 'gcs://your-bucket/path-to-data/'
+    CREDENTIALS = (
+        GCS_JSON_KEY = 'your-json-key'
+
+    -- Copy JSON data from the external stage to a Snowflake table
+    COPY INTO your_snowflake_table
+    FROM @your_stage/file.json
+    FILE_FORMAT = (TYPE = 'JSON');
+    );
+</code></pre>
+                                    <p>Replace the placeholders (your_stage, your-bucket, your-access-key, etc.) with your specific information.</p>
+                                    </ul>
+                                </li>
+                            </ul>
+                </ul>
+                
+
 
                     
 
