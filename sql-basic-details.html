@@ -113,7 +113,7 @@
           <li><a href="Jupyter-nifi.html"><i class="fab fa-python" style="color: white;"></i> Jupyter-nifi</a></li>
           <li><a href="snowflake-task=stream.html"><i class="fas fa-snowflake"></i> Snowflake</a></li>
           <li><a href="scd.html"><i class="fas fa-archive"></i> SCD</a></li>
-          <li><a href="scd.html"><i class="fas fa-archive"></i> SCD</a></li>
+          <li><a href="sql-basics.html"><i class="fas fa-archive"></i> QL</a></li>
           <li><a href="sql-basic-details.html"><i class="fas fa-database"></i> SQL</a></li>
           <!-- Add more subsections as needed -->
       </ul>
@@ -132,10 +132,13 @@
                           <img src="assets/img/portfolio/sql-1.png" alt="" style="max-width: 400px; max-height: 400px;">
                         </div>
                         <div class="swiper-slide">
-                          <img src="assets/img/portfolio/powerBI-Logo.png" alt="" style="max-width: 400px; max-height: 400px;">
+                          <img src="assets/img/portfolio/google_bigquery_logo.png" alt="" style="max-width: 400px; max-height: 400px;">
                         </div>
                         <div class="swiper-slide">
-                          <img src="assets/img/portfolio/Looker.svg.png" alt="" style="max-width: 400px; max-height: 400px;">
+                          <img src="assets/img/portfolio/postgresql.png" alt="" style="max-width: 400px; max-height: 400px;">
+                        </div>
+                        <div class="swiper-slide">
+                          <img src="assets/img/portfolio/mysql-logo.png" alt="" style="max-width: 400px; max-height: 400px;">
                         </div>
                       </div>
                       <div class="swiper-pagination"></div>
@@ -287,42 +290,84 @@
                             <li>Select the port for PostgreSQL. The default is 5432, but you can change it if necessary. Click "Next."</li>
                         </ul>
                     </li>
-                    <li><strong>Step 3: Configure PostgreSQL </strong>
-                        <ul>
-                            <li>Choose the locale and collation settings that match your requirements. The default values are often suitable for general use.</li>
-                            <li>Review the installation options and click "Next."</li>
-                            <li>PostgreSQL will install, and you'll see a completion message. Click "Next."</li>
-                        </ul>
-                    </li>
-                    <li><strong>Step 4: Start PostgreSQL Server </strong>
-                        <ul>
-                            <li>After the installation is complete, you'll have the option to launch Stack Builder. You can skip this for now; it's for installing additional modules.</li>
-                            <li>Open the Windows Services application (you can search for "Services" in the Windows search bar).</li>
-                            <li>Look for a service named "postgresql-x64-<version>" (or similar) and check if its status is "Running." This confirms that PostgreSQL is running.</li>
-                        </ul>
-                    </li>
-                    <li><strong>Step 5: Install a SQL Client (Optional) </strong>
-                        <ul>
-                            <li>To write and execute SQL queries, you can install a SQL client like pgAdmin, which is included in the installation. You can find it in your 
-                                Windows Start menu.</li>
-                        </ul>
-                    </li>
-                    <li><strong>Step 6: Connect to MySQL Server </strong>
-                        <ul>
-                            <li>Open your SQL client (e.g., pgAdmin).</li>
-                            <li>Create a new connection profile, providing the hostname (usually 'localhost' for local installations), port (default is 5432), 
-                                your username, and the superuser password you set during installation.</li>
-                            <li>Test the connection to ensure it's successful.</li>
-                        </ul>
-                    </li>
-                    <li><strong>Step 7: Ready for SQL Queries </strong>
-                        <ul>
-                            <li>Your PostgreSQL server is now installed, configured, and ready for SQL queries. You can create databases, tables, and start writing SQL 
-                                commands to manage your data. Enjoy using PostgreSQL for your data-related tasks!</li>
-                        </ul>
-                    </li>
+                    <p>For installation, I used steps given in following website: <a href="https://www.w3schools.com/postgresql/postgresql_install.php" target="_blank">visit website</a> </p>
                 </ul>
 
+                <h3>SQL <command> categories</h3>
+                <p>SQL commands can be categorized into different types based on their purposes. The five main categories are:</p>
+                <img src="assets/img/portfolio/sql-command-queries.png" alt="" style="max-width: 600px; max-height: 600px;">
+                <ol>
+                  <li><strong>Data Definition Language (DDL):</strong>
+                    <ul>
+                      <li><strong>Purpose:</strong> DDL commands are used for defining and managing the structure of database objects, such as tables, indexes, and constraints.</li>
+                      <li><strong>Examples:</strong> 
+                        <p>
+                          <span style="color: blue;">ALTER TABLE</span>,
+                          <span style="color: blue;">DROP TABLE</span>,
+                          <span style="color: blue;">CREATE INDEX</span>,
+                          <span style="color: blue;">CREATE VIEW</span>,
+                          <span style="color: blue;">CREATE PROCEDURE</span>.
+                        </p>
+                      </li>
+                      <li><strong>Explanation:</strong> DDL commands are essential for creating and modifying the schema of a database. They define the structure and metadata of 
+                        the database objects.</li>
+                    </ul>
+                  </li>
+                  <li><strong>Data Manipulation Language (DML):</strong>
+                    <ul>
+                      <li><strong>Purpose:</strong> DML commands are used for managing and manipulating data stored in the database.</li>
+                      <li><strong>Examples:</strong>
+                        <p>
+                          <span style="color: blue;">INSERT</span>,
+                          <span style="color: blue;">UPDATE</span>,
+                          <span style="color: blue;">DELETE</span>,
+                          <span style="color: blue;">MERGE</span>.
+                        </p>
+                      </li>
+                      <li><strong>Explanation:</strong> DML commands allow you to insert new records, update existing data, or delete records in the database tables.</li>
+                    </ul>
+                  </li>
+                  <li><strong>Data Query Language (DQL):</strong>
+                    <ul>
+                      <li><strong>Purpose:</strong> DQL commands are used to retrieve data from the database.</li>
+                      <li><strong>Example:</strong>
+                        <p>
+                          <span style="color: blue;">SELECT</span>.
+                        </p>
+                      </li>
+                      <li><strong>Explanation:</strong> The primary purpose of DQL is to query the database for data. SELECT statements allow you to retrieve specific columns and rows from one 
+                        or more tables.</li>
+                    </ul>
+                  </li>
+                  <li><strong>Data Control Language (DCL):</strong>
+                    <ul>
+                      <li><strong>Purpose:</strong> DCL commands are used to control access and permissions on the database.</li>
+                      <li><strong>Examples:</strong>
+                        <p>
+                          <span style="color: blue;">GRANT</span>,
+                          <span style="color: blue;">REVOKE</span>.
+                        </p>
+                      </li>
+                      <li><strong>Explanation:</strong> DCL commands enable you to grant or revoke permissions to users or roles, controlling who can perform various database operations.</li>
+                    </ul>
+                  </li>
+                  <li><strong>Transaction Control Language (TCL):</strong>
+                    <ul>
+                      <li><strong>Purpose:</strong> TCL commands are used to manage transactions in the database.</li>
+                      <li><strong>Examples:</strong>
+                        <p>
+                          <span style="color: blue;">COMMIT</span>,
+                          <span style="color: blue;">ROLLBACK</span>,
+                          <span style="color: blue;">SAVEPOINT</span>
+                        </p>
+                      </li>
+                      <li><strong>Explanation:</strong>  TCL commands are crucial for controlling transactions, ensuring data consistency and integrity. COMMIT finalizes changes, ROLLBACK 
+                        undoes them, and SAVEPOINT creates points for partial rollbacks.</li>
+                    </ul>
+                  </li>
+                </ol>
+
+                
 
 
 
@@ -335,16 +380,27 @@
 
 
 
+
+
+
+
+
+
+
+                <h3>Reference:</h3>
+                <ul style="margin-left: 30px;">
+                    <li>Visit the <a href="https://www.w3schools.com/postgresql/index.php">"Learn about PostgreSQL"</a></li>
+                    <li>Visit the <a href="https://www.tutorialspoint.com/dbms/index.htm">"DBMS Tutorials page"</a></li>
+                    <li>Visit my <a href="https://github.com/arunp77/SQL">"Github repository on SQL"</a> to learn about basics and some example projects.</li>
+                    <li>Visit my <a href="https://github.com/arunp77/Database-datapipeline-ETL/tree/main/Database">"Github repository"</a> to learn about databases.</li>
+                </ul>
 
                 <div class="navigation">
-                    <a href="portfolio-details-8.html" class="clickable-box">
-                        <span class="arrow-left">Go Back</span>
+                    <a href="index.html" class="clickable-box">
+                        <span class="arrow-left">Go home</span>
                     </a>
-                    <a href="Docker-Container.html" class="clickable-box">
-                        <span class="arrow-right">Go to Docker Configuration</span>
-                    </a>
-                    <a href="Jupyter-nifi.html" class="clickable-box">
-                        <span class="arrow-right">Go to Jupyter & Nifi Configuration</span>
+                    <a href="sql-basics.html" class="clickable-box">
+                        <span class="arrow-right">Go to QL page</span>
                     </a>
                 </div>
             </div>
