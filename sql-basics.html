@@ -96,7 +96,7 @@
         <div class="d-flex justify-content-between align-items-center">
           <h2>Portfolio Details</h2>
           <ol>
-            <li><a href="portfolio-details-8.html" class="clickable-box">Go to Project page <i class="fas fa-arrow-right"></i></a></li>
+            <li><a href="sql-basic-details.html" class="clickable-box">Go to SQL page <i class="fas fa-arrow-right"></i></a></li>
             <li><a href="index.html#portfolio" class="clickable-box">Go to portfolio</a></li>
           </ol>
         </div>
@@ -106,35 +106,163 @@
 
     <div class="right-side-list">
       <ul>
+        <li style="color: white; font-weight: bold;">Shortcuts:</li>
           <li><a href="amazon-s3.html"><i class="fas fa-cloud"></i> Amazon S3</a></li>
           <li><a href="ec2-confi.html"><i class="fas fa-server"></i> EC2</a></li>
           <li><a href="Docker-Container.html"><i class="fab fa-docker" style="color: white;"></i> Docker</a></li>
           <li><a href="Jupyter-nifi.html"><i class="fab fa-python" style="color: white;"></i> Jupyter-nifi</a></li>
           <li><a href="snowflake-task=stream.html"><i class="fas fa-snowflake"></i> Snowflake</a></li>
           <li><a href="scd.html"><i class="fas fa-archive"></i> SCD</a></li>
-          
+          <li><a href="sql-basic-details.html"><i class="fas fa-database"></i> SQL</a></li>
           <!-- Add more subsections as needed -->
       </ul>
-  </div>
+    </div>
+
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+        <div class="container">
+            <div class="row gy-4">
+                <h1>Query Language</h1>
+                <div class="image">
+                    <figure class="image-container">
+                        <img src="assets/img/portfolio/sql-1.png" alt="Image description" width="450" height="450">
+                        <figcaption>Image credit: ironhack.com</figcaption>
+                    </figure>  
+                </div>
 
 
+                <h2>Introduction to query languages</h2>
+                <p>Query language is a fundamental concept in the world of data and databases. It serves as the bridge between humans and the data stored in databases. 
+                    In this detailed explanation, we will explore the concept of query language, its types, and its importance in data management.</p>
+
+                <h3>What is a Query Language?</h3>
+                <p>A query language is a specialized language used to communicate with databases and retrieve, manipulate, and manage data. 
+                    It allows users to interact with the database by specifying the operations they want to perform, such as data retrieval, data insertion, 
+                    data update, or data deletion. Query languages are essential tools for data professionals, database administrators, and developers, 
+                    as they enable efficient data handling.</p>
+
+                <h3>Types of Query Languages:</h3>
+                <ol style="margin-left: 30px;">
+                    <li><strong>SQL (Structured Query Language): </strong>
+                        <ul>
+                            <li>SQL is the most widely used query language for relational databases. It allows users to define, manipulate, and query data in a 
+                                structured manner.</li>
+                            <li>SQL is known for its ability to perform a wide range of operations, including SELECT (data retrieval), INSERT (data insertion), 
+                                UPDATE (data modification), and DELETE (data deletion).</li>
+                            <li>It also offers powerful features for creating and managing database structures (e.g., tables, indexes, views) and enforcing data 
+                                integrity through constraints.</li>
+                        </ul>
+                    </li>
+                    <li><strong>NoSQL Query Languages: </strong>
+                        <ul>
+                            <li>NoSQL databases use various query languages, each specific to the type of NoSQL database. For example, MongoDB uses a query language based on JSON-like 
+                                documents, while Cassandra uses CQL (Cassandra Query Language) for querying.</li>
+                            <li>These languages are typically more flexible than SQL and are designed to handle unstructured or semi-structured data efficiently.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Graph Query Languages: </strong>
+                        <ul>
+                            <li>Graph databases like Neo4j use specialized query languages for traversing and querying connected data. Cypher is a popular query language 
+                                for graph databases, optimized for working with graph structures.</li>
+                        </ul>
+                    </li>
+                    <li><strong>XQuery: </strong>
+                        <ul>
+                            <li>Usage: Used to retrieve and manipulate data stored in XML documents.</li>
+                            <li>Description: XQuery is a query language designed for working with XML data. It allows you to extract, transform, and filter data within 
+                                XML documents, making it a powerful tool for handling structured and semi-structured data.</li>
+                        </ul>
+                    </li>
+                    <li><strong>SPARQL (SPARQL Protocol and RDF Query Language): </strong>
+                        <ul>
+                            <li>Usage: Used to query and manipulate data stored in RDF (Resource Description Framework) databases.</li>
+                            <li>Description: SPARQL is the query language for semantic web data. It enables the retrieval and manipulation of data that is stored in a format 
+                                designed for expressing relationships and meaning, making it essential for linked data and semantic web applications.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Cypher: </strong>
+                        <ul>
+                            <li>Usage: Used to query graph databases.</li>
+                            <li>Description: Cypher is a query language specifically designed for querying graph databases like Neo4j. It excels in traversing and querying 
+                                connected data, making it ideal for applications where relationships are key, such as social networks and recommendation engines.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Gremlin: </strong>
+                        <ul>
+                            <li>Usage: Used to traverse and manipulate graph data stored in graph databases.</li>
+                            <li>Description: Gremlin is another query language for graph databases, but it focuses 
+                                on graph traversal and manipulation. It's a flexible language that can handle complex graph operations and queries.</li>
+                        </ul>
+                    </li>
+                    <li><strong>MDX (Multidimensional Expressions): </strong>
+                        <ul>
+                            <li><strong>Usage:</strong> Used to traverse and manipulate graph data stored in graph databases.</li>
+                            <li><strong>Description:</strong> MDX is a query language for OLAP (Online Analytical Processing) databases. It is designed to retrieve and analyze 
+                                data organized in multidimensional structures, making it suitable for data analysis and business intelligence..</li>
+                        </ul>
+                    </li>
+                    <li><strong>Datalog:</strong>
+                        <ul>
+                            <li><strong>Usage: </strong>Used to query and reason about data stored in deductive databases.</li>
+                            <li><strong>Description: </strong>Datalog is a declarative query language that is often used in deductive databases and knowledge representation systems. 
+                                It excels in logic-based queries and is used for complex rule-based reasoning.</li>
+                        </ul>
+                    </li>
+                    <li><strong>OQL (Object Query Language):</strong>
+                        <ul>
+                            <li><strong>Usage: </strong> Used to query and manipulate data stored in object-oriented databases.</li>
+                            <li><strong>Description: </strong>OQL is a query language that allows you to query and manipulate data stored in object-oriented databases. It's used 
+                                to work with data objects and their relationships.</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h3>Importance of Query Languages:</h3>
+                    <ul style="margin-left: 30px;">
+                        <li><strong>Data Retrieval:</strong> Query languages, especially SQL, are instrumental in retrieving data from databases. Users can specify their 
+                            search criteria and conditions to fetch the exact data they need. </li>
+                        <li><strong>Data Manipulation:</strong> Query languages enable data modification. With SQL, you can insert new data, update existing records, and 
+                            delete unwanted data.</li>
+                        <li><strong>Data Analysis:</strong> Query languages are the foundation of data analysis and reporting. SQL's capabilities for aggregating, filtering, 
+                            and sorting data make it indispensable for generating insights from databases.</li>
+                        <li><strong>Data Integrity:</strong> They help enforce data integrity rules by allowing the definition of constraints and relationships between data 
+                            elements.</li>
+                        <li><strong>Database Administration:</strong> Database administrators use query languages to manage database structures, users, and security settings.</li>
+                        <li><strong>Application Development:</strong> Query languages are integrated into applications to interact with databases, enabling applications to 
+                            store and retrieve data dynamically.</li>
+                        <li><strong>Cross-Platform Compatibility:</strong> SQL, as a standardized query language, offers cross-platform compatibility. It can be used with a 
+                            variety of database management systems, making it a versatile tool for managing data.</li>
+                        <li><strong>Scalability:</strong> Query languages help manage the scalability of database systems. They allow for efficient querying even as the 
+                            database grows.</li>
+                    </ul>
+
+                <h3>Challenges:</h3>
+                    <ul style="margin-left: 30px;">
+                        <li><strong>Learning Curve:</strong> Query languages can be complex, and mastering them requires time and practice.</li>
+                        <li><strong>Optimization:</strong> Efficient query writing and database indexing are critical for performance.</li>
+                        <li><strong>Security:</strong> Poorly written queries can be exploited for security breaches, making query optimization and security essential.</li>
+                    </ul>
+
+                
+                <h3>Reference:</h3>
+                <ul>
+                    <li><a href="https://www.tutorialspoint.com/dbms/index.htm">Tutorials Point -</a>
+                </ul>
+
+                
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                <div class="navigation">
+                    <a href="sql-basics.html" class="clickable-box">
+                        <span class="arrow-left">Go to SQL page</span>
+                    </a>
+                    <a href="index.html.html" class="clickable-box">
+                        <span class="arrow-right">Go to home</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section><!-- End Portfolio Details Section -->
 
 </main><!-- End #main -->
 

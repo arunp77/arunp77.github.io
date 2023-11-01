@@ -324,6 +324,17 @@ code.python {
   padding: 20px;
 }
 
+
+.image-container {
+  text-align: center;
+}
+
+figcaption {
+  font-style: italic;
+}
+
+
+
 /* Optional: Add CSS styles to format your text and image */
 .text p {
   font-size: 18px;
@@ -1215,8 +1226,6 @@ img {
 /*--------------------------------------------------------------
 # Creating a clickable box
 --------------------------------------------------------------*/
-
-
 .clickable-box {
   display: inline-block;
   padding: 10px 20px;
