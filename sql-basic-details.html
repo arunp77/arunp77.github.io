@@ -152,6 +152,16 @@
                         from business databases to data analytics and more.</li>
                   </ul>
 
+                <h3>Brief History of SQL</h3>
+                  <ul style="margin-left: 30px;">
+                    <li>It was developed in the 1970s at IBM by researchers Raymond Boyce and Donald Chamberlin, who wanted to create a language for querying and managing 
+                        data in the System R project.</li>
+                    <li>In the 1970s and 1980s, SQL evolved as a standard language for relational databases.</li>
+                    <li>In 1986, the first SQL standard was published by the American National Standards Institute (ANSI).</li>
+                    <li>The SQL standard has been continually updated and extended, with various versions and additions by different database vendors, including Oracle, 
+                        IBM, Microsoft, and PostgreSQL.</li>
+                  </ul>
+                
                 <h2>Why is SQL important in data management?</h2>
                 <p>SQL is critically important in data management for several reasons:</p>
                 <ul style="margin-left: 30px;">
@@ -173,9 +183,146 @@
                         historical data for analysis.</li>
                 </ul>
                 
-                
-                
-                    <img src="assets/img/portfolio/SQL-architech1.png" alt="" style="max-width: 600px; max-height: 600px;">
+                <h3>How SQL Works?</h3>
+                <p>When you are executing an SQL command for any RDBMS, the system determines the best way to carry out your request and SQL engine figures out how to 
+                    interpret the task. There are various components included in this process. These components are −</p>
+                <ul style="margin-left: 30px;">
+                    <li>Query Dispatcher</li>
+                    <li>Optimization Engines</li>
+                    <li>Classic Query Engine</li>
+                    <li>SQL Query Engine, etc.</li>
+                </ul>
+                <img src="assets/img/portfolio/SQL-architech1.png" alt="" style="max-width: 600px; max-height: 600px;">
+
+                <h3>RDBMS (Relational Database Management System)</h3>
+                <ul style="list-style-type: disc; margin-left: 30px;">
+                    <p>An RDBMS is a type of database management system that organizes data into structured tables with rows and columns. These tables are interconnected through 
+                        relationships, enabling efficient storage, retrieval, and management of data.</p>
+                        <ul>
+                            <p><strong>Examples of RDBMS:</strong> Some well-known RDBMS systems include:</p>
+                            <li>MySQL</li>
+                            <li>Oracle Database</li>
+                            <li>PostgreSQL</li>
+                            <li>Microsoft SQL Server</li>
+                            <li>SQLite</li>
+                        </ul>
+                </ul>
+
+                <h3>MySQL and PostgreSQL</h3>
+                <table>
+                    <tr>
+                        <th>Feature</th>
+                        <th>MySQL</th>
+                        <th>PostgreSQL</th>
+                    </tr>
+                    <tr>
+                        <td>Data Types</td>
+                        <td>Wide range of data types, but limited support for complex types.</td>
+                        <td>Extensive data type support, including arrays, JSON, and custom types.</td>
+                    </tr>
+                    <tr>
+                        <td>ACID Compliance</td>
+                        <td>Compliant</td>
+                        <td>Compliant</td>
+                    </tr>
+                    <tr>
+                        <td>SQL Compatibility</td>
+                        <td>May have less strict compliance with SQL standards.</td>
+                        <td>Strict adherence to SQL standards.</td>
+                    </tr>
+                    <tr>
+                        <td>Performance</td>
+                        <td>Known for speed and performance, especially with read-heavy operations.</td>
+                        <td>Preferred for complex queries and write-heavy workloads.</td>
+                    </tr>
+                    <tr>
+                        <td>Advanced Features</td>
+                        <td>Offers replication, clustering, and partitioning (some require commercial versions).</td>
+                        <td>Includes full-text search, spatial data support, and extensibility through custom functions.</td>
+                    </tr>
+                    <tr>
+                        <td>Concurrency Control</td>
+                        <td>Uses MVCC but may have limitations in handling high concurrency.</td>
+                        <td>Advanced MVCC implementation capable of high concurrency.</td>
+                    </tr>
+                    <tr>
+                        <td>Licensing</td>
+                        <td>Primarily under GPL, which may pose licensing challenges for proprietary software.</td>
+                        <td>Released under a more permissive PostgreSQL License.</td>
+                    </tr>
+                    <tr>
+                        <td>Community and Support</td>
+                        <td>Active community with extensive documentation.</td>
+                        <td>Robust community known for support in complex use cases.</td>
+                    </tr>
+                    <tr>
+                        <td>Replication</td>
+                        <td>Offers various replication options, including multi-source replication.</td>
+                        <td>Provides logical replication for data distribution.</td>
+                    </tr>
+                    <tr>
+                        <td>Scalability</td>
+                        <td>Horizontally scalable with options for sharding.</td>
+                        <td>Horizontally scalable with tools like Citus for distributed tables.</td>
+                    </tr>
+                </table>
+
+
+                <h3>Setting Up Your Environment for PostgreSQL and Choosing a SQL Client</h3>
+                <p>A step-by-step guide to installing and configuring PostgreSQL, ensuring that it's ready for writing SQL queries:</p>
+                <ul style="list-style-type: disc; margin-left: 30px;">
+                    <li><strong>Step 1: Download PostgreSQL Installer </strong>
+                        <ul>
+                            <li>Go to the PostgreSQL download page: <a href="https://www.postgresql.org/download/windows/" target="_blank">PostgreSQL home</a></li>
+                            <li>Select the version suitable for your Windows system (e.g., 64-bit or 32-bit). Download the PostgreSQL installer.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Step 2: Install PostgreSQL </strong>
+                        <ul>
+                            <li>Run the installer you downloaded in Step 1. It will guide you through the installation process.</li>
+                            <li>Select the installation directory and data directory. The default values are usually fine, but you can choose custom locations if needed.</li>
+                            <li>Choose the components you want to install. For a basic setup, select "PostgreSQL Server" and "pgAdmin 4." Click "Next."</li>
+                            <li>Set a superuser password for the PostgreSQL database cluster. Make sure it's strong and secure. Keep this password safe; you'll 
+                                need it to manage PostgreSQL. Click "Next."</li>
+                            <li>Select the port for PostgreSQL. The default is 5432, but you can change it if necessary. Click "Next."</li>
+                        </ul>
+                    </li>
+                    <li><strong>Step 3: Configure PostgreSQL </strong>
+                        <ul>
+                            <li>Choose the locale and collation settings that match your requirements. The default values are often suitable for general use.</li>
+                            <li>Review the installation options and click "Next."</li>
+                            <li>PostgreSQL will install, and you'll see a completion message. Click "Next."</li>
+                        </ul>
+                    </li>
+                    <li><strong>Step 4: Start PostgreSQL Server </strong>
+                        <ul>
+                            <li>After the installation is complete, you'll have the option to launch Stack Builder. You can skip this for now; it's for installing additional modules.</li>
+                            <li>Open the Windows Services application (you can search for "Services" in the Windows search bar).</li>
+                            <li>Look for a service named "postgresql-x64-<version>" (or similar) and check if its status is "Running." This confirms that PostgreSQL is running.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Step 5: Install a SQL Client (Optional) </strong>
+                        <ul>
+                            <li>To write and execute SQL queries, you can install a SQL client like pgAdmin, which is included in the installation. You can find it in your 
+                                Windows Start menu.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Step 6: Connect to MySQL Server </strong>
+                        <ul>
+                            <li>Open your SQL client (e.g., pgAdmin).</li>
+                            <li>Create a new connection profile, providing the hostname (usually 'localhost' for local installations), port (default is 5432), 
+                                your username, and the superuser password you set during installation.</li>
+                            <li>Test the connection to ensure it's successful.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Step 7: Ready for SQL Queries </strong>
+                        <ul>
+                            <li>Your PostgreSQL server is now installed, configured, and ready for SQL queries. You can create databases, tables, and start writing SQL 
+                                commands to manage your data. Enjoy using PostgreSQL for your data-related tasks!</li>
+                        </ul>
+                    </li>
+                </ul>
+
 
 
 
