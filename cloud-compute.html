@@ -106,7 +106,6 @@
     <div class="right-side-list">
       <ul>
         <li style="color: white; font-weight: bold;">Shortcuts:</li>
-        <li style="color: white; font-weight: bold;">Shortcuts:</li>
         <li><a href="cloud-compute.html"><i class="fas fa-cloud"></i> Cloud</a></li>
         <li><a href="AWS-GCP.html"><i class="fas fa-cloud"></i> AWS-GCP</a></li>
         <li><a href="amazon-s3.html"><i class="fas fa-cloud"></i> AWS S3</a></li>
@@ -118,7 +117,7 @@
         <li><a href="sql-basic-details.html"><i class="fas fa-database"></i> SQL</a></li>
         <li><a href="scd.html"><i class="fas fa-archive"></i> SCD</a></li>
         <li><a href="sql-project.html"><i class="fas fa-database"></i> SQL project</a></li>
-          <!-- Add more subsections as needed -->
+        <!-- Add more subsections as needed -->
       </ul>
     </div>
 
@@ -128,74 +127,97 @@
         <div class="container">
             <div class="row gy-4">
                 <h1>Cloud Computing: Revolutionizing the Digital Landscape</h1>
-
+                
                 <div class="col-lg-8">
                     <div class="portfolio-details-slider swiper">
                       <div class="swiper-wrapper align-items-center">
                         <div class="swiper-slide">
-                          <img src="assets/img/portfolio/google_bigquery_logo.png" alt="" style="max-width: 400px; max-height: 400px;">
+                          <img src="assets/img/portfolio/cloud-aws-azure-gcp.png" alt="" style="max-width: 600px; max-height: 500px;">
                         </div>
                         <div class="swiper-slide">
-                            <img src="assets/img/portfolio/google-bigquery-Data-Flow2.png" alt="" style="max-width: 800px; max-height: 600px;">
+                            <img src="assets/img/portfolio/what-is-cloud-computing.svg" alt="" style="max-width: 600px; max-height: 500px;">
                         </div>
                       </div>
                       <div class="swiper-pagination"></div>
                     </div>
                   </div>
 
-                  <h3>Introduction</h3>
-                  <p>Google BigQuery is a fully managed, serverless, and highly scalable data warehouse and analytics platform offered by Google Cloud. 
-                    It allows organizations to store and analyze massive volumes of data quickly and efficiently. BigQuery also provides features such as 
-                    built-in machine learning, geospatial analysis, and business intelligence.</p>
+                <h3>Introduction to cloud</h3>
+                  <p>Cloud computing is a transformative technology that has revolutionized the way businesses and individuals manage, store, and process data and applications. 
+                    It’s a paradigm shift from traditional on-premises infrastructure to a more flexible, scalable, and cost-effective model.</p>
 
-                <h3>Key Features</h3>
-                <ul style="list-style-type: disc; margin-left: 30px;">
-                    <li><strong>Serverless:</strong> BigQuery is a serverless platform, which means users don't have to manage infrastructure or worry about scalability. It automatically handles the allocation of resources as needed.</li>
-                    <li><strong>High Speed:</strong> BigQuery is known for its high-performance query processing. It can analyze large datasets in seconds or minutes, making it suitable for real-time analytics.</li>
-                    <li><strong>SQL Query Language:</strong> Users can write SQL queries to analyze data stored in BigQuery. It supports standard SQL with some extensions for working with nested and repeated data.</li>
-                    <li><strong>Scalability:</strong> BigQuery can scale seamlessly, allowing you to analyze data ranging from gigabytes to petabytes. This makes it suitable for both small-scale and enterprise-level projects.</li>
-                    <li><strong>Integration:</strong> It integrates with various Google Cloud services, making it easy to ingest and export data from and to other Google Cloud products, such as Google Cloud Storage and Google Cloud Dataprep.</li>
-                    <li><strong>Security:</strong> BigQuery provides strong security features, including data encryption at rest and in transit, identity and access management, and auditing capabilities.</li>
-                    <li><strong>Machine Learning:</strong> Google BigQuery ML enables users to build, train, and deploy machine learning models directly within BigQuery.</li>
-                  </ul>
+                <h3>What is Cloud Computing?</h3>
+                <p>Cloud computing involves delivering various computing services (like storage, databases, servers, networking, software, analytics, and more) over the internet 
+                    (the cloud) to offer faster innovation, flexible resources, and economies of scale. The success of a cloud computing service provider depends on:</p>
+                    <ul style="list-style-type: disc; margin-left: 30px;">
+                        <li>Highly available and scalable resources</li>
+                        <li>Multiple layers design of redundancy so that if one component fails, its workload is automatically and instantly moved to a healthy replacement.</li>
+                        <li>Connect resources in geographically remote locations so that the failure of one component region could trigger a predefined relocation.</li>
+                        <li>With access to as much computing power as they could possibly need, and deliver that power on demand.</li>
+                        <li>Can provide cost-effective services to its customers.</li>
+                    </ul>
 
-                <h3>Use cases</h3>
+                    <img src="assets/img/portfolio/cloud-archi.png" alt="" style="max-width: 700px; max-height: 700px;">
+
+                <h5>Server Virtualization:</h5>
+                <p>The basics: The secret sauce that lets cloud providers give their customers on-demand compute resources in such a wide range of 
+                    configurations is virtualization. When you request a virtual machine (VM) from a cloud service provider, with a particular configuration (such as 
+                    particular processor speed, memory capacity, and storage size), your cloud service provider carves the necessary resources from larger existing devices.</p>
+
+                    <img src="assets/img/portfolio/cloud-serverless.png" alt="" style="max-width: 700px; max-height: 700px;">
+
+                <h5>Cloud Service Models:</h5>
                 <ul style="list-style-type: disc; margin-left: 30px;">
-                    <li><strong>Data Analytics:</strong> Organizations use BigQuery to perform data analysis, generate insights, and make data-driven decisions. It's commonly used for business intelligence and reporting.</li>
-                    <li><strong>Real-time Analytics:</strong> BigQuery can handle real-time data streams, making it suitable for monitoring and analyzing live data.</li>
-                    <li><strong>Data Warehousing:</strong> It serves as a cloud-based data warehouse for storing and managing large datasets, offering high-performance querying and analytical capabilities.</li>
-                    <li><strong>Log Analysis:</strong> Many organizations use BigQuery for analyzing logs and events to gain insights into system and application performance.</li>
-                    <li><strong>Predictive Analytics:</strong> With integrated machine learning capabilities, BigQuery enables the development of predictive models to make forecasts and recommendations.</li>
-                    <li><strong>Geospatial Analysis:</strong> BigQuery supports geospatial data types and functions, making it suitable for location-based analysis and mapping.</li>
-                    <li><strong>Market Research:</strong> BigQuery is used for market research and sentiment analysis by analyzing social media data and other online content.</li>                  
+                    <li><strong>IaaS (Infrastructure as a Service):</strong> Provides virtualized computing resources over the internet. Users can rent virtual machines, storage, and networking. 
+                        The products generally simulate the look and feel you’d get from managing physical resources. This gives you direct access to a provider’s computing, 
+                        storage, and networking assets.</li>
+                    <li><strong>PaaS (Platform as a Service):</strong> Offers a platform that allows developers to build, deploy, and manage applications without worrying about the 
+                        underlying infrastructure. Unlike IaaS, PaaS products simplify the process of building an application by hiding the complexity of the 
+                        infrastructure that runs it. You are given an interface through which you define the behavior and environment you want for your application.</li>
+                    <li><strong>SaaS (Software as a Service):</strong> Delivers software applications over the internet on a subscription basis, eliminating the need for local installations. 
+                        It offers services meant to be accessed by end users. An easily recognizable illustration is Google’s Gmail service, which allows users to manage 
+                        their email by logging into a browser interface or through an email client that’s running locally.</li>
                 </ul>
-                  
+                <img src="assets/img/portfolio/cloud-models.png" alt="" style="max-width: 600px; max-height: 650px;">
+
+                <h5>Deployment Models:</h5>
+                <ul style="list-style-type: disc; margin-left: 30px;">
+                    <li><strong>Public Cloud:</strong> Services are provided by third-party cloud providers like AWS, Azure, and Google Cloud and are available to the public.</li>
+                    <li><strong>Private Cloud:</strong> Operated solely for a single organization, offering greater control and privacy.</li>
+                    <li><strong>Hybrid Cloud:</strong> Combines both public and private clouds, allowing data and applications to be shared between them.</li>
+                </ul>
+                <img src="assets/img/portfolio/cloud-deployment-model.png" alt="" style="max-width: 800px; max-height: 900px;">
+
+                <h5>Advantages of Cloud Computing:</h5>
+                <ul style="list-style-type: disc; margin-left: 30px;">
+                    <li><strong>Scalability:</strong> Easily scale resources up or down to meet changing demands. A scalable service will automatically grow in capacity to seamlessly 
+                        meet any changes in demand. A well-designed cloud-based operation will constantly monitor the health of its application stack and respond 
+                        whenever preset performance metrics might soon go unmet. A scalable website could be configured to function using a single server during 
+                        low-demand periods, but any number of additional servers could be automatically brought online as demand spikes. When demand drops back 
+                        down, unused servers will be shut down automatically.</li>
+                    <li><strong>Cost Efficiency:</strong> Pay only for what you use, reducing upfront capital expenses.</li>
+                    <li><strong>Flexibility:</strong> Access services and data from anywhere with an internet connection.</li>
+                    <li><strong>Security:</strong> Leading cloud providers invest heavily in security measures to protect data.</li>
+                </ul>
+                <img src="assets/img/portfolio/cloud-deployment-model-com.png" alt="" style="max-width: 600px; max-height: 700px;">
+                
+
+                <h3>References:</h3>
+                <ul>
+                  <li><a href="https://medium.com/@arunp77/cloud-computing-revolutionizing-the-digital-landscape-part-1-c7d7859c9050" target="_blank">Cloud Computing: Revolutionizing the Digital Landscape — Part-1</a> </li>
+                  <li><a href="https://medium.com/@arunp77/cloud-computing-revolutionizing-the-digital-landscape-part-2-4fa70e623bf7" target="_blank">Cloud Computing: Revolutionizing the Digital Landscape — Part-2</a> </li>
+                </ul>
 
 
-
-
-
-
-
-
-
-
-                  <h3>Reference:</h3>
-                  <ul style="margin-left: 30px;">
-                      <li>Visit the <a href="https://www.w3schools.com/postgresql/index.php">"Learn about PostgreSQL"</a></li>
-                      <li>Visit the <a href="https://www.tutorialspoint.com/dbms/index.htm">"DBMS Tutorials page"</a></li>
-                      <li>Visit my <a href="https://github.com/arunp77/SQL">"Github repository on SQL"</a> to learn about basics and some example projects.</li>
-                      <li>Visit my <a href="https://github.com/arunp77/Database-datapipeline-ETL/tree/main/Database">"Github repository"</a> to learn about databases.</li>
-                  </ul>
   
-                  <div class="navigation">
-                      <a href="index.html" class="clickable-box">
-                          <span class="arrow-left">Go home</span>
-                      </a>
-                      <a href="sql-basics.html" class="clickable-box">
-                          <span class="arrow-right">Go to QL page</span>
-                      </a>
-                  </div>
+                <div class="navigation">
+                    <a href="index.html" class="clickable-box">
+                        <span class="arrow-left">Go home</span>
+                    </a>
+                    <a href="sql-basics.html" class="clickable-box">
+                        <span class="arrow-right">Go to QL page</span>
+                    </a>
+                </div>
               </div>
           </div>
       </section><!-- End Portfolio Details Section -->
