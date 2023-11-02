@@ -353,16 +353,6 @@
                                 <li><strong>BETWEEN</strong>: The BETWEEN operator selects values within a given range. The values can be numbers, text, or dates.
                                     The result returns all records that are between the numbers or 
                                     alphabetically between the specified values.</li>
-                                <li><strong></strong>: </li>
-                                <li><strong></strong>: </li>
-                                <li><strong></strong>: </li>
-                                <li><strong></strong>: </li>
-                                <li><strong></strong>: </li>
-                                <li><strong></strong>: </li>
-                                <li><strong></strong>: </li>
-                                <li><strong></strong>: </li>
-                                <li><strong></strong>: </li>
-                                <li><strong></strong>: </li>
                             </ul>
                             <pre class="language-sql"><code id="sql-code">
                                 SELECT MIN(price)
@@ -504,14 +494,101 @@
                                 -- The following SQL statement lists the number of orders made by each customer --
                             </code></pre>
                         </li>
-                        <li><p><span style="color: blue;"></span></p>
+                        <li><p><span style="color: blue;">HAVING</span>: The HAVING clause was added to SQL because the WHERE clause cannot be used 
+                            with aggregate functions</p>
                             <pre class="language-sql"><code id="sql-code">
-                            
+                                SELECT COUNT(customer_id), country
+                                FROM customers
+                                GROUP BY country
+                                HAVING COUNT(customer_id) > 5;
+                                -- List only countries that are represented more than 5 times --
+                                
+                                SELECT order_details.order_id, SUM(products.price)
+                                FROM order_details
+                                LEFT JOIN products ON order_details.product_id = products.product_id
+                                GROUP BY order_id
+                                HAVING SUM(products.price) > 400.00;
+                                -- lists only orders with a total price of 400$ or more --
                             </code></pre>
                         </li>
-                        <li><p><span style="color: blue;"></span></p>
+                        <li><p><span style="color: blue;">EXISTS</span>: The EXISTS operator is used to test for the existence of any record in a sub query.</p>
                             <pre class="language-sql"><code id="sql-code">
-                            
+                                SELECT customers.customer_name
+                                FROM customers
+                                WHERE EXISTS (
+                                  SELECT order_id
+                                  FROM orders
+                                  WHERE customer_id = customers.customer_id
+                                );
+                                -- Return all customers that is represented in the orders table --
+                            </code></pre>
+                        </li>
+                        <li><p><span style="color: blue;">NOT EXISTS</span>: To check which customers that do not have any orders, we can use the NOT operator together with the EXISTS operator</p>
+                            <pre class="language-sql"><code id="sql-code">
+                                SELECT customers.customer_name
+                                FROM customers
+                                WHERE NOT EXISTS (
+                                  SELECT order_id
+                                  FROM orders
+                                  WHERE customer_id = customers.customer_id
+                                );
+                                -- Return all customers that is NOT represented in the orders table --
+                            </code></pre>
+                        </li>
+                        <li><p><span style="color: blue;">ANY</span>: The ANY operator allows you to perform a comparison between a single column value and a range of other values.</p>
+                            <pre class="language-sql"><code id="sql-code">
+                                SELECT product_name
+                                FROM products
+                                WHERE product_id = ANY (
+                                SELECT product_id
+                                FROM order_details
+                                WHERE quantity > 120
+                                );
+                                -- List products that have ANY records in the order_details table with a quantity larger than 120 --
+                            </code></pre>
+                        </li>
+                        <li><p><span style="color: blue;">ALL</span>: The ALL operator:
+                        <ul>
+                            <li>returns a Boolean value as a result</li>
+                            <li>returns TRUE if ALL of the sub query values meet the condition</li>
+                            <li>is used with SELECT, WHERE and HAVING statements</li>
+                        </ul>
+                        </p>
+                            <pre class="language-sql"><code id="sql-code">
+                                SELECT product_name
+                                FROM products
+                                WHERE product_id = ALL (
+                                  SELECT product_id
+                                  FROM order_details
+                                  WHERE quantity > 10
+                                );
+                                -- List the products if ALL the records in the order_details with quantity larger than 10. --
+                            </code></pre>
+                        </li>
+                        <li><p><span style="color: blue;">CASE</span>: The CASE expression goes through conditions and 
+                            returns a value when the first condition is met (like an if-then-else statement).
+                            Once a condition is true, it will stop reading and return the result. If no conditions are 
+                            true, it returns the value in the ELSE clause. If there is no ELSE part and no conditions are true, it returns NULL.</p>
+                            <pre class="language-sql"><code id="sql-code">
+                                SELECT product_name,
+                                CASE
+                                  WHEN price < 10 THEN 'Low price product'
+                                  WHEN price > 50 THEN 'High price product'
+                                ELSE
+                                  'Normal product'
+                                END
+                                FROM products;
+                                -- Return specific values if the price meets a specific condition --
+
+                                SELECT product_name,
+                                CASE
+                                    WHEN price < 10 THEN 'Low price product'
+                                    WHEN price > 50 THEN 'High price product'
+                                ELSE
+                                    'Normal product'
+                                END AS "price category"
+                                FROM products;
+                                -- Same example, but with an alias for the case column --
                             </code></pre>
                         </li>
                     </ul>
