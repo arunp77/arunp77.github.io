@@ -1265,12 +1265,13 @@ img {
   position: fixed; /* Fix the list to the right side of the page */
   top: 50%; /* Adjust this value to position it vertically */
   right: 0;
-    transform: translate(0, -50%);
-    background-color: rgba(34, 34, 34, 0.8); /* Background color with reduced transparency */
-    padding: 10px;
-    border-radius: 5px;
-    z-index: 1000; /* Adjust the z-index as needed */
+  transform: translate(0, -50%);
+  background-color: rgba(34, 34, 34, 0.8); /* Background color with reduced transparency */
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1000; /* Adjust the z-index as needed */
 }
+
 
 .right-side-list ul {
   list-style: none; /* Remove default list styles */
@@ -1299,3 +1300,40 @@ img {
 }
 
 
+/* ---------------------------------------------------------
+# Dropdown menu 
+--------------------------------------------------------- */
+.dropbtn {
+  background-color: #9faa04;
+  color: white;
+  padding: 15px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: top;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 10px 12px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #f8d94f;}

@@ -104,21 +104,27 @@
     </section><!-- End Breadcrumbs -->
 
     <div class="right-side-list">
-      <ul>
-        <li style="color: white; font-weight: bold;">Shortcuts:</li>
-          <li><a href="amazon-s3.html"><i class="fas fa-cloud"></i> Amazon S3</a></li>
-          <li><a href="ec2-confi.html"><i class="fas fa-server"></i> EC2</a></li>
-          <li><a href="Docker-Container.html"><i class="fab fa-docker" style="color: white;"></i> Docker</a></li>
-          <li><a href="Jupyter-nifi.html"><i class="fab fa-python" style="color: white;"></i> Jupyter-nifi</a></li>
-          <li><a href="snowflake-task=stream.html"><i class="fas fa-snowflake"></i> Snowflake</a></li>
-          <li><a href="scd.html"><i class="fas fa-archive"></i> SCD</a></li>
-          <li><a href="sql-basics.html"><i class="fas fa-table"></i> QL</a></li>
-          <li><a href="sql-basic-details.html"><i class="fas fa-database"></i> SQL</a></li>
-          <li><a href="sql-project.html"><i class="fas fa-database"></i> SQL project</a></li>
-          <li><a href="Bigquerry-sql.html"><i class="fas fa-database"></i> BigQuerry</a></li>
-          <!-- Add more subsections as needed -->
-      </ul>
-    </div>
+      <div class="dropdown">
+          <button class="dropbtn"><strong>Shorcuts:</strong></button>
+          <div class="dropdown-content">
+              <ul>
+                  <li><a href="cloud-compute.html"><i class="fas fa-cloud"></i> Cloud</a></li>
+                  <li><a href="AWS-GCP.html"><i class="fas fa-cloud"></i> AWS-GCP</a></li>
+                  <li><a href="amazon-s3.html"><i class="fas fa-cloud"></i> AWS S3</a></li>
+                  <li><a href="ec2-confi.html"><i class="fas fa-server"></i> EC2</a></li>
+                  <li><a href="Docker-Container.html"><i class="fab fa-docker" style="color: white;"></i> Docker</a></li>
+                  <li><a href="Jupyter-nifi.html"><i class="fab fa-python" style="color: white;"></i> Jupyter-nifi</a></li>
+                  <li><a href="snowflake-task=stream.html"><i class="fas fa-snowflake"></i> Snowflake</a></li>
+                  <li><a href="sql-basics.html"><i class="fas fa-table"></i> QL</a></li>
+                  <li><a href="sql-basic-details.html"><i class="fas fa-database"></i> SQL</a></li>
+                  <li><a href="Bigquerry-sql.html"><i class="fas fa-database"></i> Bigquerry</a></li>
+                  <li><a href="scd.html"><i class="fas fa-archive"></i> SCD</a></li>
+                  <li><a href="sql-project.html"><i class="fas fa-database"></i> SQL project</a></li>
+                    <!-- Add more subsections as needed -->
+                </ul>
+          </div>
+        </div>
+      </div>
 
 
     <!-- ======= Portfolio Details Section ======= -->
@@ -199,19 +205,42 @@
                 </ul>
                 <img src="assets/img/portfolio/SQL-architech1.png" alt="" style="max-width: 600px; max-height: 600px;">
 
-                <h3>RDBMS (Relational Database Management System)</h3>
+                <h3>Database management system</h3>
+                <p>A DBMS, or database management system, is a software application that organizes, stores, and manages data. DBMSs are used in a wide variety 
+                  of applications, including e-commerce, banking, healthcare, and education.</p>
+                <h5>Types of DBMS</h5>
+                <p>There are two main types of DBMSs:</p>
                 <ul style="list-style-type: disc; margin-left: 30px;">
-                    <p>An RDBMS is a type of database management system that organizes data into structured tables with rows and columns. These tables are interconnected through 
-                        relationships, enabling efficient storage, retrieval, and management of data.</p>
-                        <ul>
-                            <p><strong>Examples of RDBMS:</strong> Some well-known RDBMS systems include:</p>
-                            <li>MySQL</li>
-                            <li>Oracle Database</li>
-                            <li>PostgreSQL</li>
-                            <li>Microsoft SQL Server</li>
-                            <li>SQLite</li>
-                        </ul>
+                  <li><strong>Relational DBMS:</strong> Relational DBMSs store data in tables, with rows representing records and columns representing attributes. 
+                    Relational DBMSs use a structured query language (SQL) to access and manipulate data.
+                    <p><strong>Examples of RDBMS:</strong> Some well-known RDBMS systems include:</p>
+                    <ul>
+                      <li><a href="https://www.mysql.com/" target="_blank"><strong>MySQL: </strong></a> MySQL is a free and open-source relational DBMS that is popular for web applications.</li>
+                      <li><a href="https://www.oracle.com/database/" target="_blank"><strong>Oracle Database: </strong></a> Oracle Database is a commercial relational DBMS that is used by large enterprises.</li>
+                      <li><a href="https://www.postgresql.org/" target="_blank"><strong>PostgreSQL: </strong></a> PostgreSQL is a free and open-source relational DBMS that is known for its reliability and scalability.</li>
+                      <li><a href="https://www.microsoft.com/en-us/sql-server/sql-server-downloads" target="_blank"><strong>Microsoft SQL Server: </strong></a> Microsoft SQL Server is a commercial relational DBMS that is widely used in Windows environments.</li>
+                      <li><a href="https://www.sqlite.org/index.html" target="_blank"><strong>SQLite</strong></a> SQLite is a lightweight and portable relational database management system (RDBMS) that is built into Android, iOS, and other operating systems. 
+                        It is a popular choice for mobile applications and other resource-constrained environments.</li>
+                  </ul>
+                  </li>
+                  <li><strong>Non-relational DBMS: </strong> Non-relational DBMSs store data in a variety of formats, including documents, key-value pairs, and graphs. 
+                    Non-relational DBMSs are often used to store large amounts of unstructured data, such as images, videos, and social media posts.
+                    <ul>
+                      <li><a href="https://www.mongodb.com/" target="_blank"> <strong>MongoDB</strong></a>: MongoDB is a document-oriented database that is popular for web 
+                        applications and mobile apps.
+                        <li><strong><a href="https://docs.redis.com/latest/index.html" target="_blank"> Redis</a></strong>: Redis is an in-memory key-value database that is often 
+                          used for caching and messaging.</li>
+                      <li><strong><a href="https://cassandra.apache.org/doc/latest/" target="_blank">Cassandra</a></strong>: Cassandra is a distributed database that is often used 
+                        for big data applications.</li>
+                      <li><strong><a href="https://neo4j.com/docs/" target="_blank">Neo4j:</a></strong>: Neo4j is a graph database that is often used for social network analysis 
+                        and fraud detection.</li>
+                    </ul>
+                  </li>
                 </ul>
+
+                <h3>PostgreSQL</h3>
+                <p>For more details on PostgreSQL can be found out my page: <a href="sql-postgresql.html" target="">PostgreSQL basics</a>. Here, I have 
+                discussed in detail about how PostgreSQL can be installed on WIndows, MacOS, Linux (Ubuntu). Also creation of databse, tables etc  are discussed.</p>
 
                 <h3>MySQL and PostgreSQL</h3>
                 <table>
@@ -273,27 +302,7 @@
                 </table>
 
 
-                <h3>Setting Up Your Environment for PostgreSQL and Choosing a SQL Client</h3>
-                <p>A step-by-step guide to installing and configuring PostgreSQL, ensuring that it's ready for writing SQL queries:</p>
-                <ul style="list-style-type: disc; margin-left: 30px;">
-                    <li><strong>Step 1: Download PostgreSQL Installer </strong>
-                        <ul>
-                            <li>Go to the PostgreSQL download page: <a href="https://www.postgresql.org/download/windows/" target="_blank">PostgreSQL home</a></li>
-                            <li>Select the version suitable for your Windows system (e.g., 64-bit or 32-bit). Download the PostgreSQL installer.</li>
-                        </ul>
-                    </li>
-                    <li><strong>Step 2: Install PostgreSQL </strong>
-                        <ul>
-                            <li>Run the installer you downloaded in Step 1. It will guide you through the installation process.</li>
-                            <li>Select the installation directory and data directory. The default values are usually fine, but you can choose custom locations if needed.</li>
-                            <li>Choose the components you want to install. For a basic setup, select "PostgreSQL Server" and "pgAdmin 4." Click "Next."</li>
-                            <li>Set a superuser password for the PostgreSQL database cluster. Make sure it's strong and secure. Keep this password safe; you'll 
-                                need it to manage PostgreSQL. Click "Next."</li>
-                            <li>Select the port for PostgreSQL. The default is 5432, but you can change it if necessary. Click "Next."</li>
-                        </ul>
-                    </li>
-                    <p>For installation, I used steps given in following website: <a href="https://www.w3schools.com/postgresql/postgresql_install.php" target="_blank">visit website</a> </p>
-                </ul>
+                
 
                 <h3>SQL <command> categories</h3>
                 <p>SQL commands can be categorized into different types based on their purposes. The five main categories are:</p>

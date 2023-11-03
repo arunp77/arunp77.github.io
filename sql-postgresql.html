@@ -104,23 +104,28 @@
     </section><!-- End Breadcrumbs -->
 
     <div class="right-side-list">
-      <ul>
-        <li style="color: white; font-weight: bold;">Shortcuts:</li>
-        <li><a href="cloud-compute.html"><i class="fas fa-cloud"></i> Cloud</a></li>
-        <li><a href="AWS-GCP.html"><i class="fas fa-cloud"></i> AWS-GCP</a></li>
-        <li><a href="amazon-s3.html"><i class="fas fa-cloud"></i> AWS S3</a></li>
-        <li><a href="ec2-confi.html"><i class="fas fa-server"></i> EC2</a></li>
-        <li><a href="Docker-Container.html"><i class="fab fa-docker" style="color: white;"></i> Docker</a></li>
-        <li><a href="Jupyter-nifi.html"><i class="fab fa-python" style="color: white;"></i> Jupyter-nifi</a></li>
-        <li><a href="snowflake-task=stream.html"><i class="fas fa-snowflake"></i> Snowflake</a></li>
-        <li><a href="sql-basics.html"><i class="fas fa-table"></i> QL</a></li>
-        <li><a href="sql-basic-details.html"><i class="fas fa-database"></i> SQL</a></li>
-        <li><a href="Bigquerry-sql.html"><i class="fas fa-database"></i> Bigquerry</a></li>
-        <li><a href="scd.html"><i class="fas fa-archive"></i> SCD</a></li>
-        <li><a href="sql-project.html"><i class="fas fa-database"></i> SQL project</a></li>
-          <!-- Add more subsections as needed -->
-      </ul>
+    <div class="dropdown">
+        <button class="dropbtn"><strong>Shorcuts:</strong></button>
+        <div class="dropdown-content">
+            <ul>
+                <li><a href="cloud-compute.html"><i class="fas fa-cloud"></i> Cloud</a></li>
+                <li><a href="AWS-GCP.html"><i class="fas fa-cloud"></i> AWS-GCP</a></li>
+                <li><a href="amazon-s3.html"><i class="fas fa-cloud"></i> AWS S3</a></li>
+                <li><a href="ec2-confi.html"><i class="fas fa-server"></i> EC2</a></li>
+                <li><a href="Docker-Container.html"><i class="fab fa-docker" style="color: white;"></i> Docker</a></li>
+                <li><a href="Jupyter-nifi.html"><i class="fab fa-python" style="color: white;"></i> Jupyter-nifi</a></li>
+                <li><a href="snowflake-task=stream.html"><i class="fas fa-snowflake"></i> Snowflake</a></li>
+                <li><a href="sql-basics.html"><i class="fas fa-table"></i> QL</a></li>
+                <li><a href="sql-basic-details.html"><i class="fas fa-database"></i> SQL</a></li>
+                <li><a href="Bigquerry-sql.html"><i class="fas fa-database"></i> Bigquerry</a></li>
+                <li><a href="scd.html"><i class="fas fa-archive"></i> SCD</a></li>
+                <li><a href="sql-project.html"><i class="fas fa-database"></i> SQL project</a></li>
+                  <!-- Add more subsections as needed -->
+              </ul>
+        </div>
+      </div>
     </div>
+
 
 
     <!-- ======= Portfolio Details Section ======= -->
@@ -140,86 +145,298 @@
                     </div>
                   </div>
 
-                  <p>Here, I will discuss step by step how to proceed with PostgreSQL on <a href="https://www.freecodecamp.org/fcc7011b5c1" target="_blank">freecodecamp.org</a>.</p>
+                <h3>Introduction</h3>
+                <p><a href="https://www.postgresql.org/" target="_blank">PostgreSQL</a> is a powerful open-source relational database management system that's 
+                widely used for data storage, retrieval, and management.</p>
+                
+                <ul style="list-style-type: disc; margin-left: 30px;">
+                    <li><strong>Step 1: Installation: </strong> 
+                        <ul>
+                            <li><strong>Installation on Windows:</strong>
+                                <p>You can visit <a href="https://www.w3schools.com/postgresql/postgresql_install.php" target="_blank">installation Tutorials</a> to install
+                                postgresql on windows.</p>
+                                <ol>
+                                    <li>Visit the official PostgreSQL website for Windows at <a href="https://www.postgresql.org/download/windows/" target="_blank">https://www.postgresql.org/download/windows/</a>.</li>
+                                    <li>Download the installer for your version of Windows (32-bit or 64-bit).</li>
+                                    <li>Run the downloaded installer.</li>
+                                    <li>Follow the installation wizard:
+                                        <ol type="a">
+                                            <li>Choose the installation directory.</li>
+                                            <li>Select the components to install (typically include PostgreSQL Server and pgAdmin).</li>
+                                            <li>Set a password for the PostgreSQL superuser (postgres).</li>
+                                            <li>Choose a port number (the default is 5432).</li>
+                                            <li>Select the locale and collation settings.</li>
+                                            <li>Complete the installation.</li>
+                                        </ol>
+                                    </li>
+                                    <li>During installation, you can choose to launch Stack Builder to add additional tools and extensions.</li>
+                                    <li>After installation, PostgreSQL should start automatically as a Windows service.</li>
+                                    <li>You can access PostgreSQL using the command-line tool (psql) or the pgAdmin graphical interface.</li>
+                                </ol>
+                            </li>
+                            <li><strong>Installation on macOS:</strong>
+                                <p>You can install PostgreSQL on macOS using the following methods:</p>
+                                <ul>
+                                    <li><strong>Homebrew (recommended):</strong>
+                                        <ol>
+                                            <li>Open Terminal.</li>
+                                            <li>Install Homebrew if you don't have it: 
+                                                <pre><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
+                                            </li>
+                                            <li>Install PostgreSQL: <pre><code>brew install postgresql</code></pre></li>
+                                            <li>Start the PostgreSQL service: <pre><code>brew services start postgresql</code></pre></li>
+                                            </ol>
+                                    </li>
+                                    <li><strong>Download from the official PostgreSQL website:</strong>
+                                        <ol>
+                                            <li>Visit <a href="https://www.postgresql.org/download/macosx/" target="_blank">https://www.postgresql.org/download/macosx/</a>.</li>
+                                            <li>Download the PostgreSQL package for macOS.</li>
+                                            <li>Double-click the downloaded file to run the installer.</li>
+                                            <li>Follow the installation instructions.</li>
+                                            </ol>
+                                    </li>
+                                </ul>
+                                <p>You can use pgAdmin or the command-line tool (psql) to interact with PostgreSQL.</p>
+                            </li>
+                            <li><strong>Installation on Ubuntu (Linux):</strong>
+                                <ol>
+                                    <li>PostgreSQL is available in the Ubuntu repositories. You can install it using apt-get:
+                                        <ul>
+                                            <li>Open a terminal.</li>
+                                            <li>Update the package list: <pre><code>sudo apt update</code></pre></li>
+                                            <li>Install PostgreSQL: <pre><code>sudo apt install postgresql</code></pre></li>
+                                        </ul>
+                                    </li>
+                                    <li>During the installation, a system user named 'postgres' is created.</li>
+                                    <li>PostgreSQL should start automatically as a service. You can check its status with: <code><pre>systemctl status postgresql</code></pre></li>
+                                    <li>You can switch to the 'postgres' user and use psql to access PostgreSQL: <pre><code>sudo -i -u postgres and psql</code></pre>.</li>
+                                    <li>Optionally, install the graphical interface pgAdmin by running: <pre><code>sudo apt install pgadmin4</code></pre></li>
+                                    <li>Configure pgAdmin to connect to your PostgreSQL server.</li>
+                                </ol>
+                            </li>
+                        </ul>
+                    </br>
+                    
+                    </li>
+                    <li><strong>Step 2: Basic PostgreSQL Concepts: </strong>
+                        <p>Understanding the basic concepts of PostgreSQL is essential for working with this relational database management system. 
+                            Here are some fundamental PostgreSQL concepts</p>
+                            <ol>
+                                <li><strong>Database:</strong> A container for storing data, isolated and independent of others.</li>
+                                <li><strong>Table:</strong> Primary data storage objects consisting of rows and columns.</li>
+                                <li><strong>Row:</strong> A single entry within a table, representing a specific entity or data instance.</li>
+                                <li><strong>Column:</strong> Individual attributes or fields within a table, each with a specific data type.</li>
+                                <li><strong>Primary Key:</strong> A column or combination of columns that uniquely identifies each row in a table.</li>
+                                <li><strong>Foreign Key:</strong> A column or combination of columns that establishes a link between two tables.</li>
+                                <li><strong>SQL (Structured Query Language):</strong> The language for interacting with PostgreSQL.</li>
+                                <li><strong>Query:</strong> A SQL statement used to retrieve or manipulate data in the database.</li>
+                                <li><strong>Schema:</strong> A logical container for organizing database objects such as tables, views, and functions.</li>
+                                <li><strong>Data Type:</strong> Defines the kind of data that can be stored in a column.</li>
+                                <li><strong>Index:</strong> A database object that improves query performance by creating a data structure for faster retrieval.</li>
+                                <li><strong>Transaction:</strong> A sequence of SQL statements treated as a single unit of work for data consistency and integrity.</li>
+                                <li><strong>Constraint:</strong> Rules on columns to enforce data integrity, e.g., NOT NULL, UNIQUE, CHECK.</li>
+                                <li><strong>View:</strong> A virtual table created by defining a query to access and manipulate data without altering the source data.</li>
+                                <li><strong>Backup and Restore:</strong> Backup is copying the database to prevent data loss; restore is recovering data from a backup.</li> 
+                            </ol>
+                        </br>
+                    </li>
+                    <li><strong>Step 3: Connecting to PostgreSQL: </strong>
+                        <p>To connect to PostgreSQL, you can use various tools and methods depending on your needs. Here, we'll discuss two common methods: 
+                            connecting via the command line using <code>`psql`</code>, using postgresql UI interface and 
+                            connecting programmatically using Python with the <code>`psycopg2`</code> library.
+                        </p>
+                        <p>Let's explore two methods one by one.</p>
+                        <ul>
+                            <li><strong>Connecting via Command Line (psql): </strong>
+                                <ul>
+                                    <li><strong>Prerequisites: </strong>PostgreSQL should be installed on your system.
+                                        You should have the necessary credentials (username, password) to connect.</li>
+                                    <li><strong>Steps:</strong>
+                                        <ul>
+                                            <li>Open your terminal or command prompt.</li>
+                                            <li>Use the <code>`psql`</code> command to initiate a connection to PostgreSQL. Replace <code>username</code> with your PostgreSQL 
+                                                username and <code>database</code> with the name of the database you want to connect to. If you omit the database name, 
+                                                    you'll connect to the default database with your username.</li>
+                                                <pre><code>psql -U 'username' -d 'database'</code></pre>
+                                            <li>You'll be prompted to enter your password. After successful authentication, you'll be connected to the PostgreSQL server.</li>
+                                            <li>You can start running SQL commands directly in the <code>`psql`</code> shell. For example:</li>
+                                            <pre><code>SELECT * FROM your_table;</code></pre>
+                                            <li>To exit the psql shell, you can type:</li>
+                                            <pre><code>\q</code></pre>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li></br>
+                            <li><strong>Using postgresql UI interface:</strong>A detailed description can be found at following website: 
+                                <a href="https://www.w3schools.com/postgresql/postgresql_install.php" target="_blank">tutoral website</a>.</li>
+                                <img src="assets/img/portfolio/postgresql-pgAdmin4.png" alt="" style="max-width: 1100px; max-height: 1400px;">
+                            </br>
+                            <li><strong>Connecting Programmatically with Python (psycopg2): </strong>
+                                <ul>
+                                    <li><strong>Prerequisites:</strong>
+                                        <ul>
+                                            <li>Python should be installed on your system.</li>
+                                            <li>Install the <code>`psycopg2`</code> library, which is a PostgreSQL adapter for Python.</li>
+                                            <li>You can install it using <doe>`pip`</code>:
+                                            <pre><code>pip install psycopg2</code></pre>
+                                            </li>
+                                            <li>Sample Python code for connecting:</li>
+                                            <pre><code  class="language-python">
+                                                import psycopg2
 
-                    <h2>Step-1: Login</h2>
-                        <pre><code>codeally@147a091d400c:~/project$ psql --username=freecodecamp --dbname=postgres</code></pre>
+                                                # Connection parameters
+                                                db_params = {
+                                                    "host": "localhost",   # Replace with your PostgreSQL server host
+                                                    "database": "your_db",  # Replace with your database name
+                                                    "user": "your_user",    # Replace with your PostgreSQL username
+                                                    "password": "your_password"  # Replace with your PostgreSQL password
+                                                }
+
+                                                # Establish a connection
+                                                conn = psycopg2.connect(**db_params)
+
+                                                # Create a cursor
+                                                cur = conn.cursor()
+
+                                                # Execute SQL queries
+                                                cur.execute("SELECT * FROM your_table")
+                                                result = cur.fetchall()
+                                                for row in result:
+                                                    print(row)
+
+                                                # Close the cursor and connection
+                                                cur.close()
+                                                conn.close()
+                                            </code></pre>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Step 4: Creating Databases and Tables: </strong>
+                        <p>Creating databases and tables in PostgreSQL is a fundamental task when setting up a new project or working with an existing database. </p>
+                        <ul>
+                            <li><strong>Creating a Database: </strong></br>
+                                <code>CREATE DATABASE your_database_name;</code></li>
+                            <li><strong>Connecting to the New Database: </strong>
+                                <p>After creating the database, you can connect to it using <code>`psql`</code> or your preferred database client. 
+                                    For example, if you're using <code>`psql`</code>, you can connect as follows:</br> 
+                                    <code>psql -U your_username -d your_database_name</code></p>
+                            </li>
+                            <li><strong>Creating Tables in a Database: </strong>
+                                <pre class="language-sql"><code id="sql-code">
+                                    CREATE TABLE your_table_name (
+                                    column1_name data_type1,
+                                    column2_name data_type2,
+                                    ...
+                                    );
+                                </code></pre>
+                            </br>
+                            <p>Example:</p>
+                            <pre class="language-sql"><code id="sql-code">
+                                CREATE TABLE users (
+                                id serial PRIMARY KEY,
+                                username VARCHAR(50) NOT NULL
+                                );
+                            </code></pre>
+                            </li>
+                            <li><strong>Creating Tables with Constraints: </strong>
+                            <pre class="language-sql"><code id="sql-code">
+                                CREATE TABLE products (
+                                product_id serial PRIMARY KEY,
+                                product_name VARCHAR(100) NOT NULL,
+                                price DECIMAL(10, 2) NOT NULL,
+                                unique (product_name)
+                                );
+                            </code></pre>
+                            </li>
+                            <li>><strong>Adding Data to Tables: </strong>
+                                <pre class="language-sql"><code id="sql-code">
+                                    INSERT INTO users (username) VALUES ('john_doe');
+                                </code></pre>
+                            </li>
+                            <li>><strong>Viewing Table Data:</strong>
+                                <pre class="language-sql"><code id="sql-code">
+                                    SELECT * FROM users;
+                                </code></pre>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+
+
+
+                <h3>Example project:</h3>
+                <ul>
+                    <li>Step-1: Login</li>
+                    <pre><code>codeally@147a091d400c:~/project$ psql --username=freecodecamp --dbname=postgres</code></pre>
                     <strong>Output:</strong>
-                        <pre><code>
+                    <pre><code>
                         Border style is 2.
                         Title is " ".
                         Pager usage is off.
                         psql (12.9 (Ubuntu 12.9-2.pgdg20.04+1))
                         Type "help" for help.
-                        </code></pre>
+                    </code></pre>
                     <p>Now the terminal will be converted to</p>
                         <pre><code>postgres=></code></pre>
-
-                    <h2>Step-2: Check content of the files in the directory</h2>
-                        <pre><code>postgres=> \l </code></pre>
-                    
-                        <strong>Output:</strong>
-                    <pre><code>
-                                                    List of databases
-                        +-----------+----------+----------+---------+---------+-----------------------+
-                        |   Name    |  Owner   | Encoding | Collate |  Ctype  |   Access privileges   |
-                        +-----------+----------+----------+---------+---------+-----------------------+
-                        | postgres  | postgres | UTF8     | C.UTF-8 | C.UTF-8 |                       |
-                        | template0 | postgres | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +|
-                        |           |          |          |         |         | postgres=CTc/postgres |
-                        | template1 | postgres | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +|
-                        |           |          |          |         |         | postgres=CTc/postgres |
-                        +-----------+----------+----------+---------+---------+-----------------------+
-                    </code></pre>
-
-                    <h2>Step-3: Creating a database</h2>
-                        <p>The databases you see are there by default. You can create your own like this:</p>
-                        <pre><code>postgres=> CREATE DATABASE first_database;</code></pre>
-                        <p>The capitalized words are keywords telling PostgreSQL what to do. The name of the database is the lowercase word. Note that all commands need a semi-colon at the end. Create a new database named <code>first_database</code>.</p>
-                    
-                        <strong>Output:</strong>
-                    <pre><code>
+                    <li>Step-2: Check content of the files in the directory</li>
+                    <pre><code>postgres=> \l </code></pre>
+                    <strong>Output:</strong>
+                        <pre><code>
                                                         List of databases
-                        +----------------+--------------+----------+---------+---------+-----------------------+
-                        |      Name      |    Owner     | Encoding | Collate |  Ctype  |   Access privileges   |
-                        +----------------+--------------+----------+---------+---------+-----------------------+
-                        | first_database | freecodecamp | UTF8     | C.UTF-8 | C.UTF-8 |                       |
-                        | postgres       | postgres     | UTF8     | C.UTF-8 | C.UTF-8 |                       |
-                        | template0      | postgres     | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +|
-                        |                |              |          |         |         | postgres=CTc/postgres |
-                        | template1      | postgres     | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +|
-                        |                |              |          |         |         | postgres=CTc/postgres |
-                        +----------------+--------------+----------+---------+---------+-----------------------+
-                    </code></pre>
-
-                    <h2>Step-4: Connect with a database</h2>
-                        <p>You can connect to a database by entering <code>\c database_name</code>. You need to connect to add information. Connect to your <code>second_database</code>.</p>
-                        <pre><code>postgres=> \c second_database</code></pre>
-                        
-                        <strong>Output:</strong> You are now connected to database "second_database" as user "freecodecamp.
-
-                        <p>You should see a message that you are connected. Notice that the prompt changed to <code>second_database=></code>. So the <code>postgres=></code> prompt before must have meant you were connected to that database. A database is made of tables that hold your data. Enter <code>\d</code> to display the tables.</p>
-                        <pre><code>second_database=> \d </code></pre>
+                            +-----------+----------+----------+---------+---------+-----------------------+
+                            |   Name    |  Owner   | Encoding | Collate |  Ctype  |   Access privileges   |
+                            +-----------+----------+----------+---------+---------+-----------------------+
+                            | postgres  | postgres | UTF8     | C.UTF-8 | C.UTF-8 |                       |
+                            | template0 | postgres | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +|
+                            |           |          |          |         |         | postgres=CTc/postgres |
+                            | template1 | postgres | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +|
+                            |           |          |          |         |         | postgres=CTc/postgres |
+                            +-----------+----------+----------+---------+---------+-----------------------+
+                        </code></pre>
+                    <li>Step-3: Creating a database</li>
+                    <p>The databases you see are there by default. You can create your own like this:</p>
+                    <pre><code>postgres=> CREATE DATABASE first_database;</code></pre>
+                    <p>The capitalized words are keywords telling PostgreSQL what to do. The name of the database is the lowercase word. Note that all commands need a semi-colon at the end. Create a new database named <code>first_database</code>.</p>
+                
+                    <strong>Output:</strong>
+                        <pre><code>
+                                                            List of databases
+                            +----------------+--------------+----------+---------+---------+-----------------------+
+                            |      Name      |    Owner     | Encoding | Collate |  Ctype  |   Access privileges   |
+                            +----------------+--------------+----------+---------+---------+-----------------------+
+                            | first_database | freecodecamp | UTF8     | C.UTF-8 | C.UTF-8 |                       |
+                            | postgres       | postgres     | UTF8     | C.UTF-8 | C.UTF-8 |                       |
+                            | template0      | postgres     | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +|
+                            |                |              |          |         |         | postgres=CTc/postgres |
+                            | template1      | postgres     | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +|
+                            |                |              |          |         |         | postgres=CTc/postgres |
+                            +----------------+--------------+----------+---------+---------+-----------------------+
+                        </code></pre>
+                    <li>Step-4: Connect with a database</li>
+                    p>You can connect to a database by entering <code>\c database_name</code>. You need to connect to add information. Connect to your <code>second_database</code>.</p>
+                    <pre><code>postgres=> \c second_database</code></pre>
                     
-                        <strong>Output:</strong> Did not find any relations.
+                    <strong>Output:</strong> You are now connected to database "second_database" as user "freecodecamp.
 
-                    <h2>Step-5: Creating a table</h2>
-                        <p>Looks like there's no tables or relations yet. Similar to how you created a database, you can create a table like this:</p>
-                        <pre><code>CREATE TABLE table_name();</code></pre>
-                        
-                        <p>Note that the parenthesis are needed for this one. It will create the table in the database you are connected to. Create a table named <code>first_table</code> in <code>second_database</code>.</p>
-                        <pre><code>second_database=> CREATE TABLE first_table();</code></pre>
-                        
-                        <p>You can see the newly created table as</p>
-                        <pre><code>second_database=> \d </code></pre>
-
-
-
-
-
-
-
-
+                    <p>You should see a message that you are connected. Notice that the prompt changed to <code>second_database=></code>. So the <code>postgres=></code> prompt before must have meant you were connected to that database. A database is made of tables that hold your data. Enter <code>\d</code> to display the tables.</p>
+                    <pre><code>second_database=> \d </code></pre>
+                
+                    <strong>Output:</strong> Did not find any relations.
+                    <li>Step-5: Creating a table</li>
+                    <p>Looks like there's no tables or relations yet. Similar to how you created a database, you can create a table like this:</p>
+                    <pre><code>CREATE TABLE table_name();</code></pre>
+                    
+                    <p>Note that the parenthesis are needed for this one. It will create the table in the database you are connected to. Create a table named <code>first_table</code> in <code>second_database</code>.</p>
+                    <pre><code>second_database=> CREATE TABLE first_table();</code></pre>
+                    
+                    <p>You can see the newly created table as</p>
+                    <pre><code>second_database=> \d </code></pre>
+                </ul>
+                
 
                   <h3>Reference:</h3>
                   <ul style="margin-left: 30px;">
@@ -280,6 +497,8 @@
       hljs.initHighlightingOnLoad();
     });
   </script>
+
+
   
   </body>
   
