@@ -889,6 +889,38 @@
                     </table>                    
                   </li>
                 </ul>
+
+                <h3>Why do we use SQL when we can use Power Bi for data analysis?</h3>
+                <p>Power BI does offer data transformation capabilities, and for some scenarios, it may be sufficient to perform data extraction, transformation, and loading (ETL) 
+                  tasks directly within Power BI. However, there are still several practical reasons to use SQL alongside Power BI, especially in more complex or enterprise-level 
+                  scenarios. Let's explore a practical example to illustrate this:</p>
+                  <ul>
+                    <h4>Scenario:</h4>
+                    <p>Consider a large retail company that operates in multiple regions and wants to analyze its sales data to make informed business decisions.</p>
+                    <h5>Reasons to Use SQL:</h5>
+                    <ul>
+                        <li><strong>Data Volume and Performance:</strong> The retail company generates millions of sales transactions daily, and the dataset is massive. While Power BI can handle large datasets, the performance may become a concern as the data volume grows. SQL databases are designed for handling and optimizing the storage and retrieval of large datasets efficiently.</li>
+
+                        <li><strong>Data Integration:</strong> The retail company collects data from various sources, including point-of-sale systems, online sales platforms, and inventory management systems. Using SQL, they can integrate and consolidate data from these diverse sources into a single database or data warehouse.</li>
+
+                        <li><strong>Data Cleansing and Validation:</strong> SQL provides more advanced data cleansing and validation capabilities than Power BI. For example, it can handle complex data quality checks, identify and correct data anomalies.</li>
+
+                        <li><strong>Historical Data Storage:</strong> The retail company needs to store historical sales data for trend analysis and forecasting. SQL databases are well-suited for maintaining historical data, allowing you to store and archive data over time while still making it accessible for reporting in Power BI.</li>
+
+                        <li><strong>Data Security and Access Control:</strong> SQL databases offer robust security features, including user access control, encryption, and auditing. This ensures that sensitive sales data is protected and only accessible to authorized users, even before it's imported into Power BI.</li>
+                    </ul>
+                    <h5>How SQL and Power BI Work Together:</h5>
+                    <ul>
+                        <li><strong>ETL in SQL:</strong> Data extraction, transformation, and cleansing tasks are performed in SQL. SQL scripts are used to integrate data from various sources, cleanse it, and store it in a structured format in the database.</li>
+
+                        <li><strong>Power BI Reporting:</strong> Power BI connects to the SQL database, retrieves the cleansed and transformed data, and creates interactive reports and dashboards.</li>
+
+                        <li><strong>Scheduled Refresh:</strong> Power BI can be configured to schedule data refreshes, pulling in the latest data from the SQL database on a regular basis.</li>
+                    </ul>
+                  </ul>
+                    
+                  <p>By using SQL for data preparation and Power BI for reporting, the retail company can efficiently manage and analyze its vast sales dataset while ensuring data quality, performance, and security. This combined approach provides a comprehensive solution for data analysis and reporting needs.</p>
+
                 
 
                 <h3>Reference:</h3>
