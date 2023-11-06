@@ -145,26 +145,121 @@
                     design, and process development in support of a consistent, clean exchange of data. It’s also important to understand the three different types of data models. 
                     Each will serve a different purpose as you work through the data modeling process. The purposes of a data model are as follows:</p>  
                 <ul style="list-style-type: disc; margin-left: 30px;">
-                    <li><strong>Structural Clarity:</strong> It provides a clear and organized structure for data, defining how data entities (e.g., customers, products) are related to each other and how attributes (e.g., names, IDs) are organized.</li>
-                    <li><strong>Data Integrity:</strong> Data models enforce constraints and rules that ensure data accuracy and consistency. This helps in preventing data anomalies and errors.</li>
-                    <li><strong>Data Management:</strong> Data models assist in data storage, retrieval, and management. They define how data is stored in databases, making it easier to work with data efficiently.</li>
-                    <li><strong>Communication:</strong> Data models act as a common language between business stakeholders, analysts, and developers, facilitating clear communication about data requirements and structures.</li>
-                    <li><strong>Analysis and Reporting:</strong> They enable data analysts and scientists to perform complex queries, analytics, and reporting, as they understand how data is organized.</li>
-                    <li><strong>Database Design:</strong> Data models are used in the design of databases and data warehouses, helping in the creation of tables, indexes, and relationships.</li>
+                    <li><strong>Structural Clarity:</strong> It provides a clear and organized structure for data, defining how data entities (e.g., customers, products) are 
+                        related to each other and how attributes (e.g., names, IDs) are organized.</li>
+                    <li><strong>Data Integrity:</strong> Data models enforce constraints and rules that ensure data accuracy and consistency. This helps in preventing data 
+                        anomalies and errors.</li>
+                    <li><strong>Data Management:</strong> Data models assist in data storage, retrieval, and management. They define how data is stored in databases, making 
+                        it easier to work with data efficiently.</li>
+                    <li><strong>Communication:</strong> Data models act as a common language between business stakeholders, analysts, and developers, facilitating clear 
+                        communication about data requirements and structures.</li>
+                    <li><strong>Analysis and Reporting:</strong> They enable data analysts and scientists to perform complex queries, analytics, and reporting, as they 
+                        understand how data is organized.</li>
+                    <li><strong>Database Design:</strong> Data models are used in the design of databases and data warehouses, helping in the creation of tables, indexes, 
+                        and relationships.</li>
                 </ul>
 
-                <h3>What are the different types of data models?</h3>
+                <h3>Types of data models</h3>
                     <p>There are several types of data models, including:</p>
 
                     <ul style="list-style-type: disc; margin-left: 30px;">
-                    <li><strong>Conceptual Data Model:</strong> This provides a high-level, abstract view of the data in an organization, focusing on entities and their relationships without delving into technical details.</li>
-                    <li><strong>Logical Data Model:</strong> It defines data structures in a more detailed manner, including entities, attributes, and their relationships. It is technology-independent and focuses on what needs to be stored.</li>
-                    <li><strong>Physical Data Model:</strong> This model is specific to a particular database management system and defines how data will be physically stored, including details like table structures, indexes, and data types.</li>
-                    <li><strong>Hierarchical Data Model:</strong> It organizes data in a tree-like structure with parent-child relationships, where each parent can have multiple children but each child can have only one parent.</li>
-                    <li><strong>Network Data Model:</strong> It extends the hierarchical model by allowing multiple relationships between records, providing more flexibility.</li>
-                    <li><strong>Relational Data Model:</strong> It represents data as tables with rows and columns, where each table has a primary key and can be related to other tables through foreign keys. It's the foundation for relational databases like MySQL and PostgreSQL.</li>
-                    <li><strong>Entity-Relationship Model (ERD):</strong> This graphical model uses entities, attributes, and relationships to represent data. It's widely used in database design.</li>
+                    <li><strong>Conceptual Data Model:</strong> This provides a high-level (big-picture view), abstract view of the data in an organization, focusing on entities and their 
+                        relationships without delving into technical details.</li>
+                        <img src="assets/img/portfolio/conceptual-data-modeling.png" alt="" style="max-width: 900px; max-height: 800px;">
+                    <li><strong>Logical Data Model:</strong> It defines data structures in a more detailed manner, including entities, attributes, and their relationships. 
+                        It is technology-independent and focuses on what needs to be stored.</li>
+                        <img src="assets/img/portfolio/logical-data-modeling.png" alt="" style="max-width: 900px; max-height: 800px;">
+                    <li><strong>Physical Data Model:</strong> They provide a schema for how the data will be physically stored within a database. As such, they’re the least 
+                        abstract of all. They offer a finalized design that can be implemented as a relational database, including associative tables that illustrate the 
+                        relationships among entities as well as the primary keys and foreign keys that will be used to maintain those relationships. Physical data models 
+                        can include database management system (DBMS)-specific properties, including performance tuning.</li>
+                        <img src="assets/img/portfolio/physical-data-modeling.png" alt="" style="max-width: 900px; max-height: 800px;">
+                    <li><strong>Hierarchical Data Model:</strong> It organizes data in a tree-like structure with parent-child relationships, where each parent can have 
+                        multiple children but each child can have only one parent.</li>
+                        <img src="assets/img/portfolio/hierarcial-model.png" alt="" style="max-width: 800px; max-height: 700px;">
+                    <li><strong>Network Data Model:</strong> It extends the hierarchical model by allowing multiple relationships between records, providing more flexibility.
+                        Instead of only allowing each child to have one parent, this model allows each child to have multiple parents (it calls the children members and the 
+                        parents owners). It addresses the need to model more complex relationships such as the orders/parts many-to-many relationship mentioned in the 
+                        hierarchical article. In following figure, A1 has two members, B1 and B2. B1. is the owner of C1, C2, C3 and C4. However, in this model, 
+                        C4 has two owners, B1 and B2. </li>
+                    <img src="assets/img/portfolio/network_model.png" alt="" style="max-width: 900px; max-height: 800px;">
+                    <li><strong>Relational Data Model:</strong> It represents data as tables with rows and columns, where each table has a primary key and can be related to 
+                        other tables through foreign keys. It's the foundation for relational databases like MySQL and PostgreSQL.</li>
+                        <img src="assets/img/portfolio/relational-data-model.jpg" alt="" style="max-width: 900px; max-height: 800px;">
+                    <li><strong>Entity-Relationship Model (ERD):</strong> Entity relationship diagram describes the structure of the database. The entity relationship 
+                        diagram shows entities (tables in relational databases) and relationships between tables that exist in the database. For a good database design, 
+                        it is very important to have an entity relationship diagram. In an entity relationship diagram, the basic elements are:</li>
+                        <ul>
+                            <li>Entities (tables)</li>
+                            <li>Attributes (table columns)</li>
+                            <li>Relationships (relationships between tables)</li>
+                        </ul>
+                        <img src="assets/img/portfolio/luna-scool-model.png" alt="" style="max-width: 1200px; max-height: 900px;">
                     </ul>
+
+                    <h3>Data Modeling Tools</h3>
+                    <ul style="list-style-type: disc; margin-left: 30px;">
+                        <li><strong><a href="https://www.datensen.com/" target="_blank">Luna modeler</a>:</strong>
+                            Luna is a data modeling tool that is specifically designed for relational databases. It is a desktop application that is 
+                            available for Windows, macOS, and Linux.</li>
+                        <li>
+                          <strong><a href="https://www.idera.com/products/er-studio/enterprise-data-modeling/" target="_blank">ER/Studio</a>:</strong> 
+                          ER/Studio is a powerful data modeling tool that supports a variety of data models, including relational, hierarchical, network, 
+                          and graph data models. ER/Studio also provides a variety of features to help you with data modeling, such as automatic entity 
+                          discovery, reverse engineering, forward engineering, and validation.
+                        </li>
+                        <li>
+                          <strong><a href="https://dbschema.com/" target="_blank">DbSchema Pro</a>:</strong> DbSchema Pro is a free and open-source data 
+                          modeling tool that is easy to use and supports a variety 
+                          of database platforms. DbSchema Pro provides a variety of features to help you with data modeling, such as visual data modeling, 
+                          schema synchronization, and database reporting.
+                        </li>
+                        <li>
+                          <strong><a href="https://www.erwin.com/de-de/products/erwin-data-modeler/?" target="_blank">Erwin Data Modeler</a>:</strong> Erwin Data Modeler is a popular data modeling tool that is known for its ease of use and powerful 
+                          features. Erwin Data Modeler supports a variety of data models, including relational, hierarchical, network, and graph data models. Erwin 
+                          Data Modeler also provides a variety of features to help you with data modeling, such as automatic entity discovery, reverse engineering, 
+                          forward engineering, and validation.
+                        </li>
+                        <li>
+                          <strong><a href="https://www.archimatetool.com/" target="_blank">Archi</a>:</strong> Archi is a data modeling tool that is specifically designed for enterprise architects. Archi supports a variety of 
+                          data models, including relational, hierarchical, network, and graph data models. Archi also provides a variety of features to help you with 
+                          data modeling, such as business process modeling, enterprise architecture modeling, and impact analysis.
+                        </li>
+                        <li>
+                          <strong><a href="https://sqldbm.com/Home/" target="_blank">SQL Database Modeler</a>:</strong> SQL Database Modeler is a free and open-source data modeling tool that is designed to help you create, 
+                          edit, and document database models. SQL Database Modeler supports a variety of database platforms and provides a variety of features to help 
+                          you with data modeling, such as visual data modeling, schema synchronization, and database reporting.
+                        </li>
+                        <li>
+                          <strong><a href="https://www.lucidchart.com/" target="_blank">Lucidchart</a>:</strong> Lucidchart is a popular online diagramming tool that can also be used for data modeling. Lucidchart provides 
+                          a variety of data modeling templates and symbols, as well as a variety of features to help you with data modeling, such as collaboration 
+                          and real-time editing.
+                        </li>
+                        <li>
+                          <strong><a href="https://pgmodeler.io/" target="_blank">PgModeler</a>:</strong> PgModeler is a free and open-source data modeling tool that is specifically designed for PostgreSQL databases. 
+                          PgModeler provides a variety of features to help you with data modeling, such as visual data modeling, schema synchronization, and database reporting.
+                        </li>
+                        <li>
+                          <strong><a href="https://www.ibm.com/products/infosphere-data-architect" target="_blank">IBM InfoSphere Data Architect</a>:</strong> IBM InfoSphere Data Architect is a powerful data modeling tool that is designed for enterprise 
+                          businesses. IBM InfoSphere Data Architect supports a variety of data models, including relational, hierarchical, network, and graph data models. 
+                          IBM InfoSphere Data Architect also provides a variety of features to help you with data modeling, such as automatic entity discovery, reverse 
+                          engineering, forward engineering, and validation.
+                        </li>
+                      </ul>
+
+
+                      <h3>Some other interesting things to know:</h3>
+                        <ul style="list-style-type: disc; margin-left: 30px;">
+                            <li>Visit my website on <a href="sql-basics.html">Query language.</a></li>
+                            <li>Visit my website on <a href="sql-basic-details.html">SQL.</a></li>
+                            <li>Visit my website on <a href="sql-postgresql.html">PostgreSQL.</a></li>
+                            <li>Visit my website on <a href="scd.html">Slowly changing variables.</a></li>
+                            <li>Visit my website on <a href="snowflake.html">SNowflake.</a></li>
+                            <li>Visit my website on <a href="sql-project.html">SQL project in postgresql.</a></li>
+                            <li>Visit my website on <a href="snowflake-task=stream.html">Snowflake data streaming.</a></li>
+                        </ul>
+
+                      
 
 
         
