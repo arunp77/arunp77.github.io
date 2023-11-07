@@ -1337,3 +1337,12 @@ img {
 .dropdown:hover .dropdown-content {display: block;}
 
 .dropdown:hover .dropbtn {background-color: #f8d94f;}
+
+
+
+.three-column-list {
+  -webkit-column-count: 3; /* For Chrome, Safari, and Opera */
+  -moz-column-count: 3; /* For Firefox */
+  column-count: 3;
+  margin-left: 30px;
+}
