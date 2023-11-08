@@ -380,25 +380,95 @@
                         <li><strong>Step-9 (Deployment):</strong> The final step is to deploy the model in production. This involves integrating the model into the decision-making process or other applications.</li>
                       </ul>
 
-                      <h5>Data mining techniques</h5>
-                      <p>Data mining techniques are used to extract valuable patterns, insights, and knowledge from large datasets. Here are some commonly used data mining techniques:</p>
-                      <ul style="margin-left: 30px;">
-                        <li>
-                            <strong>Classification:</strong>
+
+                      <h4>Types of data mining models</h4>
+                      <p>This can be classified in two broad categories:</p>
+                      <ul>
+                        <li>Predictive data mining models</li>
+                        <li>Descriptive data mining models</li>
+                      </ul>
+                    </br>
+                    <figure style="text-align: center;">
+                      <img src="assets/img/portfolio/data-mining-models.png" alt="" style="max-width: 100%; max-height: 100%;">
+                      <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://www.javatpoint.com/data-mining-models" target="_blank"> Javapoint.com</a></figcaption>
+                    </figure>
+                    
+                    <ol style="margin-left: 30px;">
+                      <li><strong>Predictive data mining models:</strong>
+                        <p>Predictive data mining models are used to make predictions or forecasts based on historical data and patterns. These models are an integral part of data mining and machine learning, 
+                          and they are applied across various domains to anticipate future outcomes. Here are some common types of predictive data mining models:</p>
+                          <figure style="text-align: center;">
+                            <img src="assets/img/portfolio/data-mining-models2.png" alt="" style="max-width: 100%; max-height: 100%;">
+                            <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://www.javatpoint.com/data-mining-models" target="_blank"> Javapoint.com</a></figcaption>
+                          </figure>
+                          <ul>
+                            <li>
+                              <strong>Regression:</strong>
+                              <p>Regression is also a supervised learning technique that predicts a continuous numerical value rather than a class label. It models the relationship between independent variables (features) and a dependent variable (target) to make predictions. Regression analysis is used in sales forecasting, demand prediction, and price optimization.</p>
+                              <ul>
+                                <li><strong>Linear Regression:</strong> Predicts a continuous target variable based on a linear combination of predictor variables.</li>
+                                <li><strong>Logistic Regression:</strong> Used for binary classification, predicting the probability of an event occurring.</li>
+                              </ul>
+                          </li>
+                          <li>
+                            <strong>Classification models:</strong>
                             <p>Classification is a supervised learning technique that assigns predefined class labels to data instances based on their feature values. It involves training a classification model using labeled training data and then using the model to classify new, unlabeled data. Classification is used for tasks such as spam email detection, sentiment analysis, and customer churn prediction.</p>
+                            <ul>
+                              <li><strong>Decision Trees:</strong> Divide data into subsets based on features to classify data points.</li>
+                              <li><strong>Random Forest:</strong> An ensemble of decision trees that improves accuracy and reduces overfitting.</li>
+                              <li><strong>Support Vector Machines (SVM):</strong> Effective for binary classification and separating data into different classes with a hyperplane.</li>
+                              <li><strong>K-Nearest Neighbors (KNN):</strong> Classifies data points based on the majority class among their nearest neighbors.</li>
+                            </ul>
                         </li>
-                
                         <li>
-                            <strong>Regression:</strong>
-                            <p>Regression is also a supervised learning technique that predicts a continuous numerical value rather than a class label. It models the relationship between independent variables (features) and a dependent variable (target) to make predictions. Regression analysis is used in sales forecasting, demand prediction, and price optimization.</p>
+                          <strong>Clustering models:</strong>
+                          <p>Clustering is an unsupervised learning technique that groups similar data instances together based on their intrinsic characteristics or patterns. It aims to discover inherent structures or clusters within the data. Clustering is used for customer segmentation, anomaly detection, and image recognition.</p>
+                          <ul>
+                            <li><strong>K-Means:</strong>Used for clustering data points into groups based on similarity.</li>
+                            <li><strong>Hierarchical Clustering: </strong>Organizes data points into a tree-like structure to represent hierarchical relationships.</li>
+                          </ul>
                         </li>
-                
                         <li>
-                            <strong>Clustering:</strong>
-                            <p>Clustering is an unsupervised learning technique that groups similar data instances together based on their intrinsic characteristics or patterns. It aims to discover inherent structures or clusters within the data. Clustering is used for customer segmentation, anomaly detection, and image recognition.</p>
+                          <strong>Time Series Analysis model:</strong>
+                          <p>Time series analysis deals with data that is collected over a sequence of time intervals. It involves analyzing and forecasting patterns and trends in the data, taking into account the temporal dependencies. Time series analysis is used for predicting stock prices, demand forecasting, and weather forecasting.</p>
+                          <ul>
+                            <li><strong>Prophet:</strong> Developed by Facebook for time series forecasting with seasonal data.</li>
+                            <li><strong>SARIMA (Seasonal AutoRegressive Integrated Moving Average): </strong> An extension of ARIMA for seasonal time series data.</li>
+                          </ul>
                         </li>
-                
                         <li>
+                          <strong>Time Series Forecasting Models:</strong>
+                          <ul>
+                            <li><strong>ARIMA (Auto Regressive Integrated Moving Average) Model: </strong> Used for time series data to predict future values.</li>
+                            <li><strong>Exponential Smoothing: </strong>A method for forecasting time series data based on a weighted average of past observations.</li>
+                          </ul>
+                        </li>
+                        <li><strong>Ensemble Models:</strong>
+                          <ul>
+                            <li><strong>Gradient Boosting Machines (GBM): </strong>Combines multiple weak models to create a stronger, more accurate model.</li>
+                            <li><strong>XGBoost, LightGBM, and CatBoost:</strong>Specialized gradient boosting libraries known for their speed and performance.</li>
+                          </ul>
+                        </li>
+                        <li>
+                          <strong>Neural Networks:</strong>
+                          <p>Neural networks, inspired by the structure of the human brain, are powerful machine learning models capable of learning complex patterns and relationships in data. They consist of interconnected layers of nodes (neurons) that process and transform the data. Neural networks are used in image recognition, natural language processing, and pattern recognition tasks.</p>
+                          <ul>
+                            <li><strong>Feedforward Neural Networks (FNN):</strong> Used for various prediction tasks, including image recognition, natural language processing, and more.</li>
+                            <li><strong>Recurrent Neural Networks (RNN):</strong> Suited for sequence data and time series analysis.</li>
+                            <li><strong>Long Short-Term Memory (LSTM):</strong> A specialized type of RNN for better handling long sequences.</li>
+                          </ul>
+                        </li>
+                        <li><strong>Natural Language Processing (NLP) Models: </strong>
+                          <ul>
+                            <li><strong>Recurrent Neural Networks (RNNs) and Transformer Models:</strong> Used for text classification, sentiment analysis, and language translation.</li>
+                          </ul>
+                        </li>
+                      </ul>
+                      </li>
+
+                      <li><strong>Descriptive data mining models: </strong>
+                        <ul>
+                          <li>
                             <strong>Association Rule Mining:</strong>
                             <p>Association rule mining identifies relationships and associations between different items or variables in a dataset. It discovers patterns that indicate co-occurrence or dependency between items. Association rule mining is widely used in market basket analysis, recommendation systems, and customer behavior analysis.</p>
                         </li>
@@ -407,22 +477,190 @@
                             <strong>Anomaly Detection:</strong>
                             <p>Anomaly detection focuses on identifying data instances that deviate significantly from the expected or normal behavior. It helps in detecting unusual patterns or outliers that might be indicative of fraud, errors, or anomalies in the data. Anomaly detection is used in network intrusion detection, fraud detection, and quality control.</p>
                         </li>
-                
                         <li>
-                            <strong>Text Mining:</strong>
-                            <p>Text mining techniques are used to extract valuable information and insights from textual data sources. This includes techniques for text classification, sentiment analysis, topic modeling, and information extraction from unstructured text data such as documents, social media posts, and customer reviews.</p>
-                        </li>
-                
-                        <li>
-                            <strong>Time Series Analysis:</strong>
-                            <p>Time series analysis deals with data that is collected over a sequence of time intervals. It involves analyzing and forecasting patterns and trends in the data, taking into account the temporal dependencies. Time series analysis is used for predicting stock prices, demand forecasting, and weather forecasting.</p>
-                        </li>
-                
-                        <li>
-                            <strong>Neural Networks:</strong>
-                            <p>Neural networks, inspired by the structure of the human brain, are powerful machine learning models capable of learning complex patterns and relationships in data. They consist of interconnected layers of nodes (neurons) that process and transform the data. Neural networks are used in image recognition, natural language processing, and pattern recognition tasks.</p>
-                        </li>
-                    </ul>
+                          <strong>Text Mining:</strong>
+                          <p>Text mining techniques are used to extract valuable information and insights from textual data sources. This includes techniques for text classification, sentiment analysis, topic modeling, and information extraction from unstructured text data such as documents, social media posts, and customer reviews.</p>
+                      </li>
+                        </ul>
+                      </li>
+                    </ol>
+
+                    <h5>1. Descriptive Models</h5>
+                      <table>
+                        <tr>
+                          <th>Sr. No.</th>
+                          <th>Model</th>
+                          <th>Examples</th>
+                        </tr>
+                        <tr>
+                          <td>1.</td>
+                          <td>Clustering Models</td>
+                          <td>
+                            - K-Means Clustering<br>
+                            - Hierarchical Clustering <br>
+                            - DBSCAN  (Density-Based Spatial Clustering of Applications with Noise)<br>
+                            - Mean-Shift CLustering <br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>2.</td>
+                          <td>Association Rules</td>
+                          <td>
+                            - Apriori<br>
+                            - Eclat<br>
+                            - FP-Growth (Frequent Pattern Growth)<br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>3.</td>
+                          <td>Dimensionality Reduction Models</td>
+                          <td>
+                            - Principal Component Analysis (PCA)<br>
+                            - t-Distributed Stochastic Neighbor Embedding (t-SNE)<br>
+                            - Independent Component Analysis (ICA)<br>
+                            - Linear Discriminant Analysis (LDA)<br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>4.</td>
+                          <td>Anomaly Detection Models:</td>
+                          <td>
+                            - Isolation Forest</br>
+                            - One-Class SVM (Support Vector Machine)<br>
+                            - Local Outlier Factor (LOF)<br>
+                            - Mahalanobis Distance <br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>5.</td>
+                          <td>Data Visualization Techniques</td>
+                          <td>
+                            - Scatter Plots <br>
+                            - Heatmaps <br>
+                            - Box Plots </br>
+                            - Parallel Coordinates Plots<br>
+                            - Tree Maps <br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>6.</td>
+                          <td>Text Mining and Natural Language Processing (NLP) Models</td>
+                          <td>
+                            - Sentiment Analysis <br>
+                            - Topic Modeling (e.g., Latent Dirichlet Allocation, Non-Negative Matrix Factorization) <br>
+                            - Named Entity Recognition (NER) <br>
+                            - Word Embeddings (e.g., Word2Vec, GloVe) <br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>7.</td>
+                          <td>Pattern Recognition Models</td>
+                          <td>
+                            - Hidden Markov Models (HMM) <br>
+                            - Convolutional Neural Networks (CNN)  <br>
+                            - Recurrent Neural Networks (RNN) <br>
+                            - Long Short-Term Memory (LSTM) Networks <br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>8.</td>
+                          <td>Time Series Analysis Models:</td>
+                          <td>
+                            - AutoRegressive Integrated Moving Average (ARIMA) <br>
+                            - Seasonal Decomposition of Time Series (STL) <br>
+                            - Exponential Smoothing (ETS) <br>
+                            - Prophet (for time series forecasting) <br>
+                          </td>
+                        </tr>
+                      </table>
+
+                      <h5>2. Predictive Models</h5>
+                      <table>
+                        <tr>
+                          <th>Sr. No.</th>
+                          <th>Model</th>
+                          <th>Examples</th>
+                        </tr>
+                        <tr>
+                          <td>1.</td>
+                          <td>Regression Models</td>
+                          <td>
+                            - Linear Regression<br>
+                            - Polynomial Regression<br>
+                            - Ridge Regression<br>
+                            - Lasso Regression<br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>2.</td>
+                          <td>Classification Models</td>
+                          <td>
+                            - Logistic Regression<br>
+                            - Decision Trees<br>
+                            - Random Forest<br>
+                            - Support Vector Machine (SVM)<br>
+                            - Naive Bayes<br>
+                            - k-Nearest Neighbors (k-NN)<br>
+                            <!-- Add more examples as needed -->
+                          </td>
+                        </tr>
+                        <!-- Add more rows for other predictive models -->
+                        <tr>
+                        <td>3.</td>
+                          <td>Time Series Forecasting Models:</td>
+                          <td>
+                            - AutoRegressive Integrated Moving Average (ARIMA)<br>
+                            - Seasonal Decomposition of Time Series (STL)<br>
+                            - Prophet (for time series forecasting)<br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>4.</td>
+                          <td>Neural Networks and Deep Learning Models:</td>
+                          <td>
+                            - Feedforward Neural Networks (FNN)<br>
+                            - Convolutional Neural Networks (CNN)<br>
+                            - Recurrent Neural Networks (RNN)<br>
+                            - Long Short-Term Memory (LSTM) Networks<br>
+                            - Gated Recurrent Units (GRU)<br>
+                            - Transformers<br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>5.</td>
+                          <td>Ensemble Models:</td>
+                          <td>
+                            - Bagging (e.g., Bootstrap Aggregating)<br>
+                            - Boosting (e.g., AdaBoost, Gradient Boosting)<br>
+                            - Stacking<br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>6.</td>
+                          <td>Recommendation Systems Models:</td>
+                          <td>
+                            - Collaborative Filtering<br>
+                            Content-Based Filtering<br>
+                            Hybrid Models (Combining Collaborative and Content-Based Filtering)<br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>7.</td>
+                          <td>Time Series Analysis Models:</td>
+                          <td>
+                            - AutoRegressive Integrated Moving Average (ARIMA)<br>
+                            - Seasonal Decomposition of Time Series (STL)<br>
+                            - Prophet (for time series forecasting)<br>
+                          </td>
+                        </tr>
+                      </table>
+
+
+
+                      <h5>Data mining techniques</h5>
+                      <p>Data mining techniques are used to extract valuable patterns, insights, and knowledge from large datasets. Here are some commonly used data mining techniques:</p>
+                      
+                  
 
                     <h5>Data mining software</h5> 
 
