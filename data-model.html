@@ -127,7 +127,17 @@
     <section id="portfolio-details" class="portfolio-details">
         <div class="container">
             <div class="row gy-4">
-                <h1>Data modeling</h1>
+                <h1>Data modeling and Data mining</h1>
+                <div class="col-lg-8">
+                  <div class="portfolio-details-slider swiper">
+                    <div class="swiper-wrapper align-items-center">
+                      <div class="swiper-slide">
+                        <img src="assets/img/portfolio/data-model-diagram.png" alt="" style="max-width: 600px; max-height: 600px;">
+                      </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                  </div>
+                </div>
 
                 <h3>What Is a Data Model?</h3>
                 <ul style="list-style-type: disc; margin-left: 30px;">
@@ -139,6 +149,9 @@
                 </ul>
 
                 <h3>What is the purpose of a data model?</h3>
+                <div style="max-width: 1200px; max-height: 900px; text-align: center;">
+                  <img src="assets/img/portfolio/data-model-goal.png" alt="" style="max-width: 100%; max-height: 100%;">
+                </div>
                 <p>Data models play a key role in bringing together all segments of an enterprise – IT, business analysts, management and others – to cooperatively design 
                     information systems (and the databases they rely on). These systems require properly defined and formatted data, and models shine a clear light on what 
                     data is required and how it must be structured to support the desired business processes.
@@ -162,6 +175,10 @@
 
                 <h3>Types of data models</h3>
                     <p>There are several types of data models, including:</p>
+                    <div style="max-width: 1200px; max-height: 900px; text-align: center;">
+                      <img src="assets/img/portfolio/data-model.png" alt="" style="max-width: 100%; max-height: 100%;">
+                    </div>
+
 
                     <ul style="list-style-type: disc; margin-left: 30px;">
                     <li><strong>Conceptual Data Model:</strong> This provides a high-level (big-picture view), abstract view of the data in an organization, focusing on entities and their 
@@ -261,20 +278,33 @@
                         </li>
                       </ul>
 
+                      <h3>Benefits of data modeling</h3>
+                      <p>Data modeling makes it easier for developers, data architects, business analysts, and other stakeholders to view and understand relationships among the data in a database or data warehouse. In addition, it can:</p>
+                      <ul style="list-style-type: disc; margin-left: 30px;">
+                        <li>Reduce errors in software and database development.</li>
+                        <li>Increase consistency in documentation and system design across the enterprise.</li>
+                        <li>Improve application and database performance.</li>
+                        <li>Ease data mapping throughout the organization.</li>
+                        <li>Improve communication between developers and business intelligence teams.</li>
+                        <li>Ease and speed the process of database design at the conceptual, logical and physical levels.</li>
+                      </ul>
 
-                      <h3>Some other interesting things to know:</h3>
-                        <ul style="list-style-type: disc; margin-left: 30px;">
-                            <li>Visit my website on <a href="sql-basics.html">Query language.</a></li>
-                            <li>Visit my website on <a href="sql-basic-details.html">SQL.</a></li>
-                            <li>Visit my website on <a href="sql-postgresql.html">PostgreSQL.</a></li>
-                            <li>Visit my website on <a href="scd.html">Slowly changing variables.</a></li>
-                            <li>Visit my website on <a href="snowflake.html">SNowflake.</a></li>
-                            <li>Visit my website on <a href="sql-project.html">SQL project in postgresql.</a></li>
-                            <li>Visit my website on <a href="snowflake-task=stream.html">Snowflake data streaming.</a></li>
-                        </ul>
-
+                      <h3>Data modeling process</h3>
+                      <p>The data modeling process involves designing and creating a conceptual representation of how data should be organized, structured, and stored in a database system. It typically consists of the following steps:</p>
+                      <ul style="list-style-type: disc; margin-left: 30px;">
+                        <li><strong>Identify Requirements: </strong>Understand the requirements of the system or application for which the data model is being developed. This involves gathering information from stakeholders, business analysts, and subject matter experts to determine the entities, attributes, relationships, and constraints that need to be represented.</li>
+                        <li><strong>Conceptual Data Model: </strong>Create a conceptual data model that represents the high-level entities, their attributes, and the relationships between them. The conceptual model focuses on the business or domain concepts and provides an abstract view of the data requirements. Common techniques for creating conceptual models include entity-relationship (ER) diagrams or object-oriented models.</li>
+                        <li><strong>Normalize the Model (Optional):</strong>If working with a relational database, the conceptual model can be normalized to eliminate redundancies and improve data integrity. This step involves applying normalization rules to ensure data is organized efficiently and avoid data anomalies. Normalization involves decomposing entities and defining primary keys, foreign keys, and relationships.</li>
+                        <li><strong>Logical Data Model: </strong>Transform the conceptual model into a logical data model. The logical model represents the data structures and relationships using a specific notation or language. For relational databases, this often involves creating tables, defining columns, specifying data types, and establishing relationships using primary and foreign keys. In other database models, such as document-oriented or graph databases, the logical model may have different representations.</li>
+                        <li><strong>Validate and Refine: </strong>Review and validate the logical data model to ensure it accurately represents the requirements. Collaborate with stakeholders to verify the model's correctness and completeness. Make refinements and adjustments as necessary to address any inconsistencies or issues identified during the validation process.</li>
+                        <li><strong>Physical Data Model: </strong>Convert the logical data model into a physical data model that considers the specific database management system (DBMS) being used. This step involves translating the logical model into the technical implementation details, including specific database structures, indexes, storage considerations, and optimization techniques. The physical data model reflects the technical specifications required for data storage and retrieval.</li>
+                        <li><strong>Implement and Deploy: </strong>Once the physical data model is finalized, it serves as the blueprint for implementing the database schema in the chosen DBMS. Create the necessary database objects (tables, indexes, views, etc.) based on the physical model. Load the data into the database and ensure that it aligns with the defined model.</li>
+                      </ul>
                       
 
+                      <h2>Data mining</h2> 
+                      <p>Data mining is the process of extracting useful information from a collection of data, often from a data warehouse or a set of related data sets.
+                        Data mining relies on effective data collection, warehousing, and computer processing.</p>
 
         
 
@@ -283,6 +313,16 @@
 
 
 
+                      <h3>Some other interesting things to know:</h3>
+                      <ul style="list-style-type: disc; margin-left: 30px;">
+                          <li>Visit my website on <a href="sql-basics.html">Query language.</a></li>
+                          <li>Visit my website on <a href="sql-basic-details.html">SQL.</a></li>
+                          <li>Visit my website on <a href="sql-postgresql.html">PostgreSQL.</a></li>
+                          <li>Visit my website on <a href="scd.html">Slowly changing variables.</a></li>
+                          <li>Visit my website on <a href="snowflake.html">SNowflake.</a></li>
+                          <li>Visit my website on <a href="sql-project.html">SQL project in postgresql.</a></li>
+                          <li>Visit my website on <a href="snowflake-task=stream.html">Snowflake data streaming.</a></li>
+                      </ul>
 
 
 
