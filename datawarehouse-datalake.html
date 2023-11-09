@@ -260,11 +260,6 @@
                         </ul>
                 </ul>
 
-                <h3>OLAP and OLTP systems</h3>
-                <figure style="text-align: center;">
-                    <img src="assets/img/portfolio/OLTP-ETL-and-OLAP-layers.png" alt="" style="max-width: 100%; max-height: 100%;">
-                    <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://phoenixnap.com/kb/oltp-vs-olap" target="_blank">Phonixnap</a> (Architecture of datawarehouse)</figcaption>
-                  </figure>
 
                 <!---- DATA LAKE IS DISCUSSED BELOW  -->
                 <blockquote style="border-left: 5px solid #f7f2f3; background-color: #31cbdf; padding: 20px; color: #f1f0f0;">
@@ -296,6 +291,8 @@
                         <li><strong>Finance:</strong> Financial institutions use data lakes to store and analyze customer data, transaction data, and market data. This data can be used to improve risk management, fraud detection, and investment decisions.</li>
                         <li><strong>Healthcare:</strong> Healthcare organizations use data lakes to store and analyze patient data, medical research data, and clinical trial data. This data can be used to improve patient care, develop new treatments, and reduce costs.</li>
                     </ul>
+
+                <h3>Database vs Data warehouse vs data lake vs data mart</h3>
                 <p>Data lakes are a powerful tool for storing and analyzing large amounts of data. They can be used to support a wide range of business applications, and they are becoming increasingly important as the amount of data that businesses collect and store continues to grow.</p>
 
                 <table>
@@ -484,11 +481,161 @@
                     </ul>
                     </li>
                     </ol>
-                    <p>The choice of tools depends on your specific integration requirements, the technology stack you are using, and whether you are working with on-premises or cloud-based data systems. Many organizations use a combination of these tools and methods to create a robust and efficient data integration strategy that connects data across data warehouses, databases, and data lakes.</p>
+                    <p>The choice of tools depends on your specific integration requirements, the technology stack you are using, and whether you are working with on-premises or cloud-based data systems. Many organizations use a combination 
+                        of these tools and methods to create a robust and efficient data integration strategy that connects data across data warehouses, databases, and data lakes.</p>
 
 
 
+                    <h3>OLAP and OLTP systems</h3>
+                    <p>A Data Warehouse is a central repository (Centralized Database) where all the enterprise data coming from different resources is stored, managed, and analyzed for gaining business insights. 
+                        The data which comes in different formats can be stored in a warehouse and is accessed using some business intelligence tools to query the business problems.</p>
+                    <p>This data is ingested through ETL (Extraction Transformation and Loading) Operations and then is analyzed using OLAP or OLTP System, whichever is used. This process of querying the business 
+                        data for decisions using a centralized database is called Data Warehousing.</p>
+                    <figure style="text-align: center;">
+                        <img src="assets/img/portfolio/OLTP-ETL-and-OLAP-layers1.png" alt="" style="max-width: 100%; max-height: 100%;">
+                        <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://phoenixnap.com/kb/oltp-vs-olap" target="_blank">Phonixnap</a> (Architecture of datawarehouse)</figcaption>
+                      </figure>
 
+                    <ul>
+                        <li><strong>What is OLAP?</strong>
+                            OLAP stands for Online Analytical Processing System. This Data Processing System is used for multidimensional analysis of large volumes of Data. It is mostly preferred for Data Mining 
+                            (Extracting patterns in Large volumes of data), Business Intelligence, and Complex Analytical Calculations like Budget Forecasting, Sales Analysis, etc.
+                        </li>
+                        <li><strong>What is OLTP?</strong> OLTP or Online Transaction Processing System is used to enable real-time executions of huge numbers of transactions by a large number of users. 
+                            Here, the Transaction means a single unit of work that is done to modify the data in the database.<p></p>
+                        <p><strong>For example</strong>, as soon as you withdraw money from the bank, your account balance reflects changes instantly. Or, when you change your account password, it is changed instantly 
+                            without a delay. These are the daily life examples of Transaction Processes in the Database handled using the OLTP System. This is the main difference between OLAP and OLTP.</p>
+                        </li>
+                    </ul>
+
+                    <table>
+                        <thead>
+                            <tr>
+                            <th>Aspect</th>
+                            <th>OLAP (Online Analytical Processing)</th>
+                            <th>OLTP (Online Transactional Processing)</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                            <td></td>
+                            <td>(used for accesing the datafrom the data warehouse)</td>
+                            <td>(used for accesinf the data from data warehouse)</td>
+                            </tr>
+                            <tr>
+                            <td>Nature of Processing</td>
+                            <td>Analytical: Focuses on complex data analysis.</td>
+                            <td>Transactional: Focuses on real-time transactions.</td>
+                            </tr>
+                            <tr>
+                            <td>Data Type</td>
+                            <td>Typically processes historical and aggregated data.</td>
+                            <td>Processes recent and detailed transactional data.</td>
+                            </tr>
+                            <tr>
+                            <td>Usage</td>
+                            <td>Data mining, business intelligence, reporting, complex calculations, forecasting.</td>
+                            <td>E-commerce, ATM transactions, payment processing, reservations, record-keeping.</td>
+                            </tr>
+                            <tr>
+                            <td>Data Structure</td>
+                            <td>Multidimensional, often uses data warehousing.</td>
+                            <td>Relational, follows a normalized schema.</td>
+                            </tr>
+                            <tr>
+                            <td>Query Complexity</td>
+                            <td>Handles complex queries involving aggregations and calculations.</td>
+                            <td>Handles simple queries for transaction processing.</td>
+                            </tr>
+                            <tr>
+                            <td>Performance</td>
+                            <td>Query performance is optimized for large-scale data analysis.</td>
+                            <td>Transaction processing is optimized for speed and concurrency.</td>
+                            </tr>
+                            <tr>
+                            <td>Data Volume</td>
+                            <td>Deals with large volumes of data.</td>
+                            <td>Typically handles smaller, real-time datasets.</td>
+                            </tr>
+                            <tr>
+                            <td>Concurrency</td>
+                            <td>Supports a lower level of concurrent users.</td>
+                            <td>Supports a higher level of concurrent users.</td>
+                            </tr>
+                            <tr>
+                            <td>Database Size</td>
+                            <td>Database size is usually larger.</td>
+                            <td>Database size is comparatively smaller.</td>
+                            </tr>
+                            <tr>
+                            <td>Backup and Recovery</td>
+                            <td>Backup and recovery strategies may vary.</td>
+                            <td>Requires robust backup and recovery mechanisms.</td>
+                            </tr>
+                            <tr>
+                            <td>Schema Design</td>
+                            <td>Often uses denormalized schema (Star Schema).</td>
+                            <td>Follows a normalized schema (Third Normal Form).</td>
+                            </tr>
+                            <tr>
+                            <td>Indexing</td>
+                            <td>Indexing is critical for query performance.</td>
+                            <td>Indexing is important for transaction speed.</td>
+                            </tr>
+                            <tr>
+                            <td>Examples</td>
+                            <td>Business intelligence tools, data warehouses.</td>
+                            <td>E-commerce platforms, banking systems.</td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <ul>
+                            <li><strong>OLTP SYSTEMS:</strong> MYSQL, PostgreSQL, Oracle Database, Microsoft SQL Server.</li>
+                            <li><strong>OLTP SYSTEMS:</strong> Hive, Google BigQuery, Amazon Redshift, Snowflake, SAP HANA, Microsoft SQL Server Analysis Services (SSAS).</li>
+                            <li><strong>Dual Purpose (OLAP and OLTP Capabilities): </strong>Microsoft SQL Server.</li>
+                        </ul>
+                        <p>Keep in mind that OLAP and OLTP serve different purposes within an organization, and the choice between them depends on the specific business requirements and the types of applications being used.</p>
+                        
+                        
+                        <h3>Types of OLAP</h3>
+                        <p>OLAP (Online Analytical Processing) is a category of software and technology used for multidimensional data analysis. There are two primary types of OLAP systems: MOLAP (Multidimensional OLAP) and ROLAP (Relational OLAP), each with its own advantages and disadvantages. Additionally, there is a hybrid type called HOLAP (Hybrid OLAP), which combines elements of both MOLAP and ROLAP. Here's an overview of each type:</p>
+                        <ol>
+                            <li><strong>MOLAP (Multidimensional OLAP): </strong>
+                                <ul>
+                                    <li><strong>Advantages: </strong>
+                                    <ul>
+                                        <li><strong>Fast Query Performance: </strong>MOLAP databases are optimized for multidimensional queries, making them exceptionally fast for analytical and ad-hoc queries.</li>
+                                        <li><strong>Aggregation Support: </strong>They support pre-aggregated data cubes, which are beneficial for summarizing and analyzing large datasets.</li>
+                                        <li><strong>Data Compression: </strong>MOLAP systems often employ efficient compression techniques to reduce storage requirements.</li>
+                                    </ul>
+                                    </li>
+                                    <li><strong>Disadvantages: </strong>
+                                        <ul>
+                                            <li><strong>Storage Overhead: </strong>The storage requirements for MOLAP can be significant due to the pre-aggregated data.</li>
+                                            <li><strong>Data Loading Time: </strong> Loading data into MOLAP databases can be time-consuming, especially for large datasets.</li>
+                                            <li><strong>Limited Scalability: </strong>Scalability can be an issue when dealing with very large datasets.</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><strong></strong></li>
+                        </ol>
+
+
+                        
+                        <p><strong>1. MOLAP (Multidimensional OLAP):</strong></p>
+                        <p><strong>Advantages:</strong></p>
+                        <ul>
+                        <li><strong>Fast Query Performance:</strong> MOLAP databases are optimized for multidimensional queries, making them exceptionally fast for analytical and ad-hoc queries.</li>
+                        <li><strong>Aggregation Support:</strong> They support pre-aggregated data cubes, which are beneficial for summarizing and analyzing large datasets.</li>
+                        <li><strong>Data Compression:</strong> MOLAP systems often employ efficient compression techniques to reduce storage requirements.</li>
+                        </ul>
+                        <p><strong>Disadvantages:</strong></p>
+                        <ul>
+                        <li><strong>Storage Overhead:</strong> The storage requirements for MOLAP can be significant due to the pre-aggregated data.</li>
+                        <li><strong>Data Loading Time:</strong> Loading data into MOLAP databases can be time-consuming, especially for large datasets.</li>
+                        <li><p><strong>Limited Scalability:</strong> Scalability can be an issue when dealing with very large datasets.</p>
 
 
 
