@@ -200,28 +200,285 @@
                     <li>Query tools use the schema to determine which data tables to access and analyze.</li>
                 </ul>
 
-                <img src="assets/img/portfolio/datawarehouse-datalake2.png" alt="" style="max-width: 100%; max-height: 100%;">
+                <figure style="text-align: center;">
+                    <img src="assets/img/portfolio/datawarehouse-3.png" alt="" style="max-width: 100%; max-height: 100%;">
+                    <figcaption style="text-align: center;"><strong>Datawarehouse</strong></figcaption>
+                  </figure>
+                  <figure style="text-align: center;">
+                    <img src="assets/img/portfolio/data-lake3.png" alt="" style="max-width: 100%; max-height: 100%;">
+                    <figcaption style="text-align: center;"><strong>Data lake</strong></figcaption>
+                  </figure>
+                  <figure style="text-align: center;">
+                    <img src="assets/img/portfolio/data-mart-3.png" alt="" style="max-width: 100%; max-height: 100%;">
+                    <figcaption style="text-align: center;"><strong>Data mart</strong></figcaption>
+                  </figure>
 
 
                 <h5>Architecture of the datawarehouse</h5>
-                <ul>
-                    <p>Generally speaking, data warehouses have a three-tier architecture, which consists of a:</p>
-                    <li><strong>Bottom tier:</strong> The bottom tier consists of a data warehouse server, usually a relational database system, which collects, cleanses, and transforms data from multiple data sources through a process known as Extract, Transform, and Load (ETL) or a process known as Extract, Load, and Transform (ELT).</li>
-                    <li><strong>Middle tier:</strong> The middle tier consists of an OLAP (i.e. online analytical processing) server which enables fast query speeds. Three types of OLAP models can be used in this tier, which are known as:
+                
+                <ul style="list-style-type: disc; margin-left: 30px;">
+                    <p>The three-tier architecture of a data warehouse involves three distinct layers, each serving specific functions in the data processing and reporting pipeline. 
+                        Here's an overview of the three-tier structure:</p>
+                    <li><strong>Data Source Layer (Bottom tier):</strong> The bottom tier consists of a data warehouse server, usually a relational database system, 
+                        which collects, cleanses, and transforms data from multiple data sources through a process known as Extract, Transform, and Load (ETL) or a 
+                        process known as Extract, Load, and Transform (ELT).
+                        <ul>
+                            <li>The first tier, often referred to as the bottom tier, consists of various data sources.</li>
+                            <li>Data is extracted from operational databases, external systems, flat files, or other sources.</li>
+                            <li>Initial processing may occur at this stage, such as data cleansing and extraction.</li>
+                        </ul><br>
+                    </li>
+                    <li><strong>Data Warehouse Layer (Middle tier):</strong> 
+                        <ul>
+                            <li>The second tier, known as the middle tier, is the core data warehouse layer.</li>
+                            <li>ETL (Extract, Transform, Load) processes operate in this layer to transform raw data into a format suitable for analysis.</li>
+                            <li>The transformed data is loaded into the data warehouse database, following dimensional modeling principles (star schema or snowflake schema).</li>
+                            <li>The data warehouse stores structured and organized data, including fact tables (containing metrics) and dimension tables (containing descriptive attributes).</li>
+                            <li>This layer often includes a staging area for temporary storage before data undergoes transformations.</li>
+                        </ul>
+
+                        The middle tier consists of an OLAP (i.e. online analytical processing) server which enables fast query speeds. Three types of OLAP models can be used in this tier, which are known as:
                         <ul>
                             <li>ROLAP</li>
                             <li>MOLAP</li>
                             <li>HOLAP</li>
                         </ul>
                     </li>
-                    <li><strong>Top tier: </strong>The top tier is represented by some kind of front-end user interface or reporting tool, which enables end users to conduct ad-hoc data analysis on their business data and presents results through reporting, analysis, and data mining tools.</li>
+                    <li><strong>Frontend/Client Layer (Top tier): </strong>The top tier is represented by some kind of front-end user interface or reporting tool, which enables end users to conduct 
+                        ad-hoc data analysis on their business data and presents results through reporting, analysis, and data mining tools.</li>
+                        <ul>
+                            <li>The third tier, also known as the top tier, is the frontend or client layer.</li>
+                            <li>Business users interact with this layer to access and analyze the data stored in the data warehouse.</li>
+                            <li>Business Intelligence (BI) tools, reporting tools, and analytical applications reside in this layer.</li>
+                            <li>Users can run queries, generate reports, and visualize data to gain insights and make informed decisions.</li>
+                            <li>OLAP (Online Analytical Processing) engines facilitate multidimensional analysis.</li>
+                        </ul>
                 </ul>
 
+                <h3>OLAP and OLTP systems</h3>
+                <figure style="text-align: center;">
+                    <img src="assets/img/portfolio/OLTP-ETL-and-OLAP-layers.png" alt="" style="max-width: 100%; max-height: 100%;">
+                    <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://phoenixnap.com/kb/oltp-vs-olap" target="_blank">Phonixnap</a> (Architecture of datawarehouse)</figcaption>
+                  </figure>
 
+                <!---- DATA LAKE IS DISCUSSED BELOW  -->
+                <blockquote style="border-left: 5px solid #CEB5BC; background-color: #DFD531; padding: 10px; color: #000000;">
+                <h2>Datalake</h2></blockquote>
+                    <p>A data lake is a centralized repository that stores all your structured and unstructured data at any scale. You can store your data as-is, without having to structure the data, and run different types of analytics—from dashboards and visualizations to big data processing, real-time analytics, and machine learning to guide better decisions.</p>
+                    <p>Data lakes are often used in conjunction with data warehouses, but they are not the same thing. A data warehouse is a structured data store that is optimized for querying and reporting on historical data. A data lake, on the other hand, is a scalable and flexible data store that can store any type of data, regardless of its structure.</p>
+                    
+                    <img src="assets/img/portfolio/Data-lake-1.png" alt="Types of data" style="max-width: 90%; max-height: 90%;">
+                
+                    <h3 id="Benefits">Benefits<a class="anchor-link" href="#Benefits">&#182;</a></h3>
+                    <p>Some of the benefits of using a data lake include:</p>
+                    <ul style="list-style-type: disc; margin-left: 30px;">
+                        <li><strong>Scalability:</strong> Data lakes can scale to store any amount of data.</li>
+                        <li><strong>Flexibility:</strong> Data lakes can store any type of data, regardless of its structure.</li>
+                        <li><strong>Performance:</strong> Data lakes can be optimized for different types of analytics, including batch processing, real-time analytics, and machine learning.</li>
+                        <li><strong>Cost-effectiveness:</strong> Data lakes can be more cost-effective than traditional data warehouses, especially for storing large amounts of data.</li>
+                    </ul>
+                    <h3 id="Chalanges">Chalanges<a class="anchor-link" href="#Chalanges">&#182;</a></h3><p>Some of the challenges of using a data lake include:</p>
+                    <ul style="list-style-type: disc; margin-left: 30px;">
+                        <li><strong>Complexity:</strong> Data lakes can be more complex to manage and maintain than traditional data warehouses.</li>
+                        <li><strong>Security:</strong> Data lakes need to be properly secured to protect sensitive data.</li>
+                        <li><strong>Governance:</strong> Data lakes need to be properly governed to ensure that data is used in a responsible and ethical manner.</li>
+                    </ul>
+                    <p>Overall, data lakes are a powerful tool for storing and analyzing large amounts of data. They can be used to support a wide range of business applications, including customer intelligence, fraud detection, and product development.</p>
+                <h2 id="Applications">Applications<a class="anchor-link" href="#Applications">&#182;</a></h2><p>Here are some examples of how data lakes are being used in the real world:</p>
+                    <ul style="list-style-type: disc; margin-left: 30px;">
+                        <li><strong>Retail:</strong> Retailers use data lakes to store and analyze customer data, product data, and sales data. This data can be used to improve customer targeting, product recommendations, and inventory management.</li>
+                        <li><strong>Finance:</strong> Financial institutions use data lakes to store and analyze customer data, transaction data, and market data. This data can be used to improve risk management, fraud detection, and investment decisions.</li>
+                        <li><strong>Healthcare:</strong> Healthcare organizations use data lakes to store and analyze patient data, medical research data, and clinical trial data. This data can be used to improve patient care, develop new treatments, and reduce costs.</li>
+                    </ul>
+                <p>Data lakes are a powerful tool for storing and analyzing large amounts of data. They can be used to support a wide range of business applications, and they are becoming increasingly important as the amount of data that businesses collect and store continues to grow.</p>
 
+                <table>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Data Warehouse</th>
+                        <th>Database</th>
+                        <th>Data Lake</th>
+                        <th>Data Mart</th>
+                        </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        <td><strong>Purpose</strong></td>
+                        <td>Designed for analytical processing.</td>
+                        <td>Designed for transactional data management.</td>
+                        <td>Designed for storing raw, unstructured data.</td>
+                        <td>Subset of a data warehouse focused on specific business areas.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data Type</strong></td>
+                        <td>Contains integrated and historical data.</td>
+                        <td>Typically contains structured, transactional data.</td>
+                        <td>Stores raw and structured, semi-structured, or unstructured data.</td>
+                        <td>Contains summarized and pre-aggregated data for specific use cases.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data Structure</strong></td>
+                        <td>Typically follows a structured schema (Star Schema or Snowflake Schema).</td>
+                        <td>Follows a normalized schema (relational database model).</td>
+                        <td>Schema-on-read, allowing flexible data structures.</td>
+                        <td>Follows a dimensional model (Star Schema) for ease of reporting.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Schema Design</strong></td>
+                        <td>Optimized for query performance.</td>
+                        <td>Optimized for efficient data storage and retrieval.</td>
+                        <td>Flexible schema, data can be ingested without predefined structure.</td>
+                        <td>Designed for ease of reporting and analysis.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Query and Analytics</strong></td>
+                        <td>Designed for complex data analysis and reporting.</td>
+                        <td>Supports simple queries and transactional operations.</td>
+                        <td>Suitable for ad-hoc queries and big data analytics.</td>
+                        <td>Optimized for specific business units or departments' analytics.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data Integration</strong></td>
+                        <td>Integrates data from various sources for a unified view.</td>
+                        <td>Typically focuses on data from a single application or system.</td>
+                        <td>Supports data from various sources with varying structures.</td>
+                        <td>Integrates data relevant to a specific business area.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Performance Optimization</strong></td>
+                        <td>Utilizes indexing, caching, and parallel processing.</td>
+                        <td>Optimized for ACID (Atomicity, Consistency, Isolation, Durability) properties.</td>
+                        <td>Performance tuning is performed during data processing.</td>
+                        <td>Designed for fast query response times for specific use cases.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Scalability</strong></td>
+                        <td>Scalable both vertically and horizontally to handle large data volumes.</td>
+                        <td>Scalability depends on the database system; typically vertical scaling.</td>
+                        <td>Scales horizontally to accommodate growing data needs.</td>
+                        <td>Scales according to the needs of the specific business area.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tools and Technologies</strong></td>
+                        <td>Uses specialized data warehousing solutions (e.g., Redshift, BigQuery).</td>
+                        <td>Utilizes relational database management systems (e.g., Oracle, MySQL).</td>
+                        <td>Utilizes distributed storage systems (e.g., Hadoop, Azure Data Lake Storage).</td>
+                        <td>May use BI tools for reporting and analytics.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Use Cases</strong></td>
+                        <td>Business intelligence, reporting, complex analytics.</td>
+                        <td>Transactional applications, e-commerce, record-keeping.</td>
+                        <td>Big data analytics, data science, machine learning.</td>
+                        <td>Department-specific analytics, budgeting, and forecasting.</td>
+                    </tr>
+                  </tbody>
+                  </table>
 
-
-
+                  <h3 id="Tools-used-to-intergrate-the-warehouses,-databases,-and-data-lakes">Tools used to intergrate the warehouses, databases, and data lakes<a class="anchor-link" href="#Tools-used-to-intergrate-the-warehouses,-databases,-and-data-lakes">&#182;</a></h3><p>Integrating data warehouses, databases, and data lakes often involves a combination of tools and technologies to facilitate data movement, transformation, and synchronization across these components. Here are some commonly used tools and methods for integrating them:</p>
+                  <ol style="list-style-type: disc; margin-left: 30px;">
+                    <li><p><strong>ETL (Extract, Transform, Load) Tools:</strong></p>
+                        <ul>
+                            <li>ETL tools are designed to extract data from source systems, transform it into the desired format, and load it into a target system, which can be a data warehouse, database, or data lake.</li>
+                            <li><p><strong>Popular ETL tools include</strong></p>
+                                <ul>
+                                    <li>Apache NiFi, </li>
+                                    <li>Talend, </li>
+                                    <li>Informatica PowerCenter, </li>
+                                    <li>Microsoft SQL Server Integration Services (SSIS), and </li>
+                                    <li><p>Apache Spark</p>
+                                    <p>for batch and stream processing.</p>
+                                </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><p><strong>Data Integration Platforms:</strong></p>
+                        <ul>
+                            <li>These platforms provide a comprehensive solution for data integration, including data profiling, cleansing, transformation, and loading.</li>
+                            <li><p>Examples include</p>
+                            <ul>
+                                <li>Apache Nifi, </li>
+                                <li>Apache Camel, and </li>
+                                <li><p>Apache Kafka</p>
+                                <p>for stream processing.</p>
+                            </li>
+                            </ul>
+                        </li>
+                        </ul>
+                    </li>
+                    <li><p><strong>Data Integration Middleware:</strong></p>
+                    <ul>
+                    <li>Middleware solutions facilitate communication and data transfer between different systems, including data warehouses, databases, and data lakes.</li>
+                    <li><p><strong>Tools:</strong></p>
+                    <ul>
+                    <li>Apache Kafka, </li>
+                    <li>RabbitMQ, and </li>
+                    <li><p>Apache Pulsar</p>
+                    <p>are often used for real-time data streaming and messaging.</p>
+                    </li>
+                    </ul>
+                    </li>
+                    </ul>
+                    </li>
+                    <li><p><strong>Data Replication Tools:</strong></p>
+                    <ul>
+                    <li>Data replication tools enable real-time or near-real-time data synchronization between databases and data warehouses.</li>
+                    <li><p><strong>Solutions:</strong></p>
+                    <ul>
+                    <li>Oracle GoldenGate, </li>
+                    <li>AWS Database Migration Service, and </li>
+                    <li><p>Microsoft Azure Data Factory</p>
+                    <p>offer data replication capabilities.</p>
+                    </li>
+                    </ul>
+                    </li>
+                    </ul>
+                    </li>
+                    <li><p><strong>Data Virtualization Tools:</strong></p>
+                    <ul>
+                    <li>Data virtualization allows organizations to create a unified, virtual view of data spread across different sources without physically moving it.</li>
+                    <li><p><strong>Tools:</strong></p>
+                    <ul>
+                    <li>Denodo, </li>
+                    <li>Informatica Enterprise Data Catalog, and </li>
+                    <li><p>Red Hat JBoss Data Virtualization</p>
+                    <p>offer data virtualization capabilities.</p>
+                    </li>
+                    </ul>
+                    </li>
+                    </ul>
+                    </li>
+                    <li><p><strong>APIs and Web Services:</strong></p>
+                    <ul>
+                    <li>APIs (Application Programming Interfaces) and web services can be used to exchange data between systems programmatically.</li>
+                    <li>RESTful APIs, SOAP APIs, and GraphQL are common protocols for data integration via web services.</li>
+                    </ul>
+                    </li>
+                    <li><p><strong>Custom Scripting and Coding:</strong></p>
+                    <ul>
+                    <li>For highly customized integration requirements, organizations may develop custom scripts or code using programming languages like Python, Java, or Ruby.</li>
+                    </ul>
+                    </li>
+                    <li><p><strong>Data Lake Services:</strong></p>
+                    <ul>
+                    <li>Cloud-based data lake services like AWS Lake Formation, Azure Data Lake Storage, and Google Cloud Storage often provide built-in tools for integrating data with various data warehousing and database services.</li>
+                    </ul>
+                    </li>
+                    <li><p><strong>Data Integration Platforms as a Service (iPaaS):</strong></p>
+                    <ul>
+                    <li>iPaaS solutions offer cloud-based platforms for connecting various applications and data sources, including data lakes, data warehouses, and databases.</li>
+                    <li>Examples include Dell Boomi, MuleSoft Anypoint Platform, and SnapLogic.</li>
+                    </ul>
+                    </li>
+                    <li><p><strong>Change Data Capture (CDC) Tools:</strong></p>
+                    <ul>
+                    <li>CDC tools monitor changes in source data and capture them in real-time or batch mode for integration with target systems.</li>
+                    <li>Tools like Debezium and Apache Nifi support CDC functionality.</li>
+                    </ul>
+                    </li>
+                    </ol>
+                    <p>The choice of tools depends on your specific integration requirements, the technology stack you are using, and whether you are working with on-premises or cloud-based data systems. Many organizations use a combination of these tools and methods to create a robust and efficient data integration strategy that connects data across data warehouses, databases, and data lakes.</p>
 
 
 
