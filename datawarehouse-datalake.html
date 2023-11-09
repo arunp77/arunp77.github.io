@@ -678,18 +678,48 @@
                             <p>The choice between MOLAP, ROLAP, or HOLAP depends on an organization's specific requirements, data volume, query performance needs, and existing technology infrastructure. In practice, some organizations use a combination of these OLAP types to address different aspects of their analytical needs.</p>
                         </ol>
 
-
+                        <h3 id="OLAP-operation">OLAP operation<a class="anchor-link" href="#OLAP-operation">&#182;</a></h3>
+                        <p>OLAP (Online Analytical Processing) operations are a set of data manipulation techniques used for querying and analyzing multidimensional data stored in OLAP databases or data cubes. These operations help users gain insights from large datasets quickly and effectively. There are several fundamental OLAP operations:</p>
                         
-                        
+                        <ol style="margin-left: 30px;">
+                            <li><p><strong>Slice:</strong> Slicing involves selecting a single dimension from a multidimensional cube to view a "slice" of the data. This operation allows users to focus on a specific dimension's values while keeping all other dimensions constant. For example, you can slice a sales data cube to view sales figures for a particular product category across different time periods.</p>
+                                <figure style="text-align: center;">
+                                    <img src="assets/img/portfolio/data-warehouse-slice-operation.png" alt="" style="max-width: 80%; max-height: 80%;">
+                                    <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://www.javatpoint.com/olap-operations" target="_blank">javapoint</a></figcaption>
+                                </figure>
+                            </li>
+                            <li><p><strong>Dice:</strong> Dicing is similar to slicing but involves selecting specific values or ranges within multiple dimensions simultaneously. It allows users to create a subcube by specifying conditions for multiple dimensions. For instance, you could dice a data cube to examine sales data for a particular region, product category, and time frame.</p>
+                                <figure style="text-align: center;">
+                                    <img src="assets/img/portfolio/data-warehouse-dice-operation.png" alt="" style="max-width: 80%; max-height: 80%;">
+                                    <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://www.javatpoint.com/olap-operations" target="_blank">javapoint</a></figcaption>
+                                </figure>
+                            </li>
+                            <li><p><strong>Roll-up (Climb):</strong> Roll-up involves aggregating data from a lower-level dimension to a higher-level dimension. It moves up the hierarchy to see summarized or aggregated data. For instance, you can roll up sales data from daily to monthly or yearly totals to get a broader perspective.</p>
+                                <figure style="text-align: center;">
+                                    <img src="assets/img/portfolio/data-warehouse-rollup-operation.png" alt="" style="max-width: 80%; max-height: 80%;">
+                                    <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://www.javatpoint.com/olap-operations" target="_blank">javapoint</a></figcaption>
+                                </figure>
+                            </li>
+                            <li><p><strong>Drill-down (Dig):</strong> Drill-down is the opposite of roll-up. It involves breaking down aggregated data into more detailed levels. Users can explore data at finer granularity by drilling down. For example, you can drill down from yearly sales to monthly, weekly, or daily sales figures.</p>
+                                <figure style="text-align: center;">
+                                    <img src="assets/img/portfolio/data-warehouse-drilldown-operation.png" alt="" style="max-width: 80%; max-height: 80%;">
+                                    <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://www.javatpoint.com/olap-operations" target="_blank">javapoint</a></figcaption>
+                                </figure>
+                            </li>
+                            <li><p><strong>Pivot (Rotate):</strong> Pivoting reorients the data cube to view it from a different perspective. It involves swapping the dimensions, which can provide alternative views of the data. Pivoting can help users analyze data from various angles and dimensions.</p>
+                                <figure style="text-align: center;">
+                                    <img src="assets/img/portfolio/data-warehouse-pivot-operation.png" alt="" style="max-width: 80%; max-height: 80%;">
+                                    <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://www.javatpoint.com/olap-operations" target="_blank">javapoint</a></figcaption>
+                                </figure>
+                            </li>
+                        </ol>
 
-
-
-
-
+                        <p>These OLAP operations are essential for business intelligence, reporting, and decision support systems. They enable users to navigate and explore multidimensional data efficiently, making it easier to discover insights and make informed decisions. The specific operations and functionalities may vary depending on the OLAP system or tool being used.</p>
 
 
                 <h3>Some other interesting things to know:</h3>
                       <ul style="list-style-type: disc; margin-left: 30px;">
+                          <li> Visit <a href="datawarehouse-dimnesion-modeling.html">Data warehouse dimension modeling</a></li>
                           <li>Visit the <a href="https://www.javatpoint.com/data-mining">Data mining tutorial</a></li>
                           <li>Visit my repository on <a href="https://github.com/arunp77/Database-datapipeline-ETL/tree/main/Database">GitHub for Bigdata, Databases, DBMS, Data modling, Data mining.</a></li>
                           <li>Visit my website on <a href="sql-basic-details.html">SQL.</a></li>
