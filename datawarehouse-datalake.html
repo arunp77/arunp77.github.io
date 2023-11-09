@@ -492,9 +492,9 @@
                     <p>This data is ingested through ETL (Extraction Transformation and Loading) Operations and then is analyzed using OLAP or OLTP System, whichever is used. This process of querying the business 
                         data for decisions using a centralized database is called Data Warehousing.</p>
                     <figure style="text-align: center;">
-                        <img src="assets/img/portfolio/OLTP-ETL-and-OLAP-layers1.png" alt="" style="max-width: 100%; max-height: 100%;">
+                        <img src="assets/img/portfolio/OLTP-ETL-and-OLAP-layers1.png" alt="" style="max-width: 90%; max-height: 90%;">
                         <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://phoenixnap.com/kb/oltp-vs-olap" target="_blank">Phonixnap</a> (Architecture of datawarehouse)</figcaption>
-                      </figure>
+                    </figure>
 
                     <ul>
                         <li><strong>What is OLAP?</strong>
@@ -624,26 +624,63 @@
                                             <li><strong>Limited Scalability: </strong>Scalability can be an issue when dealing with very large datasets.</li>
                                         </ul>
                                     </li>
+                                    <figure style="text-align: center;">
+                                        <img src="assets/img/portfolio/data-warehouse-MOLAP.png" alt="" style="max-width: 90%; max-height: 90%;">
+                                        <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://www.javatpoint.com/data-warehouse-types-of-olap" target="_blank">javapoint</a></figcaption>
+                                    </figure>
                                 </ul>
                             </li>
-                            <li><strong></strong></li>
+                            <li><strong>ROLAP (Relational OLAP):</strong>
+                                <ul>
+                                    <li><strong>Advantages: </strong>
+                                        <ul>
+                                            <li><strong>Scalability:</strong> ROLAP systems can handle very large datasets and are suitable for organizations with extensive data volumes.</li>
+                                            <li><strong>Flexibility:</strong> They work with existing relational database management systems (RDBMS), making them compatible with a wide range of data sources.</li>
+                                            <li><strong>Data Integration:</strong> ROLAP systems can seamlessly integrate with other business applications and processes.</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Disadvantages: </strong>
+                                        <ul>
+                                            <li><strong>Query Performance:</strong> Analytical queries in ROLAP can be slower than MOLAP due to the relational nature of data storage.</li>
+                                            <li><strong>Complexity:</strong> Designing and maintaining ROLAP systems can be more complex, as they often require writing complex SQL queries.</li>
+                                            <li><strong>Lack of Aggregation:</strong> ROLAP systems may require more effort to create and manage aggregated data for performance optimization.</li>
+                                        </ul>
+                                    </li>
+                                    <figure style="text-align: center;">
+                                        <img src="assets/img/portfolio/data-warehouse-ROLAP.png" alt="" style="max-width: 90%; max-height: 90%;">
+                                        <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://www.javatpoint.com/data-warehouse-types-of-olap" target="_blank">javapoint</a></figcaption>
+                                    </figure>
+                                </ul>
+                            </li>
+                            <li><strong>HOLAP (Hybrid OLAP):</strong>
+                                <p>HOLAP systems aim to combine the advantages of both MOLAP and ROLAP while mitigating their disadvantages. Here are some characteristics:</p>
+                                <ul>
+                                    <li><strong>Advantages:</strong>
+                                        <ul>
+                                            <li><strong>Combines Speed and Scalability:</strong> HOLAP systems attempt to provide the query speed of MOLAP with the scalability of ROLAP.</li>
+                                            <li><strong>Flexible Storage:</strong> They allow for a mix of pre-aggregated and relational data storage, providing more flexibility in data management.</li>
+                                            <li><strong>Adaptable to Varying Data Needs:</strong> HOLAP can dynamically switch between storage modes based on query complexity.</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Disavantages:</strong>
+                                        <ul>
+                                            <li><strong>Complex to Implement:</strong> Setting up HOLAP systems can be more complex than MOLAP or ROLAP alone.</li>
+                                            <li><p><strong>Potential Performance Trade-offs:</strong> While HOLAP aims to balance speed and scalability, it may not achieve the same query performance as pure MOLAP systems.</p>
+                                                <figure style="text-align: center;">
+                                                    <img src="assets/img/portfolio/data-warehouse-HOLAP.png" alt="" style="max-width: 90%; max-height: 90%;">
+                                                    <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://www.javatpoint.com/data-warehouse-types-of-olap" target="_blank">javapoint</a></figcaption>
+                                                </figure>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <p>The choice between MOLAP, ROLAP, or HOLAP depends on an organization's specific requirements, data volume, query performance needs, and existing technology infrastructure. In practice, some organizations use a combination of these OLAP types to address different aspects of their analytical needs.</p>
                         </ol>
 
 
                         
-                        <p><strong>1. MOLAP (Multidimensional OLAP):</strong></p>
-                        <p><strong>Advantages:</strong></p>
-                        <ul>
-                        <li><strong>Fast Query Performance:</strong> MOLAP databases are optimized for multidimensional queries, making them exceptionally fast for analytical and ad-hoc queries.</li>
-                        <li><strong>Aggregation Support:</strong> They support pre-aggregated data cubes, which are beneficial for summarizing and analyzing large datasets.</li>
-                        <li><strong>Data Compression:</strong> MOLAP systems often employ efficient compression techniques to reduce storage requirements.</li>
-                        </ul>
-                        <p><strong>Disadvantages:</strong></p>
-                        <ul>
-                        <li><strong>Storage Overhead:</strong> The storage requirements for MOLAP can be significant due to the pre-aggregated data.</li>
-                        <li><strong>Data Loading Time:</strong> Loading data into MOLAP databases can be time-consuming, especially for large datasets.</li>
-                        <li><p><strong>Limited Scalability:</strong> Scalability can be an issue when dealing with very large datasets.</p>
-
+                        
 
 
 
