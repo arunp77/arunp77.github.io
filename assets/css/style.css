@@ -158,7 +158,7 @@ code.python {
     padding-right: 12px;
   }
   grid-template-columns: repeat(auto-fit, minmax(200px, ifr));
-  gap:2rem;
+  gap: 2rem;
 }
 
 /*--------------------------------------------------------------
