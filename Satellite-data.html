@@ -204,6 +204,7 @@
             <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://training.eumetsat.int/mod/book/tool/print/index.php?id=11832">https://training.eumetsat.int</a></figcaption>
           </figure>
 
+          <section id="Data-Transformation-required">
           <h3 id="Data-Transformation-required">Data Transformation required<a class="anchor-link" href="#Data-Transformation-required">&#182;</a></h3><p>Level 0 (L0) data represents the raw, unprocessed data directly received from a satellite's sensors. Transforming Level 0 data into Level 1 (L1) involves several essential steps to convert the raw sensor measurements into physically meaningful units. Here's a step-by-step process for this transformation:</p>
             <p><strong>Step 1: Data Reception</strong></p>
             <ul>
@@ -263,8 +264,9 @@
             <li>The data is ready for scientific analysis, and researchers can use it for various applications, including environmental monitoring, climate studies, and more.</li>
             </ul>
             <p>The transformation from Level 0 to Level 1 data ensures that the data is accurate, calibrated, and georeferenced, making it suitable for a wide range of scientific and operational purposes. This processed data can be further refined and used to derive higher-level data products at subsequent processing levels (e.g., Level 2, Level 3) for specific scientific applications.</p>
+          </section>
 
-
+          <section id="Metadata-in-level-0-data">
           <h3 id="Metadata-in-level-0-data">Metadata in level-0 data<a class="anchor-link" href="#Metadata-in-level-0-data">&#182;</a></h3><p>Metadata in the context of satellite-based data collections refers to essential information about the satellite data itself. It provides context, documentation, and details that help users understand and work with the data. Metadata is crucial for ensuring data integrity, usability, and traceability. Here are key components of metadata for satellite-based data:</p>
             <ol>
             <li><p><strong>Satellite Information:</strong></p>
@@ -335,28 +337,43 @@
             </ul>
             </li>
             </ol>
-            <p>Metadata is crucial for researchers, scientists, and data analysts to effectively utilize satellite data for various applications, including environmental monitoring, climate studies, disaster management, and more. It helps ensure data traceability, reproducibility, and proper interpretation.</p>
+            <p>Metadata is crucial for researchers, scientists, and data analysts to effectively utilize satellite data for various applications, including environmental 
+              monitoring, climate studies, disaster management, and more. It helps ensure data traceability, reproducibility, and proper interpretation.</p>
+            </section>
 
-
-            <h3 id="Voltage-values-in-Level-0-data">Voltage values in Level-0 data<a class="anchor-link" href="#Voltage-values-in-Level-0-data">&#182;</a></h3><p>In the context of collecting raw data from satellite sensors, "voltage values" refer to one of the ways that certain types of sensors record measurements. When a sensor detects a physical quantity, such as light intensity or temperature, it often generates an electrical signal proportional to that quantity. This electrical signal is typically in the form of voltage.</p>
+            <section id="Voltage-values-in-Level-0-data">
+            <h3>Voltage values in Level-0 data</h3>
+              <p>In the context of collecting raw data from satellite sensors, "voltage values" refer to one of the ways that certain types of sensors record measurements. 
+                When a sensor detects a physical quantity, such as light intensity or temperature, it often generates an electrical signal proportional to that quantity. 
+                This electrical signal is typically in the form of voltage.</p>
               <p>Here's a more detailed explanation:</p>
               <ol>
-                <li><p><strong>Sensor Output:</strong> Satellite sensors are designed to capture various types of data, such as imagery, temperature, or radiation levels. When these sensors interact with the environment, they produce an electrical signal that corresponds to the measured quantity.</p>
+                <li><p><strong>Sensor Output:</strong> Satellite sensors are designed to capture various types of data, such as imagery, temperature, or radiation levels. 
+                  When these sensors interact with the environment, they produce an electrical signal that corresponds to the measured quantity.</p>
                 </li>
-                <li><p><strong>Voltage as a Signal:</strong> In many cases, this electrical signal is in the form of voltage. The magnitude of the voltage signal is directly related to the quantity being measured. For example, in an optical sensor, the amount of light detected can be translated into a voltage signal where higher light intensity corresponds to higher voltage values.</p>
+                <li><p><strong>Voltage as a Signal:</strong> In many cases, this electrical signal is in the form of voltage. The magnitude of the voltage signal is directly 
+                  related to the quantity being measured. For example, in an optical sensor, the amount of light detected can be translated into a voltage signal where higher 
+                  light intensity corresponds to higher voltage values.</p>
                 </li>
-                <li><p><strong>Analog-to-Digital Conversion:</strong> Before transmitting the data, the analog voltage signal is often converted into a digital representation. This process is called analog-to-digital conversion (ADC). In ADC, the continuous analog voltage is sampled at discrete intervals and assigned digital values (digital counts).</p>
+                <li><p><strong>Analog-to-Digital Conversion:</strong> Before transmitting the data, the analog voltage signal is often converted into a digital representation. 
+                  This process is called analog-to-digital conversion (ADC). In ADC, the continuous analog voltage is sampled at discrete intervals and assigned digital values 
+                  (digital counts).</p>
                 </li>
-                <li><p><strong>Digital Counts:</strong> These digital values, referred to as "digital counts" or simply "counts," are then transmitted as part of the raw data. Each count represents a specific voltage level recorded by the sensor during its measurement.</p>
+                <li><p><strong>Digital Counts:</strong> These digital values, referred to as "digital counts" or simply "counts," are then transmitted as part of the raw data. 
+                  Each count represents a specific voltage level recorded by the sensor during its measurement.</p>
                 </li>
               </ol>
-              <p>For instance, if you have an optical sensor on a satellite that measures sunlight intensity, it might generate voltage values as it detects varying levels of sunlight. These voltage values are then digitized and transmitted as part of the raw data to ground stations or receivers for further processing and analysis.</p>
-              <p>In summary, "voltage values" in this context refer to the electrical signals generated by satellite sensors to represent the physical quantities they are designed to measure. These signals are converted into digital counts for transmission and subsequent data processing.</p>
+              <p>For instance, if you have an optical sensor on a satellite that measures sunlight intensity, it might generate voltage values as it detects varying levels 
+                of sunlight. These voltage values are then digitized and transmitted as part of the raw data to ground stations or receivers for further processing and analysis.</p>
+              <p>In summary, "voltage values" in this context refer to the electrical signals generated by satellite sensors to represent the physical quantities they are 
+                designed to measure. These signals are converted into digital counts for transmission and subsequent data processing.</p>
 
 
 
               <p><span style="color:red"><strong>Radiance or Reflectance:</strong></span></p>
-              <p>Radiance and reflectance are two fundamental radiometric quantities used in remote sensing and satellite imagery to describe the properties of the reflected or emitted electromagnetic radiation from surfaces on Earth. These quantities are used to quantify the amount of light or radiation observed by remote sensing sensors. Here's an explanation of each, along with their formulas:</p>
+              <p>Radiance and reflectance are two fundamental radiometric quantities used in remote sensing and satellite imagery to describe the properties of the reflected 
+                or emitted electromagnetic radiation from surfaces on Earth. These quantities are used to quantify the amount of light or radiation observed by remote sensing 
+                sensors. Here's an explanation of each, along with their formulas:</p>
               <ol>
                 <li><strong>Radiance (L):</strong>
                   <ul>
@@ -383,7 +400,8 @@
                         of Atmoshphere (TOA) radiance L<sub>t</sub> and so the contribution resulting from processes such as the atmosphere such as the 
                         atmoshphere's scattering and absorption needs to be accounted for -termed Atmospheric  Correction (AC).
 
-                    $$L_t(\lambda) = L_r(\lambda)+ L_a(\lambda)+L_{ra}(\lambda)+t(\lambda)L_{wc}(\lambda)+T(\lambda)L_{g}(\lambda)+t(\lambda)t_0(\lambda)\text{cos}(\theta_0)L_{wn}(\lambda)$$
+                    $$L_t(\lambda) = L_r(\lambda)+ L_a(\lambda)+L_{ra}(\lambda)+t(\lambda)L_{wc}(\lambda)+T(\lambda)L_{g}(\lambda)+t(\lambda)t_0(\lambda)\text{cos}(\theta_0)
+                    L_{wn}(\lambda)$$
 
                     where</p>
                     
@@ -402,7 +420,9 @@
 
                 <li><strong>Reflectance (ρ) or Reflectance Factor (RF):</strong>
                   <ul>
-                    <li><strong>Definition:</strong> Reflectance measures the ratio of reflected light from a surface to the incident light upon it. It quantifies how much of the incoming radiation is reflected by the surface. Reflectance is usually expressed as a dimensionless value between 0 and 1, but it can be multiplied by 100 to express it as a percentage.</li>
+                    <li><strong>Definition:</strong> Reflectance measures the ratio of reflected light from a surface to the incident light upon it. It quantifies how much of 
+                      the incoming radiation is reflected by the surface. Reflectance is usually expressed as a dimensionless value between 0 and 1, but it can be multiplied 
+                      by 100 to express it as a percentage.</li>
                     <li><strong>Units:</strong> Reflectance is a dimensionless quantity or percentage.</li>
                     <li><strong>Formula:</strong> The formula for reflectance is given by:
                     $$
@@ -416,66 +436,82 @@
                     </ul>
                   </ul>
               </ol>
-              <p>The calculation of reflectance often involves radiometric calibration to convert sensor radiance measurements to physical units and account for atmospheric effects. Reflectance is an important quantity in remote sensing because it allows for the comparison of data collected by different sensors or at different times, making it a valuable tool for monitoring changes in land cover, vegetation health, and other Earth surface properties.</p>
-              <p>Note that the specific calculation of reflectance can be more complex in practice, taking into account various factors like atmospheric correction, sensor characteristics, and surface properties. The formula provided here is a simplified representation, and in practice, detailed algorithms and corrections may be applied to obtain accurate reflectance values from remote sensing data.</p>
+              <p>The calculation of reflectance often involves radiometric calibration to convert sensor radiance measurements to physical units and account for atmospheric 
+                effects. Reflectance is an important quantity in remote sensing because it allows for the comparison of data collected by different sensors or at different 
+                times, making it a valuable tool for monitoring changes in land cover, vegetation health, and other Earth surface properties.</p>
+              <p>Note that the specific calculation of reflectance can be more complex in practice, taking into account various factors like atmospheric correction, sensor 
+                characteristics, and surface properties. The formula provided here is a simplified representation, and in practice, detailed algorithms and corrections may 
+                be applied to obtain accurate reflectance values from remote sensing data.</p>
               <p>(Reference: <a href="https://training.eumetsat.int/mod/book/tool/print/index.php?id=11832">https://training.eumetsat.int/mod/book/tool/print/index.php?id=11832</a>)</p>
+            </section>
 
               <h2>Calculation of physical parameters from the Radiance:</h2>
 
-              <p>Once you have preprocessed raw data received from a remote sensing satellite and calculated radiance, you can use this radiance data to derive several important physical parameters and information about the Earth's surface and atmosphere. The specific parameters you can calculate depend on the type of remote sensing data, the spectral bands used, and the sensors' characteristics. Here are some common physical parameters that can be derived from radiance data:</p>
+              <p>Once you have preprocessed raw data received from a remote sensing satellite and calculated radiance, you can use this radiance data to derive several 
+                important physical parameters and information about the Earth's surface and atmosphere. The specific parameters you can calculate depend on the type of 
+                remote sensing data, the spectral bands used, and the sensors' characteristics. Here are some common physical parameters that can be derived from radiance data:</p>
 
               <ol>
                   <li><strong>Surface Temperature:</strong>
                       <ul>
-                          <li>Radiance data in thermal infrared bands can be used to calculate the surface temperature of the Earth's features. This is essential for applications like land surface temperature monitoring, agriculture, and urban heat island analysis.</li>
+                          <li>Radiance data in thermal infrared bands can be used to calculate the surface temperature of the Earth's features. This is essential for 
+                            applications like land surface temperature monitoring, agriculture, and urban heat island analysis.</li>
                       </ul>
                   </li>
                   
                   <li><strong>Vegetation Indices:</strong>
                       <ul>
-                          <li>Radiance data in visible and near-infrared bands can be used to calculate vegetation indices such as the Normalized Difference Vegetation Index (NDVI) or Enhanced Vegetation Index (EVI). These indices provide information about vegetation health, density, and vigor.</li>
+                          <li>Radiance data in visible and near-infrared bands can be used to calculate vegetation indices such as the Normalized Difference Vegetation 
+                            Index (NDVI) or Enhanced Vegetation Index (EVI). These indices provide information about vegetation health, density, and vigor.</li>
                       </ul>
                   </li>
 
                   <li><strong>Ocean Color Parameters:</strong>
                       <ul>
-                          <li>Radiance data over water bodies can be used to calculate ocean color parameters such as chlorophyll-a concentration, water turbidity, and suspended particulate matter. These parameters are crucial for marine and coastal studies.</li>
+                          <li>Radiance data over water bodies can be used to calculate ocean color parameters such as chlorophyll-a concentration, water turbidity, and 
+                            suspended particulate matter. These parameters are crucial for marine and coastal studies.</li>
                       </ul>
                   </li>
 
                   <li><strong>Aerosol Optical Depth (AOD):</strong>
                       <ul>
-                          <li>Radiance data can be used to estimate the AOD, which quantifies the amount of aerosols (dust, smoke, pollution) in the atmosphere. AOD is vital for studying air quality, climate modeling, and visibility assessments.</li>
+                          <li>Radiance data can be used to estimate the AOD, which quantifies the amount of aerosols (dust, smoke, pollution) in the atmosphere. AOD is 
+                            vital for studying air quality, climate modeling, and visibility assessments.</li>
                       </ul>
                   </li>
 
                   <li><strong>Atmospheric Profiles:</strong>
                       <ul>
-                          <li>Radiance data can be used in conjunction with radiative transfer models to derive vertical profiles of atmospheric parameters, including temperature, humidity, and aerosol content. These profiles are valuable for atmospheric research and weather forecasting.</li>
+                          <li>Radiance data can be used in conjunction with radiative transfer models to derive vertical profiles of atmospheric parameters, including 
+                            temperature, humidity, and aerosol content. These profiles are valuable for atmospheric research and weather forecasting.</li>
                       </ul>
                   </li>
 
                   <li><strong>Snow Cover and Albedo:</strong>
                       <ul>
-                          <li>Radiance data can be used to estimate snow cover extent and calculate surface albedo, which measures the reflectivity of the Earth's surface. These parameters are essential for climate studies and snowmelt modeling.</li>
+                          <li>Radiance data can be used to estimate snow cover extent and calculate surface albedo, which measures the reflectivity of the Earth's surface. 
+                            These parameters are essential for climate studies and snowmelt modeling.</li>
                       </ul>
                   </li>
 
                   <li><strong>Land Surface Emissivity:</strong>
                       <ul>
-                          <li>For thermal infrared data, you can calculate land surface emissivity, which is essential for accurate surface temperature retrieval and energy balance studies.</li>
+                          <li>For thermal infrared data, you can calculate land surface emissivity, which is essential for accurate surface temperature retrieval and energy 
+                            balance studies.</li>
                       </ul>
                   </li>
 
                   <li><strong>Land Cover Classification:</strong>
                       <ul>
-                          <li>Radiance data can be used for land cover classification and land use mapping, providing information on the types of land features present in a particular area.</li>
+                          <li>Radiance data can be used for land cover classification and land use mapping, providing information on the types of land features present in a 
+                            particular area.</li>
                       </ul>
                   </li>
 
                   <li><strong>Cloud Properties:</strong>
                       <ul>
-                          <li>Radiance data can be used to retrieve cloud properties such as cloud height, cloud type, and cloud cover fraction. This information is vital for weather forecasting and climate studies.</li>
+                          <li>Radiance data can be used to retrieve cloud properties such as cloud height, cloud type, and cloud cover fraction. This information is vital 
+                            for weather forecasting and climate studies.</li>
                       </ul>
                   </li>
 
@@ -486,52 +522,65 @@
                   </li>
               </ol>
 
-              <p>It's important to note that the process of deriving these physical parameters often involves complex radiative transfer models, atmospheric correction, and calibration procedures. Additionally, the availability of specific bands and sensors on the remote sensing satellite can impact the types of parameters that can be calculated. Therefore, the choice of satellite and sensor should align with the specific objectives of your remote sensing analysis.</p>
+              <p>It's important to note that the process of deriving these physical parameters often involves complex radiative transfer models, atmospheric correction, and 
+                calibration procedures. Additionally, the availability of specific bands and sensors on the remote sensing satellite can impact the types of parameters that 
+                can be calculated. Therefore, the choice of satellite and sensor should align with the specific objectives of your remote sensing analysis.</p>
 
               <h3>Calculation of surface temperature:</h3>
 
-                <p>Surface temperature is often calculated using radiance data acquired in the thermal infrared (TIR) spectral range. The process involves several steps, including atmospheric correction and radiative transfer modeling. Here's an overview of how surface temperature is calculated from radiance data:</p>
+                <p>Surface temperature is often calculated using radiance data acquired in the thermal infrared (TIR) spectral range. The process involves several steps, 
+                  including atmospheric correction and radiative transfer modeling. Here's an overview of how surface temperature is calculated from radiance data:</p>
 
                 <ol>
                     <li><strong>Radiance Measurement:</strong>
                         <ul>
-                            <li>Radiance data is collected by remote sensing instruments operating in the TIR spectral range. These sensors capture the thermal radiation emitted by the Earth's surface in the form of radiance values.</li>
+                            <li>Radiance data is collected by remote sensing instruments operating in the TIR spectral range. These sensors capture the thermal radiation 
+                              emitted by the Earth's surface in the form of radiance values.</li>
                         </ul>
                     </li>
                     
                     <li><strong>Atmospheric Correction:</strong>
                         <ul>
-                            <li>Atmospheric correction is a critical step because the atmosphere absorbs and scatters thermal radiation. To calculate surface temperature accurately, you need to remove the atmospheric effects. This is typically done using radiative transfer models or atmospheric profile data.</li>
+                            <li>Atmospheric correction is a critical step because the atmosphere absorbs and scatters thermal radiation. To calculate surface temperature 
+                              accurately, you need to remove the atmospheric effects. This is typically done using radiative transfer models or atmospheric profile data.</li>
                         </ul>
                     </li>
 
                     <li><strong>Emissivity Correction:</strong>
                         <ul>
-                            <li>Surface emissivity is a measure of how efficiently a surface emits thermal radiation. It can vary depending on the material and the wavelength of observation. To calculate surface temperature, you need to know or estimate the emissivity of the surface in the TIR band. Emissivity values are typically assigned based on land cover classes or measured in the field.</li>
+                            <li>Surface emissivity is a measure of how efficiently a surface emits thermal radiation. It can vary depending on the material and the wavelength 
+                              of observation. To calculate surface temperature, you need to know or estimate the emissivity of the surface in the TIR band. Emissivity values 
+                              are typically assigned based on land cover classes or measured in the field.</li>
                         </ul>
                     </li>
 
                     <li><strong>Planck's Law:</strong>
                         <ul>
-                            <li>Planck's law describes the relationship between radiance, temperature, wavelength, and emissivity. It is used to relate the radiance measured by the sensor to the surface temperature and emissivity. The formula for Planck's law is:</li>
+                            <li>Planck's law describes the relationship between radiance, temperature, wavelength, and emissivity. It is used to relate the radiance measured 
+                              by the sensor to the surface temperature and emissivity. The formula for Planck's law is:</li>
                         </ul>
                         <img src="https://latex.codecogs.com/svg.latex?L%28%5Clambda%2C%20T%29%20%3D%20%5Cfrac%7B2%20%5Cpi%20h%20c%5E2%7D%7B%5Clambda%5E5%7D%20%5Cfrac%7B1%7D%7Be%5E%7B%5Cfrac%7Bhc%7D%7B%5Clambda%20k%20T%7D%7D%20-1%7D">
                     </li>
 
                     <li><strong>Iterative Optimization:</strong>
                         <ul>
-                            <li>Calculating surface temperature from radiance data involves an iterative optimization process. Given the measured radiance, known or estimated emissivity, and the Planck's law equation, an iterative optimization algorithm is used to find the temperature that best fits the observed radiance. This is typically done for each pixel in the image.</li>
+                            <li>Calculating surface temperature from radiance data involves an iterative optimization process. Given the measured radiance, known or estimated 
+                              emissivity, and the Planck's law equation, an iterative optimization algorithm is used to find the temperature that best fits the observed radiance. 
+                              This is typically done for each pixel in the image.</li>
                         </ul>
                     </li>
 
                     <li><strong>Output:</strong>
                         <ul>
-                            <li>The result of this process is a surface temperature map, where each pixel represents the estimated temperature of the corresponding area on the Earth's surface.</li>
+                            <li>The result of this process is a surface temperature map, where each pixel represents the estimated temperature of the corresponding area on 
+                              the Earth's surface.</li>
                         </ul>
                     </li>
                 </ol>
 
-                <p>It's important to note that accurate surface temperature retrieval can be influenced by various factors, including atmospheric conditions, sensor characteristics, and emissivity assumptions. Therefore, careful calibration, validation, and consideration of these factors are essential to ensure the reliability of the calculated surface temperatures in remote sensing applications.</p>
+                <p>It's important to note that accurate surface temperature retrieval can be influenced by various factors, including atmospheric conditions, sensor 
+                  characteristics, and emissivity assumptions. Therefore, careful calibration, validation, and consideration of these factors are essential to ensure 
+                  the reliability of the calculated surface temperatures in remote sensing applications.</p>
 
 
                 <h4>Note:</h4>
@@ -544,7 +593,8 @@
                         </ul>
                     </li>
                 
-                    <li><strong>Flux Density:</strong> The term flux density E refers to the spatial density of radiant power. It is defined as the infinitesimal amount of radiant power 
+                    <li><strong>Flux Density:</strong> The term flux density E refers to the spatial density of radiant power. It is defined as the infinitesimal amount 
+                      of radiant power 
                       <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>d</mi><mi>&#x03C6;</mi><mo>(</mo><mi>&#x1D431;</mi><mo>,</mo><mi>&#x1D714;</mi><mo>)</mo></mrow></math>
                       passing through an infinitesimal surface element dA that is aligned normal to a direction θ
                       and located at a position <math xmlns="http://www.w3.org/1998/Math/MathML"><mover><mi>r</mi><mo>&rarr;</mo></mover></math> of interest.
