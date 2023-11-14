@@ -367,6 +367,12 @@ section {
   background: #f5f8fd;
 }
 
+.grey-box {
+  background-color: #f0f0f0; /* Grey color */
+  padding: 20px;
+  border-radius: 8px;
+}
+
 .section-title {
   padding-bottom: 30px;
 }
@@ -394,6 +400,7 @@ section {
 .section-title p {
   margin-bottom: 0;
 }
+
 
 /*--------------------------------------------------------------
 # About
