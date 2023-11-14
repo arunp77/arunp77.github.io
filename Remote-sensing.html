@@ -677,27 +677,33 @@
     <!-----------Data processing-----------> 
     <section id="data-analysis">
       <h2>Section 4: Data Analysis and Processing</h2>
-      <h4>Data Collection:</h4>
+
+      <figure>
+        <img src="assets/img/remote-sensing/remote-dataprocessing.png" class="img-fluid" alt="" style="max-width: 800px; max-height: 500px;">
+        <figcaption style="text-align: center;"><strong>Image credt:</strong><a href="https://www.mdpi.com/2072-4292/12/22/3801#" target="_blank"> © Remote data processing</a></figcaption>
+      </figure>
+
+      <h5>i. Data Collection:</h5>
       <ol style="margin-left: 30px;">
         <li><strong>Satellite and Sensor Deployment: </strong>Selection and deployment of appropriate satellites and sensors based on mission objectives and desired spatial and spectral resolutions.</li>
         <li><strong> Data Acquisition: </strong>Actively or passively collecting data from the target area using sensors (e.g., optical, radar, LiDAR) on satellites, aircraft, or other platforms.</li>
         <li><strong>Georeferencing: </strong>Establishing the geographic location of the acquired data, ensuring accurate spatial referencing for subsequent analyses.</li>
       </ol>
-      <h4>Pre-processing steps:</h4>
+      <h5>ii. Pre-processing steps:</h5>
       <ol style="margin-left: 30px;">
         <li><strong>Calibration: </strong>Adjusting sensor readings to account for variations in sensor sensitivity, atmospheric conditions, and other factors, ensuring accuracy and consistency.</li>
         <li><strong>Collection: </strong>Correcting for atmospheric interference, such as haze, clouds, and aerosols, to improve the quality of the acquired data.</li>
         <li><strong>Normalization: </strong>Standardizing data values to a consistent scale, facilitating meaningful comparisons and analyses.</li>
         <li><strong>Orthorectification: </strong>Correcting geometric distortions caused by terrain variations, ensuring accurate spatial representation.</li>
       </ol>
-      <h4>Image Enhancement Techniques:</h4>
+      <h5>iii. Image Enhancement Techniques:</h5>
       <ol style="margin-left: 30px;">
         <li><strong>Contrast Stretching: </strong>Improving visual interpretation by expanding the range of pixel values, enhancing image features.</li>
         <li><strong>Histogram Equalization: </strong>Enhancing contrast by redistributing pixel values across the entire range.</li>
         <li><strong>Spatial Filtering: </strong>Smoothing or sharpening images to highlight or suppress certain features using convolution operations.</li>
         <li><strong>Principal Component Analysis (PCA): </strong>Reducing data dimensionality while preserving key information for improved visualization and analysis.</li>
       </ol>
-      <h4>Image Classification and Feature Extraction:</h4>
+      <h5>iv. Image Classification and Feature Extraction:</h5>
       <ol style="margin-left: 30px;">
         <li><strong>Supervised Classification:</strong> Training a classification algorithm using labeled training samples to categorize pixels into predefined classes.</li>
         <li><strong>Unsupervised Classification:</strong> Clustering pixels based on statistical similarities without prior class information, useful for exploratory analysis.</li>
@@ -705,24 +711,30 @@
         <li><strong>Feature Extraction:</strong> Identifying and extracting specific features from the imagery, such as land cover types, roads, or buildings.</li>
         <li><strong>Change Detection:</strong> Comparing multiple images over time to identify and analyze changes in the landscape, providing valuable information for various applications.</li>
       </ol>
-      <h4>Additional Steps:</h4>
+      <h5>v. Additional Steps:</h5>
       <ol style="margin-left: 30px;">
         <li><strong>Validation and Accuracy Assessment: </strong>Assessing the reliability and accuracy of the processed data through ground truthing and validation techniques.</li>
         <li><strong>Data Integration:</strong>Combining remote sensing data with other geospatial datasets for comprehensive analysis.</li>
         <li><strong>Data Interpretation and Reporting:</strong>Interpreting the processed data to derive meaningful information and generating reports for decision-making.</li>
       </ol>
 
-      <h4>Post-Processing Steps:</h4>
+      <h5>vi. Post-Processing Steps:</h5>
       <ol style="margin-left: 30px;">
-        <li><strong>Image Mosaicking:</strong> Combining multiple images of the same area to create a seamless and complete representation, especially important for large-scale mapping.</li>
-        <li><strong>Pan-Sharpening:</strong> Enhancing the spatial resolution of multispectral images by fusing them with higher-resolution panchromatic images.</li>
-        <li><strong>Image Fusion:</strong> Integrating information from multiple sensors or sources to create a composite image with enhanced features.</li>
+        <li><strong><a href="http://sendimage.whu.edu.cn/en/wp-content/uploads/2021/03/2019-Remote-Sensing-Image-Mosaicking-Achievements-and-challenges.pdf" target="_blank">
+          Image Mosaicking</a>:</strong> Combining multiple images of the same area to create a seamless and complete representation, especially important for large-scale mapping.</li>
+          <figure>
+            <img src="assets/img/remote-sensing/remote-data-1.png" class="img-fluid" alt="" style="max-width: 400px; max-height: 300px;">
+            <figcaption>The map incorporates multiple layers of the same geographical area with distinct attributes, enhancing its effectiveness for thorough study and analysis.</figcaption>
+          </figure>
+        <li><strong><a href="https://storymaps.arcgis.com/stories/28a2091d2819476c8c8fac573798e912" target="_blank">Panchromatic Sharpening</a>:</strong> Enhancing the spatial resolution of 
+          multispectral images by fusing them with higher-resolution panchromatic images.</li>
+        <li><strong><a href="https://ieeexplore.ieee.org/document/8991294" target="_blank">Image Fusion</a>:</strong> Integrating information from multiple sensors or sources to create a composite image with enhanced features.</li>
         <li><strong>Data Compression:</strong> Reducing the volume of data while retaining important information, facilitating easier storage and transmission.</li>
-        <li><strong>Radiometric Correction:</strong> Adjusting the radiometric values of pixels to account for variations caused by atmospheric conditions, sensor characteristics, or other factors.</li>
-        <li><strong>Temporal Filtering:</strong> Smoothing or filtering time-series data to reduce noise and highlight temporal trends for change detection.</li>
-        <li><strong>Land Cover Classification Refinement:</strong> Iterative processes to improve the accuracy of land cover classification by refining class boundaries or correcting misclassifications.</li>
-        <li><strong>Topographic Correction:</strong> Compensating for terrain-induced variations in reflectance, ensuring consistency in image interpretation.</li>
-        <li><strong>Vegetation Index Calculation:</strong> Computing vegetation indices such as NDVI (Normalized Difference Vegetation Index) to quantify vegetation health and density.</li>
+        <li><strong><a href="https://arunp77.github.io/Arun-Kumar-Pandey/Satellite-data.html" target="_blank">Radiometric Correction</a>:</strong> Adjusting the radiometric values of pixels to account for variations caused by atmospheric conditions, sensor characteristics, or other factors.</li>
+        <li><strong><a href="https://hal.science/hal-00975332/document" target="_blank">Temporal Filtering</a>:</strong> Smoothing or filtering time-series data to reduce noise and highlight temporal trends for change detection.</li>
+        <li><strong><a href="https://www.mdpi.com/2072-4292/10/8/1238" target="_blank">Land Cover Classification Refinement</a>:</strong> Iterative processes to improve the accuracy of land cover classification by refining class boundaries or correcting misclassifications.</li>
+        <li><strong><a href="https://www.degruyter.com/document/doi/10.1515/geo-2022-0359/html?lang=en" target="_blank">Topographic Correction</a>:</strong> Compensating for terrain-induced variations in reflectance, ensuring consistency in image interpretation.</li>
+        <li><strong><a href="https://www.hindawi.com/journals/js/2017/1353691/" target="_blank">Vegetation Index Calculation</a>:</strong> Computing vegetation indices such as NDVI (Normalized Difference Vegetation Index) to quantify vegetation health and density.</li>
         <li><strong>Terrain Modeling:</strong> Creating 3D models of the Earth's surface using elevation data for applications like urban planning or geological studies.</li>
         <li><strong>Data Integration with GIS:</strong> Combining remote sensing data with Geographic Information Systems (GIS) data for more comprehensive spatial analysis.</li>
         <li><strong>Accuracy Assessment:</strong> Evaluating the accuracy of classification results through ground truthing and validation processes.</li>
