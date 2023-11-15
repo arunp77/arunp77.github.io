@@ -122,7 +122,6 @@
           </div>
       </div>
   </div>
-
     <!-- ======= Portfolio Details Section ======= -->
     <section id="portfolio-details" class="portfolio-details">
       <div class="container">
@@ -237,9 +236,7 @@
                 <img src="assets/img/remote-sensing/the-pixels-1.png" alt="" style="max-width: 100%; max-height: 100%;">
                 <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://ieeexplore.ieee.org/document/6658949" target="_blank"> © Lefei Zhang et al.</a></figcaption>
             </figure>
-          </section>
-
-          <section id="Section-2">
+          
             <h2>Satellite Characteristics: Orbits and Swaths </h2>
             <h4>Orbits:</h4>
             Satellites play a crucial role in various applications, including remote sensing, communication, and Earth observation. Two key characteristics defining satellite behavior are their orbits and swaths.
@@ -292,7 +289,24 @@
                 <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://natural-resources.canada.ca/maps-tools-and-publications/satellite-imagery-and-air-photos/tutorial-fundamentals-remote-sensing/satellites-and-sensors/satellite-characteristics-orbits-and-swaths/9283" target="_blank"> © Remote Sensing Tutorials.</a></figcaption>
             </figure>
 
-            <h3>Spatial Resolution, Pixel Size, and Scale</h3>
+            <!----------------Resolution  -------->
+            <h2>Resolution</h2>
+            <p>The resolution of an image refers to the potential detail provided by the imagery. In remote sensing we refer to three types of resolution: spatial, spectral and temporal.</p>
+            <ul>
+                <li><strong>Spatial Resolution: </strong>Spatial Resolution refers to the size of the smallest feature that can be detected by a satellite sensor or displayed in a 
+                    satellite image. It is usually presented as a single value representing the length of one side of a square. For example, a spatial resolution of 250m means 
+                    that one pixel represents an area 250 by 250 meters on the ground.</li>
+                <li><strong>Spectral Resolution: </strong>Spectral Resolution refers to the ability of a satellite sensor to measure specific wavlengths of the electromagnetic 
+                    spectrum. The finer the spectral resolution, the narrower the wavelength range for a particular channel or band.</li>
+                <li><strong>Temporal resolution: </strong>Temporal resolution refers to the time between images. The capability for satellites to provide images of the same 
+                    geographical area more frequently has increased dramatically since the dawn of the space age.</li>
+                <li><strong>Radiometric resolution: </strong>While the arrangement of pixels describes the spatial structure of an image, the radiometric
+                    characteristics describe the actual information content in an image. Every time an image is acquired on film or by a sensor, its sensitivity to the magnitude of the electromagnetic energy
+                    determines the radiometric resolution. The radiometric resolution of an imaging system describes its ability to discriminate very slight differences in energy The finer the radiometric
+                    resolution of a sensor, the more sensitive it is to detecting small differences in reflected or emitted energy.</li>
+            </ul>
+
+            <h4>1. Spatial Resolution, Pixel Size, and Scale</h4>
             <ul>
                 <li>For some remote sensing instruments, the distance between the target being imaged and the platform, plays a large role in determining the detail of information obtained and the total area
                     imaged by the sensor. </li>
@@ -317,9 +331,38 @@
                 <li>Images where only large features are visible are said to have coarse or low resolution. In fine or high resolution images, small objects can be detected.</li>
             </ul>
               
-            <h3>Spectral Resolution </h3>
-            Spectral resolution refers to a sensor's ability to distinguish between different wavelengths or bands of electromagnetic radiation in the electromagnetic 
-            spectrum. It is a crucial aspect of remote sensing systems, influencing the capacity to capture and analyze various features on the Earth's surface.
+            <h4>2. Spectral Resolution </h4> 
+            <ul>
+                <li>Spectral resolution refers to a sensor's ability to distinguish between different wavelengths or bands of electromagnetic radiation in the electromagnetic 
+                    spectrum. It is a crucial aspect of remote sensing systems, influencing the capacity to capture and analyze various features on the Earth's surface. </li>
+        
+                <li>Spectral resolution describes the amount of spectral detail in a band. High spectral resolution means its bands are more narrow. Whereas low spectral 
+                    resolution has broader bands covering more of the spectrum.</li>
+                <li><strong>Wavelength Discrimination: </strong>Remote sensing sensors with higher spectral resolution can differentiate between a greater number of narrow bands across the electromagnetic spectrum. 
+                        This discrimination allows for more detailed analysis of surface features.</li>
+                <li><strong>Bands and Channels: </strong>Spectral resolution is often associated with the number and width of bands or channels in a sensor. Multispectral sensors capture data in several broad 
+                    bands, while hyperspectral sensors operate with numerous narrow and contiguous bands.</li>
+                <li><strong>Applications: </strong>Different surface materials and features interact with electromagnetic radiation in distinctive ways. Higher spectral resolution enables the 
+                    identification and analysis of specific materials, vegetation types, and environmental conditions.</li>
+                <li><strong>Spectral Signatures: </strong>Each material exhibits a unique spectral signature, a distinctive pattern of reflectance or emission across different wavelengths. Fine spectral 
+                    resolution facilitates the accurate identification of these signatures, contributing to more precise classification and interpretation.</li>
+            </ul>
+
+            <h4>Temporal resolution</h4>
+            <p>
+                In remote sensing, temporal resolution refers to the frequency or repeat cycle with which a sensor acquires data over the same location. It is typically expressed in days, weeks, or months, 
+                and it is an important factor in determining the suitability of remote sensing data for a particular application.</p>
+            <p>High temporal resolution data is useful for monitoring rapidly changing phenomena, such as wildfires, deforestation, and crop growth. It can also be used to create time-lapse animations 
+                that show how a landscape has changed over time.</p>
+            <p>Low temporal resolution data is more suitable for mapping large areas and for applications where changes occur slowly, such as land cover classification and geological mapping.</p>
+            <p>The temporal resolution of a remote sensor is determined by a number of factors, including:</p>
+            <ul>
+                <li><strong>The orbit of the sensor:</strong> Satellites that orbit the Earth in polar orbits have a higher temporal resolution than satellites that orbit in geostationary orbits. This is because 
+                    polar-orbiting satellites fly over the same location every few days, while geostationary satellites remain stationary over a fixed location</li>
+                <li><strong>The swath width of the sensor:</strong> The swath width is the width of the area that the sensor can image at once. Sensors with a wide swath width have a lower temporal 
+                    resolution than sensors with a narrow swath width.</li>
+                <li><strong>The cloud cover:</strong> Clouds can obscure the Earth's surface, making it impossible for a sensor to acquire data. This can reduce the temporal resolution of the data.</li>
+            </ul>
 
 
           </section>
