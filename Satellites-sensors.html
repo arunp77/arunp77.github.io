@@ -90,8 +90,8 @@
         <div class="d-flex justify-content-between align-items-center">
           <h2>Portfolio Details</h2>
           <ol>
-            <li><a href="portfolio-details-8.html" class="clickable-box">Go to Project page <i class="fas fa-arrow-right"></i></a></li>
-            <li><a href="index.html#portfolio" class="clickable-box">Go to portfolio</a></li>
+            <li><a href="Remote-sensing-content.html" class="clickable-box"><i class="fas fa-arrow-left"></i> Content </a></li>
+            <li><a href="index.html" class="clickable-box">Home <i class="fas fa-arrow-right"></i></a></li>
           </ol>
         </div>
 
@@ -127,7 +127,7 @@
     <section id="portfolio-details" class="portfolio-details">
       <div class="container">
         <div class="row gy-4">
-          <h1>Data protection polices</h1>
+          <h1>Satellites and Sensors</h1>
           <div class="image">
             <figure style="text-align: center;">
                 <img src="assets/img/remote-sensing/remote-dataprocessing.png" alt="" style="max-width: 80%; max-height: 80%;">
@@ -136,7 +136,7 @@
           </div>
 
           <section id="Section-1">
-            <h2>Analog photograph vs. Digital images in Remote Sensing: </h2>
+            <h2>Recording of energy by the sensor: </h2>
             In remote sensing, it is very important to understand the data provided by sensors in order to interpret them properly. The first thing to do is to understand what a satellite image 
             is and why it is different from a photograph. The main difference between a photograph and a satellite image is that the photograph has an analogue format and is usually printed 
             on paper before being interpreted. The satellite image has a digital format and a computer is generally used to analyse and interpret it. The evolution of remote sensing techniques 
@@ -228,14 +228,77 @@
 
                 <img src="assets/img/remote-sensing/pixel-values.gif" alt="" style="max-width: 100%; max-height: 100%;">
 
-                <figure style="text-align: center;">
-                    <img src="assets/img/remote-sensing/the-pixels-1.png" alt="" style="max-width: 100%; max-height: 100%;">
-                    <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://ieeexplore.ieee.org/document/6658949" target="_blank"> © Lefei Zhang et al.</a></figcaption>
-                </figure>
-                
-                
-              
+            Human vision perceives color through detecting the entire visible spectrum, and our brains process this information into distinct colors. In contrast, many sensors work by capturing 
+            information within narrow wavelength ranges, storing it in channels or bands. Digital representation involves combining and displaying these channels using primary colors 
+            (blue, green, and red). Each channel's data is represented by one of these colors, and the relative brightness (digital value) of each pixel in each channel determines the 
+            final color by combining the primary colors in varying proportions. <p></p>
+
+            <figure style="text-align: center;">
+                <img src="assets/img/remote-sensing/the-pixels-1.png" alt="" style="max-width: 100%; max-height: 100%;">
+                <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://ieeexplore.ieee.org/document/6658949" target="_blank"> © Lefei Zhang et al.</a></figcaption>
+            </figure>
           </section>
+
+          <section id="Section-2">
+            <h2>Satellite Characteristics: Orbits and Swaths </h2>
+            <h4>Orbits:</h4>
+            Satellites play a crucial role in various applications, including remote sensing, communication, and Earth observation. Two key characteristics defining satellite behavior are their orbits and swaths.
+            <figure style="text-align: center;">
+                <img src="assets/img/remote-sensing/orbit.png" alt="" style="max-width: 40%; max-height: 40%;">
+                <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://arunp77.github.io/Arun-Kumar-Pandey/" target="_blank"> © Arun Kumar Pandey.</a></figcaption>
+            </figure>
+            <ol>
+                <li><strong>Low Earth Orbit (LEO):</strong>
+                    <ul>
+                        <li>Satellites in LEO orbit close to Earth, typically at altitudes ranging from about 180 to 2,000 kilometers.</li>
+                        <li>LEO satellites offer advantages for remote sensing, providing high-resolution imagery and frequent revisits due to their shorter orbital periods.</li>
+                        <li>Examples of LEO remote sensing satellites include the Landsat series and the International Space Station (ISS).</li>
+                    </ul>
+                </li>
+            
+                <li><strong>Medium Earth Orbit (MEO):</strong>
+                    <ul>
+                        <li>MEO satellites orbit at intermediate altitudes, typically between 2,000 and 35,786 kilometers.</li>
+                        <li>These orbits provide a balance between coverage and resolution, making them suitable for a variety of applications, including navigation systems like GPS.</li>
+                        <li>Examples of MEO satellites include those in the Global Navigation Satellite System (GNSS) constellations.</li>
+                    </ul>
+                </li>
+            
+                <li><strong>Geostationary Orbit (GEO):</strong>
+                    <ul>
+                        <li>GEO satellites are positioned at approximately 35,786 kilometers above the equator, allowing them to appear stationary relative to a fixed point on Earth.</li>
+                        <li>These satellites provide continuous coverage of a specific region, making them ideal for applications like weather monitoring and communication.</li>
+                        <li>Examples include weather satellites like GOES (Geostationary Operational Environmental Satellite).</li>
+                    </ul>
+                </li>
+            
+                <li><strong>Polar Orbit:</strong>
+                    <ul>
+                        <li>Satellites in polar orbits pass over Earth's poles, providing global coverage with each orbit.</li>
+                        <li>These orbits are well-suited for Earth observation missions, as they cover the entire surface over time.</li>
+                        <li>Examples include satellites from the Copernicus program, such as Sentinel-1 and Sentinel-2.</li>
+                    </ul>
+                </li>
+            </ol>
+            <h4>Swaths:</h4>
+            The swath width refers to the coverage area on the Earth's surface captured by a satellite during a single pass. It is determined by the satellite's sensor characteristics and the 
+            satellite's altitude. A wider swath allows for broader coverage but may sacrifice image resolution.
+
+            Understanding the interplay between orbits and swaths is essential for optimizing satellite mission design. LEO satellites, for instance, may have smaller swaths but offer higher revisit 
+            frequencies, making them suitable for applications requiring frequent observations. GEO satellites, on the other hand, have a fixed view but cover a larger area with each pass, making 
+            them ideal for continuous monitoring.
+            <figure style="text-align: center;">
+                <img src="assets/img/remote-sensing/swath.png" alt="" style="max-width: 100%; max-height: 100%;">
+                <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://natural-resources.canada.ca/maps-tools-and-publications/satellite-imagery-and-air-photos/tutorial-fundamentals-remote-sensing/satellites-and-sensors/satellite-characteristics-orbits-and-swaths/9283" target="_blank"> © Remote Sensing Tutorials.</a></figcaption>
+            </figure>
+
+            <h3>Spatial Resolution, Pixel Size, and Scale</h3>
+
+            <h3>Spectral Resolution </h3>
+            
+          </section>
+
+
 
 
 
@@ -246,7 +309,7 @@
 
 
 
-            <section>
+            <section id="reference">
                 <h2>References</h2>
                 <ul>
                     <li><a href="https://www.esa.int/SPECIALS/Eduspace_EN/SEM4HR3Z2OF_0.html" target="_blank">Analogue versus digital images.</a></li>
