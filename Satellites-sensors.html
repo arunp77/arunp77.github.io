@@ -293,9 +293,35 @@
             </figure>
 
             <h3>Spatial Resolution, Pixel Size, and Scale</h3>
-
-            <h3>Spectral Resolution </h3>
+            <ul>
+                <li>For some remote sensing instruments, the distance between the target being imaged and the platform, plays a large role in determining the detail of information obtained and the total area
+                    imaged by the sensor. </li>
+                <li>Sensors onboard platforms far away from their targets, typically view a larger area, but cannot provide great detail. The detail discernible in an image is dependent 
+                    on the spatial resolution of the sensor and refers to the size of the smallest possible feature that can be detected. </li>
+                <li><strong>Instantaneous Field of View (IFOV):</strong> Spatial resolution of passive sensors depends primarily on their IFOV.</li>
+                    <ul>
+                        <li><strong>Angular Cone of Visibility:</strong> IFOV is essentially the angular measurement (A) that defines the cone-shaped area within which a sensor can detect or "see" objects on the 
+                            ground</li>
+                        <li><strong>Dependent on Sensor Design:</strong> The IFOV is influenced by the design and optics of the sensor. It varies based on factors such as the focal length of the lens and the 
+                            physical dimensions of the sensor.</li>
+                        <li><strong>Spatial Resolution:</strong> IFOV has a direct impact on the spatial resolution of the imagery. A smaller IFOV results in higher spatial resolution, allowing the sensor to 
+                            discern finer details in the captured scene.</li>
+                        <li><strong>Calculation:</strong> The size of the ground area corresponding to a single pixel is determined by multiplying the IFOV by the distance from the sensor to the ground.</li>
+                        <li><strong>Resolution Cell:</strong> The area on the ground corresponding to the IFOV is often referred to as a resolution cell. It represents the smallest unit of the scene that can 
+                            be individually detected and recorded by the sensor.</li>
+                        <li><strong>Application:</strong> Understanding IFOV is crucial for optimizing the design and performance of remote sensing systems. It influences decisions related to sensor 
+                            specifications, altitude, and the overall capability to capture detailed information in the imagery.</li>
+                    </ul>
+                    <img src="assets/img/remote-sensing/IFOV.png" alt="" style="max-width: 50%; max-height: 50%;">
             
+                <li>Images where only large features are visible are said to have coarse or low resolution. In fine or high resolution images, small objects can be detected.</li>
+            </ul>
+              
+            <h3>Spectral Resolution </h3>
+            Spectral resolution refers to a sensor's ability to distinguish between different wavelengths or bands of electromagnetic radiation in the electromagnetic 
+            spectrum. It is a crucial aspect of remote sensing systems, influencing the capacity to capture and analyze various features on the Earth's surface.
+
+
           </section>
 
 
@@ -308,7 +334,7 @@
 
 
 
-
+          <!-------------------------- Reference ------------------------------->
             <section id="reference">
                 <h2>References</h2>
                 <ul>
@@ -317,9 +343,6 @@
                         Target Detection Based on Supervised Metric Learning.</a></li>
                 </ul>
             </section>
-
-
-
 
             <div class="navigation">
                 <a href="portfolio-details-8.html" class="clickable-box">
