@@ -34,6 +34,11 @@
   <script src="https://kit.fontawesome.com/5d25c1efd3.js" crossorigin="anonymous"></script>
   <!-- end of icon-->
 
+
+  <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+
   <!-- =======================================================
   * Template Name: iPortfolio
   * Updated: Sep 18 2023 with Bootstrap v5.3.2
@@ -90,8 +95,8 @@
         <div class="d-flex justify-content-between align-items-center">
           <h2>Portfolio Details</h2>
           <ol>
-            <li><a href="Remote-sensing-content.html" class="clickable-box"><i class="fas fa-arrow-left"></i> Content </a></li>
-            <li><a href="index.html" class="clickable-box">Home <i class="fas fa-arrow-right"></i></a></li>
+            <li><a href="Remote-sensing-content.html" class="clickable-box"><i class="fas fa-arrow-left"></i> Remote sensing Content </a></li>
+            <li><a href="index.html" class="clickable-box"> Home <i class="fas fa-arrow-right"></i></a></li>
           </ol>
         </div>
 
@@ -237,47 +242,7 @@
                 <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://ieeexplore.ieee.org/document/6658949" target="_blank"> © Lefei Zhang et al.</a></figcaption>
             </figure>
           
-            <h2>Satellite Characteristics: Orbits and Swaths </h2>
-            <h4>Orbits:</h4>
-            Satellites play a crucial role in various applications, including remote sensing, communication, and Earth observation. Two key characteristics defining satellite behavior are their orbits and swaths.
-            <figure style="text-align: center;">
-                <img src="assets/img/remote-sensing/orbit.png" alt="" style="max-width: 40%; max-height: 40%;">
-                <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://arunp77.github.io/Arun-Kumar-Pandey/" target="_blank"> © Arun Kumar Pandey.</a></figcaption>
-            </figure>
-            <ol>
-                <li><strong>Low Earth Orbit (LEO):</strong>
-                    <ul>
-                        <li>Satellites in LEO orbit close to Earth, typically at altitudes ranging from about 180 to 2,000 kilometers.</li>
-                        <li>LEO satellites offer advantages for remote sensing, providing high-resolution imagery and frequent revisits due to their shorter orbital periods.</li>
-                        <li>Examples of LEO remote sensing satellites include the Landsat series and the International Space Station (ISS).</li>
-                    </ul>
-                </li>
             
-                <li><strong>Medium Earth Orbit (MEO):</strong>
-                    <ul>
-                        <li>MEO satellites orbit at intermediate altitudes, typically between 2,000 and 35,786 kilometers.</li>
-                        <li>These orbits provide a balance between coverage and resolution, making them suitable for a variety of applications, including navigation systems like GPS.</li>
-                        <li>Examples of MEO satellites include those in the Global Navigation Satellite System (GNSS) constellations.</li>
-                    </ul>
-                </li>
-            
-                <li><strong>Geostationary Orbit (GEO):</strong>
-                    <ul>
-                        <li>GEO satellites are positioned at approximately 35,786 kilometers above the equator, allowing them to appear stationary relative to a fixed point on Earth.</li>
-                        <li>These satellites provide continuous coverage of a specific region, making them ideal for applications like weather monitoring and communication.</li>
-                        <li>Examples include weather satellites like GOES (Geostationary Operational Environmental Satellite).</li>
-                    </ul>
-                </li>
-            
-                <li><strong>Polar Orbit:</strong>
-                    <ul>
-                        <li>Satellites in polar orbits pass over Earth's poles, providing global coverage with each orbit.</li>
-                        <li>These orbits are well-suited for Earth observation missions, as they cover the entire surface over time.</li>
-                        <li>Examples include satellites from the Copernicus program, such as Sentinel-1 and Sentinel-2.</li>
-                    </ul>
-                </li>
-            </ol>
-
             <!----------------Resolution  -------->
             <h2>Resolution</h2>
             <p>The resolution of an image refers to the potential detail provided by the imagery. In remote sensing we refer to three types of resolution: spatial, spectral and temporal.</p>
@@ -540,9 +505,83 @@
                     <td>Complex, slow</td>
                   </tr>
                 </tbody>
-              </table>
-              
+              </table><br>
 
+              <h3>Reflectance</h3>
+
+              Reflectance in remote sensing is calculated by measuring the amount of electromagnetic radiation (light) that is reflected from a surface. The reflectance values are typically expressed as a percentage or a unitless fraction. The formula for calculating reflectance is as follows:
+              $$\text{Reflectance} = \frac{\text{Reflected Radiance}}{\text{Incident Radiance}} \times 100\%$$
+
+              where:
+              <ul>
+                <li><strong>Reflectance: </strong>The percentage of light that is reflected by a surface. It indicates how much of the incident light is returned.</li>
+                <li><strong>Reflected Radiance: </strong>The amount of electromagnetic radiation (light) that is reflected by the surface and measured by the sensor. It is often represented in radiance units. </li>
+                <li><strong>Incident Radiance: </strong>The amount of electromagnetic radiation (light) that reaches the surface. It is the incoming light before interacting with the surface.</li>
+              </ul>
+              <p>Reflectance values range from 0% (no reflection) to 100% (complete reflection). A reflectance of 0% indicates that the surface absorbs all incident light, while a reflectance of 100% means that the surface reflects all incident light.</p>
+              <p>In practice, the reflectance values are often corrected for atmospheric effects and sensor characteristics. The reflectance calculation is an essential step in converting raw remote sensing data into meaningful information that can be used for various applications, such as land cover classification, vegetation health assessment, and environmental monitoring.</p>
+              <p>The accuracy of reflectance calculations depends on factors such as sensor calibration, atmospheric correction, and the spectral characteristics of the surface being observed. Remote sensing instruments equipped with different spectral bands capture the reflected radiance at specific wavelengths, allowing scientists to analyze and interpret the Earth's surface properties.</p>
+
+              <h3><strong>Spectral Indices in Remote Sensing</strong></h3>
+              <p>Spectral indices in remote sensing are mathematical combinations of reflectance values from different spectral bands. These indices help highlight specific features or characteristics of the Earth's surface, such as vegetation health, water content, or soil moisture. Here are a few commonly used spectral indices:</p>
+              <ol>
+                <li><strong>Normalized Difference Vegetation Index (NDVI):</strong>
+                  <ul>
+                    <li><strong>Formula: </strong>
+                      $$\text{NDVI} = \frac{(\text{NIR} - \text{Red})}{(\text{NIR}+\text{Red})}$$
+                    <li><strong>Purpose: </strong> NDVI is widely used to assess vegetation health and density. Healthy vegetation reflects more near-infrared (NIR) light and absorbs more red light.s</li>
+                    <li>NIR (Near-Infrared): Reflectance in the near-infrared region of the electromagnetic spectrum.</li>
+                    <li>Red: Reflectance in the red region of the electromagnetic spectrum.</li>
+                  </ul>
+                </li>
+                <li><strong>Enhanced Vegetation Index (EVI):</strong>
+                  <ul>
+                    <li><strong>Formula: </strong>
+                      $$\text{EVI} = G\times \frac{(\text{NIR} - \text{Red})}{(\text{NIR}+C_1 \times \text{Red}-C_2 \times \text{Blue}+L)}$$
+                    </li>
+                    <li><strong>Purpose: </strong>EVI is an enhanced version of NDVI, designed to minimize atmospheric influences and improve sensitivity to vegetation.</li>
+                    <li>G (Gain Factor): A gain factor to optimize the sensitivity of the index.</li>
+                    <li>C1, C2 (Coefficients): Coefficients to correct for aerosol influences.</li>
+                    <li>L (Canopy background adjustment): Canopy background adjustment to minimize soil background influences.</li>
+                  </ul>
+                </li>
+                <li><strong>Normalized Difference Water Index (NDWI):</strong>
+                  <ul>
+                    <li><strong>Formula: </strong>
+                      $$\text{NDWI} = \frac{(\text{Green} - \text{NIR})}{(\text{Green}+\text{NIR})}$$
+                    </li>
+                    <li><strong>Purpose: </strong>NDWI is used to detect the presence of water. Water absorbs more in the near-infrared region, resulting in a lower reflectance value.</li>
+                    <li>Green: Reflectance in the green region of the electromagnetic spectrum.</li>
+                  </ul>
+                </li>
+                <li><strong>Soil Adjusted Vegetation Index (SAVI):</strong>
+                  <ul>
+                    <li><strong>Formula: </strong>
+                      $$\text{SAVI} = (1+L)\times \frac{(\text{NIR} - \text{Red})}{(\text{NIR}+\text{Red}+L)}$$
+                    </li>
+                    <li><strong>Purpose: </strong>SAVI is designed to reduce the influence of soil brightness on vegetation indices, making it useful in areas with varying soil conditions.</li>
+                    <li>L (Soil adjustment factor): A soil adjustment factor to reduce the influence of soil brightness.</li>
+                  </ul>
+                </li>
+                <li><strong>Normalized Burn Ratio (NBR):</strong>
+                  <ul>
+                    <li><strong>Formula: </strong>
+                      $$\text{NBR} = \frac{(\text{NIR} - \text{SWIR})}{(\text{NIR}+\text{SWIR})}$$
+                    </li>
+                    <li><strong>Purpose: </strong>NBR is used for post-fire assessment, as it highlights changes in vegetation cover and health after a fire.</li>
+                    <li>SWIR (Shortwave Infrared): Reflectance in the shortwave infrared region of the electromagnetic spectrum.</li>
+                  </ul>
+                </li>
+                <li><strong>Moisture Stress Index (MSI):</strong>
+                  <ul>
+                    <li><strong>Formula: </strong>
+                      $$\text{NBR} = \frac{(\text{NIR} - \text{SWIR})}{(\text{NIR}+\text{SWIR})}$$
+                    </li>
+                    <li><strong>Purpose:</strong> MSI helps identify areas experiencing moisture stress by leveraging differences in water absorption in the near-infrared and shortwave infrared regions.</li>
+                  </ul>
+                </li>
+              </ol>
+              These indices are calculated using the reflectance values from specific spectral bands, often captured by satellite or airborne sensors. By applying these indices, remote sensing analysts can extract valuable information about the environment, monitor changes, and gain insights into various ecological and agricultural parameters.
           </section>
           <!-------------------------- Reference ------------------------------->
             <section id="reference">
