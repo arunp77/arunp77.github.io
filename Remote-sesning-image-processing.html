@@ -130,7 +130,7 @@
     <section id="portfolio-details" class="portfolio-details">
       <div class="container">
         <div class="row gy-4">
-          <h1>Remote sesning image processing</h1>
+          <h1>Remote sensing image processing</h1>
           <div class="image">
             <figure style="text-align: center;">
                 <img src="assets/img/remote-sensing/image-processing.png" alt="" style="max-width: 100%; max-height: 100%;">
@@ -140,7 +140,7 @@
 
 
           <section id="intro-image=processing">
-          <h3>Introduction</h3>
+          <h2>Introduction</h2>
           <p>Image processing plays a crucial role in remote sensing, enabling the transformation of raw satellite or airborne imagery into meaningful information about the 
             Earth's surface.</p>
           <p>Image processing is the manipulation and analysis of digital images, using software or algorithms, to extract useful information, enhance quality, or create 
@@ -367,7 +367,9 @@
                 <li><h5><strong>Image Enhancement:</strong></h5> </li>
                     Image enhancement techniques are used to improve the visual quality of the image, making it easier to interpret and analyze. This may involve 
                     techniques such as contrast stretching, histogram equalization, and edge detection, which can enhance the visibility of features and make subtle variations more apparent.<br>
-                    
+                    <ol style="list-style: none; padding: 0;">
+                    <li style="background-color: white; border: 1px solid rgb(20, 20, 20); margin-bottom: 10px; padding: 10px;">
+                        <strong>Example:</strong> This example is taken from <a href="https://crisp.nus.edu.sg/~research/tutorial/process.htm" target="_blank">Image Processing and Analysis </a>.
                     <figure style="text-align: center;">
                         <img src="assets/img/remote-sensing/image-enhancment.png" alt="" style="max-width: 90%; max-height: 90%;">
                         <figcaption style="text-align: left;">In the above unenhanced image (first panel), a bluish tint can be seen all-over the image, producing a hazy apapearance. This hazy appearance is due to 
@@ -393,65 +395,253 @@
                                 The result of applying the linear stretch is shown in above image. Note that the hazy appearance has generally been removed, 
                                 except for some parts near to the top of the image. The contrast between different features has been improved.
                         </figcaption>
-                    </figure>             
+                    </figure></li>  
+                </ol>         
                 </li>
-                <li><strong>Image Segmentation:</strong> Image segmentation aims to divide the image into meaningful segments or regions, each representing a distinct feature or object 
-                    on the Earth's surface. This process is crucial for tasks such as land cover classification, where the image needs to be partitioned into areas 
-                    corresponding to different types of land cover, such as forests, water bodies, and urban areas.</li>
-                <li><strong>Feature Extraction:</strong> Feature extraction involves identifying and extracting relevant characteristics from the image that can be used to classify 
-                    or analyze the features of interest. These features may include spectral information, textural patterns, and spatial relationships between 
-                    objects in the image.</li>
                 <li><strong>Image Classification:</strong> Image classification involves assigning each pixel or segment of the image to a specific class or category, such as 
                     land cover type, vegetation health, or soil moisture. This process relies on the features extracted in the previous stage and may employ 
-                    various classification algorithms, such as statistical methods, machine learning techniques, or neural networks.</li>
+                    various classification algorithms, such as statistical methods, machine learning techniques, or neural networks.
+                    <ol style="list-style: none; padding: 0;">
+                        <li style="background-color: white; border: 1px solid rgb(15, 15, 15); margin-bottom: 10px; padding: 10px;">
+                            Common Image Classification Techniques:
+                            <ul>
+                                <li><strong>Supervised Classification:</strong> Supervised classification utilizes labeled training data to learn the characteristics of each class. Common supervised classifiers include maximum likelihood estimation, support vector machines, and random forests.</li>
+                                <li><strong>Unsupervised Classification:</strong> Unsupervised classification groups pixels into clusters based on their similarity without the use of labeled training data. Common unsupervised classifiers include k-means clustering and ISODATA.</li>
+                                <li><strong>Object-Based Classification:</strong> Object-based classification segments the image into meaningful objects and classifies these objects based on their spectral, spatial, and textural properties.</li>
+                            </ul><br>
+                            <p>Applications of Image Classification in Remote Sensing:</p>
+                            <ul>
+                                <li><strong>Land Cover Mapping:</strong> Image classification is used to create detailed maps of land cover, such as forests, grasslands, urban areas, and water bodies.</li>
+                                <li><strong>Vegetation Analysis:</strong> Image classification is used to assess vegetation health, monitor deforestation, and map crop distribution.</li>
+                                <li><strong>Change Detection:</strong> Image classification is used to identify changes in land cover or vegetation over time, such as deforestation, urbanization, or agricultural expansion.</li>
+                                <li><strong>Disaster Monitoring:</strong> Image classification is used to assess damage caused by natural disasters, such as floods, wildfires, and earthquakes.</li>
+                                <li><strong>Environmental Monitoring:</strong> Image classification is used to monitor environmental changes, such as water quality, deforestation, and land degradation</li>
+                            </ul><br>
+                            <p>To perform image classification, we need to follow:</p>
+                            <ol>
+                                <li><strong>Data Collection:</strong>
+                                  <ul>
+                                    <li>Acquire remote sensing imagery or any image dataset that includes labeled examples of different classes.</li>
+                                  </ul>
+                                </li>
+                              
+                                <li><strong>Data Preprocessing:</strong>
+                                  <ul>
+                                    <li>Correct for radiometric and geometric distortions.</li>
+                                    <li>Apply atmospheric correction if working with remote sensing data.</li>
+                                    <li>Normalize or standardize pixel values.</li>
+                                  </ul>
+                                </li>
+                              
+                                <li><strong>Feature Extraction:</strong>
+                                  <ul>
+                                    <li>Identify relevant features, such as spectral, textural, or contextual attributes.</li>
+                                    <li>Consider using dimensionality reduction techniques if the feature space is large.</li>
+                                  </ul>
+                                </li>
+                              
+                                <li><strong>Data Splitting:</strong>
+                                  <ul>
+                                    <li>Divide the dataset into training and testing sets. Common splits include 80/20 or 70/30 for training/testing.</li>
+                                  </ul>
+                                </li>
+                              
+                                <li><strong>Model Selection:</strong>
+                                  <ul>
+                                    <li>Choose a classification algorithm based on the nature of your data. Common algorithms include Decision Trees, Random Forest, Support Vector Machines, or Convolutional Neural Networks (CNNs).</li>
+                                  </ul>
+                                </li>
+                              
+                                <li><strong>Training the Model:</strong>
+                                  <ul>
+                                    <li>Use the training dataset to train the chosen algorithm. The model learns the relationships between features and class labels.</li>
+                                  </ul>
+                                </li>
+                              
+                                <li><strong>Model Evaluation:</strong>
+                                  <ul>
+                                    <li>Assess the model's performance on the testing dataset using metrics like accuracy, precision, recall, and F1 score.</li>
+                                  </ul>
+                                </li>
+                              
+                                <li><strong>Prediction:</strong>
+                                  <ul>
+                                    <li>Apply the trained model to new, unseen data to predict class labels.</li>
+                                  </ul>
+                                </li>
+                              </ol>
+                              
+                        </li>
+                    </ol>
+                </li>
+
+                <li><strong>Feature Extraction:</strong> Feature extraction involves identifying and extracting relevant characteristics from the image that can be used to classify 
+                    or analyze the features of interest. These features may include spectral information, textural patterns, and spatial relationships between 
+                    objects in the image. Here are key steps and considerations for feature extraction in remote sensing:
+                    <ol style="list-style: none; padding: 0;">
+                        <li style="background-color: white; border: 1px solid rgb(15, 15, 15); margin-bottom: 10px; padding: 10px;">
+                            <ol>
+                                <li><strong>Acquire Remote Sensing Data:</strong></li>
+                                <li><strong>Preprocess the Data:</strong>
+                                   <ul>
+                                      <li>Correct for radiometric and geometric distortions.</li>
+                                      <li>Apply atmospheric correction to remove atmospheric effects.</li>
+                                      <li>Normalize or standardize pixel values.</li>
+                                   </ul>
+                                </li>
+                                <li><strong>Multispectral and Hyperspectral Bands:</strong>
+                                   <ul>
+                                      <li>Explore different spectral bands to capture information beyond visible light, including infrared and other non-visible wavelengths.</li>
+                                   </ul>
+                                </li>
+                                <li><strong>Spatial Resolution:</strong>
+                                   <ul>
+                                      <li>Consider the spatial resolution of the imagery. Higher resolution can provide more detailed information but may require more computational resources.</li>
+                                   </ul>
+                                </li>
+                                <li><strong>Texture Analysis:</strong>
+                                   <ul>
+                                      <li>Assess the texture of the imagery to identify patterns and structures. Methods include co-occurrence matrices or Gabor filters.</li>
+                                   </ul>
+                                </li>
+                                <li><strong>Principal Component Analysis (PCA):</strong>
+                                   <ul>
+                                      <li>Use PCA to transform the original bands into a set of uncorrelated components, reducing dimensionality while retaining important information.</li>
+                                   </ul>
+                                </li>
+                                <li><strong>Vegetation Indices:</strong>
+                                   <ul>
+                                      <li>Calculate vegetation indices like NDVI (Normalized Difference Vegetation Index) to assess vegetation health and coverage.</li>
+                                   </ul>
+                                </li>
+                                <li><strong>Object-Based Image Analysis (OBIA):</strong>
+                                   <ul>
+                                      <li>Move from pixel-based analysis to object-based methods, considering groups of pixels as objects and extracting features from these objects.</li>
+                                   </ul>
+                                </li>
+                                <li><strong>Land Cover Classification:</strong>
+                                   <ul>
+                                      <li>Perform land cover classification to identify and extract features related to different land cover types, such as urban areas, water bodies, and vegetation.</li>
+                                   </ul>
+                                </li>
+                                <li><strong>Change Detection:</strong>
+                                   <ul>
+                                      <li>Analyze temporal changes in the imagery to extract features related to land cover changes over time.</li>
+                                   </ul>
+                                </li>
+                                <li><strong>Machine Learning and Deep Learning:</strong>
+                                   <ul>
+                                      <li>Utilize machine learning algorithms or deep learning models for automated feature extraction. Convolutional Neural Networks (CNNs) can be particularly effective.</li>
+                                   </ul>
+                                </li>
+                                <li><strong>Topographic Information:</strong>
+                                   <ul>
+                                      <li>Incorporate topographic data, such as elevation or slope, to extract features related to terrain characteristics.</li>
+                                   </ul>
+                                </li>
+                                <li><strong>Time-Series Analysis:</strong>
+                                   <ul>
+                                      <li>Analyze time-series data to extract temporal features, particularly useful for monitoring dynamic processes like vegetation growth or land use changes.</li>
+                                   </ul>
+                                </li>
+                                <li><strong>Data Fusion:</strong>
+                                   <ul>
+                                      <li>Integrate data from different sensors or sources to enhance feature extraction, considering both spectral and spatial information.</li>
+                                   </ul>
+                                </li>
+                                <li><strong>Validation and Accuracy Assessment:</strong>
+                                   <ul>
+                                      <li>Validate extracted features using ground truth data and assess the accuracy of the extraction methods.</li>
+                                   </ul>
+                                </li>
+                             </ol>
+                             
+                        </li>
+                    </ol>
+                </li>
+
+                <li><strong>Image Segmentation:</strong> Image segmentation aims to divide the image into meaningful segments or regions, each representing a distinct feature or object 
+                    on the Earth's surface. This process is crucial for tasks such as land cover classification, where the image needs to be partitioned into areas 
+                    corresponding to different types of land cover, such as forests, water bodies, and urban areas.
+                
+                    <ol style="list-style: none; padding: 0;">
+                        <li style="background-color: white; border: 1px solid rgb(15, 15, 15); margin-bottom: 10px; padding: 10px;">
+                            <p>Common steps to follow to perform the image segmentation:</p>
+                            <ol>
+                                <li><strong>Data Preprocessing:</strong>
+                                    <ul>
+                                      <li>Similar to image classification, correct for distortions and normalize pixel values.</li>
+                                    </ul>
+                                  </li>
+                                
+                                  <li><strong>Feature Extraction:</strong>
+                                    <ul>
+                                      <li>Identify features relevant to the segmentation task, such as color, texture, or intensity.</li>
+                                    </ul>
+                                  </li>
+                                
+                                  <li><strong>Image Segmentation Algorithm:</strong>
+                                    <ul>
+                                      <li>Choose a segmentation algorithm based on the specific requirements. Common methods include:
+                                        <ul>
+                                          <li>Thresholding: Assign pixels to segments based on intensity or color thresholds.</li>
+                                          <li>Region-based Segmentation: Group pixels based on similarity in color or texture.</li>
+                                          <li>Edge-based Segmentation: Identify boundaries between different regions.</li>
+                                        </ul>
+                                      </li>
+                                    </ul>
+                                  </li>
+                                
+                                  <li><strong>Post-Processing:</strong>
+                                    <ul>
+                                      <li>Refine segmentation results, such as smoothing boundaries or removing small, insignificant segments.</li>
+                                    </ul>
+                                  </li>
+                                
+                                  <li><strong>Visualization:</strong>
+                                    <ul>
+                                      <li>Visualize the segmented regions to assess the quality of the segmentation.</li>
+                                    </ul>
+                                  </li>
+                            </ol>
+                        </li>
+                    </ol>
+                </li>
+                
+                
                 <li><strong>Change Detection:</strong> Change detection involves identifying and analyzing changes in the Earth's surface over time. This can be accomplished by comparing 
                     images acquired at different times and identifying areas where significant changes have occurred. Change detection is used for various applications, 
                     such as monitoring deforestation, tracking urban sprawl, and assessing the impact of natural disasters.</li>
                 <li><strong>Visualization:</strong> The final stage involves visualizing the processed image data in a meaningful way. This may involve creating thematic maps, generating 
                     3D terrain models, or producing animations that show changes over time. Visualization helps to communicate the results of remote sensing analysis to a 
-                    wider audience and support informed decision-making.</li>
+                    wider audience and support informed decision-making.
+                    <ol style="list-style: none; padding: 0;">
+                        <li style="background-color: white; border: 1px solid rgb(15, 15, 15); margin-bottom: 10px; padding: 10px;">
+                            <p>Performing image visualization and presentation involves effectively conveying information extracted from images to an audience. Here are the steps:</p>
+                            <ul>
+                                <li><strong>Choose Visualization Tools: </strong>Select tools suitable for your data and objectives. Common tools include matplotlib, seaborn, Plotly, and OpenCV in Python.</li>
+                                <li><strong>Understand Your Data: </strong>Analyze the characteristics of your image data to determine the most effective visualization techniques.</li>
+                                <li><strong>Select Visualization Techniques: </strong> Choose appropriate visualization methods, such as:
+                                    <ul>
+                                        <li>Color Mapping: Use color to represent different data values</li>
+                                        <li>Histograms: Show the distribution of pixel values.</li>
+                                        <li>Heatmaps: Display intensity variations.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Enhance Interpretability: </strong>Adjust color scales, add labels, and use annotations to enhance the interpretability of your visualizations.</li>
+                                <li><strong>Create Composite Images: </strong>Combine multiple images or channels to create composite images that highlight specific features or information.</li>
+                                <li><strong>Interactive Visualizations: </strong>For dynamic exploration, consider creating interactive visualizations using tools like Plotly or Bokeh.</li>
+                                <li><strong>3D Visualization: </strong>Utilize 3D visualization techniques when working with volumetric or multi-dimensional image data.</li>
+                            </ul>
+
+                        </li>
+                        <p></p>
+                    </ol>
+                </li>
             </ul>
             <p>Image processing techniques in remote sensing have evolved significantly in recent years, driven by advancements in computing power, sensor technology, and machine learning algorithms. 
                 These advancements have enabled the extraction of increasingly detailed and accurate information from remote sensing imagery, expanding the scope and applications of remote sensing 
                 in various fields, including environmental monitoring, resource management, urban planning, and disaster management.</p> <br>
-            
-
-            
-
-            
-
-            
-
-            
-
-            
-
-            
-
-
-
-            <h3>How to acquire and import remote sensing data?</h3>
-
-
-
-
-            <h3>How to perform image enhancement and correction?</h3>
-
-
-
-            <h3>How to perform image classification and segmentation?</h3>
-
-
-
-
-            <h3>How to perform image fusion and integration?</h3>
-
-
-
-
-
-            <h3>How to perform image visualization and presentation?</h3>
-
 
 
 
@@ -479,6 +669,7 @@
                 <li>Vetterli, M., & Kovačević, J. (2002). Wavelets and subband coding. Prentice Hall.</li>
                 <li>Zhang, K., Zuo, W., & Chen, Y. (2017). Fully convolutional neural networks for image denoising. IEEE Transactions on Image Processing, 26(7), 3904-3916.</li>
                 <li>Lefkimmiatis, G., & Bourdis, N. (2019). A supervised image denoising scheme using convolutional neural networks. IEEE Transactions on Image Processing, 28(9), 4276-4289.</li>
+                <li><a href="https://crisp.nus.edu.sg/~research/tutorial/process.htm" target="_blank">Image Processing and Analysis </a></li>
               </ol>              
         </section>
         
