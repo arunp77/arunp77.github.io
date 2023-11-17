@@ -277,21 +277,14 @@
                     </ul>
                 </li>
             </ol>
-            <h4>Swaths:</h4>
-            The swath width refers to the coverage area on the Earth's surface captured by a satellite during a single pass. It is determined by the satellite's sensor characteristics and the 
-            satellite's altitude. A wider swath allows for broader coverage but may sacrifice image resolution.
-
-            Understanding the interplay between orbits and swaths is essential for optimizing satellite mission design. LEO satellites, for instance, may have smaller swaths but offer higher revisit 
-            frequencies, making them suitable for applications requiring frequent observations. GEO satellites, on the other hand, have a fixed view but cover a larger area with each pass, making 
-            them ideal for continuous monitoring.
-            <figure style="text-align: center;">
-                <img src="assets/img/remote-sensing/swath.png" alt="" style="max-width: 50%; max-height: 50%;">
-                <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://natural-resources.canada.ca/maps-tools-and-publications/satellite-imagery-and-air-photos/tutorial-fundamentals-remote-sensing/satellites-and-sensors/satellite-characteristics-orbits-and-swaths/9283" target="_blank"> © Remote Sensing Tutorials.</a></figcaption>
-            </figure>
 
             <!----------------Resolution  -------->
             <h2>Resolution</h2>
             <p>The resolution of an image refers to the potential detail provided by the imagery. In remote sensing we refer to three types of resolution: spatial, spectral and temporal.</p>
+            <figure style="text-align: center;">
+              <img src="assets/img/remote-sensing/resolution-0.png" alt="" style="max-width: 50%; max-height: 50%;">
+              <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://eo-college.org/topic/the-resolutions-dimensions-of-eo-data/" target="_blank"> © EO College.</a></figcaption>
+            </figure>
             <ul>
                 <li><strong>Spatial Resolution: </strong>Spatial Resolution refers to the size of the smallest feature that can be detected by a satellite sensor or displayed in a 
                     satellite image. It is usually presented as a single value representing the length of one side of a square. For example, a spatial resolution of 250m means 
@@ -332,7 +325,78 @@
                 <img src="assets/img/remote-sensing/resolution.png" alt="" style="max-width: 50%; max-height: 50%;">
             </ul>
               
-            <h4>2. Spectral Resolution </h4> 
+            <h4>2. Temporal resolution</h4>
+            <p>
+                In remote sensing, temporal resolution refers to the frequency or repeat cycle with which a sensor acquires data over the same location. It is typically expressed in days, weeks, or months, 
+                and it is an important factor in determining the suitability of remote sensing data for a particular application.</p>
+            <p>High temporal resolution data is useful for monitoring rapidly changing phenomena, such as wildfires, deforestation, and crop growth. It can also be used to create time-lapse animations 
+                that show how a landscape has changed over time.</p>
+            <p>Low temporal resolution data is more suitable for mapping large areas and for applications where changes occur slowly, such as land cover classification and geological mapping.</p>
+            <p>The temporal resolution of a remote sensor is determined by a number of factors, including:</p>
+            <ul>
+                <li><strong>The orbit of the sensor:</strong> Satellites that orbit the Earth in polar orbits have a higher temporal resolution than satellites that orbit in geostationary orbits. This is because 
+                    polar-orbiting satellites fly over the same location every few days, while geostationary satellites remain stationary over a fixed location</li>
+                <li><strong>The swath width of the sensor:</strong> The swath width is the width of the area that the sensor can image at once. Sensors with a wide swath width have a lower temporal 
+                    resolution than sensors with a narrow swath width.</li>
+                <li><strong>The cloud cover:</strong> Clouds can obscure the Earth's surface, making it impossible for a sensor to acquire data. This can reduce the temporal resolution of the data.</li>
+            </ul>
+            <figure style="text-align: center;">
+                <img src="assets/img/remote-sensing/swath.png" alt="" style="max-width: 50%; max-height: 50%;">
+                <figcaption style="text-align: center;"><strong>Image credit:</strong>
+                  <a href="https://natural-resources.canada.ca/maps-tools-and-publications/satellite-imagery-and-air-photos/tutorial-fundamentals-remote-sensing/satellites-and-sensors/satellite-characteristics-orbits-and-swaths/9283" target="_blank"> 
+                    © Remote Sensing Tutorials (Natural Resources Canada).</a></figcaption>
+              </figure>
+              <div style="background-color: #cddcdf; padding: 15px; margin: 15px; border-radius: 5px;">
+                <h4>Swaths:</h4>
+                <p>
+                    The swath width refers to the coverage area on the Earth's surface captured by a satellite during a single pass. It is determined by the satellite's sensor characteristics and the 
+                    satellite's altitude. A wider swath allows for broader coverage but may sacrifice image resolution.
+                </p>
+                <p>
+                    Understanding the interplay between orbits and swaths is essential for optimizing satellite mission design. LEO satellites, for instance, may have smaller swaths but offer higher revisit 
+                    frequencies, making them suitable for applications requiring frequent observations. GEO satellites, on the other hand, have a fixed view but cover a larger area with each pass, making 
+                    them ideal for continuous monitoring.
+                </p>
+              </div>
+          
+          <h4>3. Radiometric resolution</h4>
+          Radiometric resolution is the ability of a sensor to differentiate between various levels of radiant energy or reflectance in the observed scene. 
+            <ul>
+              <li><strong>Quantization Levels: </strong> It is often expressed in terms of the number of quantization levels or bits used to represent the intensity values. Higher radiometric 
+                resolution corresponds to a greater number of possible values.</li>
+              <li><strong>Sensitivity to Brightness Variations:</strong> A sensor with high radiometric resolution can capture subtle differences in brightness, allowing for more detailed and nuanced information 
+                about the objects or features in the scene.</li>
+              <li><strong>Dynamic range: </strong>The dynamic range of a sensor is closely related to radiometric resolution. A broader dynamic range enables the sensor to capture a wide range of intensities, from very dark to very bright</li>
+              <li><strong>Application: </strong>Radiometric resolution is crucial in applications where detecting small variations in reflectance or emitted radiation is essential. This includes tasks like land cover classification, mineral 
+                identification, and environmental monitoring.</li>
+              <li><strong>Bit depths: </strong>Radiometric resolution is often described in terms of bit depth, representing the number of bits used to represent pixel values. 
+                For example, an 8-bit image has 2<sup>8</sup> (256) possible values, while a 16-bit image can represent 2<sup>16</sup> (65,536) values. 
+                An 8-bit sensor can distinguish between 256 levels of radiation, while a 16-bit sensor can distinguish between 65,536 levels of radiation. 
+                This means that a 16-bit image will have a wider range of colors and shades than an 8-bit image.</li>
+              <li><strong>Trade offs: </strong>There can be trade-offs between radiometric and spatial resolution in remote sensing systems. Increasing radiometric resolution may require sacrificing spatial resolution and vice versa.</li>
+            </ul>
+            Radiometric resolution is important for a number of reasons, including:
+            <ul>
+              <li><strong>Image quality:</strong> Radiometric resolution directly affects the image quality of a sensor. A higher radiometric resolution will produce a more detailed and accurate image.</li>
+              <li><strong>Image processing:</strong> Radiometric resolution can also affect the ability of image processing algorithms to extract information from images. For example, a higher radiometric 
+                resolution may be required to accurately identify objects in an image.</li>
+              <li><strong>Scientific applications:</strong> Radiometric resolution is also important in many scientific applications, such as remote sensing and astronomy. In these applications, 
+                the ability to distinguish between different levels of radiation can be critical for making accurate measurements.</li>
+            </ul>
+            The radiometric resolution of a sensor is determined by a number of factors, including:
+            <ul>
+              <li><strong>The type of sensor:</strong> Different types of sensors have different radiometric resolutions. For example, electronic cameras typically have higher radiometric resolutions than film cameras.</li>
+              <li><strong>The sensitivity of the sensor:</strong> The sensitivity of the sensor also affects the radiometric resolution. A more sensitive sensor can distinguish between smaller levels of radiation.</li>
+              <li><strong>The ADC (analog-to-digital converter):</strong> The ADC is responsible for converting the analog signal from the sensor into a digital signal that can be processed by the computer. The 
+              resolution of the ADC will determine the maximum radiometric resolution of the sensor.</li>
+            </ul>
+
+            <h4>4. Spectral Resolution </h4> 
+            <figure style="text-align: center;">
+              <img src="assets/img/remote-sensing/spectral-spectrum.png" alt="" style="max-width: 50%; max-height: 50%;">
+              <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://commons.wikimedia.org/wiki/File:Spectral_sampling_RGB_multispectral_hyperspectral_imaging.svg">Lucasbosch</a>,<a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>, via Wikimedia Commons</figcaption>
+            </figure>
+
             <ul>
                 <li>Spectral resolution refers to a sensor's ability to distinguish between different wavelengths or bands of electromagnetic radiation in the electromagnetic 
                     spectrum. It is a crucial aspect of remote sensing systems, influencing the capacity to capture and analyze various features on the Earth's surface. </li>
@@ -348,36 +412,138 @@
                 <li><strong>Spectral Signatures: </strong>Each material exhibits a unique spectral signature, a distinctive pattern of reflectance or emission across different wavelengths. Fine spectral 
                     resolution facilitates the accurate identification of these signatures, contributing to more precise classification and interpretation.</li>
             </ul>
+            <figure style="text-align: center;">
+              <img src="assets/img/remote-sensing/resolution-spectral.png" alt="" style="max-width: 90%; max-height: 90%;">
+              <figcaption style="text-align: center;"><strong> Last image credit:</strong><a href="https://blog.descarteslabs.com/a-look-into-the-fundamentals-of-remote-sensing" target="_blank"> © 2020 Descartes Labs Inc., All Rights Reserved.</a>
+                (a). represents the image in the visible range. (b). This image is in the near infrared, red, and green bands, where we see all the vegitation popping out strongly as a red color, since near infrared radiation is being reflected very strongly. 
+                (c). The final image displays the two short wave infrared bands and near infrared. Here we see agricultural fields emitting very strongly in the infrared bands, and are seeing more detail in the soil properties in yellow and brown.
+              </figcaption>
+              </figure>
 
-            <h4>3. Temporal resolution</h4>
-            <p>
-                In remote sensing, temporal resolution refers to the frequency or repeat cycle with which a sensor acquires data over the same location. It is typically expressed in days, weeks, or months, 
-                and it is an important factor in determining the suitability of remote sensing data for a particular application.</p>
-            <p>High temporal resolution data is useful for monitoring rapidly changing phenomena, such as wildfires, deforestation, and crop growth. It can also be used to create time-lapse animations 
-                that show how a landscape has changed over time.</p>
-            <p>Low temporal resolution data is more suitable for mapping large areas and for applications where changes occur slowly, such as land cover classification and geological mapping.</p>
-            <p>The temporal resolution of a remote sensor is determined by a number of factors, including:</p>
+
+          <h4>5. Multispectral Scanning</h4>
+          <p>Multispectral remote sensing is a type of remote sensing that utilizes multiple bands of the electromagnetic spectrum to capture images of the Earth's surface. Unlike traditional single-band imaging, which captures information from a single 
+          wavelength range, multispectral scanning collects data from multiple bands, typically four to six, each sensitive to a specific portion of the electromagnetic spectrum. This multispectral approach provides a more comprehensive view of the 
+          Earth's surface, allowing for the identification and differentiation of various features that would be difficult to discern using single-band imagery.</p>
+
+          <figure style="text-align: center;">
+            <img src="assets/img/remote-sensing/multispectral-spectra-1.png" alt="" style="max-width: 50%; max-height: 50%;">
+            <figcaption style="text-align: center;"><strong>Image credit: </strong>Courtesy of Smart Vision Lights.</figcaption>
+          </figure>
+
+          <p>In spectral imaging, an object’s spectral information is parsed into multiple images, with each image resulting from a different wavelength band reflected or emitted from the object. The wavelength range of images can span 
+            from the ultraviolet to near-infrared (NIR) using standard silicon-based sensors, and into the NIR/shortwave infrared (SWIR) region using InGaAs (indium gallium arsenide) 
+            and other SWIR-compatible sensors. Images from each wavelength band are 
+            combined into a data matrix called an image cube. An image cube is essentially a stack of images in which each image in the stack corresponds to a discrete spectral band. The number of spectral bands in the cube 
+            differentiates hyperspectral from multi- spectral imaging. “Hyper” implies the accumulation of tens to hundreds of wavelength band images, and “multi” consists of more than one spectral band image</p>
+
+          <p><strong>Benefits: </strong>
+            Multispectral remote sensing offers several advantages over traditional single-band imaging:
+          <ul>
+            <li><strong>Enhanced Image Detail:</strong> By combining data from multiple spectral bands, multispectral images provide a more detailed and nuanced representation of the Earth's surface, revealing subtle variations in land cover, vegetation, and other features.</li>
+            <li><strong>Improved Land Cover Classification:</strong> Multispectral imagery is particularly useful in classifying different types of land cover, including forests, grasslands, urban areas, and water bodies. The ability to capture information across multiple wavelengths enables the identification of unique spectral signatures associated with different land cover types.</li>
+            <li><strong>Vegetation Analysis:</strong> Multispectral images are valuable tools for analyzing vegetation health, crop growth, and changes in plant cover. The near-infrared band, for instance, is sensitive to chlorophyll content, allowing for the assessment of plant productivity and stress.</li>
+            <li><strong>Water Resource Monitoring:</strong> Multispectral scanning can be used to detect and map water bodies, monitor water quality, and assess the extent of water stress or drought conditions. The near-infrared and red bands are particularly useful for discriminating between land and water features.</li>
+            <li><strong>Environmental Monitoring:</strong> Multispectral imagery plays a crucial role in environmental monitoring applications, including tracking deforestation, detecting wildfires, and assessing the impact of pollution on land and water resources. Multispectral data can provide valuable insights into the causes and consequences of environmental changes.</li>
+          </ul></p>
+
+          <p><strong>Applications</strong>
+            Multispectral remote sensing has found applications in a wide range of fields, including:
             <ul>
-                <li><strong>The orbit of the sensor:</strong> Satellites that orbit the Earth in polar orbits have a higher temporal resolution than satellites that orbit in geostationary orbits. This is because 
-                    polar-orbiting satellites fly over the same location every few days, while geostationary satellites remain stationary over a fixed location</li>
-                <li><strong>The swath width of the sensor:</strong> The swath width is the width of the area that the sensor can image at once. Sensors with a wide swath width have a lower temporal 
-                    resolution than sensors with a narrow swath width.</li>
-                <li><strong>The cloud cover:</strong> Clouds can obscure the Earth's surface, making it impossible for a sensor to acquire data. This can reduce the temporal resolution of the data.</li>
+              <li><strong>Agriculture:</strong> Multispectral images are used to monitor crop health, identify areas of stress or disease, and optimize irrigation practices. By analyzing spectral signatures, farmers can make informed decisions to improve crop yields and resource management.</li>
+              <li><strong>Forestry:</strong> Multispectral data is employed to assess forest health, track deforestation, and map forest types. Multispectral images can reveal subtle changes in forest cover, allowing for early detection of deforestation and monitoring of forest regeneration efforts.</li>
+              <li><strong>Geology:</strong> Multispectral scanning can aid in geological mapping, mineral exploration, and identification of landforms and soil types. Multispectral imagery can provide valuable insights into the geological composition of an area, assisting in mineral exploration and geological surveys.</li>
+              <li><strong>Urban Planning:</strong> Multispectral images can be used to map urban areas, analyze urban sprawl, and identify areas of potential development. Multispectral data can help urban planners assess land use patterns, identify suitable areas for development, and plan for sustainable urban growth.</li>
+              <li><strong>Disaster Management:</strong> Multispectral scanning plays a critical role in disaster management, including mapping floodplains, tracking wildfires, and assessing damage after natural disasters. Multispectral imagery can provide real-time information about the extent and impact of disasters, aiding in emergency response and recovery efforts.</li>
             </ul>
+                       
+          </p>
+          <p><strong>Challenges of Multispectral Remote Sensing:</strong>
+            Despite its numerous advantages, multispectral remote sensing faces certain challenges:
+            <ul>
+              <li><strong>Atmospheric Interference:</strong> Clouds, haze, and dust can obscure the Earth's surface, reducing the quality of multispectral images and limiting their usefulness in certain conditions. Atmospheric correction techniques are employed to minimize the impact of atmospheric interference, but they don't always fully compensate for these effects.</li>
+              <li><strong>Sensor Limitations:</strong> Different sensors have varying resolutions, spectral ranges, and sensitivity, which can affect their ability to capture certain details or distinguish between subtle spectral variations. Sensor calibration and data processing techniques are used to enhance image quality and reduce sensor-specific limitations.</li>
+              <li><strong>Data Processing and Analysis:</strong> Interpreting and extracting meaningful information from large volumes of multispectral data can be computationally demanding and require specialized expertise. Advanced image processing algorithms and machine learning techniques are being developed to automate and improve the analysis of multispectral data.</li>
+            </ul>
+          </p>
 
-
+          <p><strong>Future directions: </strong>
+            Technological advancements in sensor technology, data processing algorithms, and artificial intelligence are driving the continuous evolution of multispectral remote sensing. Next-generation sensors will offer higher resolutions, broader spectral ranges, and improved sensitivity, providing even more detailed and accurate images of the Earth's surface. These advancements will further enhance the capabilities of multispectral scanning in addressing environmental challenges, supporting sustainable development, and enabling a deeper understanding of our planet's diverse landscapes.
+          </p>
           </section>
 
 
+          <section id="">
+            <h2>Hyperspectral imaging</h2>
+            <p>Hyperspectral imaging is a powerful remote sensing technique that captures highly detailed images of the Earth's surface by measuring electromagnetic radiation across a broad range of wavelengths. Unlike traditional imaging techniques that capture images in a few broad bands, hyperspectral imaging captures hundreds or even thousands of bands, providing a continuous spectrum of information. This rich spectral data allows for the identification and differentiation of a wide range of features with exquisite precision.</p>
+            <p><strong>Types of hyperspectral imaging</strong></p>
+            <p>There are six main types of hyperspectral imaging:
+            <ul>
+              <li><strong>Whiskbroom Imaging:</strong> This type of hyperspectral imaging uses a two-dimensional array of detectors to capture images. The sensor is rotated across the scene, and each detector measures the radiation at a specific wavelength.</li>
+              <li><strong>Pushbroom Imaging:</strong> This is the most common type of hyperspectral imaging, and it uses a linear array of detectors to capture images. The sensor is scanned across the scene, and each detector measures the radiation at a specific wavelength.</li>
+              <li><strong>Snapshot Imaging:</strong> This type of hyperspectral imaging uses a staring array of detectors to capture images. The entire scene is imaged at once, and each detector measures the radiation at a specific wavelength.</li>
+              <li><strong>Line Scanning Imaging:</strong> This type of hyperspectral imaging uses a single detector to scan across the scene. The detector measures the radiation at all wavelengths at each point along the scan line.</li>
+              <li><strong>Tunable Filter Imaging:</strong> This type of hyperspectral imaging uses a tunable filter to select specific wavelengths of radiation. The filter is tuned to a particular wavelength, and the sensor captures an image at that wavelength. The process is repeated for all wavelengths of interest.</li>
+              <li><strong>Fourier Transform Spectroscopy (FTS):</strong> This type of hyperspectral imaging uses an interferometer to measure the spectrum of radiation at each point in the scene. The interferometer produces an interference pattern, which is then analyzed to extract the spectral information.</li>
+            </ul></p>
+            
+            <figure style="text-align: center;">
+              <img src="assets/img/remote-sensing/scanners.png" alt="" style="max-width: 90%; max-height: 90%;">
+              <figcaption style="text-align: center;"><strong>image credit:</strong> © Arun-Kumar-Pandey and upper pannel is taken from 
+                <a href="https://www.vision-systems.com/cameras-accessories/article/14181365/hyperspectral-imaging-sensor-and-camera-requirements" target="_blank">Vision systems</a></figcaption>
+              </figure>
 
+              <table border="1">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Advantages</th>
+                    <th>Disadvantages</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Pushbroom</td>
+                    <td>Scans a linear array of detectors across the scene</td>
+                    <td>Simple, fast</td>
+                    <td>Poor spatial resolution</td>
+                  </tr>
+                  <tr>
+                    <td>Whiskbroom</td>
+                    <td>Rotates a two-dimensional array of detectors across the scene</td>
+                    <td>High spatial resolution</td>
+                    <td>Complex, slow</td>
+                  </tr>
+                  <tr>
+                    <td>Snapshot</td>
+                    <td>Uses a staring array of detectors to capture the entire scene at once</td>
+                    <td>High spatial resolution, fast</td>
+                    <td>Expensive</td>
+                  </tr>
+                  <tr>
+                    <td>Line scanning</td>
+                    <td>Scans a single detector across the scene</td>
+                    <td>Simple, fast</td>
+                    <td>Poor spatial resolution</td>
+                  </tr>
+                  <tr>
+                    <td>Tunable filter</td>
+                    <td>Selects specific wavelengths of radiation with a tunable filter</td>
+                    <td>Can capture images at specific wavelengths</td>
+                    <td>Slow</td>
+                  </tr>
+                  <tr>
+                    <td>FTS</td>
+                    <td>Uses an interferometer to measure the spectrum of radiation at each point in the scene</td>
+                    <td>High spectral resolution</td>
+                    <td>Complex, slow</td>
+                  </tr>
+                </tbody>
+              </table>
+              
 
-
-          
-
-
-
-
-
+          </section>
           <!-------------------------- Reference ------------------------------->
             <section id="reference">
                 <h2>References</h2>
@@ -386,6 +552,7 @@
                     <li><a href="http://www.lmars.whu.edu.cn/prof_web/zhangliangpei/rs/publication/Hyperspectral%20Remote%20Sensing%20Image%20Subpixel.pdf" target="_blank">Hyperspectral Remote Sensing Image Subpixel
                         Target Detection Based on Supervised Metric Learning.</a></li>
                     <li><a href="https://blog.descarteslabs.com/a-look-into-the-fundamentals-of-remote-sensing" target="_blank">Educational Series (part one): A Look into the Fundamentals of Remote Sensing</a></li>
+                    <li>Hyperspectral Imaging: A Review on UAV-Based Sensors, Data Processing and Applications for Agriculture and Forestry</li>
                 </ul>
             </section>
 
