@@ -151,9 +151,9 @@
                     image accurately represents the Earth's surface. Here's a breakdown of the key steps involved in image preprocessing for remote sensing:</p>
                 <li style="list-style-type: none; background-color: white; border: 1px solid lightgrey; margin-bottom: 10px; padding: 10px;">
                     <ol style="list-style: none; padding: 0;">
-                        <li  style="background-color: rgba(211, 211, 211, 0.425); border: 1px solid white; margin-bottom: 10px; padding: 10px;">
+                        <li  style="background-color: rgba(211, 211, 211, 0.425); border: 1px solid rgb(90, 82, 82); margin-bottom: 10px; padding: 10px;">
                             <strong>Geometric Correction:</strong> Geometric corrections address distortions caused by the Earth's curvature, satellite orbit, and sensor tilt, ensuring that the 
-                            image accurately represents the true geometry of the Earth's surface. This is achieved by applying mathematical models and resampling techniques to 
+                            image accurately represents the true geometry of the Earth's surface. This is achieved by applying <strong>mathematical models</strong> and <strong>resampling techniques</strong> to 
                             align the image with a reference map or coordinate system.  Here's an overview of how geometric correction is typically done:
                             <ul>
                                 <li><strong>Ground Control Points (GCPs) Collection:</strong>
@@ -166,12 +166,37 @@
                                     <ul style="list-style-type: circle; margin-left: 30px;">
                                         <li>Use the GCPs to perform a coordinate transformation that relates pixel coordinates in the image to geographic coordinates on the Earth's surface.</li>
                                         <li>Common transformations include polynomial transformations (e.g., polynomial of the first or second order) or affine transformations.</li>
+                                        <li><strong>Mathematical Models:</strong>
+                                        <ul>
+                                            <li><strong>Polynomial Correction:</strong> This method utilizes polynomial equations of various degrees to model the distortions in the image. 
+                                                The coefficients of the polynomial are determined by fitting the model to ground control points (GCPs) or reference imagery. Polynomial 
+                                                correction is a versatile approach that can handle a wide range of distortions, including geometric shifts, scale variations, and skew.</li>
+                                            <li><strong>Rational Function Model (RFM):</strong> The RFM is a more sophisticated mathematical model that represents the image coordinates as 
+                                                a rational function of the ground coordinates. This model is particularly useful for correcting distortions caused by satellite orbit, sensor 
+                                                orientation, and elevation.</li>
+                                            <li><strong>Triangulation-Based Correction:</strong> This method divides the image into triangles and applies transformations to each triangle to 
+                                                align it with a reference frame. The transformations are determined using GCPs or other reference data. This approach is particularly well-suited 
+                                                for images with significant local distortions.</li>
+                                        </ul></li>
                                     </ul>
                                 </li>
                                 <li><strong>Resampling: </strong>
                                     <ul style="list-style-type: circle; margin-left: 30px;">
                                         <li>Apply the calculated transformation to the entire image, adjusting each pixel's position to its corrected location.</li>
-                                        <li>Resampling is necessary because the corrected positions may not align exactly with the original pixel grid. Common resampling methods include nearest-neighbor, bilinear, or cubic convolution.</li>
+                                        <li>Resampling is necessary because the corrected positions may not align exactly with the original pixel grid. Common resampling methods include 
+                                            nearest-neighbor, bilinear, or cubic convolution.</li>
+                                        <li><strong>Mathematical models:</strong>
+                                            <ul>
+                                                <li><strong>Nearest Neighbor Resampling:</strong> This technique assigns the value of the nearest pixel in the original image to each pixel in the rectified image. 
+                                                    It is a computationally efficient method but can result in jagged edges and loss of detail.</li>
+                                                <li><strong>Bilinear Interpolation:</strong> This technique estimates the value of each pixel in the rectified image by interpolating from the values of the four 
+                                                    nearest pixels in the original image. It produces smoother results than nearest neighbor resampling but can introduce artifacts. </li>
+                                                <li><strong>Cubic Convolution Resampling:</strong> This technique utilizes a cubic polynomial to interpolate the value of each pixel in the rectified image. 
+                                                    It produces the smoothest results but is computationally more demanding.</li>
+                                                <li><strong>Lanczos Resampling:</strong> This technique applies a Lanczos filter to the original image before resampling, which reduces aliasing artifacts 
+                                                    and produces sharp, high-quality results. It is particularly well-suited for high-resolution imagery.</li>
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><strong>Orthorectification: </strong>
