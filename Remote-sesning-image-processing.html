@@ -34,6 +34,10 @@
   <script src="https://kit.fontawesome.com/5d25c1efd3.js" crossorigin="anonymous"></script>
   <!-- end of icon-->
 
+  <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+
   <!-- =======================================================
   * Template Name: iPortfolio
   * Updated: Sep 18 2023 with Bootstrap v5.3.2
@@ -89,8 +93,8 @@
         <div class="d-flex justify-content-between align-items-center">
           <h2>Image processing</h2>
           <ol>
-            <li><a href="portfolio-details-8.html" class="clickable-box">Go to Project page <i class="fas fa-arrow-right"></i></a></li>
-            <li><a href="index.html#portfolio" class="clickable-box">Go to portfolio</a></li>
+            <li><a href="Remote-sensing-content.html" class="clickable-box"><i class="fas fa-arrow-left"></i> Remote sensing Content </a></li>
+            <li><a href="index.html#portfolio" class="clickable-box">Go to Home <i class="fas fa-arrow-right"></i></a></li>
           </ol>
         </div>
 
@@ -142,7 +146,7 @@
           <p>Image processing is the manipulation and analysis of digital images, using software or algorithms, to extract useful information, enhance quality, or create 
             new products. Both remote sensing and image processing are essential for geographic information systems (GIS), as they can provide data that is otherwise 
             inaccessible, difficult, or costly to obtain.</p><br>
-            <strong>Key steps envolved in image processing: </strong>
+            <h3><strong>Key steps envolved in image processing: </strong></h3>
             <p>The process of image processing in remote sensing involves several key steps:</p>
             <ul>
                 <li><strong>Preprocessing:</strong></li>
@@ -152,7 +156,8 @@
                 <li style="list-style-type: none; background-color: white; border: 1px solid lightgrey; margin-bottom: 10px; padding: 10px;">
                     <ol style="list-style: none; padding: 0;">
                         <li  style="background-color: rgba(211, 211, 211, 0.425); border: 1px solid rgb(90, 82, 82); margin-bottom: 10px; padding: 10px;">
-                            <strong>Geometric Correction:</strong> Geometric corrections address distortions caused by the Earth's curvature, satellite orbit, and sensor tilt, ensuring that the 
+                            <h5><strong>Geometric Correction:</strong></h5> 
+                            Geometric corrections address distortions caused by the Earth's curvature, satellite orbit, and sensor tilt, ensuring that the 
                             image accurately represents the true geometry of the Earth's surface. This is achieved by applying <strong>mathematical models</strong> and <strong>resampling techniques</strong> to 
                             align the image with a reference map or coordinate system.  Here's an overview of how geometric correction is typically done:
                             <ul>
@@ -214,23 +219,159 @@
                                 <li><strong>Reprojection: </strong> Reproject the image to a specific map projection or coordinate system, ensuring consistency with other geospatial datasets.</li>
                             </ul>
                         </li>
+                        <li style="background-color: white; border: 1px solid rgb(26, 25, 25); margin-bottom: 10px; padding: 10px;">
+                            <h5><strong>Radiometric Correction:</strong></h5>
+                            Radiometric corrections address variations in sensor sensitivity and illumination conditions, ensuring that the image's pixel values accurately 
+                            reflect the actual reflectance or radiance of the Earth's surface. This involves calibrating the sensor response, adjusting for atmospheric effects like scattering and absorption, 
+                            and normalizing the image to a standard reference. Here are common methods used for radiometric correction:
+                            <ul style="margin-left: 30px;">
+                                <li><strong>Histogram Matching: </strong>
+                                    <ul style="list-style-type: circle; margin-left: 30px;">
+                                        <li>Adjusts the histogram of the image to match a reference histogram.</li>
+                                        <li>Ensures that pixel values are distributed consistently, reducing discrepancies between images.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Relative Radiometric Normalization: </strong></li>
+                                    <ul style="list-style-type: circle; margin-left: 30px;">
+                                        <li>Compares the pixel values of an image with those of a reference image acquired under similar conditions.</li>
+                                        <li>Adjusts the pixel values proportionally to make them more comparable.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Flat-Field Correction: </strong>
+                                    <ul style="list-style-type: circle; margin-left: 30px;">
+                                        <li>Addresses variations in sensor sensitivity across the image.</li>
+                                        <li>Uses a flat-field image, typically acquired by imaging a uniform surface, to correct for uneven sensor response.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Gain and Offset Adjustment: </strong>
+                                    <ul style="list-style-type: circle; margin-left: 30px;">
+                                        <li>Applies correction factors to account for sensor gain and offset variations.</li>
+                                        <li>The correction is usually based on calibration data provided by the sensor manufacturer.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Sun Angle Correction: </strong>
+                                    <ul style="list-style-type: circle; margin-left: 30px;">
+                                        <li>Adjusts pixel values based on the sun's angle during image acquisition.</li>
+                                        <li>Corrects for variations in illumination due to changing solar angles.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Top of Atmosphere (TOA) Reflectance Conversion: </strong>
+                                    <ul style="list-style-type: circle; margin-left: 30px;">
+                                        <li>Converts pixel values to reflectance values at the top of the Earth's atmosphere.</li>
+                                        <li>Involves dividing the radiance values by the cosine of the solar zenith angle.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Dark Object Subtraction (DOS): </strong>
+                                    <ul style="list-style-type: circle; margin-left: 30px;">
+                                        <li>Assumes that some pixels in an image should have zero reflectance, such as dark objects like water bodies or shadows</li>
+                                        <li>Subtracts the minimum pixel value in the image from all pixel values to correct for sensor offset.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Radiometric Calibration Using Calibration Targets:</strong>
+                                    <ul style="list-style-type: circle; margin-left: 30px;">
+                                        <li>Some satellites use calibration targets on board to perform in-flight radiometric calibration.</li>
+                                        <li>These targets have known reflectance values, allowing for direct calibration of the sensor.</li>
+                                    </ul>
+                                </li>
+                            </ul><br>
+                            <p>These methods can be implemented using software tools or programming languages like Python. Python libraries such as NumPy, scikit-image, 
+                                and rasterio, along with dedicated remote sensing libraries, are often employed for radiometric correction in a data processing pipeline. 
+                                The specific method chosen depends on the characteristics of the sensor, the type of imagery, and the desired level of accuracy in the 
+                                radiometric correction.</p><br>
+                            <p><strong>Radiometric calibration:</strong> 
+                                Radiometric correction is a crucial step in remote sensing image processing, as it transforms raw digital numbers (DNs) recorded by a satellite 
+                                sensor into calibrated radiance or reflectance values that accurately represent the physical properties of the Earth's surface. 
+                                The process involves applying mathematical equations to compensate for various factors that affect the sensor's recorded signal. 
+                                Radiometric calibration aims to convert DNs into radiance values by accounting for the sensor's gain (sensitivity) and offset (bias). 
+                                This process can be represented mathematically as:
+                                $$\text{Radiance} = (\text{DN} - \text{Offset}) \times \text{Gain}. $$
+
+                                where,
+                                <p>- <code>Radiance</code>  is the measured electromagnetic radiation in units of watts per meter squared per steradian per micrometer (W/m<sup>2</sup>/sr/µm).</p>
+                                <p>- <code>DN</code> is the digital number recorded by the sensor</p>
+                                <p>- <code>Offset</code> is the sensor's dark signal, representing the signal recorded when no radiation is present</p>
+                                <p>- <code>Gain</code> is the sensor's sensitivity, representing the proportionality between the incident radiation and the recorded DN.</p>
+                            </p>
+                            <p><strong>Solar Irradiance calibration:</strong> 
+                                Solar irradiance correction normalizes radiance values by dividing them by the solar irradiance at the time of image acquisition. This accounts for 
+                                variations in solar energy reaching the Earth's surface due to changes in solar-Earth distance and atmospheric effects. The solar irradiance correction 
+                                equation can be expressed as: 
+                                $$\text{Normalized Radiance} = \frac{\text{Radiance}}{\text{Solar Irradiance}}.$$
+
+                                where,
+                                <p>- <code>Solar Irradiance</code> is the solar energy incident on the Earth's surface in units of W/m<sup>2</sup>/µm </p>
+                            </p>
+                            <p><strong>Path Radiance Correction: </strong>
+                                Path radiance refers to the amount of radiation scattered by the atmosphere between the Earth's surface and the satellite sensor. It is subtracted from the 
+                                normalized radiance values to isolate the reflected radiation from the Earth's surface. The path radiance correction equation is:
+                                $$\text{Corrected Radiance} = \text{Normalized Radiance} - \text{Path Radiance}.$$
+
+                                where,
+                                <p>- <code>Path Radiance</code> is the atmospheric scattering contribution to the measured radiance</p>
+                            </p>
+                           
+                            <p><strong>Conversion to TOA Reflectance: </strong>
+                                The final step in radiometric correction is to convert the corrected radiance values to TOA reflectance. TOA reflectance represents the proportion of solar irradiance reflected by the Earth's surface and 
+                                scattered by the atmosphere to the satellite sensor. The conversion equation is:
+
+                                $$\text{TOA Reflectance} = \frac{\text{Corrected Radiance}}{\text{Solar Irradiance} \times \text{Cos}(\text{Solar Zenith Angle})}$$
+
+                                where, 
+                                <p>- <code>Solar Zenith Angle</code> is the angle between the incoming solar radiation
+                                and the vertical direction at the surface.</p>
+                            </p>
+                        </li>
+                        <li style="background-color: rgb(231, 224, 224); border: 1px solid white; margin-bottom: 10px; padding: 10px;">
+                            <h5><strong>Noise Reduction:</strong></h5>
+                            Noise reduction techniques are employed to remove unwanted artifacts and imperfections introduced during image acquisition, sensor operation, 
+                            or data transmission. This involves applying filtering algorithms to smooth out noise while preserving the underlying image features. 
+                            Here are some common noise reduction techniques used in remote sensing:
+                            <ul>
+                                <li><strong>Spatial Filtering: </strong>Spatial filtering involves applying mathematical operations to neighboring pixels in an image to smooth out noise while preserving 
+                                    the underlying image features. Common spatial filtering techniques include averaging filters, median filters, and Gaussian filters <sup>[1, 2, 3, 4, 5, 6]</sup>.</li>
+                                <li><strong>Frequency Filtering: </strong> Frequency filtering involves transforming the image from the spatial domain to the frequency domain using techniques like Fourier transform or wavelet 
+                                    transform. Noise is often concentrated in specific frequency ranges, allowing for its removal by applying filter masks or thresholding techniques in the frequency domain <sup>[]</sup>.</li>
+                                <li><strong>Temporal Filtering: </strong>Temporal filtering utilizes multiple images acquired at different times to reduce noise. By averaging or differencing images acquired over time, 
+                                    random noise can be reduced while preserving persistent features <sup>[7, 8]</sup>.</li>
+                                <li><strong>Adaptive Filters: </strong>Adaptive filters adjust their filtering parameters based on local image characteristics, allowing them to effectively reduce noise while preserving 
+                                    edges and fine details. Common adaptive filters include the Frost filter and the Lee filter <sup>[9, 10]</sup>.</li>
+                                <li><strong>Wavelet-Based Filters: </strong>Wavelet-based filtering utilizes wavelets, which are mathematical functions that decompose an image into different frequency scales. Noise can 
+                                    be selectively removed from different wavelet levels, preserving the desired information content <sup>[11,12]</sup>.</li>
+                                <li><strong>Machine Learning-Based Noise Reduction: </strong>Machine learning algorithms, such as <em>convolutional neural networks (CNNs)</em>, can be trained to identify and remove noise patterns 
+                                    in images. These algorithms can learn from large datasets of noisy and noise-free images, making them effective for various noise types <sup>[13, 14]</sup>.</li>
+                            </ul>
+                            <p>The choice of filtering algorithm depends on the type of noise, the characteristics of the image, and the specific application. In general, a combination of different techniques may be used to achieve 
+                                optimal noise reduction while preserving image quality and information content.</p>
+                        </li>
                         <li style="background-color: white; border: 1px solid lightgrey; margin-bottom: 10px; padding: 10px;">
-                            <strong>Radiometric Correction:</strong> Radiometric corrections address variations in sensor sensitivity and illumination conditions, ensuring that the image's pixel values accurately reflect the actual reflectance or radiance of the Earth's surface. This involves calibrating the sensor response, adjusting for atmospheric effects like scattering and absorption, and normalizing the image to a standard reference.
+                            <h5><strong>Atmospheric Correction:</strong></h5>
+                            Atmospheric correction aims to remove the effects of the atmosphere on the image, as atmospheric scattering and absorption can alter 
+                            the spectral characteristics of the Earth's surface. This involves modeling atmospheric processes and estimating the atmospheric contribution to the image's pixel values, 
+                            allowing for more accurate interpretation of surface reflectance. Methods include the Dark Object Subtraction (DOS) or applying atmospheric correction models like FLAASH or MODTRAN.
+                            <p><strong>Atmospheric Scattering Correction: </strong>
+                                Atmospheric scattering models, such as the <em>Rayleigh scattering model</em> and the <em>aerosol model</em>, are used to estimate and correct for the distortions caused by 
+                                atmospheric scattering. These models account for the <em>wavelength-dependent scattering</em> behavior of the atmosphere and provide an estimate of the path radiance.
+                            </p>
                         </li>
                         <li style="background-color: lightgrey; border: 1px solid white; margin-bottom: 10px; padding: 10px;">
-                            <strong>Noise Reduction:</strong> Noise reduction techniques are employed to remove unwanted artifacts and imperfections introduced during image acquisition, sensor operation, or data transmission. This involves applying filtering algorithms to smooth out noise while preserving the underlying image features.
+                            <h5><strong>Image Enhancement:</strong></h5> 
+                            Image enhancement techniques are used to improve the visual quality of the image, making it easier to interpret and analyze. This may involve 
+                            techniques such as contrast stretching, histogram equalization, and edge detection, which can enhance the visibility of features and make subtle variations more apparent.
                         </li>
                         <li style="background-color: white; border: 1px solid lightgrey; margin-bottom: 10px; padding: 10px;">
-                            <strong>Atmospheric Correction:</strong> Atmospheric correction aims to remove the effects of the atmosphere on the image, as atmospheric scattering and absorption can alter the spectral characteristics of the Earth's surface. This involves modeling atmospheric processes and estimating the atmospheric contribution to the image's pixel values, allowing for more accurate interpretation of surface reflectance. Methods include the Dark Object Subtraction (DOS) or applying atmospheric correction models like FLAASH or MODTRAN.
+                            <h5><strong>Image Registration:</strong></h5> 
+                            Image registration aligns multiple images acquired from different sensors, platforms, or time periods to a common reference frame. 
+                            This is achieved by identifying corresponding points or features in the images and applying mathematical models to transform one image to the reference frame of the other.
                         </li>
                         <li style="background-color: lightgrey; border: 1px solid white; margin-bottom: 10px; padding: 10px;">
-                            <strong>Image Enhancement:</strong> Image enhancement techniques are used to improve the visual quality of the image, making it easier to interpret and analyze. This may involve techniques such as contrast stretching, histogram equalization, and edge detection, which can enhance the visibility of features and make subtle variations more apparent.
-                        </li>
-                        <li style="background-color: white; border: 1px solid lightgrey; margin-bottom: 10px; padding: 10px;">
-                            <strong>Image Registration:</strong> Image registration aligns multiple images acquired from different sensors, platforms, or time periods to a common reference frame. This is achieved by identifying corresponding points or features in the images and applying mathematical models to transform one image to the reference frame of the other.
-                        </li>
-                        <li style="background-color: lightgrey; border: 1px solid white; margin-bottom: 10px; padding: 10px;">
-                            <strong>Image Mosaicking:</strong> Image mosaicking combines multiple overlapping images into a seamless, larger image that represents a broader area of the Earth's surface. This involves stitching the images together while ensuring that the transitions between individual images are smooth and visually consistent.
+                            <h5><strong>Image Mosaicking:</strong></h5> 
+                            Image mosaicking combines multiple overlapping images into a seamless, larger image that represents a broader area of the Earth's surface. 
+                            This involves stitching the images together while ensuring that the transitions between individual images are smooth and visually consistent.
+                            <ul>
+                                <li><strong></strong></li>
+                                <li><strong></strong></li>
+                                <li><strong></strong></li>
+                            </ul>
                         </li>
                     </ol>
                     <p>Image preprocessing plays a fundamental role in remote sensing image analysis, ensuring that the processed imagery accurately represents the Earth's surface 
@@ -307,16 +448,32 @@
 
         </section>
 
-
+        <section id="reference">
+            <h3>Reference</h3>
+            <ol>
+                <li>Gonzalez, R. C., & Woods, R. E. (2002). Digital image processing (3rd ed.). Prentice Hall.</li>
+                <li>Pratt, W. K. (1978). Digital image processing. John Wiley & Sons.</li>
+                <li>Tukey, J. W. (1977). Exploratory data analysis. Addison-Wesley.</li>
+                <li>He, J., & Sun, D. (2017). Spatial median filter for image denoising. IEEE Signal Processing Letters, 24(11), 1674-1677.</li>
+                <li>Marr, D., & Hildreth, E. C. (1980). Theory of edge detection. Proceedings of the Royal Society of London. B, Biological Sciences, 207(1167), 187-217.</li>
+                <li>Lindeberg, T. (1994). Scale-space theory in computer vision. Springer.</li>
+                <li>Wiener, N. (1949). The theory of prediction. Princeton University Press.</li>
+                <li>O'Haver, T. (2009). A DSP primer. Cambridge University Press.</li>
+                <li>Frost, T. S. (1982). A model for radar images and its application to adaptive digital filtering. IEEE Transactions on Aerospace and Electronic Systems, AES-18(2), 156-166.</li>
+                <li>Lee, J. S. (1983). A smoothing algorithm for noisy images. IEEE Transactions on Systems, Man, and Cybernetics, SMC-13(1), 43-49.</li>
+                <li>Mallat, S. G. (1998). A wavelet tour of signal processing. Academic Press.</li>
+                <li>Vetterli, M., & Kovačević, J. (2002). Wavelets and subband coding. Prentice Hall.</li>
+                <li>Zhang, K., Zuo, W., & Chen, Y. (2017). Fully convolutional neural networks for image denoising. IEEE Transactions on Image Processing, 26(7), 3904-3916.</li>
+                <li>Lefkimmiatis, G., & Bourdis, N. (2019). A supervised image denoising scheme using convolutional neural networks. IEEE Transactions on Image Processing, 28(9), 4276-4289.</li>
+              </ol>              
+        </section>
+        
             <div class="navigation">
-                <a href="portfolio-details-8.html" class="clickable-box">
-                    <span class="arrow-left">Go Back</span>
+                <a href="Remote-sensing-content.html" class="clickable-box">
+                    <span class="arrow-left">Remote sensing Content </span>
                 </a>
-                <a href="Docker-Container.html" class="clickable-box">
-                    <span class="arrow-right">Go to Docker Configuration</span>
-                </a>
-                <a href="Jupyter-nifi.html" class="clickable-box">
-                <span class="arrow-right">Go to Jupyter & Nifi Configuration</span>
+                <a href="index.html#portfolio" class="clickable-box">
+                    <span class="arrow-right">Go to Home</span>
                 </a>
             </div>
 
