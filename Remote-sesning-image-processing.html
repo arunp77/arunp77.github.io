@@ -159,7 +159,12 @@
                   facilitating data comparison. 
                   
                   <p><strong>How do we know the incoming signal to sensors are scattered or not?</strong>
-                    In remote sensing, distinguishing between scattered and non-scattered signals, as well as assessing the impact of atmospheric conditions on signal attenuation, involves various techniques:
+                    <p>Radiation undergoes scattering as it traverses and engages with the atmosphere. This scattering has the effect of reduce or attenuate 
+                      a portion of the energy that reaches the surface. Moreover, the atmosphere contributes to further attenuation of the signal traveling from the 
+                      target to the sensor. Atmospheric correction can be approached through diverse methods, spanning from intricate modeling of atmospheric conditions 
+                      during data acquisition to straightforward calculations based solely on the image data. This is achieved by applying <strong>mathematical models</strong> 
+                      and <strong>resampling techniques</strong> to align the image with a reference map or coordinate system. In remote sensing, distinguishing between 
+                      scattered and non-scattered signals, as well as assessing the impact of atmospheric conditions on signal attenuation, involves various techniques:</p>
                       <ul>
                         <li><strong>Radiative Transfer Models: </strong> Mathematical models, such as radiative transfer models, simulate the interaction of electromagnetic radiation with the atmosphere. By comparing observed and modeled data, researchers can infer the atmospheric effects and assess whether the signal has undergone scattering or attenuation.</li>
                         <li><strong>Spectral Analysis:</strong> Analyzing the spectral characteristics of the acquired data can provide insights into atmospheric conditions. Certain wavelengths are more susceptible to scattering, and the analysis of spectral signatures can help identify whether the signal has been scattered.</li>
@@ -168,8 +173,7 @@
                         <li><strong>Historical Data and Trends: </strong>Examining historical data and observing trends in signal behavior over time can provide valuable insights. Changes in signal characteristics that correlate with specific atmospheric conditions may indicate scattering or attenuation effects.</li>
                         <li><strong>Ground-Based Measurements: </strong>Conducting ground-based measurements, such as using instruments to directly measure atmospheric parameters, helps validate and improve atmospheric correction models.</li>
                       </ul>
-                    </p><br>
-                  
+                  </p><br>
                   
                   Here's a breakdown of the key steps involved in image preprocessing for remote sensing:</p>
                 <li style="list-style-type: none; background-color: rgb(59, 196, 59); border: 1px solid rgb(116, 110, 110); margin-bottom: 10px; padding: 10px;">
@@ -180,13 +184,6 @@
                             image accurately represents the true geometry of the Earth's surface.  This correction becomes necessary 
                             to facilitate comparisons between images captured by various sensors on different dates or times. It also proves useful when mosaicking 
                             multiple images from a single sensor while ensuring consistent illumination conditions across scenes.</p>
-                            
-                            
-                            <p>Radiation undergoes scattering as it traverses and engages with the atmosphere. This scattering has the effect of reduce or attenuate 
-                              a portion of the energy that reaches the surface. Moreover, the atmosphere contributes to further attenuation of the signal traveling from the 
-                              target to the sensor. Atmospheric correction can be approached through diverse methods, spanning from intricate modeling of atmospheric conditions 
-                              during data acquisition to straightforward calculations based solely on the image data. This is achieved by applying <strong>mathematical models</strong> 
-                              and <strong>resampling techniques</strong> to align the image with a reference map or coordinate system.</p>
 
                             <p>Here's an overview of how geometric correction is typically done:</p>
                             <ul>
@@ -194,6 +191,8 @@
                                     <ul style="list-style-type: circle; margin-left: 30px;">
                                         <li>Identify distinct and easily identifiable features in the image and corresponding locations on the Earth's surface.</li>
                                         <li>These features, known as Ground Control Points (GCPs), serve as reference points for the correction process.</li>
+                                        <li>The geometric registration process involves identifying the image coordinates (i.e. row, column) of several clearly discernible points, 
+                                          called GCPs, in the distorted image, and matching them to their true positions in ground coordinates (e.g. latitude, longitude). </li>
                                     </ul>
                                 </li>
                                 <li><strong>Coordinate Transformation:</strong>
@@ -216,15 +215,20 @@
                                 </li>
                                 <li><strong>Resampling: </strong>
                                     <ul style="list-style-type: circle; margin-left: 30px;">
-                                        <li>Apply the calculated transformation to the entire image, adjusting each pixel's position to its corrected location.</li>
-                                        <li>Resampling is necessary because the corrected positions may not align exactly with the original pixel grid. Common resampling methods include 
-                                            nearest-neighbor, bilinear, or cubic convolution.</li>
+                                        <li>In georeferencing or geocorrection processes in remote sensing, resampling is a key step to correct distorted images. The purpose of resampling is to transform the pixel values from the original image to a new set of coordinates, aligning them with a specified map projection or coordinate system.</li>
+                                        <figure style="text-align: center;">
+                                          <img src="assets/img/remote-sensing/geometric-correction.png" alt="" style="max-width: 70%; max-height: 70%;">
+                                      </figure>     
                                         <li><strong>Mathematical models:</strong>
                                             <ul>
-                                                <li><strong>Nearest Neighbor Resampling:</strong> This technique assigns the value of the nearest pixel in the original image to each pixel in the rectified image. 
+                                                <li><strong>Nearest Neighbor Resampling:</strong>  In Nearest Neighbor Resampling, for each pixel in the corrected image, the digital value is directly taken from the pixel in the original image that is closest to its new location.
                                                     It is a computationally efficient method but can result in jagged edges and loss of detail.</li>
-                                                <li><strong>Bilinear Interpolation:</strong> This technique estimates the value of each pixel in the rectified image by interpolating from the values of the four 
-                                                    nearest pixels in the original image. It produces smoother results than nearest neighbor resampling but can introduce artifacts. </li>
+                                                <li><strong>Bilinear Interpolation:</strong> In Bilinear Interpolation Resampling, for each new pixel in the corrected image, a weighted average is calculated 
+                                                  based on the values of four pixels in the original image that are nearest to the new pixel's location. 
+                                                  These four nearest pixels form a square or rectangle around the new pixel, and their values contribute to the calculation of the new pixel's value. 
+                                                  The averaging process alters the original pixel values and creates entirely new digital values in the output image. This may be undesirable if further
+                                                  processing and analysis, such as classification based on spectral response, is to be done. If this is the case, resampling may best be done after
+                                                  the classification process.</li>
                                                 <li><strong>Cubic Convolution Resampling:</strong> This technique utilizes a cubic polynomial to interpolate the value of each pixel in the rectified image. 
                                                     It produces the smoothest results but is computationally more demanding.</li>
                                                 <li><strong>Lanczos Resampling:</strong> This technique applies a Lanczos filter to the original image before resampling, which reduces aliasing artifacts 
