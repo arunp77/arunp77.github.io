@@ -176,7 +176,7 @@
                   </p><br>
                   
                   Here's a breakdown of the key steps involved in image preprocessing for remote sensing:</p>
-                <li style="list-style-type: none; background-color: rgb(59, 196, 59); border: 1px solid rgb(116, 110, 110); margin-bottom: 10px; padding: 10px;">
+                <li style="list-style-type: none; background-color: rgb(206, 228, 235); border: 1px solid rgb(116, 110, 110); margin-bottom: 10px; padding: 10px;">
                     <ol style="list-style: none; padding: 0;">
                         <li style="background-color: white; border: 1px solid rgb(26, 25, 25); margin-bottom: 10px; padding: 10px;">
                             <h5><strong>Geometric Correction:</strong></h5> 
@@ -392,16 +392,17 @@
                             This involves stitching the images together while ensuring that the transitions between individual images are smooth and visually consistent.
                         </li>
                     </ol>
-                    <p style="color: white;">Image preprocessing plays a fundamental role in remote sensing image analysis, ensuring that the processed imagery accurately represents the Earth's surface 
+                    <p style="color: rgb(22, 19, 19);">Image preprocessing plays a fundamental role in remote sensing image analysis, ensuring that the processed imagery accurately represents the Earth's surface 
                         and provides reliable information for further analysis and interpretation. The specific preprocessing steps employed depend on the characteristics of the 
                         imagery, the sensor used, and the specific application.</p>
                 </li>
                 
+                <!-------------------Image Enhancement ------------------------->
                 <li><h5><strong>Image Enhancement:</strong></h5> </li>
                     Image enhancement techniques are used to improve the visual quality of the image, making it easier to interpret and analyze. This may involve 
                     techniques such as contrast stretching, histogram equalization, and edge detection, which can enhance the visibility of features and make subtle variations more apparent.<br>
                     <ol style="list-style: none; padding: 0;">
-                    <li style="background-color: white; border: 1px solid rgb(20, 20, 20); margin-bottom: 10px; padding: 10px;">
+                    <li style="background-color: rgb(206, 228, 235); border: 1px solid rgb(20, 20, 20); margin-bottom: 10px; padding: 10px;">
                         <strong>Example:</strong> This example is taken from <a href="https://crisp.nus.edu.sg/~research/tutorial/process.htm" target="_blank">Image Processing and Analysis </a>.
                     <figure style="text-align: center;">
                         <img src="assets/img/remote-sensing/image-enhancment.png" alt="" style="max-width: 90%; max-height: 90%;">
@@ -431,12 +432,14 @@
                     </figure></li>  
                 </ol>         
                 </li>
+
+                <!--------------Image classification --------------------->
                 <li><strong>Image Classification:</strong> Image classification involves assigning each pixel or segment of the image to a specific class or category, such as 
                     land cover type, vegetation health, or soil moisture. This process relies on the features extracted in the previous stage and may employ 
                     various classification algorithms, such as statistical methods, machine learning techniques, or neural networks (You can look at following paper: 
                     <a href="https://wires.onlinelibrary.wiley.com/doi/full/10.1002/widm.1264" target="_blank">Deep learning for remote sensing image classification: A survey.</a>)
                     <ol style="list-style: none; padding: 0;">
-                        <li style="background-color: white; border: 1px solid rgb(15, 15, 15); margin-bottom: 10px; padding: 10px;">
+                        <li style="background-color: rgb(206, 228, 235); border: 1px solid rgb(15, 15, 15); margin-bottom: 10px; padding: 10px;">
                             Common Image Classification Techniques:
                             <ul>
                                 <li><strong>Supervised Classification:</strong> Supervised classification utilizes labeled training data to learn the characteristics of each class. Common supervised classifiers include maximum likelihood estimation, support vector machines, and random forests.</li>
@@ -509,97 +512,34 @@
                     </ol>
                 </li>
 
-                <li><strong>Feature Extraction:</strong> Feature extraction involves identifying and extracting relevant characteristics from the image that can be used to classify 
-                    or analyze the features of interest. These features may include spectral information, textural patterns, and spatial relationships between 
-                    objects in the image. Here are key steps and considerations for feature extraction in remote sensing:
+                <!------------------- Feature extraction ------------------------->
+                <li><strong>Feature Extraction:</strong> Feature extraction in remote sensing refers to the process of identifying and isolating specific objects or characteristics within an image that 
+                  are of interest for analysis or interpretation. The goal is to transform raw pixel data into meaningful information about the landscape. <br>
+                  <strong>Objectives of Feature Extraction:</strong>
+                  <ul>
+                    <li>The primary objectives include identifying and delineating objects or regions in the image that represent distinct features like roads, buildings, vegetation, water bodies, etc.</li>
+                    <li>Feature extraction is crucial for applications such as land cover mapping, urban planning, environmental monitoring, and disaster assessment.</li>
+                  </ul>
+                  <br>
+                  Here's a more detailed explanation:
                     <ol style="list-style: none; padding: 0;">
-                        <li style="background-color: white; border: 1px solid rgb(15, 15, 15); margin-bottom: 10px; padding: 10px;">
-                            <ol>
-                                <li><strong>Acquire Remote Sensing Data:</strong></li>
-                                <li><strong>Preprocess the Data:</strong>
-                                   <ul>
-                                      <li>Correct for radiometric and geometric distortions.</li>
-                                      <li>Apply atmospheric correction to remove atmospheric effects.</li>
-                                      <li>Normalize or standardize pixel values.</li>
-                                   </ul>
-                                </li>
-                                <li><strong>Multispectral and Hyperspectral Bands:</strong>
-                                   <ul>
-                                      <li>Explore different spectral bands to capture information beyond visible light, including infrared and other non-visible wavelengths.</li>
-                                   </ul>
-                                </li>
-                                <li><strong>Spatial Resolution:</strong>
-                                   <ul>
-                                      <li>Consider the spatial resolution of the imagery. Higher resolution can provide more detailed information but may require more computational resources.</li>
-                                   </ul>
-                                </li>
-                                <li><strong>Texture Analysis:</strong>
-                                   <ul>
-                                      <li>Assess the texture of the imagery to identify patterns and structures. Methods include co-occurrence matrices or Gabor filters.</li>
-                                   </ul>
-                                </li>
-                                <li><strong>Principal Component Analysis (PCA):</strong>
-                                   <ul>
-                                      <li>Use PCA to transform the original bands into a set of uncorrelated components, reducing dimensionality while retaining important information.</li>
-                                   </ul>
-                                </li>
-                                <li><strong>Vegetation Indices:</strong>
-                                   <ul>
-                                      <li>Calculate vegetation indices like NDVI (Normalized Difference Vegetation Index) to assess vegetation health and coverage.</li>
-                                   </ul>
-                                </li>
-                                <li><strong>Object-Based Image Analysis (OBIA):</strong>
-                                   <ul>
-                                      <li>Move from pixel-based analysis to object-based methods, considering groups of pixels as objects and extracting features from these objects.</li>
-                                   </ul>
-                                </li>
-                                <li><strong>Land Cover Classification:</strong>
-                                   <ul>
-                                      <li>Perform land cover classification to identify and extract features related to different land cover types, such as urban areas, water bodies, and vegetation.</li>
-                                   </ul>
-                                </li>
-                                <li><strong>Change Detection:</strong>
-                                   <ul>
-                                      <li>Analyze temporal changes in the imagery to extract features related to land cover changes over time.</li>
-                                   </ul>
-                                </li>
-                                <li><strong>Machine Learning and Deep Learning:</strong>
-                                   <ul>
-                                      <li>Utilize machine learning algorithms or deep learning models for automated feature extraction. Convolutional Neural Networks (CNNs) can be particularly effective.</li>
-                                   </ul>
-                                </li>
-                                <li><strong>Topographic Information:</strong>
-                                   <ul>
-                                      <li>Incorporate topographic data, such as elevation or slope, to extract features related to terrain characteristics.</li>
-                                   </ul>
-                                </li>
-                                <li><strong>Time-Series Analysis:</strong>
-                                   <ul>
-                                      <li>Analyze time-series data to extract temporal features, particularly useful for monitoring dynamic processes like vegetation growth or land use changes.</li>
-                                   </ul>
-                                </li>
-                                <li><strong>Data Fusion:</strong>
-                                   <ul>
-                                      <li>Integrate data from different sensors or sources to enhance feature extraction, considering both spectral and spatial information.</li>
-                                   </ul>
-                                </li>
-                                <li><strong>Validation and Accuracy Assessment:</strong>
-                                   <ul>
-                                      <li>Validate extracted features using ground truth data and assess the accuracy of the extraction methods.</li>
-                                   </ul>
-                                </li>
-                             </ol>
-                             
+                        <li style="background-color: rgb(206, 228, 235); border: 1px solid rgb(15, 15, 15); margin-bottom: 10px; padding: 10px;">
+                          <strong>Techniques for Feature Extraction: </strong>
+                            <ul>
+                              <li><strong>Edge Detection:</strong> Identifying boundaries or edges between different objects or regions in the image. Edges often represent significant changes in pixel values and can be detected using various mathematical operators.</li>
+                              <li><strong>Object-Based Image Analysis (OBIA):</strong> This approach involves grouping pixels into meaningful objects based on their spectral, spatial, and contextual characteristics. It considers the relationships between neighboring pixels to form coherent image objects.</li>
+                            </ul>
                         </li>
                     </ol>
                 </li>
 
+                <!------------------- Image segmentation ---------------------------->
                 <li><strong>Image Segmentation:</strong> Image segmentation aims to divide the image into meaningful segments or regions, each representing a distinct feature or object 
                     on the Earth's surface. This process is crucial for tasks such as land cover classification, where the image needs to be partitioned into areas 
                     corresponding to different types of land cover, such as forests, water bodies, and urban areas.
                 
                     <ol style="list-style: none; padding: 0;">
-                        <li style="background-color: white; border: 1px solid rgb(15, 15, 15); margin-bottom: 10px; padding: 10px;">
+                        <li style="background-color: rgb(206, 228, 235); border: 1px solid rgb(15, 15, 15); margin-bottom: 10px; padding: 10px;">
                             <p>Common steps to follow to perform the image segmentation:</p>
                             <ol>
                                 <li><strong>Data Preprocessing:</strong>
@@ -650,7 +590,7 @@
                     3D terrain models, or producing animations that show changes over time. Visualization helps to communicate the results of remote sensing analysis to a 
                     wider audience and support informed decision-making.
                     <ol style="list-style: none; padding: 0;">
-                        <li style="background-color: white; border: 1px solid rgb(15, 15, 15); margin-bottom: 10px; padding: 10px;">
+                        <li style="background-color: rgb(206, 228, 235); border: 1px solid rgb(15, 15, 15); margin-bottom: 10px; padding: 10px;">
                             <p>Performing image visualization and presentation involves effectively conveying information extracted from images to an audience. Here are the steps:</p>
                             <ul>
                                 <li><strong>Choose Visualization Tools: </strong>Select tools suitable for your data and objectives. Common tools include matplotlib, seaborn, Plotly, and OpenCV in Python.</li>
