@@ -1354,3 +1354,10 @@ img {
   column-count: 3;
   margin-left: 30px;
 }
+
+
+.black-border-box {
+  border: 2px solid #000000; /* Black border */
+  padding: 20px; /* Adjust padding as needed */
+  margin: 20px; /* Adjust margin as needed */
+}

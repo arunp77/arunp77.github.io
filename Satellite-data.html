@@ -137,7 +137,7 @@
       <div class="container">
           <div class="row gy-4">
             <div style="background-color: rgb(115, 228, 243); color: rgb(29, 27, 27); padding: 10px;">
-              <h1>Satellite Data processing and file formats</h1>
+              <h1>Process levels</h1>
           </div>
           <div class="image">
             <figure style="text-align: center;">
@@ -145,6 +145,85 @@
                 <br><figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://www.eumetsat.int/" target="_blank"> EUMESAT</a></figcaption>
             </figure>            
           </div>
+
+          <section id="section-1">
+            <h2>Various aspects of Satellite data collection </h2>
+            The process of remote sensing, from data collection to final image processing, involves several stages. Here's a detailed description of each stage:
+            
+            <ol>
+              <li><strong>Platform and Sensor Selection: </strong>First step is to choose appropriate satellite, aircraft, or unmanned aerial Vehicle (UAV)
+              platform and hence the sensors onboard on the specific objectives of the remote sensing mission. These sensors then captures data in relevat 
+              spectral bands for the desired applications (example optical, infrared, radar).</li>
+              <li><strong>Mission Planning and Scheduling: </strong>Next step would be to choose the orbits to cover the target area after 
+                considering the lighting conditions, weather and other mission constrains.</li>
+              <li><strong>Data Acquisition: </strong>Then the sensors onboards acquire remote sensing data through capturning the electromagnetic radiation in various wavelengths. 
+                When utilizing optical sensors, the collection of data is accomplished by depending on sunlight reflection and absorption. In contrast, with radar sensors, 
+                the sensors emit microwave signals, and the captured data comes from the signals that are backscattered. </li>
+              <li><strong>Telemetry and Data Transmission: </strong>In the next step, the acquired data is transmitted to ground stations using telemetry systems. 
+                Telemetry data includes details such as the satellite's health, its orientation in space, power levels, and sensor status.</li>
+              <li><strong> Data Preprocessing: </strong>In this step, various data corrections (radiometric and geometric distortions introduced during data acquisition) are done.
+              Atmospheric correction are also done in this step. The normalization and standardization of pixel values are also done for consistency.</li>
+              <li><strong>Image Registration:</strong>Next multiple images from different times or sensors are aligned to a common coordiante system. 
+                Also geometric distortions are corrected to enable accurate comparison and analysis.</li>
+              <li><strong>Image Enhancement: </strong>Image emhancement is done to improve the visual quality and highlight specific features using techniques like contrast adjustment
+              and histogram equalization. If required, specific spectral bands are enhanced to emphaseze certain infromation.</li>
+              <li><strong>Image Classification: </strong>Pixels or regions are assigned within the images to predefined classes or land cover types. These are done by using classification 
+              algorithms based on spectral, textural and contextual features. </li>
+              <li><strong>Feature Extraction:</strong>Finally relevant features are identified and extracted from the images, such as vegitation indices, water bodeis, or urban areas.
+              Texture analysis and spatially filtering are used for this purpose. </li>
+              <li><strong>Change Detection: </strong>After going through all the above steps, multiple images over times are compared to idnetify changes in land cover or other features. 
+              The algorithm is then trained using a training set which includes images from different geographical locations with similar characteristics. </li>
+              //The algorithm is designed to work with a wide range of satellite imagery types including Landsat, Sentinel, MODIS?
+            </ol>
+
+            <h4>Image enhancement process</h4>
+            <ol>
+              <li><strong>Data Preparation:</strong>
+                <ul>
+                  <li>Acquire the satellite imagery and corresponding labels. The labels indicate the types of land cover (e.g., forest, water, urban, etc.) present in the images.</li>
+                  <li>Reshape the images to have a consistent size and channel ordering. This can be achieved by using Python libraries like NumPy or OpenCV.</li>
+                  <li>Normalize the pixel values of the images to ensure consistent scale. This can be achieved by dividing the pixel values by 255.</li>
+                  <li>Split the data into training, validation, and testing sets.</li>
+                </ul>
+              </li>
+              <li><strong>Feature Extraction: </strong>
+                <ul>
+                  <li>Convert the satellite images from their RGB color space to another color space, such as HSV or YCrCb. This can help capture additional information about the land cover present in the images.</li>
+                  <li>Apply a transformation, such as wavelet transformation, to the satellite images. This can help enhance the quality of the images by reducing noise and preserving the original features of the images.</li>
+                </ul>
+              </li>
+              <li><strong>Model Training:</strong>
+                <ul>
+                  <li>Select a suitable machine learning model, such as a convolutional neural network (CNN), for the classification task.</li>
+                  <li>Train the model on the training set, using the extracted features as inputs and the corresponding labels as targets.</li>
+                  <li>Evaluate the performance of the model on the validation set, using appropriate metrics like accuracy, precision, recall, and F1-score.</li>
+                </ul>
+              </li>
+              <li><strong>Model Optimization:</strong>
+                <ul>
+                  <li>If the model's performance on the validation set is not satisfactory, try to improve the model's architecture or adjust its hyperparameters.</li>
+                  <li>Continue training and evaluating the model until its performance is satisfactory. </li>
+                </ul>
+              </li>
+              <li><strong>Model Deployment:</strong>
+                <ul>
+                  <li>Once the model has been trained and optimized, deploy it to a production environment.</li>
+                  <li>Use the deployed model to enhance satellite imagery by classifying the types of land cover present in the images.</li>
+                </ul>
+              </li>
+              <li><strong></strong></li>
+              <li><strong></strong></li>
+              <li><strong></strong></li>
+            </ol>
+
+
+
+
+          </section>
+          
+
+        
+
 
           <h3>Satellite data collection process steps</h3>
           <p>The collection process for satellite datasets involves several steps. Here is a general overview of the process:</p>
@@ -187,7 +266,7 @@
           </ol>
 
           <figure style="text-align: center;">
-            <img src="assets/img/portfolio/Level-0-4-data.png" alt="Your Image" style="max-width: 1000px;">
+            <img src="assets/img/portfolio/Level-0-4-data.png" alt="" style="max-width: 90%; max-height: 90%;">
             <figcaption style="text-align: center;"><strong>Image credit:</strong>https://wiki.pangaea.de/wiki/Processing_levels</figcaption>
           </figure>
 
@@ -206,7 +285,7 @@
           </ul>
 
           <figure style="text-align: center;">
-            <img src="assets/img/portfolio/Level-0-4-data-EUMETSET.jpeg" alt="Your Image" style="max-width: 1000px;">
+            <img src="assets/img/portfolio/Level-0-4-data-EUMETSET.jpeg" alt="" style="max-width: 90%; max-height: 90%;">
             <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://training.eumetsat.int/mod/book/tool/print/index.php?id=11832">https://training.eumetsat.int</a></figcaption>
           </figure>
 
