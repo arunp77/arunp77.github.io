@@ -403,35 +403,79 @@
                     techniques such as contrast stretching, histogram equalization, and edge detection, which can enhance the visibility of features and make subtle variations more apparent.<br>
                     <ol style="list-style: none; padding: 0;">
                     <li style="background-color: rgb(206, 228, 235); border: 1px solid rgb(20, 20, 20); margin-bottom: 10px; padding: 10px;">
+                      <p>In raw imagery, the useful data often populates only a small portion of the available range of digital values (commonly 8 bits or 256 levels). Contrast enhancement involves changing the 
+                        original values so that more of the available range is used, thereby increasing the contrast between targets and their backgrounds. The key to understanding contrast enhancements is to 
+                        understand the concept of an image histogram. A histogram is a graphical representation of the brightness values that comprise an image. The brightness values (i.e. 0-255) are displayed 
+                        along the x-axis of the graph. The frequency of occurrence of each of these values in the image is shown on the y-axis. </p>
+                        <figure style="text-align: center;">
+                          <img src="assets/img/remote-sensing/histogram.png" alt="" style="max-width: 30%; max-height: 30%;">
+                          <figcaption style="text-align: center;"><strong>Image credit:</strong> Natural Resources Canada  </figcaption>
+                        </figure><br>
+
+                        <strong>Techniques:</strong> There are many different techniques and methods of enhancing contrast and detail in an image;
+                        <ol>
+                          <li><strong>Histogram Equalization :</strong>
+                             <ul>
+                                <li><strong>Method: </strong>Adjusts the distribution of pixel values to cover the entire available range, enhancing overall contrast.</li>
+                                <li><strong>Application: </strong>Useful for improving the visibility of features and details in an image.</li>
+                             </ul>
+                          </li>
+                          <li><strong>Contrast Stretching :</strong>
+                             <ul>
+                                <li><strong>Method: </strong>Linearly scales pixel values to a broader range, stretching the contrast.</li>
+                                <li><strong>Application: </strong>Enhances the overall brightness and contrast of an image.</li>
+                             </ul>
+                          </li>
+                          <li><strong>Gamma Correction :</strong>
+                             <ul>
+                                <li><strong>Method: </strong>Adjusts the gamma value to control the overall brightness and contrast.</li>
+                                <li><strong>Application: </strong>Useful for correcting non-linearities in the display and improving visibility in specific intensity ranges.</li>
+                             </ul>
+                          </li>
+                          <li><strong>Spatial Filtering :</strong>
+                             <ul>
+                                <li><strong>Method: </strong>Applies convolution masks to enhance or suppress certain image features.</li>
+                                <li><strong>Application: </strong>Useful for smoothing (low-pass filtering) or sharpening (high-pass filtering) images.</li>
+                             </ul>
+                          </li>
+                          <li><strong>Adaptive Histogram Equalization :</strong>
+                             <ul>
+                                <li><strong>Method: </strong>Enhances local contrast by applying histogram equalization in localized image regions.</li>
+                                <li><strong>Application: </strong>Useful for improving contrast in specific regions without over-amplifying noise.</li>
+                             </ul>
+                          </li>
+                       </ol>
+
+                      <br>
                         <strong>Example:</strong> This example is taken from <a href="https://crisp.nus.edu.sg/~research/tutorial/process.htm" target="_blank">Image Processing and Analysis </a>.
-                    <figure style="text-align: center;">
-                        <img src="assets/img/remote-sensing/image-enhancment.png" alt="" style="max-width: 90%; max-height: 90%;">
-                        <figcaption style="text-align: left;">In the above unenhanced image (first panel), a bluish tint can be seen all-over the image, producing a hazy apapearance. This hazy appearance is due to 
-                            scattering of sunlight by atmosphere into the field of view of the sensor. This effect also degrades the contrast between different landcovers. 
-                            It is useful to examine the image Histograms before performing any image enhancement. The x-axis of the histogram is the range of the available digital numbers, i.e. 0 to 255. 
-                            The y-axis is the number of pixels in the image having a given digital number. The histograms of the three bands of this image is shown in the following figures.
-                            Note that the minimum digital number for each band is not zero. Each histogram is shifted to the right by a certain amount. This shift is due to the atmospheric scattering 
-                            component adding to the actual radiation reflected from the ground. The shift is particular large for the histogram of the green band, compared to the other two bands due to the higher 
-                            contribution from Rayleigh scattering for the shorter wavelength. The maximum digital number of each band is also not 255. The sensor's gain factor has been adjusted to anticipate any 
-                            possibility of encountering a very bright object. Hence, most of the pixels in the image have digital numbers well below the maximum value of 255. 
-                            (for more details check: <a href="https://crisp.nus.edu.sg/~research/tutorial/process.htm" target="_blank">crisp.nus</a>)
-                        </figcaption>
-                    </figure>
-                    
-                    <figure style="text-align: center;">
-                        <img src="assets/img/remote-sensing/greyscale-transformation.png" alt="Image Description" style="max-width: 90%; max-height: 90%;">
-                        <figcaption style="text-align: left;">The image can be enhanced by a simple linear grey-level stretching. In this method, a level threshold 
-                            value is chosen so that all pixel values below this threshold are mapped to zero. An upper threshold value is also chosen so that 
-                            all pixel values above this threshold are mapped to 255. All other pixel values are linearly interpolated to lie between 0 and 255. 
-                            The lower and upper thresholds are usually chosen to be values close to the minimum and maximum pixel values of the image.
-                                Grey-Level Transformation Table for performing linear grey level stretching of the three bands of the image. Red line: 
-                                XS3 band; Green line: XS2 band; Blue line: XS1 band is shown in the side image. 
-                                The result of applying the linear stretch is shown in above image. Note that the hazy appearance has generally been removed, 
-                                except for some parts near to the top of the image. The contrast between different features has been improved.
-                        </figcaption>
-                    </figure></li>  
-                </ol>         
-                </li>
+                      <figure style="text-align: center;">
+                          <img src="assets/img/remote-sensing/image-enhancment.png" alt="" style="max-width: 90%; max-height: 90%;">
+                          <figcaption style="text-align: left;">In the above unenhanced image (first panel), a bluish tint can be seen all-over the image, producing a hazy apapearance. This hazy appearance is due to 
+                              scattering of sunlight by atmosphere into the field of view of the sensor. This effect also degrades the contrast between different landcovers. 
+                              It is useful to examine the image Histograms before performing any image enhancement. The x-axis of the histogram is the range of the available digital numbers, i.e. 0 to 255. 
+                              The y-axis is the number of pixels in the image having a given digital number. The histograms of the three bands of this image is shown in the following figures.
+                              Note that the minimum digital number for each band is not zero. Each histogram is shifted to the right by a certain amount. This shift is due to the atmospheric scattering 
+                              component adding to the actual radiation reflected from the ground. The shift is particular large for the histogram of the green band, compared to the other two bands due to the higher 
+                              contribution from Rayleigh scattering for the shorter wavelength. The maximum digital number of each band is also not 255. The sensor's gain factor has been adjusted to anticipate any 
+                              possibility of encountering a very bright object. Hence, most of the pixels in the image have digital numbers well below the maximum value of 255. 
+                              (for more details check: <a href="https://crisp.nus.edu.sg/~research/tutorial/process.htm" target="_blank">crisp.nus</a>)
+                          </figcaption>
+                      </figure>
+                      
+                      <figure style="text-align: center;">
+                          <img src="assets/img/remote-sensing/greyscale-transformation.png" alt="Image Description" style="max-width: 90%; max-height: 90%;">
+                          <figcaption style="text-align: left;">The image can be enhanced by a simple linear grey-level stretching. In this method, a level threshold 
+                              value is chosen so that all pixel values below this threshold are mapped to zero. An upper threshold value is also chosen so that 
+                              all pixel values above this threshold are mapped to 255. All other pixel values are linearly interpolated to lie between 0 and 255. 
+                              The lower and upper thresholds are usually chosen to be values close to the minimum and maximum pixel values of the image.
+                                  Grey-Level Transformation Table for performing linear grey level stretching of the three bands of the image. Red line: 
+                                  XS3 band; Green line: XS2 band; Blue line: XS1 band is shown in the side image. 
+                                  The result of applying the linear stretch is shown in above image. Note that the hazy appearance has generally been removed, 
+                                  except for some parts near to the top of the image. The contrast between different features has been improved.
+                          </figcaption>
+                      </figure></li>  
+                  </ol>         
+                    </li>
 
                 <!--------------Image classification --------------------->
                 <li><strong>Image Classification:</strong> Image classification involves assigning each pixel or segment of the image to a specific class or category, such as 
