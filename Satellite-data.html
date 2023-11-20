@@ -187,8 +187,10 @@
               </li>
               <li><strong>Feature Extraction: </strong>
                 <ul>
-                  <li>Convert the satellite images from their RGB color space to another color space, such as HSV or YCrCb. This can help capture additional information about the land cover present in the images.</li>
-                  <li>Apply a transformation, such as wavelet transformation, to the satellite images. This can help enhance the quality of the images by reducing noise and preserving the original features of the images.</li>
+                  <li>Convert the satellite images from their RGB color space to another color space, such as HSV or YCrCb. This can help capture additional information about the land cover 
+                    present in the images.</li>
+                  <li>Apply a transformation, such as wavelet transformation, to the satellite images. This can help enhance the quality of the images by reducing noise and preserving the 
+                    original features of the images.</li>
                 </ul>
               </li>
               <li><strong>Model Training:</strong>
@@ -211,55 +213,32 @@
                 </ul>
               </li>
             </ol>
-            <p>By following these steps, you can successfully enhance satellite imagery using machine learning techniques. This can have a significant impact on various applications, such as land use planning, natural resource management, and disaster response.</p>
-
-
-
-
-          </section>
+            <p>By following these steps, you can successfully enhance satellite imagery using machine learning techniques. This can have a 
+              significant impact on various applications, such as land use planning, natural resource management, and disaster response.</p>
           
-
         
-
-
-          <h3>Satellite data collection process steps</h3>
-          <p>The collection process for satellite datasets involves several steps. Here is a general overview of the process:</p>
-          <ul>
-            <li><strong>Satellite Launch:</strong> Satellites are launched into space and placed into specific orbits around the Earth. These satellites are equipped with sensors and instruments to capture data about the Earth's surface, atmosphere, and other phenomena.</li>
-            <li><strong>Data Acquisition: </strong>Once in orbit, satellites start collecting data by capturing images, measurements, or other types of observations. The sensors on board the satellite record information about various aspects of the Earth, such as land cover, vegetation, weather patterns, or ocean currents.</li>
-            <li><strong>Data Transmission: </strong>The collected data is transmitted from the satellite to ground stations on Earth. This can be done through various communication methods, including radio waves or laser beams. Ground stations receive the data and process it for further analysis.</li>
-            <li><strong>Data Processing: </strong>After receiving the data, it undergoes processing to correct for any distortions or errors introduced during the collection and transmission process. This may involve calibration, georeferencing, or atmospheric correction to ensure the accuracy and reliability of the data.</li>
-            <li><strong>Data Storage and Distribution: </strong>Processed satellite data is stored in databases or archives for easy access and retrieval. These datasets are often made available to researchers, scientists, government agencies, and other users through online platforms or data portals.</li>
-            <li><strong>Data Analysis and Interpretation: </strong>Users can analyze the satellite data to extract valuable information and insights. This can involve various techniques, such as image processing, data fusion, or statistical analysis. The data is used to study and monitor changes in the Earth's environment, track weather patterns, assess natural disasters, or support decision-making processes in various fields.</li>
-          </ul>
-          <p>It's important to note that the specific details of the satellite data collection process can vary depending on the satellite mission, sensor technology, and data requirements. Different satellites may have different resolutions, spectral bands, or temporal coverage, allowing for a wide range of applications and research.</p>
-
-          <h3>Key Performance Indicators (KPIs) in collecting satellite data</h3>
-          <p>Key Performance Indicators (KPIs) in collecting satellite observations can vary depending on the specific objectives and requirements of the mission. Here are some common KPIs used in satellite data collection:</p>
-          <ol>
-            <li><strong>Coverage: </strong>This KPI measures the extent of the Earth's surface that is observed by the satellite. It indicates the spatial coverage and distribution of the collected data. Higher coverage indicates a more comprehensive view of the Earth's features and phenomena.</li>
-            <li><strong>Resolution: </strong>Resolution refers to the level of detail captured by the satellite sensors. It is typically measured in terms of spatial resolution (the smallest discernible feature on the ground) and spectral resolution (the number and width of spectral bands captured). Higher resolution enables the detection of smaller objects or finer details.</li>
-            <li><strong>Temporal Frequency: </strong>Temporal frequency measures how often the satellite revisits a specific location on Earth. It indicates the frequency at which observations are made, allowing for the monitoring of dynamic processes and changes over time. Higher temporal frequency provides more frequent updates and enables the tracking of short-term variations.</li>
-            <li><strong>Accuracy: </strong>Accuracy measures the degree of agreement between the satellite observations and ground truth data or reference measurements. It assesses the reliability and precision of the collected data. Higher accuracy ensures the trustworthiness of the observations and their suitability for various applications.</li>
-            <li><strong>Data Latency: </strong>Data latency refers to the time delay between data acquisition by the satellite and its availability for users. It measures how quickly the collected data is processed, validated, and made accessible. Lower data latency ensures timely access to the observations, which is crucial for time-sensitive applications like weather forecasting or disaster monitoring.</li>
-            <li><strong>Data Quality: </strong> Data quality assesses the overall reliability, consistency, and completeness of the collected observations. It considers factors such as sensor calibration, atmospheric correction, and data validation procedures. Higher data quality ensures that the observations are free from errors, artifacts, or biases, making them suitable for accurate analysis and interpretation.</li>
-          </ol>
-          <p>These KPIs help evaluate the performance and effectiveness of satellite data collection missions, ensuring that the observations meet the intended objectives and user requirements.</p>
-
-
+          
           <h3>Satellite data collection levels</h3>
 
-          <p>Within remote sensing and its applications, there are a series of levels that are used to define the amount of processing that has been performed to provide a given dataset. Satellite data is collected at various levels, each representing a different stage of processing and refinement. Here are the common levels of satellite data:</p>
+          <p>Within remote sensing and its applications, there are a series of levels that are used to define the amount of processing that has been performed to provide a given dataset. 
+            Satellite data is collected at various levels, each representing a different stage of processing and refinement. Here are the common levels of satellite data:</p>
           <ol>
-            <li><strong>Level 0 (L0):</strong> This is raw data directly from the satellite's sensors and refers to full resolution data. It includes unprocessed digital counts or voltage measurements. L0 data is transmitted to ground stations. It is unlikely you will work with this level of data, especially for more modern sensors, as this data lacks information such as geo-referencing and time-referencing ancillary information.</li>
+            <li><strong>Level 0 (L0):</strong> This is raw data directly from the satellite's sensors and refers to full resolution data. It includes unprocessed digital counts or voltage 
+              measurements. L0 data is transmitted to ground stations. It is unlikely you will work with this level of data, especially for more modern sensors, as this data lacks information 
+              such as geo-referencing and time-referencing ancillary information.</li>
 
-            <li><strong>Level 1 (L1):</strong> L1 data is generated by applying basic corrections to L0 data. It includes georeferencing, radiometric calibration, and removal of sensor-specific artifacts. The output is still in sensor units. This level also includes quality and classification flags. <strong>Example:</strong> for ocean color, this would be often referred to as the “top of atmosphere” radiance [mW.m-2.sr-1.nm-1].</li>
+            <li><strong>Level 1 (L1):</strong> L1 data is generated by applying basic corrections to L0 data. It includes georeferencing, radiometric calibration, and removal of sensor-specific 
+              artifacts. The output is still in sensor units. This level also includes quality and classification flags. <strong>Example:</strong> for ocean color, this would be often referred to 
+              as the “top of atmosphere” radiance [mW.m-2.sr-1.nm-1].</li>
 
-            <li><strong>Level 2 (L2):</strong> At this level, L1 data is further processed to convert sensor units into physical units (e.g., radiance or reflectance). Atmospheric corrections may also be applied to account for the influence of the atmosphere.</li>
+            <li><strong>Level 2 (L2):</strong> At this level, L1 data is further processed to convert sensor units into physical units (e.g., radiance or reflectance). Atmospheric corrections may 
+              also be applied to account for the influence of the atmosphere.</li>
 
-            <li><strong>Level 3 (L3):</strong> L3 data involves data products that are geographically gridded or mapped. This level often includes time-averaged or composited data to create datasets suitable for broader scientific analysis.</li>
+            <li><strong>Level 3 (L3):</strong> L3 data involves data products that are geographically gridded or mapped. This level often includes time-averaged or composited data to create datasets 
+              suitable for broader scientific analysis.</li>
 
-            <li><strong>Level 4 (L4):</strong> L4 data represents higher-level data products derived from multiple satellites or sources. It can include global climate datasets, reanalysis data, or models that assimilate satellite observations.</li>
+            <li><strong>Level 4 (L4):</strong> L4 data represents higher-level data products derived from multiple satellites or sources. It can include global climate datasets, reanalysis data, or 
+              models that assimilate satellite observations.</li>
           </ol>
 
           <figure style="text-align: center;">
@@ -282,17 +261,25 @@
           </ul>
 
           <figure style="text-align: center;">
-            <img src="assets/img/portfolio/Level-0-4-data-EUMETSET.jpeg" alt="" style="max-width: 90%; max-height: 90%;">
-            <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://training.eumetsat.int/mod/book/tool/print/index.php?id=11832">https://training.eumetsat.int</a></figcaption>
+            <img src="assets/img/remote-sensing/Level-0-4.png" alt="" style="max-width: 90%; max-height: 90%;">
+            <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://link.springer.com/referenceworkentry/10.1007/978-0-387-36699-9_36">Processing Levels, 
+              Ron Weaver </a></figcaption>
           </figure>
 
+        </section>
+
           <section id="Data-Transformation-required">
-          <h3 id="Data-Transformation-required">Data Transformation required<a class="anchor-link" href="#Data-Transformation-required">&#182;</a></h3><p>Level 0 (L0) data represents the raw, unprocessed data directly received from a satellite's sensors. Transforming Level 0 data into Level 1 (L1) involves several essential steps to convert the raw sensor measurements into physically meaningful units. Here's a step-by-step process for this transformation:</p>
+          <h3 id="Data-Transformation-required">Data Transformation required<a class="anchor-link" href="#Data-Transformation-required">&#182;</a></h3><p>Level 0 (L0) data represents 
+            the raw, unprocessed data directly received from a satellite's sensors. Transforming Level 0 data into Level 1 (L1) involves several essential steps to convert the raw 
+            sensor measurements into physically meaningful units. Here's a step-by-step process for this transformation:</p>
             <p><strong>Step 1: Data Reception</strong></p>
             <ul>
             <li>The satellite collects raw data from its sensors while orbiting Earth.</li>
-            <li>Satellite sensors detect electromagnetic radiation (e.g., visible light, infrared) from the Earth's surface and atmosphere. These sensors produce raw measurements, which are often in the form of digital counts or voltage values. These raw measurements are influenced by various factors, including sensor characteristics, electronics, and atmospheric conditions.</li>
-            <li>This raw data is transmitted to ground stations or satellite receivers. The data is typically received in digital form, representing measurements as digital counts or voltage values.</li>
+            <li>Satellite sensors detect electromagnetic radiation (e.g., visible light, infrared) from the Earth's surface and atmosphere. These sensors produce raw measurements, 
+              which are often in the form of digital counts or voltage values. These raw measurements are influenced by various factors, including sensor characteristics, electronics, 
+              and atmospheric conditions.</li>
+            <li>This raw data is transmitted to ground stations or satellite receivers. The data is typically received in digital form, representing measurements as digital counts or 
+              voltage values.</li>
             </ul>
             <p><strong>Step 2: Data Preprocessing</strong></p>
             <ul>
@@ -301,7 +288,8 @@
             </ul>
             <p><strong>Step 3: Georeferencing</strong></p>
             <ul>
-            <li>The satellite's position and orientation information (orbit and attitude data) are used to georeference the raw data. This step involves determining the precise geographic coordinates for each data point.</li>
+            <li>The satellite's position and orientation information (orbit and attitude data) are used to georeference the raw data. This step involves determining the precise 
+              geographic coordinates for each data point.</li>
             <li>Georeferencing is critical for associating the raw measurements with specific locations on Earth's surface.</li>
             </ul>
             <p><strong>Step 4: Radiometric Calibration</strong></p>
@@ -310,11 +298,16 @@
             <li>Calibration involves characterizing the sensor's response to incoming radiation and correcting for sensor-specific artifacts or biases.</li>
             <li>Calibration coefficients are applied to each data point to ensure consistency and accuracy.</li>
             </ul>
-            <blockquote><p>Radiometric calibration is a critical process in remote sensing and satellite imagery that involves correcting and standardizing the raw sensor measurements to ensure that they accurately represent physical 
-            properties of the observed scene, such as radiance or reflectance. This calibration is essential to make satellite data consistent, reliable, and suitable for scientific analysis and comparison.</p>
+            <blockquote><p>Radiometric calibration is a critical process in remote sensing and satellite imagery that involves correcting and standardizing the raw sensor measurements 
+              to ensure that they accurately represent physical 
+            properties of the observed scene, such as radiance or reflectance. This calibration is essential to make satellite data consistent, reliable, and suitable for scientific 
+            analysis and comparison.</p>
             <ul>
-            <li>To perform radiometric calibration, satellite missions often use calibration targets or references with known reflective or emissive properties. These targets may include special panels or surfaces with precisely measured reflectance or radiance values. Alternatively, celestial targets, such as the sun or moon, can be used for calibration when they are in the field of view.</li>
-            <li>Radiometric calibration involves characterizing the sensor's response to incoming radiation. This characterization includes understanding how sensor measurements are influenced by factors like sensor gain, offset, and linearity. Sensor-specific characteristics are determined through laboratory tests and measurements.</li>
+            <li>To perform radiometric calibration, satellite missions often use calibration targets or references with known reflective or emissive properties. These targets may 
+              include special panels or surfaces with precisely measured reflectance or radiance values. Alternatively, celestial targets, such as the sun or moon, can be used for 
+              calibration when they are in the field of view.</li>
+            <li>Radiometric calibration involves characterizing the sensor's response to incoming radiation. This characterization includes understanding how sensor measurements are 
+              influenced by factors like sensor gain, offset, and linearity. Sensor-specific characteristics are determined through laboratory tests and measurements.</li>
             </ul>
             </blockquote>
             <p><strong>Step 5: Removal of Sensor Artifacts</strong></p>
@@ -323,13 +316,17 @@
             <li>This step helps improve data quality by eliminating unwanted variations that may be present in the raw measurements.</li>
             </ul>
             <blockquote><ul>
-            <li>Correction algorithms are developed based on the sensor's characteristics and the known properties of calibration targets. These algorithms are used to convert raw sensor measurements into physically meaningful units, such as radiance (for optical sensors) or brightness temperature (for thermal sensors). The algorithms account for sensor-specific biases and errors.</li>
-            <li>Radiometric calibration often includes adjustments for sensor gain (amplification) and offset (baseline) to ensure that the measurements accurately represent the radiative properties of the observed scene. These adjustments are made to minimize systematic errors.</li>
+            <li>Correction algorithms are developed based on the sensor's characteristics and the known properties of calibration targets. These algorithms are used to convert raw 
+              sensor measurements into physically meaningful units, such as radiance (for optical sensors) or brightness temperature (for thermal sensors). The algorithms account 
+              for sensor-specific biases and errors.</li>
+            <li>Radiometric calibration often includes adjustments for sensor gain (amplification) and offset (baseline) to ensure that the measurements accurately represent the 
+              radiative properties of the observed scene. These adjustments are made to minimize systematic errors.</li>
             </ul>
             </blockquote>
             <p><strong>Step 6: Atmospheric Correction:</strong></p>
             <ul>
-            <li>In addition to sensor-related calibration, radiometric calibration may involve atmospheric correction. This step accounts for the influence of the Earth's atmosphere on incoming radiation. It corrects for atmospheric scattering, absorption, and other effects to obtain surface reflectance or radiance values.</li>
+            <li>In addition to sensor-related calibration, radiometric calibration may involve atmospheric correction. This step accounts for the influence of the Earth's atmosphere 
+              on incoming radiation. It corrects for atmospheric scattering, absorption, and other effects to obtain surface reflectance or radiance values.</li>
             </ul>
             <p><strong>Step 7: Data Quality Assurance</strong></p>
             <ul>
@@ -338,18 +335,23 @@
             </ul>
             <p><strong>Step 8: Metadata Generation</strong></p>
             <ul>
-            <li>Metadata, including information about the satellite, sensor characteristics, calibration parameters, and processing history, is generated and associated with the L1 data. Metadata is crucial for data users to understand the data's context and processing steps.</li>
+            <li>Metadata, including information about the satellite, sensor characteristics, calibration parameters, and processing history, is generated and associated with the 
+              L1 data. Metadata is crucial for data users to understand the data's context and processing steps.</li>
             </ul>
             <p><strong>Step 9: Output in Physically Meaningful Units</strong></p>
             <ul>
             <li>The L1 data is now in physically meaningful units, such as radiance for optical sensors or brightness temperature for microwave sensors.</li>
             <li>The data is ready for scientific analysis, and researchers can use it for various applications, including environmental monitoring, climate studies, and more.</li>
             </ul>
-            <p>The transformation from Level 0 to Level 1 data ensures that the data is accurate, calibrated, and georeferenced, making it suitable for a wide range of scientific and operational purposes. This processed data can be further refined and used to derive higher-level data products at subsequent processing levels (e.g., Level 2, Level 3) for specific scientific applications.</p>
+            <p>The transformation from Level 0 to Level 1 data ensures that the data is accurate, calibrated, and georeferenced, making it suitable for a wide range of scientific 
+              and operational purposes. This processed data can be further refined and used to derive higher-level data products at subsequent processing levels (e.g., Level 2, Level 3) 
+              for specific scientific applications.</p>
           </section>
 
           <section id="Metadata-in-level-0-data">
-          <h3 id="Metadata-in-level-0-data">Metadata in level-0 data<a class="anchor-link" href="#Metadata-in-level-0-data">&#182;</a></h3><p>Metadata in the context of satellite-based data collections refers to essential information about the satellite data itself. It provides context, documentation, and details that help users understand and work with the data. Metadata is crucial for ensuring data integrity, usability, and traceability. Here are key components of metadata for satellite-based data:</p>
+          <h3 id="Metadata-in-level-0-data">Metadata in level-0 data<a class="anchor-link" href="#Metadata-in-level-0-data">&#182;</a></h3><p>Metadata in the context of satellite-based 
+            data collections refers to essential information about the satellite data itself. It provides context, documentation, and details that help users understand and work with 
+            the data. Metadata is crucial for ensuring data integrity, usability, and traceability. Here are key components of metadata for satellite-based data:</p>
             <ol>
             <li><p><strong>Satellite Information:</strong></p>
             <ul>
@@ -452,27 +454,45 @@
 
                 <h3>Reflectance</h3>
 
-              Reflectance in remote sensing is calculated by measuring the amount of electromagnetic radiation (light) that is reflected from a surface. The reflectance values are typically expressed as a percentage or a unitless fraction. The formula for calculating reflectance is as follows:
+                <figure style="text-align: center;">
+                  <img src="assets/img/portfolio/spectrum-1.png" alt="" style="max-width: 90%; max-height: 90%;">
+                </figure>
+
+              Reflectance in remote sensing is calculated by measuring the amount of electromagnetic radiation (light) that is reflected from a surface. The reflectance values are 
+              typically expressed as a percentage or a unitless fraction. The formula for calculating reflectance is as follows:
               $$\text{Reflectance} = \frac{\text{Reflected Radiance}}{\text{Incident Radiance}} \times 100\%$$
 
               where:
               <ul>
                 <li><strong>Reflectance: </strong>The percentage of light that is reflected by a surface. It indicates how much of the incident light is returned.</li>
-                <li><strong>Reflected Radiance: </strong>The amount of electromagnetic radiation (light) that is reflected by the surface and measured by the sensor. It is often represented in radiance units. </li>
+                <li><strong>Reflected Radiance: </strong>The amount of electromagnetic radiation (light) that is reflected by the surface and measured by the sensor. It is often 
+                  represented in radiance units. </li>
                 <li><strong>Incident Radiance: </strong>The amount of electromagnetic radiation (light) that reaches the surface. It is the incoming light before interacting with the surface.</li>
               </ul>
-              <p>Reflectance values range from 0% (no reflection) to 100% (complete reflection). A reflectance of 0% indicates that the surface absorbs all incident light, while a reflectance of 100% means that the surface reflects all incident light.</p>
-              <p>In practice, the reflectance values are often corrected for atmospheric effects and sensor characteristics. The reflectance calculation is an essential step in converting raw remote sensing data into meaningful information that can be used for various applications, such as land cover classification, vegetation health assessment, and environmental monitoring.</p>
-              <p>The accuracy of reflectance calculations depends on factors such as sensor calibration, atmospheric correction, and the spectral characteristics of the surface being observed. Remote sensing instruments equipped with different spectral bands capture the reflected radiance at specific wavelengths, allowing scientists to analyze and interpret the Earth's surface properties.</p>
+              <p>Reflectance values range from 0% (no reflection) to 100% (complete reflection). A reflectance of 0% indicates that the surface absorbs all incident light, while a 
+                reflectance of 100% means that the surface reflects all incident light.</p>
+              <p>In practice, the reflectance values are often corrected for atmospheric effects and sensor characteristics. The reflectance calculation is an essential step in 
+                converting raw remote sensing data into meaningful information that can be used for various applications, such as land cover classification, vegetation health 
+                assessment, and environmental monitoring.</p>
+              <p>The accuracy of reflectance calculations depends on factors such as sensor calibration, atmospheric correction, and the spectral characteristics of the surface 
+                being observed. Remote sensing instruments equipped with different spectral bands capture the reflected radiance at specific wavelengths, allowing scientists to 
+                analyze and interpret the Earth's surface properties.</p>
 
               <h3><strong>Spectral Indices in Remote Sensing</strong></h3>
-              <p>Spectral indices in remote sensing are mathematical combinations of reflectance values from different spectral bands. These indices help highlight specific features or characteristics of the Earth's surface, such as vegetation health, water content, or soil moisture. Here are a few commonly used spectral indices:</p>
+              <p>Spectral indices in remote sensing are mathematical combinations of reflectance values from different spectral bands. These indices help highlight specific 
+                features or characteristics of the Earth's surface, such as vegetation health, water content, or soil moisture.
+                Here are a few commonly used spectral indices:</p>
               <ol>
-                <li><strong>Normalized Difference Vegetation Index (NDVI):</strong>
+                <li><strong>Normalized Difference Vegetation Index (NDVI):</strong><br>
+                  (For reference, please see the link <a href="https://www.sciencedirect.com/topics/earth-and-planetary-sciences/normalized-difference-vegetation-index" target="_blank">Normalized Difference Vegetation Index</a>)
+                  <figure style="text-align: center;">
+                    <img src="assets/img/remote-sensing/NDVI.png" alt="" style="max-width: 90%; max-height: 90%;">
+                  </figure>
                   <ul>
                     <li><strong>Formula: </strong>
                       $$\text{NDVI} = \frac{(\text{NIR} - \text{Red})}{(\text{NIR}+\text{Red})}$$
-                    <li><strong>Purpose: </strong> NDVI is widely used to assess vegetation health and density. Healthy vegetation reflects more near-infrared (NIR) light and absorbs more red light.s</li>
+                    <li><strong>Purpose: </strong> NDVI is widely used to assess vegetation health and density. Healthy vegetation reflects more near-infrared (NIR) light and 
+                      absorbs more red light.s</li>
                     <li>NIR (Near-Infrared): Reflectance in the near-infrared region of the electromagnetic spectrum.</li>
                     <li>Red: Reflectance in the red region of the electromagnetic spectrum.</li>
                   </ul>
@@ -795,6 +815,7 @@
 
               <h3>Reference:</h3>
                 <ul style="margin-left: 30px;">
+                  <li><a href="https://www.mdpi.com/2072-4292/12/16/2597" target="_blank">Evaluation Analysis of Landsat Level-1 and Level-2 Data Products Using In Situ Measurements, Cibele Teixeira Pinto, Xin Jing, Larry Leigh.</a></li>
                   <li><a href="https://www.earthdata.nasa.gov/learn/backgrounders/remote-sensing">Earthdata NASA - Remote Sensing</a></li>
                   <li><a href="https://en.wikipedia.org/wiki/Remote_sensing">Wikipedia - Remote Sensing</a></li>
                   <li><a href="https://giovanni.gsfc.nasa.gov/giovanni/#service=DiArAvTs&starttime=2022-01-01T00:00:00Z&endtime=2023-01-31T23:59:59Z&bbox=68.1152,5.8337,96.416,37.4744&data=OMAERUVd_003_FinalAerosolAbsOpticalDepth388%2COMAERUVd_003_FinalAerosolAbsOpticalDepth500&variableFacets=dataProductObservation%3AModel%2CObservation%3B">Giovanni NASA</a></li>
