@@ -178,49 +178,7 @@
               The algorithm is then trained using a training set which includes images from different geographical locations with similar characteristics. </li>
             </ol>
 
-            <h4>Image enhancement process</h4>
-            <ol>
-              <li><strong>Data Preparation:</strong>
-                <ul>
-                  <li>Acquire the satellite imagery and corresponding labels. The labels indicate the types of land cover (e.g., forest, water, urban, etc.) present in the images.</li>
-                  <li>Reshape the images to have a consistent size and channel ordering. This can be achieved by using Python libraries like NumPy or OpenCV.</li>
-                  <li>Normalize the pixel values of the images to ensure consistent scale. This can be achieved by dividing the pixel values by 255.</li>
-                  <li>Split the data into training, validation, and testing sets.</li>
-                </ul>
-              </li>
-              <li><strong>Feature Extraction: </strong>
-                <ul>
-                  <li>Convert the satellite images from their RGB color space to another color space, such as HSV or YCrCb. This can help capture additional information about the land cover 
-                    present in the images.</li>
-                  <li>Apply a transformation, such as wavelet transformation, to the satellite images. This can help enhance the quality of the images by reducing noise and preserving the 
-                    original features of the images.</li>
-                </ul>
-              </li>
-              <li><strong>Model Training:</strong>
-                <ul>
-                  <li>Select a suitable machine learning model, such as a convolutional neural network (CNN), for the classification task.</li>
-                  <li>Train the model on the training set, using the extracted features as inputs and the corresponding labels as targets.</li>
-                  <li>Evaluate the performance of the model on the validation set, using appropriate metrics like accuracy, precision, recall, and F1-score.</li>
-                </ul>
-              </li>
-              <li><strong>Model Optimization:</strong>
-                <ul>
-                  <li>If the model's performance on the validation set is not satisfactory, try to improve the model's architecture or adjust its hyperparameters.</li>
-                  <li>Continue training and evaluating the model until its performance is satisfactory. </li>
-                </ul>
-              </li>
-              <li><strong>Model Deployment:</strong>
-                <ul>
-                  <li>Once the model has been trained and optimized, deploy it to a production environment.</li>
-                  <li>Use the deployed model to enhance satellite imagery by classifying the types of land cover present in the images.</li>
-                </ul>
-              </li>
-            </ol>
-            <p>By following these steps, you can successfully enhance satellite imagery using machine learning techniques. This can have a 
-              significant impact on various applications, such as land use planning, natural resource management, and disaster response.</p>
-          
-        
-          
+            
           <h3>Satellite data collection levels</h3>
 
           <p>Within remote sensing and its applications, there are a series of levels that are used to define the amount of processing that has been performed to provide a given dataset. 
@@ -248,33 +206,17 @@
             <img src="assets/img/remote-sensing/Level-0-4-stages.png" alt="" style="max-width: 90%; max-height: 90%;">
             <figcaption style="text-align: center;">Level-0 to Level-1 remote sensing data transformation. (<strong>Image credit: © </strong><a href="https://arunp77.github.io/Arun-Kumar-Pandey/" target="_blank"> Arun Kumar Pandey</a>)</figcaption>
           </figure>
-
-          <h3>Data Processing</h3>
-          <p>Processing of satellite data typically involves these steps:</p>
-          
-          <ul>
-            <li><strong>Data Reception:</strong> Raw data is received from the satellite by ground stations or satellite receivers.</li>
-            <li><strong>Preprocessing:</strong> This step involves initial data quality checks, formatting, and metadata extraction.</li>
-            <li><strong>Calibration:</strong> Radiometric and geometric corrections are applied to make the data consistent and accurate.</li>
-            <li><strong>Georeferencing:</strong> The data is geolocated to specific geographic coordinates using satellite orbit and attitude information.</li>
-            <li><strong>Atmospheric Correction:</strong> Corrections are made to account for the effects of the atmosphere on the data, especially for optical and infrared sensors.</li>
-            <li><strong>Data Fusion:</strong> In some cases, data from multiple sensors or satellites are combined to create composite datasets.</li>
-            <li><strong>Validation:</strong> The processed data is compared with ground-based measurements or models to ensure its accuracy.</li>
-            <li><strong>Data Distribution:</strong> Processed data products are made available to researchers and the public through various data centers and platforms.</li>
-          </ul>
-
-          <figure style="text-align: center;">
-            <img src="assets/img/remote-sensing/Level-0-4.png" alt="" style="max-width: 90%; max-height: 90%;">
-            <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://link.springer.com/referenceworkentry/10.1007/978-0-387-36699-9_36">Processing Levels, 
-              Ron Weaver </a></figcaption>
-          </figure>
-
         </section>
 
           <section id="Data-Transformation-required">
-          <h3 id="Data-Transformation-required">Data Transformation required<a class="anchor-link" href="#Data-Transformation-required">&#182;</a></h3><p>Level 0 (L0) data represents 
+          <h3 id="Data-Transformation-required">Data Processing<a class="anchor-link" href="#Data-Transformation-required">&#182;</a></h3><p>Level 0 (L0) data represents 
             the raw, unprocessed data directly received from a satellite's sensors. Transforming Level 0 data into Level 1 (L1) involves several essential steps to convert the raw 
             sensor measurements into physically meaningful units. Here's a step-by-step process for this transformation:</p>
+            <figure style="text-align: center;">
+              <img src="assets/img/remote-sensing/Level-0-4.png" alt="" style="max-width: 90%; max-height: 90%;">
+              <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://link.springer.com/referenceworkentry/10.1007/978-0-387-36699-9_36">Processing Levels, 
+                Ron Weaver </a></figcaption>
+            </figure>
             <p><strong>Step 1: Data Reception</strong></p>
             <ul>
             <li>The satellite collects raw data from its sensors while orbiting Earth.</li>
