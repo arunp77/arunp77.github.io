@@ -230,36 +230,86 @@
                     where <code>Offset</code> and <code>Gain</code> are calibration coefficients determined during sensor testing.
                   </li>
                   <li><strong>Sensor Correction: </strong>This step corrects for sensor-specific errors and non-linearities. This may involve removing sensor bias, correcting for non-linear responses, and applying gain corrections. The goal is to ensure that the sensor data accurately represents the incoming radiation.</li>
-                  <li><strong>Geometric Correction: </strong>This step corrects for distortions caused by the sensor's optics and the earth's curvature. This is done by applying a geometric transformation to the data to align it with a reference map or coordinate system. The transformation accounts for factors such as sensor orientation, lens distortion, and earth's projection.</li>
-                  <li><strong>Geometric Registration: </strong>This step aligns multiple level-1 data sets to a common coordinate system. This is necessary for multi-temporal or multi-sensor analyses, where data from different sources or time periods needs to be compared or overlaid.</li>
+                  <li><strong>Geometric Correction: </strong>This step corrects for distortions caused by the sensor's optics and the earth's curvature. This is done by applying a geometric transformation to the data to align it with a reference map or coordinate system. The transformation accounts for factors such as sensor orientation, lens distortion, and earth's projection.
+                    <div class="box">
+                      <p>Geometric correction is performed using a variety of techniques, such as polynomial fitting, map projection, and terrain correction. The goal is to remove distortions caused by the sensor's optics and the earth's curvature and to align the data with a reference map or coordinate system. For more details see
+                        <a href="Remote-sesning-image-processing.html">Remote sensing image processing page</a>.
+                      </p>
+                    </div>
+                  </li>
+                  <li><strong>Geometric Registration: </strong>This step aligns multiple level-1 data sets to a common coordinate system. This is necessary for multi-temporal or multi-sensor analyses, where data from different sources or time periods needs to be compared or overlaid.
+                    <div class="box">
+                      It is performed by assigning geographic coordinates (latitude and longitude) to each pixel in the image. This is done by matching the image to a reference map or coordinate system.
+                    </div>
+                  </li>
                 </ol>
               </li>
               <li><strong>Level-1 to Level-2 Transformation: </strong>
                 <p>The transformation from level-1 to level-2 involves deriving physical properties of the earth's surface and atmosphere from the calibrated and corrected data. This process typically includes the following steps:</p>
                 <ol>
-                  <li><strong>Atmospheric Correction: </strong>This step removes the effects of the atmosphere on the level-1 data. This is done by modeling the interaction of radiation with the atmosphere, including scattering, absorption, and emission. The goal is to obtain a more accurate representation of the earth's surface reflectance.</li>
+                  <li><strong>Atmospheric Correction: </strong>This step removes the effects of the atmosphere on the level-1 data. This is done by modeling the interaction of radiation with the atmosphere, including scattering, absorption, and emission. The goal is to obtain a more accurate representation of the earth's surface reflectance.
+                  <div class="box">
+                    Atmospheric correction is performed using a variety of techniques, such as the Sen2Cor algorithm or the ACOLITE algorithm. The goal is to remove the effects of the atmosphere on the level-1 data to obtain a more accurate representation of the earth's surface reflectance.
+                  </div>
+                  </li>
                   <li><strong>Atmospheric Parameter Retrieval: </strong>This step retrieves atmospheric parameters, such as aerosol concentration, ozone concentration, and water vapor content, from the level-1 data. This is done using algorithms that analyze the spectral characteristics of the radiation.</li>
-                  <li><strong>Surface Property Retrieval: </strong>This step derives physical properties of the earth's surface, such as land cover, vegetation cover, and water content, from the level-2 data. This is done using algorithms that analyze the spectral reflectance of the surface.</li>
+                  <li><strong>Surface Property Retrieval: </strong>This step derives physical properties of the earth's surface, such as land cover, vegetation cover, and water content, from the level-2 data. This is done using algorithms that analyze the spectral reflectance of the surface.
+                    <div class="box">
+                      Surface property retrieval is performed using a variety of algorithms, such as the normalized difference vegetation index (NDVI) algorithm or the land surface temperature (LST) retrieval algorithm. The goal is to derive physical properties of the earth's surface, such as land cover, vegetation cover, and water content, from the level-2 data.
+                    </div>
+                  </li>
                   <li><strong>Data Validation: </strong>This step ensures the quality and accuracy of the level-2 data. This involves checking for outliers, artifacts, and inconsistencies in the data.</li>
                 </ol>
               </li>
               <li><strong>Level-2 to Level-3 Transformation: </strong>
                 <p>The transformation from level-2 to level-3 involves integrating level-2 data into thematic maps or geophysical products. This process typically includes the following steps:</p>
                 <ol>
-                  <li><strong>Mosaicking: </strong>This step combines multiple level-2 data sets into a seamless mosaic. This is necessary for large-scale analyses, where data from different regions or time periods needs to be combined.</li>
-                  <li><strong>Geolocation and Projection: </strong>This step assigns geographic coordinates (latitude and longitude) to the level-3 data and projects it onto a standard map projection. This allows the data to be accurately displayed and analyzed in a geographic context.</li>
-                  <li><strong>Thematic Mapping: </strong>This step generates thematic maps that represent specific themes or characteristics of the earth's surface. This may involve classifying land cover, identifying vegetation types, or mapping surface water bodies.</li>
+                  <li><strong>Mosaicking: </strong>This step combines multiple level-2 data sets into a seamless mosaic. This is necessary for large-scale analyses, where data from different regions or time periods needs to be combined.
+                    <div class="box">
+                      Mosaicking is performed by combining multiple level-2 data sets into a seamless mosaic. This is necessary for large-scale analyses, where data from different regions or time periods needs to be combined.
+                    </div>
+                  </li>
+                  <li><strong>Geolocation and Projection: </strong>This step assigns geographic coordinates (latitude and longitude) to the level-3 data and projects it onto a standard map projection. This allows the data to be accurately displayed and analyzed in a geographic context.
+                    <div class="box">
+                      Geolocation and projection are performed by assigning geographic coordinates and projecting the data onto a standard map projection. This allows the data to be accurately displayed and analyzed in a geographic context.
+                    </div>
+                  </li>
+                  <li><strong>Thematic Mapping: </strong>This step generates thematic maps that represent specific themes or characteristics of the earth's surface. This may involve classifying land cover, identifying vegetation types, or mapping surface water bodies.
+                    <div class="box">
+                      Thematic mapping is performed by classifying each pixel in the image based on its spectral characteristics. This may involve classifying land cover, identifying vegetation types, or mapping surface water bodies.
+                    </div>
+                  </li>
                   <li><strong>Geophysical Product Generation: </strong>This step generates geophysical products, such as digital elevation models (DEMs) or land surface temperature maps. These products provide quantitative information about the earth's surface and atmosphere.</li>
                 </ol>
               </li>
               <li><strong>Level-3 to Level-4 Transformation: </strong>
                 <p>The transformation from Level-3 to Level-4 involves deriving higher-level information and insights from the thematic maps and geophysical products generated at Level-3. This process typically includes the following steps:</p>
                 <ol>
-                  <li><strong>Data Integration and Analysis: </strong>This step integrates multiple Level-3 data sets and other relevant information sources, such as ancillary data, climate models, and socio-economic data. This integration allows for a more comprehensive understanding of the Earth's system and its interactions.</li>
-                  <li><strong>Change Detection and Characterization: </strong>This step identifies and characterizes changes in the Earth's system over time. This may involve analyzing trends in land cover, vegetation cover, or water resources, or detecting and monitoring deforestation, urbanization, or natural disasters.</li>
-                  <li><strong>Modeling and Simulation: </strong>This step develops models to simulate the behavior of the Earth's system and predict future trends. This may involve using climate models, land use models, or hydrological models to understand and anticipate changes in the environment.</li>
-                  <li><strong>Uncertainty Assessment: </strong>This step quantifies the uncertainty associated with Level-3 and Level-4 data products. This is important for understanding the limitations and reliability of the information and for making informed decisions based on the data.</li>
-                  <li><strong>Decision Support: </strong>This step provides decision-makers with actionable insights derived from Level-3 and Level-4 data. This may involve developing recommendations for sustainable land use practices, disaster preparedness strategies, or climate change adaptation plans.</li>
+                  <li><strong>Data Integration and Analysis: </strong>This step integrates multiple Level-3 data sets and other relevant information sources, such as ancillary data, climate models, and socio-economic data. This integration allows for a more comprehensive understanding of the Earth's system and its interactions.
+                    <div class="box">
+                      Data integration and analysis involves integrating multiple Level-3 data sets and other relevant information sources, such as ancillary data, climate models, and socio-economic data. This integration allows for a more comprehensive understanding of the Earth's system and its interactions
+                    </div>
+                  </li>
+                  <li><strong>Change Detection and Characterization: </strong>This step identifies and characterizes changes in the Earth's system over time. This may involve analyzing trends in land cover, vegetation cover, or water resources, or detecting and monitoring deforestation, urbanization, or natural disasters.
+                    <div class="box">
+                      Change detection and characterization involves identifying and characterizing changes in the Earth's system over time. This may involve analyzing trends in land cover, vegetation cover, or water resources, or detecting and monitoring deforestation, urbanization, or natural disasters.
+                    </div>
+                  </li>
+                  <li><strong>Modeling and Simulation: </strong>This step develops models to simulate the behavior of the Earth's system and predict future trends. This may involve using climate models, land use models, or hydrological models to understand and anticipate changes in the environment.
+                    <div class="box">
+                      Modeling and simulation involves developing models to simulate the behavior of the Earth's system and predict future trends. This may involve using climate models, land use models, or hydrological models to understand and anticipate changes in the environment.
+                    </div>
+                  </li>
+                  <li><strong>Uncertainty Assessment: </strong>This step quantifies the uncertainty associated with Level-3 and Level-4 data products. This is important for understanding the limitations and reliability of the information and for making informed decisions based on the data.
+                    <div class="box">
+                      Uncertainty assessment involves quantifying the uncertainty associated with Level-3 and Level-4 data products. This is important for understanding the limitations and reliability of the information and for making informed decisions based on the data.
+                    </div>
+                  </li>
+                  <li><strong>Decision Support: </strong>This step provides decision-makers with actionable insights derived from Level-3 and Level-4 data. This may involve developing recommendations for sustainable land use practices, disaster preparedness strategies, or climate change adaptation plans.
+                    <div class="box">
+                      Decision support involves providing decision-makers with actionable insights derived from Level-3 and Level-4 data. This may involve developing recommendations for sustainable land use practices, disaster preparedness strategies, or climate change adaptation plans.
+                    </div>
+                  </li>
                 </ol>
               </li>
               <p>The Level-3 to Level-4 transformation represents a critical step in converting raw remote sensing data into actionable information that can be used to address environmental challenges, support sustainable development, and inform decision-making processes.</p>
