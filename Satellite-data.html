@@ -210,87 +210,70 @@
 
           <section id="Data-Transformation-required">
           <h3 id="Data-Transformation-required">Data Processing<a class="anchor-link" href="#Data-Transformation-required">&#182;</a></h3><p>Level 0 (L0) data represents 
-            the raw, unprocessed data directly received from a satellite's sensors. Transforming Level 0 data into Level 1 (L1) involves several essential steps to convert the raw 
+            the raw, unprocessed data directly received from a satellite's sensors. Transforming Level 0 data into Level 1 and higher levels involves several essential steps to convert the raw 
             sensor measurements into physically meaningful units. Here's a step-by-step process for this transformation:</p>
             <figure style="text-align: center;">
               <img src="assets/img/remote-sensing/Level-0-4.png" alt="" style="max-width: 90%; max-height: 90%;">
               <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://link.springer.com/referenceworkentry/10.1007/978-0-387-36699-9_36">Processing Levels, 
                 Ron Weaver </a></figcaption>
             </figure>
-            <p><strong>Step 1: Data Reception</strong></p>
+            
             <ul>
-            <li>The satellite collects raw data from its sensors while orbiting Earth.</li>
-            <li>Satellite sensors detect electromagnetic radiation (e.g., visible light, infrared) from the Earth's surface and atmosphere. These sensors produce raw measurements, 
-              which are often in the form of digital counts or voltage values. These raw measurements are influenced by various factors, including sensor characteristics, electronics, 
-              and atmospheric conditions.</li>
-            <li>This raw data is transmitted to ground stations or satellite receivers. The data is typically received in digital form, representing measurements as digital counts or 
-              voltage values.</li>
+              <li><strong>Level-0 to Level-1 Transformation: </strong>
+                <p>The transformation from level-0 to level-1 involves converting the raw sensor data into calibrated and corrected data. This process typically includes the following steps:</p>
+                <ol>
+                  <li><strong>Radiometric Calibration: </strong>This step converts the digital counts or voltages recorded by the sensor into physical units of radiance or reflectance. This is done by applying calibration coefficients that are determined during sensor calibration. The calibration coefficients account for the sensor's sensitivity and response to different wavelengths of radiation.
+                    The digital counts (DN) recorded by Sentinel-2 sensors are converted to radiance (L) using the following equation:
+                    $$L = (\text{DN}- \text{Offset})\times \text{Gain}$$
+
+                    where,<br>
+                    where <code>Offset</code> and <code>Gain</code> are calibration coefficients determined during sensor testing.
+                  </li>
+                  <li><strong>Sensor Correction: </strong>This step corrects for sensor-specific errors and non-linearities. This may involve removing sensor bias, correcting for non-linear responses, and applying gain corrections. The goal is to ensure that the sensor data accurately represents the incoming radiation.</li>
+                  <li><strong>Geometric Correction: </strong>This step corrects for distortions caused by the sensor's optics and the earth's curvature. This is done by applying a geometric transformation to the data to align it with a reference map or coordinate system. The transformation accounts for factors such as sensor orientation, lens distortion, and earth's projection.</li>
+                  <li><strong>Geometric Registration: </strong>This step aligns multiple level-1 data sets to a common coordinate system. This is necessary for multi-temporal or multi-sensor analyses, where data from different sources or time periods needs to be compared or overlaid.</li>
+                </ol>
+              </li>
+              <li><strong>Level-1 to Level-2 Transformation: </strong>
+                <p>The transformation from level-1 to level-2 involves deriving physical properties of the earth's surface and atmosphere from the calibrated and corrected data. This process typically includes the following steps:</p>
+                <ol>
+                  <li><strong>Atmospheric Correction: </strong>This step removes the effects of the atmosphere on the level-1 data. This is done by modeling the interaction of radiation with the atmosphere, including scattering, absorption, and emission. The goal is to obtain a more accurate representation of the earth's surface reflectance.</li>
+                  <li><strong>Atmospheric Parameter Retrieval: </strong>This step retrieves atmospheric parameters, such as aerosol concentration, ozone concentration, and water vapor content, from the level-1 data. This is done using algorithms that analyze the spectral characteristics of the radiation.</li>
+                  <li><strong>Surface Property Retrieval: </strong>This step derives physical properties of the earth's surface, such as land cover, vegetation cover, and water content, from the level-2 data. This is done using algorithms that analyze the spectral reflectance of the surface.</li>
+                  <li><strong>Data Validation: </strong>This step ensures the quality and accuracy of the level-2 data. This involves checking for outliers, artifacts, and inconsistencies in the data.</li>
+                </ol>
+              </li>
+              <li><strong>Level-2 to Level-3 Transformation: </strong>
+                <p>The transformation from level-2 to level-3 involves integrating level-2 data into thematic maps or geophysical products. This process typically includes the following steps:</p>
+                <ol>
+                  <li><strong>Mosaicking: </strong>This step combines multiple level-2 data sets into a seamless mosaic. This is necessary for large-scale analyses, where data from different regions or time periods needs to be combined.</li>
+                  <li><strong>Geolocation and Projection: </strong>This step assigns geographic coordinates (latitude and longitude) to the level-3 data and projects it onto a standard map projection. This allows the data to be accurately displayed and analyzed in a geographic context.</li>
+                  <li><strong>Thematic Mapping: </strong>This step generates thematic maps that represent specific themes or characteristics of the earth's surface. This may involve classifying land cover, identifying vegetation types, or mapping surface water bodies.</li>
+                  <li><strong>Geophysical Product Generation: </strong>This step generates geophysical products, such as digital elevation models (DEMs) or land surface temperature maps. These products provide quantitative information about the earth's surface and atmosphere.</li>
+                </ol>
+              </li>
+              <li><strong>Level-3 to Level-4 Transformation: </strong>
+                <p>The transformation from Level-3 to Level-4 involves deriving higher-level information and insights from the thematic maps and geophysical products generated at Level-3. This process typically includes the following steps:</p>
+                <ol>
+                  <li><strong>Data Integration and Analysis: </strong>This step integrates multiple Level-3 data sets and other relevant information sources, such as ancillary data, climate models, and socio-economic data. This integration allows for a more comprehensive understanding of the Earth's system and its interactions.</li>
+                  <li><strong>Change Detection and Characterization: </strong>This step identifies and characterizes changes in the Earth's system over time. This may involve analyzing trends in land cover, vegetation cover, or water resources, or detecting and monitoring deforestation, urbanization, or natural disasters.</li>
+                  <li><strong>Modeling and Simulation: </strong>This step develops models to simulate the behavior of the Earth's system and predict future trends. This may involve using climate models, land use models, or hydrological models to understand and anticipate changes in the environment.</li>
+                  <li><strong>Uncertainty Assessment: </strong>This step quantifies the uncertainty associated with Level-3 and Level-4 data products. This is important for understanding the limitations and reliability of the information and for making informed decisions based on the data.</li>
+                  <li><strong>Decision Support: </strong>This step provides decision-makers with actionable insights derived from Level-3 and Level-4 data. This may involve developing recommendations for sustainable land use practices, disaster preparedness strategies, or climate change adaptation plans.</li>
+                </ol>
+              </li>
+              <p>The Level-3 to Level-4 transformation represents a critical step in converting raw remote sensing data into actionable information that can be used to address environmental challenges, support sustainable development, and inform decision-making processes.</p>
+              <p>The transformation of level-0 data to level-4 data is a complex process that involves a series of mathematical operations and algorithms. The specific equations and techniques used will depend on the type of sensor, the earth's surface features, and the atmospheric conditions. However, the general principles of calibration, correction, geolocation, atmospheric correction, surface property retrieval, thematic mapping, and geophysical product generation are applicable to most remote sensing data processing workflows.</p>
             </ul>
-            <p><strong>Step 2: Data Preprocessing</strong></p>
-            <ul>
-            <li>Initial data quality checks are performed to ensure that the received data is complete and not corrupted during transmission.</li>
-            <li>The data may be formatted to meet specific standards and file formats for processing.</li>
-            </ul>
-            <p><strong>Step 3: Georeferencing</strong></p>
-            <ul>
-            <li>The satellite's position and orientation information (orbit and attitude data) are used to georeference the raw data. This step involves determining the precise 
-              geographic coordinates for each data point.</li>
-            <li>Georeferencing is critical for associating the raw measurements with specific locations on Earth's surface.</li>
-            </ul>
-            <p><strong>Step 4: Radiometric Calibration</strong></p>
-            <ul>
-            <li>Radiometric calibration is applied to convert the raw sensor counts or voltage measurements into physical units, such as <span style="color:red">radiance or reflectance.</span>.</li>
-            <li>Calibration involves characterizing the sensor's response to incoming radiation and correcting for sensor-specific artifacts or biases.</li>
-            <li>Calibration coefficients are applied to each data point to ensure consistency and accuracy.</li>
-            </ul>
-            <blockquote><p>Radiometric calibration is a critical process in remote sensing and satellite imagery that involves correcting and standardizing the raw sensor measurements 
-              to ensure that they accurately represent physical 
-            properties of the observed scene, such as radiance or reflectance. This calibration is essential to make satellite data consistent, reliable, and suitable for scientific 
-            analysis and comparison.</p>
-            <ul>
-            <li>To perform radiometric calibration, satellite missions often use calibration targets or references with known reflective or emissive properties. These targets may 
-              include special panels or surfaces with precisely measured reflectance or radiance values. Alternatively, celestial targets, such as the sun or moon, can be used for 
-              calibration when they are in the field of view.</li>
-            <li>Radiometric calibration involves characterizing the sensor's response to incoming radiation. This characterization includes understanding how sensor measurements are 
-              influenced by factors like sensor gain, offset, and linearity. Sensor-specific characteristics are determined through laboratory tests and measurements.</li>
-            </ul>
-            </blockquote>
-            <p><strong>Step 5: Removal of Sensor Artifacts</strong></p>
-            <ul>
-            <li>Sensor-specific artifacts, such as detector noise or electronic glitches, are identified and removed from the data.</li>
-            <li>This step helps improve data quality by eliminating unwanted variations that may be present in the raw measurements.</li>
-            </ul>
-            <blockquote><ul>
-            <li>Correction algorithms are developed based on the sensor's characteristics and the known properties of calibration targets. These algorithms are used to convert raw 
-              sensor measurements into physically meaningful units, such as radiance (for optical sensors) or brightness temperature (for thermal sensors). The algorithms account 
-              for sensor-specific biases and errors.</li>
-            <li>Radiometric calibration often includes adjustments for sensor gain (amplification) and offset (baseline) to ensure that the measurements accurately represent the 
-              radiative properties of the observed scene. These adjustments are made to minimize systematic errors.</li>
-            </ul>
-            </blockquote>
-            <p><strong>Step 6: Atmospheric Correction:</strong></p>
-            <ul>
-            <li>In addition to sensor-related calibration, radiometric calibration may involve atmospheric correction. This step accounts for the influence of the Earth's atmosphere 
-              on incoming radiation. It corrects for atmospheric scattering, absorption, and other effects to obtain surface reflectance or radiance values.</li>
-            </ul>
-            <p><strong>Step 7: Data Quality Assurance</strong></p>
-            <ul>
-            <li>Quality control procedures are applied to identify and flag any data points that may still contain errors or anomalies.</li>
-            <li>Data quality metrics are generated to assess the overall quality of the L1 data.</li>
-            </ul>
-            <p><strong>Step 8: Metadata Generation</strong></p>
-            <ul>
-            <li>Metadata, including information about the satellite, sensor characteristics, calibration parameters, and processing history, is generated and associated with the 
-              L1 data. Metadata is crucial for data users to understand the data's context and processing steps.</li>
-            </ul>
-            <p><strong>Step 9: Output in Physically Meaningful Units</strong></p>
-            <ul>
-            <li>The L1 data is now in physically meaningful units, such as radiance for optical sensors or brightness temperature for microwave sensors.</li>
-            <li>The data is ready for scientific analysis, and researchers can use it for various applications, including environmental monitoring, climate studies, and more.</li>
-            </ul>
-            <p>The transformation from Level 0 to Level 1 data ensures that the data is accurate, calibrated, and georeferenced, making it suitable for a wide range of scientific 
-              and operational purposes. This processed data can be further refined and used to derive higher-level data products at subsequent processing levels (e.g., Level 2, Level 3) 
-              for specific scientific applications.</p>
+            
+
+
+
+
+
+
+
+
           </section>
 
             <section id="Voltage-values-in-Level-0-data">
