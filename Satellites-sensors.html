@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Portfolio Details</title>
+  <title>Resolution and calibration</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -93,7 +93,7 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Portfolio Details</h2>
+          <h2></h2>
           <ol>
             <li><a href="Remote-sensing-content.html" class="clickable-box"><i class="fas fa-arrow-left"></i> Remote sensing Content </a></li>
             <li><a href="index.html" class="clickable-box"> Home <i class="fas fa-arrow-right"></i></a></li>
@@ -131,20 +131,21 @@
     <section id="portfolio-details" class="portfolio-details">
       <div class="container">
         <div class="row gy-4">
-          <h1>Satellites and Sensors</h1>
+          <h1>Resolution and calibration</h1>
           <div class="image">
             <figure style="text-align: center;">
                 <img src="assets/img/remote-sensing/Active-passive.png" alt="" style="max-width: 80%; max-height: 80%;">
                 <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://arunp77.github.io/Arun-Kumar-Pandey/" target="_blank"> Arun Kumar Pandey</a> (part of the image taken from various sources). </figcaption>
-            </figure>            
+            </figure>
           </div>
 
           <section id="Section-1">
-            <h2>Recording of energy by the sensor: </h2>
+            <h3>Analog and digital images </h3>
             In remote sensing, it is very important to understand the data provided by sensors in order to interpret them properly. The first thing to do is to understand what a satellite image 
             is and why it is different from a photograph. The main difference between a photograph and a satellite image is that the photograph has an analogue format and is usually printed 
             on paper before being interpreted. The satellite image has a digital format and a computer is generally used to analyse and interpret it. The evolution of remote sensing techniques 
             has witnessed a transition from traditional analog methods to the contemporary era of digital technology. A comparative table below summarizes key differences between the two.
+            <br><br>
             <table>
                 <thead>
                   <tr>
@@ -218,6 +219,144 @@
                             </ul>
                         </div>
               </ul>
+
+              <h3>Visual image interpretation</h3>
+              It implies the human’s ability to analyze the content of images, e.g., land cover and land use from remote sensing imagery. Visual image interpretation encompasses two steps:
+                <ul>
+                  <li>first the perception of objects according to their external attributes and,</li>
+                  <li>second, the actual interpretation of their meaning.</li>
+                </ul>
+              The following table provides a guideline for visually interpreting images.  The complexity increases as the table progresses starting with the basic 
+              elements such as contrast and color and ending with the interpretation of the spatial context:<br><br>
+              <table>
+                <tr>
+                  <th>Attribute</th>
+                  <th>Description (example)</th>
+                  <th>Interpretation (example)</th>
+                </tr>
+                <tr>
+                  <td>Contrast, color, brightness</td>
+                  <td>Transition from light to dark blue</td>
+                  <td>Variations in water depth</td>
+                </tr>
+                <tr>
+                  <td>Geometry (shape, size)</td>
+                  <td>Sinuous ribbon-like object</td>
+                  <td>River</td>
+                </tr>
+                <tr>
+                  <td>Texture (structure of a surface)</td>
+                  <td>Rough surface with vertical line patterns</td>
+                  <td>Maize cultivation</td>
+                </tr>
+                <tr>
+                  <td>Spatial context (functional interrelationship)</td>
+                  <td>Rail tracks that intersect a building</td>
+                  <td>Railway station</td>
+                </tr>
+              </table><br>
+
+              <h4>What is raster and vector data?</h4>
+              Raster data and vector data are two primary types of geospatial data representations used in geographic information systems (GIS) and related fields
+              <div class="box">
+                A raster is a matrix of cells (pixels) organized into rows and columns
+              </div><br>
+              Raster data is a type of geospatial data representation that is used to capture and store information about the characteristics of geographic phenomena. Unlike vector data, which represents spatial 
+              information using points, lines, and polygons, raster data is structured as a grid of cells, where each cell or pixel holds a specific value. These cells collectively form a grid, 
+              and each cell contains a value that represents a certain attribute or characteristic at that location. This attribute could be elevation, temperature, land cover, or any other measurable quantity.
+              <figure style="text-align: center;">
+                <img src="assets/img/remote-sensing/raster-data.png" alt="" style="max-width: 80%; max-height: 80%;">
+                <figcaption style="text-align: center;">Raster spatial image format (<strong>Image credit:</strong><a href="https://pages.cms.hu-berlin.de/EOL/geo_rs/S02_image-prop1.html" target="_blank"> Humbold University</a>). </figcaption>
+            </figure>
+              <table>
+                <tr>
+                  <th>Characteristic</th>
+                  <th>Raster Data</th>
+                  <th>Vector Data</th>
+                </tr>
+                <tr>
+                  <td>Representation</td>
+                  <td>Represented as a grid of regularly spaced cells or pixels.</td>
+                  <td>Represents geographic features using points, lines, and polygons.</td>
+                </tr>
+                <tr>
+                  <td>Structure</td>
+                  <td>Each cell in the grid contains a specific value, representing a certain attribute or characteristic.</td>
+                  <td>Points represent individual locations, lines represent linear features, and polygons represent areas.</td>
+                </tr>
+                <tr>
+                  <td>Examples</td>
+                  <td>Satellite imagery, digital elevation models (DEMs), aerial photographs, thermal images.</td>
+                  <td>Road networks, political boundaries, lakes, buildings.</td>
+                </tr>
+                <tr>
+                  <td>Characteristics</td>
+                  <td>Well-suited for continuous and regularly varying data. Useful for representing imagery.</td>
+                  <td>Well-suited for representing discrete features and the relationships between them.</td>
+                </tr>
+                <tr>
+                  <td>Geometry</td>
+                  <td>Uses a grid of cells.</td>
+                  <td>Uses points, lines, and polygons.</td>
+                </tr>
+                <tr>
+                  <td>Data Types</td>
+                  <td>Suitable for continuous and regularly varying data.</td>
+                  <td>Effective for discrete features and their relationships.</td>
+                </tr>
+                <tr>
+                  <td>Storage</td>
+                  <td>Can be more storage-intensive for certain types of information.</td>
+                  <td>Generally less storage-intensive for the same information.</td>
+                </tr>
+                <tr>
+                  <td>Analysis</td>
+                  <td>Used for spatial analysis involving continuous data.</td>
+                  <td>Used for analyzing discrete features and their attributes.</td>
+                </tr>
+              </table><br>
+
+              <h5>Image format</h5>
+              <p>An image format is a file format that is used to store digital images. The most common image formats regarding digital remote sensing imagery are illustrated in the table below:</p>
+              <table>
+                <tr>
+                  <th>Format name</th>
+                  <th>Extension</th>
+                  <th>Description</th>
+                </tr>
+                <tr>
+                  <td>GeoTIFF</td>
+                  <td>.tif, .tiff, .gtiff</td>
+                  <td>TIFF + geospatial reference</td>
+                </tr>
+                <tr>
+                  <td>ENVI</td>
+                  <td>.bsq, .bil, .bip, .dat</td>
+                  <td>Generic, often used in the imaging spectroscopy community; Header file (.hdr) with metadata!</td>
+                </tr>
+                <tr>
+                  <td>JPEG2000</td>
+                  <td>.jp2, .j2k</td>
+                  <td>Used by many data providers; usually for integer values only</td>
+                </tr>
+                <tr>
+                  <td>HDF4, HDF5</td>
+                  <td>.hdf, .h4, .hdf4, .h5, .hdf5</td>
+                  <td>Hierarchical data format, version 4 or 5; multi-resolution raster</td>
+                </tr>
+                <tr>
+                  <td>netCDF</td>
+                  <td>.nc</td>
+                  <td>Network Common Data Format; multi-resolution raster</td>
+                </tr>
+                <tr>
+                  <td>SAVE</td>
+                  <td></td>
+                  <td>Standard Archive Format for Europe, e.g., Sentinel-1 and Sentinel-2</td>
+                </tr>
+              </table><br>
+              
+
               <h4>The pixels</h4>
               In remote sensing, <strong>pixels</strong> are the smallest units of a digital image, representing specific areas on the Earth's surface. Each pixel has a numeric value reflecting the characteristics of the 
               corresponding scene, such as brightness or color. Remote sensing images are composed of a grid of pixels, and the <strong>resolution</strong> is determined by the size of these pixels. Higher <strong>resolution</strong> 
@@ -247,7 +386,7 @@
             <h2>Resolution</h2>
             <p>The resolution of an image refers to the potential detail provided by the imagery. In remote sensing we refer to three types of resolution: spatial, spectral and temporal.</p>
             <figure style="text-align: center;">
-              <img src="assets/img/remote-sensing/resolution-0.png" alt="" style="max-width: 50%; max-height: 50%;">
+              <img src="assets/img/remote-sensing/resolution-0.png" alt="" style="max-width: 80%; max-height: 80%;">
               <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://eo-college.org/topic/the-resolutions-dimensions-of-eo-data/" target="_blank"> © EO College.</a></figcaption>
             </figure>
             <ul>
@@ -309,7 +448,7 @@
                 <li><strong>The cloud cover:</strong> Clouds can obscure the Earth's surface, making it impossible for a sensor to acquire data. This can reduce the temporal resolution of the data.</li>
             </ul>
             <figure style="text-align: center;">
-                <img src="assets/img/remote-sensing/swath.png" alt="" style="max-width: 50%; max-height: 50%;">
+                <img src="assets/img/remote-sensing/temporal-resolution.png" alt="" style="max-width: 80%; max-height: 80%;">
                 <figcaption style="text-align: center;"><strong>Image credit:</strong>
                   <a href="https://natural-resources.canada.ca/maps-tools-and-publications/satellite-imagery-and-air-photos/tutorial-fundamentals-remote-sensing/satellites-and-sensors/satellite-characteristics-orbits-and-swaths/9283" target="_blank"> 
                     © Remote Sensing Tutorials (Natural Resources Canada).</a></figcaption>
@@ -327,7 +466,7 @@
                 </p>
               </div>
           
-          <h4>3. Radiometric resolution</h4>
+          <h4>3. <a href="https://pages.cms.hu-berlin.de/EOL/geo_rs/S03_image-prop2.html" target="_blank">Radiometric resolution</a></h4>
           Radiometric resolution is the ability of a sensor to differentiate between various levels of radiant energy or reflectance in the observed scene. 
           <figure style="text-align: center;">
             <img src="assets/img/remote-sensing/radiometric-resolution.png" alt="" style="max-width: 90%; max-height: 90%;">
