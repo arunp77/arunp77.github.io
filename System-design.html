@@ -206,35 +206,80 @@
                     <li>architectural.</li>
                 </ul>
             </p>
-            
-            <p><strong>Functional objectives:</strong> define what the system should do and how it should behave. They focus on the specific tasks and functionalities that the system must provide to its users. Examples of functional objectives include:</p>
-            <ul>
-                <li><strong>Processing user input:</strong> The system should be able to correctly interpret and process user input, whether it's through a graphical interface, command-line commands, or other means.</li>
-                <li><strong>Generating outputs:</strong> The system should produce the desired outputs in a timely and accurate manner, such as generating reports, displaying data visualizations, or sending notifications.</li>
-                <li><strong>Maintaining data integrity:</strong> The system should ensure the accuracy, consistency, and security of its data throughout its lifecycle.</li>   
-            </ul>
-
-            <p><strong>Non-functional objectives:</strong> define how the system should perform and how it should meet broader quality attributes. They focus on aspects like performance, scalability, security, and usability. Examples of non-functional objectives include:
-                <ul>
-                    <li><strong>Performance:</strong> The system should operate efficiently, handling requests quickly and without excessive delays.
-                    <li><strong>Scalability:</strong> The system should be able to handle increasing amounts of data and traffic without compromising performance or stability.
-                    <li><strong>Security:</strong> The system should protect its data and resources from unauthorized access, modification, or destruction.
-                    <li><strong>Usability:</strong> The system should be easy to learn and use, with a user interface that is intuitive, consistent, and accessible.
-                </ul>
-            
-            <p><strong>Architectural objectives:</strong> define the overall structure and organization of the system. They focus on how the system's components are interconnected and how they communicate with each other. Examples of architectural objectives include:</p>
-            <ul>
-                <li><strong>Modular design:</strong> The system should be composed of independent modules that can be easily developed, tested, and maintained.</li>
-                <li><strong>Loose coupling:</strong> Components should be loosely coupled, minimizing dependencies between them to enhance flexibility and maintainability.</li>
-                <li><strong>High cohesion:</strong> Components should have a high degree of cohesion, meaning they should have a clear and well-defined purpose.</li>
-                <li><strong>Separation of concerns:</strong> Different aspects of the system, such as business logic, data access, and user interface, should be separated into distinct layers or modules.</li>
-            </ul>
+            <ol>
+                <li><strong>Functional objectives:</strong> define what the system should do and how it should behave. They focus on the specific tasks and functionalities that the system must provide to its users. Examples of functional objectives include:
+                    <ul>
+                            <li><strong>Processing user input:</strong> The system should be able to correctly interpret and process user input, whether it's through a graphical interface, command-line commands, or other means.</li>
+                            <li><strong>Generating outputs:</strong> The system should produce the desired outputs in a timely and accurate manner, such as generating reports, displaying data visualizations, or sending notifications.</li>
+                            <li><strong>Maintaining data integrity:</strong> The system should ensure the accuracy, consistency, and security of its data throughout its lifecycle.</li>   
+                            <li><strong>Correctness:</strong> Ensure that the system performs the intended functions accurately and produces correct results.</li>
+                            <li><strong>Completeness:</strong> Address all specified requirements and functionalities outlined during the requirements gathering phase.</li>
+                            <li><strong>Flexibility:</strong> Design of the system muct accommodate changes or additions in functionality without major disruptions.</li>
+                            <li><strong>Interoperability:</strong> It should ensure that the system can interact and integrate seamlessly with other systems or components as needed.</li>
+                            <li><strong>Usability:</strong> Finally a user-friendly interface ensure that the system is intuitive for its intended users.</li>
+                    </ul>
+                </li>
+                <li><strong>Non-functional objectives:</strong> define how the system should perform and how it should meet broader quality attributes. They focus on aspects like performance, scalability, security, and usability. Examples of non-functional objectives include:
+                    <ul>
+                        <li><strong>Performance:</strong> The system should operate efficiently, handling requests quickly and without excessive delays.
+                        <li><strong>Scalability:</strong> The system should be able to handle increasing amounts of data and traffic without compromising performance or stability.
+                        <li><strong>Security:</strong> The system should protect its data and resources from unauthorized access, modification, or destruction.
+                        <li><strong>Usability:</strong> The system should be easy to learn and use, with a user interface that is intuitive, consistent, and accessible.
+                        <li><strong>Reliability: </strong> Ensure the system operates consistently and reliably, minimizing downtime and handling errors gracefully.</li>
+                        <li><strong>Maintainability:</strong> Design the system to be easily maintainable, allowing for efficient updates, bug fixes, and enhancements.</li>
+                        <li><strong>Availability:</strong> Ensure that the system is available and accessible as per the specified requirements.</li>
+                    </ul>
+                </li>
+                
+                <li><strong>Architectural objectives:</strong> define the overall structure and organization of the system. They focus on how the system's components are interconnected and how they communicate with each other. Examples of architectural objectives include:
+                    <ul>
+                        <li><strong>Modular design:</strong> The system should be composed of independent modules that can be easily developed, tested, and maintained.</li>
+                        <li><strong>Loose coupling:</strong> Components should be loosely coupled, minimizing dependencies between them to enhance flexibility and maintainability.</li>
+                        <li><strong>High cohesion:</strong> Components should have a high degree of cohesion, meaning they should have a clear and well-defined purpose.</li>
+                        <li><strong>Separation of concerns:</strong> Different aspects of the system, such as business logic, data access, and user interface, should be separated into distinct layers or modules.</li>
+                    </ul>
+                </li>
+            </ol>
 
             <p>By achieving these objectives, system design ensures that the system meets its intended purpose, fulfills user needs, and operates efficiently, reliably, and securely.</p>
 
             
-            
-            
+            <h3>Components of System Design</h3>
+                <p>System design components are the building blocks that make up a system. They are the essential elements that work together to achieve the system's overall purpose. The specific components of a system will vary depending on the system's requirements and functionality, but some common components include:</p>
+                <ul>
+                    <li><strong>Input Components: </strong>
+                        <ul>
+                            <li><strong>User Interface (UI):</strong> The UI is the interface through which users interact with the system. It can be a graphical user interface (GUI), a command-line interface (CLI), or a voice-based interface.</li>
+                            <li><strong>Data Sources:</strong> Data sources provide the system with the information it needs to operate. They can be internal sources, such as databases or file systems, or external sources, such as APIs or web services.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Processing Components:</strong> </strong>
+                        <ul>
+                            <li><strong>Business Logic:</strong> The business logic defines the rules and processes that the system follows to achieve its goals. It is typically implemented in software code.</li>
+                            <li><strong>Data Processing:</strong> Data processing components manipulate and transform data to prepare it for analysis or use by other components. They can include data cleansing, data transformation, and data aggregation.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Output Components: </strong>
+                        <ul>
+                            <li><strong>Reports and Visualizations:</strong> Reports and visualizations present the system's outputs in a way that is easy for users to understand. They can be in the form of charts, graphs, tables, or other visual representations.</li>
+                            <li><strong>Notifications and Alerts:</strong> Notifications and alerts inform users of important events or changes in the system. They can be sent via email, SMS, or push notifications.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Infrastructure Components: </strong>
+                        <ul>
+                            <li><strong>Hardware:</strong> The hardware components provide the physical computing resources that the system needs to run. They can include servers, storage devices, and network equipment.</li>
+                            <li><strong>Software:</strong> The software components provide the operating systems, middleware, and applications that the system needs to function.</li>
+                            <li><strong>Networking:</strong> Networking components enable the system to communicate with other systems and devices. They can include routers, switches, and firewalls.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Additional Components: </strong>
+                        <ul>
+                            <li><strong>Security Components:</strong> Security components protect the system from unauthorized access, modification, or disclosure of data. They can include encryption, firewalls, and access control mechanisms.</li>
+                            <li><strong>Monitoring and Logging Components:</strong> Monitoring and logging components track the system's performance and health. They can provide insights into potential problems and help troubleshooting issues.</li>
+                            <li><strong>Deployment and Configuration Management:</strong> Deployment and configuration management tools help automate the process of deploying and maintaining the system in production environments.</li>
+                        </ul>
+                    </li>
+                </ul>
                 
                 
                  
