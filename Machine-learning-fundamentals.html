@@ -175,7 +175,7 @@
                             <li><strong>General AI (or Strong AI): </strong>General AI aims to develop machines that possess human-level intelligence and can understand, learn, and perform any intellectual task that a human can do. Achieving true general AI is still a subject of ongoing research and remains a significant challenge.</li>
                         </ul>
                     </li>
-                    <li><strong>Machine Learning (ML):</strong>
+                    <li><strong><a href="https://github.com/arunp77/Machine-Learning/tree/main/ML-Fundamental" target="_blank">Machine Learning (ML)</a>:</strong>
                         Machine Learning is a subset of AI that focuses on developing algorithms and models that enable computers to learn and make predictions or decisions without explicit programming. ML algorithms learn from data and improve their performance through experience. They analyze patterns and relationships within the data to make predictions, classifications, or discover insights. ML can be further classified into several types:
                         <ul>
                             <li><strong>Supervised Learning: </strong>In supervised learning, models are trained on labeled data, where each example has input features and corresponding target labels or outcomes. The model learns to generalize from the labeled data and make predictions on unseen data.</li>
@@ -184,7 +184,7 @@
                             <li><strong>Reinforcement Learning: </strong>Reinforcement learning involves an agent that learns to interact with an environment. The agent takes actions, receives feedback or rewards, and learns to maximize its cumulative reward over time.</li>
                         </ul>
                     </li>
-                    <li><strong>Deep Learning (DL):</strong>
+                    <li><strong><a href="https://github.com/arunp77/Machine-Learning/tree/main/Deep-learning" target="_blank">Deep Learning and Neural Networks</a>:</strong>
                         Deep learning is a subset of machine learning that focuses on artificial neural networks with multiple layers, enabling the model to learn hierarchical representations of data. These neural networks are composed of multiple layers of interconnected nodes, called neurons, that can learn hierarchical representations of the data. Deep learning algorithms excel at processing complex, high-dimensional data, such as images, speech, and text. DL has gained significant attention and success in recent years, achieving state-of-the-art performance in various domains, including computer vision, natural language processing, and speech recognition.
                         <p>There are several categories or architectures within deep learning. Here are three prominent ones along with examples:</p>
                         <ul>
@@ -195,9 +195,327 @@
                     </li>
                 </ol>
 
-
-
+                <br>
+                
+                <h4>Key Differences Between Machine Learning And Deep Learning</h4>
+                <table border="1">
+                  <tr>
+                    <th></th>
+                    <th>Machine Learning</th>
+                    <th>Deep Learning</th>
+                  </tr>
+                  <tr>
+                    <td><b>Approach</b></td>
+                    <td>Requires structured data</td>
+                    <td>Does not require structured data</td>
+                  </tr>
+                  <tr>
+                    <td><b>Human intervention</b></td>
+                    <td>Requires human intervention for mistakes</td>
+                    <td>Does not require human intervention for mistakes</td>
+                  </tr>
+                  <tr>
+                    <td><b>Hardware</b></td>
+                    <td>Can function on CPU</td>
+                    <td>Requires GPU / Significant computing power</td>
+                  </tr>
+                  <tr>
+                    <td><b>Time</b></td>
+                    <td>Takes seconds to hours</td>
+                    <td>Takes weeks</td>
+                  </tr>
+                  <tr>
+                    <td><b>Uses</b></td>
+                    <td>Forecasting, predicting and other simple applications</td>
+                    <td>More complex applications like autonomous vehicles</td>
+                  </tr>
+                </table>
             </section>
+
+            <section id="ML-2">
+              <h3>What is Machine Learning?</h3>
+              <p>A Machine Learning system learns from historical data, builds the prediction models, and whenever it receives new data, predicts the output for it. The accuracy of predicted output depends upon the amount of data, as the huge amount of data helps to build a better model which predicts the output more accurately.</p>
+              
+              <figure style="text-align: center;">
+                <img src="assets/img/data-engineering/ML2.png" alt="" style="max-width: 90%; max-height: 90%;">
+                <figcaption style="text-align: center;">A simplified diagram that demonstrates the functioning of machine learning (<strong>Image credit:</strong><a href="https://www.mdpi.com/2072-4292/12/22/3801#" target="_blank"> @arunp77</a>)</figcaption>
+              </figure>  
+
+              <h4>Categories of ML algorithms</h4>
+              <table border="1">
+                <tr>
+                  <th>Algorithms</th>
+                  <th>Definition</th>
+                  <th>Goal</th>
+                  <th>Example</th>
+                </tr>
+                <tr>
+                  <td><b>Supervised Learning</b></td>
+                  <td>In supervised learning, the machine is trained on a labeled dataset, where the target variable (or output/dependent variable) is known for each observation in the dataset.</td>
+                  <td>The goal of supervised learning is to learn a mapping from the input variables (or features) to the output variable, so that the machine can make accurate predictions on new, unseen data.</td>
+                  <td>
+                    <ul>
+                      <li>Linear Regression</li>
+                      <li>Logistic Regression</li>
+                      <li>Decision Trees</li>
+                      <li>Neural Networks</li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <td><b>Unsupervised Learning</b></td>
+                  <td>In unsupervised learning, the machine is trained on an unlabeled dataset, where the target variable (or output) is not known for each observation in the dataset.</td>
+                  <td>The goal of unsupervised learning is to learn patterns in the data, such as similarities or clusters, without a specific goal or target variable in mind.</td>
+                  <td>
+                    <ul>
+                      <li>K-means Clustering</li>
+                      <li>Hierarchical Clustering</li>
+                      <li>Principal Component Analysis (PCA)</li>
+                      <li>T-distributed Stochastic Neighbor Embedding (t-SNE)</li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <td><b>Reinforcement Learning</b></td>
+                  <td>In reinforcement learning, the machine learns by interacting with an environment, receiving feedback in the form of rewards or penalties for each action taken.</td>
+                  <td>The goal of reinforcement learning is to learn an optimal policy, or set of actions, that maximize the cumulative reward over time.</td>
+                  <td>
+                    <ul>
+                      <li>Q-learning</li>
+                      <li>SARSA</li>
+                      <li>Deep Reinforcement Learning</li>
+                    </ul>
+                  </td>
+                </tr>
+              </table>
+
+              <figure style="text-align: center;">
+                <img src="assets/img/data-engineering/ML-3.png" alt="" style="max-width: 90%; max-height: 90%;">
+                <figcaption style="text-align: center;">Classification of machine learning Algorithms (<strong>Image credit:</strong><a href="https://www.mdpi.com/2072-4292/12/22/3801#" target="_blank"> @arunp77</a>)</figcaption>
+              </figure>  
+              <figure style="text-align: center;">
+                <img src="assets/img/data-engineering/ML-4.png" alt="" style="max-width: 90%; max-height: 90%;">
+                <figcaption style="text-align: center;">Classification of machine learning Algorithms (<strong>Image credit:</strong><a href="https://www.mdpi.com/2072-4292/12/22/3801#" target="_blank"> @arunp77</a>)</figcaption>
+              </figure>  
+
+              <div class="box">
+                <p><strong>NOTE:</strong> Labeled data has both the input and output parameters in a completely machine-readable pattern, but requires a lot of human labor to label the data, to begin with. Unlabeled data only has one or none of the parameters in a machine-readable form. This negates the need for human labor but requires more complex solutions.</p>
+              </div>
+
+              <h4>Use of the different algorithm</h4>
+              <figure style="text-align: center;">
+                <img src="assets/img/data-engineering/ML-5.png" alt="" style="max-width: 90%; max-height: 90%;">
+                <figcaption style="text-align: center;">Use of machine learning Algorithms (<strong>Image credit:</strong><a href="https://www.mdpi.com/2072-4292/12/22/3801#" target="_blank"> @arunp77</a>)</figcaption>
+              </figure>  
+
+              <ol>
+                <li><strong>Supervised Machine Learning:</strong>
+                  <ul>
+                    <li>Linear Regression, Logistic Regression and Support Vector Machines are used for regression tasks.</li>
+                    <li>Supervised learning is the types of machine learning in which machines are trained using well "labelled" training data, and on basis of that data, machines predict the output. The labelled data means some input data is already tagged with the correct output.</li>
+                    <li>Supervised learning is a process of providing input data as well as correct output data to the machine learning model. The aim of a supervised learning algorithm is to find a mapping function to map the input variable(x) with the output variable(y).</li>
+                    <li>In the real-world, supervised learning can be used for Risk Assessment, Image classification, Fraud Detection, spam filtering, etc.</li>
+                  </ul>
+                  <p><strong>Example: </strong>Suppose you are building a spam email classifier that can automatically label incoming emails as spam or not spam. You would start by collecting a dataset of labeled emails, where each email is assigned a label of either "spam" or "not spam". You could then train a supervised learning algorithm, such as logistic regression or random forests, on this labeled dataset to learn a mapping function from the input email features (such as sender, subject, and body text) to the output label (spam or not spam). Once the model is trained, you can use it to predict the label of new, unseen emails.</p>
+                  <p><strong>Types of supervised Machine learning Algorithms: </strong></p>
+                  <figure style="text-align: center;">
+                    <img src="assets/img/data-engineering/ML-6.png" alt="" style="max-width: 90%; max-height: 90%;">
+                    <figcaption style="text-align: center;">Broadly we can classify machine learning Algorithms (<strong>Image credit:</strong><a href="https://www.mdpi.com/2072-4292/12/22/3801#" target="_blank"> @arunp77</a>)</figcaption>
+                  </figure>  
+                  <p><strong>How Supervised Learning Works? </strong>In supervised learning, models are trained using labelled dataset, where the model learns about each type of data. Once the training process is completed, the model is tested on the basis of test data (a subset of the training set), and then it predicts the output.</p>
+                  <figure style="text-align: center;">
+                    <img src="assets/img/data-engineering/ML-7.png" alt="" style="max-width: 90%; max-height: 90%;">
+                  </figure>  
+                  or more specific example:
+                  <figure style="text-align: center;">
+                    <img src="assets/img/data-engineering/ML-8.png" alt="" style="max-width: 90%; max-height: 90%;">
+                  </figure> 
+                  <h5><strong>Advantage and disadvantage of Supervised learning</strong></h5>
+                    <table>
+                      <tr>
+                        <th>Advantages</th>
+                        <th>Disadvantages</th>
+                      </tr>
+                      <tr>
+                        <td><strong>Predictive Accuracy:</strong> Supervised learning algorithms can achieve high predictive accuracy when trained on labeled datasets, making them suitable for tasks where accurate predictions are crucial.</td>
+                        <td><strong>Dependency on Labeled Data:</strong> Requires a large amount of labeled training data, and obtaining such data can be time-consuming and expensive.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Clear Objective:</strong> The learning process has a clear objective – to map input features to the correct output based on labeled training data.</td>
+                        <td>Not Suitable for Unstructured Data:</strong> Less effective for tasks involving unstructured data, where patterns are not easily discernible or require complex feature engineering.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Effective for Structured Data:</strong> Well-suited for structured data where relationships between input features and output are known or can be inferred.</td>
+                        <td><strong>Limited Generalization:</strong> The model may not generalize well to unseen data if the training dataset does not adequately represent the broader population or if the data distribution changes.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Widespread Applicability:</strong> Widely used in various real-world applications such as classification, regression, and ranking tasks, including spam detection, image recognition, and sentiment analysis.</td>
+                        <td><strong>Biased Predictions:</strong> Models can inherit biases present in the training data, leading to biased predictions, especially when the training data is not diverse or representative.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Interpretability:</strong> Models trained using supervised learning are often interpretable, allowing users to understand the reasoning behind predictions.</td>
+                        <td><strong>Model Complexity:</strong> Some supervised learning models, especially more complex ones, may be prone to overfitting, capturing noise in the training data and performing poorly on new, unseen data.</td>
+                      </tr>
+                      <tr>
+                        <td></td> <!-- Placeholder for the last cell in the advantages column -->
+                        <td><strong>Human Intervention:</strong> Requires human expertise to label data accurately and select relevant features, which can be a bottleneck in certain domains.</td>
+                      </tr>
+                      <tr>
+                        <td></td> <!-- Placeholder for the last cell in the advantages column -->
+                        <td><strong>Limited Understanding of Unseen Classes:</strong> In classification tasks, the model may struggle with classes not present or poorly represented in the training data.</td>
+                      </tr>
+                  </table>                  
+                </li>
+                <p></p>
+                <br>
+                <li><strong>unsupervised Machine Learning: </strong> 
+                    <ul>
+                      <li>Unsupervised learning is another type of machine learning in which the computer is trained on unlabeled data, meaning the data does not have any pre-existing labels or targets.</li>
+                      <li>The goal of unsupervised learning is to find hidden patterns or structure in the data without the guidance of a labeled dataset.</li>
+                    </ul>
+                    <p><strong>Example: </strong> Suppose you are working with a dataset of customer purchase histories for a retail store, and you want to identify groups or clusters of customers who have similar purchase patterns. Since the dataset does not have any pre-defined labels or categories, you would use an unsupervised learning algorithm, such as k-means clustering or hierarchical clustering, to group the customers based on their purchase histories. The algorithm would analyze the input features (such as purchase frequency, amount spent, and product categories) to discover patterns or similarities in the data, and then group the customers into different clusters based on these patterns. Once the clustering is complete, you can use it to identify different customer segments and tailor marketing strategies accordingly.</p>
+                    <p><strong>Types of Unsupervised Learning Algorithm: </strong>There are several types of unsupervised learning algorithms, each with their own unique approach to discovering patterns and structure in unlabeled data. Some of the most common types of unsupervised learning algorithms are:</p>
+                      <figure style="text-align: center;">
+                        <img src="assets/img/data-engineering/ML-9.png" alt="" style="max-width: 90%; max-height: 90%;">
+                      </figure> 
+                    <p>Each of these unsupervised learning algorithms has its own strengths and weaknesses and can be applied to a wide range of tasks, including data clustering, outlier detection, feature engineering, and data visualization. The choice of algorithm will depend on the specific problem you are trying to solve and the characteristics of your data.</p>
+                    <p><strong>How Unsupervised Learning works?</strong> As the name suggests, unsupervised learning is a machine learning technique in which models are not supervised using training dataset. Instead, models itself find the hidden patterns and insights from the given data. It can be compared to learning which takes place in the human brain while learning new things. Unlike supervised learning, where the data is labeled with a target variable, unsupervised learning algorithms work on unlabeled data.</p>
+                    <p>The goal of unsupervised learning is to find the underlying structure of dataset, group that data according to similarities, and represent that dataset in a compressed format.</p>
+                      <figure style="text-align: center;">
+                        <img src="assets/img/data-engineering/ML-10.png" alt="" style="max-width: 90%; max-height: 90%;">
+                      </figure> 
+                    <h5>Advantages & Disadvantages of Unsupervised Learning</h5>
+                    <table>
+                      <tr>
+                        <th>Advantages</th>
+                        <th>Disadvantages</th>
+                      </tr>
+                      <tr>
+                        <td>Unsupervised learning is used for more complex tasks as compared to supervised learning because, in unsupervised learning, we don't have labeled input data.</td>
+                        <td>Unsupervised learning is intrinsically more difficult than supervised learning as it does not have corresponding output.</td>
+                      </tr>
+                      <tr>
+                        <td>Unsupervised learning is preferable as it is easy to get unlabeled data in comparison to labeled data.</td>
+                        <td>The result of the unsupervised learning algorithm might be less accurate as input data is not labeled, and algorithms do not know the exact output in advance.</td>
+                      </tr>
+                    </table>
+                </li>
+                <li><strong>Reinforcement Learning</strong>
+                  <ul>
+                    <li>Reinforcement Learning (RL) is a type of machine learning algorithm that allows an agent to learn through trial and error by interacting with an environment.</li>
+                    <li>The agent receives feedback in the form of rewards or penalties for the actions it takes in the environment. The goal of the agent is to learn a policy that maximizes the total reward it receives over time.</li>
+                    <li>In RL, the agent learns by exploring the environment, taking actions, receiving rewards, and updating its policy based on the feedback it receives.</li>
+                    <li>The agent’s policy is a mapping from states to actions that maximizes the expected future reward.</li>
+                    <br>
+                    <h5>Examples:</h5>
+                    <ul>
+                      <li>Imagine you are training an agent to play a game of chess. The agent interacts with the game board and makes moves based on the current state of the game. The goal is for the agent to learn to make moves that lead to a win, while avoiding moves that lead to a loss.</li>
+                      <li>In reinforcement learning, the agent receives a reward signal based on the outcome of each move it makes. For example, the agent might receive a positive reward for making a winning move, or a negative reward for making a losing move. The agent uses this feedback to adjust its strategy and make better moves in the future.</li>
+                      <li>To train the agent, you would use a reinforcement learning algorithm such as Q-learning or policy gradient methods. These algorithms learn to optimize the agent's behavior by maximizing the expected cumulative reward over time. As the agent interacts with the game board and receives feedback, it gradually learns which moves are more likely to lead to a win and adjusts its strategy accordingly.</li>
+                      <li>Over time, the agent should become better and better at playing chess, as it learns from its experiences and improves its decision-making. Reinforcement learning has been successfully applied to a wide range of problems, including robotics, game playing, and autonomous driving.</li>
+                    </ul>
+                  </ul>
+                  <h5>Components in RL</h5>
+                  <p>There are several components in RL:</p>
+                  <ol>
+                    <li><strong>The Environment: </strong> The environment is the external world with which the agent interacts. The agent receives observations of the environment, takes actions based on those observations, and receives rewards or penalties as feedback.</li>
+                    <li><strong>The Agent: </strong>The agent is the entity that interacts with the environment. It selects actions based on its current policy, which is updated based on the rewards it receives.</li>
+                    <li><strong>Reward Function: </strong>The reward function defines the goal of the agent. It maps states and actions to rewards or penalties. The agent tries to maximize the cumulative reward it receives over time.</li>
+                    <li><strong>Policy: </strong>The policy is the mapping from states to actions. The agent learns the policy through trial and error, and updates it based on the rewards it receives.</li>
+                    <li><strong>Value Function: </strong>The value function estimates the expected cumulative reward that the agent will receive if it follows a particular policy.</li>
+                  </ol>
+                  
+                </li>
+              </ol>
+
+              <h5>Difference between Supervised and Unsupervised Learning</h5>
+              <table>
+                <tr>
+                  <th>Supervised Learning</th>
+                  <th>Unsupervised Learning</th>
+                </tr>
+                <tr>
+                  <td>Supervised learning algorithms are trained using labeled data.</td>
+                  <td>Unsupervised learning algorithms are trained using unlabeled data.</td>
+                </tr>
+                <tr>
+                  <td>Supervised learning model takes direct feedback to check if it is predicting the correct output or not.</td>
+                  <td>Unsupervised learning model does not take any feedback.</td>
+                </tr>
+                <tr>
+                  <td>Supervised learning model predicts the output.</td>
+                  <td>Unsupervised learning model finds the hidden patterns in data.</td>
+                </tr>
+                <tr>
+                  <td>In supervised learning, input data is provided to the model along with the output.</td>
+                  <td>In unsupervised learning, only input data is provided to the model.</td>
+                </tr>
+                <tr>
+                  <td>The goal of supervised learning is to train the model so that it can predict the output when given new data.</td>
+                  <td>The goal of unsupervised learning is to find the hidden patterns and useful insights from the unknown dataset.</td>
+                </tr>
+                <tr>
+                  <td>Supervised learning needs supervision to train the model.</td>
+                  <td>Unsupervised learning does not need any supervision to train the model.</td>
+                </tr>
+                <tr>
+                  <td>Supervised learning can be categorized in Classification and Regression problems.</td>
+                  <td>Unsupervised Learning can be classified in Clustering and Associations problems.</td>
+                </tr>
+                <tr>
+                  <td>Supervised learning can be used for those cases where we know the input as well as corresponding outputs.</td>
+                  <td>Unsupervised learning can be used for those cases where we have only input data and no corresponding output data.</td>
+                </tr>
+                <tr>
+                  <td>Supervised learning model produces an accurate result.</td>
+                  <td>Unsupervised learning model may give a less accurate result as compared to supervised learning.</td>
+                </tr>
+                <tr>
+                  <td>Supervised learning is not close to true Artificial Intelligence as in this, we first train the model for each data, and then only it can predict the correct output.</td>
+                  <td>Unsupervised learning is more close to true Artificial Intelligence as it learns similarly as a child learns daily routine things by his experiences.</td>
+                </tr>
+                <tr>
+                  <td>It includes various algorithms such as Linear Regression, Logistic Regression, Support Vector Machine, Multi-class Classification, Decision tree, Bayesian Logic, etc.</td>
+                  <td>It includes various algorithms such as Clustering, KNN, and Apriori algorithm.</td>
+                </tr>
+              </table>
+
+              <h4>Machine learning life cycle</h4>
+              <p>Machine learning life cycle is a cyclic process to build an efficient machine learning project. The main purpose of the life cycle is to find a solution to the problem or project. Machine learning life cycle involves seven major steps, which are given below:</p>
+              <figure style="text-align: center;">
+                <img src="assets/img/data-engineering/ML-11.png" alt="" style="max-width: 60%; max-height: 100%;">
+              </figure> 
+              <ol>
+                <li><strong>Gathering Data: </strong>In this step, we need to identify the different data sources, as data can be collected from various sources such as files, database, internet, or mobile devices. This step includes the below tasks:
+                  <ul>
+                    <li>Identify various data sources</li>
+                    <li>Collect data</li>
+                    <li>Integrate the data obtained from different sources</li>
+                  </ul>
+                </li>
+                <li><strong>Data preparation:</strong>
+                  <ul>
+                    <li>Data exploration: It is used to understand the nature of data that we have to work with. We need to understand the characteristics, format, and quality of data. A better understanding of data leads to an effective outcome. In this, we find Correlations, general trends, and outliers.</li>
+                    <li>Data pre-processing: Now the next step is preprocessing of data for its analysis.</li>
+                  </ul>
+                </li>
+                <li><strong>Data Wrangling:</strong>
+                  Data wrangling is the process of cleaning and converting raw data into a useable format. It is not necessary that data we have collected is always of our use as some of the data may not be useful. In real-world applications, collected data may have various issues, including:
+                  <ul>
+                    <li>Missing Values</li>
+                    <li>Duplicate data</li>
+                    <li>Invalid data</li>
+                    <li>Noise</li>
+                  </ul>
+                  So, we use various filtering techniques to clean the data.
+                </li>
+                <li><strong>Analyse Data: </strong></li>
+                <li><strong>Train the model: </strong>Now the next step is to train the model, in this step we train our model to improve its performance for better outcome of the problem. We use datasets to train the model using various machine learning algorithms. Training a model is required so that it can understand the various patterns, rules, and, features.</li>
+                <li><strong>Test the model: </strong>Once our machine learning model has been trained on a given dataset, then we test the model. In this step, we check for the accuracy of our model by providing a test dataset to it. Testing the model determines the percentage accuracy of the model as per the requirement of project or problem.</li>
+                <li><strong>Deployment: </strong>The last step of machine learning life cycle is deployment, where we deploy the model in the real-world system. If the above-prepared model is producing an accurate result as per our requirement with acceptable speed, then we deploy the model in the real system. But before deploying the project, we will check whether it is improving its performance using available data or not. The deployment phase is similar to making the final report for a project.</li>
+              </ol>
+            </section>
+
 
 
 
@@ -209,9 +527,9 @@
             <section id="reference">
             <h2>References</h2>
             <ul>
-                <li>My github Repositories on Remote sensing <a href="https://github.com/arunp77/EUMETSET-courses" target="_blank">Atmosphere and remote sensing</a></li>
-                <li>Good reference: <a href="https://natural-resources.canada.ca/maps-tools-and-publications/satellite-imagery-and-air-photos/tutorial-fundamentals-remote-sensing/9309" target="_blank">Remote Sensing Tutorials</a> </li>
-                <li>https://rutwikroutu.medium.com/introduction-to-gis-for-beginners-ebc6d27e235a</li>
+                <li>My github Repositories on Machine learning: <a href="https://github.com/arunp77/Machine-Learning/" target="_blank">Machine-Learning Fundamentals</a></li>
+                <li>Good reference: <a href="https://www.coursera.org/learn/machine-learning " target="_blank">Coursera.org</a> </li>
+                <li><a href="https://www.diegocalvo.es/en/learning-non-supervised/" target="_blank">Diegocalvo.es</a></li>
             </ul>
             </section>
 

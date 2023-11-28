@@ -1212,13 +1212,20 @@ table {
 }
 
 th, td {
-  border: 1px solid #ddd;
+  border: 1px solid #3b80c5;
   padding: 8px;
   text-align: left;
 }
 
 th {
-  background-color: #f2f2f2;
+  background-color: rgb(127, 223, 230);
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9; /* light grey background for even rows */
+}
+tr:hover {
+  background-color: #d3d3d3; /* hover effect */
 }
 
 @media (max-width: 600px) {
