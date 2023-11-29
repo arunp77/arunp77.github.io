@@ -90,7 +90,7 @@
             <div class="d-flex justify-content-between align-items-center">
               <h2></h2>
               <ol>
-                <li><a href="Remote-sensing-content.html" class="clickable-box">Content section</a></li>
+                <li><a href="portfolio-details-1.html" class="clickable-box">Content section</a></li>
                 <li><a href="index.html#portfolio" class="clickable-box">Portfolio section</a></li>
               </ol>
             </div>
@@ -132,9 +132,9 @@
               <div class="swiper-wrapper align-items-center">
 
                 <div class="swiper-slide">
-                    <h1>Machine learning: Regression models</h1>
+                    <h1>Machine learning: Supervised Learning</h1>
                   <figure>
-                    <img src="assets/img/remote-sensing/remote-sensing-header.jpg" alt="" style="max-width: 700px; max-height: 700px;">
+                    <img src="assets/img/data-engineering/ML-rg-0.png" alt="" style="max-width: 700px; max-height: 700px;">
                     <figcaption></figcaption>
                   </figure>
                 </div>
@@ -164,61 +164,71 @@
 
       <section id="introduction">
         <h2>Introduction</h2>
-          <p>Remote sensing is the science of acquiring information about an object or phenomenon without being in direct contact with it. 
-              It is a vast and complex field, with applications in many different disciplines, including geology, geography, environmental 
-              science, agriculture, forestry, and hydrology.</p>
-          <strong>How does remote sensing work?</strong>
-          <p>Remote sensing works by measuring the energy that is emitted or reflected from an object. The energy can be in the form of visible light, infrared radiation, radar 
-            signals, or other forms of electromagnetic radiation. The energy is then recorded and processed to create images or other data products that can be used to interpret the properties of the object.</p>
+        <p>Supervised learning is a core branch of machine learning, where algorithms learn from labeled data to make predictions for new, unseen examples. It's like having a teacher supervise a student, providing correct answers for practice problems and guiding the learning process.</p>
           
-          <p>In the pages that follow, we embark on an exploration of the fundamentals, technologies, applications, and future horizons of remote sensing. From the vantage point of 
-          satellites to the nimble drones patrolling our skies, we delve into the intricate processes of data acquisition, analysis, and interpretation. Remote sensing, a catalyst 
-          for transformative insights and informed decision-making, invites us to witness the world with a clarity that transcends physical boundaries.</p>
+        <ul>
+          <li>In supervised learning, each data point has a known label or output value associated with it. This labeled data is used to train a model, allowing it to map the input features to the desired outputs.</li>
+          <li>Through this training, the model learns the underlying relationships and patterns between the features and labels.</li>
+          <li>Once trained, the model can predict the output for new data points based on the learned patterns.</li>
+        </ul>
+
+        <h4>Types of Supervised Learning:</h4>
+        <ul>
+          <li><strong>Classification:</strong> Predicting a discrete category or label for each data point. For example, classifying emails as spam or not spam, or classifying images of animals into different categories.
+          <p>Common characteristics that make a model a classification models</p>
+          <ul>
+            <li><strong>Predicts a discrete category or label:</strong> Classification models are designed to predict a discrete category or label for each data point. This means that the output variable can only take on a finite number of values. For example, a classification model could be used to classify emails as spam or not spam, or to classify images of animals into different categories.</li>
+            <li><strong>Uses a loss function based on classification error:</strong> Classification models are trained by minimizing a loss function. The loss function measures the difference between the predicted and actual labels. Common loss functions for classification include cross-entropy loss and hinge loss.</li>
+            <li><strong>Can make predictions on new, unseen data:</strong> Once a classification model is trained, it can be used to make predictions on new data points that were not used in the training process. For classification models, the predictions are discrete labels.</li>
+            <li><strong>Employs various algorithms:</strong> Classification models can be implemented using a variety of algorithms, including linear regression, logistic regression, support vector machines (SVMs), decision trees, and random forests.</li>
+            <li><strong>Interpretability:</strong> Classification models can vary in terms of their interpretability. Some models, such as decision trees, are relatively easy to interpret, while others, such as deep learning models, are more complex and difficult to understand.</li>
+            <li><strong>Accuracy and Overfitting:</strong> Classification models are evaluated based on their accuracy, which measures the proportion of correct predictions made by the model. Overfitting is a common issue in classification, where the model performs well on the training data but poorly on unseen data.</li>
+            <li><strong>Applications:</strong> Classification models have a wide range of applications, including spam filtering, medical diagnosis, customer churn prediction, and image recognition.</li>
+          </ul>
+          <p><strong>Example: </strong>Logistic Regression, Support Vector Machines (SVMs), Decision Trees, Random Forests</p>
+          </li>
+          <li><strong>Regression:</strong> Predicting a continuous numerical value for each data point. For example, predicting the price of a house, or predicting the number of customers who will visit a website in a given day.
+            <p>Here are some of the characteristics that make a model a regression model:</p>
+            <ul>
+              <li><strong>The output variable is continuous:</strong> The output variable that the model is trying to predict is a continuous numerical value. For example, a model that predicts the price of a house or the number of customers 
+                who will visit a website in a given day would be considered a regression model.</li>
+              <li><strong>The model uses a loss function that is based on the difference between the predicted and actual output values:</strong> The model is trained by minimizing a loss function. The loss function measures the difference 
+                between the predicted and actual output values. For regression models, the most common loss function is the mean squared error (MSE).</li>
+              <li><strong>The model can be used to make predictions on new, unseen data:</strong> Once the model is trained, it can be used to make predictions on new data points that were not used in the training process. 
+                For regression models, the predictions are continuous numerical values.</li>
+            </ul>
+            <p><strong>Example: </strong>Linear Regression, Ridge Regression, Lasso Regression, Support Vector Regression (SVR), Decision Tree Regression</p>
+          </li>
+        </ul>
+
+        <h4>Common Supervised Learning Algorithms:</h4>
+        <ol>
+          <li><strong>Linear regression:</strong> This algorithm is used to model relationships between input features and a continuous output variable. It is a simple and effective algorithm, but it can only be used for problems that 
+            can be modeled linearly.</li>
+          <li><strong>Logistic regression:</strong> This algorithm is used to model binary classification problems, where there are only two possible output values (e.g., spam or not spam). It is a more sophisticated algorithm than 
+            linear regression, and it can handle more complex relationships between input features and the output variable.</li>
+          <li><strong>Lasso Regression: </strong>Lasso regression is a regularization technique that can be used with linear regression to improve its performance by adding a penalty term to the least squares objective function. 
+            This penalty term encourages some of the coefficients to be zero, which can help to reduce the number of features in the model and make it more interpretable. Lasso regression is also more robust to noise in the data 
+            than other regularization techniques, such as ridge regression.</li>
+          <li><strong>Ridge Regression: </strong>Ridge regression is another regularization technique that can be used with linear regression to improve its performance by adding a penalty term to the least squares objective 
+            function. This penalty term encourages all of the coefficients to be small, which can help to prevent overfitting. Ridge regression is often used when there is multicollinearity in the data, which means that the 
+            features are highly correlated with each other</li>
+          <li><strong>Support vector machines (SVMs):</strong> This algorithm is a versatile algorithm that can be used for both classification and regression tasks. It is particularly well-suited for problems with high 
+            dimensional input features.</li>
+          <li><strong>Decision trees:</strong> This algorithm is a tree-like structure that is used to classify or predict data. It is a simple and intuitive algorithm, but it can be prone to overfitting, which means that it 
+            does not generalize well to new data.</li>
+          <li><strong>Random forests:</strong> This algorithm is an ensemble method that combines multiple decision trees to improve the accuracy and robustness of predictions. It is a more complex algorithm than decision trees, 
+            but it is also more effective for many types of problems.</li>
+          <li><strong>K-Nearest Neighbors:</strong> A non-parametric algorithm that classifies new data points based on the majority class of their k nearest neighbors in the training data. It is a simple and effective algorithm, 
+            but it can be sensitive to noisy data and the choice of the k parameter.</li>
+          <li><strong>Naive Bayes:</strong> A probabilistic algorithm that assumes that the features are independent of each other given the class label. It is a simple and efficient algorithm, but it may not be accurate if the 
+            independence assumption is not met.</li>
+        </ol>
+        <p>The choice of supervised learning algorithm depends on the specific task at hand, the nature of the data, and the desired performance. It is often necessary to experiment with different algorithms to find the one 
+          that works best for a particular problem.</p>
       </section>
 
-      <h2>Satellite Characteristics: Orbits and Swaths </h2>
-            <h5>1. Orbits:</h5>
-            Satellites play a crucial role in various applications, including remote sensing, communication, and Earth observation. Two key characteristics defining satellite behavior are their orbits and swaths.
-            <figure style="text-align: center;">
-                <img src="assets/img/remote-sensing/orbit.png" alt="" style="max-width: 40%; max-height: 40%;">
-                <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://arunp77.github.io/Arun-Kumar-Pandey/" target="_blank"> © Arun Kumar Pandey.</a></figcaption>
-            </figure>
-            <ol>
-                <li><strong>Low Earth Orbit (LEO):</strong>
-                    <ul>
-                        <li>Satellites in LEO orbit close to Earth, typically at altitudes ranging from about 180 to 2,000 kilometers.</li>
-                        <li>LEO satellites offer advantages for remote sensing, providing high-resolution imagery and frequent revisits due to their shorter orbital periods.</li>
-                        <li>Examples of LEO remote sensing satellites include the Landsat series and the International Space Station (ISS).</li>
-                    </ul>
-                </li>
-            
-                <li><strong>Medium Earth Orbit (MEO):</strong>
-                    <ul>
-                        <li>MEO satellites orbit at intermediate altitudes, typically between 2,000 and 35,786 kilometers.</li>
-                        <li>These orbits provide a balance between coverage and resolution, making them suitable for a variety of applications, including navigation systems like GPS.</li>
-                        <li>Examples of MEO satellites include those in the Global Navigation Satellite System (GNSS) constellations.</li>
-                    </ul>
-                </li>
-            
-                <li><strong>Geostationary Orbit (GEO):</strong>
-                    <ul>
-                        <li>GEO satellites are positioned at approximately 35,786 kilometers above the equator, allowing them to appear stationary relative to a fixed point on Earth.</li>
-                        <li>These satellites provide continuous coverage of a specific region, making them ideal for applications like weather monitoring and communication.</li>
-                        <li>Examples include weather satellites like GOES (Geostationary Operational Environmental Satellite).</li>
-                    </ul>
-                </li>
-            
-                <li><strong>Polar Orbit:</strong>
-                    <ul>
-                        <li>Satellites in polar orbits pass over Earth's poles, providing global coverage with each orbit.</li>
-                        <li>These orbits are well-suited for Earth observation missions, as they cover the entire surface over time.</li>
-                        <li>Examples include satellites from the Copernicus program, such as Sentinel-1 and Sentinel-2.</li>
-                    </ul>
-                </li>
-            </ol>
-            <h5>2. Swaths:</h5>
-            <p>The swath width refers to the coverage area on the Earth's surface captured by a satellite during a single pass. It is determined by the satellite's sensor characteristics and the satellite's altitude. A wider swath allows for broader coverage but may sacrifice image resolution.</p>
-            <p>Understanding the interplay between orbits and swaths is essential for optimizing satellite mission design. LEO satellites, for instance, may have smaller swaths but offer higher revisit frequencies, making them suitable for applications requiring frequent observations. GEO satellites, on the other hand, have a fixed view but cover a larger area with each pass, making them ideal for continuous monitoring.</p>
+      
             <figure style="text-align: center;">
               <img src="assets/img/remote-sensing/swath.png" alt="" style="max-width: 50%; max-height: 50%;">
               <figcaption style="text-align: center;">Swaths (<strong>Image credit:</strong>
@@ -226,637 +236,13 @@
                   © Remote Sensing Tutorials (Natural Resources Canada).</a>)</figcaption>
             </figure>
 
-      
-      <section id="fundamentals">
-        <h2>Section 1: Fundamentals of Remote Sensing</h2>
-
-        <ul style="margin-left: 30px;">
-          <li><strong>Basic Principles</strong>
-            <ul>
-              <li><strong>Key Elements of the Remote Sensing Process: From Energy Source to Application</strong>
-                <p>In remote sensing, the interaction between incident radiation and the targets of interest is a common process. This is illustrated in imaging systems, which encompass seven key elements. 
-                  It's important to recognize that remote sensing also includes the detection of emitted energy and the utilization of non-imaging sensors. 
-                </p>
-                <img src="assets/img/remote-sensing/Active-passive.png" alt="" style="max-width: 100%; max-height: 100%;">
-                <br><br>
-                
-                <ul>
-                  <li><strong>Energy source or Illumination (A):</strong> The first requirement for remote sensing is to have
-                    an energy source which illuminates or provides electromagnetic energy to the target
-                    of interest</li>
-                  <li><strong>Radiation and the Atmosphere (B) - </strong> as the energy travels from its source to the
-                    target, it will come in contact with and interact with the atmosphere it passes through. This
-                    interaction may take place a second time as the energy travels from the target to the sensor.</li>
-                  <li><strong>Interaction with the Target (C) - </strong>once the energy makes its way to the target through the
-                    atmosphere, it interacts with the target depending on the properties of both the target and the
-                    radiation.</li>
-                  <li><strong>Recording of Energy by the Sensor (D)  - </strong> after the energy has been scattered by, or
-                    emitted from the target, we require a sensor (remote - not in contact with the target) to collect
-                    and record the electromagnetic radiation. </li>
-                  <li><strong>Transmission, Reception, and Processing (E) - </strong>the energy recorded by the sensor has
-                    to be transmitted, often in electronic form, to a receiving and processing station where the
-                    data are processed into an image (hardcopy and/or digital)</li>
-                  <li><strong>Interpretation and Analysis (F) - </strong>the processed image is interpreted, visually and/or
-                    digitally or electronically, to extract information about the target which was illuminated. 
-                    </li>
-                  <li><strong>Application (G) - </strong>the final element of the remote sensing process is achieved when we
-                    apply the information we have been able to extract from the imagery about the target in order
-                    to better understand it, reveal some new information, or assist in solving a particular problem. </li>
-                </ul></li>
-                <br>
-              <li><strong>Electromagnetic Spectrum and Its Relevance: </strong>
-                <p>For remote sensing to be effective, it requires a source of electromagnetic radiation to illuminate the target, 
-                  except when the target itself emits the sensed energy. All electromagnetic radiation exhibits fundamental properties 
-                  and adheres to predictable behaviors governed by wave theory. It comprises an electric field (<code>E</code>) that fluctuates in 
-                  magnitude perpendicular to the direction of propagation and a magnetic field (<code>M</code>) oriented at right angles to the electric 
-                  field. Both fields travel at the speed of light (<code>c</code>). Two characteristics of electromagnetic
-                  radiation are particularly important for understanding remote sensing. These are the
-                  wavelength <strong><code>λ</code></strong> and frequency <strong><code>ν</code></strong>. Wavelength and frequency are related to 
-                  each other by: <pre><code>c = λ ν</code></pre></p>
-                  <img src="assets/img/remote-sensing/EM-wave.png" alt="" style="max-width: 90%; max-height: 90%;">
-                  <p> The electromagnetic spectrum ranges from the shorter wavelengths (including gamma and
-                    x-rays) to the longer wavelengths (including microwaves and broadcast radio waves). 
-                    There are several regions of the electromagnetic spectrum which are useful for remote sensing. </p>
-                    <figure style="text-align: center;">
-                      <img src="assets/img/remote-sensing/EM-spectrum.png" alt="" style="max-width: 90%; max-height: 90%;">
-                      <figcaption style="text-align: center;"><strong>Image credit:</strong> NASA</figcaption>
-                    </figure>
-                  <br>
-                  <p>Although we see sunlight as a uniform or homogeneous colour, it is actually composed of various wavelengths of radiation in primarily the ultraviolet, visible and infrared portions of the spectrum.</p>
-                  <ul>
-                    <li><strong>UV: </strong>For most purposes, the ultraviolet or UV portion of the spectrum has the shortest
-                      wavelengths which are practical for remote sensing. Some Earth surface materials, 
-                      primarily rocks and minerals, fluoresce or emit visible light when illuminated by UV radiation.</li>
-                    <li><strong>Visible (0.4 - 0.7 µm): </strong>The light which our eyes - our "remote sensors" - can detect is part of the visible spectrum.</li>
-                    <li><strong>Infrared (IR) (0.7 - 100  µm):</strong> The next portion of the spectrum of interest is the infrared (IR) region.
-                      The infrared region can be divided into two categories based on their radiation properties -
-                        <ul>
-                          <li><strong>Reflected IR</strong>: Radiation in the reflected IR region is used for remote sensing purposes in ways very similar to radiation in the visible portion. The reflected 
-                            IR covers wavelengths from approximately 0.7 µm to 3.0 µm.</li>
-                          <li><strong>Emitted or thermal IR</strong>: The thermal IR region is quite different than the visible and reflected IR portions, 
-                            as this energy is essentially the radiation that is emitted from the Earth's surface in the form of heat. The thermal IR covers wavelengths from 
-                            approximately 3.0 µm to 100 µm.</li>
-                        </ul> 
-                        </li>
-                      <li><strong>Microwave region (1 mm - 1 m):</strong>The portion of the spectrum of more recent interest to remote sensing is the microwave region.</li>
-                  </ul>
-                  <br>
-              </li>
-              
-            </ul>
-            <li><strong>Components of Remote Sensing: </strong>
-              <ul>
-                <li><strong>Interaction of Electromagnetic Radiation: </strong>Before radiation used for remote sensing reaches the Earth's surface it has to travel 
-                  through some distance of the Earth's atmosphere. Particles and gases in the atmosphere can affect the incoming light and radiation. These effects are caused by the mechanisms 
-                  of scattering and absorption</li>
-                  <figure style="text-align: center;">
-                    <img src="assets/img/remote-sensing/Atmospheric-radiation.jpg" alt="" style="max-width: 90%; max-height: 90%;">
-                    <figcaption style="text-align: center;"><strong>Image credit:</strong> US Department of Energy Office of Science</figcaption>
-                  </figure>
-                  <ol style="list-style-type: upper-roman;">
-                    <li><strong>Scattering: </strong>Scattering occurs when particles or large gas molecules present in the atmosphere interact with and cause the electromagnetic radiation to 
-                      be redirected from its original path. How much scattering takes place depends on several factors including the wavelength of the radiation, the abundance of particles or 
-                      gases, and the distance the radiation travels through the atmosphere. There are three (3) types of scattering which take place.
-                      <figure style="text-align: center;">
-                        <img src="assets/img/remote-sensing/earth-atmoshphere-radtion.png" alt="" style="max-width: 90%; max-height: 90%;">
-                        <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://arunp77.github.io/Arun-Kumar-Pandey/" target="_blank"> © arunp77</a></figcaption>
-                      </figure>
-                      <ul list-style-type: circle;>
-                        <li><strong>Rayleigh scattering: </strong>Rayleigh scattering occurs when particles are significantly smaller than the wavelength of radiation, such as tiny dust particles or nitrogen and oxygen molecules. This phenomenon causes shorter wavelengths of energy to scatter more than longer wavelengths. In the upper atmosphere, Rayleigh scattering is the predominant mechanism. The daytime sky appears blue because, as sunlight passes through the atmosphere, the shorter (blue) wavelengths of the visible spectrum scatter more than the longer ones. During sunrise and sunset, when light travels a longer path through the atmosphere, the scattering of shorter wavelengths is more pronounced, contributing to the colorful hues of the sky.</li>
-                        <li><strong>Mie scattering: </strong>Mie scattering takes place when particles are approximately the same size as the wavelength of the radiation. Common causes of Mie scattering include dust, pollen, smoke, and water vapor. Unlike Rayleigh scattering, Mie scattering impacts longer wavelengths. It is prevalent in the lower atmosphere where larger particles are more abundant, and it becomes dominant under overcast cloud conditions.</li>
-                        <li><strong>Nonselective scattering: </strong>The last significant scattering mechanism is known as nonselective scattering. This occurs when particles are considerably larger than the wavelength of the radiation, typically observed with water droplets and large dust particles. Nonselective scattering earns its name because it scatters all wavelengths roughly equally. Consequently, this type of scattering is responsible for the white appearance of fog and clouds to our eyes, as blue, green, and red light are scattered in approximately equal amounts, resulting in a combination that appears as white light.</li>
-                      </ul>
-                    </li>
-                    <li><strong>Absorption: </strong>Absorption represents another primary mechanism in the interaction of electromagnetic radiation with the atmosphere. Unlike scattering, this 
-                      process involves molecules in the atmosphere absorbing energy across different wavelengths. Ozone, carbon dioxide, and water vapor are the three primary atmospheric 
-                      constituents responsible for this radiation absorption phenomenon.</li>
-                      <ul>
-                        <li><strong>Ozone: </strong>Ozone plays a crucial role in absorbing the potentially harmful ultraviolet radiation emitted by the sun, shielding most living organisms. 
-                          The presence of this protective layer in the atmosphere prevents skin damage that would occur if exposed to sunlight without it.</li>
-                        <li><strong>carbon dioxide (greenhouse gas): </strong>Carbon dioxide is often referred to as a greenhouse gas due to its strong absorption of radiation in the far infrared 
-                          part of the spectrum, particularly associated with thermal heating. This absorption property contributes to trapping heat within the atmosphere. Meanwhile, water vapor in 
-                          the atmosphere plays a significant role in absorbing both incoming longwave infrared and shortwave microwave radiation, occurring within the range of 22µm to 1m. The presence 
-                          of water vapor in the lower atmosphere varies significantly based on location and time of year. For instance, air above a desert would contain minimal water vapor, limiting 
-                          energy absorption, while tropical regions, characterized by high humidity, would have elevated concentrations of water vapor.</li>
-                      </ul>
-                      <p>These gases have a selective absorption of electromagnetic energy within specific regions of the spectrum, influencing the areas suitable for remote sensing observations. Segments of the spectrum that are minimally affected by atmospheric absorption, making them valuable for remote sensors, are termed "atmospheric windows." By comparing the characteristics of the two primary energy sources, the sun and the Earth, with available atmospheric windows, we can identify wavelengths most effectively used for remote sensing.
-
-                        The visible spectrum, aligned with the peak energy level of the sun and matching our eyes' sensitivity, corresponds to an atmospheric window. Additionally, the thermal infrared region around 10 µm is a window for the Earth's emitted heat energy, while wavelengths beyond 1 mm create a substantial window in the microwave region.
-                        
-                        Now that we comprehend the intricate journey of electromagnetic energy from its source to the surface, the next exploration involves understanding the fate of this radiation upon reaching the Earth's surface.</p>
-                  </ol>
-                  <li><strong>Radiation - Target Interactions: </strong>Radiation that is not absorbed or scattered in
-                    the atmosphere can reach and interact with the Earth's surface. There are three forms of interaction that can take place when energy strikes or is incdent upon the surface:
-                    <ul>
-                      <li><strong>Absorption (A): </strong>Absorption (A) occurs when radiation (energy) is absorbed into the target. </li>
-                      <li><strong>Transmission (T): </strong>Transmission occurs when radiation (energy) passes through a target.</li>
-                      <li><strong>Reflection (R):</strong>Reflection (R) occurs when radiation "bounces" off the target and is redirected.</li>
-                    </ul>
-                    <figure style="text-align: center;">
-                      <img src="assets/img/remote-sensing/reflectance-radiation-transmission.png" alt="" style="max-width: 60%; max-height: 60%;">
-                      <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://www.nv5geospatialsoftware.com/What-is-Remote-Sensing" target="_blank"> ©  nv5geospatialsoftware, All Rights Reserved.</a></figcaption>
-                    </figure>
-                    <p>The total incident energy will interact with the surface in one or more of these three ways. The proportions of each will depend on the wavelength of the energy and the 
-                      material and condition of the feature. In remote sensing, we are most interested in
-                      measuring the radiation reflected from targets. Reflection may occur in two main ways:
-                      
-                      <ul>
-                        <li><strong>Specular reflection: </strong>When a surface is smooth we get specular or mirror-like reflection where all (or almost all) of the energy is directed away 
-                          from the surface in a single direction.</li>
-                        <li><strong>Diffuse reflection: </strong>. Diffuse reflection occurs when the surface is rough and the energy is reflected almost uniformly in all directions.</li>
-                      </ul><br>
-                      Most earth surface features lie somewhere between perfectly specular or perfectly diffuse
-                      reflectors. If the wavelengths are much smaller than the surface variations or the particle 
-                      sizes that make up the surface, diffuse reflection will dominate. For example, finegrained 
-                      sand would appear fairly smooth to long wavelength microwaves but would appear quite rough to the visible wavelengths.
-                      <br><br>
-                      <figure style="text-align: center;">
-                        <img src="assets/img/remote-sensing/radiation-target.png" alt="" style="max-width: 90%; max-height: 90%;">
-                        <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://blog.descarteslabs.com/a-look-into-the-fundamentals-of-remote-sensing" target="_blank"> ©  2020 Descartes Labs Inc., All Rights Reserved.</a></figcaption>
-                      </figure>
-                      <br>
-                      <strong>For example:</strong>
-                      Just like the atmosphere, different features on the landscape absorb and reflect electromagnetic radiation differently, and these differences allow us to map the Earth’s surface. Above, we show some examples over vegetation, water, urban areas, and snow.
-                      <ul>
-                        <li><strong>Green vegitation: </strong>Leaves contain a chemical compound called chlorophyll, which strongly absorbs radiation in the red and blue wavelengths while reflecting 
-                          green wavelengths. During summer, when chlorophyll content is at its peak, leaves appear their greenest. In autumn, with reduced chlorophyll, there's less 
-                          absorption and more reflection of red wavelengths, causing leaves to appear red or yellow (yellow being a combination of red and green wavelengths). Healthy leaves' internal 
-                          structure acts as excellent diffuse reflectors of near-infrared wavelengths. While our eyes perceive trees as normal, if sensitive to near-infrared, they would appear extremely 
-                          bright. Monitoring near-IR reflectance is a method for scientists to assess the health of vegetation.</li>
-                        <li><strong>Water: </strong>
-                          Water tends to appear blue or blue-green due to the stronger reflectance of shorter wavelengths, primarily in the visible and near-infrared spectrum. Longer wavelength visible 
-                          and near-infrared radiation is absorbed more by water, making it look darker when viewed at red or near-infrared wavelengths. The presence of suspended sediment in the water 
-                          enhances reflectivity, resulting in a brighter appearance, and may cause a slight shift in the apparent color towards longer wavelengths. Distinguishing between suspended 
-                          sediment and shallow but clear water can be challenging as they exhibit similar visual characteristics. Algae containing chlorophyll absorbs more blue wavelengths and reflects 
-                          green, giving the water a greenish appearance when algae is present. Additionally, the water surface's topography, including factors like roughness, smoothness, and floating 
-                          materials, introduces complications for interpretation, potentially influenced by specular reflection and other factors affecting color and brightness.
-                        </li>
-                      </ul>
-                      <figure style="text-align: center;">
-                        <img src="assets/img/remote-sensing/reflectance-radiation.png" alt="" style="max-width: 90%; max-height: 90%;">
-                        <figcaption style="text-align: center;">Generalized spectral signatures of green vegetation, soil, and water. <strong> Last image credit:</strong><a href="https://ecampusontario.pressbooks.pub/remotesensing/chapter/chapter-9-vegetation-and-fire/" target="_blank"> ©  SEOS, Science Education through Earth Observation.</a></figcaption>
-                      </figure>
-                    </p>
-                    <h5><strong>Summary: </strong></h5>
-                    <strong>Vegitation:</strong>
-                      <ol>
-                        <li><strong>Reflectance Characteristics:</strong> Absorbs blue and red light; slightly reflects green light.</li>
-                        <li><strong>Visible Appearance:</strong> Perceived as green due to the reflection of green light.</li>
-                        <li><strong>Photosynthesis Influence:</strong> Strong reflection of near and short-wave infrared due to photosynthesis.</li>
-                      </ol>
-                      <strong>Water: </strong>
-                      <ol>
-                        <li><strong>Reflectance Characteristics:</strong> Absorbs most of the electromagnetic spectrum.</li>
-                        <li><strong>Visible Appearance:</strong> Appears dark; slight peak in blue light, resulting in the perceived blue color.</li>
-                      </ol>
-                      <strong>Urban Areas:</strong>
-                      <ol>
-                        <li><strong>Reflectance Characteristics:</strong> Uniformly reflects all wavelengths.</li>
-                        <li><strong>Visible Appearance:</strong> Varied brightness; downtown areas appear very bright, reflecting red, green, and blue light.</li>
-                      </ol>
-                      <strong>Snow:</strong>
-                      <ol>
-                        <li><strong>Reflectance Characteristics:</strong> Strong reflection of visible and infrared light.</li>
-                        <li><strong>Visible Appearance:</strong> Perceived as white due to intense reflection.</li>
-                      </ol>
-                    <figure style="text-align: center;">
-                      <img src="assets/img/remote-sensing/reflectance-radiation-1.png" alt="" style="max-width: 90%; max-height: 90%;">
-                      <figcaption style="text-align: center;">Generalized spectral signatures of green vegetation, soil, and water. <strong> Last image credit:</strong><a href="https://ecampusontario.pressbooks.pub/remotesensing/chapter/chapter-9-vegetation-and-fire/" target="_blank"> ©  SEOS, Science Education through Earth Observation.</a></figcaption>
-                    </figure>
-                  </li>
-              </ul>
-            </li>
-          </li>
+      <!-------Reference ------->
+      <section id="reference">
+        <h2>References</h2>
+        <ul>
+          <li>My github Repositories on Remote sensing <a href="https://github.com/arunp77/Machine-Learning/" target="_blank">Machine learning</a></li>
         </ul>
       </section>
-
-      <!-------   Remote sesning technology --------->
-      <section id="technologies">
-      <h2>Section 2: Remote Sensing Technologies</h2>
-      <ul style="margin-left: 30px;">
-        <li><strong>What are the different types of remote sensing?</strong></li>
-          <p>Active and passive remote sensing are two fundamental approaches to acquiring information about objects or the environment from a distance. They differ in how they interact with and obtain data from the target.</p>
-          <!---<img src="assets/img/portfolio/activePassive.png" alt="" style="max-width: 700px; max-height: 700px;"> ---->
-          <img src="assets/img/portfolio/remote-sensing.jpeg" class="img-fluid" alt="" style="width: 700px; height: 700px;">
-          <br>
-          <ol>
-            <li><strong>Active Remote Sensing: </strong>
-              <ul>
-                <li><strong>Definition: </strong>In active remote sensing, an external source of energy, usually provided by the sensor system itself, is used to illuminate the target, and the sensor measures the reflected or emitted energy.</li>
-                <li><strong>Energy Source: </strong>The system actively emits pulses of energy (e.g., radar, lidar, or sonar).
-                  <ul>
-                    <p><strong>Example</strong></p>
-                    <li>Radar: Uses radio waves to detect and measure the distance to targets.</li>
-                    <li>Lidar: Uses laser light to measure distances and create detailed 3D maps.</li>
-                    <li>Sonar: Used underwater to detect and locate objects using sound waves.</li>
-                  </ul>
-                </li>
-                <li><strong>Interaction: </strong>The energy interacts with the target, and the sensor measures the reflected or backscattered energy.</li>
-                <li><strong>Advantages: </strong>
-                  <ul>
-                    <li>Independent of external illumination (works day or night)</li>
-                    <li>Useful for penetrating clouds and vegetation.</li>
-                    <li>Provides distance or range information.</li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li><strong>Passive Remote Sensing: </strong>
-              <ul>
-                <li><strong>Definition: </strong>In passive remote sensing, the sensor relies on the natural radiation emitted or reflected by the target. It does not emit its own energy source.</li>
-                <li><strong>Energy Source: </strong>The sensor captures the naturally occurring radiation from the sun or other sources.
-                  <ul>
-                    <p><strong>Example</strong></p>
-                    <li>Optical sensors: Capture reflected sunlight to create images in the visible, near-infrared, and thermal infrared spectra.</li>
-                    <li>Infrared sensors: Measure the heat emitted by objects.</li>
-                    <li>Radio and microwave sensors: Capture naturally occurring emissions for various applications.</li>
-                  </ul>
-                </li>
-                <li><strong>Interaction: </strong> The target emits or reflects energy, and the sensor measures this without actively illuminating the target.</li>
-                <li><strong>Advantages: </strong>
-                  <ul>
-                    <li>Simplicity in design and operation.</li>
-                    <li>Lower cost and power requirements.</li>
-                    <li>Good for capturing detailed spectral information.</li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          </ol>
-          <p>Both active and passive remote sensing techniques have unique advantages and applications. The choice between them depends on the specific goals of a remote sensing mission and the characteristics of the target and surrounding environment</p>
-          <br>
-
-          <li><strong>What are the different platforms for remote sensing?</strong></li>
-          
-            <ul>
-              <li><strong>Classification Based on Operational Mechanism: </strong>
-                <p>Remote sensing technologies involve the acquisition of information about objects or phenomena from a distance, typically from satellites, aircraft, drones, or other platforms. These technologies play a crucial role in various fields, including environmental monitoring, agriculture, urban planning, and disaster management. Here are some key remote sensing technologies:</p>
-                
-                <table>
-                  <tr>
-                      <th>Remote Sensing on Board</th>
-                      <th>Explanation</th>
-                  </tr>
-                  <tr>
-                      <td>Satellite Remote Sensing</td>
-                      <td>
-                          <ul>
-                              <li>Satellites equipped with sensors capture data from space.</li>
-                              <li>Different types of satellites, such as optical, radar, and thermal, serve diverse purposes.</li>
-                          </ul>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>Aerial Remote Sensing</td>
-                      <td>
-                          <ul>
-                              <li>Aircraft equipped with sensors collect high-resolution images and data.</li>
-                              <li>Suitable for detailed and localized observations.</li>
-                          </ul>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>Unmanned Aerial Vehicles (UAVs) or Drones</td>
-                      <td>
-                          <ul>
-                              <li>Small, unmanned aircraft equipped with sensors for data collection.</li>
-                              <li>Ideal for precise and flexible data acquisition in specific areas.</li>
-                          </ul>
-                      </td>
-                  </tr>
-              </table><br>
-              
-                <p>These technologies collectively contribute to a comprehensive understanding of the Earth's surface and its changes over time, supporting diverse applications across multiple industries.</p>
-                <li><strong>Classification Based on Sensors: </strong>
-                <p>Remote sensing can be classified into various types based on the nature of the sensors used, the region of the electromagnetic spectrum observed, and the platforms from which data is collected. Here are some common types of remote sensing:</p>
-                  
-                    <table>
-                      <tr>
-                          <th>Nature of the Sensors Used</th>
-                          <th>Definition</th>
-                          <th>Application</th>
-                      </tr>
-                      <tr>
-                          <td>Optical Sensors</td>
-                          <td>Sensors capturing reflected sunlight to create images in various spectral bands.</td>
-                          <td>
-                              <ul>
-                                  <li>Visible imagery for land cover classification.</li>
-                                  <li>Near-infrared for vegetation health assessment.</li>
-                              </ul>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>Radar Sensors</td>
-                          <td>Sensors using radio waves to detect and measure distances to targets.</td>
-                          <td>
-                              <ul>
-                                  <li>All-weather observations, penetrating clouds and vegetation.</li>
-                                  <li>Surface deformation monitoring.</li>
-                              </ul>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>LiDAR Sensors</td>
-                          <td>Sensors utilizing laser light to measure distances and create detailed 3D maps.</td>
-                          <td>
-                              <ul>
-                                  <li>Topographic mapping.</li>
-                                  <li>Forest canopy studies.</li>
-                              </ul>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>Infrared and Thermal Sensors</td>
-                          <td>Sensors measuring heat emitted by objects, providing temperature information.</td>
-                          <td>
-                              <ul>
-                                  <li>Agriculture for crop health assessment.</li>
-                                  <li>Building inspections for heat loss detection.</li>
-                              </ul>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>Hyperspectral Sensors</td>
-                          <td>Sensors capturing images in numerous narrow and contiguous spectral bands.</td>
-                          <td>
-                              <ul>
-                                  <li>Detailed analysis of material spectral signatures.</li>
-                                  <li>Mineral exploration.</li>
-                              </ul>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>GPS (Global Positioning System)</td>
-                          <td>System providing precise location data for remote sensing observations.</td>
-                          <td>
-                              <ul>
-                                  <li>Georeferencing and mapping.</li>
-                              </ul>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>GIS (Geographic Information Systems)</td>
-                          <td>Systems integrating, analyzing, and visualizing remote sensing data in a spatial context.</td>
-                          <td>
-                              <ul>
-                                  <li>Enhancing interpretation and utilization of remote sensing information.</li>
-                              </ul>
-                          </td>
-                      </tr>
-                  </table><br>
-                
-                  <p>Each type of remote sensing has its strengths and applications, and the choice of technology depends on the specific requirements of a given project or study.</p>
-                </li>
-              </li>
-            </ul>
-          </ul>
-        </ul>
-      </section>
-
-      <!-------------Application ----------------->
-      <section id="applications">
-      <h2>Section 3: Applications of Remote Sensing</h2>
-      <ul style="margin-left: 30px;">
-        <li>Remote sensing has a wide range of applications, including:
-          <table>
-            <tr>
-                <th>Application Area</th>
-                <th>Applications</th>
-            </tr>
-            <tr>
-                <td>Agriculture</td>
-                <td>
-                    <ul>
-                        <li>Monitoring crop health and growth.</li>
-                        <li>Precision agriculture for optimized resource use.</li>
-                        <li>Assessing soil conditions and moisture levels.</li>
-                    </ul>
-                </td>
-            </tr>
-            <tr>
-                <td>Environmental Monitoring</td>
-                <td>
-                    <ul>
-                        <li>Tracking deforestation and land use changes.</li>
-                        <li>Monitoring water quality and pollution.</li>
-                        <li>Assessing natural disasters like wildfires and floods.</li>
-                    </ul>
-                </td>
-            </tr>
-            <tr>
-                <td>Urban Planning</td>
-                <td>
-                    <ul>
-                        <li>Mapping and analyzing urban expansion.</li>
-                        <li>Assessing infrastructure development.</li>
-                        <li>Monitoring land use patterns for city planning.</li>
-                    </ul>
-                </td>
-            </tr>
-            <tr>
-                <td>Disaster Management</td>
-                <td>
-                    <ul>
-                        <li>Early detection and monitoring of natural disasters.</li>
-                        <li>Assessing damage and planning emergency responses.</li>
-                        <li>Monitoring post-disaster recovery and rehabilitation.</li>
-                    </ul>
-                </td>
-            </tr>
-            <tr>
-                <td>Forestry</td>
-                <td>
-                    <ul>
-                        <li>Mapping forest cover and biodiversity.</li>
-                        <li>Monitoring illegal logging and deforestation.</li>
-                        <li>Assessing forest health and ecosystem dynamics.</li>
-                    </ul>
-                </td>
-            </tr>
-            <tr>
-                <td>Water Resource Management</td>
-                <td>
-                    <ul>
-                        <li>Monitoring water availability and usage.</li>
-                        <li>Assessing changes in lakes, rivers, and reservoirs.</li>
-                        <li>Mapping watersheds and tracking water quality.</li>
-                    </ul>
-                </td>
-            </tr>
-            <tr>
-                <td>Archaeology</td>
-                <td>
-                    <ul>
-                        <li>Discovering and mapping archaeological sites.</li>
-                        <li>Monitoring changes to historical landscapes.</li>
-                        <li>Preserving cultural heritage through documentation.</li>
-                    </ul>
-                </td>
-            </tr>
-            <tr>
-                <td>Climate Change</td>
-                <td>
-                    <ul>
-                        <li>Monitoring changes in temperature and climate patterns.</li>
-                        <li>Assessing the impact on glaciers, ice caps, and sea levels.</li>
-                        <li>Tracking carbon emissions and deforestation contributing to climate change.</li>
-                    </ul>
-                </td>
-            </tr>
-        </table><br>
-        
-        </li>
-        <li><p><strong>Significance of Remote Sensing in Solving Practical Problems:</strong></p>
-          <br>
-
-          <table>
-            <tr>
-                <th>Application Area</th>
-                <th>Overview</th>
-                <th>Benefits</th>
-            </tr>
-            <tr>
-                <td>Precision Agriculture</td>
-                <td>Enables farmers to optimize crop management, monitor soil conditions, and enhance resource use efficiency.</td>
-                <td>Improved crop yields, resource efficiency, and sustainable farming practices.</td>
-            </tr>
-            <tr>
-                <td>Environmental Monitoring</td>
-                <td>Facilitates real-time tracking of deforestation, pollution levels, and natural disasters for informed conservation and mitigation strategies.</td>
-                <td>Timely response to environmental threats, conservation planning, and pollution control.</td>
-            </tr>
-            <tr>
-                <td>Urban Planning</td>
-                <td>Provides critical data for assessing urban expansion, infrastructure development, and land use patterns, aiding in sustainable city planning.</td>
-                <td>Efficient urban development, infrastructure planning, and sustainable land use practices.</td>
-            </tr>
-            <tr>
-                <td>Disaster Management</td>
-                <td>Offers early detection, monitoring, and assessment tools for natural disasters, supporting efficient emergency response and recovery efforts.</td>
-                <td>Enhanced disaster preparedness, quick response, and effective recovery strategies.</td>
-            </tr>
-            <tr>
-                <td>Forestry</td>
-                <td>Assists in monitoring and managing forest ecosystems, combating illegal logging, and preserving biodiversity through informed conservation strategies.</td>
-                <td>Better forest management, biodiversity preservation, and prevention of illegal logging.</td>
-            </tr>
-            <tr>
-                <td>Water Resource Management</td>
-                <td>Helps monitor water availability, usage, and quality, contributing to sustainable water resource management and conservation.</td>
-                <td>Sustainable water resource management, efficient water usage, and conservation efforts.</td>
-            </tr>
-            <tr>
-                <td>Archaeology</td>
-                <td>Revolutionizes archaeological research by discovering, mapping, and preserving historical sites and cultural heritage through detailed documentation.</td>
-                <td>Improved archaeological discoveries, preservation of cultural heritage, and detailed documentation.</td>
-            </tr>
-            <tr>
-                <td>Climate Change</td>
-                <td>Provides crucial data for monitoring climate patterns, assessing environmental changes, and understanding the impact of human activities on global climate systems.</td>
-                <td>Enhanced understanding of climate change, informed environmental policies, and mitigation strategies.</td>
-            </tr>
-        </table>
-        </li>
-      </ul>
-    </section>
-
-    <!-----------Data processing-----------> 
-    <section id="data-analysis">
-      <h2><a href="Remote-sesning-image-processing.html">Section 4: Data Analysis and Processing</a></h2>
-
-      <figure>
-        <img src="assets/img/remote-sensing/remote-dataprocessing.png" class="img-fluid" alt="" style="max-width: 800px; max-height: 500px;">
-        <figcaption style="text-align: center;"><strong>Image credt:</strong><a href="https://www.mdpi.com/2072-4292/12/22/3801#" target="_blank"> © Remote data processing</a></figcaption>
-      </figure>
-
-      <h5>i. Data Collection:</h5>
-      <ol style="margin-left: 30px;">
-        <li><strong>Satellite and Sensor Deployment: </strong>Selection and deployment of appropriate satellites and sensors based on mission objectives and desired spatial and spectral resolutions.</li>
-        <li><strong> Data Acquisition: </strong>Actively or passively collecting data from the target area using sensors (e.g., optical, radar, LiDAR) on satellites, aircraft, or other platforms.</li>
-        <li><strong>Georeferencing: </strong>Establishing the geographic location of the acquired data, ensuring accurate spatial referencing for subsequent analyses.</li>
-      </ol>
-      <h5>ii. Pre-processing steps:</h5>
-      <ol style="margin-left: 30px;">
-        <li><strong>Calibration: </strong>Adjusting sensor readings to account for variations in sensor sensitivity, atmospheric conditions, and other factors, ensuring accuracy and consistency.</li>
-        <li><strong>Collection: </strong>Correcting for atmospheric interference, such as haze, clouds, and aerosols, to improve the quality of the acquired data.</li>
-        <li><strong>Normalization: </strong>Standardizing data values to a consistent scale, facilitating meaningful comparisons and analyses.</li>
-        <li><strong>Orthorectification: </strong>Correcting geometric distortions caused by terrain variations, ensuring accurate spatial representation.</li>
-      </ol>
-      <h5>iii. Image Enhancement Techniques:</h5>
-      <ol style="margin-left: 30px;">
-        <li><strong>Contrast Stretching: </strong>Improving visual interpretation by expanding the range of pixel values, enhancing image features.</li>
-        <li><strong>Histogram Equalization: </strong>Enhancing contrast by redistributing pixel values across the entire range.</li>
-        <li><strong>Spatial Filtering: </strong>Smoothing or sharpening images to highlight or suppress certain features using convolution operations.</li>
-        <li><strong>Principal Component Analysis (PCA): </strong>Reducing data dimensionality while preserving key information for improved visualization and analysis.</li>
-      </ol>
-      <h5>iv. Image Classification and Feature Extraction:</h5>
-      <ol style="margin-left: 30px;">
-        <li><strong>Supervised Classification:</strong> Training a classification algorithm using labeled training samples to categorize pixels into predefined classes.</li>
-        <li><strong>Unsupervised Classification:</strong> Clustering pixels based on statistical similarities without prior class information, useful for exploratory analysis.</li>
-        <li><strong>Object-Based Image Analysis (OBIA):</strong> Classifying image objects (groups of pixels) rather than individual pixels, considering contextual information for more accurate results.</li>
-        <li><strong>Feature Extraction:</strong> Identifying and extracting specific features from the imagery, such as land cover types, roads, or buildings.</li>
-        <li><strong>Change Detection:</strong> Comparing multiple images over time to identify and analyze changes in the landscape, providing valuable information for various applications.</li>
-      </ol>
-      <h5>v. Additional Steps:</h5>
-      <ol style="margin-left: 30px;">
-        <li><strong>Validation and Accuracy Assessment: </strong>Assessing the reliability and accuracy of the processed data through ground truthing and validation techniques.</li>
-        <li><strong>Data Integration:</strong>Combining remote sensing data with other geospatial datasets for comprehensive analysis.</li>
-        <li><strong>Data Interpretation and Reporting:</strong>Interpreting the processed data to derive meaningful information and generating reports for decision-making.</li>
-      </ol>
-
-      <h5>vi. Post-Processing Steps:</h5>
-      <ol style="margin-left: 30px;">
-        <li><strong><a href="http://sendimage.whu.edu.cn/en/wp-content/uploads/2021/03/2019-Remote-Sensing-Image-Mosaicking-Achievements-and-challenges.pdf" target="_blank">
-          Image Mosaicking</a>:</strong> Combining multiple images of the same area to create a seamless and complete representation, especially important for large-scale mapping.</li>
-          <figure>
-            <img src="assets/img/remote-sensing/remote-data-0.jpeg" class="img-fluid" alt="" style="max-width: 400px; max-height: 300px;">
-            <figcaption>The map incorporates multiple layers of the same geographical area with distinct attributes, enhancing its effectiveness for thorough study and analysis.</figcaption>
-          </figure>
-        <li><strong><a href="https://storymaps.arcgis.com/stories/28a2091d2819476c8c8fac573798e912" target="_blank">Panchromatic Sharpening</a>:</strong> Enhancing the spatial resolution of 
-          multispectral images by fusing them with higher-resolution panchromatic images.</li>
-        <li><strong><a href="https://ieeexplore.ieee.org/document/8991294" target="_blank">Image Fusion</a>:</strong> Integrating information from multiple sensors or sources to create a composite image with enhanced features.</li>
-        <li><strong>Data Compression:</strong> Reducing the volume of data while retaining important information, facilitating easier storage and transmission.</li>
-        <li><strong><a href="https://arunp77.github.io/Arun-Kumar-Pandey/Satellite-data.html" target="_blank">Radiometric Correction</a>:</strong> Adjusting the radiometric values of pixels to account for variations caused by atmospheric conditions, sensor characteristics, or other factors.</li>
-        <li><strong><a href="https://hal.science/hal-00975332/document" target="_blank">Temporal Filtering</a>:</strong> Smoothing or filtering time-series data to reduce noise and highlight temporal trends for change detection.</li>
-        <li><strong><a href="https://www.mdpi.com/2072-4292/10/8/1238" target="_blank">Land Cover Classification Refinement</a>:</strong> Iterative processes to improve the accuracy of land cover classification by refining class boundaries or correcting misclassifications.</li>
-        <li><strong><a href="https://www.degruyter.com/document/doi/10.1515/geo-2022-0359/html?lang=en" target="_blank">Topographic Correction</a>:</strong> Compensating for terrain-induced variations in reflectance, ensuring consistency in image interpretation.</li>
-        <li><strong><a href="https://www.hindawi.com/journals/js/2017/1353691/" target="_blank">Vegetation Index Calculation</a>:</strong> Computing vegetation indices such as NDVI (Normalized Difference Vegetation Index) to quantify vegetation health and density.</li>
-        <li><strong>Terrain Modeling:</strong> Creating 3D models of the Earth's surface using elevation data for applications like urban planning or geological studies.</li>
-        <li><strong>Data Integration with GIS:</strong> Combining remote sensing data with Geographic Information Systems (GIS) data for more comprehensive spatial analysis.</li>
-        <li><strong>Accuracy Assessment:</strong> Evaluating the accuracy of classification results through ground truthing and validation processes.</li>
-        <li><strong>Data Visualization:</strong> Creating visualizations, such as maps or thematic layers, to facilitate easy interpretation of the processed data.</li>
-        <li><strong>Report Generation:</strong> Documenting and presenting findings in a structured report for decision-making or further analysis.</li>
-        <li><strong>Data Interpretation:</strong> Interpreting processed data to derive meaningful information and insights for specific applications.</li>
-      </ol>
-    </section>
-
-    <!--------- Future trends ----------->
-    <section id="future-trends">
-      <h2>Section 5: Future Trends in Remote Sensing</h2>
-      <p>The future of remote sensing is bright, with a number of new technologies and applications on the horizon. These include</p>
-      <ul style="margin-left: 30px;">
-          <li>The development of new sensors with higher spatial, spectral, and temporal resolution.</li>
-          <li>The increased use of artificial intelligence (AI) to analyze and interpret remote sensing data.</li>
-          <li>The development of new applications, such as remote sensing of air quality and greenhouse gas emissions. </li>
-      </ul>
-    </section>
-
-    <!--------- References ----------->
-    <section id="conclusion">
-      <h2>Conclusion</h2>
-      <p>In conclusion, remote sensing stands as a powerful and versatile tool, extending our observational capabilities beyond the limits of human vision. We explored the fundamentals, diverse technologies, and wide-ranging applications, showcasing its pivotal role in agriculture, environmental monitoring, urban planning, disaster management, and more. The journey through data analysis and processing unveiled the intricate steps involved in transforming raw data into actionable insights. Looking ahead, the future promises exciting trends, driven by advancements in technology and an ever-expanding array of applications. Remote sensing continues to be a driving force in understanding our planet, fostering sustainable practices, and making informed decisions for a rapidly evolving world</p>
-    </section>
-
-    <!-------Reference ------->
-    <section id="reference">
-      <h2>References</h2>
-      <ul>
-        <li>My github Repositories on Remote sensing <a href="https://github.com/arunp77/EUMETSET-courses" target="_blank">Atmosphere and remote sensing</a></li>
-        <li>Good reference: <a href="https://natural-resources.canada.ca/maps-tools-and-publications/satellite-imagery-and-air-photos/tutorial-fundamentals-remote-sensing/9309" target="_blank">Remote Sensing Tutorials</a> </li>
-        <li>https://rutwikroutu.medium.com/introduction-to-gis-for-beginners-ebc6d27e235a</li>
-      </ul>
-    </section>
 
       <hr>
       
@@ -868,14 +254,15 @@
             <li>Visit my website on <a href="Data-engineering.html">Data engineering</a></li>
         </ul>
       </div>
+      <p></p>
 
       <div class="navigation">
           <a href="index.html#portfolio" class="clickable-box">
               <span class="arrow-left">Portfolio section</span>
           </a>
           
-          <a href="Remote-sensing-content.html" class="clickable-box">
-              <span class="arrow-right">Remote sensing content</span>
+          <a href="portfolio-details-1.html" class="clickable-box">
+              <span class="arrow-right">Content</span>
           </a>
       </div>
   </div>
