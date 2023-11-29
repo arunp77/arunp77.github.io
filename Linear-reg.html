@@ -156,10 +156,11 @@
             <ol>
               <li><a href="#introduction">Introduction</a></li>
               <li><a href="#Relationship-of-regression-lines">Relationship of regression lines</a></li>
-              <li><a href="#common-sla">Types of Linear Regression</a></li>
+              <li><a href="#Types-of-Linear-Regression">Types of Linear Regression</a></li>
               <li><a href="#Mathematical-1">Mathematical Explanation</a></li>
               <li><a href="#Assumption-of-LR">Assumptions of Linear Regression</a></li>
-              <li><a href="evaluation-metrics-for-LR">Evaluation Metrics for Linear Regression</a></li>
+              <li><a href="#evaluation-metrics-for-LR">Evaluation Metrics for Linear Regression</a></li>
+              <li><a href="#overfit-goodfit-underfit">Overfitting, Good Fit, and Underfitting in Machine Learning</a></li>
               <li><a href="#reference">Reference</a></li>
           </ol>
           </div>
@@ -406,9 +407,12 @@
 
       <section id="evaluation-metrics-for-LR">
         <h3>Evaluation Metrics for Linear Regression</h3>
-          <p>When performing linear regression, it is essential to evaluate the performance of the model to assess its accuracy and effectiveness. Several evaluation metrics can be used to measure the performance of a linear regression model. Here are some commonly used evaluation metrics:</p>
+        <p>To train an accurate linear regression model, we need a way to quantify how good (or bad) our model performs. In machine learning, we call such performance-measuring functions loss functions. Several popular loss functions exist for regression problems.
+           To measure our model's performance, we'll use one of the most popular: mean-squared error (MSE). Here are some commonly used evaluation metrics: </p>
+           
           <ol>
-            <li><strong>Mean Squared Error (MSE): </strong>The Mean Squared Error measures the average squared difference between the predicted values and the actual values of the dependent variable. It is calculated by taking the average of the squared residuals.
+            <li><strong>Mean Squared Error (MSE): </strong>MSE quantifies how close a predicted value is to the true value, so we'll use it to quantify how close a regression line is to a set of points.
+              The Mean Squared Error measures the average squared difference between the predicted values and the actual values of the dependent variable. It is calculated by taking the average of the squared residuals.
             $$\boxed{\text{MSE} = \frac{1}{n} \sum \left(y_i - \hat{y}_i\right)^2}$$
             where:
             <ul>
@@ -429,15 +433,23 @@
             </li>
             <li><strong>R-squared (<math xmlns="http://www.w3.org/1998/Math/MathML"> <msup> <mi>R</mi> <mn>2</mn> </msup> </math>) Coefficient of Determination</strong>
               The R-squared value represents the proportion of the variance in the dependent variable that is explained by the independent variables. It ranges from <code>0</code> to <code>1</code>, 
-              where <code>1</code> indicates that the model perfectly predicts the dependent variable.
+              where <code>1</code> indicates that the model perfectly predicts the dependent variable. A negative <math xmlns="http://www.w3.org/1998/Math/MathML"> <msup> <mi>R</mi> <mn>2</mn> </msup> </math> means that our model is doing worse.
               $$\boxed{R^2 = 1 - \frac{\text{RSS}}{\text{TSS}}}$$
               where:
               <ul>
                 <li><p>Residual sum of Squares (RSS) is defined as the sum of squares of the residual for each data point in the plot/data. It is the measure of the difference between the expected and the actual observed output.</p>
-                  $$\text{RSS} = \sum \left(y_i - \beta_0 - \beta_1 x_i\right)^2$$
+                  $$\text{RSS} = \sum_{i=1}^{n} \left(y_i - \hat{y}_i\right)^2$$
                 </li>
                 <li><p>Total Sum of Squares (TSS) is defined as the sum of errors of the data points from the mean of the response variable. Mathematically TSS is</p>
-                  $$\text{TSS} = \sum \left(y_i - \hat{y}_i\right)^2$$
+                  $$\text{TSS} = \sum \left(y_i - \bar{y}\right)^2$$
+                  <p>where:</p>
+                  <ul>
+                    <li><code>n</code> = is the number of data points.</li>
+                    <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mrow data-mjx-texclass="ORD"> <mover> <mi>y</mi> <mo stretchy="false">^</mo> </mover> </mrow> <mi>i</mi> </msub> </math> = 
+                      is the predicted value of the dependent variable from the regression model </li>
+                    <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow data-mjx-texclass="ORD"> <mover> <mi>y</mi> <mo stretchy="false">¯</mo> </mover> </mrow> </math> 
+                      is the mean of the observed values of the dependent variable.</li>
+                  </ul>
                 </li>
               </ul>
               <p>A higher <math xmlns="http://www.w3.org/1998/Math/MathML"> <msup> <mi>R</mi> <mn>2</mn> </msup> </math>
@@ -445,6 +457,15 @@
                 is commonly interpreted as the percentage of the variation in the dependent variable that is explained by the independent variables. 
                 However, it is important to note that <math xmlns="http://www.w3.org/1998/Math/MathML"> <msup> <mi>R</mi> <mn>2</mn> </msup> </math> 
                 does not determine the causal relationship between the independent and dependent variables. It is solely a measure of how well the model fits the data.</p>
+                <div style="background-color: #f2f2f2; padding: 15px;">
+                  <p>
+                    <strong>Note: </strong> A higher R-squared value indicates a better fit of the model to the data. However, it's essential to consider other factors and use 
+                    R-squared in conjunction with other evaluation metrics to fully assess the model's performance. R-squared has limitations, especially in the case of overfitting, 
+                    where a model may fit the training data very well but perform poorly on new, unseen data.
+                  </p>
+                </div>
+                
+                
             </li>
             <li><strong>Adjusted R-squared: </strong>
               <p>The Adjusted R-squared accounts for the number of independent variables in the model. It penalizes the inclusion of irrelevant variables and rewards the inclusion of relevant variables.</p>
@@ -460,12 +481,105 @@
           </ol>
       </section>
 
+      <section id="overfit-goodfit-underfit">
+        <h2>Understanding and Addressing Fitting Issues in Machine Learning Models</h2>
+        <p>Overfitting and underfitting are two common problems encountered in machine learning. They occur when a machine learning model fails to generalize well to new data.</p>
+        <figure>
+          <img src="assets/img/data-engineering/overfitting.png" alt="" style="max-width: 70%; max-height: 70%;">
+          <figcaption></figcaption>
+        </figure>
+        <h4><strong>Overfitting</strong></h4>
+        <ul>
+          <li><strong>Description: </strong>Overfitting occurs when a machine learning model learns the training data too well, including the noise and irrelevant patterns. As a result, the model becomes too complex and fails to capture the underlying relationships in the data. This leads to poor performance on unseen data.</li>
+          <li><strong>Signs of overfitting: </strong> 
+            <ul>
+              <li>The model performs well on the training data but poorly on unseen data.</li>
+              <li>The model is complex and has a large number of parameters.</li>
+            </ul>
+          </li>
+          <li><strong>Causes: </strong>Too complex model, excessive training time, or insufficient regularization.</li>
+        </ul>
+
+        <h4><strong>Underfitting</strong></h4> 
+        <ul>
+          <li><strong>Description: </strong>Underfitting occurs when a machine learning model is too simple and does not capture the underlying relationships in the data. This results in poor performance on both the training data and unseen data.</li>
+          <li><strong>Signs of underfitting: </strong>
+            <ul>
+              <li>The model performs poorly on both the training data and unseen data.</li>
+              <li>The model is simple and has a small number of parameters.</li>
+            </ul>
+          </li>
+          <li><strong>Causes: </strong>Model complexity is too low, insufficient training, or inadequate feature representation.</li>
+        </ul>
+
+        <h4><strong>Bias (Systematic Error):</strong></h4>
+        <ul>
+            <li><strong>Description:</strong> The model consistently makes predictions that deviate from the true values.</li>
+            <li><strong>Symptoms:</strong> Consistent errors in predictions across different datasets.</li>
+            <li><strong>Causes:</strong> Insufficiently complex model, inadequate feature representation, or biased training data.</li>
+        </ul>
+
+        <h4><strong>Variance (Random Error):</strong></h4>
+        <ul>
+            <li><strong>Description:</strong> The model's predictions are highly sensitive to variations in the training data.</li>
+            <li><strong>Symptoms:</strong> High variability in predictions when trained on different subsets of the data.</li>
+            <li><strong>Causes:</strong> Too complex model, small dataset, or noisy training data.</li>
+        </ul>
+
+        <h4><strong>Data Leakage:</strong></h4>
+        <ul>
+            <li><strong>Description:</strong> Information from the validation or test set inadvertently influences the model during training.</li>
+            <li><strong>Symptoms:</strong> Overly optimistic evaluation metrics, unrealistic performance.</li>
+            <li><strong>Causes:</strong> Improper splitting of data, using future information during training.</li>
+        </ul>
+
+        <h4><strong>Model Instability:</strong></h4>
+        <ul>
+            <li><strong>Description:</strong> Small changes in the input data lead to significant changes in model predictions.</li>
+            <li><strong>Symptoms:</strong> Lack of robustness in the model's performance.</li>
+            <li><strong>Causes:</strong> Sensitivity to outliers, highly nonlinear relationships.</li>
+        </ul>
+
+        <h4><strong>Multicollinearity:</strong></h4>
+        <ul>
+            <li><strong>Description:</strong> High correlation among independent variables in regression models.</li>
+            <li><strong>Symptoms:</strong> Unstable coefficient estimates, difficulty in isolating the effect of individual variables.</li>
+            <li><strong>Causes:</strong> Redundant or highly correlated features.</li>
+        </ul>
+
+        <h4><strong>Imbalanced Data:</strong></h4>
+        <ul>
+            <li><strong>Description:</strong> A disproportionate distribution of classes in classification problems.</li>
+            <li><strong>Symptoms:</strong> Biased models toward the majority class, poor performance on minority classes.</li>
+            <li><strong>Causes:</strong> Inadequate representation of minority class, biased sampling.</li>
+        </ul>
+
+
+
+
+
+        <h4><strong></strong></h4>
+        
+        <h4><strong>Preventing Overfitting and Underfitting</strong></h4> 
+        There are a number of techniques that can be used to prevent overfitting and underfitting. These include:
+        <ul>
+          <li><strong>Regularization:</strong> Regularization is a technique that penalizes complex models. This helps to prevent the model from learning the noise and irrelevant patterns in the training data. Common regularization techniques include L1 regularization, L2 regularization, and dropout.</li>
+          <li><strong>Early stopping:</strong> Early stopping is a technique that stops training the model when it starts to overfit on the validation data. The validation data is a subset of the training data that is held out during training and used to evaluate the model's performance.</li>
+          <li><strong>Cross-validation:</strong> Cross-validation is a technique that divides the training data into multiple folds. The model is trained on a subset of the folds and evaluated on the remaining folds. This process is repeated multiple times so that the model is evaluated on all of the data. Cross-validation can be used to select the best hyperparameters for the model.</li>
+          <li><strong>Model selection:</strong> Model selection is a technique that compares different models and selects the one that performs best on the validation data. This can be done using a variety of techniques, such as k-fold cross-validation or Akaike Information Criterion (AIC).</li>
+        </ul>
+
+      </section>
+
 
       <!-------Reference ------->
       <section id="reference">
         <h2>References</h2>
         <ul>
           <li>My github Repositories on Remote sensing <a href="https://github.com/arunp77/Machine-Learning/" target="_blank">Machine learning</a></li>
+          <li><a href="https://mlu-explain.github.io/linear-regression/" target="_blank">A Visual Introduction To Linear regression</a> (Best reference for theory and visualization).</li>
+          <li>Book on Regression model: <a href="https://avehtari.github.io/ROS-Examples/" target="_blank">Regression and Other Stories</a></li>
+          <li>Book on Statistics: <a href="https://hastie.su.domains/Papers/ESLII.pdf" target="_blank">The Elements of Statistical Learning</a></li>
         </ul>
       </section>
 
