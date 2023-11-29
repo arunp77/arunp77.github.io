@@ -14591,7 +14591,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <p>and the $n$ deviations $\epsilon_1, \epsilon_2, ..., \epsilon_n$</p>
 </li>
 <li><p>The “best fit” line is motivated by the principle of least squares, which can be traced back to the German mathematician Gauss (1777–1855):</p>
-<p><img src="ML-image/Multi-lin-reg.png" width="500" height="350" /></p>
+  <img src="assets/img/data-engineering/Multi-lin-reg.png" alt="" style="max-width: 60%; max-height: 60%;">
 </li>
 </ul>
 <blockquote><p>A line provides the best fit to the data if the sum of the squared vertical distances (deviations) from the observed points to that line is as small as it can be.</p>
@@ -14686,7 +14686,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </ul>
 <h3 id="3.-Estimating-$%5Csigma%5E2$-and-$%5Csigma$">3. Estimating $\sigma^2$ and $\sigma$<a class="anchor-link" href="#3.-Estimating-$%5Csigma%5E2$-and-$%5Csigma$">&#182;</a></h3><ul>
 <li><p>The parameter $\sigma^2$ determines the amount of spread about the true regression line.</p>
-<p><img src="ML-image/spread.png" width="750" height="320" /></p>
+<p><img src="assets/img/data-engineering/linear-spread.png" alt="" style="max-width: 60%; max-height: 60%;"></p>
 </li>
 <li><p>An estimates of $\sigma^2$ will be used in confidence interval (CI)formulas and hypothesis-testing procedures presented in the next two sections.</p>
 </li>
@@ -14725,7 +14725,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <h4 id="4.1.-Difference-between-SST-and-SSE:">4.1. Difference between SST and SSE:<a class="anchor-link" href="#4.1.-Difference-between-SST-and-SSE:">&#182;</a></h4><ul>
 <li><p>The SST in some sense is as bad as SSE can get if there is no regression model (i.e., slope is 0) then</p>
 <p>$\hat{\beta}_0 = \bar{y}- \hat{\beta}_1 \bar{x} \Rightarrow \hat{y} = \hat{\beta}_0+\underbrace{\hat{\beta}_1}_{=0} \bar{x} = \hat{\beta}_0 = \bar{y}$</p>
-<p><img src="ML-image/lst.png" width="750" height="320" /></p>
+<p><img src="assets/img/data-engineering/linear-spread2.png" alt="" style="max-width: 70%; max-height: 70%;"></p>
 <p>The SSE &lt; SST unless the horizontal line itself is the least square line.</p>
 </li>
 </ul>
@@ -14741,7 +14741,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <p>Then we have</p>
 <p>$\boxed{r^2 = 1- \frac{{\rm SSE}}{{\rm SST}} = \frac{{\rm SST} - {\rm SSE}}{{\rm SST}} =  \frac{{\rm SSR}}{{\rm SST}}} = \frac{\text{Explained Variation}}{\text{Total Variation}}$</p>
 <p>the ratio of explained variation to total variation.</p>
-<p><img src="ML-image/rsquare1.png" width="530" height="500" /></p>
+<p><img src="assets/img/data-engineering/linear-spread3.png" alt="" style="max-width: 60%; max-height: 60%;"></p>
 
 </div>
 </div>
@@ -14755,7 +14755,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Hypothesis-testing">Hypothesis testing<a class="anchor-link" href="#Hypothesis-testing">&#182;</a></h2><ul>
 <li><p>Testing for significance using the slope, $\beta_1$:</p>
-<p><img src="ML-image/hypo1.png" width="330" height="300" /></p>
+<p><img src="assets/img/data-engineering/hypo1.png" alt="" style="max-width: 40%; max-height: 40%;"></p>
 <ul>
 <li>If $\beta_1 = 0$, then $y=\beta_0$, no matter what value $x$ is.</li>
 <li>Therefore there is no linear relationship between $x$ and $y$ when $\beta_1 = 0$.</li>
