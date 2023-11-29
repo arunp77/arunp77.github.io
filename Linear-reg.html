@@ -154,13 +154,12 @@
           <div class="section-title">
             <h3>Content</h3>
             <ol>
-              <li><a href="#introduction">Introduction</a>
-                <ul>
-                  <li><a href="#what-is-supervised-learning">Types of Supervised Learning</a></li>
-                  <li><a href="#common-sla">Common Supervised Learning Algorithms</a></li>
-                </ul>
-              </li>
-              
+              <li><a href="#introduction">Introduction</a></li>
+              <li><a href="#Relationship-of-regression-lines">Relationship of regression lines</a></li>
+              <li><a href="#common-sla">Types of Linear Regression</a></li>
+              <li><a href="#Mathematical-1">Mathematical Explanation</a></li>
+              <li><a href="#Assumption-of-LR">Assumptions of Linear Regression</a></li>
+              <li><a href="evaluation-metrics-for-LR">Evaluation Metrics for Linear Regression</a></li>
               <li><a href="#reference">Reference</a></li>
           </ol>
           </div>
@@ -173,10 +172,10 @@
         
         <h4>Mathematical Explanation</h4>
         <p>The linear regression algorithm aims to find the best-fit line that represents the relationship between the input features (<code>x</code>) and the target variable (<code>y</code>). The equation for a simple linear regression can be expressed as:</p>
-        <figure>
-          <img src="assets/img/data-engineering/Linear-reg0.png" alt="" style="max-width: 30%; max-height: 30%;">
-          <figcaption></figcaption>
-        </figure>
+          <figure>
+            <img src="assets/img/data-engineering/Linear-reg0.png" alt="" style="max-width: 40%; max-height: 40%;">
+            <figcaption></figcaption>
+          </figure>
         
         $$y = m x +c$$
 
@@ -197,15 +196,15 @@
             <li><strong>Positive Linear Relationship:</strong> If the dependent variable increases on the Y-axis and independent variable increases on X-axis, then such a relationship is termed as a Positive linear relationship.</li>
             <li><strong>Negative Linear Relationship:</strong> If the dependent variable decreases on the Y-axis and independent variable increases on the X-axis, then such a relationship is called a negative linear relationship.</li>
             </ol>
-            <img src="assets/img/data-engineering/line-slope.png" alt="" style="max-width: 60%; max-height: 60%;">
+            <img src="assets/img/data-engineering/line-slope.png" alt="" style="max-width: 70%; max-height: 70%;">
 
             <h2 id="Types-of-Linear-Regression">Types of Linear Regression<a class="anchor-link" href="#Types-of-Linear-Regression">&#182;</a></h2><p>Linear regression can be further divided into two types of the algorithm:</p>
               <ol>
-              <li><strong>Simple Linear Regression:</strong> If a single independent variable is used to predict the value of a numerical dependent variable, then such a Linear Regression algorithm is called Simple Linear Regression.</li>
-              <li><strong>Multiple Linear regression:</strong> If more than one independent variable is used to predict the value of a numerical dependent variable, then such a Linear Regression algorithm is called Multiple Linear Regression.</li>
+                <li><strong>Simple Linear Regression:</strong> If a single independent variable is used to predict the value of a numerical dependent variable, then such a Linear Regression algorithm is called Simple Linear Regression.</li>
+                <li><strong>Multiple Linear regression:</strong> If more than one independent variable is used to predict the value of a numerical dependent variable, then such a Linear Regression algorithm is called Multiple Linear Regression.</li>
               </ol>
 
-              <h5>Mathematical Explanation:</h5>
+              <h3 id="Mathematical-1">Mathematical Explanation:</h3>
               <p>There are parameters <code>β<sub>0</sub></code>, <code>β<sub>1</sub></code>, and <code>σ<sup>2</sup></code>, such that for any fixed value of the independent variable <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>x</mi> </math>, the dependent variable is a random variable related to <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>x</mi> </math> through the model equation:</p>
               
                 $$y=\beta_0 + \beta_1 x +\epsilon$$
@@ -269,7 +268,7 @@
                       <p>$$MSE = \frac{1}{n} \sum (y_i - \hat{y}_i)^2$$</p>
                       <p>Where:</p>
                       <ul>
-                        <li>$n$ is the number of data points.</li>
+                        <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>n</mi> </math> is the number of data points.</li>
                         <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>y</mi> <mi>i</mi> </msub> </math> is the actual value of the dependent variable for the i-th data point.</li>
                         <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>y</mi> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> <mi>i</mi> </msub> </math> is the predicted value of the dependent variable for the i-th data point.</li>
                       </ul>
@@ -310,24 +309,158 @@
                     <p>These equations and formulas allow for the calculation of the parameters in simple linear regression using the method of <strong>ordinary least squares (OLS)</strong>. By minimizing the sum of squared differences between predicted and actual values, the parameters are determined to best fit the data and enable prediction of the dependent variable.</p>
                   </ol>
             
-
-
-
+                  <div style="background-color: #f2f2f2; padding: 15px;">
+                    <p><strong>Gradient Descent for Linear Regression:</strong> 
+                      <ul>
+                        <li>A regression model optimizes the gradient descent algorithm to update the coefficients of the line by reducing the cost function by randomly selecting coefficient values and then iteratively updating the values to reach the minimum cost function.</li>
+                        <li>Gradient Descent is an iterative optimization algorithm commonly used in machine learning to find the optimal parameters in a model. It can also be applied to linear regression to estimate the parameters (coefficients) that minimize the cost function.</li>
+                        <li>The steps involved in using Gradient Descent for Linear Regression are as follows:
+                            <ol>
+                              <li><strong>Define the Cost Function: </strong>The cost function for linear regression is the Mean Squared Error (MSE), which measures the average squared difference between the predicted values (ŷ) and the actual values (y) of the dependent variable.</li>
+                              <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>M</mi> <mi>S</mi> <mi>E</mi> <mo>=</mo> <mfrac> <mn>1</mn> <mrow> <mn>2</mn> <mi>n</mi> </mrow> </mfrac> <mo>&#x2211;<!-- ∑ --></mo> <mo stretchy="false">(</mo> <msub> <mi>y</mi> <mi>i</mi> </msub> <mo>&#x2212;<!-- − --></mo> <msub> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>y</mi> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> <mi>i</mi> </msub> <msup> <mo stretchy="false">)</mo> <mn>2</mn> </msup> </math>
+                              <p>Where:</p>
+                              <ul>
+                                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>n</mi> </math> is the number of data points.</li>
+                                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>y</mi> <mi>i</mi> </msub> </math> is the actual value of the dependent variable for the i-th data point.
+                                  <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>y</mi> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> <mi>i</mi> </msub> </math> is the predicted value of the dependent variable for the i-th data point.</li>
+                              </ul>
+                              <li><strong>Initialize the Parameters: </strong>Start by initializing the parameters (coefficients) with random values. Typically, they are initialized as zero or small random values.</li>
+                              <li><strong>Calculate the Gradient: </strong>Compute the gradient of the cost function with respect to each parameter. The gradient represents the direction of steepest ascent in the cost function space.
+                              $$\frac{\partial (MSE)}{\partial \beta_0} = \frac{1}{n}\sum (\hat{y}_i - y_i)$$
+                              $$\frac{\partial (MSE)}{\partial \beta_1} = \frac{1}{n}\sum (\hat{y}_i - y_i)\times x_i$$
+                              <p>Where:</p>
+                              <ul>
+                                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mfrac> <mrow> <mi mathvariant="normal">&#x2202;<!-- ∂ --></mi> <mo stretchy="false">(</mo> <mi>M</mi> <mi>S</mi> <mi>E</mi> <mo stretchy="false">)</mo> </mrow> <mrow> <mi mathvariant="normal">&#x2202;<!-- ∂ --></mi> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> </mrow> </mfrac> </math> 
+                                  is the gradient with respect to the y-intercept parameter (<math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> </math>).</li>
+                                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mfrac> <mrow> <mi mathvariant="normal">&#x2202;<!-- ∂ --></mi> <mo stretchy="false">(</mo> <mi>M</mi> <mi>S</mi> <mi>E</mi> <mo stretchy="false">)</mo> </mrow> <mrow> <mi mathvariant="normal">&#x2202;<!-- ∂ --></mi> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> </mrow> </mfrac> </math>
+                                   is the gradient with respect to the slope parameter (<math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> </math>).</li>
+                                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>y</mi> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> <mi>i</mi> </msub> </math>
+                                  is the predicted value of the dependent variable for the i-th data point.</li>
+                                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>y</mi> <mi>i</mi> </msub> </math> is the actual value of the dependent variable for the i-th data point.</li>
+                                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>x</mi> <mi>i</mi> </msub> </math> is the value of the independent variable for the i-th data point.</li>
+                              </ul>
+                              </li>
+                              <li><strong>Update the Parameters: </strong> Update the parameters using the gradient and a learning rate (
+                                α), which determines the step size in each iteration.
+                                $$\beta_0 = \beta_0 - \alpha \times \frac{\partial (MSE)}{\partial \beta_0}$$
+                                $$\beta_1 = \beta_1 - \alpha \times \frac{\partial (MSE)}{\partial \beta_1}$$
+                                <p>Repeat this update process for a specified number of iterations or until the change in the cost function becomes sufficiently small.</p>
+                              </li>
+                              <li><strong>Predict: </strong>Once the parameters have converged or reached the desired number of iterations, use the final parameter values to make predictions on new data.
+                                $$\hat{y} = \beta_0 +\beta_1 x$$
+                                <p>Where:</p>
+                                  <ul>
+                                    <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mrow data-mjx-texclass="ORD"> <mover> <mi>y</mi> <mo stretchy="false">^</mo> </mover> </mrow> <mi>i</mi> </msub> </math> is the predicted value of the dependent variable.</li>
+                                    <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> </math> is the $y$-intercept parameter.</li>
+                                    <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> </math> is the slope parameter.</li>
+                                    <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>x</mi> </math> is the value of the independent variable for which the prediction is being made.</li>
+                                  </ul>
+                                  <p>Gradient Descent iteratively adjusts the parameters by updating them in the direction of the negative gradient until it reaches a minimum point in the cost function. This process allows for the estimation of optimal parameters in linear regression, enabling the model to make accurate predictions on unseen data.</p>
+                                    <figure>
+                                      <img src="assets/img/data-engineering/optimal-reg2.png" alt="" style="max-width: 70%; max-height: 70%;">
+                                      <figcaption></figcaption>
+                                    </figure>
+                                  <p>Let’s take an example to understand this. If we want to go from top left point of the shape to bottom of the pit, a discrete number of steps can be taken to reach the bottom.</p>
+                                    <ul>
+                                      <li>If you decide to take larger steps each time, you may achieve the bottom sooner but, there’s a probability that you could overshoot the bottom of the pit and not even near the bottom.</li>
+                                      <li>In the gradient descent algorithm, the number of steps you’re taking can be considered as the learning rate, and this decides how fast the algorithm converges to the minima.</li>
+                                    </ul>
+                                  <p><strong>In the gradient descent algorithm, the number of steps you’re taking can be considered as the learning rate i.e. 
+                                    α, and this decides how fast the algorithm converges to the minima.</strong></p>
+                              </li>
+                            </ol>
+                        </li>
+                      </ul>
+                  </div>
       </section>
 
+      <section id="Assumption-of-LR">
+        <h3>Assumptions of Linear Regression</h3>
+        <ol>
+          <li><strong>Linearity of residuals: </strong>The relationship between the independent variables and the dependent variable is assumed to be linear. This means that the change in the dependent variable is directly proportional to the change in the independent variables.
+            <figure>
+              <img src="assets/img/data-engineering/Linearity.png" alt="" style="max-width: 70%; max-height: 70%;">
+              <figcaption></figcaption>
+            </figure>
+          </li>
+          <li><strong>Independence: </strong>The observations in the dataset are assumed to be independent of each other. There should be no correlation or dependence between the residuals (the differences between the actual and predicted values) of the dependent variable for different observations.
+            <figure>
+              <img src="assets/img/data-engineering/independence.png" alt="" style="max-width: 70%; max-height: 70%;">
+              <figcaption></figcaption>
+            </figure>
+          </li>
+          <li><strong>Normal distribution of residuals: </strong>The mean of residuals should follow a normal distribution with a mean equal to zero or close to zero. This is done in order to check whether the selected line is actually the line of best fit or not. If the error terms are non-normally distributed, suggests that there are a few unusual data points that must be studied closely to make a better model.
+            <figure>
+              <img src="assets/img/data-engineering/Disti-assumption.png" alt="" style="max-width: 70%; max-height: 70%;">
+              <figcaption></figcaption>
+            </figure>
+          </li>
+          <li><strong>The equal variance of residuals: </strong>The error terms must have constant variance. This phenomenon is known as Homoscedasticity. The presence of non-constant variance in the error terms is referred to as Heteroscedasticity. Generally, non-constant variance arises in the presence of outliers or extreme leverage values.
+            <figure>
+              <img src="assets/img/data-engineering/eual-variance-assumption.png" alt="" style="max-width: 70%; max-height: 70%;">
+              <figcaption></figcaption>
+            </figure>
+          </li>
+        </ol>
+      </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
+      <section id="evaluation-metrics-for-LR">
+        <h3>Evaluation Metrics for Linear Regression</h3>
+          <p>When performing linear regression, it is essential to evaluate the performance of the model to assess its accuracy and effectiveness. Several evaluation metrics can be used to measure the performance of a linear regression model. Here are some commonly used evaluation metrics:</p>
+          <ol>
+            <li><strong>Mean Squared Error (MSE): </strong>The Mean Squared Error measures the average squared difference between the predicted values and the actual values of the dependent variable. It is calculated by taking the average of the squared residuals.
+            $$\boxed{\text{MSE} = \frac{1}{n} \sum \left(y_i - \hat{y}_i\right)^2}$$
+            where:
+            <ul>
+              <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>n</mi> </math> is the number of data points.</li>
+              <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>y</mi> <mi>i</mi> </msub> </math> is the actual value of the dependent variable for the $i-th$ data point.</li>
+              <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mrow data-mjx-texclass="ORD"> <mover> <mi>y</mi> <mo stretchy="false">^</mo> </mover> </mrow> <mi>i</mi> </msub> </math> is the predicted value of the dependent variable for the i-th data point.</li>
+              </ul>
+              <p>A lower MSE value indicates better model performance, with zero being the best possible value.</p>
+            </li>
+            <li><strong>Root Mean Squared Error (RMSE): </strong>The Root Mean Squared Error is the square root of the MSE and provides a more interpretable measure of the average prediction error.
+            $$\boxed{\text{RMSE} = \sqrt{\text{MSE}}}$$
+            <p>Like the MSE, a lower RMSE value indicates better model performance.</p>
+            </li>
+            <li><strong>Mean Absolute Error (MAE): </strong>
+              The Mean Absolute Error measures the average absolute difference between the predicted values and the actual values of the dependent variable. It is less sensitive to outliers compared to MSE.
+              $$\boxed{\text{MAE} = \frac{1}{n} \sum |y_i - \hat{y}_i|}$$
+              <p>A lower MAE value indicates better model performance.</p>
+            </li>
+            <li><strong>R-squared (<math xmlns="http://www.w3.org/1998/Math/MathML"> <msup> <mi>R</mi> <mn>2</mn> </msup> </math>) Coefficient of Determination</strong>
+              The R-squared value represents the proportion of the variance in the dependent variable that is explained by the independent variables. It ranges from <code>0</code> to <code>1</code>, 
+              where <code>1</code> indicates that the model perfectly predicts the dependent variable.
+              $$\boxed{R^2 = 1 - \frac{\text{RSS}}{\text{TSS}}}$$
+              where:
+              <ul>
+                <li><p>Residual sum of Squares (RSS) is defined as the sum of squares of the residual for each data point in the plot/data. It is the measure of the difference between the expected and the actual observed output.</p>
+                  $$\text{RSS} = \sum \left(y_i - \beta_0 - \beta_1 x_i\right)^2$$
+                </li>
+                <li><p>Total Sum of Squares (TSS) is defined as the sum of errors of the data points from the mean of the response variable. Mathematically TSS is</p>
+                  $$\text{TSS} = \sum \left(y_i - \hat{y}_i\right)^2$$
+                </li>
+              </ul>
+              <p>A higher <math xmlns="http://www.w3.org/1998/Math/MathML"> <msup> <mi>R</mi> <mn>2</mn> </msup> </math>
+                value indicates a better fit of the model to the data. <math xmlns="http://www.w3.org/1998/Math/MathML"> <msup> <mi>R</mi> <mn>2</mn> </msup> </math> 
+                is commonly interpreted as the percentage of the variation in the dependent variable that is explained by the independent variables. 
+                However, it is important to note that <math xmlns="http://www.w3.org/1998/Math/MathML"> <msup> <mi>R</mi> <mn>2</mn> </msup> </math> 
+                does not determine the causal relationship between the independent and dependent variables. It is solely a measure of how well the model fits the data.</p>
+            </li>
+            <li><strong>Adjusted R-squared: </strong>
+              <p>The Adjusted R-squared accounts for the number of independent variables in the model. It penalizes the inclusion of irrelevant variables and rewards the inclusion of relevant variables.</p>
+              $$\boxed{\text{Adjusted}~ R^2 = 1-\left[\frac{(1 - R²) * (n - 1)}{(n - p - 1)}\right]}$$
+              <p>Where:</p>
+              <ul>
+                <li>$n$ is the number of data points.</li>
+                <li>$p$ is the number of independent variables.</li>
+              </ul>
+              <p>A higher Adjusted $R^2$ value indicates a better fit of the model while considering the complexity of the model.</p>
+              <p>These evaluation metrics help assess the performance of a linear regression model by quantifying the accuracy of the predictions and the extent to which the independent variables explain the dependent variable. It is important to consider multiple metrics to gain a comprehensive understanding of the model's performance.</p>
+            </li>
+            <li><strong></strong></li>
+            <li><strong></strong></li>
+          </ol>
+      </section>
 
 
       <!-------Reference ------->
