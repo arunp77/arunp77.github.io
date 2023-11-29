@@ -189,191 +189,25 @@
           </ul>
 
 
-          <h3 id="Relationship-of-regression-lines">Relationship of regression lines<a class="anchor-link" href="#Relationship-of-regression-lines">&#182;</a></h3><ul>
+        <h3 id="Relationship-of-regression-lines">Relationship of regression lines<a class="anchor-link" href="#Relationship-of-regression-lines">&#182;</a></h3>
+          <ul>
             <li>A linear line showing the relationship between the dependent and independent variables is called a regression line. </li>
             <li>A regression line can show two types of relationship:</li>
-            </ul>
-            <ol>
+          </ul>
+          <ol>
             <li><strong>Positive Linear Relationship:</strong> If the dependent variable increases on the Y-axis and independent variable increases on X-axis, then such a relationship is termed as a Positive linear relationship.</li>
             <li><strong>Negative Linear Relationship:</strong> If the dependent variable decreases on the Y-axis and independent variable increases on the X-axis, then such a relationship is called a negative linear relationship.</li>
+          </ol>
+          <img src="assets/img/data-engineering/line-slope.png" alt="" style="max-width: 70%; max-height: 70%;">
+
+        <h3 id="Types-of-Linear-Regression">Types of Linear Regression<a class="anchor-link" href="#Types-of-Linear-Regression">&#182;</a></h3>
+          <p>Linear regression can be further divided into two types of the algorithm:</p>
+            <ol>
+              <li><strong>Simple Linear Regression:</strong> If a single independent variable is used to predict the value of a numerical dependent variable, then such a Linear Regression algorithm is called Simple Linear Regression.</li>
+              <li><strong>Multiple Linear regression:</strong> If more than one independent variable is used to predict the value of a numerical dependent variable, then such a Linear Regression algorithm is called Multiple Linear Regression.</li>
             </ol>
-            <img src="assets/img/data-engineering/line-slope.png" alt="" style="max-width: 70%; max-height: 70%;">
-
-            <h2 id="Types-of-Linear-Regression">Types of Linear Regression<a class="anchor-link" href="#Types-of-Linear-Regression">&#182;</a></h2><p>Linear regression can be further divided into two types of the algorithm:</p>
-              <ol>
-                <li><strong>Simple Linear Regression:</strong> If a single independent variable is used to predict the value of a numerical dependent variable, then such a Linear Regression algorithm is called Simple Linear Regression.</li>
-                <li><strong>Multiple Linear regression:</strong> If more than one independent variable is used to predict the value of a numerical dependent variable, then such a Linear Regression algorithm is called Multiple Linear Regression.</li>
-              </ol>
-
-              <h3 id="Mathematical-1">Mathematical Explanation:</h3>
-              <p>There are parameters <code>β<sub>0</sub></code>, <code>β<sub>1</sub></code>, and <code>σ<sup>2</sup></code>, such that for any fixed value of the independent variable <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>x</mi> </math>, the dependent variable is a random variable related to <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>x</mi> </math> through the model equation:</p>
-              
-                $$y=\beta_0 + \beta_1 x +\epsilon$$
-
-              <p>where</p>
-              <ul>
-                <li><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>y</mi></math> = Dependent Variable (Target Variable)</li>
-                <li><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>x</mi></math> = Independent Variable (predictor Variable)</li>
-                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> </math> = intercept of the line (Gives an additional degree of freedom)</li>
-                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> </math> = Linear regression coefficient (scale factor to each input value).</li>
-                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>&#x03F5;<!-- ϵ --></mi> </math> = random error.</li>
-              </ul>
-              <p>The goal of linear regression is to estimate the values of the regression coefficients</p>
-                <img src="assets/img/data-engineering/Multi-lin-reg.png" alt="" style="max-width: 60%; max-height: 60%;">
-              <p>This algorithm explains the linear relationship between the dependent(output) variable <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>y</mi></math>
-                 and the independent(predictor) variable <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>x</mi></math> using a straight line 
-                 <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>y</mi> <mo>=</mo> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> <mo>+</mo> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> <mi>x</mi> </math></p>
-              
-              
-              <h4 id="1.2.-Goal">1.2. Goal<a class="anchor-link" href="#1.2.-Goal">&#182;</a></h4>
-              
-              <ul>
-                <li>The goal of the linear regression algorithm is to get the best values for <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> </math>
-                   and <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> </math> to find the best fit line. </li>
-                <li>The best fit line is a line that has the least error which means the error between predicted values and actual values should be minimum.</li>
-                <li><p>For a datset with <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>n</mi> </math> observation <math xmlns="http://www.w3.org/1998/Math/MathML"> <mo stretchy="false">(</mo> <msub> <mi>x</mi> <mi>i</mi> </msub> <mo>,</mo> <msub> <mi>y</mi> <mi>i</mi> </msub> <mo stretchy="false">)</mo> </math>, 
-                  where <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>i</mi> <mo>=</mo> <mn>1</mn> <mo>,</mo> <mn>2</mn> <mo>,</mo> <mn>3....</mn> <mo>,</mo> <mi>n</mi> </math> the above function can be written as follows</p>
-                
-                  <p><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>y</mi> <mi>i</mi> </msub> <mo>=</mo> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> <mo>+</mo> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> <msub> <mi>x</mi> <mi>i</mi> </msub> <mo>+</mo> <msub> <mi>&#x03F5;<!-- ϵ --></mi> <mi>i</mi> </msub> </math></p>
-
-                <p>where <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>y</mi> <mi>i</mi> </msub> </math> is the value of the observation of the dependent variable (outcome variable) in the smaple, <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>x</mi> <mi>i</mi> </msub> </math> is the value of <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>i</mi> <mi>t</mi> <mi>h</mi> </math> observation 
-                  of the independent variable or feature in the sample, <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03F5;<!-- ϵ --></mi> <mi>i</mi> </msub> </math> is the random error (also known as residuals) in predicting the value of <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>y</mi> <mi>i</mi> </msub> </math>, 
-                  <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> </math> and <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>i</mn> </msub> </math> are the regression parameters (or regression coefficients or feature weights).</p>
-                </li>
-              </ul>
-
-              <p><strong>Note:</strong></p>
-                  <ul>
-                    <li><p>The quantity ϵ in the model equation is the “error” -- a random variable, assumed to be symmetrically distributed with</p>
-                    <p><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>E</mi> <mo stretchy="false">(</mo> <mi>&#x03F5;<!-- ϵ --></mi> <mo stretchy="false">)</mo> <mo>=</mo> <mn>0</mn> <mtext>&#xA0;</mtext> <mtext>&#xA0;</mtext> <mrow class="MJX-TeXAtom-ORD"> <mi mathvariant="normal">a</mi> <mi mathvariant="normal">n</mi> <mi mathvariant="normal">d</mi> </mrow> <mtext>&#xA0;</mtext> <mtext>&#xA0;</mtext> <mi>V</mi> <mo stretchy="false">(</mo> <mi>&#x03F5;<!-- ϵ --></mi> <mo stretchy="false">)</mo> <mo>=</mo> <msub> <mi>&#x03C3;<!-- σ --></mi> <mrow class="MJX-TeXAtom-ORD"> <msup> <mi>Y<!-- Y --></mi> <mn>2</mn> </msup> </mrow> </msub> <mo>=</mo> <msup> <mi>&#x03C3;<!-- σ --></mi> <mn>2</mn> </msup> </math></p>
-                    <p>It is to be noted here that there are no assumption made about the distribution of ϵ, yet.</p>
-                    <ul>
-                      <li>The <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> </math> (the intercept of the true regression line) parameter is average value of Y when x is zero.</li>
-                      <li>The <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> </math> (the slope of the true regression line): The expected (average) change in Y associated with a 1-unit increase in the value of x.</li>
-                      <li>What is <math xmlns="http://www.w3.org/1998/Math/MathML"> <msubsup> <mi>&#x03C3;<!-- σ --></mi> <mrow class="MJX-TeXAtom-ORD"> <mi>Y</mi> </mrow> <mn>2</mn> </msubsup> </math>?: is a measure of how much the values of Y spread out about the mean value (homogeneity of variance assumption).</li>
-                    </ul>
-                    </li>
-                  </ul>
-
-
-                  <h4 id="1.3.-Calculating-the-regression-parameters">1.3. Calculating the regression parameters<a class="anchor-link" href="#1.3.-Calculating-the-regression-parameters">&#182;</a></h4><p>In simple linear regression, there is only one independent variable (<math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>x</mi> </math>) and one dependent variable (<math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>y</mi> </math>). The parameters (coefficients) in simple linear regression can be calculated using the method of <strong>ordinary least squares (OLS)</strong>. The equations and formulas involved in calculating the parameters are as follows:</p>
-                  <p><strong>Model Representation:</strong></p>
-                  <p>The simple linear regression model can be represented as:
-                   $$y = \beta_0 + \beta_1 x + \epsilon$$</p>
-                   <p>Therefore, we can write:</p>
-                  <p><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>&#x03F5;<!-- ϵ --></mi> <mo>=</mo> <mi>y</mi> <mo>&#x2212;<!-- − --></mo> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> <mo>&#x2212;<!-- − --></mo> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> <mi>x</mi> </math>.</p>
-
-                  <ol>
-                    <li><p><strong>Cost Function or mean squared error (MSE):</strong></p>
-                      <p>The MSE, measures the average squared difference between the predicted values (<math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>y</mi> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> </math>) and the actual values of the dependent variable (<math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>y</mi> </math>). It is given by:</p>
-                      <p>$$MSE = \frac{1}{n} \sum (y_i - \hat{y}_i)^2$$</p>
-                      <p>Where:</p>
-                      <ul>
-                        <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>n</mi> </math> is the number of data points.</li>
-                        <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>y</mi> <mi>i</mi> </msub> </math> is the actual value of the dependent variable for the i-th data point.</li>
-                        <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>y</mi> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> <mi>i</mi> </msub> </math> is the predicted value of the dependent variable for the i-th data point.</li>
-                      </ul>
-                    </li>
-
-                    <li><p><strong>Minimization of the Cost Function:</strong></p>
-                      <p>The parameters <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> </math> and <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> </math> are estimated by minimizing the cost function. The formulas for calculating the parameter estimates are derived from the derivative of the cost function with respect to each parameter.</p>
-                      <p>The parameter estimates are given by:</p>
-                      <ul>
-                        <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow class="MJX-TeXAtom-ORD"> <mover> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> <mo>=</mo> <mfrac> <mrow> <mtext>Cov</mtext> <mo stretchy="false">(</mo> <mi>x</mi> <mo>,</mo> <mi>y</mi> <mo stretchy="false">)</mo> </mrow> <mrow> <mi>V</mi> <mi>a</mi> <mi>r</mi> <mo stretchy="false">(</mo> <mi>x</mi> <mo stretchy="false">)</mo> </mrow> </mfrac> </math><math xmlns="http://www.w3.org/1998/Math/MathML"> <mo stretchy="false">&#x21D2;<!-- ⇒ --></mo> <menclose notation="box"> <mrow class="MJX-TeXAtom-ORD"> <mstyle displaystyle="true" scriptlevel="0"> <mrow class="MJX-TeXAtom-ORD"> <msub> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>&#x03B2;<!-- β --></mi> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> <mn>1</mn> </msub> <mo>=</mo> <mfrac> <mrow> <mo>&#x2211;<!-- ∑ --></mo> <mo stretchy="false">(</mo> <msub> <mi>x</mi> <mi>i</mi> </msub> <mo>&#x2212;<!-- − --></mo> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>x</mi> <mo stretchy="false">&#x00AF;<!-- ¯ --></mo> </mover> </mrow> <mo stretchy="false">)</mo> <mo stretchy="false">(</mo> <msub> <mi>y</mi> <mi>i</mi> </msub> <mo>&#x2212;<!-- − --></mo> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>y</mi> <mo stretchy="false">&#x00AF;<!-- ¯ --></mo> </mover> </mrow> <mo stretchy="false">)</mo> </mrow> <mrow> <mo>&#x2211;<!-- ∑ --></mo> <mo stretchy="false">(</mo> <msub> <mi>x</mi> <mi>i</mi> </msub> <mo>&#x2212;<!-- − --></mo> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>x</mi> <mo stretchy="false">&#x00AF;<!-- ¯ --></mo> </mover> </mrow> <msup> <mo stretchy="false">)</mo> <mn>2</mn> </msup> </mrow> </mfrac> </mrow> </mstyle> </mrow> </menclose> </math>$$</li>
-                        <li><p><math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow class="MJX-TeXAtom-ORD"> <mover> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> <mo>=</mo> <mtext>y</mtext> <mo>&#x2212;<!-- − --></mo> <mrow class="MJX-TeXAtom-ORD"> <mover> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> <mo>&#x00D7;<!-- × --></mo> <mtext>mean</mtext> <mo stretchy="false">(</mo> <mi>x</mi> <mo stretchy="false">)</mo> </math></p></li>
-                        <p>Where:</p>
-                        <ul>
-                          <li><p><math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow class="MJX-TeXAtom-ORD"> <mover> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> </math> is the estimated <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>y</mi> </math>-intercept.</p>
-                          </li>
-                          <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow class="MJX-TeXAtom-ORD"> <mover> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> </math> is the estimated slope.</li>
-                          <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mtext>Cov</mtext> <mo stretchy="false">(</mo> <mi>x</mi> <mo>,</mo> <mi>y</mi> <mo stretchy="false">)</mo> </math> is the covariance between <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>x</mi> </math> and <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>y</mi> </math>.</li>
-                          <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mtext>Var</mtext> <mo stretchy="false">(</mo> <mi>x</mi> <mo stretchy="false">)</mo> </math> is the variance of <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>x</mi> </math>.</li>
-                          <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mtext>mean</mtext> <mo stretchy="false">(</mo> <mi>x</mi> <mo stretchy="false">)</mo> </math> is the mean of <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>x</mi> </math>.</li>
-                          <li><p><math xmlns="http://www.w3.org/1998/Math/MathML"> <mtext>mean</mtext> <mo stretchy="false">(</mo> <mi>x</mi> <mo stretchy="false">)</mo> </math> is the mean of <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>y</mi> </math>.</p>
-                        </ul>
-                        </li>
-                      </ul>
-                      <p>The estimated parameters <math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow class="MJX-TeXAtom-ORD"> <mover> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> </math> and <math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow class="MJX-TeXAtom-ORD"> <mover> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> </math> provide the values of the intercept and slope that best fit the data according to the simple linear regression model.</p>
-                    </li>
-                    <li><p><strong>Prediction:</strong></p>
-                    <p>Once the parameter estimates are obtained, predictions can be made using the equation:</p>
-                    <p>$$\hat{y} = \hat{\beta_0} + \hat{\beta_1} x$$</p>
-                    <p>Where:</p>
-                    <ul>
-                    <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>y</mi> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> </math> is the predicted value of the dependent variable.</li>
-                    <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow class="MJX-TeXAtom-ORD"> <mover> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> </math> is the estimated y-intercept.</li>
-                    <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow class="MJX-TeXAtom-ORD"> <mover> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> </math> is the estimated slope.</li>
-                    <li><p><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>x</mi> </math> is the value of the independent variable for which the prediction is being made.</p>
-                    </li>
-                    </ul>
-                    </li>
-                    <p>These equations and formulas allow for the calculation of the parameters in simple linear regression using the method of <strong>ordinary least squares (OLS)</strong>. By minimizing the sum of squared differences between predicted and actual values, the parameters are determined to best fit the data and enable prediction of the dependent variable.</p>
-                  </ol>
-            
-                  <div style="background-color: #f2f2f2; padding: 15px;">
-                    <p><strong>Gradient Descent for Linear Regression:</strong> 
-                      <ul>
-                        <li>A regression model optimizes the gradient descent algorithm to update the coefficients of the line by reducing the cost function by randomly selecting coefficient values and then iteratively updating the values to reach the minimum cost function.</li>
-                        <li>Gradient Descent is an iterative optimization algorithm commonly used in machine learning to find the optimal parameters in a model. It can also be applied to linear regression to estimate the parameters (coefficients) that minimize the cost function.</li>
-                        <li>The steps involved in using Gradient Descent for Linear Regression are as follows:
-                            <ol>
-                              <li><strong>Define the Cost Function: </strong>The cost function for linear regression is the Mean Squared Error (MSE), which measures the average squared difference between the predicted values (ŷ) and the actual values (y) of the dependent variable.</li>
-                              <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>M</mi> <mi>S</mi> <mi>E</mi> <mo>=</mo> <mfrac> <mn>1</mn> <mrow> <mn>2</mn> <mi>n</mi> </mrow> </mfrac> <mo>&#x2211;<!-- ∑ --></mo> <mo stretchy="false">(</mo> <msub> <mi>y</mi> <mi>i</mi> </msub> <mo>&#x2212;<!-- − --></mo> <msub> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>y</mi> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> <mi>i</mi> </msub> <msup> <mo stretchy="false">)</mo> <mn>2</mn> </msup> </math>
-                              <p>Where:</p>
-                              <ul>
-                                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>n</mi> </math> is the number of data points.</li>
-                                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>y</mi> <mi>i</mi> </msub> </math> is the actual value of the dependent variable for the i-th data point.
-                                  <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>y</mi> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> <mi>i</mi> </msub> </math> is the predicted value of the dependent variable for the i-th data point.</li>
-                              </ul>
-                              <li><strong>Initialize the Parameters: </strong>Start by initializing the parameters (coefficients) with random values. Typically, they are initialized as zero or small random values.</li>
-                              <li><strong>Calculate the Gradient: </strong>Compute the gradient of the cost function with respect to each parameter. The gradient represents the direction of steepest ascent in the cost function space.
-                              $$\frac{\partial (MSE)}{\partial \beta_0} = \frac{1}{n}\sum (\hat{y}_i - y_i)$$
-                              $$\frac{\partial (MSE)}{\partial \beta_1} = \frac{1}{n}\sum (\hat{y}_i - y_i)\times x_i$$
-                              <p>Where:</p>
-                              <ul>
-                                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mfrac> <mrow> <mi mathvariant="normal">&#x2202;<!-- ∂ --></mi> <mo stretchy="false">(</mo> <mi>M</mi> <mi>S</mi> <mi>E</mi> <mo stretchy="false">)</mo> </mrow> <mrow> <mi mathvariant="normal">&#x2202;<!-- ∂ --></mi> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> </mrow> </mfrac> </math> 
-                                  is the gradient with respect to the y-intercept parameter (<math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> </math>).</li>
-                                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mfrac> <mrow> <mi mathvariant="normal">&#x2202;<!-- ∂ --></mi> <mo stretchy="false">(</mo> <mi>M</mi> <mi>S</mi> <mi>E</mi> <mo stretchy="false">)</mo> </mrow> <mrow> <mi mathvariant="normal">&#x2202;<!-- ∂ --></mi> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> </mrow> </mfrac> </math>
-                                   is the gradient with respect to the slope parameter (<math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> </math>).</li>
-                                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>y</mi> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> <mi>i</mi> </msub> </math>
-                                  is the predicted value of the dependent variable for the i-th data point.</li>
-                                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>y</mi> <mi>i</mi> </msub> </math> is the actual value of the dependent variable for the i-th data point.</li>
-                                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>x</mi> <mi>i</mi> </msub> </math> is the value of the independent variable for the i-th data point.</li>
-                              </ul>
-                              </li>
-                              <li><strong>Update the Parameters: </strong> Update the parameters using the gradient and a learning rate (
-                                α), which determines the step size in each iteration.
-                                $$\beta_0 = \beta_0 - \alpha \times \frac{\partial (MSE)}{\partial \beta_0}$$
-                                $$\beta_1 = \beta_1 - \alpha \times \frac{\partial (MSE)}{\partial \beta_1}$$
-                                <p>Repeat this update process for a specified number of iterations or until the change in the cost function becomes sufficiently small.</p>
-                              </li>
-                              <li><strong>Predict: </strong>Once the parameters have converged or reached the desired number of iterations, use the final parameter values to make predictions on new data.
-                                $$\hat{y} = \beta_0 +\beta_1 x$$
-                                <p>Where:</p>
-                                  <ul>
-                                    <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mrow data-mjx-texclass="ORD"> <mover> <mi>y</mi> <mo stretchy="false">^</mo> </mover> </mrow> <mi>i</mi> </msub> </math> is the predicted value of the dependent variable.</li>
-                                    <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> </math> is the $y$-intercept parameter.</li>
-                                    <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> </math> is the slope parameter.</li>
-                                    <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>x</mi> </math> is the value of the independent variable for which the prediction is being made.</li>
-                                  </ul>
-                                  <p>Gradient Descent iteratively adjusts the parameters by updating them in the direction of the negative gradient until it reaches a minimum point in the cost function. This process allows for the estimation of optimal parameters in linear regression, enabling the model to make accurate predictions on unseen data.</p>
-                                    <figure>
-                                      <img src="assets/img/data-engineering/optimal-reg2.png" alt="" style="max-width: 70%; max-height: 70%;">
-                                      <figcaption></figcaption>
-                                    </figure>
-                                  <p>Let’s take an example to understand this. If we want to go from top left point of the shape to bottom of the pit, a discrete number of steps can be taken to reach the bottom.</p>
-                                    <ul>
-                                      <li>If you decide to take larger steps each time, you may achieve the bottom sooner but, there’s a probability that you could overshoot the bottom of the pit and not even near the bottom.</li>
-                                      <li>In the gradient descent algorithm, the number of steps you’re taking can be considered as the learning rate, and this decides how fast the algorithm converges to the minima.</li>
-                                    </ul>
-                                  <p><strong>In the gradient descent algorithm, the number of steps you’re taking can be considered as the learning rate i.e. 
-                                    α, and this decides how fast the algorithm converges to the minima.</strong></p>
-                              </li>
-                            </ol>
-                        </li>
-                      </ul>
-                  </div>
       </section>
+
 
       <section id="Assumption-of-LR">
         <h3>Assumptions of Linear Regression</h3>
@@ -406,7 +240,7 @@
       </section>
 
       <section id="evaluation-metrics-for-LR">
-        <h3>Evaluation Metrics for Linear Regression</h3>
+        <h3>Model Evaluation</h3>
         <p>To train an accurate linear regression model, we need a way to quantify how good (or bad) our model performs. In machine learning, we call such performance-measuring functions loss functions. Several popular loss functions exist for regression problems.
            To measure our model's performance, we'll use one of the most popular: mean-squared error (MSE). Here are some commonly used evaluation metrics: </p>
            
@@ -465,109 +299,293 @@
                   </p>
                 </div>
                 
-                
             </li>
             <li><strong>Adjusted R-squared: </strong>
               <p>The Adjusted R-squared accounts for the number of independent variables in the model. It penalizes the inclusion of irrelevant variables and rewards the inclusion of relevant variables.</p>
               $$\boxed{\text{Adjusted}~ R^2 = 1-\left[\frac{(1 - R²) * (n - 1)}{(n - p - 1)}\right]}$$
               <p>Where:</p>
               <ul>
-                <li>$n$ is the number of data points.</li>
-                <li>$p$ is the number of independent variables.</li>
+                <li>n is the number of data points.</li>
+                <li>p is the number of independent variables.</li>
               </ul>
-              <p>A higher Adjusted $R^2$ value indicates a better fit of the model while considering the complexity of the model.</p>
-              <p>These evaluation metrics help assess the performance of a linear regression model by quantifying the accuracy of the predictions and the extent to which the independent variables explain the dependent variable. It is important to consider multiple metrics to gain a comprehensive understanding of the model's performance.</p>
+              <p>A higher Adjusted R-squared value indicates a better fit of the model while considering the complexity of the model.</p>
+              <p>These evaluation metrics help assess the performance of a linear regression model by quantifying the accuracy of the predictions and the extent to which the independent variables explain the 
+                dependent variable. It is important to consider multiple metrics to gain a comprehensive understanding of the model's performance.</p>
             </li>
           </ol>
+
+          <p></p>
+          <strong>Selecting An Evaluation Metric:</strong>
+          <p>Many methods exist for evaluating regression models, each with different concerns around interpretability, theory, and usability. The evaluation metric should reflect whatever it is you actually 
+            care about when making predictions. For example, when we use MSE, we are implicitly saying that we think the cost of our prediction error should reflect the quadratic (squared) distance between 
+            what we predicted and what is correct. This may work well if we want to punish outliers or if our data is minimized by the mean, but this comes at the cost of interpretability: we output our error 
+            in squared units (though this may be fixed with RMSE). If instead we wanted our error to reflect the linear distance between what we predicted and what is correct, or we wanted our data minimized by 
+            the median, we could try something like Mean Abosulte Error (MAE). Whatever the case, you should be thinking of your evaluation metric as part of your modeling process, and select the best metric based 
+            on the specific concerns of your use-case.</p>
+          <br>
+          <strong>Are Our Coefficients Valid?: </strong>
+              <p>In research publications and statistical software, coefficients of regression models are often presented with associated p-values. These p-values come from traditional null hypothesis statistical tests: t-tests are used to measure whether a given cofficient is significantly different than zero (the null hypothesis that a particular coefficient 
+                β<sub>i</sub> equals zero), while F tests are used to measure whether any of the terms in a regression model are significantly different from zero. Different opinions exist on the utility of such tests.</p>
       </section>
+            
+
+      <section id="Mathematical-1">
+        <h3 id="Mathematical-1">Mathematical Explanation:</h3>
+        <p>There are parameters <code>β<sub>0</sub></code>, <code>β<sub>1</sub></code>, and ϵ, such that for any fixed value of the independent variable <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>x</mi> </math>, the dependent variable is a random variable related to <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>x</mi> </math> through the model equation:</p>
+        
+          $$y=\beta_0 + \beta_1 x +\epsilon$$
+
+        <p>where</p>
+        <ul>
+          <li><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>y</mi></math> = Dependent Variable (Target Variable)</li>
+          <li><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>x</mi></math> = Independent Variable (predictor Variable)</li>
+          <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> </math> = intercept of the line (Gives an additional degree of freedom)</li>
+          <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> </math> = Linear regression coefficient (scale factor to each input value).</li>
+          <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>&#x03F5;<!-- ϵ --></mi> </math> = random error.</li>
+        </ul>
+        <p>The goal of linear regression is to estimate the values of the regression coefficients</p>
+          <img src="assets/img/data-engineering/Multi-lin-reg.png" alt="" style="max-width: 60%; max-height: 60%;">
+        <p>This algorithm explains the linear relationship between the dependent(output) variable <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>y</mi></math>
+            and the independent(predictor) variable <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>x</mi></math> using a straight line 
+            <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>y</mi> <mo>=</mo> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> <mo>+</mo> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> <mi>x</mi> </math></p>
+        
+        
+        <h4 id="1.2.-Goal">1.2. Goal<a class="anchor-link" href="#1.2.-Goal">&#182;</a></h4>
+        
+        <ul>
+          <li>The goal of the linear regression algorithm is to get the best values for <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> </math>
+              and <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> </math> to find the best fit line. </li>
+          <li>The best fit line is a line that has the least error which means the error between predicted values and actual values should be minimum.</li>
+          <li><p>For a datset with <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>n</mi> </math> observation <math xmlns="http://www.w3.org/1998/Math/MathML"> <mo stretchy="false">(</mo> <msub> <mi>x</mi> <mi>i</mi> </msub> <mo>,</mo> <msub> <mi>y</mi> <mi>i</mi> </msub> <mo stretchy="false">)</mo> </math>, 
+            where <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>i</mi> <mo>=</mo> <mn>1</mn> <mo>,</mo> <mn>2</mn> <mo>,</mo> <mn>3....</mn> <mo>,</mo> <mi>n</mi> </math> the above function can be written as follows</p>
+          
+            <p><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>y</mi> <mi>i</mi> </msub> <mo>=</mo> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> <mo>+</mo> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> <msub> <mi>x</mi> <mi>i</mi> </msub> <mo>+</mo> <msub> <mi>&#x03F5;<!-- ϵ --></mi> <mi>i</mi> </msub> </math></p>
+
+          <p>where <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>y</mi> <mi>i</mi> </msub> </math> is the value of the observation of the dependent variable (outcome variable) in the smaple, <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>x</mi> <mi>i</mi> </msub> </math> is the value of <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>i</mi> <mi>t</mi> <mi>h</mi> </math> observation 
+            of the independent variable or feature in the sample, <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03F5;<!-- ϵ --></mi> <mi>i</mi> </msub> </math> is the random error (also known as residuals) in predicting the value of <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>y</mi> <mi>i</mi> </msub> </math>, 
+            <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> </math> and <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>i</mn> </msub> </math> are the regression parameters (or regression coefficients or feature weights).</p>
+          </li>
+        </ul>
+
+        <h4 id="1.3.-Calculating-the-regression-parameters">1.3. Calculating the regression parameters<a class="anchor-link" href="#1.3.-Calculating-the-regression-parameters">&#182;</a></h4><p>In simple linear regression, there is only one independent variable (<math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>x</mi> </math>) and one dependent variable (<math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>y</mi> </math>). The parameters (coefficients) in simple linear regression can be calculated using the method of <strong>ordinary least squares (OLS)</strong>. The equations and formulas involved in calculating the parameters are as follows:</p>
+        <p><strong>Model Representation:</strong></p>
+        <p>The simple linear regression model can be represented as:
+          $$y = \beta_0 + \beta_1 x + \epsilon$$</p>
+          <p>Therefore, we can write:</p>
+        <p><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>&#x03F5;<!-- ϵ --></mi> <mo>=</mo> <mi>y</mi> <mo>&#x2212;<!-- − --></mo> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> <mo>&#x2212;<!-- − --></mo> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> <mi>x</mi> </math>.</p>
+
+        <ol>
+          <li><p><strong>Cost Function or mean squared error (MSE):</strong></p>
+            <p>The MSE, measures the average squared difference between the predicted values (<math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>y</mi> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> </math>) and the actual values of the dependent variable (<math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>y</mi> </math>). It is given by:</p>
+            
+            $$MSE = \frac{1}{n} \sum (y_i - \hat{y}_i)^2$$
+            
+            <p>Where:</p>
+            
+            <ul>
+              <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>n</mi> </math> is the number of data points.</li>
+              <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>y</mi> <mi>i</mi> </msub> </math> is the actual value of the dependent variable for the i-th data point.</li>
+              <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>y</mi> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> <mi>i</mi> </msub> </math> is the predicted value of the dependent variable for the i-th data point.</li>
+            </ul>
+          </li>
+
+          <li><p><strong>Minimization of the Cost Function:</strong></p>
+            <p>The parameters <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> </math> and <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> </math> are estimated by minimizing the cost function. The formulas for calculating the parameter estimates are derived from the derivative of the cost function with respect to each parameter.</p>
+            <p>The parameter estimates are given by:</p>
+            <ul>
+              <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow class="MJX-TeXAtom-ORD"> <mover> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> <mo>=</mo> <mfrac> <mrow> <mtext>Cov</mtext> <mo stretchy="false">(</mo> <mi>x</mi> <mo>,</mo> <mi>y</mi> <mo stretchy="false">)</mo> </mrow> <mrow> <mi>V</mi> <mi>a</mi> <mi>r</mi> <mo stretchy="false">(</mo> <mi>x</mi> <mo stretchy="false">)</mo> </mrow> </mfrac> </math><math xmlns="http://www.w3.org/1998/Math/MathML"> <mo stretchy="false">&#x21D2;<!-- ⇒ --></mo> <menclose notation="box"> <mrow class="MJX-TeXAtom-ORD"> <mstyle displaystyle="true" scriptlevel="0"> <mrow class="MJX-TeXAtom-ORD"> <msub> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>&#x03B2;<!-- β --></mi> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> <mn>1</mn> </msub> <mo>=</mo> <mfrac> <mrow> <mo>&#x2211;<!-- ∑ --></mo> <mo stretchy="false">(</mo> <msub> <mi>x</mi> <mi>i</mi> </msub> <mo>&#x2212;<!-- − --></mo> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>x</mi> <mo stretchy="false">&#x00AF;<!-- ¯ --></mo> </mover> </mrow> <mo stretchy="false">)</mo> <mo stretchy="false">(</mo> <msub> <mi>y</mi> <mi>i</mi> </msub> <mo>&#x2212;<!-- − --></mo> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>y</mi> <mo stretchy="false">&#x00AF;<!-- ¯ --></mo> </mover> </mrow> <mo stretchy="false">)</mo> </mrow> <mrow> <mo>&#x2211;<!-- ∑ --></mo> <mo stretchy="false">(</mo> <msub> <mi>x</mi> <mi>i</mi> </msub> <mo>&#x2212;<!-- − --></mo> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>x</mi> <mo stretchy="false">&#x00AF;<!-- ¯ --></mo> </mover> </mrow> <msup> <mo stretchy="false">)</mo> <mn>2</mn> </msup> </mrow> </mfrac> </mrow> </mstyle> </mrow> </menclose> </math>$$</li>
+              <li><p><math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow class="MJX-TeXAtom-ORD"> <mover> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> <mo>=</mo> <mtext>y</mtext> <mo>&#x2212;<!-- − --></mo> <mrow class="MJX-TeXAtom-ORD"> <mover> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> <mo>&#x00D7;<!-- × --></mo> <mtext>mean</mtext> <mo stretchy="false">(</mo> <mi>x</mi> <mo stretchy="false">)</mo> </math></p></li>
+              <p>Where:</p>
+              <ul>
+                <li><p><math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow class="MJX-TeXAtom-ORD"> <mover> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> </math> is the estimated <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>y</mi> </math>-intercept.</p>
+                </li>
+                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow class="MJX-TeXAtom-ORD"> <mover> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> </math> is the estimated slope.</li>
+                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mtext>Cov</mtext> <mo stretchy="false">(</mo> <mi>x</mi> <mo>,</mo> <mi>y</mi> <mo stretchy="false">)</mo> </math> is the covariance between <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>x</mi> </math> and <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>y</mi> </math>.</li>
+                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mtext>Var</mtext> <mo stretchy="false">(</mo> <mi>x</mi> <mo stretchy="false">)</mo> </math> is the variance of <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>x</mi> </math>.</li>
+                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mtext>mean</mtext> <mo stretchy="false">(</mo> <mi>x</mi> <mo stretchy="false">)</mo> </math> is the mean of <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>x</mi> </math>.</li>
+                <li><p><math xmlns="http://www.w3.org/1998/Math/MathML"> <mtext>mean</mtext> <mo stretchy="false">(</mo> <mi>x</mi> <mo stretchy="false">)</mo> </math> is the mean of <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>y</mi> </math>.</p>
+              </ul>
+              </li>
+            </ul>
+            <p>The estimated parameters <math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow class="MJX-TeXAtom-ORD"> <mover> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> </math> and <math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow class="MJX-TeXAtom-ORD"> <mover> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> </math> provide the values of the intercept and slope that best fit the data according to the simple linear regression model.</p>
+          </li>
+          <li><p><strong>Prediction:</strong></p>
+          <p>Once the parameter estimates are obtained, predictions can be made using the equation:</p>
+          <p>$$\hat{y} = \hat{\beta_0} + \hat{\beta_1} x$$</p>
+          <p>Where:</p>
+          <ul>
+          <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>y</mi> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> </math> is the predicted value of the dependent variable.</li>
+          <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow class="MJX-TeXAtom-ORD"> <mover> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> </math> is the estimated y-intercept.</li>
+          <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow class="MJX-TeXAtom-ORD"> <mover> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> </math> is the estimated slope.</li>
+          <li><p><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>x</mi> </math> is the value of the independent variable for which the prediction is being made.</p>
+          </li>
+          </ul>
+          </li>
+          <p>These equations and formulas allow for the calculation of the parameters in simple linear regression using the method of <strong>ordinary least squares (OLS)</strong>. By minimizing the sum of squared differences between predicted and actual values, the parameters are determined to best fit the data and enable prediction of the dependent variable.</p>
+        </ol>
+      
+        <div style="background-color: #f2f2f2; padding: 15px;">
+          <p><strong>Gradient Descent for Linear Regression:</strong> 
+            <ul>
+              <li>A regression model optimizes the gradient descent algorithm to update the coefficients of the line by reducing the cost function by randomly selecting coefficient values and then iteratively updating the values to reach the minimum cost function.</li>
+              <li>Gradient Descent is an iterative optimization algorithm commonly used in machine learning to find the optimal parameters in a model. It can also be applied to linear regression to estimate the parameters (coefficients) that minimize the cost function.</li>
+              <li>The steps involved in using Gradient Descent for Linear Regression are as follows:
+                  <ol>
+                    <li><strong>Define the Cost Function: </strong>The cost function for linear regression is the Mean Squared Error (MSE), which measures the average squared difference between the predicted values (ŷ) and the actual values (y) of the dependent variable.</li>
+                    <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>M</mi> <mi>S</mi> <mi>E</mi> <mo>=</mo> <mfrac> <mn>1</mn> <mrow> <mn>2</mn> <mi>n</mi> </mrow> </mfrac> <mo>&#x2211;<!-- ∑ --></mo> <mo stretchy="false">(</mo> <msub> <mi>y</mi> <mi>i</mi> </msub> <mo>&#x2212;<!-- − --></mo> <msub> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>y</mi> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> <mi>i</mi> </msub> <msup> <mo stretchy="false">)</mo> <mn>2</mn> </msup> </math>
+                    <p>Where:</p>
+                    <ul>
+                      <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>n</mi> </math> is the number of data points.</li>
+                      <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>y</mi> <mi>i</mi> </msub> </math> is the actual value of the dependent variable for the i-th data point.
+                        <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>y</mi> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> <mi>i</mi> </msub> </math> is the predicted value of the dependent variable for the i-th data point.</li>
+                    </ul>
+                    <li><strong>Initialize the Parameters: </strong>Start by initializing the parameters (coefficients) with random values. Typically, they are initialized as zero or small random values.</li>
+                    <li><strong>Calculate the Gradient: </strong>Compute the gradient of the cost function with respect to each parameter. The gradient represents the direction of steepest ascent in the cost function space.
+                    $$\frac{\partial (MSE)}{\partial \beta_0} = \frac{1}{n}\sum (\hat{y}_i - y_i)$$
+                    $$\frac{\partial (MSE)}{\partial \beta_1} = \frac{1}{n}\sum (\hat{y}_i - y_i)\times x_i$$
+                    <p>Where:</p>
+                    <ul>
+                      <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mfrac> <mrow> <mi mathvariant="normal">&#x2202;<!-- ∂ --></mi> <mo stretchy="false">(</mo> <mi>M</mi> <mi>S</mi> <mi>E</mi> <mo stretchy="false">)</mo> </mrow> <mrow> <mi mathvariant="normal">&#x2202;<!-- ∂ --></mi> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> </mrow> </mfrac> </math> 
+                        is the gradient with respect to the y-intercept parameter (<math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> </math>).</li>
+                      <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mfrac> <mrow> <mi mathvariant="normal">&#x2202;<!-- ∂ --></mi> <mo stretchy="false">(</mo> <mi>M</mi> <mi>S</mi> <mi>E</mi> <mo stretchy="false">)</mo> </mrow> <mrow> <mi mathvariant="normal">&#x2202;<!-- ∂ --></mi> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> </mrow> </mfrac> </math>
+                          is the gradient with respect to the slope parameter (<math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> </math>).</li>
+                      <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>y</mi> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> <mi>i</mi> </msub> </math>
+                        is the predicted value of the dependent variable for the i-th data point.</li>
+                      <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>y</mi> <mi>i</mi> </msub> </math> is the actual value of the dependent variable for the i-th data point.</li>
+                      <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>x</mi> <mi>i</mi> </msub> </math> is the value of the independent variable for the i-th data point.</li>
+                    </ul>
+                    </li>
+                    <li><strong>Update the Parameters: </strong> Update the parameters using the gradient and a learning rate (
+                      α), which determines the step size in each iteration.
+                      $$\beta_0 = \beta_0 - \alpha \times \frac{\partial (MSE)}{\partial \beta_0}$$
+                      $$\beta_1 = \beta_1 - \alpha \times \frac{\partial (MSE)}{\partial \beta_1}$$
+                      <p>Repeat this update process for a specified number of iterations or until the change in the cost function becomes sufficiently small.</p>
+                    </li>
+                    <li><strong>Predict: </strong>Once the parameters have converged or reached the desired number of iterations, use the final parameter values to make predictions on new data.
+                      $$\hat{y} = \beta_0 +\beta_1 x$$
+                      <p>Where:</p>
+                        <ul>
+                          <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mrow data-mjx-texclass="ORD"> <mover> <mi>y</mi> <mo stretchy="false">^</mo> </mover> </mrow> <mi>i</mi> </msub> </math> is the predicted value of the dependent variable.</li>
+                          <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> </math> is the $y$-intercept parameter.</li>
+                          <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> </math> is the slope parameter.</li>
+                          <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>x</mi> </math> is the value of the independent variable for which the prediction is being made.</li>
+                        </ul>
+                        <p>Gradient Descent iteratively adjusts the parameters by updating them in the direction of the negative gradient until it reaches a minimum point in the cost function. This process allows for the estimation of optimal parameters in linear regression, enabling the model to make accurate predictions on unseen data.</p>
+                          <figure>
+                            <img src="assets/img/data-engineering/optimal-reg2.png" alt="" style="max-width: 70%; max-height: 70%;">
+                            <figcaption></figcaption>
+                          </figure>
+                        <p>Let’s take an example to understand this. If we want to go from top left point of the shape to bottom of the pit, a discrete number of steps can be taken to reach the bottom.</p>
+                          <ul>
+                            <li>If you decide to take larger steps each time, you may achieve the bottom sooner but, there’s a probability that you could overshoot the bottom of the pit and not even near the bottom.</li>
+                            <li>In the gradient descent algorithm, the number of steps you’re taking can be considered as the learning rate, and this decides how fast the algorithm converges to the minima.</li>
+                          </ul>
+                        <p><strong>In the gradient descent algorithm, the number of steps you’re taking can be considered as the learning rate i.e. 
+                          α, and this decides how fast the algorithm converges to the minima.</strong></p>
+                    </li>
+                  </ol>
+              </li>
+            </ul>
+        </div>
+      </section>
+        <p></p>
+
 
       <section id="overfit-goodfit-underfit">
-        <h2>Understanding and Addressing Fitting Issues in Machine Learning Models</h2>
+        <h2><a href="https://github.com/arunp77/Machine-Learning/blob/main/ML-Fundamental/Overfitting-underfitting.ipynb" target="_blank"> Understanding and Addressing Fitting Issues in Machine Learning Models</a></h2>
         <p>Overfitting and underfitting are two common problems encountered in machine learning. They occur when a machine learning model fails to generalize well to new data.</p>
         <figure>
           <img src="assets/img/data-engineering/overfitting.png" alt="" style="max-width: 70%; max-height: 70%;">
           <figcaption></figcaption>
         </figure>
-        <h4><strong>Overfitting</strong></h4>
-        <ul>
-          <li><strong>Description: </strong>Overfitting occurs when a machine learning model learns the training data too well, including the noise and irrelevant patterns. As a result, the model becomes too complex and fails to capture the underlying relationships in the data. This leads to poor performance on unseen data.</li>
-          <li><strong>Signs of overfitting: </strong> 
+        <ol>
+          <li><strong>Overfitting: </strong>
             <ul>
-              <li>The model performs well on the training data but poorly on unseen data.</li>
-              <li>The model is complex and has a large number of parameters.</li>
+              <li><strong>Description: </strong>Overfitting occurs when a machine learning model learns the training data too well, including the noise and irrelevant patterns. As a result, the model becomes too complex and fails to capture the underlying relationships in the data. This leads to poor performance on unseen data.</li>
+              <li><strong>Signs of overfitting: </strong> 
+                <ul>
+                  <li>The model performs well on the training data but poorly on unseen data.</li>
+                  <li>The model is complex and has a large number of parameters.</li>
+                </ul>
+              </li>
+              <li><strong>Causes: </strong>Too complex model, excessive training time, or insufficient regularization.</li>
             </ul>
           </li>
-          <li><strong>Causes: </strong>Too complex model, excessive training time, or insufficient regularization.</li>
-        </ul>
-
-        <h4><strong>Underfitting</strong></h4> 
-        <ul>
-          <li><strong>Description: </strong>Underfitting occurs when a machine learning model is too simple and does not capture the underlying relationships in the data. This results in poor performance on both the training data and unseen data.</li>
-          <li><strong>Signs of underfitting: </strong>
-            <ul>
-              <li>The model performs poorly on both the training data and unseen data.</li>
-              <li>The model is simple and has a small number of parameters.</li>
-            </ul>
-          </li>
-          <li><strong>Causes: </strong>Model complexity is too low, insufficient training, or inadequate feature representation.</li>
-        </ul>
-
-        <h4><strong>Bias (Systematic Error):</strong></h4>
-        <ul>
-            <li><strong>Description:</strong> The model consistently makes predictions that deviate from the true values.</li>
-            <li><strong>Symptoms:</strong> Consistent errors in predictions across different datasets.</li>
-            <li><strong>Causes:</strong> Insufficiently complex model, inadequate feature representation, or biased training data.</li>
-        </ul>
-
-        <h4><strong>Variance (Random Error):</strong></h4>
-        <ul>
-            <li><strong>Description:</strong> The model's predictions are highly sensitive to variations in the training data.</li>
-            <li><strong>Symptoms:</strong> High variability in predictions when trained on different subsets of the data.</li>
-            <li><strong>Causes:</strong> Too complex model, small dataset, or noisy training data.</li>
-        </ul>
-
-        <h4><strong>Data Leakage:</strong></h4>
-        <ul>
-            <li><strong>Description:</strong> Information from the validation or test set inadvertently influences the model during training.</li>
-            <li><strong>Symptoms:</strong> Overly optimistic evaluation metrics, unrealistic performance.</li>
-            <li><strong>Causes:</strong> Improper splitting of data, using future information during training.</li>
-        </ul>
-
-        <h4><strong>Model Instability:</strong></h4>
-        <ul>
-            <li><strong>Description:</strong> Small changes in the input data lead to significant changes in model predictions.</li>
-            <li><strong>Symptoms:</strong> Lack of robustness in the model's performance.</li>
-            <li><strong>Causes:</strong> Sensitivity to outliers, highly nonlinear relationships.</li>
-        </ul>
-
-        <h4><strong>Multicollinearity:</strong></h4>
-        <ul>
-            <li><strong>Description:</strong> High correlation among independent variables in regression models.</li>
-            <li><strong>Symptoms:</strong> Unstable coefficient estimates, difficulty in isolating the effect of individual variables.</li>
-            <li><strong>Causes:</strong> Redundant or highly correlated features.</li>
-        </ul>
-
-        <h4><strong>Imbalanced Data:</strong></h4>
-        <ul>
-            <li><strong>Description:</strong> A disproportionate distribution of classes in classification problems.</li>
-            <li><strong>Symptoms:</strong> Biased models toward the majority class, poor performance on minority classes.</li>
-            <li><strong>Causes:</strong> Inadequate representation of minority class, biased sampling.</li>
-        </ul>
-
-
-
-
-
-        <h4><strong></strong></h4>
+          
+  
+          <li><strong>Underfitting</strong></li> 
+          <ul>
+            <li><strong>Description: </strong>Underfitting occurs when a machine learning model is too simple and does not capture the underlying relationships in the data. This results in poor performance on both the training data and unseen data.</li>
+            <li><strong>Signs of underfitting: </strong>
+              <ul>
+                <li>The model performs poorly on both the training data and unseen data.</li>
+                <li>The model is simple and has a small number of parameters.</li>
+              </ul>
+            </li>
+            <li><strong>Causes: </strong>Model complexity is too low, insufficient training, or inadequate feature representation.</li>
+          </ul>
+  
+          <li><strong>Bias (Systematic Error):</strong></li>
+          <ul>
+              <li><strong>Description:</strong> The model consistently makes predictions that deviate from the true values.</li>
+              <li><strong>Symptoms:</strong> Consistent errors in predictions across different datasets.</li>
+              <li><strong>Causes:</strong> Insufficiently complex model, inadequate feature representation, or biased training data.</li>
+          </ul>
+  
+          <li><strong>Variance (Random Error):</strong></li>
+          <ul>
+              <li><strong>Description:</strong> The model's predictions are highly sensitive to variations in the training data.</li>
+              <li><strong>Symptoms:</strong> High variability in predictions when trained on different subsets of the data.</li>
+              <li><strong>Causes:</strong> Too complex model, small dataset, or noisy training data.</li>
+          </ul>
+  
+          <li><strong>Data Leakage:</strong></li>
+          <ul>
+              <li><strong>Description:</strong> Information from the validation or test set inadvertently influences the model during training.</li>
+              <li><strong>Symptoms:</strong> Overly optimistic evaluation metrics, unrealistic performance.</li>
+              <li><strong>Causes:</strong> Improper splitting of data, using future information during training.</li>
+          </ul>
+  
+          <li><strong>Model Instability:</strong></li>
+          <ul>
+              <li><strong>Description:</strong> Small changes in the input data lead to significant changes in model predictions.</li>
+              <li><strong>Symptoms:</strong> Lack of robustness in the model's performance.</li>
+              <li><strong>Causes:</strong> Sensitivity to outliers, highly nonlinear relationships.</li>
+          </ul>
+  
+          <li><strong>Multicollinearity:</strong></li>
+          <ul>
+              <li><strong>Description:</strong> High correlation among independent variables in regression models.</li>
+              <li><strong>Symptoms:</strong> Unstable coefficient estimates, difficulty in isolating the effect of individual variables.</li>
+              <li><strong>Causes:</strong> Redundant or highly correlated features.</li>
+          </ul>
+  
+          <li><strong>Imbalanced Data:</strong></li>
+          <ul>
+              <li><strong>Description:</strong> A disproportionate distribution of classes in classification problems.</li>
+              <li><strong>Symptoms:</strong> Biased models toward the majority class, poor performance on minority classes.</li>
+              <li><strong>Causes:</strong> Inadequate representation of minority class, biased sampling.</li>
+          </ul>
+        </ol>
         
+
+        <!-------- Preventing Overfitting    ------->
         <h4><strong>Preventing Overfitting and Underfitting</strong></h4> 
         There are a number of techniques that can be used to prevent overfitting and underfitting. These include:
+        <figure>
+          <img src="assets/img/data-engineering/overfitting-preventaion.png" alt="" style="max-width: 70%; max-height: 70%;">
+          <figcaption></figcaption>
+        </figure>
         <ul>
           <li><strong>Regularization:</strong> Regularization is a technique that penalizes complex models. This helps to prevent the model from learning the noise and irrelevant patterns in the training data. Common regularization techniques include L1 regularization, L2 regularization, and dropout.</li>
           <li><strong>Early stopping:</strong> Early stopping is a technique that stops training the model when it starts to overfit on the validation data. The validation data is a subset of the training data that is held out during training and used to evaluate the model's performance.</li>
           <li><strong>Cross-validation:</strong> Cross-validation is a technique that divides the training data into multiple folds. The model is trained on a subset of the folds and evaluated on the remaining folds. This process is repeated multiple times so that the model is evaluated on all of the data. Cross-validation can be used to select the best hyperparameters for the model.</li>
           <li><strong>Model selection:</strong> Model selection is a technique that compares different models and selects the one that performs best on the validation data. This can be done using a variety of techniques, such as k-fold cross-validation or Akaike Information Criterion (AIC).</li>
         </ul>
+        <figure>
+          <img src="assets/img/data-engineering/overfitting-preventaion1.png" alt="" style="max-width: 70%; max-height: 70%;">
+          <figcaption></figcaption>
+        </figure>
 
       </section>
 
