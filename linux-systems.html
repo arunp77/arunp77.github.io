@@ -34,6 +34,13 @@
   <script src="https://kit.fontawesome.com/5d25c1efd3.js" crossorigin="anonymous"></script>
   <!-- end of icon-->
 
+  <!-- Include Prism styles -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
+
+  <!-- Include Prism scripts -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"></script>
+
   <!-- =======================================================
   * Template Name: iPortfolio
   * Updated: Sep 18 2023 with Bootstrap v5.3.2
@@ -90,7 +97,7 @@
             <div class="d-flex justify-content-between align-items-center">
               <h2>Linux</h2>
               <ol>
-                <li><a href="Remote-sensing-content.html" class="clickable-box">Content section</a></li>
+                <li><a href="Data-engineering.html" class="clickable-box">Content-Data-engineering</a></li>
                 <li><a href="index.html#portfolio" class="clickable-box">Portfolio section</a></li>
               </ol>
             </div>
@@ -152,45 +159,206 @@
         Understanding its history and significance sets the stage for harnessing its potential in the data-centric world.
         Linux's journey began as a personal project by Linus Torvalds, a Finnish student, who aimed to create a free and open-source alternative to Unix. 
         Over the years, a collaborative effort by developers worldwide transformed Linux into a robust, community-driven OS. Its stability, security, and scalability have made it a cornerstone in server environments and, increasingly, a go-to for data professionals.
-
-        <h4>1.1. Significance of Linux in Data Science:</h4>
-        Linux's role in data-related fields cannot be overstated. Its open-source nature allows for customization, making it an ideal platform for handling vast datasets, running analytical processes, and managing data infrastructure. From data scientists running 
-        analyses to data engineers orchestrating workflows, Linux provides a stable and efficient environment.
-        <h4>1.2. Choosing the Right Distribution:</h4>
-        Linux comes in various distributions, each tailored for specific use cases. The choice of distribution depends on factors like user preferences, system requirements, and intended applications. Common distributions include:
         <ul>
-            <li><strong>Ubuntu:</strong> User-friendly and widely used, suitable for beginners.</li>
-            <li><strong>CentOS:</strong> Known for stability, often preferred for server environments.</li>
-            <li><strong>Arch Linux:</strong> Favored by enthusiasts for its minimalistic approach.</li>
+            <li><strong>Significance of Linux in Data Science:</strong></li>
+            Linux's role in data-related fields cannot be overstated. Its open-source nature allows for customization, making it an ideal platform for handling vast datasets, running analytical processes, and managing data infrastructure. From data scientists running 
+            analyses to data engineers orchestrating workflows, Linux provides a stable and efficient environment.
+            <li><strong>Choosing the Right Distribution:</strong>
+                Linux comes in various distributions, each tailored for specific use cases. The choice of distribution depends on factors like user preferences, system requirements, and intended applications. Common distributions include:
+                <ul>
+                    <li><strong>Ubuntu:</strong> User-friendly and widely used, suitable for beginners.</li>
+                    <li><strong>CentOS:</strong> Known for stability, often preferred for server environments.</li>
+                    <li><strong>Arch Linux:</strong> Favored by enthusiasts for its minimalistic approach.</li>
+                </ul>
+            </li>
+            <li><strong>Choose your distribution: </strong>
+                Among the plethora of Linux distributions, Ubuntu stands out for its user-friendly interface, 
+                extensive community support, and wide adoption. Particularly suitable for beginners, Ubuntu simplifies the transition to 
+                Linux without compromising functionality. Ubuntu is a Linux distribution or operating system based on the Linux kernel. 
+            </li>
         </ul>
-
-        <h4>1.3. Choose your distribution</h4>
-        Among the plethora of Linux distributions, Ubuntu stands out for its user-friendly interface, 
-        extensive community support, and wide adoption. Particularly suitable for beginners, Ubuntu simplifies the transition to 
-        Linux without compromising functionality. Ubuntu is a Linux distribution or operating system based on the Linux kernel. 
-        <br>
+        
+       
         <div class="box">
+            <h4><a href="https://wiki.ubuntuusers.de/Desktop/" target="_blank">UBUNTU</a></h4>
             <strong>About UBUNTU:</strong> Ubuntu is built upon the <a href="https://www.debian.org/" target="_blank">Debian architecture</a>, inheriting its stability and <a href="https://en.wikipedia.org/wiki/List_of_software_package_management_systems" target="_blank">package management system</a>.
             Debian refers to an operating system or distribution that is built upon the Debian Linux distribution. Debian is one of the oldest and most influential Linux distributions, known for its commitment to free and open-source software principles. 
+            Debian package files typically have the extension <code>.deb</code>.
             Many other <a href="https://en.wikipedia.org/wiki/List_of_Linux_distributions" target="_blank">Linux distributions</a>, including Ubuntu, are derived from Debian.
             <p></p>
             <ul>
                 <li><strong>Versions: </strong>Ubuntu has two types of releases - Long Term Support (LTS) and regular releases. LTS versions are supported for five years, providing a stable platform, while regular releases are supported for nine months and include the latest features.</li>
                 <li><strong>Desktop Environments: </strong>
                     <ul>
-                        <li><strong>Unity (discontinued):</strong> Historically, Ubuntu used the Unity desktop environment. However, starting from version 17.04, Ubuntu switched back to GNOME as its default desktop environment.</li>
+                        <li><strong><a href="https://en.wikipedia.org/wiki/Unity" target="_blank">Unity (discontinued)</a>:</strong> Historically, Ubuntu used the Unity desktop environment. However, starting from version 17.04, Ubuntu switched back to GNOME as its default desktop environment.</li>
                         <li><strong><a href="https://www.gnome.org/" target="_blank">GNOME</a>:</strong> The default desktop environment for Ubuntu since version 17.04, known for its simplicity and flexibility.</li>
                     </ul>
                 </li>
-                <li><strong>Package Management: </strong>Ubuntu uses APT (<a href="https://ubuntu.com/server/docs/package-management" target="_blank">Advanced Package Tool</a>) for package management. It simplifies the process of installing, updating, and removing software packages.</li>
-                <li><strong></strong></li>
-                <li><strong></strong></li>
-            </ul>
-        </div>
-        
-
-        <p></p>
-        To install it, you can follow 
+                <li><strong>Package Management: </strong>Ubuntu uses APT (<a href="https://ubuntu.com/server/docs/package-management" target="_blank">Advanced Package Tool</a>) for package management. It simplifies the process of installing, updating, and removing software packages.
+                    The <code>apt</code> command is a powerful command-line tool, which works with Ubuntu’s Advanced Packaging Tool (APT). Some examples of popular uses for the apt is: <br> 
+                    <pre><code>sudo apt upgrade</code></pre> 
+                </li>
+                <li><strong><a href="https://ubuntu.com/blog/tag/ubuntu-software-center" target="_blank"> Software Center</a>: </strong>A user-friendly graphical interface for managing software on Ubuntu. Users can browse and install applications with ease.</li>
+                <li><strong>Community and Support:</strong>Ubuntu has a vast and active user community. Online forums, documentation, and community-driven support contribute to its accessibility for users of all levels.</li>
+                <li><strong><a href="https://ubuntu.com/server" target="_blank"> Server Edition: </a></strong> Apart from the desktop edition, Ubuntu offers a server edition that is widely used for server deployments. It includes features like the Landscape server management tool and optimized server packages.</li>
+                <li><strong><a href="https://ubuntu.com/cloud" target="_blank"></a> Cloud Integration: </strong>Ubuntu is a popular choice for cloud computing. It is supported on major cloud platforms, including AWS, Google Cloud Platform (GCP), and Microsoft Azure.</li>
+                <li><strong><a href="https://ubuntu.com/core/services/guide/snaps-intro" target="_blank"> Snap Packages</a></strong>Ubuntu introduced the Snap packaging system, allowing developers to package their applications with all dependencies included. This provides a more isolated and secure environment for applications. This package is just like Docker containerization.
+                    <table>
+                        <tr>
+                            <th class="colored-header" colspan="3">Similarities</th>
+                        </tr>
+                        <tr>
+                            <th>Aspect</th>
+                            <th>Ubuntu Snap Packages</th>
+                            <th>Docker</th>
+                        </tr>
+                        <tr>
+                            <td>Containerization</td>
+                            <td>✔</td>
+                            <td>✔</td>
+                        </tr>
+                        <tr>
+                            <td>Cross-Platform Compatibility</td>
+                            <td>✔</td>
+                            <td>✔</td>
+                        </tr>
+                        <tr>
+                            <td>Isolation</td>
+                            <td>✔</td>
+                            <td>✔</td>
+                        </tr>
+                        <tr>
+                            <td>Ease of Deployment</td>
+                            <td>✔</td>
+                            <td>✔</td>
+                        </tr>
+                        <tr>
+                            <td>Versioning</td>
+                            <td>✔</td>
+                            <td>✔</td>
+                        </tr>
+                        <tr>
+                            <th colspan="3">Differences</th>
+                        </tr>
+                        <tr>
+                            <td>Packaging Format</td>
+                            <td>Self-contained Snap package</td>
+                            <td>Layered file system approach</td>
+                        </tr>
+                        <tr>
+                            <td>Application Lifecycle</td>
+                            <td>User-friendly, automatic updates</td>
+                            <td>Emphasis on entire application stack</td>
+                        </tr>
+                        <tr>
+                            <td>Use Cases</td>
+                            <td>Desktop, server, IoT applications</td>
+                            <td>DevOps, microservices</td>
+                        </tr>
+                        <tr>
+                            <td>Ecosystem</td>
+                            <td>Ubuntu-centric</td>
+                            <td>Widely adopted across Linux distributions, broader industry support</td>
+                        </tr>
+                        <tr>
+                            <td>Container Orchestration</td>
+                            <td>Not designed for large-scale orchestration</td>
+                            <td>Docker Swarm, Kubernetes support</td>
+                        </tr>
+                    </table>
+                </li>
+                <li><strong><a href="https://ubuntu.com/server/docs/security-apparmor" target="_blank">Security:</a></strong> Ubuntu employs AppArmor, a Linux kernel security module, to restrict programs' capabilities to enhance system security.</li>
+                <li><strong>Commonly used linux commands: </strong>
+                    <table>
+                        <tr>
+                            <th>Command</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td><code>ls</code></td>
+                            <td>List files and directories in the current directory.</td>
+                        </tr>
+                        <tr>
+                            <td><code>cd</code></td>
+                            <td>Change the current directory.</td>
+                        </tr>
+                        <tr>
+                            <td><code>pwd</code></td>
+                            <td>Print the current working directory.</td>
+                        </tr>
+                        <tr>
+                            <td><code>cp</code></td>
+                            <td>Copy files or directories.</td>
+                        </tr>
+                        <tr>
+                            <td><code>mv</code></td>
+                            <td>Move or rename files or directories.</td>
+                        </tr>
+                        <tr>
+                            <td><code>rm</code></td>
+                            <td>Remove (delete) files or directories.</td>
+                        </tr>
+                        <tr>
+                            <td><code>mkdir</code></td>
+                            <td>Create a new directory.</td>
+                        </tr>
+                        <tr>
+                            <td><code>rmdir</code></td>
+                            <td>Remove an empty directory.</td>
+                        </tr>
+                        <tr>
+                            <td><code>touch</code></td>
+                            <td>Create an empty file.</td>
+                        </tr>
+                        <tr>
+                            <td><code>nano</code></td>
+                            <td>Open the Nano text editor.</td>
+                        </tr>
+                        <tr>
+                            <td><code>cat</code></td>
+                            <td>Display the contents of a file.</td>
+                        </tr>
+                        <tr>
+                            <td><code>chmod</code></td>
+                            <td>Change file permissions.</td>
+                        </tr>
+                        <tr>
+                            <td><code>chown</code></td>
+                            <td>Change file ownership.</td>
+                        </tr>
+                        <tr>
+                            <td><code>ps</code></td>
+                            <td>Display information about running processes.</td>
+                        </tr>
+                        <tr>
+                            <td><code>kill</code></td>
+                            <td>Send a signal to a process, terminating it.</td>
+                        </tr>
+                        <tr>
+                            <td><code>df</code></td>
+                            <td>Display disk space usage.</td>
+                        </tr>
+                        <tr>
+                            <td><code>du</code></td>
+                            <td>Display file and directory space usage.</td>
+                        </tr>
+                        <tr>
+                            <td><code>top</code></td>
+                            <td>Display and manage system processes in real-time.</td>
+                        </tr>
+                        <tr>
+                            <td><code>apt</code></td>
+                            <td>Advanced Package Tool for managing software packages.</td>
+                        </tr>
+                        <tr>
+                            <td><code>sudo</code></td>
+                            <td>Execute a command as the superuser (root).</td>
+                        </tr>
+                    </table>
+                    
+                </li>
+            </ul> 
+            To install it, you can follow 
         <a href="https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview" target="_blank">step by step guide to install Ubuntu</a>.
             <ul>
                 <li><strong>Download Ubuntu ISO:</strong></li>
@@ -213,22 +381,132 @@
                         </li>
                         <li><strong>WIndows:</strong> YOu can follow instrunction provided at <a href="https://learn.microsoft.com/en-us/windows-server-essentials/install/create-a-bootable-usb-flash-drive" target="_blank">Create a Bootable USB Flash Drive</a></li>
                     </ul>
-                
-                
                 </li> 
-                <li><strong></strong></li>
-                <li><strong></strong></li>
-                <li><strong></strong></li>
-                <li><strong></strong></li>
-                <li><strong></strong></li>
-                <li><strong></strong></li>
             </ul>
-
+        </div>
       </section>
 
 
       <section id="chapter-2">
         <h3>Chapter-2: Navigating the Terminal</h3>
+        <table>
+            <tr>
+                <th>Description</th>
+                <th>Command</th>
+            </tr>
+            <tr>
+                <td>Display the current working directory</td>
+                <td>
+                    <pre><code class="language-bash">pwd</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>List files and directories in the current directory</td>
+                <td>
+                    <pre><code class="language-bash">ls</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>List files with details.</td>
+                <td><pre><code class="language-bash">ls -l</code></pre></td>
+            </tr>
+            <tr>
+                <td>List hidden files.</td>
+                <td><pre><code class="language-bash">ls -a</code></pre></td>
+            </tr>
+            <tr>
+                <td>Change directory to a specific path</td>
+                <td>
+                    <pre><code class="language-bash">cd /path/to/directory</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>Move up one directory</td>
+                <td>
+                    <pre><code class="language-bash">cd ..</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>Move to the home directory</td>
+                <td>
+                    <pre><code class="language-bash">cd ~</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>Move to the previous directory</td>
+                <td>
+                    <pre><code class="language-bash">cd -</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>Navigate to the Root Directory</td>
+                <td>
+                    <pre><code class="language-bash">cd /</code></pre>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Create a new directory</td>
+                <td>
+                    <pre><code class="language-bash">mkdir new_directory</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>Remove a directory</td>
+                <td>
+                    <pre><code class="language-bash">rmdir existing_directory</code></pre>
+                </td>
+            </tr>
+            <!-- Add more rows for additional commands -->
+            <tr>
+                <td>Navigate to the User's Home Directory</td>
+                <td>
+                    <pre><code class="language-bash">cd</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>Go Back Multiple Directories</td>
+                <td>
+                    <pre><code class="language-bash">cd ../..</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>Go to a Specific User's Home Directory</td>
+                <td>
+                    <pre><code class="language-bash">cd ~username</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <pre><code class="language-bash"></code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <pre><code class="language-bash"></code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <pre><code class="language-bash"></code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <pre><code class="language-bash"></code></pre>
+                </td>
+            </tr><tr>
+                <td></td>
+                <td>
+                    <pre><code class="language-bash"></code></pre>
+                </td>
+            </tr>
+        </table>
+    
         
       </section>
 
@@ -276,10 +554,158 @@
         <h3>Chapter-9: Securing Your Linux System</h3>
         
       </section>
-
+      
 
       <section id="chapter-10">
         <h3>Chapter-10: Advanced Linux Topics</h3>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Command</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>find</td>
+                <td><code class="language-bash">find /path/to/search -name "*.txt" -type f</code></td>
+                <td>Search for files and directories based on criteria.</td>
+            </tr>
+            <tr>
+                <td>grep</td>
+                <td><code class="language-bash">grep "pattern" filename</code></td>
+                <td>Search for patterns in files or command output.</td>
+            </tr>
+            <tr>
+                <td>awk</td>
+                <td><code class="language-bash">awk '{print $1}' filename</code></td>
+                <td>Powerful text processing tool for data extraction.</td>
+            </tr>
+            <tr>
+                <td>sed</td>
+                <td><code class="language-bash">sed 's/old-text/new-text/' filename</code></td>
+                <td>Stream editor for text filtering and transformation.</td>
+            </tr>
+            <tr>
+                <td>rsync</td>
+                <td><code class="language-bash">rsync -av source/ destination/</code></td>
+                <td>Efficiently synchronize files and directories between two locations.</td>
+            </tr>
+            
+            <tr>
+                <td>tar</td>
+                <td><code class="language-bash">tar -cvzf archive.tar.gz /path/to/directory</code></td>
+                <td>Create, compress, or extract archive files.</td>
+            </tr>
+            <tr>
+                <td>curl</td>
+                <td><code class="language-bash">curl -O https://example.com/file.txt</code></td>
+                <td>Transfer data to or from a server using various protocols (HTTP, FTP, etc.).</td>
+            </tr>
+            <tr>
+                <td>wget</td>
+                <td><code class="language-bash">wget https://example.com/file.zip</code></td>
+                <td>Retrieve files from the internet using HTTP, HTTPS, or FTP.</td>
+            </tr>
+            <tr>
+                <td>ps</td>
+                <td><code class="language-bash">ps aux | grep process_name</code></td>
+                <td>Display information about active processes.</td>
+            </tr>
+            <tr>
+                <td>kill</td>
+                <td><code class="language-bash">kill -9 process_id</code></td>
+                <td>Terminate a process by sending a signal.</td>
+            </tr>
+            <tr>
+                <td>lsof</td>
+                <td><code class="language-bash">lsof /path/to/file</code></td>
+                <td>List open files and processes that opened them.</td>
+            </tr>
+            <tr>
+                <td>netstat</td>
+                <td><code class="language-bash">netstat -tulpn</code></td>
+                <td>Display network-related information such as open ports and connections.</td>
+            </tr>
+            <tr>
+                <td>iptables</td>
+                <td><code class="language-bash">Configure the Linux kernel firewall.</code></td>
+                <td>sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT</td>
+            </tr>
+            <tr>
+                <td>systemctl</td>
+                <td><code class="language-bash">systemctl status service_name</code></td>
+                <td>Control the systemd system and service manager.</td>
+            </tr>
+            <tr>
+                <td>journalctl</td>
+                <td><code class="language-bash">journalctl -xe</code></td>
+                <td>Query and display messages from the journal, managed by systemd</td>
+            </tr>
+            <tr>
+                <td>useradd and usermod</td>
+                <td><code class="language-bash">
+                    sudo useradd new_user  <br>
+                    sudo usermod -aG sudo new_user
+                </code></td>
+                <td>Create or modify user accounts on the system.</td>
+            </tr>
+            <tr>
+                <td>chroot</td>
+                <td><code class="language-bash">sudo chroot /path/to/new/root /bin/bash</code></td>
+                <td>Run a command or interactive shell with a different root directory.</td>
+            </tr>
+            <tr>
+                <td>nice and renice</td>
+                <td><code class="language-bash">
+                    nice -n 10 command<br>
+                    renice +5 -p process_id
+                </code></td>
+                <td>Set or adjust the priority of a process.</td>
+            </tr>
+            <tr>
+                <td>screen and tmux</td>
+                <td><code class="language-bash">
+                    screen<br>
+                    tmux
+                </code></td>
+                <td>Terminal multiplexers that allow multiple sessions in a single terminal.</td>
+            </tr>
+            <tr>
+                <td>at and cron</td>
+                <td><code class="language-bash">
+                    at now + 1 hour <br>
+                    crontab -e
+                </code></td>
+                <td>Schedule tasks to run at a specific time using at, or periodically using cron.</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><code class="language-bash"></code></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><code></code></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><code></code></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><code></code></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><code></code></td>
+                <td></td>
+            </tr>
+
+
+
+        </table>
         
       </section>
 
@@ -299,9 +725,7 @@
     <section id="reference">
       <h2>References</h2>
       <ul>
-        <li>My github Repositories on Remote sensing <a href="https://github.com/arunp77/EUMETSET-courses" target="_blank">Atmosphere and remote sensing</a></li>
-        <li>Good reference: <a href="https://natural-resources.canada.ca/maps-tools-and-publications/satellite-imagery-and-air-photos/tutorial-fundamentals-remote-sensing/9309" target="_blank">Remote Sensing Tutorials</a> </li>
-        <li>https://rutwikroutu.medium.com/introduction-to-gis-for-beginners-ebc6d27e235a</li>
+        <li><a href="https://linuxsimply.com/linux-basics/package-management/update-packages/sudo-apt-update/#:~:text=The%20sudo%20apt%20update%20command%20is%20used%20to%20download%20or,on%20the%20latest%20package%20information." target="_blank">A Complete Overview of “sudo apt update” Command in Linux</a></li>
       </ul>
     </section>
 

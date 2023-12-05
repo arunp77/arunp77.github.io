@@ -1228,6 +1228,11 @@ tr:hover {
   background-color: #d3d3d3; /* hover effect */
 }
 
+th.colored-header {
+  background-color: black;
+  color: white;
+}
+
 @media (max-width: 600px) {
   table {
     width: 100%;
@@ -1373,4 +1378,13 @@ img {
   border: 2px solid #000000; /* Black border */
   padding: 20px; /* Adjust padding as needed */
   margin: 20px; /* Adjust margin as needed */
+}
+
+
+.bash {
+  font-family: Consolas, monospace;
+  background-color: #f4f4f4;
+  padding: 2px 4px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
