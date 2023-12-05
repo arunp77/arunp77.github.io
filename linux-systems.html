@@ -445,18 +445,7 @@
                 </td>
             </tr>
 
-            <tr>
-                <td>Create a new directory</td>
-                <td>
-                    <pre><code class="language-bash">mkdir new_directory</code></pre>
-                </td>
-            </tr>
-            <tr>
-                <td>Remove a directory</td>
-                <td>
-                    <pre><code class="language-bash">rmdir existing_directory</code></pre>
-                </td>
-            </tr>
+            
             <!-- Add more rows for additional commands -->
             <tr>
                 <td>Navigate to the User's Home Directory</td>
@@ -477,32 +466,81 @@
                 </td>
             </tr>
             <tr>
-                <td></td>
+                <td>Display the Contents of a File</td>
                 <td>
-                    <pre><code class="language-bash"></code></pre>
+                    <pre><code class="language-bash">cat filename</code></pre>
                 </td>
             </tr>
             <tr>
-                <td></td>
+                <td>Display the First Few Lines of a File:</td>
                 <td>
-                    <pre><code class="language-bash"></code></pre>
+                    <pre><code class="language-bash">head filename</code></pre>
                 </td>
             </tr>
             <tr>
-                <td></td>
+                <td>Display the Last Few Lines of a File</td>
                 <td>
-                    <pre><code class="language-bash"></code></pre>
+                    <pre><code class="language-bash">tail filename</code></pre>
                 </td>
             </tr>
             <tr>
-                <td></td>
+                <td>Display the Contents of a File Page by Page</td>
                 <td>
-                    <pre><code class="language-bash"></code></pre>
+                    <pre><code class="language-bash">less filename</code></pre>
                 </td>
-            </tr><tr>
-                <td></td>
+            </tr>
+            <tr>
+                <td>Copy Files or Directories</td>
                 <td>
-                    <pre><code class="language-bash"></code></pre>
+                    <pre><code class="language-bash">cp source destination</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>Move or Rename Files or Directories</td>
+                <td>
+                    <pre><code class="language-bash">mv source destination</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>Remove/Delete Files</td>
+                <td>
+                    <pre><code class="language-bash">rm filename</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>Remove/Delete Directory and its Contents</td>
+                <td>
+                    <pre><code class="language-bash">rm -r directory</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>Create an Empty File</td>
+                <td>
+                    <pre><code class="language-bash">touch filename</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>Display the Manual (Help) for a Command</td>
+                <td>
+                    <pre><code class="language-bash">man command</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>Create a Symbolic Link (Soft Link)</td>
+                <td>
+                    <pre><code class="language-bash">ln -s source_link destination_link</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>Create a new directory</td>
+                <td>
+                    <pre><code class="language-bash">mkdir new_directory</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td>Remove a directory</td>
+                <td>
+                    <pre><code class="language-bash">rmdir existing_directory</code></pre>
                 </td>
             </tr>
         </table>
@@ -512,40 +550,247 @@
 
       <section id="chapter-3">
         <h3>Chapter-3: Understanding the File System</h3>
-        
-        
-        
+        <p>The file system is a crucial component of any operating system. It organizes and manages files and directories, providing a structured way to store and retrieve data. Here are some fundamental concepts:</p>
+        <figure>
+            <img src="assets/img/data-engineering/file-systems-ubuntu.jpg" alt="" style="max-width: 80%; max-height: 80%;">
+            <figcaption></figcaption>
+            </figure>
+        <ol>
+            <li><strong>Directory Structure</strong></li>
 
-
-
+            <p>The file system is organized into a hierarchical structure with directories (folders) and files. Each directory can contain files and subdirectories, creating a tree-like structure.</p>
+    
+            <li><strong>Path Notation</strong></li>
+    
+            <p>Paths are used to specify the location of a file or directory. Absolute paths start from the root directory ("/" in Unix-like systems), while relative paths are relative to the current working directory.</p>
+    
+            <li><strong>Common Directories</strong></li>
+    
+            <p>Several standard directories have specific purposes:</p>
+    
+                <ul>
+                    <li><code>/</code>: The root directory.</li>
+                    <li><code>/home</code>: Home directories for users.</li>
+                    <li><code>/bin</code>: Essential command binaries.</li>
+                    <li><code>/etc</code>: System configuration files.</li>
+                    <li><code>/var</code>: Variable data, such as logs and spool files.</li>
+                    <li><code>/tmp</code>: Temporary files.</li>
+                </ul>
+    
+            <li><strong>File Permissions</strong></li>
+    
+            <p>Files and directories have associated permissions, specifying who can read, write, or execute them. Permissions are represented in a symbolic or numeric notation.</p>
+    
+            <li><strong>File Types</strong></li>
+    
+            <p>Files can be of various types, including regular files, directories, symbolic links, and device files. The <code>file</code> command can be used to determine the file type.</p>
+    
+            <!-- Include a code block for better formatting -->
+            <pre>
+                <code class="language-bash">
+                    # Example: Using the file command
+                    file filename
+                </code>
+            </pre>
+    
+            <p>Understanding these concepts is essential for effective navigation and management of the file system in the terminal.</p>
+        </ol>
       </section>
 
       <section id="chapter-4">
         <h3>Chapter-4: Package Management in Linux</h3>
+            Here are some of the key package managers used in Ubuntu:
+            <ol>
+                <li><strong>APT (Advanced Package Tool):</strong>
+                    <ul>
+                        <li><strong>Description: </strong>APT is the default package management system for Ubuntu and many other Debian-based distributions.</li>
+                        <li><strong>Usage: </strong>Commands like <code>apt-get</code> and <code>apt</code> are used for installing, updating, and removing packages.</li>
+                        <li><strong>Advantages: </strong>APT resolves dependencies automatically, making software management more straightforward. It also provides a clean and consistent way to interact with packages.</li>
+                    </ul>
+                </li>
+                <li><strong>dpkg:</strong>
+                    <ul>
+                        <li><strong>Description: </strong>While not a package manager per se, dpkg is the underlying tool that APT uses to install, remove, and manage packages.</li>
+                        <li><strong>Usage: </strong>Directly interacts with Debian package files (<code>*.deb</code>). Commands like </code>dpkg -i</code> are used for manual package installation.</li>
+                        <li><strong>Advantages: </strong>Allows for low-level package management, useful for troubleshooting or installing packages directly.</li>
+                    </ul>
+                </li>
+                <li><strong>Snap:</strong>
+                    <ul>
+                        <li><strong>Description: </strong>Snap is a containerized package management system that includes the application and its dependencies in a single package.</li>
+                        <li><strong>Usage: </strong>Commands like <code>snap</code> install are used to install Snap packages.</li>
+                        <li><strong>Advantages: </strong>Snaps are isolated from the system, reducing potential conflicts between packages. They also provide more up-to-date versions of certain software.</li>
+                    </ul>
+                </li>
+                <li><strong>Flatpak</strong>
+                    <ul>
+                        <li><strong>Description: </strong>Similar to Snap, Flatpak is a universal package manager that allows for the distribution of applications across different Linux distributions.</li>
+                        <li><strong>Usage: </strong>Commands like <code>flatpak install</code> are used for managing Flatpak packages.</li>
+                        <li><strong>Advantages: </strong>Offers sandboxing for applications, improving security. Flatpak provides a consistent environment across different Linux distributions.</li>
+                    </ul>
+                </li>
+                <li><strong>Synaptic Package Manager</strong>
+                    <ul>
+                        <li><strong>Description: </strong>Synaptic is a graphical package management tool that utilizes APT for package operations.</li>
+                        <li><strong>Usage: </strong>Offers a user-friendly interface for installing, updating, and removing packages.</li>
+                        <li><strong>Advantages: </strong>Useful for those who prefer a graphical interface over command-line interactions. It provides more detailed package information and a visual representation of package relationships.</li>
+                    </ul>
+                </li>
+                <li><strong>Aptitude</strong>
+                    <ul>
+                        <li><strong>Description: </strong>Aptitude is a text-based package manager that works on top of APT.</li>
+                        <li><strong>Usage: </strong>Commands like <code>aptitude install</code> are used for managing packages.</li>
+                        <li><strong>Advantages: </strong>Provides a more user-friendly, interactive interface for package management. It includes features like searching, filtering, and dependency resolution.</li>
+                    </ul>
+                </li>
+            </ol>
         
       </section>
 
 
       <section id="chapter-5">
         <h3>Chapter-5: User Management</h3>
-        
+        In this chapter, we will delve into creating and managing users effectively, as well as understanding user permissions and group management.
+        <ul>
+            <li><strong>Creating Users: </strong> <pre><code class="language-bash">sudo adduser new_username</code></pre> 
+                Follow the prompts to set a password and provide additional user details.
+            </li>
+            <li><strong>Managing Users: </strong> Listing Users: <pre><code class="language-bash">cat /etc/passwd</code></pre><br> Modifying User Propertie:
+                <pre><code class="language-bash">sudo usermod -l new_username old_username</code></pre> <br>
+                Deleting a User <pre><code class="language-bash"></code>sudo userdel username</pre>
+            </li>
+            <li><strong>User Permissions: </strong>Assigning Permissions using chmod: (For instance, to give read, write, and execute permissions to the user) <pre><code class="language-bash">chmod u+rwx file_name</code></pre>
+                Viewing Permissions (Check current permissions with the ls command): <pre><code class="language-bash">ls -l file_name</code></pre>
+            </li>
+            <li><strong>Group Management: </strong>Groups allow efficient permission management by grouping users with similar access requirements.
+                <ul>
+                    <li><strong>Creating a Group: </strong>Use the addgroup command to create a new group.<pre><code class="language-bash">sudo addgroup new_group</code></pre></li>
+                    <li><strong>Adding Users to a Group: </strong>The usermod command helps add users to groups. <pre><code class="language-bash">sudo usermod -aG group_name username</code></pre></li>
+                    <li><strong>Viewing Group Details: </strong>Check group details with the getent command. <pre><code class="language-bash">getent group</code></pre></li>
+                </ul>
+            </li>
+        </ul>
       </section>
 
 
       <section id="chapter-6">
         <h3>Chapter-6: Processes and Services</h3>
+              
+              <ol>
+                <li>
+                  <strong>Monitoring Processes Efficiently:</strong>
+                  <ul>
+                    <li><strong><code>top</code> Command:</strong> Ubuntu provides the <code>top</code> command to monitor running processes in real-time. By typing <code>top</code> in the terminal, you get a dynamic view of processes, their resource usage, and other system information. You can sort processes based on CPU or memory usage to identify bottlenecks.</li>
+                    <li><strong><code>ps</code> Command:</strong> The <code>ps</code> command is another powerful tool to display detailed information about processes. For example, <code>ps aux</code> shows a comprehensive list of all processes running on the system, including their resource utilization.</li>
+                    <li><strong><code>htop</code> command:</strong> Consider installing <code>htop</code> for a more user-friendly and interactive process monitoring experience. It provides a visual representation of processes, their resource consumption, and allows for easy navigation.</li>
+                  </ul>
+                </li>
+                <li>
+                  <strong>Managing Processes:</strong>
+                  <ul>
+                    <li><strong><code>kill</code> Command:</strong> To terminate a process, you can use the <code>kill</code> command. For example, <code>kill 'PID'</code> will end the process with the specified process ID.</li>
+                    <li><strong><code>pkill</code> Command:</strong> If you want to kill a process by its name, you can use <code>pkill</code>. For instance, <code>pkill firefox</code> will terminate all processes associated with Firefox.</li>
+                    <li><strong><code>killall</code> Command:</strong> Similar to  <code>pkill</code>, <code>killall</code> terminates processes by name. For example, <code>killall gnome-terminal</code> will close all open terminal windows.</li>
+                  </ul>
+                </li>
+                <li>
+                  <strong>Managing Services:</strong>
+                  <ul>
+                    <li><strong><code>systemctl</code> Command:</strong> Ubuntu uses <code>systemctl</code> to control system services. You can start, stop, restart, and check the status of services using commands like <code>sudo systemctl start 'service'</code>, <code>sudo systemctl stop 'service'</code>, <code>sudo systemctl restart 'service'</code>, and <code>sudo systemctl status 'service'</code>.</li>
+                    <li><strong><code>service</code> Command:</strong> The traditional <code>service</code> command is also available. For instance, sudo service apache2 restart will restart the Apache web server.</li>
+                    <li><strong>Enable and Disable Services:</strong> Use <code>sudo systemctl enable</code> to enable a service to start on boot and <code>sudo systemctl disable</code> to disable it...</li>
+                    <li><strong>Checking Service Logs:</strong> Logs are crucial for troubleshooting. Utilize <code>journalctl</code> to view detailed logs for a specific service...</li>
+                  </ul>
+                </li>
+              </ol>
+
         
       </section>
 
 
       <section id="chapter-7">
         <h3>Chapter-7: Networking Essentials</h3>
+        <ol>
+            <li><strong>Grasping the Basics:</strong>
+               <ul>
+                   <li><strong>Network Configuration Files: </strong>Ubuntu uses configuration files like <code>/etc/network/interfaces</code> for static IP addresses and <code>/etc/netplan/</code> for dynamic configurations. Learn how to navigate and edit these files to set up your network.</li>
+                 <li><strong>IP Addressing: </strong>Grasp the fundamentals of IP addressing, subnetting, and the concept of localhost (127.0.0.1). Understand how to assign static IPs or use DHCP for dynamic assignments.</li>
+                <li><strong>Network Interfaces: </strong>Explore the different network interfaces on your Ubuntu system. The primary interface is often named 'eth0' for Ethernet connections, but it can vary. Learn how to identify and configure these interfaces.</li>
+              </ul>
+          <li><strong>Configuring Network Settings:</strong>
+             <ul>
+                 <li><strong>Command Line Configuration: </strong>Ubuntu provides command-line tools like <code>ifconfig</code> and <code>ip</code> for quick network configuration. Dive into these commands to set IP addresses, configure routes, and manage network interfaces.</li>
+                 <li><strong>Netplan for Dynamic Configuration: </strong>Ubuntu has adopted Netplan as the default network configuration tool. Understand the YAML syntax used in Netplan configuration files (/etc/netplan/*.yaml) and leverage it for dynamic network setups.</li>
+                 <li><strong>Network Manager GUI: </strong>Ubuntu offers a user-friendly Network Manager GUI. Explore its features for easy point-and-click network configuration. Learn to set up wired or wireless connections, VPNs, and manage network profiles.</li>
+             </ul>
+          </li>
+          <li><strong>Troubleshooting Common Issues:</strong>
+            <ul>
+                <li><strong>Checking Connectivity: </strong>Use commands like <code>ping</code> and <code>traceroute</code> to check connectivity to other devices or websites. Understand how to interpret the results and troubleshoot issues.</li>
+                <li><strong>Reviewing Logs: </strong>Dive into system logs (<code>/var/log/syslog</code>, <code>/var/log/dmesg</code>) to identify and troubleshoot network-related problems. Learn to use tools like <code>journalctl</code> to streamline log analysis.</li>
+                <li><strong>Firewall Configuration: </strong>Ubuntu comes with the Uncomplicated Firewall (UFW). Understand how to configure UFW to allow or deny specific network traffic. Learn to open ports for services and applications.</li>
+            </ul>
+         </li>
+          </ol>
         
       </section>
 
 
       <section id="chapter-8">
         <h3>Chapter-8: Shell Scripting for Automation</h3>
+        Bash scripting is a powerful tool that can significantly enhance your productivity on Ubuntu. As a data professional, automating repetitive tasks through scripting not only saves time but also ensures consistency in your processes. In this chapter, we'll explore the basics of Bash scripting and guide you through writing simple scripts tailored for automating common tasks.
+        <br>
+        
+        <ul>
+            <li><strong>Understanding Bash Scripting: </strong>Bash (Bourne Again SHell) is the default shell for Ubuntu, providing a command-line interface to interact with the operating system. Bash scripting allows you to automate sequences of commands, making it a valuable skill for streamlining tasks.</li>
+            <li><strong>Writing Your First Script: </strong>Let's start by creating a simple "Hello World" script to get familiar with the basics. Open a text editor on Ubuntu, such as Nano or Vim, and create a new file, for example, hello.sh. Add the following lines:
+            <pre><code class="language-bash">
+                #!/bin/bash
+                echo "Hello, World!"
+            </code></pre>
+            Save the file and exit the text editor. Make the script executable by running:
+            <pre><code class="language-bash">chmod +x hello.sh</code></pre>
+            Now, you can execute your script:
+            <pre><code>./hello.sh</code></pre>
+            Congratulations! You've just written and executed your first Bash script.
+            </li>
+            <li><strong>Variables and Input: </strong>Bash allows you to use variables to store and manipulate data. Let's enhance our script to take input from the user:
+            <pre><code class="language-bash">
+                #!/bin/bash
+                echo "Enter your name:"
+                read username
+                echo "Hello, $username! Welcome to the world of Bash scripting."
+                </code></pre>
+
+                <figure>
+                    <img src="assets/img/data-engineering/scripting.png" alt="" style="max-width: 80%; max-height: 80%;">
+                    <figcaption></figcaption>
+                </figure>
+            </li>
+            <li><strong>Conditional Statements: </strong>Bash supports conditional statements for decision-making in scripts. For example, let's create a script that checks if a number is even or odd:
+            <pre><code class="language-bash">
+                #!/bin/bash
+                echo "Enter a number:"
+                read num
+
+                if [ $((num % 2)) -eq 0 ]; then
+                echo "$num is even."
+                else
+                echo "$num is odd."
+                fi
+            </code></pre>
+            Once you run the file 'hello.sh' using <code>./hello.sh</code>, it will ask a number (lets suppose it is 12). If number is even then it will give <code></code>12 is even</code>.
+            </li>
+            <li><strong>Looping Constructs: </strong>For automating repetitive tasks, loops are crucial. Consider a script that prints numbers from 1 to 5:
+                <pre><code class="language-bash">
+                    #!/bin/bash
+                    for i in {1..5}; do
+                    echo $i
+                    done
+                </code></pre>
+                Run the script to observe how it iterates through the loop, printing numbers from 1 to 5.
+            </li>
+        </ul>
         
       </section>
 
@@ -643,8 +888,9 @@
             <tr>
                 <td>useradd and usermod</td>
                 <td><code class="language-bash">
-                    sudo useradd new_user  <br>
-                    sudo usermod -aG sudo new_user
+                    sudo useradd new_user
+                    sudo usermod -aG
+                    sudo new_user
                 </code></td>
                 <td>Create or modify user accounts on the system.</td>
             </tr>
