@@ -788,6 +788,118 @@
                 </code></pre>
                 Run the script to observe how it iterates through the loop, printing numbers from 1 to 5.
             </li>
+            
+            <li><strong>File Backup Script: </strong>
+                Create a script that automatically backs up specified files or directories to a backup folder.
+                <pre><code class="language-bash">
+                    #!/bin/bash
+                    backup_dir="backup_folder"
+                    source_dir="source_folder"
+
+                    mkdir -p $backup_dir
+                    cp -r $source_dir/* $backup_dir/
+                    echo "Backup completed successfully!"
+                </code></pre>
+                This script creates a backup folder if it doesn't exist and copies the contents of the source folder into it.
+            </li>
+            <li><strong>Data Processing Script: </strong>
+                Suppose you have a set of CSV files, and you want to concatenate them into a single file for analysis.
+                <pre><code class="language-bash">
+                    #!/bin/bash
+                    output_file="merged_data.csv"
+
+                    cat *.csv > $output_file
+                    echo "Data merged successfully into $output_file."
+                </code></pre>
+                This script uses the cat command to concatenate all CSV files in the current directory into a single file.
+            </li>
+            <li><strong>Log Analysis Script: </strong>
+                Create a script to analyze and extract relevant information from log files.
+                <pre><code class="language-bash">
+                    #!/bin/bash
+                    log_file="application.log"
+                    
+                    error_count=$(grep -c "ERROR" $log_file)
+                    echo "Number of errors in the log file: $error_count"
+                </code></pre>
+                This script uses grep to count the occurrences of the word "ERROR" in a log file.
+            </li>
+            <li><strong>Automated Data Download Script: </strong>
+                Automate the download of data from a specified URL.
+                <pre><code class="language-bash">
+                    #!/bin/bash
+                    download_url="https://example.com/data.zip"
+                    output_dir="downloaded_data"
+                    
+                    mkdir -p $output_dir
+                    wget $download_url -P $output_dir
+                    echo "Data downloaded to $output_dir."              
+                </code></pre>
+                This script uses wget to download data from a URL and saves it to the specified directory.
+            </li>
+            <li><strong>System Information Scrip: </strong>
+                Create a script that provides essential system information.
+                <pre><code class="language-bash">
+                    #!/bin/bash
+                    echo "System Information:"
+                    echo "-------------------"
+                    echo "Hostname: $(hostname)"
+                    echo "CPU: $(grep "model name" /proc/cpuinfo | uniq)"
+                    echo "Memory: $(free -h | grep Mem | awk '{print $2}')"
+                    echo "Disk Space: $(df -h | grep '/dev/sda1' | awk '{print $4}') available"                    
+                </code></pre>
+                This script retrieves and displays information about the system, including hostname, CPU, memory, and disk space.
+            </li>
+            <li><strong></strong>
+            
+                <pre><code class="language-bash">
+                    #!/bin/bash
+
+                    # Set the URL for data download
+                    data_url="https://api.example.com/data_endpoint"
+                    
+                    # Set the output file names
+                    raw_data_file="raw_data.json"
+                    transformed_data_file="transformed_data.csv"
+                    
+                    # Step 1: Download Data from API
+                    wget $data_url -O $raw_data_file
+                    
+                    # Step 2: Transform Data (Example using jq)
+                    # Modify this section based on your actual data transformation needs
+                    cat $raw_data_file | jq '.data | map({timestamp: .timestamp, value: .data_field})' > $transformed_data_file
+                    
+                    # Step 3: Data Analytics (Example using Python and pandas)
+                    python3 << EOF 
+                    #here there should not be space between << and EOF as when it is written here comment all lines afterward.
+                    import pandas as pd
+                    import matplotlib.pyplot as plt
+                    
+                    # Read transformed data into a pandas DataFrame
+                    data = pd.read_csv("$transformed_data_file")
+                    
+                    # Time Series Plot
+                    plt.figure(figsize=(10, 6))
+                    plt.plot(data['timestamp'], data['value'], label='Data Value')
+                    plt.title('Time Series Plot')
+                    plt.xlabel('Timestamp')
+                    plt.ylabel('Value')
+                    plt.legend()
+                    plt.savefig('time_series_plot.png')
+                    plt.close()
+                    
+                    # Additional Relevant Plots and Analytics
+                    # Add your specific data analytics and plots here
+                    
+                    EOF
+                    
+                    # Step 4: Cleanup (Optional)
+                    # Uncomment the line below if you want to delete the raw data file after processing
+                    # rm $raw_data_file
+                    
+                    echo "Data analytics completed successfully. Plots saved as time_series_plot.png and others as needed."                    
+                </code></pre>
+            </li>
         </ul>
         
       </section>
@@ -795,12 +907,86 @@
 
       <section id="chapter-9">
         <h3>Chapter-9: Securing Your Linux System</h3>
-        
+        In this chapter, we will delve into the crucial aspects of securing your Ubuntu Linux system, ensuring a robust and protected environment for your data endeavors. Implementing the best practices outlined here will not only safeguard your system but also contribute to the overall integrity of your data.
+        <ul>
+            <li><strong>Setting Up a Firewall: </strong>
+                <ul>
+                    <li><strong>Introduction to UFW: </strong>Uncomplicated Firewall (UFW) is a user-friendly interface for managing iptables, the default firewall management tool for Ubuntu.</li>
+                    <li><strong>Basic Configuration: </strong>Learn how to enable UFW, allow and deny specific traffic, and create custom rules.</li>
+                    <li><strong>Monitoring and Logging: </strong>Explore techniques to monitor firewall activity and set up logging for analysis.</li>
+                </ul>
+            </li>
+            <li><strong>User Authentication: </strong>
+                <ul>
+                    <li><strong>Password Policies: </strong>Establish strong password policies to enhance user authentication security.</li>
+                    <li><strong>SSH Security: </strong>Secure the Secure Shell (SSH) protocol by configuring key-based authentication and disabling password-based login.</li>
+                    <li><strong>User Privileges: </strong>Understand and implement the principle of least privilege, granting users only the necessary permissions.</li>
+                </ul>
+            </li>
+            <li><strong>Overall System Security: </strong>
+                <ul>
+                    <li><strong>Regular Updates: </strong>Emphasize the importance of keeping the system up-to-date with the latest security patches and updates.</li>
+                    <li><strong>Antivirus Measures: </strong>Although Linux is less susceptible to viruses, implementing antivirus tools can add an extra layer of security.</li>
+                    <li><strong>File System Encryption: </strong>Explore options for encrypting sensitive data at rest to protect against unauthorized access.</li>
+                </ul>
+            </li>
+            <li><strong>Monitoring and Auditing: </strong>
+                <ul>
+                    <li><strong>System Logs: </strong>Utilize system logs to monitor and audit system activity.</li>
+                    <li><strong>Intrusion Detection Systems (IDS): </strong>Implement IDS tools to detect and respond to potential security threats.</li>
+                    <li><strong>Regular Audits: </strong>Conduct routine security audits to identify vulnerabilities and address them proactively.</li>
+                </ul>
+            </li>
+            <li><strong>Network Security: </strong>
+                <ul>
+                    <li><strong>Network Segmentation: </strong>Implement network segmentation to isolate and protect critical components.</li>
+                    <li><strong>VPN Setup: </strong>Explore setting up a Virtual Private Network (VPN) for secure remote access</li>
+                    <li><strong>Security Certificates: </strong>Use SSL/TLS certificates for encrypted communication over the network.</li>
+                </ul>
+            </li>
+        </ul>
       </section>
       
-
+      <hr>
       <section id="chapter-10">
         <h3>Chapter-10: Advanced Linux Topics</h3>
+
+        <ul>
+            
+            <li><strong>Section 1: Linux in Server Environments</strong>
+                In this section, we will delve into the use of Ubuntu in server environments. Ubuntu Server is a popular choice for hosting applications and services due to its stability, security features, and ease of administration. We'll cover:
+                <ul>
+                    <li><strong>Installation and Configuration: </strong>Walkthrough of installing Ubuntu Server and basic configurations. </li>
+                    <li><strong>Server Administration: </strong>Managing services, users, and permissions on a server.</li> 
+                    <li><strong>Web Server Setup: </strong>Configuring a web server (e.g., Apache or Nginx) to host websites or web.</li> 
+                </ul>
+            </li>
+            <li><strong>Section 2: Linux's Role in Cloud Environments</strong>
+                Linux, especially Ubuntu, plays a pivotal role in cloud computing. We'll explore its integration with major cloud service providers like AWS, Azure, and Google Cloud Platform (GCP). Topics include:
+                <ul>
+                    <li><strong>Creating Virtual Machines (VMs): </strong>Launching Ubuntu instances in the cloud.</li>
+                    <li><strong>Cloud Storage Integration: </strong>Using cloud storage solutions for data management.</li> 
+                    <li><strong>Networking in the Cloud: </strong>Configuring networks and security groups in a cloud environment.</li> 
+                </ul>
+            </li>
+            <li><strong>Section 3: Integration with Data-Related Tasks</strong>
+                Linux in the cloud is indispensable for data professionals. We'll discuss how Ubuntu facilitates various data-related tasks in a cloud setting:
+                <ul>
+                    <li><strong>Data Processing: </strong>Leveraging Linux for data processing tasks using tools like Apache Hadoop or Spark.</li>
+                    <li><strong>Database Management: </strong>Setting up and managing databases (e.g., MySQL, PostgreSQL) on Ubuntu in the cloud.</li>
+                    <li><strong>Containerization with Docker: </strong>Exploring how Linux supports containerization for efficient deployment and scaling.</li>      
+                </ul>
+            </li>
+            
+        </ul>
+        
+        
+      </section>
+
+      <hr>
+      <section id="chapter-11">
+        <h3>Chapter-11: Conclusion</h3>
+        <p>This book provides a comprehensive guide to understanding the various aspects of Linux operating system. It covers everything from basic concepts, installation and related things</p>
         <table>
             <tr>
                 <th>Name</th>
@@ -921,44 +1107,11 @@
                 </code></td>
                 <td>Schedule tasks to run at a specific time using at, or periodically using cron.</td>
             </tr>
-            <tr>
-                <td></td>
-                <td><code class="language-bash"></code></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><code></code></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><code></code></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><code></code></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><code></code></td>
-                <td></td>
-            </tr>
-
-
-
         </table>
         
       </section>
 
-
-      <section id="chapter-11">
-        <h3>Chapter-11: Conclusion</h3>
-        
-      </section>
-
+      
     <!--------- References ----------->
     <section id="conclusion">
       <h2>Conclusion</h2>
