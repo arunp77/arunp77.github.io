@@ -464,6 +464,465 @@
             retrieve, and manipulate data within your scripts, making them dynamic and adaptable.</p>
       </section>
 
+      
+      <div style="background-color: #f2f2f7; padding: 20px; border: 1px solid #ccc; border-radius: 8px; width: 100%; margin: 50px auto;">
+        <h4>Wildcards: </h4>
+        <ul>
+          <li>Copy all the files from /tmp/a into /tmp/b
+            <p style="color: #e20df5;">
+              $ cp /tmp/a/* /tmp/b/<br>
+              $ cp /tmp/a/*.txt /tmp/b/<br>
+              $ cp /tmp/a/*.html /tmp/b/<br>
+            </p>
+          </li>
+          <li> rename all .txt files to .bak
+            <p style="color: #e20df5;">
+              $ mv *.txt *.bak
+            </p>
+          </li>
+        </ul>
+        <h4>Escape Characters: </h4>
+        Escape characters in bash scripting are used to represent characters that are difficult to type or might have a special meaning in the context of a script. They are preceded by a backslash (\) to indicate that the following character should be treated differently. Here are some common escape characters in bash scripting along with examples:
+        <ul>
+          <li>Newline (<code>`\n`</code>): Represents a new line.
+            <p style="color: #e20df5;">echo -e "Line 1\nLine 2"</p>
+            <strong>Output: </strong> <br>
+            Line 1 <br>
+            Line 2
+          </li>
+          <li>Tab (<code>`\t</code>): Represents a horizontal tab. 
+            <p style="color: #e20df5;">$ echo -e "Column 1\tColumn 2"</p>
+            <strong>Output: </strong>  Column 1  &nbsp;&nbsp;  Column 2
+          </li>
+          <li>Backspace (<code>`\b`</code>):  Moves the cursor one character to the left.
+            <p style="color: #e20df5;">$echo -e "Hello\bWorld"</p>
+            <strong>Output: </strong> HellWorld
+          </li>
+          <li>Carriage Return (<code>`\r`</code>): Moves the cursor to the beginning of the line.
+            <p style="color: #e20df5;">$echo -e "123\rABC"</p>
+            <strong>Output: </strong> ABC
+          </li>
+          <li>Single Quote (<code> `\'`</code>): Escapes a single quote within a single-quoted string.
+            <p style="color: #e20df5;">$echo 'It '\''s a single quote'</p>
+            <strong>Output: </strong> It 's a single quote
+          </li>
+          <li>Double Quote (<code>`\"`</code>): Escapes a double quote within a double-quoted string.
+            <p style="color: #e20df5;">$echo "She said, \"Hello!\""</p>
+            <strong>Output: </strong> She said, "Hello!"
+          </li>
+          <li>Dollar Sign (<code>`\$`</code>): Escapes the dollar sign to prevent variable expansion.
+            <p style="color: #e20df5;">$echo "The cost is \$10"</p>
+            <strong>Output: </strong> The cost is $10
+          </li>
+          <li>Backslash (<code>`\\`</code>): Escapes a backslash.
+            <p style="color: #e20df5;">$echo "This is a backslash: \\"</p>
+            <strong>Output: </strong> This is a backslash: \
+          </li>
+          
+          <li>
+            <p style="color: #e20df5;">
+              $ echo Hello &nbsp;&nbsp; World
+            </p>
+            <strong>Output:</strong> Hello World
+          </li>
+          <li>
+            <p style="color: #e20df5;">
+              $ echo "Hello &nbsp;&nbsp;&nbsp;  World"
+            </p>
+            <strong>Output:</strong> Hello &nbsp;&nbsp;&nbsp; World
+          </li>
+          <li>
+            <p style="color: #e20df5;">
+              $ echo "Hello&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"World""
+            </p>
+            <strong>Output:</strong> Hello&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"World"
+          </li>
+          <li>Characters (*, ', etc):
+            <p style="color: #e20df5;">$ echo *</p>
+            <strong>Output:</strong> LICENSE README.md Shell-scripting-tutorials.ipynb all_args.sh count_args.sh exit_status.sh my-script-0.sh my-script-1.sh my-script-2.sh my-script-3.sh my-script-4.sh myvar2.sh myvar3.sh var.sh var2.sh var3.sh var4.sh test.txt<br>
+            (basically all files in the current directory)
+            <p style="color: #e20df5;">$ echo *txt</p>
+            <strong>Output:</strong> test.txt<br>
+            (*txt means all files ending in txt)
+            <p style="color: #e20df5;">$ echo "*"</p>
+            <strong>Output:</strong> * <br>
+            ( * in double quotes, is interpreted literally.)
+            <p style="color: #e20df5;">$ echo *txt</p>
+            <strong>Output:</strong> test.txt 
+            <p style="color: #e20df5;">$ echo "*txt"</p>
+            <strong>Output:</strong> *txt <br>
+            (the same applies, but we have appended txt to the string)
+          </li>
+          <li>
+            <p style="color: #e20df5;">$echo "A quote is \", backslash is \\, backtick is \`."</p>
+            <strong>Output: </strong> A quote is ", backslash is \, backtick is `.
+          </li>
+          <li>
+            <p style="color: #e20df5;">$echo "A few spaces are    and dollar is \$. \$X is ${X}."</p>
+            <strong>Output: </strong> A few spaces are    and dollar is $. $X is 5.
+          </li>
+          <li>Some other examples:
+            <p>echo "The cost is $10" ==>   The cost is 0  </p>
+            <p>echo 'The cost is $10' ==>   The cost is $10  </p>
+            <p>echo "The cost is \$10" ==>  The cost is $10 </p>
+          </li>
+        </ul>
+    </div>
+
+    <section id="chapter-6">
+      <h2>Loop</h2>
+      Most languages have the concept of loops: If we want to repeat a task twenty times, we don't want to have to type in the code twenty times, with maybe a slight change each time.
+      In Bash scripting, you can use various types of loops to iterate through a set of commands or statements. The two primary types of loops are the for loop and the while loop. Here are examples of both:
+      <h4>1. 'for' loop:</h4>
+      The <code>`for`</code> loop is used when you know in advance how many times you want to execute a set of statements.
+      <ul>
+        <li><strong>Numeric Range:</strong>
+          <pre><code class="language-bash">
+            #!/bin/bash <br> 
+    
+            for i in {1..5}<br>
+            do<br>
+            &nbsp;&nbsp;echo "Iteration $i"<br>
+            done<br>
+          </code></pre>
+          <strong>Output: </strong><br>
+          Iteration 1<br>
+          Iteration 2<br>
+          Iteration 3<br>
+          Iteration 4<br>
+          Iteration 5
+        </li>
+        <li><strong>Iterate Over Items in an Array:</strong>
+          <pre><code class="language-bash">
+            #!/bin/bash
+            
+            fruits=("Apple" "Banana" "Orange")
+            
+            for fruit in "${fruits[@]}"
+            do
+              echo "Fruit: $fruit"
+            done
+            </code></pre>
+          <strong>Output: </strong><br>
+          Fruit: Apple<br>
+          Fruit: Banana<br>
+          Fruit: Orange<br>
+        </li>
+      </ul>
+      <h4>2. `while` Loop:</h4>
+      The <code>while</code> loop is used when you want to execute a set of statements as long as a condition is true.
+      <ul>
+        <li>
+      </ul>
+      <pre><code class="language-bash">
+        #!/bin/bash
+
+        counter=5
+
+        while [ $counter -gt 0 ]
+        do
+          echo "Countdown: $counter"
+          ((counter--))
+        done
+      </code></pre>
+      <ul>
+        <li><strong>`-gt`</strong>: This is a comparison operator that stands for "greater than." </li>
+        <li><strong>`0`</strong>: This is the value that $counter is being compared to.</li>
+      </ul>
+      
+      <strong>Output: </strong><br>
+      Countdown: 5<br>
+      Countdown: 4<br>
+      Countdown: 3<br>
+      Countdown: 2<br>
+      Countdown: 1<br>
+    </li>
+    Remember to make your script executable using <code>chmod +x script.sh</code> and then execute it with <code>./script.sh</code> assuming the script is named <code>script.sh</code>.
+
+    <h2>Test</h2>
+    In shell scripting, the <code>`test`</code> command is often used to evaluate conditional expressions. Alternatively, you can use square brackets <code>`[ ]`</code>
+     as a synonym for <code>`test`</code>. Test is most often invoked indirectly via the if and while statements. It is also the reason you will come into difficulties 
+    if you create a program called test and try to run it, as this shell builtin will be called instead of your program!
+    The syntax for <code>if...then...else...</code> is:
+    <pre><code class="language-bash">
+      #!/bin/bash
+      if [ ... ]
+      then
+        # if-code
+      else
+        # else-code
+      fi
+    </code></pre>
+    Note that <code>fi</code> is <code>if</code> backwards! This is used again later with case and esac. Also, be aware of the syntax - the "<code>if [ ... ]</code>" and the "<code>then</code>" 
+    commands must be on different lines. Alternatively, the semicolon "<code>;</code>" can separate them:
+    <pre><code class="language-bash">
+      #!/bin/bash
+      if [ ... ]; then
+        # do something
+      fi
+    </code></pre>
+    You can also use the elif, like this
+    <pre><code class="language-bash">
+      #!/bin/bash
+      if  [ something ]; then
+      echo "Something"
+      elif [ something_else ]; then
+        echo "Something else"
+      else
+        echo "None of the above"
+      fi
+    </code></pre>
+    <strong>Examples: </strong>
+    <ul>
+      <li><strong>String Comparison: </strong>
+        <pre><code class="language-bash">
+          #!/bin/bash
+    
+          str1="hello"
+          str2="world"
+          
+          if [ "$str1" = "$str2" ]; then
+            echo "Strings are equal"
+          else
+            echo "Strings are not equal"
+          fi
+        </code></pre>
+      </li>
+      <li><strong>Numeric Comparison: </strong>
+        <pre><code class="language-bash">
+          #!/bin/bash
+
+          num1=5
+          num2=10
+          
+          if [ "$num1" -eq "$num2" ]; then
+            echo "Numbers are equal"
+          else
+            echo "Numbers are not equal"
+          fi
+        </code></pre>
+      </li>
+      <li><strong>File Existence: </strong>
+        <pre><code class="language-bash">
+          #!/bin/bash
+
+          file_path="/path/to/some/file.txt"
+          
+          if [ -e "$file_path" ]; then
+            echo "File exists"
+          else
+            echo "File does not exist"
+          fi
+        </code></pre>
+      </li>
+      <li><strong>Logical AND: </strong>
+        <pre><code class="language-bash">
+          #!/bin/bash
+
+          num1=5
+          num2=10
+          
+          if [ "$num1" -gt 0 ] && [ "$num2" -lt 20 ]; then
+            echo "Both conditions are true"
+          else
+            echo "At least one condition is false"
+          fi
+        </code></pre>
+      </li>
+    </ul>
+
+    <h2>The case statement</h2>
+    A <code>`case`</code> statement in Bash scripting is used for conditional branching based on pattern matching. 
+    It is often used as an alternative to multiple <code>`if-elif-else`</code> statements when you have multiple 
+    conditions to check.  Its syntax is really quite simple:
+    <p><strong>Example: </strong></p>
+    <pre><code class="language-bash">
+      #!/bin/bash
+
+      echo "Enter a fruit: "
+      read fruit
+      
+      case "$fruit" in
+        "apple")
+          echo "Selected fruit: Apple"
+          ;;
+        "banana" | "plantain")
+          echo "Selected fruit: Banana or Plantain"
+          ;;
+        "orange")
+          echo "Selected fruit: Orange"
+          ;;
+        *)
+          echo "Unknown fruit"
+          ;;
+      esac
+    </code></pre>
+    </section>
+
+    <section id="chapter-8">
+      <h2>Bash command references</h2>
+      <table>
+        <tr>
+          <th>Command</th>
+          <th>Description</th>
+          <th>Example</th>
+        </tr>
+        <tr>
+          <td>&</td>
+          <td>Run the previous command in the background</td>
+          <td>ls &amp;</td>
+        </tr>
+        <tr>
+          <td>&amp;&amp;</td>
+          <td>Logical AND</td>
+          <td>if [ "$foo" -ge "0" ] &amp;&amp; [ "$foo" -le "9" ]</td>
+        </tr>
+        <tr>
+          <td>||</td>
+          <td>Logical OR</td>
+          <td>if [ "$foo" -lt "0" ] || [ "$foo" -gt "9" ]</td>
+        </tr>
+        <tr>
+          <td>^</td>
+          <td>Start of line</td>
+          <td>grep "^foo"</td>
+        </tr>
+        <tr>
+          <td>$</td>
+          <td>End of line</td>
+          <td>grep "foo$"</td>
+        </tr>
+        <tr>
+          <td>=</td>
+          <td>String equality (cf. -eq)</td>
+          <td>if [ "$foo" = "bar" ]</td>
+        </tr>
+        <tr>
+          <td>!</td>
+          <td>Logical NOT</td>
+          <td>if [ "$foo" != "bar" ]</td>
+        </tr>
+        <tr>
+          <td>$$</td>
+          <td>PID of current shell</td>
+          <td>echo "my PID = $$"</td>
+        </tr>
+        <tr>
+          <td>$!</td>
+          <td>PID of last background command</td>
+          <td>ls &amp; echo "PID of ls = $!"</td>
+        </tr>
+        <tr>
+          <td>$?</td>
+          <td>Exit status of last command</td>
+          <td>ls ; echo "ls returned code $?"</td>
+        </tr>
+        <tr>
+          <td>$0</td>
+          <td>Name of current command (as called)</td>
+          <td>echo "I am $0"</td>
+        </tr>
+        <tr>
+          <td>$1</td>
+          <td>Name of current command's first parameter</td>
+          <td>echo "My first argument is $1"</td>
+        </tr>
+        <tr>
+          <td>$9</td>
+          <td>Name of current command's ninth parameter</td>
+          <td>echo "My ninth argument is $9"</td>
+        </tr>
+        <tr>
+          <td>$@</td>
+          <td>All of current command's parameters (preserving whitespace and quoting)</td>
+          <td>echo "My arguments are $@"</td>
+        </tr>
+        <tr>
+          <td>$*</td>
+          <td>All of current command's parameters (not preserving whitespace and quoting)</td>
+          <td>echo "My arguments are $*"</td>
+        </tr>
+        <tr>
+          <td>-eq</td>
+          <td>Numeric Equality</td>
+          <td>if [ "$foo" -eq "9" ]</td>
+        </tr>
+        <tr>
+          <td>-ne</td>
+          <td>Numeric Inequality</td>
+          <td>if [ "$foo" -ne "9" ]</td>
+        </tr>
+        <tr>
+          <td>-lt</td>
+          <td>Less Than</td>
+          <td>if [ "$foo" -lt "9" ]</td>
+        </tr>
+        <tr>
+          <td>-le</td>
+          <td>Less Than or Equal</td>
+          <td>if [ "$foo" -le "9" ]</td>
+        </tr>
+        <tr>
+          <td>-gt</td>
+          <td>Greater Than</td>
+          <td>if [ "$foo" -gt "9" ]</td>
+        </tr>
+        <tr>
+          <td>-ge</td>
+          <td>Greater Than or Equal</td>
+          <td>if [ "$foo" -ge "9" ]</td>
+        </tr>
+        <tr>
+          <td>-z</td>
+          <td>String is zero length</td>
+          <td>if [ -z "$foo" ]</td>
+        </tr>
+        <tr>
+          <td>-n</td>
+          <td>String is not zero length</td>
+          <td>if [ -n "$foo" ]</td>
+        </tr>
+        <tr>
+          <td>-nt</td>
+          <td>Newer Than</td>
+          <td>if [ "$file1" -nt "$file2" ]</td>
+        </tr>
+        <tr>
+          <td>-d</td>
+          <td>Is a Directory</td>
+          <td>if [ -d /bin ]</td>
+        </tr>
+        <tr>
+          <td>-f</td>
+          <td>Is a File</td>
+          <td>if [ -f /bin/ls ]</td>
+        </tr>
+        <tr>
+          <td>-r</td>
+          <td>Is a readable file</td>
+          <td>if [ -r /bin/ls ]</td>
+        </tr>
+        <tr>
+          <td>-w</td>
+          <td>Is a writable file</td>
+          <td>if [ -w /bin/ls ]</td>
+        </tr>
+        <tr>
+          <td>-x</td>
+          <td>Is an executable file</td>
+          <td>if [ -x /bin/ls ]</td>
+        </tr>
+        <!-- ... (repeat for the rest of the commands) -->
+        <tr>
+          <td>( ... )</td>
+          <td>Function definition</td>
+          <td>function myfunc() { echo hello }</td>
+        </tr>
+      </table>
+
+    </section>
+    
+
 
     <!-------Reference ------->
     <section id="reference">
