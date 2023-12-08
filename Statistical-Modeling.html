@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Machine learning</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/Favicon-1.png" rel="icon">
+  <link href="assets/img/Favicon-1.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <!-- Creating a python code section-->
+  <link rel="stylesheet" href="assets/css/prism.css">
+  <script src="assets/js/prism.js"></script>
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- To set the icon, visit https://fontawesome.com/account-->
+  <script src="https://kit.fontawesome.com/5d25c1efd3.js" crossorigin="anonymous"></script>
+  <!-- end of icon-->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-oGqqFhf3ELCpQk69FVb6jGrwPOTR5SO5FeECBbCFgrFJzVpXJFLHc06dL/iPzCBJe" crossorigin="anonymous">
+
+  <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+
+  <!-- =======================================================
+  * Template Name: iPortfolio
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Mobile nav toggle button ======= -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="d-flex flex-column">
+
+      <div class="profile">
+        <img src="assets/img/myphoto.jpeg" alt="" class="img-fluid rounded-circle">
+        <h1 class="text-light"><a href="index.html">Arun</a></h1>
+        <div class="social-links mt-3 text-center">
+          <a href="https://www.linkedin.com/in/arunp77/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+          <a href="https://github.com/arunp77" class="github"><i class="bx bxl-github"></i></a>
+          <a href="https://twitter.com/arunp77_" class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="https://www.instagram.com/arunp77/" class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="https://medium.com/@arunp77" class="medium"><i class="bx bxl-medium"></i></a>
+        </div>
+      </div>
+
+      <nav id="navbar" class="nav-menu navbar">
+        <ul>
+          <li><a href="index.html#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+          <li><a href="index.html#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
+          <li><a href="index.html#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+          <li><a href="index.html#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+          <li><a href="index.html#skills-and-tools" class="nav-link scrollto"><i class="bx bx-wrench"></i> <span>Skills and Tools</span></a></li>
+          <li><a href="index.html#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li>
+          <li><a href="index.html#professionalcourses" class="nav-link scrollto"><i class="bx bx-book-alt"></i> <span>Professional Certification</span></a></li>
+          <li><a href="index.html#publications" class="nav-link scrollto"><i class="bx bx-news"></i> <span>Publications</span></a></li>
+          <li><a href="index.html#extra-curricular" class="nav-link scrollto"><i class="bx bx-rocket"></i> <span>Extra-Curricular Activities</span></a></li>
+          <li><a href="index.html#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+    </div>
+  </header><!-- End Header -->
+
+<main id="main">
+
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+          <div class="container">
+    
+            <div class="d-flex justify-content-between align-items-center">
+              <h2>Statistical Modeling</h2>
+              <ol>
+                <li><a href="portfolio-details-1.html" class="clickable-box">Content section</a></li>
+                <li><a href="index.html#portfolio" class="clickable-box">Portfolio section</a></li>
+              </ol>
+            </div>
+    
+          </div>
+        </section><!-- End Breadcrumbs -->
+
+    <!------  right dropdown menue ------->
+    <div class="right-side-list">
+      <div class="dropdown">
+          <button class="dropbtn"><strong>Shortcuts:</strong></button>
+          <div class="dropdown-content">
+              <ul>
+                  <li><a href="cloud-compute.html"><i class="fas fa-cloud"></i> Cloud</a></li>
+                  <li><a href="AWS-GCP.html"><i class="fas fa-cloud"></i> AWS-GCP</a></li>
+                  <li><a href="amazon-s3.html"><i class="fas fa-cloud"></i> AWS S3</a></li>
+                  <li><a href="ec2-confi.html"><i class="fas fa-server"></i> EC2</a></li>
+                  <li><a href="Docker-Container.html"><i class="fab fa-docker" style="color: rgb(29, 27, 27);"></i> Docker</a></li>
+                  <li><a href="Jupyter-nifi.html"><i class="fab fa-python" style="color: rgb(34, 32, 32);"></i> Jupyter-nifi</a></li>
+                  <li><a href="snowflake-task-stream.html"><i class="fas fa-snowflake"></i> Snowflake</a></li>
+                  <li><a href="data-model.html"><i class="fas fa-database"></i> Data modeling</a></li>
+                  <li><a href="sql-basics.html"><i class="fas fa-table"></i> QL</a></li>
+                  <li><a href="sql-basic-details.html"><i class="fas fa-database"></i> SQL</a></li>
+                  <li><a href="Bigquerry-sql.html"><i class="fas fa-database"></i> Bigquerry</a></li>
+                  <li><a href="scd.html"><i class="fas fa-archive"></i> SCD</a></li>
+                  <li><a href="sql-project.html"><i class="fas fa-database"></i> SQL project</a></li>
+                    <!-- Add more subsections as needed -->
+                </ul>
+          </div>
+        </div>
+    </div>
+
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container">
+        <div class="row gy-4">
+          
+            <div class="col-lg-8">
+                <div class="portfolio-details-slider swiper">
+                    <div class="swiper-wrapper align-items-center">
+                    <div class="swiper-slide">
+                        <h1>Methods of Parameter Estimation in Statistical Modeling</h1>
+                        <figure>
+                            <img src="assets/img/data-engineering/ML-0.png" alt="" style="max-width: 90%; max-height: 90%;">
+                            <figcaption></figcaption>
+                        </figure>
+                        <strong><blockquote>"<em>Exploring Techniques, Strengths, and Limitations Across Diverse Approaches</em>"</blockquote></strong>
+                    </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+
+            <section id="sec-1">
+                <h3>Intorduction</h3>
+                Understanding and estimating parameters in statistical models is a fundamental aspect of data analysis. This comprehensive guide explores various parameter estimation methods, offering insights into their strengths, limitations, and applicability in different scenarios.
+                <ol>
+                    <li>
+                        <strong>Least Squares Estimation:</strong>
+                        <ul>
+                            <li><strong>Method:</strong> Minimizes the sum of squared differences between observed and predicted values.</li>
+                            <li><strong>Objective Function: </strong>
+                            Minmize: $$\sum_{i=1}^n (y_i - f(x_i, \theta))^2$$
+                            where<br>
+                            <em>y<sub>i</sub></em> is the observed value, <em>f(x<sub>i</sub>, θ)</em>  is the model prediction, and <em>θ</em> are the parameters.
+                            </li>
+                            <li><strong>Python library used: </strong> <code>scipy.optimize</code>
+                                <p><strong>Example code:</strong></p>
+                                <pre><code  class="language-python">
+                                    from scipy.optimize import curve_fit
+
+                                    def model_function(x, a, b):
+                                        return a * x + b
+                                    
+                                    params, covariance = curve_fit(model_function, x_data, y_data)
+                                </code></pre>
+                            </li>
+                            <li><strong>Strengths:</strong>
+                                <ul>
+                                    <li>Simple and widely used.</li>
+                                    <li>Straightforward to implement.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Limitations:</strong>
+                                <ul>
+                                    <li>Sensitive to outliers.</li>
+                                    <li>Assumes normally distributed errors.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Maximum Likelihood Estimation (MLE):</strong>
+                        <ul>
+                            <li><strong>Method:</strong> Maximizes the likelihood function, which measures how well the model explains the observed data.</li>
+                            <li><strong>Objective Function: </strong>
+                                Maximize $$\mathcal{L}(\theta; y) = \Pi_{i=1}^n f(y_i; \theta)$$
+                                here <em>L</em> is the likelihood function, <em>y<sub>i</sub></em> are observed values, and
+                                <em>f(.; θ)</em> is the probability density function.
+                            </li>
+                            <li><strong>Python library used: </strong> <code>statsmodels</code>
+                                <p><strong>Example code:</strong></p>
+                                <pre><code  class="language-python">
+                                    import statsmodels.api as sm
+
+                                    model = sm.OLS(y_data, sm.add_constant(x_data))
+                                    results = model.fit()
+                                </code></pre>
+                            </li>
+                            <li><strong>Strengths:</strong>
+                                <ul>
+                                    <li>Asymptotically efficient (efficient as sample size approaches infinity).</li>
+                                    <li>Provides confidence intervals.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Limitations:</strong>
+                                <ul>
+                                    <li>Sensitive to distributional assumptions.</li>
+                                    <li>Can be computationally intensive.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                
+                    <li>
+                        <strong>Bayesian Estimation:</strong>
+                        <ul>
+                            <li><strong>Method:</strong> Combines prior knowledge with observed data to update probability distributions over parameters.</li>
+                            <li><strong>Posterior Distribution:</strong>
+                            $$P(\theta | y) \propto \mathcal{L}(\theta; y) \times P(\theta)$$
+                            here <em>P(θ | y)</em> is the posterior distribution, <em>L</em>  is the likelihood, and <em>P(θ)</em> is the prior distribution.
+                            </li>
+                            <li><strong>Python library used: </strong> <code>pymc3</code>
+                                <p><strong>Example code:</strong></p>
+                                <pre><code  class="language-python">
+                                    import pymc3 as pm
+
+                                    with pm.Model() as model:
+                                        # Define priors
+                                        theta = pm.Uniform('theta', lower=0, upper=1)
+                                        
+                                        # Define likelihood
+                                        likelihood = pm.Normal('likelihood', mu=model_prediction, sd=observed_data_sd, observed=observed_data)
+                                    
+                                        # Run Bayesian inference
+                                        trace = pm.sample(1000)
+                                </code></pre>
+                            </li>
+                            <li><strong>Strengths:</strong>
+                                <ul>
+                                    <li>Incorporates prior information.</li>
+                                    <li>Provides posterior distribution for parameters.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Limitations:</strong>
+                                <ul>
+                                    <li>Requires specifying a prior, which can be subjective.</li>
+                                    <li>Computationally intensive for complex models.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                
+                    <li>
+                        <strong>Method of Moments:</strong>
+                        <ul>
+                            <li><strong>Method:</strong> Sets sample moments (mean, variance, etc.) equal to theoretical moments.</li>
+                            <li><strong>Sample Moments: </strong>
+                            $$\mu_k = \frac{1}{n} \sum_{i=1}^n x_i^k$$
+                            Equate sample moments to population moments for parameter estimation.
+                            </li>
+                            <li><strong>Python library used: </strong>  Custom code based on mathematical equations.
+                                <pre><code  class="language-python">
+                                    mu1 = np.mean(data)
+                                    mu2 = np.mean(data**2)
+                                    mu3 = np.mean(data**3)
+                                </code></pre>
+                            </li>
+                            <li><strong>Strengths:</strong>
+                                <ul>
+                                    <li>Simple and intuitive.</li>
+                                    <li>Provides estimates consistent with sample moments.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Limitations:</strong>
+                                <ul>
+                                    <li>May not perform well for small sample sizes.</li>
+                                    <li>Assumes the population moments match the sample moments.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                
+                    <li>
+                        <strong>Generalized Method of Moments (GMM):</strong>
+                        <ul>
+                            <li><strong>Method:</strong> Minimizes a criterion function based on sample moments and model-implied moments.</li>
+                            <li><strong>Objective Function: </strong>
+                            $$\text{Minmize}~ Q(\theta) = (g(\theta)' {\bf W} g(\theta))^T$$
+                            where <span style="font-size: 13px;">\( g(\theta) \)</span> is the vector of moments, <span style="font-size: 13px;">\(W\)</span>
+                            </li>
+                            <li><strong>Python library used: </strong> <code>statsmodels</code>
+                                <p><strong>Example code:</strong></p>
+                                <pre><code  class="language-python">
+                                    from statsmodels.sandbox.regression.gmm import GMM
+
+                                    class GMMModel(GMM):
+                                        def momcond(self, params):
+                                            # Define moment conditions
+                                            return ...
+                                    
+                                    model = GMMModel(...)
+                                    results = model.fit()
+                                </code></pre>
+                            </li>
+                            <li><strong>Strengths:</strong>
+                                <ul>
+                                    <li>More flexible than the method of moments.</li>
+                                    <li>Allows for testing the validity of the assumed model.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Limitations:</strong>
+                                <ul>
+                                    <li>Requires specifying a moment condition.</li>
+                                    <li>Sensitive to the choice of moments.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    
+                    <li><strong>Regression Analysis: </strong>
+                        <ul>
+                            <li><strong>Method: </strong>Regression analysis models the relationship between a dependent variable and one or more independent variables using a regression equation. The goal is to understand and quantify the relationship between variables</li>
+                            <li><strong>Regression Equation: </strong>
+                            $$Y = \beta_0 +\beta_1 X_1 + ... + \beta_k X_k + \epsilon$$
+                            where <span style="font-size: 13px;">\(\beta_i\)</span> are coefficients, <span style="font-size: 13px;">\(\epsilon\)</span> is the error term.
+                            </li>
+                            <li><strong>Python library used: </strong> <code>statsmodels</code>
+                                <p><strong>Example code:</strong></p>
+                                <pre><code  class="language-python">
+                                    import statsmodels.api as sm
+
+                                    X = sm.add_constant(x_data)
+                                    model = sm.OLS(y_data, X)
+                                    results = model.fit()
+                                </code></pre>
+                            </li>
+                            <li><strong>Strength: </strong>
+                                <ul>
+                                    <li><strong>Widespread Use: </strong>Regression is one of the most widely used statistical techniques in various fields.</li>
+                                    <li><strong>Insights into Relationships: </strong>It provides insights into how changes in independent variables relate to changes in the dependent variable.</li>
+                                    <li><strong></strong></li>
+                                </ul>
+                            </li>
+                            <li><strong>Limitations: </strong>
+                                <ul>
+                                    <li><strong>Assumes a Specific Form: </strong>Regression assumes a specific functional form for the relationship, which may not always reflect the true nature of the data.</li>
+                                    <li><strong>Multicollinearity: </strong>High correlations among independent variables can lead to multicollinearity issues, making it challenging to isolate the individual effects of variables.</li>
+                                    <li><strong></strong></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <li><strong>Optimization Methods: </strong>
+                        <ul>
+                            <li><strong>Method: </strong>Optimization methods aim to find the minimum or maximum of an objective function by iteratively adjusting the parameters of the model. These methods are commonly used in parameter estimation.</li>
+                            <li><strong>Objective Function: </strong>
+                                Minimize or Maximize $$f(\theta)$$ 
+                                where <span style="font-size: 13px;">\(f(\theta)\)</span> is the objective function representing the problem.
+                            </li>
+                            <li><strong>Python library used: </strong> <code>scipy.optimize</code>
+                                <p><strong>Example code:</strong></p>
+                                <pre><code  class="language-python">
+                                    from scipy.optimize import minimize
+
+                                    result = minimize(objective_function, initial_guess, args=(x_data, y_data))
+                                </code></pre>
+                            </li>
+                            <li><strong>Strengths: </strong>
+                                <ul>
+                                    <li><strong>Flexibility: </strong>Optimization is a versatile approach applicable to various problems.</li>
+                                    <li><strong>Algorithmic Diversity: </strong>There is a wide range of optimization algorithms available, each suitable for different types of problems.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Limitations: </strong>
+                                <ul>
+                                    <li><strong>Sensitivity to Initial Guesses: </strong>The convergence of optimization methods, especially gradient-based ones, can be sensitive to the initial guesses for the parameters.</li>
+                                    <li><strong>Global Optimum Challenge: </strong>There's no guarantee that the optimization process will converge to the global optimum, and it may get stuck in local minima or maxima.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <span style="font-size: 18px;">\(\)</span>
+                    <li><strong>Bootstrap Methods: </strong>
+                        <ul>
+                            <li><strong>Method: </strong>Bootstrap methods involve resampling the dataset with replacement to create multiple bootstrap samples. These samples are then used to estimate sampling distributions and assess parameter precision.</li>
+                            <li><strong>Resampling Procedure: </strong>
+                            $$\theta^* = \text{Estimator from Bootstrap Sample}$$
+                            Repeat resampling to construct the sampling distribution of the estimator.
+                            </li>
+                            <li><strong>Python library used: </strong> <code>numpy</code>
+                                <p><strong>Example code:</strong></p>
+                                <pre><code  class="language-python">
+                                    import numpy as np
+
+                                    def estimate_with_bootstrap(data, num_iterations):
+                                        estimates = []
+                                        for _ in range(num_iterations):
+                                            bootstrap_sample = np.random.choice(data, size=len(data), replace=True)
+                                            estimate = calculate_estimate(bootstrap_sample)  # Your estimation function
+                                            estimates.append(estimate)
+                                        return np.array(estimates)
+                                </code></pre>
+                            </li>
+                            <li><strong>Strengths: </strong>
+                                <ul>
+                                    <li><strong>Non-parametric: </strong>Bootstrap is non-parametric and does not rely on distributional assumptions.</li>
+                                    <li><strong>Parameter Precision: </strong>It is useful for estimating the precision of parameters and constructing confidence intervals.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Limitations: </strong>
+                                <ul>
+                                    <li><strong>Computational Intensity: </strong>The computational cost can be high for large datasets or complex models because it involves repeatedly resampling the data</li>
+                                    <li><strong>Representative Sample Assumption: </strong>Bootstrap assumes that the original sample is representative of the population, and this might not always hold.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                
+                </ol>
+
+            </section>
+
+            <section id="conclusion">
+                Choosing the most suitable method depends on the specific characteristics of the data and the problem at hand. Often, a combination of methods or model diagnostics is employed to assess the reliability of parameter estimates. It's essential to consider the assumptions and limitations of each method and tailor the approach to the characteristics of the dataset and the goals of the analysis.
+
+
+
+            </section>
+
+
+            <section id="optimization">
+                <h3>Exploring the Role of Initial Guesses in Parameter Estimation: Considerations</h3>
+                Whether you need an initial guess for parameter estimation depends on the specific method used. Let's discuss the role of initial guesses in various parameter estimation methods:
+                <h5>Methods that Typically Require Initial Guesses</h5>
+                <ol>
+                    <li><strong>Gradient-Based Optimization (e.g., L-BFGS-B, BFGS): </strong>
+                        <ul>
+                            <li><strong>Role of Initial Guess: </strong>
+                                <ul>
+                                    <li>Initial guesses influence the optimization process.</li>
+                                    <li>Convergence may depend on the quality of the initial guess.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Considerations: </strong> 
+                                <ul>
+                                    <li>Choose initial values close to the true parameters if possible.</li>
+                                    <li>Experiment with different initial guesses to ensure convergence.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Curve Fitting (e.g., <code>`curve_fit`</code> in <code>`scipy.optimize.curve_fit`</code>):</strong>
+                        <ul>
+                            <li><strong>Role of Initial Guess: </strong>
+                                <ul>
+                                    <li>The <code>p0</code> parameter in <code>curve_fit</code> provides initial guesses for the parameters.</li>
+                                    <li>Better initial guesses can lead to faster and more accurate convergence</li>
+                                </ul>
+                            </li>
+                            <li><strong>Considerations: </strong>
+                                <ul>
+                                    <li>Provide reasonable initial guesses based on your understanding of the data.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>MLE and Bayesian Methods: </strong>
+                        <ul>
+                            <li><strong>Role of Initial Guess:</strong>
+                                <ul>
+                                    <li>Initial values can affect convergence and the resulting estimates.</li>
+                                    <li>Particularly relevant when optimization methods are used for MLE or Bayesian estimation.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Considerations: </strong>Experiment with different initial values to check robustness</li>
+                        </ul>
+                    </li>
+                    
+                </ol>
+
+                <h4>Methods that May Not Require Initial Guesses (or Less Sensitive):</h4>
+                <ol>
+                    <li><strong>Method of Moments: </strong>
+                        <ul>
+                            <li><strong>Role of Initial Guess:</strong>Less sensitive to initial guesses compared to optimization-based methods.</li>
+                            <li><strong>Considerations: </strong>Often more robust, but still be mindful of potential issues.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Bootstrap Methods: </strong>
+                        <ul>
+                            <li><strong>Role of Initial Guess:</strong>
+                                <ul>
+                                    <li>Bootstrap resampling doesn't rely on an initial guess.</li>
+                                    <li>Bootstrap methods are non-parametric and distribution-free.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Considerations: </strong>Still need to be cautious with the underlying assumptions.</li>
+                        </ul>
+                    </li>
+                    
+                    <li><strong>Least Squares Estimation (e.g., Linear Regression):</strong>
+                        <ul>
+                            <li><strong>Role of Initial Guess: </strong> Typically, linear regression doesn't involve an explicit initial guess.</li>
+                            <li><strong>Considerations: </strong>The optimization is performed implicitly; be mindful of assumptions.</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h4>General Considerations: </h4>
+                <ol>
+                    <li><strong>Convergence and Global Minima</strong>For methods that rely on optimization, it's essential to check for convergence and ensure that the optimization algorithm doesn't get stuck in local minima.</li>
+                    <li><strong>Robustness: </strong> Always assess the robustness of your parameter estimates by trying different starting points or initial guesses.</li>
+                    <li><strong>Distributional Assumptions: </strong>Be aware of the assumptions underlying each method. Some methods, especially in Bayesian estimation, may be less sensitive to initial guesses but have other requirements.</li>
+                </ol>
+
+            </section>
+
+            
+
+
+
+
+
+    
+
+
+
+            <!-------Reference ------->
+            <section id="reference">
+            <h2>References</h2>
+            <ul>
+                <li>My github Repositories on Machine learning: <a href="https://github.com/arunp77/Machine-Learning/" target="_blank">Machine-Learning Fundamentals</a></li>
+                <li>Good reference: <a href="https://www.coursera.org/learn/machine-learning " target="_blank">Coursera.org</a> </li>
+                <li><a href="https://www.diegocalvo.es/en/learning-non-supervised/" target="_blank">Diegocalvo.es</a></li>
+            </ul>
+            </section>
+
+            <hr>
+            
+            <div style="background-color: #f0f0f0; padding: 15px; border-radius: 5px;">
+
+                <h3>Some other interesting things to know:</h3>
+                <ul style="list-style-type: disc; margin-left: 30px;">
+                    <li>Visit my website on <a href="sql-project.html">For Data, Big Data, Data-modeling, Datawarehouse, SQL, cloud-compute.</a></li>
+                    <li>Visit my website on <a href="Data-engineering.html">Data engineering</a></li>
+                </ul>
+            </div>
+
+            <div class="navigation">
+                <a href="index.html#portfolio" class="clickable-box">
+                    <span class="arrow-left">Portfolio section</span>
+                </a>
+                
+                <a href="Remote-sensing-content.html" class="clickable-box">
+                    <span class="arrow-right">Remote sensing content</span>
+                </a>
+            </div>
+        </div>
+      </div>
+    </section><!-- End Portfolio Details Section -->
+</main><!-- End #main --
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+  <div class="container">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Arun</span></strong>
+    </div>
+  </div>
+</footer><!-- End  Footer -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="assets/vendor/typed.js/typed.umd.js"></script>
+<script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    hljs.initHighlightingOnLoad();
+  });
+</script>
+
+</body>
+
+</html>
