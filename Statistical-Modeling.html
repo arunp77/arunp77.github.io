@@ -151,7 +151,73 @@
             </div>
 
             <section id="sec-1">
-                <h3>Intorduction</h3>
+                <h2>Introduction</h2>
+                Explaining the fundamentals of Machine Learning and Statistical Modeling in simple terms can be challenging due to the existing confusion. In this discussion, our goal is to unravel these concepts, elucidating what they entail, highlighting their distinctions, and exploring their practical applications.
+                <h4>1. <a href="Machine-learning-fundamentals.html">Machine Learning (ML)</a>: </h4>
+                Machine Learning is a subfield of artificial intelligence (AI) that focuses on the development of algorithms and models that enable computers to learn patterns and make decisions without being explicitly programmed. The primary goal is to allow systems to improve their performance on a specific task as they are exposed to more data.
+                <p><strong>Key Characteristics:</strong></p>
+                <ol>
+                    <li><strong>Learning from Data: </strong>ML algorithms learn patterns and relationships from data, allowing them to generalize to new, unseen instances</li>
+                    <li><strong>Prediction and Decision-Making: </strong>ML is often used for tasks such as prediction, classification, clustering, and decision-making. Common algorithms include regression, support vector machines, decision trees, and neural networks</li>
+                    <li><strong>Adaptability: </strong> ML models can adapt to changing conditions and new information, making them suitable for dynamic and complex scenarios</li>
+                    <li><strong>Applications: </strong>Widely used in applications like image and speech recognition, natural language processing, recommendation systems, autonomous vehicles, and more.</li>
+                </ol>
+
+
+
+                <h4>2. Statistical modeling: </h4>
+                Statistical Modeling is a method used in statistics to describe relationships between variables and make inferences about populations based on observed data. It involves the formulation of mathematical models that represent the structure of the data and the underlying processes generating that data.
+                <p><strong>Key Characteristics:</strong></p>
+                <ol>
+                    <li><strong>Parameter Estimation: </strong>Statistical models often involve estimating parameters that describe the relationships between variables. This includes methods like linear regression, logistic regression, and generalized linear models.</li>
+                    <li><strong>Hypothesis Testing: </strong>Statistical modeling includes hypothesis testing to assess the validity of assumptions and draw conclusions about the significance of observed effects.</li>
+                    <li><strong>Uncertainty and Variability: </strong>Statistical models account for uncertainty and variability in data through concepts like confidence intervals, p-values, and standard errors.</li>
+                    <li><strong>Applications: </strong>Commonly used in scientific research, social sciences, economics, epidemiology, and various fields where understanding the relationships between variables and making predictions based on data are essential.</li>
+                </ol>
+
+                <h5>Comparison: </h5>
+                <table>
+                    <tr>
+                      <th>Aspect</th>
+                      <th>Machine Learning (ML)</th>
+                      <th>Statistical Modeling</th>
+                    </tr>
+                    <tr>
+                      <td>Objective</td>
+                      <td>The goal is to develop algorithms for predictions without explicit programming.</td>
+                      <td>Focuses on describing relationships, making inferences, and understanding uncertainty.</td>
+                    </tr>
+                    <tr>
+                      <td>Flexibility</td>
+                      <td>More flexible, adapts to complex patterns and non-linear relationships.</td>
+                      <td>Generally more rigid, relies on explicit assumptions about data distribution.</td>
+                    </tr>
+                    <tr>
+                      <td>Assumptions</td>
+                      <td>May not make strong assumptions about data distribution.</td>
+                      <td>Makes explicit assumptions about data distribution and variable relationships.</td>
+                    </tr>
+                    <tr>
+                      <td>Interpretability</td>
+                      <td>May lack interpretability, especially in complex models like deep neural networks.</td>
+                      <td>Typically provides more interpretable results using coefficients, p-values, etc.</td>
+                    </tr>
+                    <tr>
+                      <td>Data Size</td>
+                      <td>Beneficial for large datasets, especially deep learning models.</td>
+                      <td>Can be applied to smaller datasets, emphasizes sampling methods and statistical significance.</td>
+                    </tr>
+                    <tr>
+                      <td>Application Areas</td>
+                      <td>Used in image recognition, natural language processing, recommendation systems, etc.</td>
+                      <td>Applied in traditional statistical analyses, epidemiology, economics, social sciences, etc.</td>
+                    </tr>
+                  </table>
+            </section>
+
+            <!------------------------------->
+            <section id="sec-1">
+                <h3>Methods of Parameter Estimation in Statistical Modeling</h3>
                 Understanding and estimating parameters in statistical models is a fundamental aspect of data analysis. This comprehensive guide explores various parameter estimation methods, offering insights into their strengths, limitations, and applicability in different scenarios.
                 <ol>
                     <li>
@@ -401,7 +467,7 @@
                             </li>
                             <li><strong>Python library used: </strong> <code>numpy</code>
                                 <p><strong>Example code:</strong></p>
-                                <pre><code  class="language-python">
+                                <pre><code class="language-python">
                                     import numpy as np
 
                                     def estimate_with_bootstrap(data, num_iterations):
@@ -427,19 +493,11 @@
                             </li>
                         </ul>
                     </li>
-                
                 </ol>
-
-            </section>
-
-            <section id="conclusion">
                 Choosing the most suitable method depends on the specific characteristics of the data and the problem at hand. Often, a combination of methods or model diagnostics is employed to assess the reliability of parameter estimates. It's essential to consider the assumptions and limitations of each method and tailor the approach to the characteristics of the dataset and the goals of the analysis.
-
-
-
             </section>
 
-
+            <!------------------------------->
             <section id="optimization">
                 <h3>Exploring the Role of Initial Guesses in Parameter Estimation: Considerations</h3>
                 Whether you need an initial guess for parameter estimation depends on the specific method used. Let's discuss the role of initial guesses in various parameter estimation methods:
@@ -524,6 +582,107 @@
                     <li><strong>Robustness: </strong> Always assess the robustness of your parameter estimates by trying different starting points or initial guesses.</li>
                     <li><strong>Distributional Assumptions: </strong>Be aware of the assumptions underlying each method. Some methods, especially in Bayesian estimation, may be less sensitive to initial guesses but have other requirements.</li>
                 </ol>
+
+            </section>
+
+            <!----------------------------------->
+            <section id="Example:">
+                <h4>Example of exponential function curve fitting:</h4>
+                When confronted with a collection of data points exhibiting a noticeable rapid increase, it can be beneficial to employ a smooth, exponentially increasing curve to effectively capture and describe the overall trend of the data.
+                The line that you need to fit in order to achieve this shape will be one that is described by an exponential function, that is any function of the form:
+                $$y=A\times B^x +C$$
+                or 
+                $$y=ae^{bx}+c$$   
+                (these two are mathematically equivalent because \(AB^x = Ae^{x\text{ln}(B)}\)).
+
+                <h5>Method to fit the curve:</h5>
+                <ul>
+                    <li><strong>polyfit method: </strong>This method only works when \(c=0\), i.e when you want to fit a curve with equation \(y = a e^{bx}\) to the data. For a cirve with \(y = ae^{bx}+c\), second method us useful. 
+                        The <code>polyfit()</code> command from <code>Numpy</code> is used to fit a polynomial function to data. 
+                        <div class="box">
+                            <strong>Polyfit (<a href="https://numpy.org/doc/stable/reference/generated/numpy.polyfit.html" target="_blank">see the source</a>):</strong>
+                            In mathematics and computer science, polyfit is a general term for fitting a polynomial to a set of data points. This means finding the polynomial that best approximates the data points in terms of minimizing the squared error between the polynomial and the data points.
+                            The polyfit function is a common tool in many numerical analysis and scientific computing libraries. It is used to fit polynomials to data for a variety of purposes, such as data smoothing, interpolation, and curve fitting.
+                           
+                            This fit a polynomial 
+                            $$p(x) = p[0]\times x^n + p[1]\times x^{n-1} + p[2]\times x^{n-2} .... + p[n]$$
+                            n is the degree of the polynomoal to the data points (x, y).
+                            <ul>
+                                <li>For n=1 (degree=1), \(p(x) = p[0] x+ p[1]\)</li>
+                                <li>For n=2, (degree=2), \(p(x) = p[0] x^2+ p[1] x +p[2]\) \(\)</li>
+                                <li>For n=1, (degree=3), \(p(x) = p[0] x^3+ p[1] x^2 + p[2] x + p[3]\) \(\)</li>
+                            </ul>
+                            where the coefficients \(p[i]\) are the coefficients of the polynomials and can be calculated using the polyfit method. Here \(n\) is the degree of the polynomial.
+                            his method takes a set of data points and the desired degree of the polynomial as input and returns the coefficients of the polynomial that best fits the data points.
+                            The coefficients are calculated by miimizing the square errors:
+                            $$E=\sum_{j=0}^k |p(x_j) - y_j|^2$$ 
+                            in the equations:
+                            \[
+                            \begin{align*}
+                            x[0]^n \cdot p[0] + \ldots + x[0] \cdot p[n-1] + p[n] &= y[0] \\
+                            x[1]^n \cdot p[0] + \ldots + x[1] \cdot p[n-1] + p[n] &= y[1] \\
+                            &\vdots \\
+                            x[k]^n \cdot p[0] + \ldots + x[k] \cdot p[n-1] + p[n] &= y[k] \\
+                            \end{align*}
+                            \]
+                            The coefficient matrix of the coefficients p is a Vandermonde matrix.
+                            <br>
+                            <code>numpy.polyfit(x, y, deg, rcond=None, full=False, w=None, cov=False)</code>
+                        </div>
+                        
+                        This might seem a little strange: why are we trying to fit a polynomial function to the data when we want to fit an exponential 
+                        function? The answer is that we can convert an exponential function into a polynomial one using the fact that:
+                        $$y = a e^{bx} \Rightarrow \text{ln} = \text{ln}(a)+bx.$$
+                        because we can take the natural logarithm of both sides. This creates a linear equation \(f(x) = mx+c\) where:
+                        <ul>
+                            <li>\(f(x) = \text{ln}(y) \)</li>
+                            <li>\(m = b = p[0]\)</li>
+                            <li>\(c = \text{ln}(b) = p[1]\)</li>
+                        </ul>
+                        so <code>polyfit</code> can be used to fit \(\text{ln}(y)\) against \(x\):
+                        <pre><code>
+                            import numpy as np
+
+                            # Set a seed for the random number generator so we get the same random numbers each time
+                            np.random.seed(20210706)
+
+                            # Create fake x-data
+                            x = np.arange(10)
+                            # Create fake y-data
+                            a = 4.5
+                            b = 0.5
+                            c = 0
+                            y = a * np.exp(b * x) + c  # Use the second formulation from above i.e. f(x) = mx+c
+                            y = y + np.random.normal(scale=np.sqrt(np.max(y)), size=len(x))  # Add noise
+
+                            # Fit a polynomial of degree 1 (a linear function) to the data
+                            p = np.polyfit(x, np.log(y), 1)
+                        </code></pre>
+                        This polynomial can now be converted back into an exponential:
+                        <pre><code>
+                            # Convert the polynomial back into an exponential
+                            a = np.exp(p[1])
+                            b = p[0]
+                            x_fitted = np.linspace(np.min(x), np.max(x), 100)
+                            y_fitted = a * np.exp(b * x_fitted)
+                        </code></pre>
+                        Let’s take a look at the fit:
+                        <pre><code>
+                            import matplotlib.pyplot as plt
+
+                            ax = plt.axes()
+                            ax.scatter(x, y, label='Raw data')
+                            ax.plot(x_fitted, y_fitted, 'k', label='Fitted curve')
+                            ax.set_title('Using polyfit() to fit an exponential function')
+                            ax.set_ylabel('y-Values')
+                            ax.set_ylim(0, 500)
+                            ax.set_xlabel('x-Values')
+                            ax.legend()
+                        </code></pre>
+
+                    </li>
+                    <li><strong>curve_fit method: </strong></li>
+                </ul>
 
             </section>
 
