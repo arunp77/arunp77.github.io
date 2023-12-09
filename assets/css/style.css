@@ -328,11 +328,18 @@ code.python {
 
 .image-container {
   text-align: center;
+  display: flex;
+}
+.image-container img {
+  width: 33.33%; /* Adjust the width as needed */
+  height: auto;
 }
 
 figcaption {
   font-style: italic;
 }
+
+
 
 
 
