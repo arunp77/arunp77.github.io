@@ -223,6 +223,7 @@
                 <ol>
                     <li>
                         <strong>Least Squares Estimation:</strong>
+                        A common use of least-squares minimization is curve fitting, where one has a parametrized model function meant to explain some phenomena and wants to adjust the numerical values for the model so that it most closely matches some data.
                         <ul>
                             <li><strong>Method:</strong> Minimizes the sum of squared differences between observed and predicted values.</li>
                             <li><strong>Objective Function: </strong>
@@ -718,6 +719,28 @@ ax.legend()
                     <li><strong>curve_fit method: </strong>
                         From the Scipy pacakge we can get the <code>curve_fit()</code> function. This is more general than <code>polyfit()</code> 
                         (we can fit any type of function we like, exponential or not) but it’s more complicated in that we sometimes need to provide an initial guess as to what the constants could be in order for it to work.
+                        <div class="box">
+                            <code>scipy.optimize.curve_fit</code> and <code>scipy.optimize.leastsq</code> are related in that <code>curve_fit</code> is built as a high-level interface on top of <code>leastsq</code>. 
+                            Both functions are part of the <code>scipy.optimize</code> module and are used for curve fitting, a process where a mathematical function is adjusted to best fit a set of data points.
+                            <ul>
+                                <li><strong>scipy.optimize.leastsq</strong>: If \(f(x)\) is represents the objective function (the residuals to be minimized), and \(x\) is the vector of parameters to be optimized,  <code>leastsq</code> aims to find \(x\) such that:
+                                $$\sum_{i=1}^m \left(f_i(x)\right)^2,$$ 
+                                where \(f_i(x)\) represents the residuals (differences between the observed and predicted values) for the 
+                                \(i-th\) data point.
+                                </li>
+                                <li><strong>scipy.optimize.curve_fit: </strong><code>curve_fit</code> is a  higher-level function that provides a more user-friendly interface for curve fitting. It is designed to be simple and easy to use.
+                                Internally <code>curve_fit</code> utilizes <code>leastsq</code> for optimization. 
+                                <p>Givena model function 
+                                    $$y = f(x, \theta)$$,
+                                    ehere \(\theta\) represents the parameters to be optimized, and a set of data points \((x_i, y_i)\), <code>curve_fit</code> aims to find the optimal parameters \(\theta\) that minimize the difference between the model predictions and the observed data. 
+                                    mathematically, it can be expressed as:
+                                    $$\text{minimize}~ \sum_{i=1}^m (y_i-f(x_i, \theta))^2$$ 
+                                    In essence, curve_fit provides a higher-level abstraction, allowing users to specify a model function and automatically handling the optimization process using leastsq under the hood. The user is shielded from some of the complexities of setting up the optimization problem manually.
+                                </p>
+                                </li>
+                            </ul>
+                        </div>
+
                         <p><strong>Example: </strong>  Let's consider original example above with \(c\neq 0\):</p>
                         <pre><code class="language-python">
 import numpy as np
