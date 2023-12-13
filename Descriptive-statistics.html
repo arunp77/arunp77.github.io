@@ -7662,7 +7662,8 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="2.-Measures-of-variability">2. Measures of variability<a class="anchor-link" href="#2.-Measures-of-variability">¶</a></h2><p>Measures of variability are statistical measures that describe the spread or dispersion of a dataset. Some common measures of variability include:</p>
+<h2 id="2.-Measures-of-variability">2. Measures of variability<a class="anchor-link" href="#2.-Measures-of-variability">¶</a></h2>
+<p>Measures of variability are statistical measures that describe the spread or dispersion of a dataset. Some common measures of variability include:</p>
 <ul>
 <li><p><strong>Range:</strong> The range is the difference between the maximum and minimum values in a dataset. It is the simplest measure of variability but can be heavily influenced by outliers. It is calculated using the formula:</p>
 <p>$\text{Range} = \text{max value} - \text{min value}$</p>
@@ -7756,7 +7757,8 @@ The quartiles are significant because they provide important information about t
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="3.-Measures-of-distribution">3. Measures of distribution<a class="anchor-link" href="#3.-Measures-of-distribution">¶</a></h2><p>Skewness and kurtosis are two statistical measures used to describe the shape of a probability distribution.</p>
+<h2 id="3.-Measures-of-distribution">3. Measures of distribution<a class="anchor-link" href="#3.-Measures-of-distribution">¶</a></h2>
+<p>Skewness and kurtosis are two statistical measures used to describe the shape of a probability distribution.</p>
 <ul>
 <li><p><strong>Skewness:</strong> Skewness measures the degree of asymmetry in a distribution. A distribution with a positive skewness has a longer tail on the positive side of the mean, while a negative skewness means the tail is longer on the negative side of the mean. A perfectly symmetrical distribution has a skewness of zero.</p>
 
@@ -8505,7 +8507,61 @@ $$z^* = \text{invNorm}(1 - 0.05/2) = \text{invNorm}(0.975) = 1.96$$<p>Therefore,
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Discrete-and-Continuous-Variables-">Discrete and Continuous Variables <a id="2"></a><a class="anchor-link" href="#Discrete-and-Continuous-Variables-">¶</a></h2>
+  <h2>Random Variables</h2>
+
+  Random variables play an important role in describing, measuring and analyzing uncertain events. It is a function that maps
+  
+  every outcome in the sample space to a real number. A random variable can be classified as: 
+  
+  <ul>
+  
+    <li><strong>Discrete random variable: </strong>
+  
+      <ul>
+  
+        <li>Takes on a countable number of distinct values.</li>
+  
+        <li>Examples include the number of heads in multiple coin tosses or the count of occurrences in a specific time period.</li>
+  
+        <li>Discrete random variable are described using "Probability mass Function (PMF)" and "Cumulative Distribution Function (CDF)".</li>
+  
+        <li>PMF is the probability that a random variable X takes a specific value k; for example. the number of
+  
+          fraudulent transactions at an e-commerce platform is 10, written as  \(P(X=10)\). On the other hand, CDF is the probability that a random variable X, takes a value less than or equal to 10
+  
+          which is written as \(P(X\leq 10)\). 
+  
+        </li>
+  
+      </ul>
+  
+    </li>
+  
+    <li><strong>Continuous random variable</strong>
+  
+      <ul>
+  
+        <li>A random variable X which can take a value from an infintie set of values is called a continuous random variable.</li>
+  
+        <li>Examples include measurements like height, weight, or time intervals.</li>
+  
+        <li>Continuous random variables are described using "Probability Desnity Function (PDF)", and "Cumulative Distribution Fnction (CDF)". 
+  
+          PDF is the probabilitythat a continuous random variable \(X\) takes value in a small neighbourhood of "\(x\)" and is given by:
+  
+          $$f(x) = \text{Lim}_{\delta x \rightarrow 0} P[x\leq X \leq x+\delta x].$$ 
+  
+          The CDF of a continuous random varibale is the probability that the random variable \(X\) takes value less than or equal to a value "\(a\)". Mathematically:
+  
+          $$F(a) = \int_{-\infty }^\infty f(x) dx.$$
+  
+        </li>
+  
+      </ul>
+  
+    </li>
+  
+  </ul>
 </div>
 </div>
 </div>
