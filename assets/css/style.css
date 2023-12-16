@@ -1207,6 +1207,8 @@ section {
   border: 1px solid #ccc;
   padding: 10px;
   margin-bottom: 10px;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px;
 }
 
 
