@@ -164,12 +164,9 @@
           <h4>How does remote sensing work?</h4>
           <p>Remote sensing works by measuring the energy that is emitted or reflected from an object. The energy can be in the form of visible light, infrared radiation, radar 
             signals, or other forms of electromagnetic radiation. The energy is then recorded and processed to create images or other data products that can be used to interpret the properties of the object.</p>
-          
-          <p>In the pages that follow, we embark on an exploration of the fundamentals, technologies, applications, and future horizons of remote sensing. From the vantage point of 
-          satellites to the nimble drones patrolling our skies, we delve into the intricate processes of data acquisition, analysis, and interpretation. Remote sensing, a catalyst 
-          for transformative insights and informed decision-making, invites us to witness the world with a clarity that transcends physical boundaries.</p>
-
-      <h4>Satellite Characteristics: Orbits and Swaths </h4>
+      
+      <div class="box" style="background-color: #ffffff; padding: 10px; border-radius: 5px; border: 2px solid #2600ff;">
+        <h5>Satellite Characteristics: Orbits and Swaths </h5>
         <ol>
           <li><strong>Orbits: </strong>
             Satellites play a crucial role in various applications, including remote sensing, communication, and Earth observation. Two key characteristics defining satellite behavior are their orbits and swaths.
@@ -182,31 +179,101 @@
                     <ul>
                         <li>Satellites in LEO orbit close to Earth, typically at altitudes ranging from about 180 to 2,000 kilometers.</li>
                         <li>LEO satellites offer advantages for remote sensing, providing high-resolution imagery and frequent revisits due to their shorter orbital periods.</li>
-                        <li>Examples of LEO remote sensing satellites include the Landsat series and the International Space Station (ISS).</li>
+                        <li>Examples of LEO remote sensing satellites include the <a href="https://landsat.gsfc.nasa.gov/" target="_blank">Landsat series</a> and the 
+                          <a href="https://www.nasa.gov/international-space-station/" target="_blank"> International Space Station (ISS)</a>.</li>
                     </ul>
                 </li>          
                 <li><strong>Medium Earth Orbit (MEO):</strong>
                     <ul>
                         <li>MEO satellites orbit at intermediate altitudes, typically between 2,000 and 35,786 kilometers.</li>
                         <li>These orbits provide a balance between coverage and resolution, making them suitable for a variety of applications, including navigation systems like GPS.</li>
-                        <li>Examples of MEO satellites include those in the Global Navigation Satellite System (GNSS) constellations.</li>
+                        <li>Examples of MEO satellites include those in the <a href="https://www.gps.gov/systems/gnss/" target="_blank">Global Navigation Satellite System (GNSS)</a> constellations.</li>
                     </ul>
                 </li>          
                 <li><strong>Geostationary Orbit (GEO):</strong>
                     <ul>
                         <li>GEO satellites are positioned at approximately 35,786 kilometers above the equator, allowing them to appear stationary relative to a fixed point on Earth.</li>
                         <li>These satellites provide continuous coverage of a specific region, making them ideal for applications like weather monitoring and communication.</li>
-                        <li>Examples include weather satellites like GOES (Geostationary Operational Environmental Satellite).</li>
+                        <li>Examples include weather satellites like <a href="https://www.star.nesdis.noaa.gov/goes/index.php" target="_blank"> GOES</a> (Geostationary Operational Environmental Satellite).</li>
                     </ul>
                 </li>
                 <li><strong>Polar Orbit:</strong>
                     <ul>
                         <li>Satellites in polar orbits pass over Earth's poles, providing global coverage with each orbit.</li>
                         <li>These orbits are well-suited for Earth observation missions, as they cover the entire surface over time.</li>
-                        <li>Examples include satellites from the Copernicus program, such as Sentinel-1 and Sentinel-2.</li>
+                        <li>Examples include satellites from the <a href="https://en.wikipedia.org/wiki/Copernicus_Programme" target="_blank"> Copernicus program</a>, 
+                          such as Sentinel-1 and Sentinel-2 (see the <a href="https://sentinels.copernicus.eu/web/sentinel/missions" target="_blank">Official website</a>).</li>
                     </ul>
                 </li>
+                                
+                <table>
+                  <thead>
+                      <tr>
+                          <th>Mission Name</th>
+                          <th>Orbit</th>
+                          <th>Task</th>
+                          <th>Year of Launch</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>Sentinel-1A, Sentinel-1B</td>
+                          <td>Polar-orbiting</td>
+                          <td>Land and Ocean Monitoring, Radar Imaging</td>
+                          <td>April 2014, April 2016</td>
+                      </tr>
+                      <tr>
+                          <td>Sentinel-2A, Sentinel-2B</td>
+                          <td>Polar-orbiting</td>
+                          <td>Land Monitoring, High-Resolution Optical Imagery</td>
+                          <td>June 2015, March 2017</td>
+                      </tr>
+                      <tr>
+                          <td>Sentinel-3A, Sentinel-3B</td>
+                          <td>Polar-orbiting</td>
+                          <td>Marine Observation, Sea-Surface Topography</td>
+                          <td>May 2016, April 2018</td>
+                      </tr>
+                      <tr>
+                          <td>Sentinel-4A, Sentinel-4B</td>
+                          <td>Polar-orbiting</td>
+                          <td>Air Quality Monitoring, UVN Spectrometer</td>
+                          <td>March 2019, October 2021</td>
+                      </tr>
+                      <tr>
+                          <td>Sentinel-5P</td>
+                          <td>Polar</td>
+                          <td>Measure greenhouse gases (GHGs) and other atmospheric pollutants, Monitor atmospheric ozone, Monitor surface UV radiation, Monitor aerosols (tiny particles in the air), Monitor cloud properties, Collect data for climate models</td>
+                          <td>13 October 2017</td>
+                      </tr>
+                      <tr>
+                        <td>Sentinel-5M</td>
+                        <td>Sun-synchronous, ascending</td>
+                        <td>Provide continuous observations of atmospheric composition, Improve the accuracy and precision of atmospheric measurements, Expand the range of atmospheric variables measured, Serve as a reference data set for other satellite missions</td>
+                        <td>27 April 2021</td>
+                    </tr>
+                      <tr>
+                          <td>Sentinel-6 (Michael Freilich)</td>
+                          <td>Polar</td>
+                          <td>Radar Altimetry, Sea-Surface Height Measurements. ocean color, and land surface temperature</td>
+                          <td>Nov 2020</td>
+                      </tr>
+                      <tr>
+                        <td>Sentinel-7</td>
+                        <td>Sun-synchronous, descending</td>
+                        <td>Monitor ocean circulation, sea ice, and ocean color</td>
+                        <td>Sep 2021</td>
+                    </tr>
+                    <tr>
+                      <td>Sentinel-8</td>
+                      <td>Sun-synchronoun, ascending</td>
+                      <td>Measure precipitation, clouds, and aerosols</td>
+                      <td>April 2021</td>
+                  </tr>
+                  </tbody>
+                </table>
             </ul>
+            <br><br>
           </li>
           <li><strong>Swaths: </strong>
             <p>The swath width refers to the coverage area on the Earth's surface captured by a satellite during a single pass. It is determined by the satellite's sensor characteristics and the satellite's altitude. A wider swath allows for broader coverage but may sacrifice image resolution.</p>
@@ -219,6 +286,7 @@
             </figure>
           </li>
         </ol>
+      </div>
       </section>
       
       <section id="fundamentals">
@@ -370,7 +438,7 @@
                       </figure>
                       <br>
                       <strong>For example:</strong>
-                      Just like the atmosphere, different features on the landscape absorb and reflect electromagnetic radiation differently, and these differences allow us to map the Earth’s surface. Above, we show some examples over vegetation, water, urban areas, and snow.
+                      Just like the atmosphere, different features on the landscape absorb and reflect electromagnetic radiation differently, and these differences allow us to map the Earth’s surface.
                       <ul>
                         <li><strong>Green vegitation: </strong>Leaves contain a chemical compound called chlorophyll, which strongly absorbs radiation in the red and blue wavelengths while reflecting 
                           green wavelengths. During summer, when chlorophyll content is at its peak, leaves appear their greenest. In autumn, with reduced chlorophyll, there's less 
