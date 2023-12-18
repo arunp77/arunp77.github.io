@@ -303,8 +303,8 @@
                 <table>
                     <tr>
                         <th>Aspect</th>
-                        <th>Data Warehouse</th>
                         <th>Database</th>
+                        <th>Data Warehouse</th>                        
                         <th>Data Lake</th>
                         <th>Data Mart</th>
                         </tr>
@@ -312,71 +312,71 @@
                   <tbody>
                     <tr>
                         <td><strong>Purpose</strong></td>
-                        <td>Designed for analytical processing.</td>
                         <td>Designed for transactional data management.</td>
+                        <td>Designed for analytical processing.</td>
                         <td>Designed for storing raw, unstructured data.</td>
                         <td>Subset of a data warehouse focused on specific business areas.</td>
                     </tr>
                     <tr>
                         <td><strong>Data Type</strong></td>
-                        <td>Contains integrated and historical data.</td>
                         <td>Typically contains structured, transactional data.</td>
+                        <td>Contains integrated and historical data.</td>
                         <td>Stores raw and structured, semi-structured, or unstructured data.</td>
                         <td>Contains summarized and pre-aggregated data for specific use cases.</td>
                     </tr>
                     <tr>
                         <td><strong>Data Structure</strong></td>
-                        <td>Typically follows a structured schema (Star Schema or Snowflake Schema).</td>
                         <td>Follows a normalized schema (relational database model).</td>
+                        <td>Typically follows a structured schema (Star Schema or Snowflake Schema).</td>
                         <td>Schema-on-read, allowing flexible data structures.</td>
                         <td>Follows a dimensional model (Star Schema) for ease of reporting.</td>
                     </tr>
                     <tr>
                         <td><strong>Schema Design</strong></td>
-                        <td>Optimized for query performance.</td>
                         <td>Optimized for efficient data storage and retrieval.</td>
+                        <td>Optimized for query performance.</td>
                         <td>Flexible schema, data can be ingested without predefined structure.</td>
                         <td>Designed for ease of reporting and analysis.</td>
                     </tr>
                     <tr>
                         <td><strong>Query and Analytics</strong></td>
-                        <td>Designed for complex data analysis and reporting.</td>
                         <td>Supports simple queries and transactional operations.</td>
+                        <td>Designed for complex data analysis and reporting.</td>
                         <td>Suitable for ad-hoc queries and big data analytics.</td>
                         <td>Optimized for specific business units or departments' analytics.</td>
                     </tr>
                     <tr>
                         <td><strong>Data Integration</strong></td>
-                        <td>Integrates data from various sources for a unified view.</td>
                         <td>Typically focuses on data from a single application or system.</td>
+                        <td>Integrates data from various sources for a unified view.</td>
                         <td>Supports data from various sources with varying structures.</td>
                         <td>Integrates data relevant to a specific business area.</td>
                     </tr>
                     <tr>
                         <td><strong>Performance Optimization</strong></td>
-                        <td>Utilizes indexing, caching, and parallel processing.</td>
                         <td>Optimized for ACID (Atomicity, Consistency, Isolation, Durability) properties.</td>
+                        <td>Utilizes indexing, caching, and parallel processing.</td>
                         <td>Performance tuning is performed during data processing.</td>
                         <td>Designed for fast query response times for specific use cases.</td>
                     </tr>
                     <tr>
                         <td><strong>Scalability</strong></td>
-                        <td>Scalable both vertically and horizontally to handle large data volumes.</td>
                         <td>Scalability depends on the database system; typically vertical scaling.</td>
+                        <td>Scalable both vertically and horizontally to handle large data volumes.</td>
                         <td>Scales horizontally to accommodate growing data needs.</td>
                         <td>Scales according to the needs of the specific business area.</td>
                     </tr>
                     <tr>
                         <td><strong>Tools and Technologies</strong></td>
-                        <td>Uses specialized data warehousing solutions (e.g., Redshift, BigQuery).</td>
                         <td>Utilizes relational database management systems (e.g., Oracle, MySQL).</td>
+                        <td>Uses specialized data warehousing solutions (e.g., Redshift, BigQuery).</td>
                         <td>Utilizes distributed storage systems (e.g., Hadoop, Azure Data Lake Storage).</td>
                         <td>May use BI tools for reporting and analytics.</td>
                     </tr>
                     <tr>
                         <td><strong>Use Cases</strong></td>
-                        <td>Business intelligence, reporting, complex analytics.</td>
                         <td>Transactional applications, e-commerce, record-keeping.</td>
+                        <td>Business intelligence, reporting, complex analytics.</td>
                         <td>Big data analytics, data science, machine learning.</td>
                         <td>Department-specific analytics, budgeting, and forecasting.</td>
                     </tr>
