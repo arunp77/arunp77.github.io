@@ -93,7 +93,7 @@
         <div class="d-flex justify-content-between align-items-center">
           <h2>Portfoio Details</h2>
           <ol>
-            <li><a href="index.html#portfolio" class="clickable-box">Go to portfolio</a></li>
+            <li><a href="Data-engineering.html" class="clickable-box">Go to content</a></li>
           </ol>
         </div>
 
@@ -133,7 +133,7 @@
             <h3>Introduction</h3>
             <p>Music is a universal language that transcends borders and cultures. <a href="https://open.spotify.com/" target="_blank">Spotify</a>
                 one of the world's leading music streaming platforms, offers a treasure trove of data on the most globally famous songs. 
-                Analyzing this data can provide valuable insights into music trends, artist popularity, and more. In this project, we'll walk 
+                Analyzing this data can provide valuable insights into music trends, artist popularity, and more. In this project, I'll walk 
                 you through building an automated data pipeline on <a href="https://aws.amazon.com/" target="_blank">Amazon Web Services (AWS)</a>
                 to <a href="https://aws.amazon.com/what-is/etl/#:~:text=Extract%2C%20transform%2C%20and%20load%20(,and%20machine%20learning%20(ML)." target="_blank">extract, transform, and load (ETL)</a>
                 data from Spotify, empowering you to explore and analyze globally famous songs.</p>
@@ -147,11 +147,11 @@
                 <li>An <a href="https://signin.aws.amazon.com/" target="_blank"> AWS account</a> with the necessary permissions to create and manage services.</li>
                 <li>Basic knowledge of AWS services like S3, Lambda, Glue, and Athena.</li>
                 <li><a href="https://github.com/arunp77/Python-programming" target="_blank">Python programming skills</a>.</li>
-                <li><a href="https://developer.spotify.com/documentation/web-api" target="_blank">API access</a>.</li>
+                <li><a href="https://developer.spotify.com/documentation/web-api" target="_blank">Spotify API access</a>.</li>
             </ul>
             </div>
             <div class="image">
-                <img src="assets/img/portfolio/AWS-services.png" class="img-responsive" alt="Image Description">
+                <img src="assets/img/portfolio/AWS-services.png" alt="Image Description">
             </div>
         </div>
         <!--
@@ -170,20 +170,23 @@
             <p>I have successfully completed the Spotify ETL pipeline project on AWS, and here's an overview of the key steps:</p>
             <ul style="list-style-type: disc; margin-left: 30px;">
                 <li><b>Data Extraction:</b> AWS Lambda functions were employed to interact with the Spotify API, 
-                    fetching data on globally famous songs, and storing it in an Amazon S3 bucket.</li>
+                    fetching data on globally famous songs, and storing it in an Amazon S3 bucket as a raw data.</li>
                 <li><b>Data Transformation:</b> The raw Spotify data underwent a transformation phase through Lambda 
-                    functions. This process included parsing JSON responses, creating structured data frames, and applying various data cleaning operations.</li>
+                    functions. This process included parsing JSON responses, creating structured data frames, and applying various data cleaning operations (such as finding duplicates,
+                    infinities, missing values etc).</li>
                 <li><b>Data Loading:</b> The transformed data was loaded back into the S3 bucket, making it ready for analysis.</li>
                 <li><b>Automated Processing:</b> For keeping the music data current, I implemented automated processes that
-                     actively fetched new data from Spotify and dynamically updated the datasets. An AWS S3 trigger was configured to initiate the data transformation 
+                     actively fetched new data from Spotify and dynamically updated the datasets (I kept daily batch processing). An AWS S3 trigger was configured to initiate the data transformation 
                      process whenever a new dataset was added to the S3 bucket. Subsequently, the transformed data was loaded into a designated destination or folder.
                 </li>
-                <li><b>Data Analysis:</b>With the data in its prepared formats, it's now possible to explore music trends, artist popularity, 
-                    genre distribution, and more.</li>
+                <li><strong>Automation:</strong> AWS Crawler automates metadata discovery, cataloging schema and structure, and ensures up-to-date metadata in the AWS Glue Data Catalog.
+                    AWS Glue simplifies ETL processing, dynamically transforms data frames, and seamlessly integrates with the Data Catalog for automated, serverless data transformation.</li>
+                <li><b>Data Analysis:</b> With the data in its prepared formats, it's now possible to explore music trends, artist popularity, 
+                    genre distribution, and more. I used Athena to do the data analytics. </li>
             </ul>
                 
             <h3>Project Architecture</h3>
-            <img src="assets/img/portfolio/AWS-2.png" class="img-responsive" alt="Project Architecture" style="width: 800px; height: auto;">
+            <img src="assets/img/portfolio/AWS-2.png" alt="Project Architecture" style="width: 800px; height: auto;">
 
             <h3>Project Setup</h3>
                 <h5>Spotify Playlist and API:</h5>
@@ -223,7 +226,7 @@
                                 </ul>
                             </li>
                         </ul>
-                        <img src="assets/img/portfolio/AWS-directory.png" class="img-responsive" alt="Project Architecture" style="width: 700px; height: auto;">
+                        <img src="assets/img/portfolio/AWS-directory.png" alt="Project Architecture" style="width: 700px; height: auto;">
                     </ul>
                 </ul>
 
@@ -232,7 +235,7 @@
                 <p>In this Lambda function, we extract data from the Spotify API and save it in the raw data folder within the S3 bucket. 
                     The function uses the Spotify API credentials to access song information.</p>
                     
-                <img src="assets/img/portfolio/AWS-extract-load.png" class="img-responsive" alt="Project Architecture" style="width: 900px; height: auto;">
+                <img src="assets/img/portfolio/AWS-extract-load.png" alt="Project Architecture" style="width: 900px; height: auto;">
 
                 <ul class="indented-list">
                     <li>Created an AWS Lambda function named "spotify_api_data_extract". Here is the lambda function:</li>
@@ -288,7 +291,7 @@
                 <p>This Lambda function is responsible for the transformation of raw data. It parses JSON responses, converts them into 
                     dataframes, and applies data cleaning operations such as removing duplicates and converting data types.</p>
                 
-                    <img src="assets/img/portfolio/AWS-trasnform-load.png" class="img-responsive" alt="Project Architecture" style="width: 900px; height: auto;">
+                    <img src="assets/img/portfolio/AWS-trasnform-load.png" alt="Project Architecture" style="width: 900px; height: auto;">
 
                 <ul class="indented-list">
                     <li>Developed an AWS Lambda function named spotify_transformation_load_function". Here is the lambda function which:</li>
