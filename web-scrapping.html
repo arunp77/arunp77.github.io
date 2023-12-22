@@ -154,6 +154,12 @@
                 <h3>What is Web Scraping?</h3>
                 Web scraping, also known as web harvesting or web data extraction, is the automated process of extracting data from websites. It involves using software tools to mimic a human user's browsing behavior, navigating through websites and extracting the desired information. This information can then be saved in a structured format, such as a spreadsheet or database, for further analysis and use.
 
+                <h3>What's the web?</h3>
+                <p>When we surf the web, what we see of a website - its content and visuals - is coded in programming languages that belong to a same domain: web development. 
+                    While there are many languages and frameworks in this field today, we can simplify its code by using 3 programming languages: HTML, CSS and Javascript. 
+                    It is the combination of these 3 languages that constitutes the source code of the web pages accessible from our browser. 
+                    To become an expert in Web Scraping, we need to master the basics of web development.</p>
+
                 <h3>How Does Web Scraping Work?</h3>
                 <ol>
                     <li><strong>Crawling: </strong>The first step in web scraping is to crawl the target website or websites. Crawlers are bots or scripts that systematically visit and download web pages, following links to discover new content. This process allows the scraper to map out the website's structure and identify the pages containing the desired data.</li>
@@ -173,6 +179,38 @@
 
                 <h3>Ethical Considerations</h3>
                 While web scraping is a valuable tool, it's important to use it responsibly and ethically. Respecting website owners' terms of service and avoiding excessive scraping are essential to avoid legal issues or damage to website performance.
+                
+                <h3>Tools available for Web Scrapping</h3>
+                Web Scraping can be performed manually, but this can be very time-consuming, especially for data-intensive web pages. This is why automated Web Scraping has become a common technique for extracting large-scale data quickly and efficiently.
+                In addition, there are sevral tools available for this:
+                <ul>
+                    <li><strong>browser extensions</strong> such as Simple Scraper or Web Scraper, which install directly in your browser.</li>
+                    <li><strong>no-code software</strong> such as octoparse, which lets you create Web Scraping bots without writing any code.</li>
+                    <li><strong>APIs</strong> (Application Programming Interfaces) to access specific data on a website in a more structured and organized way.</li>
+                    <li><strong>Python libraries</strong> to retrieve information using customized scripts over which you have complete control.</li>
+                </ul>
+                <figure style="text-align: center;">
+                    <img src="assets/img/data-engineering/webscraping1.png" alt="" style="max-width: 60%; max-height: 60%;">
+                </figure>  
+                <p>However, even if the tools are diverse, the objective remains strictly the same. In this module, we'll be focusing on learning how to Web Scrap using Python libraries.</p>
+                
+                
+                <h3>Main python libraries for Web Scrapping</h3>
+                <p>Python offers several libraries for harvesting information from Web resources. Here are the three most commonly used solutions:</p>
+                    <ol>
+                        <li><strong>BeautifulSoup: </strong>Quick and easy to learn, BeautifulSoup is the ideal library for getting started with Web Scraping. It may be slower than other libraries for more advanced use cases.</li>
+                        <li><strong>Scrapy: </strong>The Scrapy library enables you to scrape large-scale data, as well as exporting scraped data to various formats such as JSON or CSV.
+                            However, its learning curve is steeper than BeautifulSoup. Finally, Scrapy requires a more complex and advanced configuration for the most advanced use cases, so it's harder to get to grips with.
+                        </li>
+                        <li><strong>Selenium: </strong>Selenium is first and foremost a library designed for automated web testing. Because of its compatibility with JavaScript, it is also used for web scraping and, unlike the two previous libraries, enables dynamic scraping.
+                            Selenium can simulate human behavior to avoid detection by web sites. It's a highly efficient and fast tool that performs more or less as well as Scrapy.
+                            However, Selenium can be slower than other libraries for the simplest use cases and is more difficult to use than other libraries for Python beginners.
+                            Finally, more and more sites are detecting the use of Selenium and blocking its use.
+                        </li>
+                    </ol>
+                    <div class="alert alert-info">
+                        <i class="fa fa-info-circle"></i> &emsp; 
+                        In short, <code>BeautifulSoup</code>  is recommended for beginners to web scraping, <code>Scrapy</code> is recommended for large-scale projects and <code>Selenium</code> is recommended for scraping dynamic web pages with JavaScript. Your choice of library will therefore depend on your use case and your level of Python skills. </div>
 
                 <h3>Web-Scraping in python using Beautofulsoup</h3>
                 Web scraping in Python can be achieved using a combination of two popular libraries: 
@@ -180,21 +218,35 @@
                         <li><strong><code>requests</code>: </strong>is a library for making HTTP requests to websites. It allows you to get the HTML content of a web page, which is the raw data that web scrapers need to work with.</li>
                         <li><strong><code>Beautiful Soup</code>: </strong> is a library for parsing HTML. It provides a clean and easy-to-use interface for extracting the data you want from the HTML content. </li>
                     </ul>
+                
+                <h3>Conclusion</h3>
+                <p>Web scraping is a powerful tool that can transform the way we collect, analyze, and utilize data from the vast digital landscape. By employing ethical practices and using appropriate tools, we can harness the power of web scraping to enhance our businesses, inform our decisions, and drive innovation.</p>
+                </section>
 
+                <!------------Others ---------------->
+                <section id="others">
+                    <h3>Javascript</h3>
+                    <p><code>Javascript</code> is a programming language commonly used to create interactive and dynamic websites, for example, with animations. 
+                    As with <code>CSS</code> code, <code>Javascript</code> can be directly included in the header of an <code>HTML</code> document with tags, but does not 
+                    appear directly in <code>HTML</code> tags. As the <code>BeautifulSoup</code> library only retrieves the content of the <code>HTML</code> code, we won't be able to retrieve the 
+                    information contained in this <code>Javascript</code> code when we scrape a site with <code>BeautifulSoup</code></p>
+                    
+                    <h3>How do I retrieve the source code of a web page? ?</h3>
+                    In order to achieve our ultimate goal of web scraping, we first need to retrieve the source code of a web page made up of the languages described above.
+                    <ul>
+                        <li><strong>Inspecting the page with the browser:</strong> Command (or Control for Windows) + Shift + C</li>
+                        <li><strong>Inspect the page with the Requests library: </strong>HTTP (Hypertext Transfer Protocol) requests are the web's primary means of communication. Every time we browse a web page, our web browser (the client) asks a web server to retrieve a resource (such as a web page, image or file) so that it can be displayed on our screen.</li>
+                    </ul>
+                    <img src="https://assets-datascientest.s3.eu-west-1.amazonaws.com/133_webscraping/protocole_http_en.png" style="height: 300px;"/>
 
-            
-            
-            
-        
-        
-
-
-
-
-
-
-
-
+                    Depending on the type of request, there are different methods for instructing the server to perform the desired action and display the requested resource. Below are three examples of methods used by the HTTP protocol:
+                    <ul>
+                        <li><strong>GET</strong>: Read the contents of a resource using its URL</li>
+                        <li><strong>POST</strong>: Send data to the server.</li>
+                        <li><strong>PUT</strong>: Create/replace the content of a resource.</li>
+                        <li><strong>HEAD</strong>: Request only information about the resource, not the resource itself.</li>
+                    </ul>
+                    <p>Once the web server receives the HTTP request, it processes the request and returns an HTTP response. We'll use the Python requests library to send HTTP requests to web pages. We'll need to fill in the web page link to scrape the page content.</p>
                 </section>
 
                 <!----------------  Reference ------------>
