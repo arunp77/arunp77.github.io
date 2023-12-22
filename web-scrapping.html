@@ -150,9 +150,11 @@
                 <!------System design project ------>
                 <section id="project">
                 <h3>Introduction</h3>
-                In the vast and ever-expanding world of the internet, data is a precious commodity. It fuels businesses, informs decision-making, and shapes the way we interact with the digital landscape. However, extracting meaningful information from the vast sea of web pages can be a daunting task. This is where web scraping comes into play.
+                In the vast and ever-expanding world of the internet, data is a precious commodity. It fuels businesses, informs decision-making, and shapes the way we interact with the digital landscape. However, extracting meaningful information from the vast sea 
+                of web pages can be a daunting task. This is where web scraping comes into play.
                 <h3>What is Web Scraping?</h3>
-                Web scraping, also known as web harvesting or web data extraction, is the automated process of extracting data from websites. It involves using software tools to mimic a human user's browsing behavior, navigating through websites and extracting the desired information. This information can then be saved in a structured format, such as a spreadsheet or database, for further analysis and use.
+                Web scraping, also known as web harvesting or web data extraction, is the automated process of extracting data from websites. It involves using software tools to mimic a human user's browsing behavior, navigating through websites and extracting 
+                the desired information. This information can then be saved in a structured format, such as a spreadsheet or database, for further analysis and use.
 
                 <h3>What's the web?</h3>
                 <p>When we surf the web, what we see of a website - its content and visuals - is coded in programming languages that belong to a same domain: web development. 
@@ -162,7 +164,8 @@
 
                 <h3>How Does Web Scraping Work?</h3>
                 <ol>
-                    <li><strong>Crawling: </strong>The first step in web scraping is to crawl the target website or websites. Crawlers are bots or scripts that systematically visit and download web pages, following links to discover new content. This process allows the scraper to map out the website's structure and identify the pages containing the desired data.</li>
+                    <li><strong>Crawling: </strong>The first step in web scraping is to crawl the target website or websites. Crawlers are bots or scripts that systematically visit and download web pages, following links to discover new content. This process allows the 
+                        scraper to map out the website's structure and identify the pages containing the desired data.</li>
                     <li><strong>Parsing: </strong>Once the crawler has downloaded a web page, the scraper analyzes its HTML code to identify the specific elements that contain the relevant information. This involves understanding HTML tags, attributes, and CSS styles.</li>
                     <li><strong>Extraction: </strong>Using the parsed information, the scraper extracts the desired data from the web page. This may involve extracting text, images, links, or other elements.</li>
                     <li><strong>Storage: </strong>Finally, the extracted data is stored in a structured format, such as a CSV file, JSON file, or database. This allows for easy access and analysis of the data.</li>
@@ -210,7 +213,8 @@
                     </ol>
                     <div class="alert alert-info">
                         <i class="fa fa-info-circle"></i> &emsp; 
-                        In short, <code>BeautifulSoup</code>  is recommended for beginners to web scraping, <code>Scrapy</code> is recommended for large-scale projects and <code>Selenium</code> is recommended for scraping dynamic web pages with JavaScript. Your choice of library will therefore depend on your use case and your level of Python skills. </div>
+                        In short, <code>BeautifulSoup</code>  is recommended for beginners to web scraping, <code>Scrapy</code> is recommended for large-scale projects and <code>Selenium</code> is recommended for scraping dynamic web pages with JavaScript. Your choice 
+                        of library will therefore depend on your use case and your level of Python skills. </div>
                 </section>
                 <!------------Others ---------------->
                 <section id="others">
@@ -224,7 +228,8 @@
                 In order to achieve our ultimate goal of web scraping, we first need to retrieve the source code of a web page made up of the languages described above.
                 <ul>
                     <li><strong>Inspecting the page with the browser:</strong> Command (or Control for Windows) + Shift + C</li>
-                    <li><strong>Inspect the page with the Requests library: </strong>HTTP (Hypertext Transfer Protocol) requests are the web's primary means of communication. Every time we browse a web page, our web browser (the client) asks a web server to retrieve a resource (such as a web page, image or file) so that it can be displayed on our screen.</li>
+                    <li><strong>Inspect the page with the Requests library: </strong>HTTP (Hypertext Transfer Protocol) requests are the web's primary means of communication. Every time we browse a web page, our web browser (the client) asks a web server to retrieve a resource 
+                        (such as a web page, image or file) so that it can be displayed on our screen.</li>
                 </ul>
                 <img src="https://assets-datascientest.s3.eu-west-1.amazonaws.com/133_webscraping/protocole_http_en.png" style="height: 300px;"/>
 
@@ -244,18 +249,34 @@
                     <li><strong><code>Beautiful Soup</code>: </strong> is a library for parsing HTML. It provides a clean and easy-to-use interface for extracting the data you want from the HTML content. </li>
                 </ul>
 
-                <h3>Web Scraping with BeautifulSoup Web Scraping's limits</h3>
+                <h3>The limits of Web Scraping with <code>BeautifulSoup</code></h3>
                 While <code>BeautifulSoup</code> librariey can be a very effective way of obtaining data in bulk, there are some limitations to Web Scraping that we need to be aware of, and which can make our task more difficult. 
-                The limits of Web Scrapping with BeautifulSOup:
+                The limits of Web Scrapping with <code>BeautifulSoup</code>:
                 <ul>
                     <li><strong> Dynamic content: </strong>
-                        <p>BeautifulSoup is a perfect library for getting started with Web Scraping, but it doesn't allow you to harvest information from all websites. Indeed, some web pages are constructed in complex ways, which can make data extraction difficult. For example, 
-                            websites that use technologies such as Javascript to make their content dynamic can be difficult, if not impossible, to scrape with BeautifulSoup, as this library is based solely on the initial source code of the page, whereas dynamic content is, 
+                        <p><code>BeautifulSoup</code> is a perfect library for getting started with Web Scraping, but it doesn't allow you to harvest information from all websites. Indeed, some web pages are constructed in complex ways, which can make data extraction difficult. For example, 
+                            websites that use technologies such as Javascript to make their content dynamic can be difficult, if not impossible, to scrape with <code>BeautifulSoup</code>, as this library is based solely on the initial source code of the page, whereas dynamic content is, 
                             by definition, elements that can change or appear after the initial page load, in response to user actions such as button clicks or scrolling.</p>
-                        <p>If the page we want to scrape contains dynamic content, we need to use more advanced tools that are capable of interacting with this dynamic content. The Selenium library, for example, is a possible solution, as it can simulate user actions to load dynamic content and extract the necessary data.</p>
+                        <p>If the page we want to scrape contains dynamic content, we need to use more advanced tools that are capable of interacting with this dynamic content. The <code>Selenium</code> library, for example, is a possible solution, as it can simulate user actions to load 
+                            dynamic content and extract the necessary data.</p>
                     </li>
-                    <li><strong>Data reliability: </strong></li>
-                    <li><strong></strong></li>
+                    <li><strong>Data reliability: </strong>
+                        <p>Reliability is a major limitation of Web Scraping, as Web pages can be updated regularly, which can lead to errors in the structure of the HTML code and missing or incorrect data in the scraping. When a Web page is modified, HTML tags can change, class names can 
+                            be modified, elements can be moved, etc. This can lead to incorrect data being collected. This can lead to the collection of incorrect or missing data and errors in scraping. For example, if we are scraping a website to obtain pricing data for a product, a 
+                            change in the structure of the website may mean that the data is no longer collected correctly and may result in an error in our script.</p>
+                        <p>To overcome this limitation, we can use advanced monitoring techniques to track changes to web pages. In this way, we can quickly detect errors and correct them. In practice, this involves setting up Python monitoring scripts to detect changes in the structure 
+                            of the web page and alert the developers in the event of a problem. These scripts detect errors by defining a set of validation rules, which check whether the data collected is correct and consistent. For example, validation rules can check whether the prices 
+                            collected fall within a certain price range, whether they are higher than the previous price, or whether there has been a significant price increase or decrease. Validation rules can also check for missing or non-compliant data, and report errors to the user.</p>
+                        <p>On a more general level, we can also compare the entire content of a page with an earlier version by hashing these pages, i.e., by obtaining the unique fingerprint of a file through complex mathematical calculations that form a function, known as a hash function, 
+                            obtained using the hashlib library. In this way, we can check the version of the web page by comparing the current hash with the previously stored hash. If the two hashes are identical, this means that the website has not been modified since the last time you 
+                            scanned it. If the two hashes are different, it means that the website has been modified and that you need to correct your scraping script.</p>
+                        <p>By using these techniques, we can improve the reliability of our scraping script and ensure that the data collected is accurate, valid and compliant.</p>
+                    </li>
+                    <li><strong>Legal aspects of Web scraping: </strong>
+                        <img src="assets/img/data-engineering/droit.png" style="height: 300px;"/>
+                        
+                    
+                    </li>
                 </ul>
 
                 
