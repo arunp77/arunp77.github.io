@@ -188,6 +188,37 @@
           <p><strong>Example: </strong>Logistic Regression, Support Vector Machines (SVMs), Decision Trees, Random Forests</p>
           </li>
           <div class="box">
+            <h4>Steps to build a classification model:</h4>
+            <ul>
+              <li><strong>Collect/Extract Data:</strong> Gather relevant data for your classification task from various sources.</li>
+              <li><strong>Pre-process the Data:</strong> Clean and transform the data to handle missing values, outliers, and ensure data quality.</li>
+              <li><strong>Explore and Understand the Data:</strong> Perform exploratory data analysis (EDA) to understand the characteristics, distributions, and relationships within the dataset.</li>
+              <li><strong>Feature Selection/Engineering:</strong> Identify relevant features for the classification task. Consider creating new features or transforming existing ones to enhance the model's performance.</li>
+              <li><strong>Split Data into Training and Validation Sets:</strong> Divide the dataset into training and validation sets to train the model and assess its performance.</li>
+              <li><strong>Choose a Classification Algorithm:</strong> Select an appropriate classification algorithm based on the nature of the problem (e.g., logistic regression, decision trees, random forests, support vector machines, or neural networks).</li>
+              <li><strong>Train the Model:</strong> Use the training dataset to train the chosen classification model.</li>
+              <li><strong>Evaluate Model Performance:</strong> Assess the model's performance using evaluation metrics such as accuracy, precision, recall, F1 score, and confusion matrix on the validation dataset.</li>
+              <li><strong>Tune Hyperparameters:</strong> Fine-tune the model by adjusting hyperparameters to optimize its performance.</li>
+              <li><strong>Handle Imbalanced Classes (if applicable):</strong> If your dataset has imbalanced classes, consider techniques such as oversampling, undersampling, or using specialized algorithms to address the imbalance.</li>
+              <li><strong>Cross-Validation:</strong> Implement cross-validation techniques (e.g., k-fold cross-validation) to ensure the model's generalization performance on different subsets of the data.</li>
+              <li><strong>Model Interpretation (if applicable):</strong> Depending on the model chosen, interpretability might be crucial. Understand how the model makes predictions, especially in fields where interpretability is essential.</li>
+              <li><strong>Deploy the Model (if applicable):</strong> If the model meets performance criteria, consider deploying it for making predictions in real-world scenarios.</li>
+            </ul>
+          </div>
+          
+          <li><strong>Regression:</strong> Predicting a continuous numerical value for each data point. For example, predicting the price of a house, or predicting the number of customers who will visit a website in a given day.
+            <p>Here are some of the characteristics that make a model a regression model:</p>
+            <ul>
+              <li><strong>The output variable is continuous:</strong> The output variable that the model is trying to predict is a continuous numerical value. For example, a model that predicts the price of a house or the number of customers 
+                who will visit a website in a given day would be considered a regression model.</li>
+              <li><strong>The model uses a loss function that is based on the difference between the predicted and actual output values:</strong> The model is trained by minimizing a loss function. The loss function measures the difference 
+                between the predicted and actual output values. For regression models, the most common loss function is the mean squared error (MSE).</li>
+              <li><strong>The model can be used to make predictions on new, unseen data:</strong> Once the model is trained, it can be used to make predictions on new data points that were not used in the training process. 
+                For regression models, the predictions are continuous numerical values.</li>
+            </ul>
+            <p><strong>Example: </strong>Linear Regression, Ridge Regression, Lasso Regression, Support Vector Regression (SVR), Decision Tree Regression</p>
+          </li>
+          <div class="box">
             <h4>Steps Involved in Building a Regression Model</h4>
             In this section, we will explain the steps used in building a regression model. Building a a regression model is an iterative process and several interations may be required before finalizing the appropriate 
             model.
@@ -213,18 +244,6 @@
                 <li>Outliers analysis, since the presence of outliers can significantly impact the regression parameters.</li>
               </ul>
             </div>
-          <li><strong>Regression:</strong> Predicting a continuous numerical value for each data point. For example, predicting the price of a house, or predicting the number of customers who will visit a website in a given day.
-            <p>Here are some of the characteristics that make a model a regression model:</p>
-            <ul>
-              <li><strong>The output variable is continuous:</strong> The output variable that the model is trying to predict is a continuous numerical value. For example, a model that predicts the price of a house or the number of customers 
-                who will visit a website in a given day would be considered a regression model.</li>
-              <li><strong>The model uses a loss function that is based on the difference between the predicted and actual output values:</strong> The model is trained by minimizing a loss function. The loss function measures the difference 
-                between the predicted and actual output values. For regression models, the most common loss function is the mean squared error (MSE).</li>
-              <li><strong>The model can be used to make predictions on new, unseen data:</strong> Once the model is trained, it can be used to make predictions on new data points that were not used in the training process. 
-                For regression models, the predictions are continuous numerical values.</li>
-            </ul>
-            <p><strong>Example: </strong>Linear Regression, Ridge Regression, Lasso Regression, Support Vector Regression (SVR), Decision Tree Regression</p>
-          </li>
         </ul>
 
         <h4 id="common-sla">Common Supervised Learning Algorithms:</h4>
@@ -257,22 +276,7 @@
       <section id="steps">
       
 
-        <h3>Steps to build a classification model:</h3>
-        <ul>
-          <li><strong>Collect/Extract Data:</strong> Gather relevant data for your classification task from various sources.</li>
-          <li><strong>Pre-process the Data:</strong> Clean and transform the data to handle missing values, outliers, and ensure data quality.</li>
-          <li><strong>Explore and Understand the Data:</strong> Perform exploratory data analysis (EDA) to understand the characteristics, distributions, and relationships within the dataset.</li>
-          <li><strong>Feature Selection/Engineering:</strong> Identify relevant features for the classification task. Consider creating new features or transforming existing ones to enhance the model's performance.</li>
-          <li><strong>Split Data into Training and Validation Sets:</strong> Divide the dataset into training and validation sets to train the model and assess its performance.</li>
-          <li><strong>Choose a Classification Algorithm:</strong> Select an appropriate classification algorithm based on the nature of the problem (e.g., logistic regression, decision trees, random forests, support vector machines, or neural networks).</li>
-          <li><strong>Train the Model:</strong> Use the training dataset to train the chosen classification model.</li>
-          <li><strong>Evaluate Model Performance:</strong> Assess the model's performance using evaluation metrics such as accuracy, precision, recall, F1 score, and confusion matrix on the validation dataset.</li>
-          <li><strong>Tune Hyperparameters:</strong> Fine-tune the model by adjusting hyperparameters to optimize its performance.</li>
-          <li><strong>Handle Imbalanced Classes (if applicable):</strong> If your dataset has imbalanced classes, consider techniques such as oversampling, undersampling, or using specialized algorithms to address the imbalance.</li>
-          <li><strong>Cross-Validation:</strong> Implement cross-validation techniques (e.g., k-fold cross-validation) to ensure the model's generalization performance on different subsets of the data.</li>
-          <li><strong>Model Interpretation (if applicable):</strong> Depending on the model chosen, interpretability might be crucial. Understand how the model makes predictions, especially in fields where interpretability is essential.</li>
-          <li><strong>Deploy the Model (if applicable):</strong> If the model meets performance criteria, consider deploying it for making predictions in real-world scenarios.</li>
-      </ul>
+        
 
       </section>
 
