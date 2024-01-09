@@ -132,7 +132,7 @@
               <div class="swiper-wrapper align-items-center">
 
                 <div class="swiper-slide">
-                    <h1>CI/CD pipelines & Jenkins</h1>
+                    <h1>Mastering CI/CD: Streamlining Software Developmen</h1>
                   <figure>
                     <img src="assets/img/data-engineering/ci-cd-ML.png" alt="" style="max-width: 50%; max-height: 50%;">
                     <figcaption></figcaption>
@@ -164,6 +164,68 @@
 
       <section id="introduction">
         <h2>Introduction</h2>
+        CI/CD, which stands for Continuous Integration and Continuous Deployment (or Continuous Delivery), is a set of best practices and tools used in software development to 
+        automate and streamline the process of building, testing, and deploying software.
+        In very simple terms, CI is a modern software development practice in which incremental code changes are made frequently and reliably. Automated build-and-test steps 
+        triggered by CI ensure that code changes being merged into the repository are reliable. The code is then delivered quickly and seamlessly as a part of the CD process. 
+        In the software world, the CI/CD pipeline refers to the automation that enables incremental code changes from developers’ desktops to be delivered quickly and reliably to production.
+        <figure>
+            <img src="assets/img/data-engineering/cicd-cycle.png" alt="" style="max-width: 70%; max-height: auto;">
+            <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://www.synopsys.com/glossary/what-is-cicd.html" target="_blank">Synopsys: Application security</a></figcaption>
+          </figure>
+      </section>
+
+      <section id="CI">
+        <h3>Continuous Integration (CI)</h3>
+        <strong>Objective:</strong>  Integrate code changes from multiple contributors into a shared repository frequently.
+        <br>
+        <strong>Key practices: </strong> 
+        <ul>
+            <li><strong>Version Controls: </strong>Use a version control system (e.g., Git) to track changes and manage collaboration. </li>
+            <li><strong>Automated Builds: </strong>Set up automated build systems to compile code and generate executable artifacts.</li>
+            <li><strong>Automated Testing: </strong>Implement automated testing (unit tests, integration tests) to verify that the code changes do not introduce errors.</li>
+            <li><strong>Frequent Integration: </strong>Integrate code changes frequently into a shared repository to detect and address issues early.</li>
+        </ul>
+        <br>
+        <h3>Continuous Deployment/Delivery (CD)</h3>
+        <strong>Objective: </strong> Automate the process of deploying code changes to production environments.<br>
+        <strong>Key Practices: </strong><br>
+        <ul>
+            <li><strong>Deployment Automation: </strong>Automate the deployment process to reduce manual errors and ensure consistency.</li>
+            <li><strong>Continuous Deployment (CD): </strong>Automatically deploy code changes to production after passing automated tests and other quality checks.</li>
+            <li><strong>Continuous Delivery (CD): </strong>Prepare code changes for deployment, but the actual deployment is triggered manually.</li>
+            <li><strong>Environment Parity: </strong>Ensure consistency between development, testing, and production environments to avoid unexpected issues</li>
+        </ul>
+
+        <h3>CI/CD Pipeline</h3>
+        A CI/CD pipeline is a series of automated steps that code changes go through from development to production. It typically includes stages such as code compilation, automated testing, and deployment.
+        
+        <h3>Key Components</h3>
+        <ol>
+            <li><strong>Source Code Repository: </strong>A central location (e.g., Git repository) where code changes are stored.</li>
+            <li><strong>Build Server: </strong>Server or service responsible for compiling code and generating build artifacts</li>
+            <li><strong>Automated Testing Tools: </strong>Tools for running automated tests to ensure code quality.</li>
+            <li><strong>Artifact Repository: </strong>A repository to store compiled artifacts for deployment</li>
+            <li><strong>Deployment Automation: </strong>Tools and scripts to automate the deployment process.</li>
+        </ol>
+
+        <h3>Benefits of CI/CD</h3>
+        <ol>
+            <li><strong>Rapid Feedback: </strong>Early detection of bugs and issues.</li>
+            <li><strong>Consistent Builds: </strong>Automated builds ensure consistency across different environments.</li>
+            <li><strong>Faster Time to Market: </strong>Continuous deployment accelerates the release cycle.</li>
+            <li><strong>Reduced Manual Errors: </strong>Automation reduces the chance of human errors during deployment.</li>
+            <li><strong>Increased Collaboration: </strong>Continuous integration promotes collaboration among development teams.</li>
+        </ol>
+
+        <h3>Popular CI/CD Tools:</h3>
+        <ol>
+            <li><strong>Jenkins: </strong>An open-source automation server widely used for building, testing, and deploying.</li>
+            <li><strong>Travis CI: </strong>A cloud-based CI/CD service that integrates with GitHub repositories.</li>
+            <li><strong>GitLab CI/CD: </strong>Integrated CI/CD functionality within the GitLab platform.</li>
+            <li><strong>CircleCI: </strong>A cloud-based CI/CD platform supporting multiple programming languages.</li>
+            <li><strong>GitHub Actions: </strong>Native CI/CD capabilities integrated with GitHub repositories.</li>
+        </ol>
 
       </section>
         
@@ -173,7 +235,7 @@
       <section id="reference">
         <h2>References</h2>
         <ul>
-          <li>My github Repositories on Remote sensing <a href="https://github.com/arunp77/Machine-Learning/" target="_blank">Machine learning</a></li>
+          <li><a href="https://medium.com/@arunp77/ensuring-data-integrity-and-continuity-for-machine-learning-projects-c4335eb1e9f9" target="_blank">Ensuring Data Integrity and Continuity for Machine Learning Projects.</a></li>
         </ul>
       </section>
 
