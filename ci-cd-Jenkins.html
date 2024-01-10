@@ -170,9 +170,9 @@
         triggered by CI ensure that code changes being merged into the repository are reliable. The code is then delivered quickly and seamlessly as a part of the CD process. 
         In the software world, the CI/CD pipeline refers to the automation that enables incremental code changes from developers’ desktops to be delivered quickly and reliably to production.
         <figure>
-            <img src="assets/img/data-engineering/cicd-cycle.png" alt="" style="max-width: 70%; max-height: auto;">
-            <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://www.synopsys.com/glossary/what-is-cicd.html" target="_blank">Synopsys: Application security</a></figcaption>
-          </figure>
+          <img src="assets/img/data-engineering/cicd-cycle.png" alt="" style="max-width: 70%; max-height: auto;">
+          <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://www.synopsys.com/glossary/what-is-cicd.html" target="_blank">Synopsys: Application security</a></figcaption>
+        </figure>
       </section>
 
       <section id="CI">
@@ -196,6 +196,10 @@
             <li><strong>Continuous Delivery (CD): </strong>Prepare code changes for deployment, but the actual deployment is triggered manually.</li>
             <li><strong>Environment Parity: </strong>Ensure consistency between development, testing, and production environments to avoid unexpected issues</li>
         </ul>
+        <figure>
+          <img src="assets/img/data-engineering/ci-cd-flow-desktop.png" alt="" style="max-width: 70%; max-height: auto;">
+          <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://www.redhat.com/en/topics/devops/what-is-ci-cd" target="_blank">Redhat</a></figcaption>
+        </figure>
       </section>
 
       <section id="ci-cd-detail">
@@ -228,6 +232,100 @@
             <li><strong>CircleCI: </strong>A cloud-based CI/CD platform supporting multiple programming languages.</li>
             <li><strong>GitHub Actions: </strong>Native CI/CD capabilities integrated with GitHub repositories.</li>
         </ol> 
+      </section>
+
+      <section id="waterfall">
+        <h3>Software Development Methodologies</h3>
+        Software development methodologies play a crucial role in shaping the approach, collaboration, and efficiency of development teams. 
+        This section delves into three prominent methodologies: Waterfall, Agile, and DevOps, each with its unique principles and purposes.
+        <figure>
+          <img src="assets/img/data-engineering/devops-waterfall-agile.png" alt="" style="max-width: 70%; max-height: auto;">
+          <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="index.html" target="_blank">Arun Kumar Pandey</a></figcaption>
+        </figure>
+        <ol>
+          <li><strong>Waterfall Methodology: </strong><br>
+          <strong>Definition: </strong> The Waterfall model is a traditional, linear approach to software development. It follows a sequential structure, with each phase building upon the previous one.
+          <br>
+          <strong>Purpose:</strong>
+          <ul>
+            <li><strong>Phased Development: </strong>Waterfall divides the project into distinct phases - requirements, design, implementation, testing, deployment, and maintenance.</li>
+            <li><strong>Predictability: </strong>Provides a structured and predictable framework, making it easier to plan and manage projects.</li>
+            <li><strong>Minimal Client Involvement: </strong>Client involvement is limited, mainly occurring at the beginning and end of the project.</li>
+          </ul>
+          <br>
+          <strong>Challenges:</strong>
+          <ul>
+            <li><strong>Rigidity: </strong> Changes are challenging to incorporate once a phase is completed.</li>
+            <li><strong>Delayed Feedback: </strong>Issues may not surface until the testing phase, leading to delayed feedback.</li>
+          </ul>
+          </li>
+          <li><strong>Agile Methodology: </strong><br>
+            <strong>Definition: </strong>  Agile is an iterative and incremental approach to software development, prioritizing flexibility and adaptability.
+            <br>
+            <strong>Purpose:</strong>
+            <ul>
+              <li><strong>Iterative Development: </strong>Emphasizes the delivery of small, functional increments of the software in short iterations</li>
+              <li><strong>Adaptability: </strong>Welcomes changes in requirements, even late in the development process</li>
+              <li><strong>Customer Collaboration: </strong>Encourages constant collaboration with clients throughout the development cycle.</li>
+            </ul>
+            <br>
+            <strong>Challenges:</strong>
+            <ul>
+              <li><strong>Resource Intensive: </strong>Requires close and continuous collaboration, which can be resource-intensive.</li>
+              <li><strong>Lack of Documentation: </strong>Limited documentation may pose challenges for larger, complex projects.</li>
+            </ul>
+          </li>
+          <li><strong>DevOps Methodology: </strong><br>
+            <strong>Definition: </strong> DevOps is a culture and set of practices that brings together development and operations teams to streamline collaboration and automate processes.
+            <br>
+            <strong>Purpose:</strong>
+            <ul>
+              <li><strong>Collaboration: </strong>Fosters collaboration between development, operations, and other stakeholders.</li>
+              <li><strong>Automation: </strong>Implements continuous integration and deployment to automate the development, testing, and deployment processes.</li>
+              <li><strong>Continuous Monitoring: </strong>Emphasizes continuous monitoring of applications and infrastructure for quick issue identification and resolution.</li>
+            </ul>
+            <br>
+            <strong>Challenges:</strong>
+            <ul>
+              <li><strong>Cultural Shift: </strong>Requires a cultural shift and close cooperation between traditionally separate teams.</li>
+              <li><strong>Learning Curve: </strong>Adoption may involve a learning curve for implementing new tools and practices.</li>
+            </ul>
+          </li>
+        </ol>
+        
+
+        <table>
+          <tr>
+              <th></th>
+              <th>Waterfall</th>
+              <th>Agile</th>
+              <th>DevOps</th>
+          </tr>
+          <tr>
+              <td><strong>Adaptability</strong></td>
+              <td>Resistant to changes after project initiation.</td>
+              <td> Embraces changes throughout the development process.</td>
+              <td>Integrates changes smoothly through automated processes.</td>
+          </tr>
+          <tr>
+              <td><strong>Customer Involvement</strong></td>
+              <td>Limited client involvement, primarily at the beginning and end.</td>
+              <td>Constant collaboration with clients throughout development.</td>
+              <td>Focuses on collaboration between development, operations, and other stakeholders.</td>
+          </tr>
+          <tr>
+              <td><strong>Release Frequency</strong></td>
+              <td> Releases occur at the end of the development cycle.</td>
+              <td>Regular, incremental releases.</td>
+              <td>Enables continuous delivery with frequent releases.</td>
+          </tr>
+      </table>
+      
+
+
+
+        In conclusion, the choice of software development methodology significantly influences project outcomes. Waterfall provides structure and predictability, Agile prioritizes adaptability, 
+        and DevOps focuses on collaboration and automation. The selection depends on project requirements, organizational culture, and the desired balance between predictability and flexibility. As organizations evolve, they may adopt hybrid approaches that incorporate elements from multiple methodologies to best suit their needs.
       </section>
 
       <section id="Jenkins">
