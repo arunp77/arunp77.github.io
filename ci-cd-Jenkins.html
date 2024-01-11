@@ -348,7 +348,11 @@
         Unit testing is a software testing technique where individual units or components of a software application are tested in isolation. The main purpose is to validate that each unit of the software 
         performs as designed. In data science and analytics, unit testing can be applied to functions, modules, or algorithms to ensure they produce the expected output for a given set of inputs. It helps 
         identify and fix bugs early in the development process, improving the overall reliability and maintainability of the code.
-        <h5>Unit testing vs integration testing</h5>
+        <br><br>
+        <h4>Unit testing vs integration testing</h4> 
+        While unit testing ensures that all units of code properly work independently, integration testing ensures that they work together. Integration tests focus on real-life use cases. They often rely on external data such as databases or web servers.
+
+        A unit test, on the other hand, only needs data that is created exclusively for the test. It is therefore much easier to implement.
         <table>
           <tr>
             <th></th>
@@ -421,6 +425,35 @@
             <td>May require more effort to identify the specific cause of failures due to interactions between components.</td> 
           </tr>
         </table>
+
+        <h4>Advantages of Unit testing</h4>
+        Here is a non-exhaustive list of the advantages of unit testing that make it a vital asset in the toolbox of a good programmer:
+        <ul>
+          <li><strong>Time saving: </strong>Some very basic errors can become quite difficult to identify during the integration testing phase, due to the many layers of code that accumulate. However, these errors can be detected very simply, very quickly and very early in the building of the code thanks to unit tests.</li>
+          <li><strong>Fluidification of code changes: </strong>If you wish to bring in a modification to your code (e.g. change the regression method), it becomes very easy to verify that the function still works as expected by performing the unit test of this function.</li>
+          <li><strong>Improved code quality: </strong>A good approach to coding is to code unit tests before you code the units themselves. This compels one to think about all the contingencies that the unit might face. Thinking about how to code the unit renders the unit simpler and more robust later on. This approach is known as test driven development (TDD).</li>
+          <li><strong>Aid to the understanding of the code: </strong>Unit tests are also used by developers as explanatory documentation of each part of the code. In fact, it is very easy to understand the expected behaviour of a function by reading the associated unit test beforehand.</li>
+        </ul>
+
+        <h4>Weakness of the Unit testing</h4>
+        <ul>
+          <li>However, it is impossible to test the infinite variety of contingencies that the unit might face. Passing the unit test without a hitch is therefore not a total guarantee of correct operation.</li>
+          <li>Unit tests cannot, however, by construction, test the interaction between units.</li>
+        </ul>
+
+        <h4>Automated testing with pytest</h4>
+        <ol>
+          <li><strong>What is automated testing? :</strong>
+            To automate unit tests, there are frameworks that will greatly facilitate the task. The developer must set the criteria for the tests he/she wishes to perform, and then the framework takes care of performing the tests automatically and providing detailed error reports.
+            <ul>
+              <li><strong>unitest:</strong> The basic framework for automated testing on python is <code>unittest</code>. It is a built-in testing framework in python. It follows the xUnit style and provides classes and methods for creating and running tests.</li>
+              <li><strong>pytest: </strong><code>pytest</code> is another popular third party testing framework. It normaly simplifues test discovery
+                and execution. It's known for its concise syntex and powerful features.</li>
+              <li><strong>nose: </strong>Similarly <code>nose</code> is another third party testing framewrok that extends unittest and provides additional functionality. It's particularly useful for test discovery and running tests in parallel.</li>
+            </ul>
+              
+          <li><strong>Introduction to pytest:</strong></li>
+        </ol>
 
 
 
