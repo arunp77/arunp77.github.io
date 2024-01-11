@@ -572,8 +572,95 @@
             </ul>
           </li>
         </ol>
+        If your units contain a lot of side effects this can be problematic for unit testing. Unit testing is a good way to ensure that your units respect the Single Responsibility Principle.
 
-
+        <h4>Error messages</h4>
+        <ol>
+          <li><strong><code>ValueError</code> invalid Input:</strong>
+          <pre><code class="language-python">
+            def divide(a, b):
+            if b == 0:
+                raise ValueError("Cannot divide by zero.")
+            return a / b
+          </code></pre>
+          <strong>Handling:</strong>
+          <pre><code class="language-python">
+            def test_divide():
+            assert divide(10, 2) == 5
+            try:
+                divide(5, 0)
+            except ValueError as e:
+                assert str(e) == "Cannot divide by zero."
+          </code></pre>
+          </li>
+          <li><strong>TypeError: Incorrect Argument Type:</strong>
+            <pre><code class="language-python">
+              def calculate_square(n):
+              if not isinstance(n, (int, float)):
+                  raise TypeError("Input must be a number.")
+              return n ** 2          
+            </code></pre>
+            <strong></strong>
+            <pre><code class="language-python">
+              def test_calculate_square():
+              assert calculate_square(3) == 9
+              try:
+                  calculate_square("four")
+              except TypeError as e:
+                  assert str(e) == "Input must be a number."
+            </code></pre>
+          </li>
+          <li><strong>AssertionError: Unexpected Output:</strong>
+            <pre><code class="language-python">
+              def add(a, b):
+              return a * b  # Incorrect implementation
+            </code></pre>
+            <strong>Handling:</strong>
+            <pre><code class="language-python">
+              def test_add():
+              assert add(2, 3) == 5
+              try:
+                  assert add(2, 3) == 6
+              except AssertionError as e:
+                  assert str(e) == "assert 6 == 5"
+            </code></pre>
+          </li>
+          <li><strong>IndexError: Out of Range:</strong>
+            <pre><code class="language-python">
+              def get_element_by_index(lst, index):
+              if index < 0 or index >= len(lst):
+                  raise IndexError("Index out of range.")
+              return lst[index]
+            </code></pre>
+            <strong>Handling:</strong>
+            <pre><code class="language-python">
+              def test_get_element_by_index():
+              my_list = [1, 2, 3]
+              assert get_element_by_index(my_list, 1) == 2
+              try:
+                  get_element_by_index(my_list, 5)
+              except IndexError as e:
+                  assert str(e) == "Index out of range."
+            </code></pre>
+          </li>
+          <li><strong>CustomError: Specific Application Error:</strong>
+            <pre><code class="language-python">
+              class CustomError(Exception):
+              pass
+          
+              def custom_function():
+                  raise CustomError("Something went wrong.")
+            </code></pre>
+            <strong>Handling:</strong>
+            <pre><code class="language-python">
+              def test_custom_function():
+              try:
+                  custom_function()
+              except CustomError as e:
+                  assert str(e) == "Something went wrong."
+            </code></pre>
+          </li>
+        </ol>
 
 
       </section>
