@@ -158,6 +158,7 @@
               <li><a href="#ci-cd-detail">CI/CD Pipeline</a></li>
               <li><a href="#waterfall">Software Development Methodologies</a></li>
               <li><a href="#Jenkins">Jenkins</a></li>
+              <li><a href="#Unit-testing">Unit testing</a></li>
               <li><a href="#reference">Reference</a></li>
           </ol>
           </div>
@@ -339,6 +340,90 @@
         <h5>Understanding Jenkins</h5> 
         Jenkins, initially developed by Kohsuke Kawaguchi, is an automation server written in Java. It facilitates continuous 
         integration and continuous delivery (CI/CD) by automating the building, testing, and deployment phases of software development.
+
+      </section>
+
+      <section id="Unit-testing">
+        <h3>Unit Testing</h3>
+        Unit testing is a software testing technique where individual units or components of a software application are tested in isolation. The main purpose is to validate that each unit of the software 
+        performs as designed. In data science and analytics, unit testing can be applied to functions, modules, or algorithms to ensure they produce the expected output for a given set of inputs. It helps 
+        identify and fix bugs early in the development process, improving the overall reliability and maintainability of the code.
+        <h5>Unit testing vs integration testing</h5>
+        <table>
+          <tr>
+            <th></th>
+            <th>Unit testing</th>
+            <th>integration testing</th>
+          </tr>
+          <tr>
+            <td>Scope</td>
+            <td>
+              <ul>
+                <li>Focuses on testing individual units or components of a software application in isolation.</li>
+                <li>Units can be functions, methods, or small modules</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>Involves testing the interactions and interfaces between multiple components or systems.</li>
+                <li>Ensures that integrated components work together as expected.</li>
+              </ul>
+            </td> 
+          </tr>
+          <tr>
+            <td>Isolation</td>
+            <td>
+              <ul>
+                <li>Performed in isolation from the rest of the application.</li>
+                <li>Dependencies are often replaced with mocks or stubs to focus on the specific unit being tested.</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>Requires multiple components to be integrated and tested as a group.</li>
+                <li>Tests how well different components work together.</li>
+              </ul>
+            </td> 
+          </tr>
+          <tr>
+            <td>Purpose</td>
+            <td>
+              <ul>
+                <li>Identifies and fixes bugs in individual units early in the development process.</li>
+                <li>Helps maintain code quality and allows for easier refactoring.</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>Verifies that integrated components function correctly as a whole.</li>
+                <li>Detects issues arising from the interactions between components.</li>
+              </ul>
+            </td> 
+          </tr>
+          <tr>
+            <td>Execution Time</td>
+            <td>Typically faster to execute as it involves testing smaller units of code.</td>
+            <td>May take longer to execute due to the need to integrate and test larger portions of the application.</td> 
+          </tr>
+          <tr>
+            <td>Dependencies</td>
+            <td>Dependencies are often mocked or stubbed to isolate the unit under test.</td>
+            <td>Requires actual dependencies to be present for testing the integrated system.</td> 
+          </tr>
+          <tr>
+            <td>Automation</td>
+            <td>Easily automated, and it's common to run unit tests frequently during development.</td>
+            <td>Automation is also common but may involve more complex setups and configurations.</td> 
+          </tr>
+          <tr>
+            <td>Debugging</td>
+            <td>Easier to pinpoint issues to specific units or components.</td>
+            <td>May require more effort to identify the specific cause of failures due to interactions between components.</td> 
+          </tr>
+        </table>
+
+
+
 
       </section>
         
