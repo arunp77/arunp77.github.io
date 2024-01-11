@@ -493,7 +493,86 @@
           <img src="assets/img/data-engineering/pytest.png" alt="" style="max-width: 70%; max-height: auto;">
           <figcaption style="text-align: center;">pytest result.</figcaption>
         </figure>
-        If we change one of the test, it will show an error and hence we will know that which test don't satisfy. 
+        If we change one of the test, it will show an error and hence we will know that which test don't satisfy.  The green dot turned into a red because one of the checks in the test was not carried out.
+        The error returned is an assertion error and Pytest even tells us exactly where it is. 
+        <p><strong>Side effects:</strong></p>
+        Unit tests can have both positive and negative side effects, depending on how they are implemented and maintained. Here are some of the common side effects:
+        <ol>
+          <li><strong>Positive Side Effects: </strong>
+            <ul>
+              <li><strong>Improved Code Quality: </strong>
+                <ul>
+                  <li>Writing unit tests encourages developers to create modular and well-structured code.</li>
+                  <li>Forces developers to think about how to make functions and modules easily testable.</li>
+                </ul>
+              </li>
+              <li><strong>Early Bug Detection: </strong>
+                <ul>
+                  <li>Identifying and fixing bugs early in the development process is one of the primary benefits of unit testing.</li>
+                  <li>Helps catch issues before they escalate into larger problems.</li>
+                </ul>
+              </li>
+              <li><strong>Regression Prevention: </strong>
+                <ul>
+                  <li>Unit tests act as a safety net to ensure that new code changes do not break existing functionality (regression testing).</li>
+                </ul>
+              </li>
+              <li><strong>Documentation: </strong>
+                <ul>
+                  <li>Unit tests serve as living documentation, showcasing the expected behavior of the code.</li>
+                  <li>New developers can use tests to understand the intended functionality of different parts of the codebase.</li>
+                </ul>
+              </li>
+              <li><strong>Facilitates Refactoring: </strong>
+                <ul>
+                  <li>Developers can confidently refactor code, knowing that if the tests pass, the changes haven't introduced regressions.</li>
+                </ul>
+              </li>
+              <li><strong>Supports Continuous Integration: </strong>
+                <ul>
+                  <li>Unit tests are crucial for setting up continuous integration (CI) pipelines, ensuring that tests are automatically run whenever changes are made.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><strong>Negative Side Effects:</strong>
+            <ul>
+              <li><strong>Time-Consuming: </strong>
+                <ul>
+                  <li>Writing and maintaining unit tests can be time-consuming, especially for complex systems.</li>
+                  <li>Balancing test coverage with development speed is crucial.</li>
+                </ul>
+              </li>
+              <li><strong>False Sense of Security: </strong>
+                <ul>
+                  <li>High test coverage does not guarantee bug-free code. It's possible to have well-tested code that still has logical errors or edge cases that are not covered.</li>
+                </ul>
+              </li>
+              <li><strong>Maintenance Overhead: </strong>
+                <ul>
+                  <li>As the codebase evolves, unit tests may need to be updated or rewritten to accommodate changes.</li>
+                  <li>Frequent changes in requirements might result in a constant need for test updates.</li>
+                </ul>
+              </li>
+              <li><strong>Overemphasis on Code Coverage: </strong>
+                <ul>
+                  <li>Focusing solely on achieving high code coverage may lead to tests that don't adequately cover critical scenarios.</li>
+                  <li>Quality of tests is more important than sheer quantity.</li>
+                </ul>
+              </li>
+              <li><strong>Dependency on Implementation Details: </strong>
+                <ul>
+                  <li>Tests that are too tightly coupled with the implementation details of the code may become fragile and break easily with minor changes.</li>
+                </ul>
+              </li>
+              <li><strong>Resistance to Change: </strong>
+                <ul>
+                  <li>In some cases, developers may resist making changes to the code due to concerns about breaking existing tests.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ol>
 
 
 
