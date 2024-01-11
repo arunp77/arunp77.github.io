@@ -455,7 +455,7 @@
             </ul>
         </ul>
         <br>
-        <strong>Example:</strong>
+        <strong>Example-1:</strong>
         <ul>
           <li>Create <code>calculator.py</code> file. Here we will have add function.
           <pre><code class="language-python">
@@ -498,6 +498,73 @@
           <img src="assets/img/data-engineering/testing_cal.png" alt="" style="max-width: 70%; max-height: auto;">
           <figcaption style="text-align: center;">pytest result.</figcaption>
         </figure>
+
+        <br>
+        <strong>Example-2:</strong>
+        Let's create a class 'Wallet' that has a method for adding money <code>add_cash</code> and a method for withdrawing money <code>spend_cash</code>. 
+        In a <code>wallet.py</code> file, create a Wallet class that:
+        <ul>
+          <li>Accepts an initial <code>contribution</code> of money and stores it in the <code>balance</code> attribute (= 0 if the initial contribution is not specified)</li>
+          <li>Has a method for adding money <code>add_cash</code>.</li>
+          <li>Has a method for withdrawing money <code>spend_cash</code>. This method first checks that the balance is sufficient and returns an <code>InsufficientAmount</code> exception if it is not.</li>
+        </ul>
+        In another python file wallet_test.py we will now write our unit tests. To do this we need to import the functions we want to test as well as the pytest module (to test the InsufficientAmount exception).
+        <br>
+        <strong>Solution:</strong>
+        The wallet.py file then contains:
+        <pre><code class="language-python">
+          class Wallet(object):
+
+          def __init__(self, initial_amount=0):
+              self.balance = initial_amount
+      
+          def spend_cash(self, amount):
+              if self.balance < amount:
+                  raise InsufficientAmount('Not enough available to spend {}'.format(amount))
+              self.balance -= amount
+      
+          def add_cash(self, amount):
+              self.balance += amount
+      
+          class InsufficientAmount(Exception):
+              pass
+        </code></pre>
+        In another python file wallet_test.py we will now write our unit tests. To do this we need to import the functions we want to test as well as the pytest module (to test the InsufficientAmount exception).
+        Now write 5 unit tests that check different properties :
+        <ul>
+          <li>a newly created wallet has a balance of 0 by default.</li>
+          <li>a newly created wallet with an initial balance of 100 has a balance of 100.</li>
+          <li>a wallet created with an initial balance of 10 to which 90 is added has a balance of 100.</li>
+          <li>a wallet created with an initial balance of 20 from which 10 is removed has a balance of 10.</li>
+          <li>a wallet that tries to spend more than its balance will cause an InsufficientAmount error message.</li>
+        </ul>
+        the <code>wallet_test.py</code> contains:
+        <pre><code class="language-python">
+          from wallet import Wallet, InsufficientAmount
+          import pytest
+          def test_default_initial_amount():
+          wallet = Wallet()
+          assert wallet.balance == 0
+      
+          def test_setting_initial_amount():
+              wallet = Wallet(100)
+              assert wallet.balance == 100
+          
+          def test_wallet_add_cash():
+              wallet = Wallet(10)
+              wallet.add_cash(90)
+              assert wallet.balance == 100
+          
+          def test_wallet_spend_cash():
+              wallet = Wallet(20)
+              wallet.spend_cash(10)
+              assert wallet.balance == 10
+          
+          def test_wallet_spend_cash_raises_exception_on_insufficient_amount():
+              wallet = Wallet()
+              with pytest.raises(InsufficientAmount):
+                  wallet.spend_cash(100)
+        </code></pre>
         
         <h4>Side effects:</h4>
         Unit tests can have both positive and negative side effects, depending on how they are implemented and maintained. Here are some of the common side effects:
