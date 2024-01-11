@@ -456,6 +456,81 @@
         </ul>
         <br>
         <strong>Example-1:</strong>
+        We can calculate the sum of the two number in followinf three ways:
+        <ul>
+          <li>Without Parametrization or Fixture</li>
+          <li>Only With Parameterization</li>
+          <li> Only With Fixture</li>
+        </ul>
+        The three methods are used for different purpose.
+        <ul>
+          <li><strong>Without Any Parameterization or Fixture:</strong>
+            In this approach, each test case is written as an individual function, and there is no use of parameterization or fixtures. Each test explicitly defines its input values and expected outcomes. This approach is straightforward and may be suitable for simpler test cases or scenarios where explicitness is preferred. However, it can lead to code duplication if many test cases share a similar structure.
+            <pre><code class="language-python">
+              # test_example.py
+
+              def add(a, b):
+                  return a + b
+              
+              def test_addition_case1():
+                  result = add(1, 2)
+                  assert result == 3
+              
+              def test_addition_case2():
+                  result = add(0, 0)
+                  assert result == 0
+              
+              def test_addition_case3():
+                  result = add(-1, 1)
+                  assert result == 0
+              
+              def test_addition_case4():
+                  result = add(10, -5)
+                  assert result == 5              
+            </code></pre>
+          </li>
+          <li><strong>Only With Fixture: </strong>
+            In this approach, a fixture is used to provide parameterized input data for a test function. The @pytest.fixture decorator defines a fixture that can be reused across multiple test functions. This enhances code modularity and reusability by separating the test setup from the test logic.
+            <pre><code class="language-python">
+              import pytest
+
+              @pytest.fixture(params=[
+                  (1, 2, 3),
+                  (0, 0, 0),
+                  (-1, 1, 0),
+                  (10, -5, 5),
+              ])
+              def input_data(request):
+                  return request.param
+              
+              def test_addition(input_data):
+                  input_a, input_b, expected_output = input_data
+                  result = add(input_a, input_b)
+                  assert result == expected_output
+            </code></pre>
+          </li>
+          <li><strong>Only With Parameterization: </strong>
+            In this approach, the @pytest.mark.parametrize decorator is used to parametrize a single test function. The decorator allows you to run the same test function with different sets of input parameters. This results in more concise code, especially when dealing with similar test cases, and helps reduce code duplication.
+            <pre><code class="language-python">
+              import pytest
+
+              @pytest.mark.parametrize("input_a, input_b, expected_output", [
+                  (1, 2, 3),
+                  (0, 0, 0),
+                  (-1, 1, 0),
+                  (10, -5, 5),
+              ])
+              def test_addition(input_a, input_b, expected_output):
+                  result = add(input_a, input_b)
+                  assert result == expected_output
+            </code></pre>
+          </li>
+        </ul>
+        
+        
+        <br>
+        <hr>
+        <strong>Example-2</strong>
         <ul>
           <li>Create <code>calculator.py</code> file. Here we will have add function.
           <pre><code class="language-python">
@@ -500,7 +575,8 @@
         </figure>
 
         <br>
-        <strong>Example-2:</strong>
+        <hr>
+        <strong>Example-3:</strong>
         Let's create a class 'Wallet' that has a method for adding money <code>add_cash</code> and a method for withdrawing money <code>spend_cash</code>. 
         In a <code>wallet.py</code> file, create a Wallet class that:
         <ul>
