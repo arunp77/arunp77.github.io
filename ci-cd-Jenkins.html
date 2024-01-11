@@ -454,6 +454,45 @@
               <li><strong>nose: </strong>Similarly <code>nose</code> is another third party testing framewrok that extends unittest and provides additional functionality. It's particularly useful for test discovery and running tests in parallel.</li>
             </ul>
         </ul>
+        <br><br>
+        <strong>Example:</strong>
+        <ul>
+          <li>Create <code>calculator.py</code> file. Here we will have add function.
+          <pre><code class="language-python">
+            def add(a,b):
+            return a+b
+          </code></pre>
+          </li>
+          <li>Create a <code>test_calculator.py</code> file and add the code:
+            <pre><code class="language-python">
+              import pytest
+              from calculator import add
+
+              def test_add_positive_numbers():
+                  result = add(2, 3)
+                  assert result == 5
+
+              def test_add_negative_numbers():
+                  result = add(-2, -3)
+                  assert result == -5
+
+              def test_add_mixed_numbers():
+                  result = add(1, -5)
+                  assert result == -4
+            </code></pre>
+            This file contains test functions prefixed with <code>test_</code>. The <code>pytest</code> framework for assertions ('assert') instead of the built-in <code>unittest</code> assertions. 
+          </li>
+          <li>Now run the tests using:
+            <pre><code class="bash">
+            pytest test_calculator.py
+            </code></pre>
+            Pytest will discover and run the tests, providing detailed output.
+          </li>
+        </ul>
+        <figure>
+          <img src="assets/img/data-engineering/pytest.png" alt="" style="max-width: 70%; max-height: auto;">
+          <figcaption style="text-align: center;">pytest result.</figcaption>
+        </figure>
 
 
 
