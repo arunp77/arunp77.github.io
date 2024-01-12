@@ -198,6 +198,7 @@
           </ul>
       </section>
 
+      <!------ API concept ------------->
       <section id="concept">
         <h4>Concepts</h4> 
         Securing an API is crucial to protect sensitive data, maintain the integrity of your system, and prevent unauthorized access. 
@@ -232,6 +233,7 @@
         Another approach is to validate a few IP addresses that corresponds to the machines using your service and reject any other IP.
       </section>
 
+      <!------ FastApi ------------->
       <section id="fastapi">
         <h3><a href="https://fastapi.tiangolo.com/" target="_blank">FastApi</a></h3>
         FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.7+ based on standard Python type hints. It is designed to be easy to use, fast to develop with, and provide high performance, making it an excellent choice for building RESTful APIs. Here's a brief overview and key features of FastAPI:
@@ -273,6 +275,8 @@
         FastAPI is a powerful and easy-to-use framework for building APIs with Python. Its combination of type hinting, automatic documentation, and high performance makes it a strong choice for a wide range of API development projects. Whether you're building a small RESTful API or a complex real-time application, FastAPI provides the tools and features to make development efficient and enjoyable.
       </section>
 
+      <hr>
+      <!------------------->
       <section id="json">
         <h3>JSON: JavaScript Object Notation</h3>
         JSON, or JavaScript Object Notation, is a lightweight data-interchange format. It is easy for humans to read and write and easy for machines to parse and generate.
@@ -326,6 +330,53 @@
 
         <h5>JSON Schema:</h5>
         JSON Schema is a vocabulary that allows you to annotate and validate JSON documents. It provides a way to describe the structure of JSON data for documentation, validation, and interaction.
+        <p>For creating JSON schema from scratch, see the <a href="https://json-schema.org/learn/getting-started-step-by-step" target="_blank">Create a nested data structure</a>.</p>
+        <strong>Example:</strong>  the expected structure and constraints for a JSON object representing information about an individual, particularly someone's personal details, such as a student. Let's break down the schema:
+        <ol>
+            <li><strong>Person Details:</strong>
+                 <ul>
+                     <li>The root object represents details about an individual, likely a person.</li>
+               </ul>
+            </li>
+            <li><strong>Name:</strong>
+                 <ul>
+                     <li>The "name" property is expected to be a string, representing the person's name.</li>
+               </ul>
+            </li>
+            <li><strong>Age:</strong>
+                 <ul>
+                     <li>The "age" property is expected to be an integer, representing the person's age.</li>
+               </ul>
+            </li>
+            <li><strong>Student Indicator:</strong>
+                 <ul>
+                     <li>The "isStudent" property is a boolean indicating whether the person is a student or not.</li>
+               </ul>
+            </li>
+            <li><strong>Courses:</strong>
+                 <ul>
+                     <li>The "courses" property is an array of strings, presumably representing the courses the student is enrolled in.</li>
+               </ul>
+            </li>
+            <li><strong>Address:</strong>
+                 <ul>
+                     <li>The "address" property is an object with details about the person's address.</li>
+               </ul>
+            </li>
+            <li><strong>Address Details:</strong>
+                 <ul>
+                     <li>It includes "street," "city," and "zip" properties, all of which are expected to be strings.</li>
+                     <li>These address details are marked as required.</li>
+               </ul>
+            </li>
+            <li><strong>Overall Requirements:</strong>
+                 <ul>
+                     <li>The entire object must have the "name," "age," and "isStudent" properties.</li>
+                     <li>The "address" property is optional, but if present, it must include the required details ("street," "city," and "zip").</li>
+               </ul>
+            </li>
+        </ol>
+        
         <pre class="language-json"><code>
             {
                 "$schema": "http://json-schema.org/draft-07/schema#",
@@ -378,15 +429,15 @@
                 ├─ city: string
                 └─ zip: string            
         </code></pre>
+        This schema could be used, for example, in a system where user details need to be validated before they are stored or processed. It ensures that the data conforms to a specific structure and type, enhancing data integrity and providing a basis for consistent data exchange.
 
-        <h5>Conclusion</h5>
+        <br><br>
+        <h5>Conclusion: </h5>
         JSON is a versatile and widely adopted format for data interchange. Its simplicity, human-readability, 
         and ease of integration make it a popular choice for APIs, configuration files, and data storage. Understanding JSON is essential for anyone working with web development, APIs, or data exchange between different systems.
-
-
       </section>
         
-
+      <hr>
 
       <!-------Reference ------->
       <section id="reference">
