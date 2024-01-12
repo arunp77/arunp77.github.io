@@ -231,6 +231,26 @@
         Getting information on the source of the request can help add security to your API. For example, you could restrict IP addresses to given countries: if you are a U.S. company with servers, employees and clients in the U.S., a query from somewhere else could be suspicious. 
         Another approach is to validate a few IP addresses that corresponds to the machines using your service and reject any other IP.
       </section>
+
+      <section id="fastapi">
+        <h3>FastApi</h3>
+        FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.7+ based on standard Python type hints. It is designed to be easy to use, fast to develop with, and provide high performance, making it an excellent choice for building RESTful APIs. Here's a brief overview and key features of FastAPI:
+        <ol>
+            <li><strong>Fast: </strong>As the name suggests, FastAPI is designed to be high-performance. It is built on top of Starlette and Pydantic, which contribute to its speed.</li>
+            <li><strong>Type Annotations: </strong>One of the standout features is the use of Python type hints to define the types of request and response data. This not only serves as documentation but also enables automatic data validation and serialization.</li>
+            <li><strong>Automatic Documentation: </strong>FastAPI generates OpenAPI and JSON Schema documentation automatically based on your Python type hints. You can explore and interact with your API using Swagger UI or ReDoc.</li>
+            <li><strong>Asynchronous Support: </strong>FastAPI fully supports asynchronous programming using Python's async and await keywords. This allows for efficient handling of I/O-bound operations.</li>
+            <li><strong>Dependency Injection System: </strong>FastAPI has a built-in dependency injection system that makes it easy to manage dependencies and share common resources across different parts of your application.</li>
+            <li><strong>OAuth2 and JWT Authentication: </strong>It provides built-in support for OAuth2 and JWT authentication, making it easier to secure your APIs.</li>
+            <li><strong>Data Validation and Serialization: </strong>FastAPI uses Pydantic models for data validation and serialization. This allows you to define data models with type hints, and FastAPI will automatically handle validation and serialization/deserialization.</li>
+            <li><strong>WebSocket Support: </strong> In addition to traditional HTTP APIs, FastAPI supports WebSocket communication, allowing for real-time bidirectional communication.</li>
+            <li><strong>Cors (Cross-Origin Resource Sharing) Middleware: </strong>FastAPI includes middleware for handling Cross-Origin Resource Sharing, making it easy to control which domains can access your API.</li>
+            <li><strong>Dependency Injection System: </strong>FastAPI has a sophisticated dependency injection system that simplifies handling dependencies in your API, making your code clean and modular.</li>
+            <li><strong></strong></li>
+        </ol>
+
+
+      </section>
         
 
 
