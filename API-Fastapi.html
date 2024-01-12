@@ -277,15 +277,8 @@
         <h3>JSON: JavaScript Object Notation</h3>
         JSON, or JavaScript Object Notation, is a lightweight data-interchange format. It is easy for humans to read and write and easy for machines to parse and generate.
         It is widely used for data exchange between a server and a web application (i.e. is used extensively in web applications and APIs), as well as for configuration files and data storage.
-        <p>JSON data is organized into key-value pairs. Each key-value pair is enclosed in curly braces {}. The key is a string of characters and the value can be any of the following types:</p>
-        <ul>
-            <li><strong>String: </strong> A sequence of characters enclosed in double quotes <code>""</code>.</li>
-            <li><strong>Number: </strong>A real or integer number.</li>
-            <li><strong>Boolean: </strong>The values true or false</li>
-            <li><strong>null: </strong>A special value that indicates the absence of a value.</li>
-            <li><strong>Object: </strong>A collection of key-value pairs.</li>
-            <li><strong>Array: </strong>A list of values</li>
-        </ul>
+        <p></p>
+        
         <h5>Basics of JSON</h5>
         <ol>
             <li><strong>Data Structure: </strong>
@@ -308,11 +301,14 @@
                 </ul>
             </li>
             <li><strong> Data Types: </strong>
+                JSON data is organized into key-value pairs. Each key-value pair is enclosed in curly braces <code>{}</code>. 
+                The key is a string of characters and the value can be any of the following types:
                 <ul>
                     <li><strong>Strings</strong>: Enclosed in double quotes.</li>
                     <li><strong>Numbers</strong>: Integer or floating-point.</li>
                     <li><strong>Booleans</strong>: <code>true</code> or <code>false</code>.</li>
                     <li><strong>Arrays</strong>: Ordered list of values.</li>
+                    <li><strong>null: </strong>A special value that indicates the absence of a value.</li>
                     <li><strong>Objects</strong>: Unordered collection of key/value pairs.</li>
                 </ul>
             </li>
@@ -369,7 +365,19 @@
                 "required": ["name", "age", "isStudent"]
               }
         </code></pre>
-        This schema defines the expected structure and types of the JSON object.
+        This schema defines the expected structure and types of the JSON object. This can be understood as:
+        <pre class="language-php"><code>
+            object
+            ├─ name: string
+            ├─ age: integer
+            ├─ isStudent: boolean
+            ├─ courses: array
+            │   └─ items: string
+            └─ address: object
+                ├─ street: string
+                ├─ city: string
+                └─ zip: string            
+        </code></pre>
 
         <h5>Conclusion</h5>
         JSON is a versatile and widely adopted format for data interchange. Its simplicity, human-readability, 
