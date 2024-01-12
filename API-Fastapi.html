@@ -238,16 +238,142 @@
         <ol>
             <li><strong>Fast: </strong>As the name suggests, FastAPI is designed to be high-performance. It is built on top of <a href="https://www.starlette.io/" target="_blank">Starlette</a> and <a href="https://docs.pydantic.dev/latest/" target="_blank">Pydantic</a>, which contribute to its speed.</li>
             <li><strong>Type Annotations: </strong>One of the standout features is the use of Python type hints to define the types of request and response data. This not only serves as documentation but also enables automatic data validation and serialization.</li>
-            <li><strong>Automatic Documentation: </strong>FastAPI generates <a href="https://www.openapis.org/" target="_blank">OpenAPI</a> and JSON Schema documentation automatically based on your Python type hints. You can explore and interact with your API using Swagger UI or ReDoc.</li>
+            <li><strong>Automatic Documentation: </strong>FastAPI generates <a href="https://www.openapis.org/" target="_blank">OpenAPI</a> and <a href="https://json-schema.org/learn/getting-started-step-by-step" target="_blank">JSON Schema documentation</a> automatically based on your Python type hints. 
+                You can explore and interact with your API using <a href="https://swagger.io/tools/swagger-ui/" target="_blank">Swagger UI</a> or ReDoc.</li>
             <li><strong>Asynchronous Support: </strong>FastAPI fully supports asynchronous programming using Python's async and await keywords. This allows for efficient handling of I/O-bound operations.</li>
             <li><strong>Dependency Injection System: </strong>FastAPI has a built-in dependency injection system that makes it easy to manage dependencies and share common resources across different parts of your application.</li>
-            <li><strong>OAuth2 and JWT Authentication: </strong>It provides built-in support for OAuth2 and JWT authentication, making it easier to secure your APIs.</li>
+            <li><strong>OAuth2 and JWT Authentication: </strong>It provides built-in support for <a href="https://oauth.net/2/" target="_blank">OAuth2</a> and <a href="https://jwt.io/introduction" target="_blank">JWT</a> authentication, making it easier to secure your APIs.</li>
             <li><strong>Data Validation and Serialization: </strong>FastAPI uses Pydantic models for data validation and serialization. This allows you to define data models with type hints, and FastAPI will automatically handle validation and serialization/deserialization.</li>
             <li><strong>WebSocket Support: </strong> In addition to traditional HTTP APIs, FastAPI supports WebSocket communication, allowing for real-time bidirectional communication.</li>
             <li><strong>Cors (Cross-Origin Resource Sharing) Middleware: </strong>FastAPI includes middleware for handling Cross-Origin Resource Sharing, making it easy to control which domains can access your API.</li>
             <li><strong>Dependency Injection System: </strong>FastAPI has a sophisticated dependency injection system that simplifies handling dependencies in your API, making your code clean and modular.</li>
-            <li><strong></strong></li>
         </ol>
+        <h5>Gettign started:</h5>
+        To get started with FastAPI, you need to install it first:
+        <pre class="language-python"><code>pip install fastapi uvicorn</code></pre>
+        Here's a simple example of a FastAPI application (create <code>main.py</code> file):
+        <pre class="language-python"><code>
+            from fastapi import FastAPI
+
+            app = FastAPI()
+            
+            @app.get("/")
+            def read_root():
+                return {"Hello": "World"}
+            
+            @app.get("/items/{item_id}")
+            def read_item(item_id: int, query_param: str = None):
+                return {"item_id": item_id, "query_param": query_param}            
+        </code></pre>
+        We can run the app with Uvicorn:
+        <pre class="language-bash"><code>uvicorn main:app --reload</code></pre>
+        Visit <a href="https://127.0.0.1:8000" target="_blank">https://127.0.0.1:8000</a> in your browser, and you should see the automatically generated Swagger documentation.
+
+        <h5>Conclusion</h5>
+        FastAPI is a powerful and easy-to-use framework for building APIs with Python. Its combination of type hinting, automatic documentation, and high performance makes it a strong choice for a wide range of API development projects. Whether you're building a small RESTful API or a complex real-time application, FastAPI provides the tools and features to make development efficient and enjoyable.
+      </section>
+
+      <section id="json">
+        <h3>JSON: JavaScript Object Notation</h3>
+        JSON, or JavaScript Object Notation, is a lightweight data-interchange format. It is easy for humans to read and write and easy for machines to parse and generate.
+        It is widely used for data exchange between a server and a web application (i.e. is used extensively in web applications and APIs), as well as for configuration files and data storage.
+        <p>JSON data is organized into key-value pairs. Each key-value pair is enclosed in curly braces {}. The key is a string of characters and the value can be any of the following types:</p>
+        <ul>
+            <li><strong>String: </strong> A sequence of characters enclosed in double quotes <code>""</code>.</li>
+            <li><strong>Number: </strong>A real or integer number.</li>
+            <li><strong>Boolean: </strong>The values true or false</li>
+            <li><strong>null: </strong>A special value that indicates the absence of a value.</li>
+            <li><strong>Object: </strong>A collection of key-value pairs.</li>
+            <li><strong>Array: </strong>A list of values</li>
+        </ul>
+        <h5>Basics of JSON</h5>
+        <ol>
+            <li><strong>Data Structure: </strong>
+                <ul>
+                    <li>JSON represents data as key-value pairs, similar to a dictionary in Python or an object in JavaScript.</li>
+                    <li>Data is organized in name/value pairs, where the name (a string) is followed by a colon, and the value can be a string, number, boolean, array, or another JSON object.</li>
+                    <pre class="language-json"><code>
+                        {
+                            "name": "John Doe",
+                            "age": 30,
+                            "isStudent": false,
+                            "courses": ["Math", "History", "Science"],
+                            "address": {
+                              "street": "123 Main St",
+                              "city": "Anytown",
+                              "zip": "12345"
+                            }
+                          }
+                    </code></pre>
+                </ul>
+            </li>
+            <li><strong> Data Types: </strong>
+                <ul>
+                    <li><strong>Strings</strong>: Enclosed in double quotes.</li>
+                    <li><strong>Numbers</strong>: Integer or floating-point.</li>
+                    <li><strong>Booleans</strong>: <code>true</code> or <code>false</code>.</li>
+                    <li><strong>Arrays</strong>: Ordered list of values.</li>
+                    <li><strong>Objects</strong>: Unordered collection of key/value pairs.</li>
+                </ul>
+            </li>
+            <li><strong>JSON vs. JavaScript Object: </strong>While JSON syntax resembles JavaScript object syntax, they are not exactly the same. In JSON, keys must be strings, 
+                and strings must be enclosed in double quotes.</li>
+        </ol>
+
+        <h5>Use cases:</h5>
+        <ol>
+            <li><strong>Data Exchange: </strong>Commonly used for sending and receiving data between a server and a web application. APIs often return data in JSON format.</li>
+            <li><strong>Configuration Files: </strong>Used for configuration settings in various applications. Easy to read and write manually.</li>
+            <li><strong>Storage: </strong>NoSQL databases often use JSON-like formats to store data.</li>
+            <li><strong>Serialization: </strong>Objects in programming languages can be serialized into JSON for data interchange.</li>
+        </ol>
+
+        <h5>JSON Schema:</h5>
+        JSON Schema is a vocabulary that allows you to annotate and validate JSON documents. It provides a way to describe the structure of JSON data for documentation, validation, and interaction.
+        <pre class="language-json"><code>
+            {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "age": {
+                    "type": "integer"
+                  },
+                  "isStudent": {
+                    "type": "boolean"
+                  },
+                  "courses": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "address": {
+                    "type": "object",
+                    "properties": {
+                      "street": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "zip": {
+                        "type": "string"
+                      }
+                    },
+                    "required": ["street", "city", "zip"]
+                  }
+                },
+                "required": ["name", "age", "isStudent"]
+              }
+        </code></pre>
+        This schema defines the expected structure and types of the JSON object.
+
+        <h5>Conclusion</h5>
+        JSON is a versatile and widely adopted format for data interchange. Its simplicity, human-readability, 
+        and ease of integration make it a popular choice for APIs, configuration files, and data storage. Understanding JSON is essential for anyone working with web development, APIs, or data exchange between different systems.
 
 
       </section>
@@ -258,9 +384,11 @@
       <section id="reference">
         <h2>References</h2>
         <ul>
-          <li><a href="https://medium.com/@arunp77/ensuring-data-integrity-and-continuity-for-machine-learning-projects-c4335eb1e9f9" target="_blank">Ensuring Data Integrity and Continuity for Machine Learning Projects.</a></li>
+          <li><a href="https://medium.com/@arunp77/ensuring-data-integrity-and-continuity-for-machine-learning-projects-c4335eb1e9f9" target="_blank">Ensuring Data Integrity and 
+            Continuity for Machine Learning Projects.</a></li>
           <li><a href="https://www.jenkins.io/doc/tutorials/" target="_blank">Jenkins documentation</a></li>
-          <li><a href="https://softwaresennin.medium.com/creating-our-first-complete-jenkins-ci-cd-pipeline-995a22934a35" target="_blank">Blogpost: Creating our First Complete Jenkins CI/CD Pipeline</a></li>
+          <li><a href="https://softwaresennin.medium.com/creating-our-first-complete-jenkins-ci-cd-pipeline-995a22934a35" target="_blank">Blogpost: Creating our First Complete 
+            Jenkins CI/CD Pipeline</a></li>
         </ul>
       </section>
 
