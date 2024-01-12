@@ -175,7 +175,7 @@
         <figure>
             <img src="assets/img/data-engineering/api-1.png" alt="" style="max-width: 90%; max-height: auto;">
             <figcaption style="text-align: center;"></figcaption>
-          </figure>
+        </figure>
 
           APIs play a crucial role in modern software development by enabling the integration of different services, systems, or applications. They allow developers to access the functionality of a service or application 
           without needing to understand its internal workings. APIs are used for various purposes, including accessing web services, databases, operating system services, or hardware components.
@@ -196,6 +196,45 @@
             <li><strong>Operating System APIs: </strong>APIs provided by operating systems to allow applications to interact with the underlying system resources.</li>
             <li><strong>Database APIs: </strong>APIs that provide access to databases, allowing applications to retrieve or manipulate data.</li>
           </ul>
+      </section>
+
+      <section id="concept">
+        <h3>Concepts</h3>
+        Securing an API is crucial to protect sensitive data, maintain the integrity of your system, and prevent unauthorized access. 
+        Securing an API rely on three important levels:
+        <ol type="i">
+            <li><strong>Authentication: </strong>Authentication is a step that consists in verifying the identity of the client querying the API. By providing some credentials or a key to the API, the server will know that the client is who he claims to be.</li>
+            <li><strong>Authorization: </strong>At the authorization level, the API will check that, based on the identity acknowledged at the previous step, the client is indeed allowed to perform the query.</li>
+            <li><strong>Traceability: </strong>To better the security of your API, you also need to track the queries. We usually store information about <code>What</code>, <code>Who</code> and <code>When</code> the queries were made in a simple log file or, in some cases, in a database.
+                <ul>
+                    <li><strong>What: </strong>
+                        <ul>
+                            <li>which endpoint was called.</li>
+                            <li>which method was used.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Who: </strong>
+                        <ul>
+                            <li>the user that made the call</li>
+                            <li>the device used to make that call (mobile phone, web browser, programming language, ...)</li>
+                            <li>the IP used by the user</li>
+                        </ul>
+                    </li>
+                    <li><strong>When: </strong>the time of the request (date and hour)</li>
+                </ul>
+            </li>
+        </ol>
+        Getting information on the source of the request can help add security to your API. For example, you could restrict IP addresses to given countries: if you are a U.S. company with servers, employees and clients in the U.S., a query from somewhere else could be suspicious. 
+        Another approach is to validate a few IP addresses that corresponds to the machines using your service and reject any other IP.
+        <figure>
+            <img src="assets/img/data-engineering/who-when-what.png" alt="" style="max-width: 90%; max-height: auto;">
+            <figcaption style="text-align: center;"></figcaption>
+        </figure>
+
+
+
+
+
 
 
 
