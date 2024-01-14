@@ -78,8 +78,13 @@
 
   function displayError(thisForm, error) {
     thisForm.querySelector('.loading').classList.remove('d-block');
-    thisForm.querySelector('.error-message').innerHTML = error;
+    
+    // Escape the error text using innerText
+    var escapedError = document.createTextNode(error);
+    thisForm.querySelector('.error-message').innerHTML = ''; // Clear previous content
+    thisForm.querySelector('.error-message').appendChild(escapedError);
+
     thisForm.querySelector('.error-message').classList.add('d-block');
-  }
+}
 
 })();
