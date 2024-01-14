@@ -3236,11 +3236,10 @@ Prism.languages.makefile = {
 
 
 	operators = operators.map(function (operator) {
-		return operator.replace(/\$/g, '\\$'); // Use the 'g' flag to replace all occurrences
+		return operator.replace(/\$/g, '\\\\$'); // Double the backslashes to escape them
 	});
 	
-
-
+	
 	var operatorsSource = '(?:' + operators.join('|') + ')\\b';
 
 	Prism.languages.mongodb = Prism.languages.extend('javascript', {});
