@@ -695,15 +695,9 @@ var Prism = (function (_self) {
 		 */
 		tokenize: function (text, grammar) {
 			var rest = grammar.rest;
-			if (rest) {
-				for (var token in rest) {
-					if (rest.hasOwnProperty(token) && token !== '__proto__' && token !== 'constructor' && token !== 'prototype') {
-						// Use a Map instead of a regular object to avoid prototype pollution
-						if (!grammar.tokens) {
-							grammar.tokens = new Map();
-						}
-						grammar.tokens.set(token, rest[token]);
-					}
+			for (var token in rest) {
+				if (rest.hasOwnProperty(token)) {
+					grammar[token] = rest[token];
 				}
 			}
 
