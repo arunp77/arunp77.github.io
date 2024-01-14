@@ -697,13 +697,12 @@ var Prism = (function (_self) {
 			var rest = grammar.rest;
 			if (rest) {
 				for (var token in rest) {
-					if (rest.hasOwnProperty(token)) {
+					if (rest.hasOwnProperty(token) && token !== '__proto__') {
 						grammar[token] = rest[token];
 					}
 				}
-
-				delete grammar.rest;
 			}
+			
 
 			var tokenList = new LinkedList();
 			addAfter(tokenList, tokenList.head, text);
