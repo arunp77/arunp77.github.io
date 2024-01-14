@@ -3234,9 +3234,11 @@ Prism.languages.makefile = {
 		'UUID',
 	];
 
+
 	operators = operators.map(function (operator) {
-		return operator.replace(/\$/, '\\$');
+		return operator.replace(/\$/g, '\\$'); // Use the 'g' flag to replace all occurrences
 	});
+	
 
 
 	var operatorsSource = '(?:' + operators.join('|') + ')\\b';
