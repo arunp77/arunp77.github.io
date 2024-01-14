@@ -697,7 +697,7 @@ var Prism = (function (_self) {
 			var rest = grammar.rest;
 			for (var token in rest) {
 				if (rest.hasOwnProperty(token)) {
-					grammar[token] = rest[token];
+					Object.prototype.hasOwnProperty.call(rest, token) && (grammar[token] = rest[token]);
 				}
 			}
 
