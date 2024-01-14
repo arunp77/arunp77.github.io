@@ -3235,8 +3235,9 @@ Prism.languages.makefile = {
 	];
 
 	operators = operators.map(function (operator) {
-		return operator.replace('$', '\\$');
+		return operator.replace(/\$/, '\\$');
 	});
+
 
 	var operatorsSource = '(?:' + operators.join('|') + ')\\b';
 
