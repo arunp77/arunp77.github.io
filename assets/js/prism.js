@@ -698,10 +698,14 @@ var Prism = (function (_self) {
 			if (rest) {
 				for (var token in rest) {
 					if (rest.hasOwnProperty(token) && token !== '__proto__' && token !== 'constructor' && token !== 'prototype') {
-						grammar[token] = rest[token];
+						// Use a Map instead of a regular object to avoid prototype pollution
+						if (!grammar.tokens) {
+							grammar.tokens = new Map();
+						}
+						grammar.tokens.set(token, rest[token]);
 					}
 				}
-			}		
+			}
 
 			var tokenList = new LinkedList();
 			addAfter(tokenList, tokenList.head, text);
