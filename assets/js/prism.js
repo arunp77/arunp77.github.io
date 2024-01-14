@@ -701,7 +701,7 @@ var Prism = (function (_self) {
 						grammar[token] = rest[token];
 					}
 				}
-			}			
+			}		
 
 			var tokenList = new LinkedList();
 			addAfter(tokenList, tokenList.head, text);
