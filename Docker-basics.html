@@ -311,6 +311,23 @@
             <pre class="language-bash"><code>$ docker stop container_id</code></pre> 
           </section>
 
+          <section id="multi-container">
+            <h3>multi-container docker image</h3>
+            
+            <ul>
+              <li>A multi-container Docker image is an image that consists of multiple software components or services, each running in its own container within the same image. This allows you to package and distribute applications with their dependencies and services, ensuring consistency and ease of deployment.</li>
+              <li>In a multi-container Docker image, the individual containers within the image work together to provide a complete application or service. Each container has its own environment and runtime, but they can communicate with each other through defined channels like network connections or shared volumes.</li>
+              <li>This approach is particularly useful for applications that require multiple interconnected services to function. Instead of deploying each service separately, a multi-container Docker image encapsulates all the necessary components, making it easier to manage and deploy the entire application as a single unit.</li>
+              <li>Docker Compose is often used in conjunction with multi-container Docker images to define and manage the configuration of multiple services within an application. It simplifies the orchestration of these services, ensuring they start, stop, and interact with each other seamlessly.</li>
+            </ul>
+
+            <h5>Docker Compose:</h5>
+            Docker Compose is a tool for defining and running multi-container Docker applications. It allows you to define a multi-container application in a single file, then spin up and manage all the containers defined in that file with a single command. This is particularly useful for complex applications where multiple services need to work together.
+            
+
+
+          </section>
+
           <section id="reference">
             <h3>Reference </h3>
             <ul>
