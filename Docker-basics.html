@@ -269,6 +269,10 @@
   if __name__ == "__main__":
       app.run(debug=True, host="0.0.0.0", port="5000")                
               </code></pre>
+              Here decorator <code>@app.route</code> is used to decorate the <code>home()</code> function, associated it with the '<code>/</code>' route and specifying that it responds to HTTP Ger requests. Howver, the <code>if __name__ == __main__</code>
+              ensures that the app is only run when the script is executed directly, not when it's imported as a module. The <code>app.run(debug=True, host="0.0.0.0", port="5000")</code> 
+              section of the code runs the Flask app. <code>debug=True</code> enables debugging mode, <code>host="0.0.0.0"</code> makes the app accessible from external devices, and <code>port="50000"</code>
+              sets the port to 5000.
               </li>
               <li><strong>Step-2:</strong>Create a file named requirements.txt with the following content:
                 <pre class="language-docker"><code> Flask == 2.0.1</code></pre>
