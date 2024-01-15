@@ -329,6 +329,106 @@
             Docker Compose is a tool for defining and running multi-container Docker applications. It allows you to define a multi-container application in a single file, then spin up and manage all the containers defined in that file with a single command. This is particularly useful for complex applications where multiple services need to work together.
 
 
+            <h3>Flask-Redis Hello World App</h3>
+            <h5>Project Overview:</h5>
+            he Flask-Redis Hello World App is a simple web application built using Flask, a micro web framework for Python, and Redis, an in-memory data structure store. The project demonstrates how to create a basic web application that displays a "Hello World!" message and keeps track of the number of times the page has been accessed using a Redis database.
+
+            <h5>Components and files:</h5>
+            <ol>
+              <li><strong>app.py</strong>
+                <pre class="language-python"><code>
+import time
+import redis
+from flask import Flask
+
+app = Flask(__name__)
+cache = redis.Redis(host='redis', port=6379)
+
+def get_hit_count():
+    retries = 5
+    while True:
+        try:
+            # Corrected the typo here: 'cache.incr' should return the result
+            return cache.incr('hits')
+        except redis.exceptions.ConnectionError as exc:
+            if retries == 0:
+                raise exc
+            retries -= 1
+            time.sleep(0.5)
+
+@app.route('/')
+def hello():
+    count = get_hit_count()
+    return 'Hello World! I have been seen {} times.\n'.format(count)
+
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0", port=5000)                       
+                </code></pre>
+                <ul>
+                  <li>This is the main file of the project, containing the Flask application setup and routes.</li>
+                  <li>It uses the <code>redis</code> library to interact with a Redis database.</li>
+                  <li>The <code>get_hit_count</code> function increments a counter in the Redis database each time the page is accessed.</li>
+                  <li>The '<code>/</code>' route displays a message along with the count of page visits.</li>
+                </ul>
+              </li>
+              <li><strong>requirements.txt: </strong>
+                <pre class="language-text"><code>
+                  Flask
+                  redis==3.5.3
+                </code></pre>
+                <ul>
+                  <li>Lists the Python dependencies for the project.</li>
+                  <li>Includes Flask for web development and Redis version 3.5.3 for Redis interactions.</li>
+                </ul>
+              </li>
+              <li><strong>Dockerfile: </strong>
+                <pre>
+                  FROM python:3.7-alpine
+                  WORKDIR /code
+                  ENV FLASK_APP=app.py
+                  ENV FLASK_RUN_HOST=0.0.0.0
+                  COPY . .
+                  RUN pip install -r requirements.txt
+                  EXPOSE 5000
+                  CMD ["flask", "run"]                  
+                </pre>
+                <ul>
+                  <li>Configures the Docker image for the project.</li>
+                  <li>Uses the lightweight Python 3.7 Alpine image as the base.</li>
+                  <li>Sets the working directory to '<code>/code</code>'.</li>
+                  <li>Defines environment variables for Flask application configuration.</li>
+                  <li>Copies the project files into the image and installs dependencies using <code>pip</code>.</li>
+                  <li>Exposes port 5000 and sets the command to run the Flask application.</li>
+                </ul>
+              </li>
+              <li><strong>docker-compose.yml: </strong>
+                <pre>
+                  version: "3.0"
+                  services:
+                    web:
+                      build: .
+                      image: web-app
+                      ports:
+                        - "5000:5000"
+                    redis:
+                      image: "redis:alpine"                  
+                </pre>
+                <ul>
+                  <li>Defines services for the project using Docker Compose.</li>
+                  <li>The '<code>web</code>' service builds the Docker image from the current directory, names it "web-app," and maps port 5000 to the host.</li>
+                  <li>The '<code>redis</code>' service uses the official Redis image from Docker Hub.</li>
+                </ul>
+              </li>
+            </ol>
+
+            <h5>How to run the project:</h5>
+            <ul>
+              <li><strong>Build the Docker images:</strong> <pre><code>docker-compose build</code></pre></li>
+              <li><strong>Start the Docker Containers:</strong> <pre><code>docker-compose up</code></pre> Access the web application by navigating to http://localhost:5000 in a web browser.</li>
+              <li><strong>Stop the Docker Containers:</strong> <pre><code>docker-compose down</code></pre></li>
+            </ul>
+
+
 
           </section>
 
