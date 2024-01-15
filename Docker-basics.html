@@ -242,14 +242,74 @@
             </ol>
 
           <!-------------------Step by step guide to learn Docker conterization ------------------------->
-          <h2>Learn Docker: A Step-by-Step Guide</h2>
+          <h4>Learn Docker: A Step-by-Step Guide</h4>
           <ol>
             <li>Start by visiting the <a href="https://www.docker.com/products/docker-desktop/" target="_blank">Docker desktop</a> download page to acquire the latest version compatible with your operating system, whether it's Windows, Linux, or macOS.</li>
             <li>Download the installer provided on the Docker Desktop download page and execute it. Follow the on-screen instructions to complete the installation process. It's a straightforward process, and the installer will guide you through the necessary steps.</li>
             <li>After the installation is complete, you can find Docker Desktop by searching for "docker" in your system's search bar. Launch Docker Desktop, and it will run on your local machine.</li>
             <li>To fully utilize Docker's capabilities, consider creating an account on <a href="https://hub.docker.com/" target="_blank">docker hub</a>. This step is optional but recommended, as it allows you to manage and view the repositories associated with your Docker images on Docker Hub.</li>
+            <li>Now create a project and hence image and push it to docker repository.</li>
           </ol>
+
+          <section id ="project">
+            <h3>Simple Flask application</h3>
+            <ul>
+              <li><strong>Step-1:</strong>Create a simple Flask application. For example, create a file named app.py with the following content:
+              <pre class="language-python"><code>
+                ## flask app for hello world
+
+                from flask import Flask
+                import os
+                app = Flask(__name__)
+                
+                @app.route('/', methods=['GET'])
+                def home():
+                    return "Hello world! This is arun."
+                
+                if __name__ == "__main__":
+                    app.run(debug=True, host="0.0.0.0", port="5000")                
+              </code></pre>
+              </li>
+              <li><strong>Step-2:</strong>Create a file named requirements.txt with the following content:
+                <pre class="language-docker"><code>
+                  Flask == 2.0.1
+                </code></pre>
+                This file specifies the dependencies for your Flask app.
+              </li>
+              <li><strong>Step-3:</strong>Create a file named Dockerfile with the following content:
+                <pre class="language-text"><code>
+                  FROM python:3.8-alpine
+                  COPY . /app 
+                  WORKDIR /app 
+                  RUN pip install -r requirements.txt
+                  CMD python app.py                    
+                </code></pre>
+                This Dockerfile specifies how to build your Docker image.
+              </li>
+              <li><strong>Step-4:</strong>Open a terminal, navigate to the directory containing your <code>Dockerfile</code>, <code>app.py</code>, and <code>requirements.txt</code>, and run the following command:
+                <pre class="language-bash"><code>
+                  docker build -t my-flask-app .
+                </code></pre>
+              </li>
+              <li><strong>Step-5:</strong>
+                After building the Docker image, you can run a container using the following command:
+                <pre class="language-bash"><code>
+                  docker run -p 5000:5000 my-flask-app
+                </code></pre>
+                This command runs the Docker container and maps port 5000 from the container to port 5000 on your host machine.
+              </li>
+              <li><strong>Step-6:</strong>Open a web browser and go to <a href="http://localhost:5000" target="_blank">http://localhost:5000</a>. You should see the message "Hello, world!".</li>
+            </ul>
+          </section>
         
+
+          <section id="reference">
+            <h3>Reference </h3>
+            <ul>
+              <li>For a best description of docker basics, you can look at youtube video: <a href="https://www.youtube.com/watch?v=8vmKtS8W7IQ&t=1861s" target="_blank">Youtube video</a>.</li>
+            </ul>
+
+          </section>
 
             <div class="navigation">
                 <a href="Docker-Container.html" class="clickable-box">
