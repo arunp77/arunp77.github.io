@@ -602,7 +602,7 @@
           </li>
           <li>Next we can load the dataset using:
             <pre><code>df = pd.read_csv('Weight_height.csv')</code></pre>
-            the table will have two colmns:
+            the table will have two colmns: <pre>df.head()</pre>
             <table>
               <thead>
                   <tr>
@@ -634,9 +634,55 @@
               </tbody>
           </table>
           </li>
-          <li></li>
-          <li></li>
-          <li></li>
+          <li>The scattered and pair plot can be obtained using:
+            <figure>
+              <img src="assets/img/machine-ln/pair-plot.png" alt="" style="max-width: 70%; max-height: 70%;">
+              <figcaption></figcaption>
+            </figure>
+          </li>
+          <li>Now created the independent and dependent features as:
+            <pre><code>
+# Independe and dependent features
+X = df[['Weight']] ## Always remember that independent features should be dataframe or 2 dimesnional array
+y=df['Height']   ## this variable can be a series or 1D array.
+            </code></pre>
+          </li>
+          <li>Now deviding the dataset into the training an test dataset.
+            <pre><code>
+## Train test split
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.25, random_state=42)              
+            </code></pre>
+          </li>
+          <li>It is best to standardize the training and test datasets.
+            <pre><code>
+              ## Standardization 
+              from sklearn.preprocessing import StandardScaler
+              scaler = StandardScaler()
+              X_train = scaler.fit_transform(X_train)      
+              X_test = scaler.transform(X_test)        
+            </code></pre>
+            It is to be noted here that only transfor is used in the case of X_test. This is due to the following fact.
+            <code>scaler = StandardScaler()</code> this basically make norm of calulating the mean and standard deiation for the dataset. 
+            However when we provide the <code>X_train</code> to the <code>scaler.fit_transform</code>, it basically calculate the mean and the standard deviation
+            and then transform the <code>X_train</code>. Next when we use the same scaler function, we don't need to recalculate the mean and standard deviation.
+          </li>
+          <li>Now we fit the train datasets, using:
+            <pre><code>
+              ## Apply linear regression
+              from sklearn.linear_model import LinearRegression
+              regression = LinearRegression(n_jobs=-1)
+              
+              regression.fit(X_train, y_train) 
+              print(f"Coefficient or slop is: {regression.coef_}")
+              print(f"Intercept is: {regression.intercept_}")             
+            </code></pre>
+            The output will be
+            <pre>
+              Coefficient or slop is: [17.81386924]
+              Intercept is: 155.88235294117646              
+            </pre>
+          </li>
           <li></li>
         </ul>
 
