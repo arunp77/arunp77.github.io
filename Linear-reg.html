@@ -590,6 +590,7 @@
         Lets consider a dataset of person with their Weight and Height. he data set can be found at: 
         <a href="https://github.com/arunp77/Machine-Learning/blob/main/Projects-ML/Reg-models/Weight_height.csv" target="_blank">Dataset</a>.
         Now we want to do the linear regression curve fitting, where we will see on the basis of model training, what would be height of a person with a given weight.
+        This can be done through the gradient decent method or OLS method. We will first look at gradient decent method.
         <ul>
           <li>Lets first import the import libraries:
             <pre><Code>
@@ -695,7 +696,72 @@ X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.25, random_
             <img src="assets/img/machine-ln/fit-line.png" alt="" style="max-width: 70%; max-height: 70%;">
             <figcaption></figcaption>
           </figure>
-        </ul>
+          <li>Predicteion of the test data:
+            <ul>
+              <li>predicted height output = intercept + coef_(Weight)</li>
+              <li>y_pred_test = regression.intercept_ + regression.coef_ * X_test</li>
+            </ul>
+            <pre><code>
+              ## Prediction for the test data
+              y_pred = regression.predict(X_test)
+            </code></pre>
+          </li>
+          <li><strong>Model testing:</strong>
+          <pre><code>
+            mse = mean_squared_error(y_test, y_pred)
+            mae = mean_absolute_error(y_test, y_pred)
+            rmse = np.sqrt(mse)
+
+            print(f"The Mean squared error is: {mse}")
+            print(f"The mean absolute error is: {mae}")
+            print(f"The root mean squared error is: {rmse}")
+          </code></pre>
+          The output is:
+          <pre>
+            The Mean squared error is: 119.78211426580515
+            The mean absolute error is: 9.751561944430335
+            The root mean squared error is: 10.944501554013556
+          </pre>
+          Similalry R-squared can be caluclated as:
+          <pre><code>
+            from sklearn.metrics import r2_score
+
+            score = r2_score(y_test, y_pred)
+            print(f"The r-squared value for the model is= {score}")            
+          </code></pre>
+          and the output is: <code>The r-squared value for the model is= 0.724726708358188</code>
+          Similalry adjusted R-squared can be obtained as:
+          $$ \text{Adjusted R-squared} = 1- \frac{(1-R^2)(n-1)}{n-k-1}$$
+          where 
+          <ul>
+            <li>R^2 = is the R-squared value of the model,</li>
+            <li>n = The number of observations</li>
+            <li>k = The number of predictor variables</li>
+          </ul>
+          <pre><code>
+            ## displaying adjusted r squared value 
+            1 - (1-score)*(len(y_test) - 1) / (len(y_test) - X_test.shape[1]-1)
+          </code></pre>  
+          and the adjusted r-squared value is: 0.655908385447735
+        </li>
+       </ul>
+       <strong>OLS method:</strong>
+       We can also use the OLS method for the above example. 
+       <pre><code>
+        import statsmodels.api as sm 
+        model = sm.OLS(y_train, X_train).fit()
+        prediction = model.predict(X_test)
+        print(prediction)
+       </code></pre>
+       This will give the prediction points for the X_test dataset. The model summary:
+       <pre><code>
+        print(model.summary())
+       </code></pre>
+       shows that the two methods discussed gave same coefficient and the intercept. 
+       <figure>
+        <img src="assets/img/machine-ln/ols-method.png" alt="" style="max-width: 70%; max-height: 70%;">
+        <figcaption></figcaption>
+      </figure>
 
 
       </section>
