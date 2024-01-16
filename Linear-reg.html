@@ -744,6 +744,18 @@ X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.25, random_
           </code></pre>  
           and the adjusted r-squared value is: 0.655908385447735
         </li>
+        <li>Prediction of height for a person of weight 72 Kgs.
+          <pre><code>
+            ### Prediction for net data
+            new_weight = [[72]]
+            scaled_new_weight = scaler.transform(new_weight) # since we have standardized the training data, we mush use the standardize the weight
+            
+            # Make the prediction
+            prediction_new_height = regression.predict(scaled_new_weight)
+            
+            print(f"Height for the weight 72 Kg is: {prediction_new_height}")
+        </li>
+        The predicted height is 155.37 cms.
        </ul>
        <strong>OLS method:</strong>
        We can also use the OLS method for the above example. 
