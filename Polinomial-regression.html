@@ -151,14 +151,9 @@
             <h3>Content</h3>
             <ol>
               <li><a href="#introduction">Introduction</a></li>
-              <li><a href="#Relationship-of-regression-lines">Relationship of regression lines</a></li>
-              <li><a href="#Types-of-Linear-Regression">Types of Linear Regression</a></li>
-              <li><a href="#Mathematical-1">Mathematical Explanation</a></li>
-              <li><a href="#Assumption-of-LR">Assumptions of Linear Regression</a></li>
-              <li><a href="#evaluation-metrics-for-LR">Evaluation Metrics for Linear Regression</a></li>
-              <li><a href="#overfit-goodfit-underfit">Overfitting, Good Fit, and Underfitting in Machine Learning</a></li>
-              <li><a href="Example-simple-linear">Example on simple linear regression in python</a></li>
-              <li><a href="#Example-multiple-regression">Example on multiple linear regression in python</a></li>
+              <li><a href="#methods">Method for fitting polynomial regression models</a></li>
+              <li><a href="#interpretation">Interpreting the coefficients</a></li>
+              <li><a href="#example">Example</a></li>
               <li><a href="#reference">Reference</a></li>
             </ol>
           </div>
@@ -197,7 +192,7 @@
         </div>
 
         <!---------------->
-        <h3>Method for fitting polynomial regression models</h3>
+        <h3 id="methods">Method for fitting polynomial regression models</h3>
         There are two main methods for fitting polynomial regression models:
         <ul>
             <li><strong>Least squares:</strong> This is the most common method for fitting polynomial regression models. It uses an iterative algorithm to find the coefficients that minimize the RSS.</li>
@@ -205,7 +200,7 @@
         </ul>
 
         <!-------------->
-        <h4>Interpreting the coefficients</h4>
+        <h3 id="interpretation">Interpreting the coefficients</h3>
         The coefficients of a polynomial regression model can be interpreted in the following way:
         <ul>
             <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>β</mi> <sub>0</sub></math>  is the average value of y</li>
