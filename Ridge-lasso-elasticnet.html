@@ -233,7 +233,7 @@
 
         <p>In mathematical terms, if \(X\) is the feature matrix, \(\beta\) is the vector of coefficients, and \(y\) is the target variables, the Elastic Net cost function can be written as:</p>
 
-        $$J(\beta) = \frac{1}{2m} \sum_{i=1}^m \left(y_i - \hat{y}_i\right)^2 +\alpha \left(\rho \sum_{i=1}^n\right)$$
+        $$J(\beta) = \frac{1}{2m} \sum_{i=1}^m \left(y_i - \hat{y}_i\right)^2 +\alpha \left(\rho \sum_{i=1}^n |\beta_i| +\frac{1-\rho}{2}\sum_{i=1}^n \beta_i^2\right)$$
 
       </section>
 
