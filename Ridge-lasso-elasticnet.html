@@ -214,7 +214,7 @@
         It is particularly useful when dealing with datasets that have a large number of features, and some of these features are correlated. 
         The Elastic Net cost function is a combination of the L1 and L2 regularization terms:
         
-        $$\text{Elastic Net Cost Function} = \text{Least Squares Cost Function} + \alpha \left(\rho \sum_{i=1}^n |\beta_i| +\frac{1-\rho}{2} \Sum_{i=1}^n \beta_i^2 \right)$$
+        $$\text{Elastic Net Cost Function} = \text{Least Squares Cost Function} + \alpha \left(\rho \sum_{i=1}^n |\beta_i| +\frac{1-\rho}{2} \sum_{i=1}^n \beta_i^2 \right)$$
 
         where:
         <ul>
@@ -233,8 +233,16 @@
 
         <p>In mathematical terms, if \(X\) is the feature matrix, \(\beta\) is the vector of coefficients, and \(y\) is the target variables, the Elastic Net cost function can be written as:</p>
 
-        $$J(\beta) = \frac{1}{2m} \sum_{i=1}^m \left(y_i - \hat{y}_i\right)^2 +\alpha \left(\rho \sum_{i=1}^n |\beta_i| +\frac{1-\rho}{2}\sum_{i=1}^n \beta_i^2\right)$$
+        $$J(\beta) = \frac{1}{2m} \sum_{i=1}^m \left(y_i - X_i \beta\right)^2 +\alpha \left(\rho \sum_{i=1}^n |\beta_i| +\frac{1-\rho}{2}\sum_{i=1}^n \beta_i^2\right)$$
 
+        where 
+        <ul>
+            <li>\(m\) = is the number of samples</li>
+            <li>\(n\) is the number of features</li>
+            <li>\(y_i\) is the target values</li>
+            <li>\(X_i\) is the featur vectors </li>
+            <li></li>
+        </ul>
       </section>
 
 
