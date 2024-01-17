@@ -157,6 +157,8 @@
               <li><a href="#Assumption-of-LR">Assumptions of Linear Regression</a></li>
               <li><a href="#evaluation-metrics-for-LR">Evaluation Metrics for Linear Regression</a></li>
               <li><a href="#overfit-goodfit-underfit">Overfitting, Good Fit, and Underfitting in Machine Learning</a></li>
+              <li><a href="Example-simple-linear">Example on simple linear regression in python</a></li>
+              <li><a href="#Example-multiple-regression">Example on multiple linear regression in python</a></li>
               <li><a href="#reference">Reference</a></li>
             </ol>
           </div>
@@ -585,7 +587,8 @@
 
       </section>
 
-      <section id="Example">
+      <!-----------Example ------------->
+      <section id="Example-simple-linear">
         <h3><a href="https://github.com/arunp77/Machine-Learning/tree/main/Projects-ML/Reg-models" target="_blank">Example on Simple lienar method</a></h3>
         Lets consider a dataset of person with their Weight and Height. he data set can be found at: 
         <a href="https://github.com/arunp77/Machine-Learning/blob/main/Projects-ML/Reg-models/Weight_height.csv" target="_blank">Dataset</a>.
@@ -772,10 +775,105 @@ X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.25, random_
        </code></pre>
        shows that the two methods discussed gave same coefficient and the intercept. 
        <figure>
-        <img src="assets/img/machine-ln/ols-method.png" alt="" style="max-width: 70%; max-height: 70%;">
-        <figcaption></figcaption>
-      </figure>
+          <img src="assets/img/machine-ln/ols-method.png" alt="" style="max-width: 70%; max-height: 70%;">
+          <figcaption></figcaption>
+        </figure>
+      </section>
 
+      <!-----------Example ------------->
+      <section id="Example-multiple-regression">
+        <h3>Example on multiple regression model</h3>
+        This example generates synthetic data for advertising spend, number of salespeople, and sales. It then performs multiple 
+        linear regression analysis using the `Advertising_Spend` and `Num_Salespeople` as independent variables to predict `Sales`. The code also includes visualization to compare actual vs. predicted sales.
+        <ul>
+          <li><strong>Importing libraries</strong>
+          <pre><code>
+            import numpy as np
+            import pandas as pd
+            import statsmodels.api as sm
+            import matplotlib.pyplot as plt            
+          </code></pre>
+          </li>
+          <li><strong>Generating random data and creating dataframe: </strong>
+          <pre><code>
+            # Set a random seed for reproducibility
+            np.random.seed(42)
+            
+            # Generate synthetic data
+            num_samples = 200
+            advertising_spend = np.random.uniform(50, 200, num_samples)
+            num_salespeople = np.random.randint(3, 10, num_samples)
+            error_term = np.random.normal(0, 20, num_samples)
+            
+            sales = 50 + 2 * advertising_spend + 5 * num_salespeople + error_term    
+            
+            # Create a DataFrame
+            df = pd.DataFrame({'Advertising_Spend': advertising_spend, 'Num_Salespeople': num_salespeople, 'Sales': sales})
+            df.head()
+          </code></pre>
+          <table>
+            <thead>
+                <tr>
+                  <th></th>
+                    <th>Advertising_Spend</th>
+                    <th>Num_Salespeople</th>
+                    <th>Sales</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <td>0</td>
+                    <td>106.181018</td>
+                    <td>6</td>
+                    <td>282.863129</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                    <td>192.607146</td>
+                    <td>5</td>
+                    <td>447.147707</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                    <td>159.799091</td>
+                    <td>3</td>
+                    <td>419.907267</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                    <td>139.798773	</td>
+                    <td>6</td>
+                    <td>367.697179</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                    <td>73.402796</td>
+                    <td>8</td>
+                    <td>211.587913</td>
+                </tr>
+            </tbody>
+          </table>
+          The pair plot of this gives: <code>sns.pairplot(df)</code>
+          <figure>
+            <img src="assets/img/machine-ln/pair-plot.png" alt="" style="max-width: 70%; max-height: 70%;">
+            <figcaption></figcaption>
+          </figure>
+          and the correlation of these are: <code>df.corr()</code> which gives as output following:
+          <figure>
+            <img src="assets/img/machine-ln/correlation-heatmap.png" alt="" style="max-width: 70%; max-height: 70%;">
+            <figcaption></figcaption>
+          </figure>
+          </li>
+          <li><strong></strong></li>
+          <li><strong></strong></li>
+          <li><strong></strong></li>
+          <li><strong></strong></li>
+          <li><strong></strong></li>
+          <li><strong></strong></li>
+          <li><strong></strong></li>
+          <li><strong></strong></li>
+          <li><strong></strong></li>
+        </ul>
 
       </section>
 
