@@ -172,7 +172,7 @@
         <h3 id="ridge">Ridge Regression</h3>
         Ridge regression, also known as Tikhonov regularization or L2 regularization, adds the squared sum of the coefficients to the cost function. The regularization term is proportional to the square of the
         L2 norm of the coefficients:
-        $$\text{Ridge Cost Function} = \text{Least Squares COst Function} + \alpha \Sum_{i=1}^n \beta_i^2$$
+        $$\text{Ridge Cost Function} = \text{Least Squares COst Function} + \alpha \sum_{i=1}^n \beta_i^2$$
 
         here <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>α</mi></math> is the regularization strength. Ridge regression tends to shrink the coefficients towards zero but does not lead to exact zero coefficients.
 
@@ -214,7 +214,7 @@
         It is particularly useful when dealing with datasets that have a large number of features, and some of these features are correlated. 
         The Elastic Net cost function is a combination of the L1 and L2 regularization terms:
         
-        $$\text{Elastic Net Cost Function} = \text{Least Squares Cost Function} + \alpha \left(\rho \Sum_{i=1}^n |\beta_i| +\frac{1-\rho}{2} \Sum_{i=1}^n \beta_i^2 \right)$$
+        $$\text{Elastic Net Cost Function} = \text{Least Squares Cost Function} + \alpha \left(\rho \sum_{i=1}^n |\beta_i| +\frac{1-\rho}{2} \Sum_{i=1}^n \beta_i^2 \right)$$
 
         where:
         <ul>
@@ -228,12 +228,12 @@
                 </ul>
             </li>
         </ul>
-        The terms \(\Sum_{i=1}^n |\beta_i|\) and  \(\Sum_{i=1}^n \beta_i^2\) represents the L1 and L2 regularization penalties applied to the coefficients \(\beta_i\) respectively. 
+        The terms \(\sum_{i=1}^n |\beta_i|\) and  \(\sum_{i=1}^n \beta_i^2\) represents the L1 and L2 regularization penalties applied to the coefficients \(\beta_i\) respectively. 
         The coefficients \(\beta_i\) are the parameters being optimized during the training process. 
 
         <p>In mathematical terms, if \(X\) is the feature matrix, \(\beta\) is the vector of coefficients, and \(y\) is the target variables, the Elastic Net cost function can be written as:</p>
 
-        $$J(\beta) = \frac{1}{2m} \SUm_{i=1}^m \left(y_i - \hat{y}_i\right)^2 +\alpha \left(\rho \Sum_{i=1}^n\right)$$
+        $$J(\beta) = \frac{1}{2m} \sum_{i=1}^m \left(y_i - \hat{y}_i\right)^2 +\alpha \left(\rho \sum_{i=1}^n\right)$$
 
       </section>
 
