@@ -169,19 +169,21 @@
         <h2>Introduction</h2>
         Ridge and Lasso regression are regularization techniques used in linear regression to prevent overfitting and improve the model's generalization performance. Both methods introduce a penalty term to the linear regression cost function.
 
-        <h3>Ridge Regression</h3>
+        <h3 id="ridge">Ridge Regression</h3>
         Ridge regression, also known as Tikhonov regularization or L2 regularization, adds the squared sum of the coefficients to the cost function. The regularization term is proportional to the square of the
         L2 norm of the coefficients:
-        $$\text{Ridge Cost Function} = \text{Least Squares COst Function} + \Sum_{i=1}^n \beta_i^2$$
+        $$\text{Ridge Cost Function} = \text{Least Squares COst Function} + \alpha \Sum_{i=1}^n \beta_i^2$$
 
         here <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>α</mi></math> is the regularization strength. Ridge regression tends to shrink the coefficients towards zero but does not lead to exact zero coefficients.
 
         <p>In Scikit-learn, Ridge regression is implemented in the `<code>Ridge</code>` class.</p>
 
 
-        <h3>Lasso Regression</h3>
+        <h3 id="lasso">Lasso Regression</h3>
         Lasso regression, or L1 regularization, adds the sum of the absolute values of the coefficients to the cost function. The regularization term is proportional to the L1 norm of the coefficients: 
+        
         $$\text{Lasso Cost Function} = \text{Least Squares Cost Function}+ \alpha \sum_{i=1}^n |\beta_i|.$$
+        
         Similar to Ridge regression, <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>α</mi></math> is the regularization strength. Lasso regression has has the property of producing sparse models by setting some coefficients to exact zero.
         <p>In Scikit-learn, Lasso regression is implemented in the '<code>Lasso</code>' class.</p>
 
@@ -207,7 +209,31 @@
             lasso_score = lasso_reg.score(X_test_scaled, y_test)            
         </code></pre>
 
+        <h3 id="elasticnet">Elastic Net</h3>
+        Elastic Net is a regularization technique that combines both L1 (Lasso) and L2 (Ridge) regularization terms in the linear regression cost function. 
+        It is particularly useful when dealing with datasets that have a large number of features, and some of these features are correlated. 
+        The Elastic Net cost function is a combination of the L1 and L2 regularization terms:
+        
+        $$\text{Elastic Net Cost Function} = \text{Least Squares Cost Function} + \alpha \left(\rho \Sum_{i=1}^n |\beta_i| +\frac{1-\rho}{2} \Sum_{i=1}^n \beta_i^2 \right)$$
 
+        where:
+        <ul>
+            <li>Least Squares Cost Function is the standard least squares cost function, which measures the difference between predicted and actual values.</li>
+            <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>α</mi></math> is the total regularization strength, controlling the overall amount of regularization applied.</li>
+            <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>ρ </mi></math> is the mixing parameter that determines the balance between the L1 and L2 regularization.
+                When:
+                <ul>
+                    <li>\(\rho= 0 \Rightarrow\) Elastic Net is equivalent to Ridge (L2 regularization), </li>
+                    <li>\(\rho= 1 \Rightarrow\) it is equivalent to Lasso (L1 regularization only). </li>
+                </ul>
+            </li>
+        </ul>
+        The terms \(\Sum_{i=1}^n |\beta_i|\) and  \(\Sum_{i=1}^n \beta_i^2\) represents the L1 and L2 regularization penalties applied to the coefficients \(\beta_i\) respectively. 
+        The coefficients \(\beta_i\) are the parameters being optimized during the training process. 
+
+        <p>In mathematical terms, if \(X\) is the feature matrix, \(\beta\) is the vector of coefficients, and \(y\) is the target variables, the Elastic Net cost function can be written as:</p>
+
+        $$J(\beta) = \frac{1}{2m} \SUm_{i=1}^m \left(y_i - \hat{y}_i\right)^2 +\alpha \left(\rho \Sum_{i=1}^n\right)$$
 
       </section>
 
