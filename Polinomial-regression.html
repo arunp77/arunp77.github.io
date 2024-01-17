@@ -224,12 +224,96 @@
             <li><strong>Analyzing financial data:</strong> Polynomial regression can be used to analyze financial data to identify trends and patterns.</li>
             <li><strong>Improving the accuracy of machine learning models:</strong> Polynomial regression can be used to improve the accuracy of machine learning models by providing them with a more complex and flexible representation of the data.</li>
         </ul>
-        
-
-
     </section>
 
+    <section id="example">
+        <h3>Example-1</h3>
+        <ul>
+            <li><strong>Importing the libraries: </strong>
+                <pre><code>
+                    # import libraries
+                    import numpy as np 
+                    import pandas as pd 
+                    import matplotlib.pyplot as plt 
+                    %matplotlib inline                    
+                </code></pre>
+            </li>
+            <li><strong>Generating datasets/ loading the datasets: </strong>
+            In our current example, we generate a random dataset for X and y. Specially in our current example, we have considered following equation to generate the random data for y:
+            $$y = \frac{1}{2} x^2 +\frac{3}{2} x +2 +\text{outliers}$$
+            and hence python code is:
+            <pre><code>
+                X = 6 * np.random.rand(100,1)-3
+                y = 0.5*X**2 + 1.5*X + 2 + np.random.randn(100,1)
 
+                # quadratic equation is shown above
+
+                plt.scatter(X, y, color='r')
+                plt.xlabel("X")
+                plt.ylabel("y")
+                plt.show()                
+            </code></pre>
+            which gives the data for our example and plot the generated datasets.
+            <figure>
+                <img src="assets/img/machine-ln/genreated-poly-data.png" alt="" style="max-width: 60%; max-height: auto;">
+                <figcaption></figcaption>
+              </figure>
+            </li>
+            <li><strong>Simple line:</strong>Now let's start with the simple line which is actually case of degree=1
+            <pre><code>
+                ## Apply linear regression
+                from sklearn.linear_model import LinearRegression
+                regression1 = LinearRegression()
+                regression1.fit(X_train, y_train)
+                ## plot Training data plot and best fit line
+
+                plt.scatter(X_train, y_train, color = 'b')
+                plt.plot(X_train, regression1.predict(X_train), color = 'r')
+                plt.xlabel("X_train")
+                plt.ylabel("y_pred")
+                plt.show()
+
+                from sklearn.metrics import r2_score
+
+                score = r2_score(y_test, regression1.predict(X_test))
+                print(f"The r-squared value for the model is= {score}")
+            </code></pre>
+            so it gave <code>The r-squared value for the model is= 0.6405513731105184</code> and 
+            <figure>
+                <img src="assets/img/machine-ln/degree-1.png" alt="" style="max-width: 60%; max-height: auto;">
+                <figcaption></figcaption>
+            </figure>
+            The coefficient in the case can be obtained using: <code>regression.coef_ = [[1.43280818]].</code>
+            </li>
+            <li><strong>Quadratic equation:</strong>
+            Next we are going to use following equation:
+            $$y = \beta_0 +\beta_1 x +\beta_2 x^2$$
+            <pre><code>
+                from sklearn.preprocessing import PolynomialFeatures
+                poly = PolynomialFeatures(degree = 2, include_bias = True)
+                X_train_poly = poly.fit_transform(X_train)
+                X_test_poly = poly.transform(X_test)
+
+                from sklearn.metrics import r2_score
+                regression = LinearRegression()
+                regression.fit(X_train_poly, y_train)
+                y_pred = regression.predict(X_test_poly)
+                score = r2_score(y_test, y_pred)
+                print(score)
+            </code></pre>
+            which gave the value of r-square = <code>0.8726125379887142</code> which some shows significant improvment. 
+            </li>
+            The coefficient in the case can be obtained using: <code>regression.coef_ = [[0.         1.47171982 0.42463995]].</code>
+            <li><strong></strong></li>
+            <li><strong></strong></li>
+            <li><strong></strong></li>
+            <li><strong></strong></li>
+        </ul>
+    </section>
+
+<pre><code>
+                
+</code></pre>
          
 
       <!-------Reference ------->
