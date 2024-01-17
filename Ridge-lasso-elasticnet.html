@@ -166,6 +166,48 @@
       </div>
 
       <section id="introduction">
+        <h2>Introduction</h2>
+        Ridge and Lasso regression are regularization techniques used in linear regression to prevent overfitting and improve the model's generalization performance. Both methods introduce a penalty term to the linear regression cost function.
+
+        <h3>Ridge Regression</h3>
+        Ridge regression, also known as Tikhonov regularization or L2 regularization, adds the squared sum of the coefficients to the cost function. The regularization term is proportional to the square of the
+        L2 norm of the coefficients:
+        $$\text{Ridge Cost Function} = \text{Least Squares COst Function} + \Sum_{i=1}^n \beta_i^2$$
+
+        here <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>α</mi></math> is the regularization strength. Ridge regression tends to shrink the coefficients towards zero but does not lead to exact zero coefficients.
+
+        <p>In Scikit-learn, Ridge regression is implemented in the `<code>Ridge</code>` class.</p>
+
+
+        <h3>Lasso Regression</h3>
+        Lasso regression, or L1 regularization, adds the sum of the absolute values of the coefficients to the cost function. The regularization term is proportional to the L1 norm of the coefficients: 
+        $$\text{Lasso Cost Function} = \text{Least Squares Cost Function}+ \alpha \sum_{i=1}^n |\beta_i|.$$
+        Similar to Ridge regression, <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>α</mi></math> is the regularization strength. Lasso regression has has the property of producing sparse models by setting some coefficients to exact zero.
+        <p>In Scikit-learn, Lasso regression is implemented in the '<code>Lasso</code>' class.</p>
+
+        <p><strong>Usage in scikit-learn:</strong></p>
+        <pre><code>
+            from sklearn.linear_model import Ridge, Lasso
+            from sklearn.model_selection import train_test_split
+            from sklearn.preprocessing import StandardScaler
+            
+            # Assuming X_train, X_test, y_train, y_test are defined
+            scaler = StandardScaler()
+            X_train_scaled = scaler.fit_transform(X_train)
+            X_test_scaled = scaler.transform(X_test)
+            
+            # Ridge Regression
+            ridge_reg = Ridge(alpha=1.0)  # Adjust alpha as needed
+            ridge_reg.fit(X_train_scaled, y_train)
+            ridge_score = ridge_reg.score(X_test_scaled, y_test)
+            
+            # Lasso Regression
+            lasso_reg = Lasso(alpha=1.0)  # Adjust alpha as needed
+            lasso_reg.fit(X_train_scaled, y_train)
+            lasso_score = lasso_reg.score(X_test_scaled, y_test)            
+        </code></pre>
+
+
 
       </section>
 
