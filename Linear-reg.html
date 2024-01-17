@@ -424,6 +424,10 @@
       
         <div style="background-color: #f2f2f2; padding: 15px;">
           <p><strong>Gradient Descent for Linear Regression:</strong> 
+            <figure>
+              <img src="assets/img/machine-ln/gradient-discent.png" alt="" style="max-width: 70%; max-height: 70%;">
+              <figcaption style="text-align: center;">Gradient descent is the process of taking steps to find the minimum of the loss surface. Image Credit: <a href="https://www.researchgate.net/figure/Non-convex-optimization-We-utilize-stochastic-gradient-descent-to-find-a-local-optimum_fig1_325142728" target="_blank">Alexander Amini</a></figcaption>
+            </figure>
             <ul>
               <li>A regression model optimizes the gradient descent algorithm to update the coefficients of the line by reducing the cost function by randomly selecting coefficient values and then iteratively updating the values to reach the minimum cost function.</li>
               <li>Gradient Descent is an iterative optimization algorithm commonly used in machine learning to find the optimal parameters in a model. It can also be applied to linear regression to estimate the parameters (coefficients) that minimize the cost function.</li>
@@ -872,7 +876,7 @@ X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.25, random_
             or you can look at <code>sklearn</code> website: <a href="https://scikit-learn.org/stable/modules/cross_validation.html" target="_blank">Cross-validation: evaluating estimator performance</a>.
             <figure>
               <img src="assets/img/machine-ln/grid_search_cross_validation.png" alt="" style="max-width: 80%; max-height: auto;">
-              <figcaption>k-fold</figcaption>
+              <figcaption style="text-align: center;"><strong>k-fold</strong></figcaption>
             </figure>
             <p>In machine learning (ML), generalization usually refers to the ability of an algorithm to be effective across various inputs. It means that the ML model does not encounter performance degradation on the new inputs from the same distribution of the training data. </p>
             <p><strong>Definition: </strong>Cross-validation is a technique for evaluating a machine learning model and testing its performance. CV is commonly used in applied ML tasks. It helps to compare and select an appropriate model for the specific predictive modeling problem.</p>
