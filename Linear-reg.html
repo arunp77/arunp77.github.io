@@ -872,24 +872,125 @@ X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.25, random_
             or you can look at <code>sklearn</code> website: <a href="https://scikit-learn.org/stable/modules/cross_validation.html" target="_blank">Cross-validation: evaluating estimator performance</a>.
             <figure>
               <img src="assets/img/machine-ln/grid_search_cross_validation.png" alt="" style="max-width: 80%; max-height: auto;">
-              <figcaption></figcaption>
+              <figcaption>k-fold</figcaption>
             </figure>
-            <p>In machine learning (ML), generalization usually refers to the ability of an algorithm to be effective across various inputs. It means that the ML model does not encounter performance degradation on the new inputs from the same distribution of the training data. 
-
-              
-            </p>
+            <p>In machine learning (ML), generalization usually refers to the ability of an algorithm to be effective across various inputs. It means that the ML model does not encounter performance degradation on the new inputs from the same distribution of the training data. </p>
+            <p><strong>Definition: </strong>Cross-validation is a technique for evaluating a machine learning model and testing its performance. CV is commonly used in applied ML tasks. It helps to compare and select an appropriate model for the specific predictive modeling problem.</p>
+            <p>There are a lot of different techniques that may be used to cross-validate a model. Still, all of them have a similar algorithm:</p>
+            <ul>
+              <li>Divide the dataset into two parts: one for training, other for testing</li>
+              <li>Train the model on the training set</li>
+              <li>Validate the model on the test set</li>
+              <li>Repeat 1-3 steps a couple of times. This number depends on the CV method that you are using</li>
+            </ul>
+            <p>There are plenty of CV techniques of which some of them are:</p>
+            <ul>
+              <li>Hold-out</li>
+              <li>K-folds</li>
+              <li>Leave-one-out</li>
+              <li>Leave-p-out</li>
+              <li>Stratified K-folds</li>
+              <li>Repeated K-folds</li>
+              <li>Nested K-folds</li>
+              <li>Time series CV</li>         
+            </ul>
+            For details, see: <a href="https://neptune.ai/blog/cross-validation-in-machine-learning-how-to-do-it-right" target="_blank">Cross-validation</a>.
           </div>
           </li>
-          <li><strong></strong></li>
-          <li><strong></strong></li>
-          <li><strong></strong></li>
-          <li><strong></strong></li>
-          <li><strong></strong></li>
-          <li><strong></strong></li>
-          <li><strong></strong></li>
-          <li><strong></strong></li>
-          <li><strong></strong></li>
+          <li><strong>Feature selection: </strong>Now let's select the features.
+            <pre><code>
+              X= df.iloc[:,:-1]
+              y = df.iloc[:,-1]              
+            </code></pre>
+          </li>
+          <li><strong>Standardization: </strong>We standardize the data as:
+          <pre><code>
+            from sklearn .preprocessing import StandardScaler
+            scaler =StandardScaler()
+            X_train =scaler.fit_transform(X_train)
+            X_test =scaler.fit_transform(X_test)                        
+          </code></pre>
+          </li>
+          <li><strong>Regression model:</strong>
+            <pre><code>
+              from sklearn.linear_model import LinearRegression
+              regression = LinearRegression()
+              regression.fit(X_train, y_train)                            
+            </code></pre>
+            We can calculate the coefficient as:
+            <pre><code>
+              print(regression.coef_)              
+            </code></pre>
+            which gave: <code>[86.62120427  6.33750727]</code>.
+          </li>
+          <li><strong>Cross-validation method: </strong> Here we use cross-validation method. It is not mandetory but best practice. 
+            <pre><code>
+              from sklearn.model_selection import cross_val_score
+              validation_score = cross_val_score(regression, X_train, y_train, scoring='neg_mean_squared_error', cv=3)
+              validation_score
+            </code></pre>
+            The output is <code>validation_score = ray([-437.35690029, -363.86846439, -321.13612303])</code>, which infact represents the MSE each. 
+            The mean of these can be found as: <code>np.mean(validation_score) = -374.1204959020976 </code>.
+          </li>
+          <li><strong>Prediction: </strong>Now we find the prediction as follows:
+            <pre><code>
+              ## prediction
+              y_pred = regression.predict(X_test)              
+            </code></pre>
+          </li>
+          <li><strong>Calculating the MSE, MAE:</strong>
+          <pre><code>
+            from sklearn.metrics import mean_absolute_error, mean_squared_error
+            mse = mean_squared_error(y_test, y_pred)
+            mae = mean_absolute_error(y_test, y_pred)
+            rmse = np.sqrt(mse)
+            
+            print(f"The Mean squared error is: {mse}")
+            print(f"The mean absolute error is: {mae}")
+            print(f"The root mean squared error is: {rmse}")            
+          </code></pre>
+          which in term gave:
+          <pre>
+            The Mean squared error is: 508.99064011586074
+            The mean absolute error is: 17.628284263814095
+            The root mean squared error is: 22.560820909618087            
+          </pre>
+          </li>
+          <li><strong>R-squared value: </strong>
+          <pre><code>
+            from sklearn.metrics import r2_score
+
+            score = r2_score(y_test, y_pred)
+            print(f"The r-squared value for the model is= {score}")            
+          </code></pre>
+          The r-squared value for the model is= 0.9326105266469662.
+          </li>
+          <li><strong>Calculating the residuals and seeing it's distribution:</strong>
+          <pre><code>
+            residuals = y_test-y_pred
+            # plot residuals
+            sns.displot(residuals, kind='kde')                        
+          </code></pre>
+          <figure>
+            <img src="assets/img/machine-ln/distribution-residuals.png" alt="" style="max-width: 80%; max-height: auto;">
+            <figcaption>k-fold</figcaption>
+          </figure>
+          Defiently not a perfect gaussian distrinution but still resembles a gaussian distribution.
+          </li>
         </ul>
+        <strong>OLS method:</strong>
+        We can alsi use OLS method for this. 
+        <pre><code>
+          import statsmodels.api as sm 
+          model = sm.OLS(y_train, X_train).fit()      
+          prediction = model.predict(X_test)      
+          preint(model.summary())        
+        </code></pre>
+        <figure>
+          <img src="assets/img/machine-ln/multi-ols.png" alt="" style="max-width: 80%; max-height: auto;">
+          <figcaption>k-fold</figcaption>
+        </figure>
+        So we can compare the two method and we can see that the coefficient calculated in the two methods are approximately same. 
 
       </section>
 
