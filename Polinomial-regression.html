@@ -302,18 +302,99 @@
                 print(score)
             </code></pre>
             which gave the value of r-square = <code>0.8726125379887142</code> which some shows significant improvment. 
+            <figure>
+                <img src="assets/img/machine-ln/degree-2.png" alt="" style="max-width: 60%; max-height: auto;">
+                <figcaption></figcaption>
+            </figure>
             </li>
             The coefficient in the case can be obtained using: <code>regression.coef_ = [[0.         1.47171982 0.42463995]].</code>
-            <li><strong></strong></li>
-            <li><strong></strong></li>
+            <li><strong>Cubic:</strong>
+            <pre><code>
+                from sklearn.preprocessing import PolynomialFeatures
+                poly = PolynomialFeatures(degree = 3, include_bias = True)
+                X_train_poly = poly.fit_transform(X_train)
+                X_test_poly = poly.transform(X_test)
+
+                from sklearn.metrics import r2_score
+                regression = LinearRegression()
+                regression.fit(X_train_poly, y_train)
+                y_pred1 = regression.predict(X_test_poly)
+                score = r2_score(y_test, y_pred)
+                print(score)
+
+                from sklearn.metrics import r2_score
+                regression = LinearRegression()
+                regression.fit(X_train_poly, y_train)
+                y_pred1 = regression.predict(X_test_poly)
+                score = r2_score(y_test, y_pred)
+                print(score)                
+            </code></pre>
+            This gave r-square value = <code>0.8620083765320085</code>  almost same value as it was in the case of degree 2.
+            <p><strong>Prediction:</strong></p> For a new datsets:
+            <pre><code>
+                ## Prediction for new data 
+                X_new = np.linspace(-3,3,200).reshape(200,1)
+                X_new_poly = poly.transform(X_new)
+                y_new = regression.predict(X_new_poly)
+                plt.plot(X_new, y_new, "r-", linewidth = 2, label = "New Prediction")
+                plt.plot(X_train, y_train, "y.", label = "Training points")
+                plt.plot(X_test, y_test, "b.", label ="Testing points")
+                plt.xlabel("X")
+                plt.plot("y")
+                plt.legend()
+                plt.show()                
+            </code></pre>
+            we will have following plot:
+            <figure>
+                <img src="assets/img/machine-ln/degree-3-prediction.png" alt="" style="max-width: 60%; max-height: auto;">
+                <figcaption></figcaption>
+            </figure>
+            </li>
+            <li><strong>Creating pipeline for any degree:</strong>
+            In this case, we first define a generic function and then supply the new dataset for the fitting. 
+            <pre><code>
+                from sklearn.pipeline import Pipeline
+                def poly_regression(degree, X_new):
+                """Function to fit and predict polynomial of specified degree"""
+                poly_features = PolynomialFeatures(degree=degree, include_bias=True)
+                lin_reg = LinearRegression()
+                poly_regression = Pipeline([
+                    ("poly_features", poly_features),
+                    ("lin_reg", lin_reg)
+                ])
+                poly_regression.fit(X_train, y_train)
+                y_pred_new = poly_regression.predict(X_new)
+                return y_pred_new
+            </code></pre>
+            Then we provide the datset and plot all degrees.
+            <pre><code>
+                # Generate X_new once for all degrees
+                X_new = np.linspace(-3, 3, 200).reshape(200, 1)
+
+                # Plotting for degrees 0, 1, 2, 3, 4
+                for degree in range(5):
+                    y_pred = poly_regression(degree, X_new)
+                    plt.plot(X_new, y_pred, label="Degree " + str(degree), linewidth=2)
+
+                plt.legend(loc="upper left")
+                plt.plot(X_train, y_train, "b.", linewidth=3, label="Training Data")
+                plt.plot(X_test, y_test, "g.", linewidth=3, label="Test Data")
+                plt.xlabel("X")
+                plt.ylabel("y")
+                plt.axis([-4, 4, 0, 10])
+                plt.show()
+            </code></pre>
+            <figure>
+                <img src="assets/img/machine-ln/all-degree-pipeline.png" alt="" style="max-width: 60%; max-height: auto;">
+                <figcaption></figcaption>
+            </figure>
+            </li>
             <li><strong></strong></li>
             <li><strong></strong></li>
         </ul>
     </section>
 
-<pre><code>
-                
-</code></pre>
+
          
 
       <!-------Reference ------->
