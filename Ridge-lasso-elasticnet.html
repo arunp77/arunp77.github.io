@@ -407,7 +407,7 @@
                           </figure>
                     </li>
                     <li><strong>Monthly fire analysis:</strong>
-                        <pre><code>
+                        <pre class="language-python"><code>
                             dftemp = final_df.loc[final_df['Region'] == 1] # here for second region it should be 0. 
                             plt.subplots(figsize=(13,6))
                             sns.countplot(x='month', hue='Classes', data=final_df)
@@ -425,15 +425,210 @@
                 </ul>
             </li>
             <li><strong>Ridge lasso analysis:</strong>
-            In this part, we will work on ridge lasso analysis part. 
+            In this part, we will work on ridge lasso analysis part. The original code can be found at my <a href="https://github.com/arunp77/Machine-Learning/blob/main/Projects-ML/Reg-models/Model-training.ipynb" target="_blank">github repository</a>
+                <ul>
+                    <li><strong>Feature scaling or standardization: </strong>
+                        <pre class="language-python"><code>
+                            from sklearn.preprocessing import StandardScaler
+                            scaler = StandardScaler()
+                            X_train_scaled =scaler.fit_transform(X_train)
+                            X_test_scaled = scaler.transform(X_test)
+                            plt.subplots(figsize=(15,5))
+                            plt.subplot(1,2,1)
+                            sns.boxplot(data = X_train)
+                            plt.title("X_train before scaling")
+                            plt.subplot(1,2,2)
+                            sns.boxplot(data = X_train_scaled)
+                            plt.title("X_train After scaling")
+                            plt.show()
+                        </code></pre>
+                        <figure>
+                            <img src="assets/img/machine-ln/box-plot-train-scaled.png" alt="" style="max-width: 100%; max-height: auto;">
+                            <figcaption style="text-align: center;"></figcaption>
+                        </figure>
+                    </li>
+                    <li><strong>Linear-regression method:</strong>
+                    Here we will start with linear regression method. 
+                    <pre class="language-python"><code>
+                        from sklearn.linear_model import LinearRegression
+                        from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
+                        linreg = LinearRegression()
+                        linreg.fit(X_train_scaled, y_train)
+                        y_pred =linreg.predict(X_test_scaled)
+                        
+                        
+                        mae = mean_absolute_error(y_test, y_pred)
+                        mse  = mean_squared_error(y_test, y_pred)
+                        score = r2_score(y_test, y_pred)
+                        print(f'Mean absolute error = {mae}')
+                        print(f'Mean squared error = {mse}')
+                        print(f'R-squared value = {score}')
+                    </code></pre>
+                    Output of this is:
+                    <pre>
+                        Mean absolute error = 0.5468236465249976
+                        Mean squared error = 0.6742766873791581
+                        R-squared value = 0.9847657384266951
+                    </pre>
+                    </li>
+                    <li><strong>Lasso Regression:</strong>
+                        <pre class="language-python"><code>
+                            from sklearn.linear_model import Lasso
+
+                            from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
+                            lasso = Lasso()
+                            lasso.fit(X_train_scaled, y_train)
+                            y_pred =lasso.predict(X_test_scaled)
+                            
+                            
+                            mae = mean_absolute_error(y_test, y_pred)
+                            mse  = mean_squared_error(y_test, y_pred)
+                            score = r2_score(y_test, y_pred)
+                            print(f'Mean absolute error = {mae}')
+                            print(f'Mean squared error = {mse}')
+                            print(f'R-squared value = {score}')
+                        </code></pre>
+                        The output is:
+                        <pre>
+                            Mean absolute error = 1.1331759949144085
+                            Mean squared error = 2.2483458918974746
+                            R-squared value = 0.9492020263112388   
+                        </pre>
+                        <strong>Lasso Cross validation:</strong> 
+                        <pre class="language-python"><code>
+                            from sklearn.linear_model import LassoCV
+                            lassocv = LassoCV(cv=5)
+                            lassocv.fit(X_train_scaled, y_train)
+                            y_pred = lassocv.predict(X_test_scaled)
+                        </code></pre>
+                        Now we can see the LassoCV the MSE with respect to alpha 
+                        <pre class="language-python"><code>
+                            # Plot MSE path
+                            plt.figure(figsize=(10, 6))
+                            plt.plot(lassocv.alphas_, lassocv.mse_path_, ':')
+                            plt.plot(lassocv.alphas_, lassocv.mse_path_.mean(axis=-1), 'k', label='Average MSE')
+                            plt.axvline(lassocv.alpha_, linestyle='--', color='r', label='Selected Alpha')
+                            plt.legend()
+                            plt.xscale('log')
+                            plt.xlabel('Alpha (Regularization Strength)')
+                            plt.ylabel('Mean Squared Error (MSE)')
+                            plt.title('LassoCV Mean Squared Error Path')
+                            plt.show()
+                        </code></pre>
+                        <figure>
+                            <img src="assets/img/machine-ln/lasso-cv.png" alt="" style="max-width: 100%; max-height: auto;">
+                            <figcaption style="text-align: center;"></figcaption>
+                        </figure>
+                    </li>
+                    <li><strong>Ridge regression model:</strong>
+                    <pre class="language-python"><code>
+                        from sklearn.linear_model import Ridge
+
+                        from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
+                        ridge = Ridge()
+                        ridge.fit(X_train_scaled, y_train)
+                        y_pred =ridge.predict(X_test_scaled)
+                        
+                        
+                        mae = mean_absolute_error(y_test, y_pred)
+                        mse  = mean_squared_error(y_test, y_pred)
+                        score = r2_score(y_test, y_pred)
+                        print(f'Mean absolute error = {mae}')
+                        print(f'Mean squared error = {mse}')
+                        print(f'R-squared value = {score}')
+                        </code></pre>
+                        The output of this is:
+                        <pre>
+                            Mean absolute error = 0.5642305340105693
+                            Mean squared error = 0.6949198918152067
+                            R-squared value = 0.9842993364555513
+                        </pre>
+                        <strong>Ridge cross validation:</strong>
+                        <pre class="language-python"><code>
+                            from sklearn.linear_model import RidgeCV 
+                            ridgecv = RidgeCV(cv=5)
+                            ridgecv.fit(X_train_scaled, y_train)
+                            y_pred = ridgecv.predict(X_test_scaled)
+
+                            mae = mean_absolute_error(y_test, y_pred)
+                            score = r2_score(y_test, y_pred)
+                            print(f"Mean absolute error={mae}")
+                            print(f"R-squared value = {score}")
+                        </code></pre>
+                        The output of this:
+                        <pre>
+                            Mean absolute error=0.5642305340105693
+                            R-squared value = 0.9842993364555513
+                        </pre>
+                    </li>
+                    <li><strong>Elastic Net regression:</strong>
+                        <pre class="language-python"><code>
+                            from sklearn.linear_model import ElasticNet
+
+                            from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
+                            elastic = ElasticNet()
+                            elastic.fit(X_train_scaled, y_train)
+                            y_pred =elastic.predict(X_test_scaled)
+                            
+                            
+                            mae = mean_absolute_error(y_test, y_pred)
+                            mse  = mean_squared_error(y_test, y_pred)
+                            score = r2_score(y_test, y_pred)
+                            print(f'Mean absolute error = {mae}')
+                            print(f'Mean squared error = {mse}')
+                            print(f'R-squared value = {score}')
+                        </code></pre>
+                        The output of this is:
+                        <pre>
+                            Mean absolute error = 1.8822353634896
+                            Mean squared error = 5.517251101025224
+                            R-squared value = 0.8753460589519703
+                        </pre>
+                        <strong>Elasticnet cross validation:</strong>
+                        <pre class="language-python"><code>
+                            from sklearn.linear_model import ElasticNetCV
+
+                            from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
+                            elasticcv = ElasticNetCV()
+                            elasticcv.fit(X_train_scaled, y_train)
+                            y_pred =elasticcv.predict(X_test_scaled)
+
+                            mae = mean_absolute_error(y_test, y_pred)
+                            mse  = mean_squared_error(y_test, y_pred)
+                            score = r2_score(y_test, y_pred)
+                            print(f'Mean absolute error = {mae}')
+                            print(f'Mean squared error = {mse}')
+                            print(f'R-squared value = {score}')
+                        </code></pre>
+                        The output is:
+                        <pre>
+                            Mean absolute error = 0.6575946731430904
+                            Mean squared error = 0.8222830416276272
+                            R-squared value = 0.9814217587854941
+                        </pre>
+                        Variation of Mean squared error with respect to various values of alphas can be seen here:
+                        <pre class="language-python"><code>
+                            # Plot MSE path
+                            plt.figure(figsize=(10, 6))
+                            plt.plot(lassocv.alphas_, lassocv.mse_path_, ':')
+                            plt.plot(elasticcv.alphas_, elasticcv.mse_path_.mean(axis=-1), 'k', label='Average MSE')
+                            plt.axvline(lassocv.alpha_, linestyle='--', color='r', label='Selected Alpha')
+                            plt.legend()
+                            plt.xscale('log')
+                            plt.xlabel('Alpha (Regularization Strength)')
+                            plt.ylabel('Mean Squared Error (MSE)')
+                            plt.title('Elasticnet Cross validation Mean Squared Error Path')
+                            plt.show()
+                        </code></pre>
+                        <figure>
+                            <img src="assets/img/machine-ln/elasticnet-cv.png" alt="" style="max-width: 100%; max-height: auto;">
+                            <figcaption style="text-align: center;"></figcaption>
+                        </figure>
+                    </li>
+                </ul>
             </li>
         </ol>
-
       </Section>
-
-
-         
-
       <!-------Reference ------->
       <section id="reference">
         <h2>References</h2>
