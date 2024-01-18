@@ -164,7 +164,7 @@
       <section id="introduction">
         <h2>Introduction</h2>
         Ridge and Lasso regression are regularization techniques used in linear regression to prevent overfitting and improve the model's generalization performance. Both methods introduce a penalty term to the linear regression cost function.
-
+        <!----------------------------->
         <h3 id="ridge">Ridge Regression (reduce overfitting)</h3>
         Ridge regression, also known as Tikhonov regularization or L2 regularization, adds the squared sum of the coefficients to the cost function. This regularization method is used to reduce overfitting.
          The regularization term is proportional to the square of the
@@ -203,6 +203,7 @@
         <p>In Scikit-learn, Ridge regression is implemented in the `<code>Ridge</code>` class.</p>
 
 
+        <!----------------------------->
         <h3 id="lasso">Lasso Regression (feature selection)</h3>
         Lasso regression, or L1 regularization, adds the sum of the absolute values of the coefficients to the cost function. The regularization term is proportional to the L1 norm of the coefficients: 
         
@@ -216,7 +217,24 @@
         The goal is to find the value of \(\beta\) that minmize the Lasso cost function. The optimization problem can be stated as:
         $$\underset{\beta}{min} \left(\frac{1}{2m}\sum_{i=1}^m\left(h_\theta(x^{(i)}) - y^{(i)}\right)^2 +\alpha \sum_{i=1}^n |\beta_i|\right)$$
         
-        
+        <h5>Example:</h5>
+        When you apply the Lasso method to the linear regression model:
+        $$h_\theta(x) = \theta_0 +\theta_1 x_1 +\theta_2 x_2+\theta_3 x_3 = 0.34+ 0.48 x_1 + 0.52 x_2 + 0.24 x_3$$
+        Lasso introduces a penalty term to the cost function that contains the absolute values of the coefficients \(\propto \alpha \sum_{i=1}^n |\beta_i|\), where
+        \(\alpha\) is the regularization strength. When using Lasso, it tends to shrink the coefficients towards zero, and it may even set some coefficients exactly to zero. The process of setting Some
+        coefficients to zero is what makes Lasso particulalry useful for feature selection.
+
+        <p>In simpler terms, Lasso may lead to a model with fewer features by reducing the impact of less important features, possibly making the equation look like:</p>
+        $$h_\theta(x)= 0.34+ 0.32 x_1 + 0.40 x_2 + 0.12 x_3$$
+        Notice how some coefficients have been reduced, and it might indicate that the Lasso method has identified and downplayed less influential features, making the model more parsimonious and potentially improving its generalization to new data.
+
+        <h5>Difference between the Ridge and Lasso</h5>
+        <ul>
+            <li><strong>Ridge:</strong> Ridge might shrink the coefficients, but it won't set them exactly to zero. It will encourage smaller values fo \(\theta_i\)</li>
+            <li><strong>Lasso:</strong> Lasso might not only shrink the coefficients but could also set some of them exactly to zero. It tends to prefer sparsity in the model, making it useful for feature selection.</li>
+        </ul>
+        In summary, Ridge and Lasso provide different regularization techniques with Ridge being more continuous in its shrinking effect, while Lasso introduces a sparsity element by potentially eliminating some features entirely. The choice between them depends on the specific characteristics of your data and the desired properties of your model.
+
         <p>In Scikit-learn, Lasso regression is implemented in the '<code>Lasso</code>' class.</p>
 
         <p><strong>Usage in scikit-learn:</strong></p>
@@ -241,6 +259,7 @@
             lasso_score = lasso_reg.score(X_test_scaled, y_test)            
         </code></pre>
 
+        <!----------------------------->
         <h3 id="elasticnet">Elastic Net</h3>
         Elastic Net is a regularization technique that combines both L1 (Lasso) and L2 (Ridge) regularization terms in the linear regression cost function. 
         It is particularly useful when dealing with datasets that have a large number of features, and some of these features are correlated. 
@@ -252,7 +271,7 @@
         <ul>
             <li>Least Squares Cost Function is the standard least squares cost function, which measures the difference between predicted and actual values.</li>
             <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>α</mi></math> is the total regularization strength, controlling the overall amount of regularization applied.</li>
-            <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>ρ </mi></math> is the mixing parameter that determines the balance between the L1 and L2 regularization.
+            <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>ρ </mi></math> is the mixing parameter that determines the balance between the L1 and L2 regularization. It basically control the trade-off betwee the L1 and L2 regularization.
                 When:
                 <ul>
                     <li>\(\rho= 0 \Rightarrow\) Elastic Net is equivalent to Ridge (L2 regularization), </li>
@@ -274,6 +293,16 @@
             <li>\(y_i\) is the target values</li>
             <li>\(X_i\) is the featur vectors </li>
         </ul>
+
+        <h5>When to Use Elastic Net</h5>
+        <ul>
+            <li>Use Elastic Net when you suspect that there is multicollinearity among your features and you also want the benefit of feature selection.</li>
+            <li>It is a more flexible regularization method as it allows you to tune the balance between L1 and L2 penalties.</li>
+        </ul>
+
+
+
+
       </section>
 
 
@@ -288,6 +317,7 @@
           <li>Book on Regression model: <a href="https://avehtari.github.io/ROS-Examples/" target="_blank">Regression and Other Stories</a></li>
           <li>Book on Statistics: <a href="https://hastie.su.domains/Papers/ESLII.pdf" target="_blank">The Elements of Statistical Learning</a></li>
           <li>A nice mathematical description is available at <a href="https://www.youtube.com/watch?v=lv5IEOItgWM&t=1278s&ab_channel=KrishNaik" target="_blank">youtube video</a>.</li>
+          <li><a href="https://scikit-learn.org/stable/auto_examples/linear_model/plot_lasso_model_selection.html" target="_blank"> Lasso model selection and cross validation</a></li>
         </ul>
       </section>
 
