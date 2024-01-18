@@ -185,10 +185,10 @@
         
         
         <figure>
-            <img src="assets/img/machine-ln/lasso-jtheta.png" alt="" style="max-width: 60%; max-height: auto;">
+            <img src="assets/img/machine-ln/lasso-jtheta.png" alt="" style="max-width: 30%; max-height: auto;">
             <figcaption style="text-align: center;">Ridge Cost function. Here \(\lambda =0\) correspond to the gradient dicent cost function. It is clear that, as \(\lambda\) increases, 
             global minima also decreases, but it will never reach 0.
-        </figcaption>
+            </figcaption>
           </figure>
           In simpler terms, without the last term in the Lasso cost function, the model might overfit the data by assigning too much importance to all features. However, with the addition of the last term, Lasso introduces a mechanism that can shrink some coefficients to exactly zero. This results in a more parsimonious model by effectively eliminating the influence of certain features.
           <p>Let's illustrate with an example:</p>
@@ -301,11 +301,133 @@
         </ul>
 
         In summary, Elastic Net provides a balanced regularization approach that incorporates the advantages of both Lasso and Ridge regression, offering flexibility in handling different types of datasets.
-
-
-
-
       </section>
+
+      <Section id="example">
+        <h3>Example project:</h3>
+        In this project, we have considered the dataset on the ALgerian Forest Fires, which can be obtained from the: <a href="https://archive.ics.uci.edu/dataset/547/algerian+forest+fires+dataset" target="_blank">website</a>.
+        <h5>About the dataset:</h5>
+        The dataset includes 244 instances that regroup a data of two regions of ALgeria, namely the Bejaia region located in the norteast of Algeria and the Sidi Bel-abbes region located in the northwest of Algeria. 
+
+        122 instances for each region.
+
+        The period from June 2012 to Septermber 2012. The datset includes attributes and 1 output attribute (class). The 244 instances have been classified into fire (138 classes) and not fire (106 classes) classes.
+
+        <h5>Github repository containg the code:</h5>
+        You can also find the Jupyter notebook from <a href="https://github.com/arunp77/Machine-Learning/tree/main/Projects-ML/Reg-models" target="_blank">my GitHub repository</a>.
+        <ul>
+            <li>Let's first start with importing the libraries and then the dataset:
+                <pre class="language-python"><code>
+                    import pandas as pd 
+                    import matplotlib.pyplot as plt 
+                    import numpy as np 
+                    import seaborn as sns 
+                    %matplotlib inline 
+
+                    df = pd.read_csv('Algerian_forest_fires_dataset_UPDATE.csv', header=1)
+                </code></pre>
+                I have kept the data file in same directory where the Jupyter notebook is present. This dataset contains two section of data on the basis of the two regions: 'Bejaia region' and 'Sidi Bel-abbes region'. We have created a combined dataset with a column added for the two regions with number 0 for first one and 1 for second region. 
+                <pre><code>
+                    # Extract data for the Bejaia region
+                    bejaia_data = df.iloc[bejaia_header_row :sidi_bel_abbes_header_row].copy()
+                    
+                    # Extract data for the Sidi-Bel Abbes region
+                    sidi_bel_abbes_data = df.iloc[sidi_bel_abbes_header_row:].copy()
+                    
+                    # Add a new column 'Region' with values 0 for the Bejaia region and 1 for the Sidi-Bel Abbes region
+                    bejaia_data['Region'] = 0
+                    sidi_bel_abbes_data['Region'] = 1         
+                    # Concatenate the two DataFrames back together
+                    final_df = pd.concat([bejaia_data, sidi_bel_abbes_data])
+                    
+                    # Reset the index of the final DataFrame
+                    final_df.reset_index(drop=True, inplace=True)                               
+                </code></pre>
+                After doing the data engineering we will have our final data frame (for more details on it, you can look at <a href="https://github.com/arunp77/Machine-Learning/blob/main/Projects-ML/Reg-models/lasso.ipynb" target="_blank">Jupyter notebook</a>).
+            </li>
+            <li><strong>Extrapolatory data analysis:</strong>
+                <ul>
+                    <li><strong>Histogram plots:</strong>
+                        <pre class="language-python"><code>
+                            ## Density plot for all features
+                            df_copy.hist(bins=50, figsize=(20,15), grid=False)
+                            
+                            plt.show()
+                        </code></pre>
+                        <figure>
+                            <img src="assets/img/machine-ln/histogram-plot.png" alt="" style="max-width: 60%; max-height: auto;">
+                            <figcaption style="text-align: center;"></figcaption>
+                        </figure>
+                    </li>
+                    <li><strong>Pie chart for the classes:</strong>
+                    <pre class="language-python"><code>
+                        ## PErcentage for category
+                        percentage = df_copy['Classes'].value_counts(normalize=True)*100
+                                                
+                        # Pie chart for the category
+                        classlabels = ["Fire", "Not Fire"]
+                        plt.figure(figsize=(12,7))  # Corrected the function name to plt.figure
+                        plt.pie(percentage, labels=classlabels, autopct='%1.1f%%')
+                        plt.title("Pie chart of classes")
+                        plt.show()
+                    </code></pre>
+                    <figure>
+                        <img src="assets/img/machine-ln/piechart.png" alt="" style="max-width: 30%; max-height: auto;">
+                        <figcaption style="text-align: center;"></figcaption>
+                      </figure>
+                    </li>
+                    <li><strong>Correlation plots:</strong>
+                        <pre class="language-python"><code>
+                            # Calculate the correlation matrix
+                            correlation_matrix = df_copy.corr()
+                            
+                            # Create a mask to hide the upper triangle of the correlation matrix
+                            mask = np.triu(np.ones_like(correlation_matrix, dtype=bool), k=1)
+                            
+                            # Plotting the heatmap with the upper triangle masked
+                            plt.figure(figsize=(12, 10))
+                            sns.heatmap(correlation_matrix, annot=True, cmap='Greens', fmt=".2f", linewidths=.5, mask=mask)
+                            plt.title('Trimmed Correlation Matrix Heatmap')
+                            plt.show()
+                        </code></pre>
+                        <figure>
+                            <img src="assets/img/machine-ln/correlationplot.png" alt="" style="max-width: 50%; max-height: auto;">
+                            <figcaption style="text-align: center;"></figcaption>
+                          </figure>
+                    </li>
+                    <li><strong>Checking the outliers in FWI column</strong>
+                        <pre class="language-python"><code>
+                            ## Box plot to see the outliers
+                            sns.boxplot(df_copy['FWI'], color='y')
+                            plt.show()
+                        </code></pre>
+                        <figure>
+                            <img src="assets/img/machine-ln/outliersplot_FWI.png" alt="" style="max-width: 30%; max-height: auto;">
+                            <figcaption style="text-align: center;"></figcaption>
+                          </figure>
+                    </li>
+                    <li><strong>Monthly fire analysis:</strong>
+                        <pre><code>
+                            dftemp = final_df.loc[final_df['Region'] == 1] # here for second region it should be 0. 
+                            plt.subplots(figsize=(13,6))
+                            sns.countplot(x='month', hue='Classes', data=final_df)
+                            plt.ylabel('Number of FIres', weight='bold')
+                            plt.xlabel('Months', weight='bold')
+                            plt.title("Fire analysis of Sidi-Bel Abbes region", weight='bold')
+                            plt.show()
+                        </code></pre>
+                    </li>
+                    The combined plot for the two regions can be seen here:
+                    <figure>
+                        <img src="assets/img/machine-ln/fire-analysis.png" alt="" style="max-width: 100%; max-height: auto;">
+                        <figcaption style="text-align: center;"></figcaption>
+                      </figure>
+                </ul>
+            </li>
+            <li></li>
+        </ul>
+
+      </Section>
 
 
          
