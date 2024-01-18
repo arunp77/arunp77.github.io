@@ -169,9 +169,36 @@
         Ridge regression, also known as Tikhonov regularization or L2 regularization, adds the squared sum of the coefficients to the cost function. This regularization method is used to reduce overfitting.
          The regularization term is proportional to the square of the
         L2 norm of the coefficients:
-        $$\text{Ridge Cost Function} = \text{Least Squares Cost Function} + \alpha \sum_{i=1}^n \beta_i^2$$
-
+        $$\text{Ridge Cost Function} = \frac{1}{2m}\sum_{i=1}^m\left(h_\beta(x^{(i)}) - y^{(i)}\right)^2 + \alpha \sum_{i=1}^n \beta_i^2$$
+        where:
+        <ul>
+            <li>\(m\) is the number of training examples.</li>
+            <li>\(h_\beta(x^{(i)})\) is the predicted value for the \(i-\)th example.</li>
+            <li>\(y^{(i)}\) is the actual output for the \(i-\)th example.</li>
+            <li>\(\beta_i\) is the coefficient associated with the \(i-\)th feature.</li>
+        </ul>
         here <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>α</mi></math> is the regularization strength. Ridge regression tends to shrink the coefficients towards zero but does not lead to exact zero coefficients.
+        The firat term in the above equation is nothing but 'Least Squares Cost Function' used in the gradient decent method. 
+        <p><strong>Ridge optimization:</strong></p>
+        The goal is to find the value of \(\beta\) that minmize the Ridge cost function. The optimization problem can be stated as:
+        $$\underset{\beta}{min} \left(\frac{1}{2m}\sum_{i=1}^m\left(h_\theta(x^{(i)}) - y^{(i)}\right)^2 +\alpha \sum_{i=1}^n \beta_i^2\right)$$
+        
+        
+        <figure>
+            <img src="assets/img/machine-ln/lasso-jtheta.png" alt="" style="max-width: 60%; max-height: auto;">
+            <figcaption style="text-align: center;">Ridge Cost function. Here \(\lambda =0\) correspond to the gradient dicent cost function. It is clear that, as \(\lambda\) increases, 
+            global minima also decreases, but it will never reach 0.
+        </figcaption>
+          </figure>
+          In simpler terms, without the last term in the Lasso cost function, the model might overfit the data by assigning too much importance to all features. However, with the addition of the last term, Lasso introduces a mechanism that can shrink some coefficients to exactly zero. This results in a more parsimonious model by effectively eliminating the influence of certain features.
+          <p>Let's illustrate with an example:</p>
+          <ul>
+            <li>Suppose our linear regression model without Lasso regularization is:</li>
+             $$h_\theta(x) = \theta_0 +\theta_1 x_1 +\theta_2 x_2+\theta_3 x_3 = 0.34+ 0.48 x_1 + 0.52 x_2 + 0.24 x_3$$
+             <li>Now, when we apply Lasso regularization, it can reduce the coefficients, leading to a simpler model:</li>
+             $$h_\theta(x) =  0.34+ 0.32 x_1 + 0.40 x_2 + 0.12 x_3$$
+             <li>This means Lasso automatically diminishes the reliance on certain features, in this case, reducing the dependence on the last feature (\(x_3\)) which was already deemed insignificant. The regularization process aids in feature selection, promoting a more robust and interpretable model.</li>
+          </ul>
 
         <p>In Scikit-learn, Ridge regression is implemented in the `<code>Ridge</code>` class.</p>
 
@@ -179,11 +206,17 @@
         <h3 id="lasso">Lasso Regression (feature selection)</h3>
         Lasso regression, or L1 regularization, adds the sum of the absolute values of the coefficients to the cost function. The regularization term is proportional to the L1 norm of the coefficients: 
         
-        $$\text{Lasso Cost Function} = \text{Least Squares Cost Function}+ \alpha \sum_{i=1}^n |\beta_i|.$$
+        $$\text{Lasso Cost Function} = \frac{1}{2m}\sum_{i=1}^m\left(h_\theta(x^{(i)}) - y^{(i)}\right)^2+ \alpha \sum_{i=1}^n |\beta_i|.$$
         
         Similar to Ridge regression, <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>α</mi></math> is the regularization strength. 
         Lasso regression has the property of producing sparse models by setting some coefficients to exact zero. What it means is that the features that are not that important will automatically get deleted
         and features that are very very important will be considered.
+
+        <h5>Lasso Optimization</h5>
+        The goal is to find the value of \(\beta\) that minmize the Lasso cost function. The optimization problem can be stated as:
+        $$\underset{\beta}{min} \left(\frac{1}{2m}\sum_{i=1}^m\left(h_\theta(x^{(i)}) - y^{(i)}\right)^2 +\alpha \sum_{i=1}^n |\beta_i|\right)$$
+        
+        
         <p>In Scikit-learn, Lasso regression is implemented in the '<code>Lasso</code>' class.</p>
 
         <p><strong>Usage in scikit-learn:</strong></p>
@@ -213,7 +246,7 @@
         It is particularly useful when dealing with datasets that have a large number of features, and some of these features are correlated. 
         The Elastic Net cost function is a combination of the L1 and L2 regularization terms:
         
-        $$\text{Elastic Net Cost Function} = \text{Least Squares Cost Function} + \alpha \left(\rho \sum_{i=1}^n |\beta_i| +\frac{1-\rho}{2} \sum_{i=1}^n \beta_i^2 \right)$$
+        $$\text{Elastic Net Cost Function} = \frac{1}{2m}\sum_{i=1}^m\left(h_\beta(x^{(i)}) - y^{(i)}\right)^2 + \alpha \left(\rho \sum_{i=1}^n |\beta_i| +\frac{1-\rho}{2} \sum_{i=1}^n \beta_i^2 \right)$$
 
         where:
         <ul>
