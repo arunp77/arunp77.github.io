@@ -164,6 +164,105 @@
       <section id="introduction">
         <h2>Introduction</h2>
         Ridge and Lasso regression are regularization techniques used in linear regression to prevent overfitting and improve the model's generalization performance. Both methods introduce a penalty term to the linear regression cost function.
+        
+        <section id="overfit-goodfit-underfit">
+            <h2><a href="https://github.com/arunp77/Machine-Learning/blob/main/ML-Fundamental/Overfitting-underfitting.ipynb" target="_blank"> Understanding and Addressing Fitting Issues in Machine Learning Models</a></h2>
+            <p>Overfitting and underfitting are two common problems encountered in machine learning. They occur when a machine learning model fails to generalize well to new data.</p>
+            <figure>
+              <img src="assets/img/data-engineering/overfitting.png" alt="" style="max-width: 70%; max-height: 70%;">
+              <figcaption></figcaption>
+            </figure>
+            <ol>
+              <li><strong>Overfitting: </strong>
+                <ul>
+                  <li><strong>Description: </strong>Overfitting occurs when a machine learning model learns the training data too well, including the noise and irrelevant patterns. As a result, the model becomes too complex and fails to capture the underlying relationships in the data. This leads to poor performance on unseen data.</li>
+                  <li><strong>Signs of overfitting: </strong> 
+                    <ul>
+                      <li>The model performs well on the training data but poorly on unseen data.</li>
+                      <li>The model is complex and has a large number of parameters.</li>
+                    </ul>
+                  </li>
+                  <li><strong>Causes: </strong>Too complex model, excessive training time, or insufficient regularization.</li>
+                </ul>
+              </li>
+              
+      
+              <li><strong>Underfitting</strong></li> 
+              <ul>
+                <li><strong>Description: </strong>Underfitting occurs when a machine learning model is too simple and does not capture the underlying relationships in the data. This results in poor performance on both the training data and unseen data.</li>
+                <li><strong>Signs of underfitting: </strong>
+                  <ul>
+                    <li>The model performs poorly on both the training data and unseen data.</li>
+                    <li>The model is simple and has a small number of parameters.</li>
+                  </ul>
+                </li>
+                <li><strong>Causes: </strong>Model complexity is too low, insufficient training, or inadequate feature representation.</li>
+              </ul>
+      
+              <li><strong>Bias (Systematic Error):</strong></li>
+              <ul>
+                  <li><strong>Description:</strong> The model consistently makes predictions that deviate from the true values.</li>
+                  <li><strong>Symptoms:</strong> Consistent errors in predictions across different datasets.</li>
+                  <li><strong>Causes:</strong> Insufficiently complex model, inadequate feature representation, or biased training data.</li>
+              </ul>
+      
+              <li><strong>Variance (Random Error):</strong></li>
+              <ul>
+                  <li><strong>Description:</strong> The model's predictions are highly sensitive to variations in the training data.</li>
+                  <li><strong>Symptoms:</strong> High variability in predictions when trained on different subsets of the data.</li>
+                  <li><strong>Causes:</strong> Too complex model, small dataset, or noisy training data.</li>
+              </ul>
+      
+              <li><strong>Data Leakage:</strong></li>
+              <ul>
+                  <li><strong>Description:</strong> Information from the validation or test set inadvertently influences the model during training.</li>
+                  <li><strong>Symptoms:</strong> Overly optimistic evaluation metrics, unrealistic performance.</li>
+                  <li><strong>Causes:</strong> Improper splitting of data, using future information during training.</li>
+              </ul>
+      
+              <li><strong>Model Instability:</strong></li>
+              <ul>
+                  <li><strong>Description:</strong> Small changes in the input data lead to significant changes in model predictions.</li>
+                  <li><strong>Symptoms:</strong> Lack of robustness in the model's performance.</li>
+                  <li><strong>Causes:</strong> Sensitivity to outliers, highly nonlinear relationships.</li>
+              </ul>
+      
+              <li><strong>Multicollinearity:</strong></li>
+              <ul>
+                  <li><strong>Description:</strong> High correlation among independent variables in regression models.</li>
+                  <li><strong>Symptoms:</strong> Unstable coefficient estimates, difficulty in isolating the effect of individual variables.</li>
+                  <li><strong>Causes:</strong> Redundant or highly correlated features.</li>
+              </ul>
+      
+              <li><strong>Imbalanced Data:</strong></li>
+              <ul>
+                  <li><strong>Description:</strong> A disproportionate distribution of classes in classification problems.</li>
+                  <li><strong>Symptoms:</strong> Biased models toward the majority class, poor performance on minority classes.</li>
+                  <li><strong>Causes:</strong> Inadequate representation of minority class, biased sampling.</li>
+              </ul>
+            </ol>
+            
+    
+            <!-------- Preventing Overfitting    ------->
+            <h4><strong>Preventing Overfitting and Underfitting</strong></h4> 
+            There are a number of techniques that can be used to prevent overfitting and underfitting. These include:
+            <figure>
+              <img src="assets/img/data-engineering/overfitting-preventaion.png" alt="" style="max-width: 70%; max-height: 70%;">
+              <figcaption></figcaption>
+            </figure>
+            <ul>
+              <li><strong>Regularization:</strong> Regularization is a technique that penalizes complex models. This helps to prevent the model from learning the noise and irrelevant patterns in the training data. Common regularization techniques include L1 regularization, L2 regularization, and dropout.</li>
+              <li><strong>Early stopping:</strong> Early stopping is a technique that stops training the model when it starts to overfit on the validation data. The validation data is a subset of the training data that is held out during training and used to evaluate the model's performance.</li>
+              <li><strong>Cross-validation:</strong> Cross-validation is a technique that divides the training data into multiple folds. The model is trained on a subset of the folds and evaluated on the remaining folds. This process is repeated multiple times so that the model is evaluated on all of the data. Cross-validation can be used to select the best hyperparameters for the model.</li>
+              <li><strong>Model selection:</strong> Model selection is a technique that compares different models and selects the one that performs best on the validation data. This can be done using a variety of techniques, such as k-fold cross-validation or Akaike Information Criterion (AIC).</li>
+            </ul>
+            <figure>
+              <img src="assets/img/data-engineering/overfitting-preventaion1.png" alt="" style="max-width: 70%; max-height: 70%;">
+              <figcaption></figcaption>
+            </figure>
+    
+          </section>
+        
         <!----------------------------->
         <h3 id="ridge">Ridge Regression (reduce overfitting)</h3>
         Ridge regression, also known as Tikhonov regularization or L2 regularization, adds the squared sum of the coefficients to the cost function. This regularization method is used to reduce overfitting.
