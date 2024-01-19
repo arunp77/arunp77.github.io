@@ -167,8 +167,8 @@
         Ridge and Lasso regression are regularization techniques used in linear regression to prevent overfitting and improve the model's generalization performance. Both methods introduce a penalty term to the linear regression cost function.
         
         <section id="overfit-goodfit-underfit">
-            <h2><a href="https://github.com/arunp77/Machine-Learning/blob/main/ML-Fundamental/Overfitting-underfitting.ipynb" target="_blank"> Understanding and Addressing Fitting Issues in Machine Learning Models</a></h2>
-            <p>Overfitting and underfitting are two common problems encountered in machine learning. They occur when a machine learning model fails to generalize well to new data.</p>
+            <h3><a href="https://github.com/arunp77/Machine-Learning/blob/main/ML-Fundamental/Overfitting-underfitting.ipynb" target="_blank"> Understanding and Addressing Fitting Issues in Machine Learning Models</a></h3>
+            <p>Overfitting and underfitting are two common problems encountered in machine learning. They occur when a machine learning model fails to generalize well to new data.</p> 
             <figure>
               <img src="assets/img/data-engineering/overfitting.png" alt="" style="max-width: 70%; max-height: 70%;">
               <figcaption></figcaption>
@@ -417,17 +417,17 @@
         You can also find the Jupyter notebook from <a href="https://github.com/arunp77/Machine-Learning/tree/main/Projects-ML/Reg-models" target="_blank">my GitHub repository</a>.
         <ol>
             <li>Let's first start with importing the libraries and then the dataset:
-                <pre class="language-python"><code>
-                    import pandas as pd 
-                    import matplotlib.pyplot as plt 
-                    import numpy as np 
-                    import seaborn as sns 
-                    %matplotlib inline 
+            <pre class="language-python"><code>
+                import pandas as pd 
+                import matplotlib.pyplot as plt 
+                import numpy as np 
+                import seaborn as sns 
+                %matplotlib inline 
 
-                    df = pd.read_csv('Algerian_forest_fires_dataset_UPDATE.csv', header=1)
-                </code></pre>
+                df = pd.read_csv('Algerian_forest_fires_dataset_UPDATE.csv', header=1)
+            </code></pre>
                 I have kept the data file in same directory where the Jupyter notebook is present. This dataset contains two section of data on the basis of the two regions: 'Bejaia region' and 'Sidi Bel-abbes region'. We have created a combined dataset with a column added for the two regions with number 0 for first one and 1 for second region. 
-                <pre><code>
+                <pre class="language-python"><code>
                     # Extract data for the Bejaia region
                     bejaia_data = df.iloc[bejaia_header_row :sidi_bel_abbes_header_row].copy()
                     
@@ -548,28 +548,28 @@
                         </figure>
                     </li>
                     <li><strong>Linear-regression method:</strong>
-                    Here we will start with linear regression method. 
-                    <pre class="language-python"><code>
-                        from sklearn.linear_model import LinearRegression
-                        from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
-                        linreg = LinearRegression()
-                        linreg.fit(X_train_scaled, y_train)
-                        y_pred =linreg.predict(X_test_scaled)
-                        
-                        
-                        mae = mean_absolute_error(y_test, y_pred)
-                        mse  = mean_squared_error(y_test, y_pred)
-                        score = r2_score(y_test, y_pred)
-                        print(f'Mean absolute error = {mae}')
-                        print(f'Mean squared error = {mse}')
-                        print(f'R-squared value = {score}')
-                    </code></pre>
-                    Output of this is:
-                    <pre>
-                        Mean absolute error = 0.5468236465249976
-                        Mean squared error = 0.6742766873791581
-                        R-squared value = 0.9847657384266951
-                    </pre>
+                        Here we will start with linear regression method. 
+                        <pre class="language-python"><code>
+                            from sklearn.linear_model import LinearRegression
+                            from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
+                            linreg = LinearRegression()
+                            linreg.fit(X_train_scaled, y_train)
+                            y_pred =linreg.predict(X_test_scaled)
+                            
+                            
+                            mae = mean_absolute_error(y_test, y_pred)
+                            mse  = mean_squared_error(y_test, y_pred)
+                            score = r2_score(y_test, y_pred)
+                            print(f'Mean absolute error = {mae}')
+                            print(f'Mean squared error = {mse}')
+                            print(f'R-squared value = {score}')
+                        </code></pre>
+                        Output of this is:
+                        <pre>
+                            Mean absolute error = 0.5468236465249976
+                            Mean squared error = 0.6742766873791581
+                            R-squared value = 0.9847657384266951
+                        </pre>
                     </li>
                     <li><strong>Lasso Regression:</strong>
                         <pre class="language-python"><code>
