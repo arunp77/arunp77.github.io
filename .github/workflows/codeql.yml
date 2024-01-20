@@ -3,6 +3,13 @@
 #
 # You may wish to alter this file to override the set of languages analyzed,
 # or to provide custom queries or build logic.
+# ----------------------------------------------------------------------------
+# This workflow is set up for CodeQL, which is GitHub's static analysis tool 
+# for finding security vulnerabilities in code. It runs CodeQL analysis on your 
+# codebase and is triggered on pushes to the main branch, pull requests to the 
+# main branch, and on a scheduled basis (every Thursday at 10:24 PM). The CodeQL 
+# workflow helps in identifying and addressing potential security issues in your code.
+# ----------------------------------------------------------------------------
 #
 # ******** NOTE ********
 # We have attempted to detect the languages in your repository. Please check
@@ -18,7 +25,7 @@ on:
     # The branches below must be a subset of the branches above
     branches: [ "main" ]
   schedule:
-    - cron: '24 10 * * 4'
+    - cron: '24 22 * * 4'
 
 jobs:
   analyze:

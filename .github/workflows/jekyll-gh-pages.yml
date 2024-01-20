@@ -1,4 +1,11 @@
 # Sample workflow for building and deploying a Jekyll site to GitHub Pages
+#-------------------------------------------------
+# This workflow is designed for building and deploying a Jekyll site to GitHub Pages. 
+# It runs on pushes to the main branch and can also be triggered manually from the Actions tab. 
+# This workflow is specific to projects that use Jekyll, a static site generator, and it 
+# automates the process of building the site and deploying it to GitHub Pages.
+#-------------------------------------------------
+#
 name: Deploy Jekyll with GitHub Pages dependencies preinstalled
 
 on:
