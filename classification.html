@@ -179,10 +179,13 @@
         binary classification and multiple outcomes are called multinomial classification.
         There are several techniques used for solving classification problems such as: logistic regression classification trees i.e. decision tree learning discriminant analysis neural networks support vector machines.
         <ol>
-          <li><strong>Logistic regression: </strong>Logistic regression is a statistical model that is used to predict the probability of a binary outcome (e.g., spam vs. not spam). It is a linear model, meaning that it assumes that there is a linear relationship between the features of the data and the probability of the outcome.</li>
-          <li><strong>Decision trees: </strong>Decision trees are a tree-like structure that represents a set of rules for making decisions. They are often used for classification tasks because they are easy to interpret and can handle both numerical and categorical data.</li>
+          <li><strong>Logistic regression: </strong>Logistic regression is a statistical model that is used to predict the probability of a binary outcome (e.g., spam vs. not spam). It is a linear model, meaning that it assumes that 
+            there is a linear relationship between the features of the data and the probability of the outcome.</li>
+          <li><strong>Decision trees: </strong>Decision trees are a tree-like structure that represents a set of rules for making decisions. They are often used for classification tasks because they are easy to interpret and can 
+            handle both numerical and categorical data.</li>
           <li><strong>K-nearest neighbors (KNN): </strong>KNN is a simple but effective classification algorithm that classifies new data points based on the majority class of their k nearest neighbors in the training data.</li>
-          <li><strong>Support vector machines (SVMs): </strong>SVMs are a powerful classification algorithm that can handle both linear and nonlinear relationships between the features of the data and the outcome. They are particularly useful for complex classification problems.</li>
+          <li><strong>Support vector machines (SVMs): </strong>SVMs are a powerful classification algorithm that can handle both linear and nonlinear relationships between the features of the data and the outcome. They are 
+            particularly useful for complex classification problems.</li>
           <li><strong>Naive Bayes: </strong>Naive Bayes is a probabilistic classifier that is based on Bayes' theorem. It is a simple and efficient algorithm that is often used for text classification tasks.</li>
         </ol>
 
@@ -190,11 +193,34 @@
         <h3 id="Binary">Binary Logistic Regression</h3>
         Logistic regression is a statistical model in which the response variable takes a discrete value and the 
         explanatory variables can either be continuous or discrete. If the outcome variable takes only two values, 
-        then the model is called binary logistic regression model.
+        then the model is called binary logistic regression model. 
 
+        <p>Logistic regression is statistical method used to model the probability of a outcome (i.e., outcome that can take on one of two values, such as 0 or 1, yes or no, etc.) based on one or more predictor variables. Mathematically, 
+          logistic regression uses the logistic function, also known as the sigmoid function, to model the probability of the outcome.</p>
+
+        <p>The logistic function is defined as:</p>
+
+        $$P(x) = \frac{1}{1+e^{-z}}$$
+
+        where $P(x)$ is the probability of the outcome, \(x\) is the vector of predictor variables, and \(z\) is the linear combination of the predictor variables and their corresponding coefficients:
+
+        $$z = \beta_0 + \beta_1 x_1 + \beta_2 x_2+ ... \beta_n x_n$$
+
+        where \(\beta_0\) is the intercept, \(\beta_1, \beta_2, ..., \beta_n\) are the coefficients for the predictor variables \(x_1, x_2, ..., x_n\), and '\(e\)' is the base of the natural logarithm (approxi,ately equal to 2.71828).
+        The logistic function maps any real-valued number to a value between 0 and 1, which can be interpreted as a probability. The goal of logistic regression is to find the values of the coefficients that maximize the likelihood of 
+        observing the data, given the model. This is typically done using maximum likelihood estimation. Once the coefficients have been estimated, the logistic regression model can be used to predict the probability of the outcome 
+        for new observations. For example, if we have a new observation with predictor variables \(x_1=1, x_2=3\) and \(x_3=4\), and the estimated coefficients are \(\beta_0 = -1, \beta_1 =0.5, \beta_2 = 1\) and \(\beta_3 = 0.2\), 
+        we can calculate the probability of the outcome as follows:
         
+        $$z = -1 +0.52 +13 +0.2 \times 4 = 3.3$$
 
+        and hence,
 
+        $$P(x) = \frac{1}{1+e^{-3.3}} = 0.96$$
+
+        Therefore, the probability of the outcome for this new observation is 0.96. It's important to note that logistic regression assumes a linear relationship between the predictor variables and the log odds of the outcome. This means that the logistic 
+        regression model assumes that the relationship between the predictor variables and the probability of the outcome can be modeled using a linear equation. 
+ 
 
 
 
