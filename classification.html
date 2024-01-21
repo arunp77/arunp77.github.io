@@ -204,17 +204,22 @@
 
         where 
         <ul>
-          <li>$P(Y=1 | X)$ is the probability of the outcome,</li>
+          <li>\(P(Y=1 | X)\) is the probability of the outcome,</li>
           <li>\(X = (x_1, x_2, ..., x_n)\) represents the input features variables.</li>
           <li>\(\beta_0, \beta_1, ..., \beta_n\) are the coefficients to be learned.</li>
           <li>\(z\) is the linear combination of the input features.</li>
         </ul>
+        <figure>
+          <img src="assets/img/machine-ln/logistic-fun.png" alt="" style="max-width: 70%; max-height: auto;">
+          <figcaption></figcaption>
+        </figure>
         
          Here \(z\) is defined as:
 
         $$z = \beta_0 + \beta_1 x_1 + \beta_2 x_2+ ... \beta_n x_n$$
 
-        where \(\beta_0\) is the intercept, \(\beta_1, \beta_2, ..., \beta_n\) are the coefficients for the  input features variables \(x_1, x_2, ..., x_n\), and '\(e\)' is the base of the natural logarithm (approxi,ately equal to 2.71828).
+        where \(\beta_0\) is the intercept, \(\beta_1, \beta_2, ..., \beta_n\) are the coefficients for the  input features variables \(x_1, x_2, ..., x_n\), and '\(e\)' is the base of the natural logarithm (approximately equal to 2.71828).
+        The logistic function has an S-shaped curve (thus also known as Sigmoid function).
         The logistic function maps any real-valued number to a value between 0 and 1, which can be interpreted as a probability. The goal of logistic regression is to find the values of the coefficients that maximize the likelihood of 
         observing the data, given the model. This is typically done using maximum likelihood estimation. Once the coefficients have been estimated, the logistic regression model can be used to predict the probability of the outcome 
         for new observations. For example, if we have a new observation with predictor variables \(x_1=1, x_2=3\) and \(x_3=4\), and the estimated coefficients are \(\beta_0 = -1, \beta_1 =0.5, \beta_2 = 1\) and \(\beta_3 = 0.2\), 
@@ -224,11 +229,18 @@
 
         and hence,
 
-        $$P(x) = \frac{1}{1+e^{-3.3}} = 0.96$$
+        $$P(Y = 1 | X) = \frac{1}{1+e^{-3.3}} = 0.96$$
 
         Therefore, the probability of the outcome for this new observation is 0.96. It's important to note that logistic regression assumes a linear relationship between the predictor variables and the log odds of the outcome. This means that the logistic 
-        regression model assumes that the relationship between the predictor variables and the probability of the outcome can be modeled using a linear equation. 
+        regression model assumes that the relationship between the predictor variables and the probability of the outcome can be modeled using a linear equation.
+        
+        <p>From above equation, we can re write following equations:</p>
+        $$\text{ln}\left(\frac{P(Y=1 | X)}{1- P(Y=1 | X)}\right) = z = \beta_0 + \beta_1 x_1 + ... + \beta_n x_n . $$
  
+        The right hand side of the equation is a linear function. Such models are called <strong>generalized linear models (GLM)</strong>. In GLM, the errors may not follow normal distribution and there exists a transformation function of the outcome variable that takes a linear 
+        functional form.
+
+
         <!----------------->
         <h4>Model Interpretation</h4>
         <ul>
