@@ -283,114 +283,8 @@
         In simple linear regression, there is only one independent variable (<math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>x</mi> </math>) and one dependent variable (<math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>y</mi> </math>). 
         The parameters (coefficients) in simple linear regression can be calculated using the method of <strong>ordinary least squares (OLS)</strong> or <strong>gradient descent method</strong>.
         <p>The estimated parameters provide the values of the intercept and slope that best fit the data according to the simple linear regression model.</p> 
-        
-        
 
-
-        
-        <h3 id="OLS">Ordinary least squares method</h3>
-          
-        The equations and formulas involved in calculating the parameters are as follows:</p>
-        <p><strong>Model Representation:</strong></p>
-        <p>Let's suppose that predicted values of y after fitting the linear equation is:
-          $$h_\theta (x) = \theta_0 + \theta_1 x + \epsilon$$
-        </p>
-          <p>Therefore, we can write error function as: \(\epsilon = y_i - h_\theta(x_i) \)</p>
-        <ol>
-          <li><p><strong>Cost Function or mean squared error (MSE):</strong></p>
-            <p>The MSE, measures the average squared difference between the predicted values (<math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>y</mi> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> </math>) and the actual values of the dependent variable (<math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>y</mi> </math>). It is given by:</p>
-            
-            $$MSE = \frac{1}{n} \sum (y_i - h_\theta(x_i))^2$$
-            
-            <p>Where:</p>
-            
-            <ul>
-              <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>n</mi> </math> is the number of data points.</li>
-              <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>y</mi> <mi>i</mi> </msub> </math> is the actual value of the dependent variable for the i-th data point.</li>
-              <li>\(h_\theta(x_i)\) is the predicted value of the dependent variable for the i-th data point.</li>
-            </ul>
-          </li>
-
-          <li><p><strong>Minimization of the Cost Function:</strong></p>
-            <p>The parameters <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> </math> and <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> </math> are estimated by minimizing the cost function. The formulas for calculating the parameter estimates are derived from the derivative of the cost function with respect to each parameter.</p>
-            <p>The parameter estimates are given by:</p>
-            <ul>
-              <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow class="MJX-TeXAtom-ORD"> <mover> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> <mo>=</mo> <mfrac> <mrow> <mtext>Cov</mtext> <mo stretchy="false">(</mo> <mi>x</mi> <mo>,</mo> <mi>y</mi> <mo stretchy="false">)</mo> </mrow> <mrow> <mi>V</mi> <mi>a</mi> <mi>r</mi> <mo stretchy="false">(</mo> <mi>x</mi> <mo stretchy="false">)</mo> </mrow> </mfrac> </math><math xmlns="http://www.w3.org/1998/Math/MathML"> <mo stretchy="false">&#x21D2;<!-- ⇒ --></mo> <menclose notation="box"> <mrow class="MJX-TeXAtom-ORD"> <mstyle displaystyle="true" scriptlevel="0"> <mrow class="MJX-TeXAtom-ORD"> <msub> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>&#x03B2;<!-- β --></mi> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> <mn>1</mn> </msub> <mo>=</mo> <mfrac> <mrow> <mo>&#x2211;<!-- ∑ --></mo> <mo stretchy="false">(</mo> <msub> <mi>x</mi> <mi>i</mi> </msub> <mo>&#x2212;<!-- − --></mo> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>x</mi> <mo stretchy="false">&#x00AF;<!-- ¯ --></mo> </mover> </mrow> <mo stretchy="false">)</mo> <mo stretchy="false">(</mo> <msub> <mi>y</mi> <mi>i</mi> </msub> <mo>&#x2212;<!-- − --></mo> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>y</mi> <mo stretchy="false">&#x00AF;<!-- ¯ --></mo> </mover> </mrow> <mo stretchy="false">)</mo> </mrow> <mrow> <mo>&#x2211;<!-- ∑ --></mo> <mo stretchy="false">(</mo> <msub> <mi>x</mi> <mi>i</mi> </msub> <mo>&#x2212;<!-- − --></mo> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>x</mi> <mo stretchy="false">&#x00AF;<!-- ¯ --></mo> </mover> </mrow> <msup> <mo stretchy="false">)</mo> <mn>2</mn> </msup> </mrow> </mfrac> </mrow> </mstyle> </mrow> </menclose> </math>$$</li>
-              <li><p><math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow class="MJX-TeXAtom-ORD"> <mover> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> <mo>=</mo> <mtext>y</mtext> <mo>&#x2212;<!-- − --></mo> <mrow class="MJX-TeXAtom-ORD"> <mover> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> <mo>&#x00D7;<!-- × --></mo> <mtext>mean</mtext> <mo stretchy="false">(</mo> <mi>x</mi> <mo stretchy="false">)</mo> </math></p></li>
-              <p>Where:</p>
-              <ul>
-                <li><p><math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow class="MJX-TeXAtom-ORD"> <mover> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> </math> is the estimated <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>y</mi> </math>-intercept.</p>
-                </li>
-                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow class="MJX-TeXAtom-ORD"> <mover> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> </math> is the estimated slope.</li>
-                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mtext>Cov</mtext> <mo stretchy="false">(</mo> <mi>x</mi> <mo>,</mo> <mi>y</mi> <mo stretchy="false">)</mo> </math> is the covariance between <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>x</mi> </math> and <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>y</mi> </math>.</li>
-                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mtext>Var</mtext> <mo stretchy="false">(</mo> <mi>x</mi> <mo stretchy="false">)</mo> </math> is the variance of <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>x</mi> </math>.</li>
-                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mtext>mean</mtext> <mo stretchy="false">(</mo> <mi>x</mi> <mo stretchy="false">)</mo> </math> is the mean of <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>x</mi> </math>.</li>
-                <li><p><math xmlns="http://www.w3.org/1998/Math/MathML"> <mtext>mean</mtext> <mo stretchy="false">(</mo> <mi>x</mi> <mo stretchy="false">)</mo> </math> is the mean of <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>y</mi> </math>.</p>
-              </ul>
-              </li>
-            </ol>
-      
-          <!----------------------------------->
-          <h3 id ="gradient-decent">Gradient Descent method for Linear Regression:</h3>
-            <figure>
-              <img src="assets/img/machine-ln/gradient-discent.png" alt="" style="max-width: 70%; max-height: 70%;">
-              <figcaption style="text-align: center;">Gradient descent is the process of taking steps to find the minimum of the loss surface. Image Credit: <a href="https://www.researchgate.net/figure/Non-convex-optimization-We-utilize-stochastic-gradient-descent-to-find-a-local-optimum_fig1_325142728" target="_blank">Alexander Amini</a></figcaption>
-            </figure>
-            <ul>
-              <li>A regression model optimizes the gradient descent algorithm to update the coefficients of the line by reducing the cost function by randomly selecting coefficient values and then iteratively updating the values to reach the minimum cost function.</li>
-              <li>Gradient Descent is an iterative optimization algorithm commonly used in machine learning to find the optimal parameters in a model. It can also be applied to linear regression to estimate the parameters (coefficients) that minimize the cost function.</li>
-              <li>The steps involved in using Gradient Descent for Linear Regression are as follows:
-                  <ol>
-                    <li><strong>Define the Cost Function: </strong>The cost function for linear regression is the Mean Squared Error (MSE), which measures the average squared difference between the predicted values \(h_\theta(x^{(i)})\) and the actual values \(y^{(i)}\) of the dependent variable.</li>
-                    
-                    $$\text{MSE} = \frac{1}{2n} \left(y^{(i)} - h_\theta(x^{(i)})\right)^2$$ 
-                    
-                    <p>Where:</p>
-                    <ul>
-                      <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>n</mi> </math> is the number of data points.</li>
-                      <li>\(y^{(i)}\) is the actual value of the dependent variable for the i-th data point.</li>
-                      <li>\(h_\theta(x^{(i)})\) is the predicted value of the dependent variable for the i-th data point.</li>
-                    </ul>
-                    <li><strong>Initialize the Parameters: </strong>Start by initializing the parameters (coefficients) with random values. Typically, they are initialized as zero or small random values.</li>
-                    <li><strong>Calculate the Gradient: </strong>Compute the gradient of the cost function with respect to each parameter. The gradient represents the direction of steepest ascent in the cost function space (for more details, see <a href="Linear-Parameter-estimation.html">Calculation of the equations</a>).
-                    $$\frac{\partial (MSE)}{\partial \theta_0} = \frac{1}{n}\sum (h_\theta(x^{(i)}) - y^{(i)})$$
-                    $$\frac{\partial (MSE)}{\partial \theta_i} = \frac{1}{n}\sum (h_\theta(x^{(i)}) - y^{(i)})\times x^{(i)}$$
-                    <p>Where:</p>
-                    <ul>
-                      <li>\(\frac{\partial (MSE)}{\partial \theta_0}\) is the gradient with respect to the y-intercept parameter (\(\theta_0\)).</li>
-                      <li>\(\frac{\partial (MSE)}{\partial \theta_1}\) is the gradient with respect to the slope parameter (\(\theta_1\)).</li>
-                      <li>\(h_\theta(x^{(i)})\) is the predicted value of the dependent variable for the i-th data point.</li>
-                      <li>\(y^{(i)}\) is the actual value of the dependent variable for the i-th data point.</li>
-                      <li>\(x^{(i)}\) is the value of the independent variable for the i-th data point.</li>
-                    </ul>
-                    </li>
-                    <li><strong>Update the Parameters: </strong> Update the parameters using the gradient and a learning rate (
-                      α), which determines the step size in each iteration.
-                      $$\theta_0 = \theta_0 - \alpha \times \frac{\partial (MSE)}{\partial \theta_0}$$
-                      $$\theta_1 = \theta_1 - \alpha \times \frac{\partial (MSE)}{\partial \theta_1}$$
-                      <p>Repeat this update process for a specified number of iterations or until the change in the cost function becomes sufficiently small.</p>
-                    </li>
-                    <li><strong>Predict: </strong>Once the parameters have converged or reached the desired number of iterations, use the final parameter values to make predictions on new data.
-                      $$h_\theta (x_i)= \theta_0 +\theta_1 x$$
-                      
-                        <p>Gradient Descent iteratively adjusts the parameters by updating them in the direction of the negative gradient until it reaches a minimum point in the cost function. This process allows for the estimation of optimal parameters in linear regression, enabling the model to make accurate predictions on unseen data.</p>
-                          <figure>
-                            <img src="assets/img/data-engineering/optimal-reg2.png" alt="" style="max-width: 80%; max-height: auto;">
-                            <figcaption></figcaption>
-                          </figure>
-                        <p>Let’s take an example to understand this. If we want to go from top left point of the shape to bottom of the pit, a discrete number of steps can be taken to reach the bottom.</p>
-                          <ul>
-                            <li>If you decide to take larger steps each time, you may achieve the bottom sooner but, there’s a probability that you could overshoot the bottom of the pit and not even near the bottom.</li>
-                            <li>In the gradient descent algorithm, the number of steps you’re taking can be considered as the learning rate, and this decides how fast the algorithm converges to the minima.</li>
-                          </ul>
-                        <p><strong>In the gradient descent algorithm, the number of steps you’re taking can be considered as the learning rate i.e. 
-                          α, and this decides how fast the algorithm converges to the minima.</strong></p>
-                    </li>
-                  </ol>
-              </li>
-            </ul>
-
-        <br>
+        <hr>
 
         <section id="evaluation-metrics-for-LR">
           <h3>Model Evaluation</h3>
@@ -474,11 +368,109 @@
               in squared units (though this may be fixed with RMSE). If instead we wanted our error to reflect the linear distance between what we predicted and what is correct, or we wanted our data minimized by 
               the median, we could try something like Mean Abosulte Error (MAE). Whatever the case, you should be thinking of your evaluation metric as part of your modeling process, and select the best metric based 
               on the specific concerns of your use-case.</p>
-            <br>
+
             <strong>Are Our Coefficients Valid?: </strong>
                 <p>In research publications and statistical software, coefficients of regression models are often presented with associated p-values. These p-values come from traditional null hypothesis statistical tests: t-tests are used to measure whether a given cofficient is significantly different than zero (the null hypothesis that a particular coefficient 
                   β<sub>i</sub> equals zero), while F tests are used to measure whether any of the terms in a regression model are significantly different from zero. Different opinions exist on the utility of such tests.</p>
         </section>
+
+        <!--------------------->
+        <h3 id="OLS">Ordinary least squares method (OLS)</h3>
+        Consider a simple linear regression model:
+        $$y_i=\theta_0 +\theta_1 x_i +\epsilon_i$$
+
+        <p>Therefore, we can write error function as: \(\epsilon = y_i - h_\theta(x_i) \).</p>
+
+        <p><strong>Objective function:</strong></p>
+        The objective function is to minimize the sum of squared residuals:
+
+        $$\text{RSS}(\theta_0, \theta_1) = \sum_{i=1}^n \left(y_i - (\theta_0+\theta_1 x_i)\right)^2$$
+          
+        <p>Where:</p>
+            
+          <ul>
+            <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>n</mi> </math> is the number of data points.</li>
+            <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>y</mi> <mi>i</mi> </msub> </math> is the actual value of the dependent variable for the i-th data point.</li>
+            <li>\(\theta_0, ]theta_1\) are the coefficients.</li>
+          </ul>
+
+          Now taking partial derivatives with respect to \(\theta_0\) and \(\theta_1\) and setting them to zero gives the OLS estimates:
+
+          $$\hat{\theta}_1 = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2}$$
+          and 
+
+          $$\hat{\theta}_0 = \bar{y} - \hat{\theta}_1 \bar{x}$$
+
+          where 
+
+          <ul>
+            <li>\(\bar{x}\) and \(y\) are the means of the Independent and dependent variables, respectively. </li>
+          </ul>
+
+          <hr>
+      
+          <!----------------------------------->
+          <h3 id ="gradient-decent">Gradient Descent method for Linear Regression:</h3>
+            <figure>
+              <img src="assets/img/machine-ln/gradient-discent.png" alt="" style="max-width: 70%; max-height: 70%;">
+              <figcaption style="text-align: center;">Gradient descent is the process of taking steps to find the minimum of the loss surface. Image Credit: <a href="https://www.researchgate.net/figure/Non-convex-optimization-We-utilize-stochastic-gradient-descent-to-find-a-local-optimum_fig1_325142728" target="_blank">Alexander Amini</a></figcaption>
+            </figure>
+            <ul>
+              <li>A regression model optimizes the gradient descent algorithm to update the coefficients of the line by reducing the cost function by randomly selecting coefficient values and then iteratively updating the values to reach the minimum cost function.</li>
+              <li>Gradient Descent is an iterative optimization algorithm commonly used in machine learning to find the optimal parameters in a model. It can also be applied to linear regression to estimate the parameters (coefficients) that minimize the cost function.</li>
+              <li>The steps involved in using Gradient Descent for Linear Regression are as follows:
+                  <ol>
+                    <li><strong>Define the Cost Function: </strong>The cost function for linear regression is the Mean Squared Error (MSE), which measures the average squared difference between the predicted values \(h_\theta(x^{(i)})\) and the actual values \(y^{(i)}\) of the dependent variable.</li>
+                    
+                    $$\text{MSE} = \frac{1}{2n} \left(y^{(i)} - h_\theta(x^{(i)})\right)^2$$ 
+                    
+                    <p>Where:</p>
+                    <ul>
+                      <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>n</mi> </math> is the number of data points.</li>
+                      <li>\(y^{(i)}\) is the actual value of the dependent variable for the i-th data point.</li>
+                      <li>\(h_\theta(x^{(i)})\) is the predicted value of the dependent variable for the i-th data point.</li>
+                    </ul>
+                    <li><strong>Initialize the Parameters: </strong>Start by initializing the parameters (coefficients) with random values. Typically, they are initialized as zero or small random values.</li>
+                    <li><strong>Calculate the Gradient: </strong>Compute the gradient of the cost function with respect to each parameter. The gradient represents the direction of steepest ascent in the cost function space (for more details, see <a href="Linear-Parameter-estimation.html">Calculation of the equations</a>).
+                    $$\frac{\partial (MSE)}{\partial \theta_0} = \frac{1}{n}\sum (h_\theta(x^{(i)}) - y^{(i)})$$
+                    $$\frac{\partial (MSE)}{\partial \theta_i} = \frac{1}{n}\sum (h_\theta(x^{(i)}) - y^{(i)})\times x^{(i)}$$
+                    <p>Where:</p>
+                    <ul>
+                      <li>\(\frac{\partial (MSE)}{\partial \theta_0}\) is the gradient with respect to the y-intercept parameter (\(\theta_0\)).</li>
+                      <li>\(\frac{\partial (MSE)}{\partial \theta_1}\) is the gradient with respect to the slope parameter (\(\theta_1\)).</li>
+                      <li>\(h_\theta(x^{(i)})\) is the predicted value of the dependent variable for the i-th data point.</li>
+                      <li>\(y^{(i)}\) is the actual value of the dependent variable for the i-th data point.</li>
+                      <li>\(x^{(i)}\) is the value of the independent variable for the i-th data point.</li>
+                    </ul>
+                    </li>
+                    <li><strong>Update the Parameters: </strong> Update the parameters using the gradient and a learning rate (
+                      α), which determines the step size in each iteration.
+                      $$\theta_0 = \theta_0 - \alpha \times \frac{\partial (MSE)}{\partial \theta_0}$$
+                      $$\theta_1 = \theta_1 - \alpha \times \frac{\partial (MSE)}{\partial \theta_1}$$
+                      <p>Repeat this update process for a specified number of iterations or until the change in the cost function becomes sufficiently small.</p>
+                    </li>
+                    <li><strong>Predict: </strong>Once the parameters have converged or reached the desired number of iterations, use the final parameter values to make predictions on new data.
+                      $$h_\theta (x_i)= \theta_0 +\theta_1 x$$
+                      
+                        <p>Gradient Descent iteratively adjusts the parameters by updating them in the direction of the negative gradient until it reaches a minimum point in the cost function. This process allows for the estimation of optimal parameters in linear regression, enabling the model to make accurate predictions on unseen data.</p>
+                          <figure>
+                            <img src="assets/img/data-engineering/optimal-reg2.png" alt="" style="max-width: 80%; max-height: auto;">
+                            <figcaption></figcaption>
+                          </figure>
+                        <p>Let’s take an example to understand this. If we want to go from top left point of the shape to bottom of the pit, a discrete number of steps can be taken to reach the bottom.</p>
+                          <ul>
+                            <li>If you decide to take larger steps each time, you may achieve the bottom sooner but, there’s a probability that you could overshoot the bottom of the pit and not even near the bottom.</li>
+                            <li>In the gradient descent algorithm, the number of steps you’re taking can be considered as the learning rate, and this decides how fast the algorithm converges to the minima.</li>
+                          </ul>
+                        <p><strong>In the gradient descent algorithm, the number of steps you’re taking can be considered as the learning rate i.e. 
+                          α, and this decides how fast the algorithm converges to the minima.</strong></p>
+                    </li>
+                  </ol>
+              </li>
+            </ul>
+
+        <br>
+
         
         <!----------------->
         <div class="box">
