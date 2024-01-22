@@ -295,9 +295,9 @@
               $$\boxed{\text{MSE} = \frac{1}{n} \sum \left(y^{(i)} - h_\theta(x^{(i)})\right)^2}$$
               where:
               <ul>
-                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>n</mi> </math> is the number of data points.</li>
-                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>y</mi> <mi>i</mi> </msub> </math> is the actual value of the dependent variable for the $i-th$ data point.</li>
-                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mrow data-mjx-texclass="ORD"> <mover> <mi>y</mi> <mo stretchy="false">^</mo> </mover> </mrow> <mi>i</mi> </msub> </math> is the predicted value of the dependent variable for the i-th data point.</li>
+                <li>\(n\) is the number of data points.</li>
+                <li>\(y^{(i)}\) is the actual value of the dependent variable for the $i-th$ data point.</li>
+                <li>\(h_\theta (x^{(i)})\) is the predicted value of the dependent variable for the i-th data point.</li>
                 </ul>
                 <p>A lower MSE value indicates better model performance, with zero being the best possible value.</p>
               </li>
@@ -323,13 +323,12 @@
                     $$\text{TSS} = \sum \left( y^{(i)}- \bar{y}\right)^2$$
                     <p>where:</p>
                     <ul>
-                      <li><code>n</code> = is the number of data points.</li>
-                      <li> \(h_\theta(x^{(i)})\) is the predicted value of the dependent variable from the regression model </li>
-                      <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow data-mjx-texclass="ORD"> <mover> <mi>y</mi> <mo stretchy="false">¯</mo> </mover> </mrow> </math> 
-                        is the mean of the observed values of the dependent variable.</li>
+                      <li>\(n\) = is the number of data points.</li>
+                      <li>\(\bar{y}\) is the mean of the observed values of the dependent variable.</li>
                     </ul>
                   </li>
                 </ul>
+                <br>
                 <p>A higher <math xmlns="http://www.w3.org/1998/Math/MathML"> <msup> <mi>R</mi> <mn>2</mn> </msup> </math>
                   value indicates a better fit of the model to the data. <math xmlns="http://www.w3.org/1998/Math/MathML"> <msup> <mi>R</mi> <mn>2</mn> </msup> </math> 
                   is commonly interpreted as the percentage of the variation in the dependent variable that is explained by the independent variables. 
@@ -376,6 +375,8 @@
         <h3 id="OLS">Ordinary least squares method (OLS)</h3>
         Consider a simple linear regression model:
         $$y_i=\theta_0 +\theta_1 x_i +\epsilon_i$$
+
+        <p>Let's consider that after optimization, the predicted values of dependent variable \(y_i\) is \(h_\theta(x^{(i)})\)</p>
 
         <p>Therefore, we can write error function as: \(\epsilon = y_i - h_\theta(x_i) \).</p>
 
