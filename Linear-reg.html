@@ -157,6 +157,7 @@
               <li><a href="#Assumption-of-LR">Assumptions of Linear Regression</a></li>
               <li><a href="#evaluation-metrics-for-LR">Evaluation Metrics for Linear Regression</a></li>
               <li><a href="#gradient-decent">Gradient-decent method for linear regression</a></li>
+              <li><a href="#Maximum-likelihood-estimation">Maximum-likelihood-estimation</a></li> 
               <li><a href="Example-simple-linear">Example on simple linear regression in python</a></li>
               <li><a href="#Example-multiple-regression">Example on multiple linear regression in python</a></li>
               <li><a href="#reference">Reference</a></li>
@@ -237,101 +238,14 @@
         </ol>
       </section>
 
-      <section id="evaluation-metrics-for-LR">
-        <h3>Model Evaluation</h3>
-        <p>To train an accurate linear regression model, we need a way to quantify how good (or bad) our model performs. In machine learning, we call such performance-measuring functions loss functions. Several popular loss functions exist for regression problems.
-           To measure our model's performance, we'll use one of the most popular: mean-squared error (MSE). Here are some commonly used evaluation metrics: </p>
-           
-          <ol>
-            <li><strong>Mean Squared Error (MSE): </strong>MSE quantifies how close a predicted value is to the true value, so we'll use it to quantify how close a regression line is to a set of points.
-              The Mean Squared Error measures the average squared difference between the predicted values and the actual values of the dependent variable. It is calculated by taking the average of the squared residuals.
-            $$\boxed{\text{MSE} = \frac{1}{n} \sum \left(y_i - \hat{y}_i\right)^2}$$
-            where:
-            <ul>
-              <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>n</mi> </math> is the number of data points.</li>
-              <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>y</mi> <mi>i</mi> </msub> </math> is the actual value of the dependent variable for the $i-th$ data point.</li>
-              <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mrow data-mjx-texclass="ORD"> <mover> <mi>y</mi> <mo stretchy="false">^</mo> </mover> </mrow> <mi>i</mi> </msub> </math> is the predicted value of the dependent variable for the i-th data point.</li>
-              </ul>
-              <p>A lower MSE value indicates better model performance, with zero being the best possible value.</p>
-            </li>
-            <li><strong>Root Mean Squared Error (RMSE): </strong>The Root Mean Squared Error is the square root of the MSE and provides a more interpretable measure of the average prediction error.
-            $$\boxed{\text{RMSE} = \sqrt{\text{MSE}}}$$
-            <p>Like the MSE, a lower RMSE value indicates better model performance.</p>
-            </li>
-            <li><strong>Mean Absolute Error (MAE): </strong>
-              The Mean Absolute Error measures the average absolute difference between the predicted values and the actual values of the dependent variable. It is less sensitive to outliers compared to MSE.
-              $$\boxed{\text{MAE} = \frac{1}{n} \sum |y_i - \hat{y}_i|}$$
-              <p>A lower MAE value indicates better model performance.</p>
-            </li>
-            <li><strong>R-squared (<math xmlns="http://www.w3.org/1998/Math/MathML"> <msup> <mi>R</mi> <mn>2</mn> </msup> </math>) Coefficient of Determination</strong>
-              The R-squared value represents the proportion of the variance in the dependent variable that is explained by the independent variables. It ranges from <code>0</code> to <code>1</code>, 
-              where <code>1</code> indicates that the model perfectly predicts the dependent variable. A negative <math xmlns="http://www.w3.org/1998/Math/MathML"> <msup> <mi>R</mi> <mn>2</mn> </msup> </math> means that our model is doing worse.
-              $$\boxed{R^2 = 1 - \frac{\text{RSS}}{\text{TSS}}}$$
-              where:
-              <ul>
-                <li><p>Residual sum of Squares (RSS) is defined as the sum of squares of the residual for each data point in the plot/data. It is the measure of the difference between the expected and the actual observed output.</p>
-                  $$\text{RSS} = \sum_{i=1}^{n} \left(y_i - \hat{y}_i\right)^2$$
-                </li>
-                <li><p>Total Sum of Squares (TSS) is defined as the sum of errors of the data points from the mean of the response variable. Mathematically TSS is</p>
-                  $$\text{TSS} = \sum \left(y_i - \bar{y}\right)^2$$
-                  <p>where:</p>
-                  <ul>
-                    <li><code>n</code> = is the number of data points.</li>
-                    <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mrow data-mjx-texclass="ORD"> <mover> <mi>y</mi> <mo stretchy="false">^</mo> </mover> </mrow> <mi>i</mi> </msub> </math> = 
-                      is the predicted value of the dependent variable from the regression model </li>
-                    <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow data-mjx-texclass="ORD"> <mover> <mi>y</mi> <mo stretchy="false">¯</mo> </mover> </mrow> </math> 
-                      is the mean of the observed values of the dependent variable.</li>
-                  </ul>
-                </li>
-              </ul>
-              <p>A higher <math xmlns="http://www.w3.org/1998/Math/MathML"> <msup> <mi>R</mi> <mn>2</mn> </msup> </math>
-                value indicates a better fit of the model to the data. <math xmlns="http://www.w3.org/1998/Math/MathML"> <msup> <mi>R</mi> <mn>2</mn> </msup> </math> 
-                is commonly interpreted as the percentage of the variation in the dependent variable that is explained by the independent variables. 
-                However, it is important to note that <math xmlns="http://www.w3.org/1998/Math/MathML"> <msup> <mi>R</mi> <mn>2</mn> </msup> </math> 
-                does not determine the causal relationship between the independent and dependent variables. It is solely a measure of how well the model fits the data.</p>
-                <div style="background-color: #f2f2f2; padding: 15px;">
-                  <p>
-                    <strong>Note: </strong> A higher R-squared value indicates a better fit of the model to the data. However, it's essential to consider other factors and use 
-                    R-squared in conjunction with other evaluation metrics to fully assess the model's performance. R-squared has limitations, especially in the case of overfitting, 
-                    where a model may fit the training data very well but perform poorly on new, unseen data.
-                  </p>
-                </div>
-                
-            </li>
-            <li><strong>Adjusted R-squared: </strong>
-              <p>The Adjusted R-squared accounts for the number of independent variables in the model. It penalizes the inclusion of irrelevant variables and rewards the inclusion of relevant variables.</p>
-              $$\boxed{\text{Adjusted}~ R^2 = 1-\left[\frac{(1 - R²) * (n - 1)}{(n - p - 1)}\right]}$$
-              <p>Where:</p>
-              <ul>
-                <li>n is the number of data points.</li>
-                <li>p is the number of independent variables.</li>
-              </ul>
-              <p>A higher Adjusted R-squared value indicates a better fit of the model while considering the complexity of the model.</p>
-              <p>These evaluation metrics help assess the performance of a linear regression model by quantifying the accuracy of the predictions and the extent to which the independent variables explain the 
-                dependent variable. It is important to consider multiple metrics to gain a comprehensive understanding of the model's performance.</p>
-            </li>
-          </ol>
-
-          <p></p>
-          <strong>Selecting An Evaluation Metric:</strong>
-          <p>Many methods exist for evaluating regression models, each with different concerns around interpretability, theory, and usability. The evaluation metric should reflect whatever it is you actually 
-            care about when making predictions. For example, when we use MSE, we are implicitly saying that we think the cost of our prediction error should reflect the quadratic (squared) distance between 
-            what we predicted and what is correct. This may work well if we want to punish outliers or if our data is minimized by the mean, but this comes at the cost of interpretability: we output our error 
-            in squared units (though this may be fixed with RMSE). If instead we wanted our error to reflect the linear distance between what we predicted and what is correct, or we wanted our data minimized by 
-            the median, we could try something like Mean Abosulte Error (MAE). Whatever the case, you should be thinking of your evaluation metric as part of your modeling process, and select the best metric based 
-            on the specific concerns of your use-case.</p>
-          <br>
-          <strong>Are Our Coefficients Valid?: </strong>
-              <p>In research publications and statistical software, coefficients of regression models are often presented with associated p-values. These p-values come from traditional null hypothesis statistical tests: t-tests are used to measure whether a given cofficient is significantly different than zero (the null hypothesis that a particular coefficient 
-                β<sub>i</sub> equals zero), while F tests are used to measure whether any of the terms in a regression model are significantly different from zero. Different opinions exist on the utility of such tests.</p>
-      </section>
+      
             
 
       <section id="Mathematical-1">
         <h3 id="Mathematical-1">Mathematical Explanation:</h3>
         <p>There are parameters <code>β<sub>0</sub></code>, <code>β<sub>1</sub></code>, and ϵ, such that for any fixed value of the independent variable <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>x</mi> </math>, the dependent variable is a random variable related to <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>x</mi> </math> through the model equation:</p>
         
-          $$y=\beta_0 + \beta_1 x +\epsilon$$
+          $$y=\theta_0 + \theta_1 x +\epsilon$$
 
         <p>where</p>
         <ul>
@@ -367,23 +281,22 @@
 
         <h4 id="1.3.-Calculating-the-regression-parameters">1.3. Calculating the regression parameters<a class="anchor-link" href="#1.3.-Calculating-the-regression-parameters">&#182;</a></h4><p>In simple linear regression, there is only one independent variable (<math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>x</mi> </math>) and one dependent variable (<math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>y</mi> </math>). The parameters (coefficients) in simple linear regression can be calculated using the method of <strong>ordinary least squares (OLS)</strong>. The equations and formulas involved in calculating the parameters are as follows:</p>
         <p><strong>Model Representation:</strong></p>
-        <p>The simple linear regression model can be represented as:
-          $$y = \beta_0 + \beta_1 x + \epsilon$$</p>
-          <p>Therefore, we can write:</p>
-        <p><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>&#x03F5;<!-- ϵ --></mi> <mo>=</mo> <mi>y</mi> <mo>&#x2212;<!-- − --></mo> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> <mo>&#x2212;<!-- − --></mo> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> <mi>x</mi> </math>.</p>
-
+        <p>Let's suppose that predicted values of y after fitting the linear equation is:
+          $$h_\theta (x) = \theta_0 + \theta_1 x + \epsilon$$
+        </p>
+          <p>Therefore, we can write error function as: \(\epsilon = y_i - h_\theta(x_i) \)</p>
         <ol>
           <li><p><strong>Cost Function or mean squared error (MSE):</strong></p>
             <p>The MSE, measures the average squared difference between the predicted values (<math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>y</mi> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> </math>) and the actual values of the dependent variable (<math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>y</mi> </math>). It is given by:</p>
             
-            $$MSE = \frac{1}{n} \sum (y_i - \hat{y}_i)^2$$
+            $$MSE = \frac{1}{n} \sum (y_i - h_\theta(x_i))^2$$
             
             <p>Where:</p>
             
             <ul>
               <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>n</mi> </math> is the number of data points.</li>
               <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>y</mi> <mi>i</mi> </msub> </math> is the actual value of the dependent variable for the i-th data point.</li>
-              <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>y</mi> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> <mi>i</mi> </msub> </math> is the predicted value of the dependent variable for the i-th data point.</li>
+              <li>\(h_\theta(x_i)\) is the predicted value of the dependent variable for the i-th data point.</li>
             </ul>
           </li>
 
@@ -409,7 +322,7 @@
           </li>
           <li><p><strong>Prediction:</strong></p>
           <p>Once the parameter estimates are obtained, predictions can be made using the equation:</p>
-          <p>$$\hat{y} = \hat{\beta_0} + \hat{\beta_1} x$$</p>
+          <p>$$h_\theta = \hat{y} = \hat{\theta_0} + \hat{\theta_1} x$$</p>
           <p>Where:</p>
           <ul>
           <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>y</mi> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> </math> is the predicted value of the dependent variable.</li>
@@ -419,7 +332,7 @@
           </li>
           </ul>
           </li>
-          <p>These equations and formulas allow for the calculation of the parameters in simple linear regression using the method of <strong>ordinary least squares (OLS)</strong>. By minimizing the sum of squared differences between predicted and actual values, the parameters are determined to best fit the data and enable prediction of the dependent variable.</p>
+          <p>We can estimates the parameters using <strong>ordinary least squares (OLS)</strong> or <strong>Gradient Descent method</strong>. By minimizing the cost function, i.e. sum of squared differences between predicted and actual values, the parameters are determined to best fit the data and enable prediction of the dependent variable.</p>
         </ol>
       
         <div style="background-color: #f2f2f2; padding: 15px;">
@@ -433,48 +346,40 @@
               <li>Gradient Descent is an iterative optimization algorithm commonly used in machine learning to find the optimal parameters in a model. It can also be applied to linear regression to estimate the parameters (coefficients) that minimize the cost function.</li>
               <li>The steps involved in using Gradient Descent for Linear Regression are as follows:
                   <ol>
-                    <li><strong>Define the Cost Function: </strong>The cost function for linear regression is the Mean Squared Error (MSE), which measures the average squared difference between the predicted values (ŷ) and the actual values (y) of the dependent variable.</li>
+                    <li><strong>Define the Cost Function: </strong>The cost function for linear regression is the Mean Squared Error (MSE), which measures the average squared difference between the predicted values \(h_\theta(x^{(i)})\) and the actual values \(y^{(i)}\) of the dependent variable.</li>
+                    $$\text{MSE} = \frac{1}{2n} \left(y^{(i)} - h_\theta(x^{(i)})\right)$$
                     <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>M</mi> <mi>S</mi> <mi>E</mi> <mo>=</mo> <mfrac> <mn>1</mn> <mrow> <mn>2</mn> <mi>n</mi> </mrow> </mfrac> <mo>&#x2211;<!-- ∑ --></mo> <mo stretchy="false">(</mo> <msub> <mi>y</mi> <mi>i</mi> </msub> <mo>&#x2212;<!-- − --></mo> <msub> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>y</mi> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> <mi>i</mi> </msub> <msup> <mo stretchy="false">)</mo> <mn>2</mn> </msup> </math>
                     <p>Where:</p>
                     <ul>
                       <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>n</mi> </math> is the number of data points.</li>
-                      <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>y</mi> <mi>i</mi> </msub> </math> is the actual value of the dependent variable for the i-th data point.
-                        <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>y</mi> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> <mi>i</mi> </msub> </math> is the predicted value of the dependent variable for the i-th data point.</li>
+                      <li>\(y^{(i)}\) is the actual value of the dependent variable for the i-th data point.</li>
+                      <li>\(h_\theta(x^{(i)})\) is the predicted value of the dependent variable for the i-th data point.</li>
                     </ul>
                     <li><strong>Initialize the Parameters: </strong>Start by initializing the parameters (coefficients) with random values. Typically, they are initialized as zero or small random values.</li>
-                    <li><strong>Calculate the Gradient: </strong>Compute the gradient of the cost function with respect to each parameter. The gradient represents the direction of steepest ascent in the cost function space.
-                    $$\frac{\partial (MSE)}{\partial \beta_0} = \frac{1}{n}\sum (\hat{y}_i - y_i)$$
-                    $$\frac{\partial (MSE)}{\partial \beta_1} = \frac{1}{n}\sum (\hat{y}_i - y_i)\times x_i$$
+                    <li><strong>Calculate the Gradient: </strong>Compute the gradient of the cost function with respect to each parameter. The gradient represents the direction of steepest ascent in the cost function space (for more details, see <a href="Linear-Parameter-estimation.html">Calculation of the equations</a>).
+                    $$\frac{\partial (MSE)}{\partial \theta_0} = \frac{1}{n}\sum (h_\theta(x^{(i)}) - y^{(i)})$$
+                    $$\frac{\partial (MSE)}{\partial \theta_1} = \frac{1}{n}\sum (h_\theta(x^{(i)}) - y^{(i)})\times x_i$$
                     <p>Where:</p>
                     <ul>
-                      <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mfrac> <mrow> <mi mathvariant="normal">&#x2202;<!-- ∂ --></mi> <mo stretchy="false">(</mo> <mi>M</mi> <mi>S</mi> <mi>E</mi> <mo stretchy="false">)</mo> </mrow> <mrow> <mi mathvariant="normal">&#x2202;<!-- ∂ --></mi> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> </mrow> </mfrac> </math> 
-                        is the gradient with respect to the y-intercept parameter (<math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> </math>).</li>
-                      <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mfrac> <mrow> <mi mathvariant="normal">&#x2202;<!-- ∂ --></mi> <mo stretchy="false">(</mo> <mi>M</mi> <mi>S</mi> <mi>E</mi> <mo stretchy="false">)</mo> </mrow> <mrow> <mi mathvariant="normal">&#x2202;<!-- ∂ --></mi> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> </mrow> </mfrac> </math>
-                          is the gradient with respect to the slope parameter (<math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> </math>).</li>
-                      <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mrow class="MJX-TeXAtom-ORD"> <mover> <mi>y</mi> <mo stretchy="false">&#x005E;<!-- ^ --></mo> </mover> </mrow> <mi>i</mi> </msub> </math>
-                        is the predicted value of the dependent variable for the i-th data point.</li>
-                      <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>y</mi> <mi>i</mi> </msub> </math> is the actual value of the dependent variable for the i-th data point.</li>
-                      <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>x</mi> <mi>i</mi> </msub> </math> is the value of the independent variable for the i-th data point.</li>
+                      <li>\(\frac{\partial (MSE)}{\partial \theta_0}\) is the gradient with respect to the y-intercept parameter (\(\theta_0\)).</li>
+                      <li>\(\frac{\partial (MSE)}{\partial \theta_1}\) is the gradient with respect to the slope parameter (\(\theta_1\)).</li>
+                      <li>\(h_\theta(x^{(i)})\) is the predicted value of the dependent variable for the i-th data point.</li>
+                      <li>\(y^{(i)}\) is the actual value of the dependent variable for the i-th data point.</li>
+                      <li>\(x^{(i)}\) is the value of the independent variable for the i-th data point.</li>
                     </ul>
                     </li>
                     <li><strong>Update the Parameters: </strong> Update the parameters using the gradient and a learning rate (
                       α), which determines the step size in each iteration.
-                      $$\beta_0 = \beta_0 - \alpha \times \frac{\partial (MSE)}{\partial \beta_0}$$
-                      $$\beta_1 = \beta_1 - \alpha \times \frac{\partial (MSE)}{\partial \beta_1}$$
+                      $$\theta_0 = \theta_0 - \alpha \times \frac{\partial (MSE)}{\partial \theta_0}$$
+                      $$\theta_1 = \theta_1 - \alpha \times \frac{\partial (MSE)}{\partial \theta_1}$$
                       <p>Repeat this update process for a specified number of iterations or until the change in the cost function becomes sufficiently small.</p>
                     </li>
                     <li><strong>Predict: </strong>Once the parameters have converged or reached the desired number of iterations, use the final parameter values to make predictions on new data.
-                      $$\hat{y} = \beta_0 +\beta_1 x$$
-                      <p>Where:</p>
-                        <ul>
-                          <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mrow data-mjx-texclass="ORD"> <mover> <mi>y</mi> <mo stretchy="false">^</mo> </mover> </mrow> <mi>i</mi> </msub> </math> is the predicted value of the dependent variable.</li>
-                          <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>0</mn> </msub> </math> is the $y$-intercept parameter.</li>
-                          <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>&#x03B2;<!-- β --></mi> <mn>1</mn> </msub> </math> is the slope parameter.</li>
-                          <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>x</mi> </math> is the value of the independent variable for which the prediction is being made.</li>
-                        </ul>
+                      $$h_\theta (x_i)= \theta_0 +\theta_1 x$$
+                      
                         <p>Gradient Descent iteratively adjusts the parameters by updating them in the direction of the negative gradient until it reaches a minimum point in the cost function. This process allows for the estimation of optimal parameters in linear regression, enabling the model to make accurate predictions on unseen data.</p>
                           <figure>
-                            <img src="assets/img/data-engineering/optimal-reg2.png" alt="" style="max-width: 70%; max-height: 70%;">
+                            <img src="assets/img/data-engineering/optimal-reg2.png" alt="" style="max-width: 80%; max-height: auto;">
                             <figcaption></figcaption>
                           </figure>
                         <p>Let’s take an example to understand this. If we want to go from top left point of the shape to bottom of the pit, a discrete number of steps can be taken to reach the bottom.</p>
@@ -489,6 +394,173 @@
               </li>
             </ul>
         </div>
+        <br>
+
+        <section id="evaluation-metrics-for-LR">
+          <h3>Model Evaluation</h3>
+          <p>To train an accurate linear regression model, we need a way to quantify how good (or bad) our model performs. In machine learning, we call such performance-measuring functions loss functions. Several popular loss functions exist for regression problems.
+             To measure our model's performance, we'll use one of the most popular: mean-squared error (MSE). Here are some commonly used evaluation metrics: </p>
+             
+            <ol>
+              <li><strong>Mean Squared Error (MSE): </strong>MSE quantifies how close a predicted value is to the true value, so we'll use it to quantify how close a regression line is to a set of points.
+                The Mean Squared Error measures the average squared difference between the predicted values and the actual values of the dependent variable. It is calculated by taking the average of the squared residuals.
+              $$\boxed{\text{MSE} = \frac{1}{n} \sum \left(y^{(i)} - h_\theta(x^{(i)})\right)^2}$$
+              where:
+              <ul>
+                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>n</mi> </math> is the number of data points.</li>
+                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>y</mi> <mi>i</mi> </msub> </math> is the actual value of the dependent variable for the $i-th$ data point.</li>
+                <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mrow data-mjx-texclass="ORD"> <mover> <mi>y</mi> <mo stretchy="false">^</mo> </mover> </mrow> <mi>i</mi> </msub> </math> is the predicted value of the dependent variable for the i-th data point.</li>
+                </ul>
+                <p>A lower MSE value indicates better model performance, with zero being the best possible value.</p>
+              </li>
+              <li><strong>Root Mean Squared Error (RMSE): </strong>The Root Mean Squared Error is the square root of the MSE and provides a more interpretable measure of the average prediction error.
+              $$\boxed{\text{RMSE} = \sqrt{\text{MSE}}}$$
+              <p>Like the MSE, a lower RMSE value indicates better model performance.</p>
+              </li>
+              <li><strong>Mean Absolute Error (MAE): </strong>
+                The Mean Absolute Error measures the average absolute difference between the predicted values and the actual values of the dependent variable. It is less sensitive to outliers compared to MSE.
+                $$\boxed{\text{MAE} = \frac{1}{n} \sum |y^{(i)} - h_\theta(x^{(i)})|}$$
+                <p>A lower MAE value indicates better model performance.</p>
+              </li>
+              <li><strong>R-squared (<math xmlns="http://www.w3.org/1998/Math/MathML"> <msup> <mi>R</mi> <mn>2</mn> </msup> </math>) Coefficient of Determination</strong>
+                The R-squared value represents the proportion of the variance in the dependent variable that is explained by the independent variables. It ranges from <code>0</code> to <code>1</code>, 
+                where <code>1</code> indicates that the model perfectly predicts the dependent variable. A negative <math xmlns="http://www.w3.org/1998/Math/MathML"> <msup> <mi>R</mi> <mn>2</mn> </msup> </math> means that our model is doing worse.
+                $$\boxed{R^2 = 1 - \frac{\text{RSS}}{\text{TSS}}}$$
+                where:
+                <ul>
+                  <li><p>Residual sum of Squares (RSS) is defined as the sum of squares of the residual for each data point in the plot/data. It is the measure of the difference between the expected and the actual observed output.</p>
+                    $$\text{RSS} = \sum_{i=1}^{n} \left(y^{(i)} - h_\theta(x^{(i)})\right)^2$$
+                  </li>
+                  <li><p>Total Sum of Squares (TSS) is defined as the sum of errors of the data points from the mean of the response variable. Mathematically TSS is</p>
+                    $$\text{TSS} = \sum \left(y_i - \bar{y}\right)^2$$
+                    <p>where:</p>
+                    <ul>
+                      <li><code>n</code> = is the number of data points.</li>
+                      <li> \(h_\theta(x^{(i)})\) is the predicted value of the dependent variable from the regression model </li>
+                      <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mrow data-mjx-texclass="ORD"> <mover> <mi>y</mi> <mo stretchy="false">¯</mo> </mover> </mrow> </math> 
+                        is the mean of the observed values of the dependent variable.</li>
+                    </ul>
+                  </li>
+                </ul>
+                <p>A higher <math xmlns="http://www.w3.org/1998/Math/MathML"> <msup> <mi>R</mi> <mn>2</mn> </msup> </math>
+                  value indicates a better fit of the model to the data. <math xmlns="http://www.w3.org/1998/Math/MathML"> <msup> <mi>R</mi> <mn>2</mn> </msup> </math> 
+                  is commonly interpreted as the percentage of the variation in the dependent variable that is explained by the independent variables. 
+                  However, it is important to note that <math xmlns="http://www.w3.org/1998/Math/MathML"> <msup> <mi>R</mi> <mn>2</mn> </msup> </math> 
+                  does not determine the causal relationship between the independent and dependent variables. It is solely a measure of how well the model fits the data.</p>
+                  <div style="background-color: #f2f2f2; padding: 15px;">
+                    <p>
+                      <strong>Note: </strong> A higher R-squared value indicates a better fit of the model to the data. However, it's essential to consider other factors and use 
+                      R-squared in conjunction with other evaluation metrics to fully assess the model's performance. R-squared has limitations, especially in the case of overfitting, 
+                      where a model may fit the training data very well but perform poorly on new, unseen data.
+                    </p>
+                  </div>
+                  
+              </li>
+              <li><strong>Adjusted R-squared: </strong>
+                <p>The Adjusted R-squared accounts for the number of independent variables in the model. It penalizes the inclusion of irrelevant variables and rewards the inclusion of relevant variables.</p>
+                $$\boxed{\text{Adjusted}~ R^2 = 1-\left[\frac{(1 - R²) * (n - 1)}{(n - p - 1)}\right]}$$
+                <p>Where:</p>
+                <ul>
+                  <li>n is the number of data points.</li>
+                  <li>p is the number of independent variables.</li>
+                </ul>
+                <p>A higher Adjusted R-squared value indicates a better fit of the model while considering the complexity of the model.</p>
+                <p>These evaluation metrics help assess the performance of a linear regression model by quantifying the accuracy of the predictions and the extent to which the independent variables explain the 
+                  dependent variable. It is important to consider multiple metrics to gain a comprehensive understanding of the model's performance.</p>
+              </li>
+            </ol>
+  
+            <p></p>
+            <strong>Selecting An Evaluation Metric:</strong>
+            <p>Many methods exist for evaluating regression models, each with different concerns around interpretability, theory, and usability. The evaluation metric should reflect whatever it is you actually 
+              care about when making predictions. For example, when we use MSE, we are implicitly saying that we think the cost of our prediction error should reflect the quadratic (squared) distance between 
+              what we predicted and what is correct. This may work well if we want to punish outliers or if our data is minimized by the mean, but this comes at the cost of interpretability: we output our error 
+              in squared units (though this may be fixed with RMSE). If instead we wanted our error to reflect the linear distance between what we predicted and what is correct, or we wanted our data minimized by 
+              the median, we could try something like Mean Abosulte Error (MAE). Whatever the case, you should be thinking of your evaluation metric as part of your modeling process, and select the best metric based 
+              on the specific concerns of your use-case.</p>
+            <br>
+            <strong>Are Our Coefficients Valid?: </strong>
+                <p>In research publications and statistical software, coefficients of regression models are often presented with associated p-values. These p-values come from traditional null hypothesis statistical tests: t-tests are used to measure whether a given cofficient is significantly different than zero (the null hypothesis that a particular coefficient 
+                  β<sub>i</sub> equals zero), while F tests are used to measure whether any of the terms in a regression model are significantly different from zero. Different opinions exist on the utility of such tests.</p>
+        </section>
+        
+        <!----------------->
+        <div class="box">
+          <h5 id="Maximum-likelihood-estimation"><strong>Maximum Likelihood Estimation (MLE)</strong></h5>
+          Maximum Likelihood Estimation (MLE) is a statistical method used to estimate the parameters of a statistical model. The fundamental idea behind MLE is to find the values of the model parameters that maximize the likelihood of observing the given data. In other words, MLE seeks the parameter values that make the observed data most probable under the assumed statistical model.
+
+          <p><strong>Key concepts of MLE:</strong></p>
+          <ol>
+            <li><strong>Likelihood Function:</strong>
+              <ul>
+                <li>The likelihood function, denoted as \(L(\theta)\), is a measure of how well the model explains the observed data for a given set of parameter \(\theta\).</li>
+                <li>It is defined as the joint probability (or probability density) of the observed data given the parameters:
+                  $$L(\theta) = P(D | \theta),$$
+                  where \(D\) is the observed data.
+                </li>
+              </ul>
+            </li>
+            <li><strong>Log-Likelihood Function: </strong>
+              <ul>
+                <li>In practice, it is common to work with the log-likelihood function \(l(\theta)\), which is the natural logrithm of the likelihood function.</li>
+                <li>Maximizing the log-likekihood is equivalent to Maximizing the likelihood, and it simplifies computations.</li>
+              </ul>
+            </li>
+            <li><strong>Parameter Estimation: </strong>
+              <ul>
+                <li>The goal of MLE is to find the values of the model parameters that maximize the likelihood (for log-likelihood) function.</li>
+                <li>Mathematically, this is expressed as 
+                  $$\hat{\theta}_{\text{MLE}} = \text{arg max}_\theta ~~L(\theta),$$ 
+                  or 
+                  $$\hat{\theta}_{\text{MLE}} = \text{arg max}_\theta ~~l(\theta).$$
+                </li>
+              </ul>
+            </li>
+            <li><strong>Optimization: </strong>
+              <ul>
+                <li>Typically, optimization algorithms (such as gradient descent, Newton's method, or other numerical optimization techniques) are employed to find the maximum of the likelihood function.</li>
+                <li>In some cases, analytical solutions exist, making it possible to find the values of the parameters directly.</li>
+              </ul>
+            </li>
+          </ol>
+
+          <strong>Example:</strong> Consider a simple example of coin flipping, where we want to estimate the probability of getting heads. If we observe a sequence of coin flips (data),
+          the likelihood function would be the product of the probabilities of obtaining the observed outcomes (head or tails) under the assumed 
+          probability parameter \(\theta\) that maximizes this likelihood.
+          <br>
+          <strong>Mathematical Notation:</strong>
+          <p>Likelihood FUnction: \(L(\theta) = P(D | \theta)\)</p>
+          <p>Log-Likelihood FUnction: \(l(\theta) = \text{log}L(\theta)\).</p>
+          
+          In summary, Maximum Likelihood Estimation is a powerful method for estimating the parameters of a statistical model by maximizing the likelihood (or log-likelihood) of the observed data. It is widely used in various fields, including statistics, machine learning, and econometrics.
+
+          <p><strong>Likelihood function for linear regression</strong></p>
+          The likelihood function for linear regression is based on the assumption that the errors (\(\epsilon\)) are normally distributed. Therefore, the likelihood funstion is expressed as the product of the probabilities 
+          of observing the actual data points given the parameters \(\theta_0, \theta_1,..., \theta_n\). 
+          $$L(\theta) = \Pi_{i=1}^n \frac{1}{\sqrt{\pi \sigma^2}} \text{exp}\left(-\frac{y^{(i)} - h_\theta(x^{(i)})}{2\sigma^2}\right)$$
+        
+          where:
+          <ul>
+            <li>n is the number of data points</li>
+            <li>\((x_i, y^{(i)})\) are the observed data pairs</li>
+            <li>\(\sigma^2\) is the variance of the error term.</li>
+          </ul>
+
+          <p><strong>Log-Likelihood Function:</strong></p>
+          It is defined as log of the likelihood function defined above. 
+
+          <p><strong>MLE Objectives:</strong> The objective of MLE is to find the values of the coefficients that maximize the log-likelihood function:</p>
+          $$\hat{\theta}_0, \hat{\theta}_1, ..., \hat{\theta}_n = \text{arg}~\text{max}_{\theta_0, \theta_1, ..., \theta_n} l(\theta_0, \theta_1, ..., \theta_n)$$
+        
+        <p><strong>Optimization:</strong> Optimization techniques, such as gradient descent or analytical solutions (set partial derivatives to zero), are used to find the values of the \(\hat{\theta}_0, \hat{\theta}_1, ..., \hat{\theta}_n\)
+        that mazimize the log-likelihood. 
+        </p>
+
+        <p>In practice, the MLE estimates for the \(\theta_0, \theta_1, ..., \theta_n\) are often equivalent to the least squares estimates obtained through the minimizing the sum of squaresd residuals.</p>
+        
+        
+        </div>
+        <br>
         <div class="box">
           For more details on overfitting and underfitting go to following link: <a href="Ridge-lasso-elasticnet.html">Ridge lasso and Elastic net algorithms</a>. 
           On this page, you'll find a comprehensive guide on selecting the most relevant variables when dealing with multiple factors. The detailed description outlines strategies to identify the best variables, 
@@ -694,7 +766,7 @@ X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.25, random_
       <section id="Example-multiple-regression">
         <h3>Example on multiple regression model</h3>
         This example generates synthetic data for advertising spend, number of salespeople, and sales. It then performs multiple 
-        linear regression analysis using the '<code>Advertising_Spend</code>` and `<code>Num_Salespeople</code>` as independent variables to predict `<code>Sales</code>`. 
+        linear regression analysis using the <code>Advertising\_Spend</code> and <code>Num\_Salespeople</code> as independent variables to predict <code>Sales</code>. 
         The code also includes visualization to compare actual vs. predicted sales.
         <ul>
           <li><strong>Importing libraries</strong>

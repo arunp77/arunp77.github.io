@@ -331,25 +331,30 @@
               <ul>
                 <li>The goal of MLE is to find the values of the model parameters that maximize the likelihood (for log-likelihood) function.</li>
                 <li>Mathematically, this is expressed as 
-                  $$\hat{\theta}_{\text{MLE}} = \text{arg max}_\theta L(\theta)$$ 
+                  $$\hat{\theta}_{\text{MLE}} = \text{arg max}_\theta ~~L(\theta),$$ 
                   or 
-                  $$\hat{\theta}_{\text{MLE}} = \text{arg max}_\theta l(\theta)$$
+                  $$\hat{\theta}_{\text{MLE}} = \text{arg max}_\theta ~~l(\theta).$$
                 </li>
-                <li></li>
-                <li></li>
               </ul>
             </li>
             <li><strong>Optimization: </strong>
               <ul>
-                <li></li>
-                <li></li>
+                <li>Typically, optimization algorithms (such as gradient descent, Newton's method, or other numerical optimization techniques) are employed to find the maximum of the likelihood function.</li>
+                <li>In some cases, analytical solutions exist, making it possible to find the values of the parameters directly.</li>
                 <li></li>
                 <li></li>
               </ul>
             </li>
           </ol>
 
-
+          <strong>Example:</strong> Consider a simple example of coin flipping, where we want to estimate the probability of getting heads. If we observe a sequence of coin flips (data),
+          the likelihood function would be the product of the probabilities of obtaining the observed outcomes (head or tails) under the assumed 
+          probability parameter \(\theta\) that maximizes this likelihood.
+          <br>
+          <strong>Mathematical Notation:</strong>
+          <p>Likelihood FUnction: \(L(\theta) = P(D | \theta)\)</p>
+          <p>Log-Likelihood FUnction: \(l(\theta) = \text{log}L(\theta)\).</p>
+          In summary, Maximum Likelihood Estimation is a powerful method for estimating the parameters of a statistical model by maximizing the likelihood (or log-likelihood) of the observed data. It is widely used in various fields, including statistics, machine learning, and econometrics.
 
         </div>
 
