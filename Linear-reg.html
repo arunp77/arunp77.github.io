@@ -167,15 +167,14 @@
       </div>
 
       <section id="introduction">
-        <h2>Intorduction</h2>
+        <h2>Introduction</h2>
         <p>Linear regression is a popular and widely used algorithm in machine learning for predicting continuous numeric values. It models the relationship between independent variables (input features) and a dependent variable (target variable) by fitting a linear equation to the observed data. In this section, we will provide a brief overview of linear regression, including the mathematical explanation and figures to aid understanding</p>
         
-        <h4>Mathematical Explanation</h4>
         <p>The linear regression algorithm aims to find the best-fit line that represents the relationship between the input features (<code>x</code>) and the target variable (<code>y</code>). The equation for a simple linear regression can be expressed as:</p>
-          <figure>
-            <img src="assets/img/data-engineering/Linear-reg0.png" alt="" style="max-width: 40%; max-height: 40%;">
-            <figcaption></figcaption>
-          </figure>
+        <figure>
+          <img src="assets/img/data-engineering/Linear-reg0.png" alt="" style="max-width: 40%; max-height: 40%;">
+          <figcaption></figcaption>
+        </figure>
         
         $$y = m x +c$$
 
@@ -188,62 +187,61 @@
           </ul>
 
 
-        <h3 id="Relationship-of-regression-lines">Relationship of regression lines<a class="anchor-link" href="#Relationship-of-regression-lines">&#182;</a></h3>
-          <ul>
-            <li>A linear line showing the relationship between the dependent and independent variables is called a regression line. </li>
-            <li>A regression line can show two types of relationship:</li>
-          </ul>
+        <!------------------------>
+        <h4 id="Relationship-of-regression-lines">Relationship of regression lines</h4>
+        A linear line showing the relationship between the dependent and independent variables is called a regression line. A regression line can show two types of relationship:
           <ol>
             <li><strong>Positive Linear Relationship:</strong> If the dependent variable increases on the Y-axis and independent variable increases on X-axis, then such a relationship is termed as a Positive linear relationship.</li>
             <li><strong>Negative Linear Relationship:</strong> If the dependent variable decreases on the Y-axis and independent variable increases on the X-axis, then such a relationship is called a negative linear relationship.</li>
           </ol>
-          <img src="assets/img/data-engineering/line-slope.png" alt="" style="max-width: 70%; max-height: 70%;">
+          <img src="assets/img/data-engineering/line-slope.png" alt="" style="max-width: 80%; max-height: auto">
 
-        <h3 id="Types-of-Linear-Regression">Types of Linear Regression<a class="anchor-link" href="#Types-of-Linear-Regression">&#182;</a></h3>
+        <!------------------------>
+        <h4 id="Types-of-Linear-Regression">Types of Linear Regression</h4>
           <p>Linear regression can be further divided into two types of the algorithm:</p>
             <ol>
-              <li><strong>Simple Linear Regression:</strong> If a single independent variable is used to predict the value of a numerical dependent variable, then such a Linear Regression algorithm is called Simple Linear Regression.</li>
-              <li><strong>Multiple Linear regression:</strong> If more than one independent variable is used to predict the value of a numerical dependent variable, then such a Linear Regression algorithm is called Multiple Linear Regression.</li>
+              <li><strong>Simple Linear Regression:</strong> If a single independent variable is used to predict the value of a numerical dependent variable, then such a Linear Regression algorithm is called Simple Linear Regression.
+              $$y= \beta_0+ \beta_1 x$$
+              </li>
+              <li><strong>Multiple Linear regression:</strong> If more than one independent variable is used to predict the value of a numerical dependent variable, then such a Linear Regression algorithm is called Multiple Linear Regression.
+                $$y= \beta_0+ \beta_1 x_1 + \beta_2 x_2 + ... +\beta_n x_n $$ 
+              </li>
             </ol>
-      </section>
 
-
-      <section id="Assumption-of-LR">
-        <h3>Assumptions of Linear Regression</h3>
+        <!------------------------>
+        <h4>Assumptions of Linear Regression</h4>
         <ol>
           <li><strong>Linearity of residuals: </strong>The relationship between the independent variables and the dependent variable is assumed to be linear. This means that the change in the dependent variable is directly proportional to the change in the independent variables.
             <figure>
-              <img src="assets/img/data-engineering/Linearity.png" alt="" style="max-width: 70%; max-height: 70%;">
+              <img src="assets/img/data-engineering/Linearity.png" alt="" style="max-width: 80%; max-height: auto;">
               <figcaption></figcaption>
             </figure>
           </li>
           <li><strong>Independence: </strong>The observations in the dataset are assumed to be independent of each other. There should be no correlation or dependence between the residuals (the differences between the actual and predicted values) of the dependent variable for different observations.
             <figure>
-              <img src="assets/img/data-engineering/independence.png" alt="" style="max-width: 70%; max-height: 70%;">
+              <img src="assets/img/data-engineering/independence.png" alt="" style="max-width: 80%; max-height: auto;">
               <figcaption></figcaption>
             </figure>
           </li>
           <li><strong>Normal distribution of residuals: </strong>The mean of residuals should follow a normal distribution with a mean equal to zero or close to zero. This is done in order to check whether the selected line is actually the line of best fit or not. If the error terms are non-normally distributed, suggests that there are a few unusual data points that must be studied closely to make a better model.
             <figure>
-              <img src="assets/img/data-engineering/Disti-assumption.png" alt="" style="max-width: 70%; max-height: 70%;">
+              <img src="assets/img/data-engineering/Disti-assumption.png" alt="" style="max-width: 80%; max-height: auto;">
               <figcaption></figcaption>
             </figure>
           </li>
           <li><strong>The equal variance of residuals: </strong>The error terms must have constant variance. This phenomenon is known as Homoscedasticity. The presence of non-constant variance in the error terms is referred to as Heteroscedasticity. Generally, non-constant variance arises in the presence of outliers or extreme leverage values.
             <figure>
-              <img src="assets/img/data-engineering/eual-variance-assumption.png" alt="" style="max-width: 70%; max-height: 70%;">
+              <img src="assets/img/data-engineering/eual-variance-assumption.png" alt="" style="max-width: 80%; max-height: auto;">
               <figcaption></figcaption>
             </figure>
           </li>
         </ol>
       </section>
-
-      
             
 
-      <section id="Mathematical-1">
+      <section>
         <h3 id="Mathematical-1">Mathematical Explanation:</h3>
-        <p>There are parameters <code>β<sub>0</sub></code>, <code>β<sub>1</sub></code>, and ϵ, such that for any fixed value of the independent variable <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>x</mi> </math>, the dependent variable is a random variable related to <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>x</mi> </math> through the model equation:</p>
+        <p>There are parameters <code>β<sub>0</sub></code>, <code>β<sub>1</sub></code>, and ϵ, such that for any fixed value of the independent variable \(x\) through the model equation:</p>
         
           $$y=\beta_0 + \beta_1 x +\epsilon$$
 
