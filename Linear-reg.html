@@ -477,32 +477,32 @@
             <th>OLS</th>
           </tr>
           <tr>
-            <td>Optimization Technique:</td>
+            <td><strong>Optimization Technique:</strong></td>
             <td>Gradient descent is an iterative optimization algorithm. It starts with initial values for the parameters and updates them iteratively in the direction of the negative gradient of the objective function until convergence.</td>
             <td>OLS is an analytical method that involves finding the values of the model parameters directly by minimizing a closed-form expression. It computes the derivatives of the objective function with respect to the parameters, sets them equal to zero, and solves for the parameters.</td>
           </tr>
           <tr>
-            <td>Approach to Minimization:</td>
-            <td>Gradient descent minimizes the objective function by iteratively adjusting the parameters in the direction opposite to the gradient. It moves toward the minimum of the function in steps determined by the learning rate.</td>
+            <td><strong>Approach to Minimization:</strong></td>
+            <td>Gradient descent minimizes the objective/cost function by iteratively adjusting the parameters in the direction opposite to the gradient. It moves toward the minimum of the function in steps determined by the learning rate.</td>
             <td>OLS minimizes the sum of squared residuals directly. It finds the values of the parameters that lead to the smallest possible sum of squared differences between observed and predicted values.</td>
           </tr>
           <tr>
-            <td>Convergence</td>
+            <td><strong>Convergence:</strong></td>
             <td>Gradient descent is an iterative process. It continues updating parameters until a stopping criterion is met, such as reaching a specified number of iterations or achieving a small change in the objective function.</td>
             <td>OLS provides a closed-form solution, and once the solution is found, it is exact and does not require further iteration.</td>
           </tr>
           <tr>
-            <td>Computational Complexit</td>
+            <td><strong>Computational Complexit:</strong></td>
             <td>The computational complexity of gradient descent depends on the number of iterations and the size of the dataset. It may be more computationally efficient for very large datasets or complex models.</td>
             <td>The computational complexity of OLS depends on the number of features in the model. For simple linear regression, there is a closed-form solution. However, for multiple linear regression with many features, matrix operations are involved.</td>
           </tr>
           <tr>
-            <td>Sensitivity to Initial Conditions</td>
+            <td><strong>Sensitivity to Initial Conditions:</strong></td>
             <td> The convergence of gradient descent can be sensitive to the choice of the initial parameter values and the learning rate.</td>
             <td>OLS directly computes parameter estimates, and the solution is not sensitive to initial conditions.</td>
           </tr>
           <tr>
-            <td>Regularization</td>
+            <td><strong>Regularization:</strong></td>
             <td>Gradient descent can be easily extended to include regularization terms like L1 or L2 regularization to prevent overfitting.</td>
             <td>OLS does not inherently include regularization terms to prevent overfitting.</td>
           </tr>
@@ -513,7 +513,8 @@
         <!----------------->
         <div class="box">
           <h5 id="Maximum-likelihood-estimation"><strong>Maximum Likelihood Estimation (MLE)</strong></h5>
-          Maximum Likelihood Estimation (MLE) is a statistical method used to estimate the parameters of a statistical model. The fundamental idea behind MLE is to find the values of the model parameters that maximize the likelihood of observing the given data. In other words, MLE seeks the parameter values that make the observed data most probable under the assumed statistical model.
+          Maximum Likelihood Estimation (MLE) is a statistical method used to estimate the parameters of a statistical model. The fundamental idea behind MLE is to find the values of the model parameters that maximize the likelihood of observing the given data. 
+          In other words, MLE seeks the parameter values that make the observed data most probable under the assumed statistical model.
 
           <p><strong>Key concepts of MLE:</strong></p>
           <ol>
@@ -578,26 +579,83 @@
           <p><strong>MLE Objectives:</strong> The objective of MLE is to find the values of the coefficients that maximize the log-likelihood function:</p>
           $$\hat{\theta}_0, \hat{\theta}_1, ..., \hat{\theta}_n = \text{arg}~\text{max}_{\theta_0, \theta_1, ..., \theta_n} l(\theta_0, \theta_1, ..., \theta_n)$$
         
-        <p><strong>Optimization:</strong> Optimization techniques, such as gradient descent or analytical solutions (set partial derivatives to zero), are used to find the values of the \(\hat{\theta}_0, \hat{\theta}_1, ..., \hat{\theta}_n\)
-        that mazimize the log-likelihood. 
-        </p>
+          <p><strong>Optimization:</strong> Optimization techniques, such as gradient descent or analytical solutions (set partial derivatives to zero), are used to find the values of the \(\hat{\theta}_0, \hat{\theta}_1, ..., \hat{\theta}_n\)
+          that mazimize the log-likelihood. 
+          </p>
 
-        <p>In practice, the MLE estimates for the \(\theta_0, \theta_1, ..., \theta_n\) are often equivalent to the least squares estimates obtained through the minimizing the sum of squaresd residuals.</p>
-        
-        
+          <p>In practice, the MLE estimates for the \(\theta_0, \theta_1, ..., \theta_n\) are often equivalent to the least squares estimates obtained through the minimizing the sum of squaresd residuals.</p>        
+          <br>
         </div>
-        <br>
+        
         <div class="box">
           For more details on overfitting and underfitting go to following link: <a href="Ridge-lasso-elasticnet.html">Ridge lasso and Elastic net algorithms</a>. 
           On this page, you'll find a comprehensive guide on selecting the most relevant variables when dealing with multiple factors. The detailed description outlines strategies to identify the best variables, 
           ensuring that a specific algorithm aids in constructing a model that guards against overfitting.
         </div>
       </section>
+
+      <section id="MLE-gradient-descent">
+        <h3>Difference between MLE and Gradeint descent:</h3>
+        Maximum Likelihood Estimation (MLE) and gradient descent are distinct methods used in the context of parameter estimation, often in the realm of statistical modeling or machine learning. While they share the common objective of finding parameter values that optimize a given criterion, they differ in their approaches, use cases, and mathematical foundations.
+        <table>
+          <tr>
+            <th><strong></strong></th>
+            <th><strong>MLE</strong></th>
+            <th><strong>Gradient Descent</strong></th>
+          </tr>
+          <tr>
+            <td><strong>Optimization Approach:</strong></td>
+            <td>MLE is a statistical method that aims to find the parameter values that maximize the likelihood function or, equivalently, maximize the log-likelihood function. It often involves solving equations or using optimization techniques.</td>
+            <td>Gradient descent is an iterative optimization algorithm that updates parameter values in the direction of the negative gradient of an objective function (e.g., mean squared error in regression problems) until convergence.</td>
+          </tr>
+          <tr>
+            <td><strong>Model Assumptions:</strong></td>
+            <td> MLE is a more general framework applicable to a wide range of statistical models. It is often used when there is a probabilistic model describing the distribution of the observed data.</td>
+            <td>Gradient descent is commonly used in the context of machine learning, where the objective function is often related to the error or loss of a predictive model. It may not necessarily assume a specific probabilistic model.</td>
+          </tr>
+          <tr>
+            <td><strong>Convergence Criteria:</strong></td>
+            <td>MLE often involves solving equations or using optimization techniques that guarantee convergence to a global maximum (for well-behaved problems).</td>
+            <td>Convergence in gradient descent is achieved iteratively, and the stopping criteria may include reaching a certain number of iterations, achieving a small change in the objective function, or satisfying a threshold condition.</td>
+          </tr>
+        </table>
+        <br>
+
+        <h4>Why Use MLE Instead of Gradient Descent (or Vice Versa)?</h4>
+        The common objective of both MLE and gradient descent is to find parameter values that optimize a given criterion. In the context of machine learning, this criterion is typically associated with minimizing a loss function or maximizing a likelihood function.
+        <ol>
+          <li><strong>Nature of the Problem: </strong>
+            <ul>
+              <li>Use MLE when the problem is naturally formulated in a probabilistic framework, and you have a clear understanding of the likelihood function.</li>
+              <li>Use gradient descent when dealing with machine learning problems where the focus is on minimizing a loss function associated with prediction errors.</li>
+            </ul>
+          </li>
+          <li><strong>Analytical Solutions:</strong>
+            <ul>
+              <li>MLE often provides analytical solutions for parameter estimates if a closed-form solution exists for the likelihood function.</li>
+              <li>Gradient descent is particularly useful for problems where analytical solutions are difficult or impossible to obtain.</li>
+            </ul>
+          </li>
+          <li><strong>Statistical Inference:</strong>
+            <ul>
+              <li>MLE is widely used in statistical inference, where parameter estimates come with statistical properties such as standard errors and confidence interval.</li>
+              <li>Gradient descent is commonly employed in machine learning for training predictive models, and its primary focus is on minimizing prediction errors.</li>
+            </ul>
+          </li>
+          <li><strong>Complexity and Robustness:</strong>
+            <ul>
+              <li>MLE can be more computationally intensive, especially when solving equations or performing optimizations involving complex likelihood functions.</li>
+              <li>Gradient descent is often preferred for its simplicity and efficiency, particularly in large-scale machine learning problems.</li>
+            </ul>
+          </li>
+        </ol>
+
+      </section>
      
 
       <!-----------Example ------------->
       <section id="Example-simple-linear">
-        <h3><a href="https://github.com/arunp77/Machine-Learning/tree/main/Projects-ML/Reg-models" target="_blank">Example on Simple lienar method</a></h3>
+        <h3><a href="https://github.com/arunp77/Machine-Learning/tree/main/Projects-ML/Reg-models" target="_blank">Example on Simple linear method</a></h3>
         Lets consider a dataset of person with their Weight and Height. he data set can be found at: 
         <a href="https://github.com/arunp77/Machine-Learning/blob/main/Projects-ML/Reg-models/Weight_height.csv" target="_blank">Dataset</a>.
         Now we want to do the linear regression curve fitting, where we will see on the basis of model training, what would be height of a person with a given weight.
