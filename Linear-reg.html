@@ -454,10 +454,10 @@
                       
                         <p>Gradient Descent iteratively adjusts the parameters by updating them in the direction of the negative gradient until it reaches a minimum point in the cost function. This process allows for the estimation of optimal parameters in linear regression, enabling the model to make accurate predictions on unseen data.</p>
                           <figure>
-                            <img src="assets/img/data-engineering/optimal-reg2.png" alt="" style="max-width: 80%; max-height: auto;">
+                            <img src="assets/img/data-engineering/optimal-reg2.png" alt="" style="max-width: 90%; max-height: auto;">
                             <figcaption></figcaption>
                           </figure>
-                        <p>Let’s take an example to understand this. If we want to go from top left point of the shape to bottom of the pit, a discrete number of steps can be taken to reach the bottom.</p>
+                        <p>Let's take an example to understand this. If we want to go from top left point of the shape to bottom of the pit, a discrete number of steps can be taken to reach the bottom.</p>
                           <ul>
                             <li>If you decide to take larger steps each time, you may achieve the bottom sooner but, there’s a probability that you could overshoot the bottom of the pit and not even near the bottom.</li>
                             <li>In the gradient descent algorithm, the number of steps you’re taking can be considered as the learning rate, and this decides how fast the algorithm converges to the minima.</li>
@@ -468,9 +468,48 @@
                   </ol>
               </li>
             </ul>
-
         <br>
 
+        <h4>Comparison between the OLS and gradient descent method:</h4>
+        <table>
+          <tr>
+            <th></th>
+            <th>Gradient-decent</th>
+            <th>OLS</th>
+          </tr>
+          <tr>
+            <td>Optimization Technique:</td>
+            <td>Gradient descent is an iterative optimization algorithm. It starts with initial values for the parameters and updates them iteratively in the direction of the negative gradient of the objective function until convergence.</td>
+            <td>OLS is an analytical method that involves finding the values of the model parameters directly by minimizing a closed-form expression. It computes the derivatives of the objective function with respect to the parameters, sets them equal to zero, and solves for the parameters.</td>
+          </tr>
+          <tr>
+            <td>Approach to Minimization:</td>
+            <td>Gradient descent minimizes the objective function by iteratively adjusting the parameters in the direction opposite to the gradient. It moves toward the minimum of the function in steps determined by the learning rate.</td>
+            <td>OLS minimizes the sum of squared residuals directly. It finds the values of the parameters that lead to the smallest possible sum of squared differences between observed and predicted values.</td>
+          </tr>
+          <tr>
+            <td>Convergence</td>
+            <td>Gradient descent is an iterative process. It continues updating parameters until a stopping criterion is met, such as reaching a specified number of iterations or achieving a small change in the objective function.</td>
+            <td>OLS provides a closed-form solution, and once the solution is found, it is exact and does not require further iteration.</td>
+          </tr>
+          <tr>
+            <td>Computational Complexit</td>
+            <td>The computational complexity of gradient descent depends on the number of iterations and the size of the dataset. It may be more computationally efficient for very large datasets or complex models.</td>
+            <td>The computational complexity of OLS depends on the number of features in the model. For simple linear regression, there is a closed-form solution. However, for multiple linear regression with many features, matrix operations are involved.</td>
+          </tr>
+          <tr>
+            <td>Sensitivity to Initial Conditions</td>
+            <td> The convergence of gradient descent can be sensitive to the choice of the initial parameter values and the learning rate.</td>
+            <td>OLS directly computes parameter estimates, and the solution is not sensitive to initial conditions.</td>
+          </tr>
+          <tr>
+            <td>Regularization</td>
+            <td>Gradient descent can be easily extended to include regularization terms like L1 or L2 regularization to prevent overfitting.</td>
+            <td>OLS does not inherently include regularization terms to prevent overfitting.</td>
+          </tr>
+        </table>
+        <br>
+        
         
         <!----------------->
         <div class="box">
