@@ -202,27 +202,42 @@
 
         $$P(Y=1 | X) = \frac{1}{1+e^{-z}}$$
 
-        where 
+        Here \(z\) is defined as:
+
+        $$z = \theta_0 + \theta_1 x_1 + \theta_2 x_2+ ... \theta_n x_n = \theta^T x$$
+
+        and
         <ul>
           <li>\(P(Y=1 | X)\) is the probability of the outcome,</li>
           <li>\(X = (x_1, x_2, ..., x_n)\) represents the input features variables.</li>
-          <li>\(\beta_0, \beta_1, ..., \beta_n\) are the coefficients to be learned.</li>
+          <li>\(\theta_0\) is the intercept, \(\theta_1, \theta_2, ..., \theta_n\) are the coefficients for the  input features variables.</li>
           <li>\(z\) is the linear combination of the input features.</li>
+          <li>\(\theta^T\) represents the transpose of the parameter vector.</li>
+          <li>'\(e\)' is the base of the natural logarithm (approximately equal to 2.71828).</li>
         </ul>
+        
         <figure>
           <img src="assets/img/machine-ln/logistic-fun.png" alt="" style="max-width: 70%; max-height: auto;">
           <figcaption></figcaption>
         </figure>
         
-         Here \(z\) is defined as:
+         
 
-        $$z = \beta_0 + \beta_1 x_1 + \beta_2 x_2+ ... \beta_n x_n$$
+        <div class="box">
+          Sometimes the logistic function is also represemnted in more compact form as:
+          $$h_\theta(x) = \frac{1}{1+e^{-\theta^T x}}$$
+          where:
+          <ul>
+            <li>\(h_\theta(x)\) is the predicted probability that \(y = 1\).</li>
+            <li>\(\theta\) is the parameter vector</li>
+            <li>\(x\) is the input feature vector</li>
+          </ul>
+        </div>
 
-        where \(\beta_0\) is the intercept, \(\beta_1, \beta_2, ..., \beta_n\) are the coefficients for the  input features variables \(x_1, x_2, ..., x_n\), and '\(e\)' is the base of the natural logarithm (approximately equal to 2.71828).
         The logistic function has an S-shaped curve (thus also known as Sigmoid function).
         The logistic function maps any real-valued number to a value between 0 and 1, which can be interpreted as a probability. The goal of logistic regression is to find the values of the coefficients that maximize the likelihood of 
         observing the data, given the model. This is typically done using maximum likelihood estimation. Once the coefficients have been estimated, the logistic regression model can be used to predict the probability of the outcome 
-        for new observations. For example, if we have a new observation with predictor variables \(x_1=1, x_2=3\) and \(x_3=4\), and the estimated coefficients are \(\beta_0 = -1, \beta_1 =0.5, \beta_2 = 1\) and \(\beta_3 = 0.2\), 
+        for new observations. For example, if we have a new observation with predictor variables \(x_1=1, x_2=3\) and \(x_3=4\), and the estimated coefficients are \(\theta_0 = -1, \theta_1 =0.5, \theta_2 = 1\) and \(\theta_3 = 0.2\), 
         we can calculate the probability of the outcome as follows:
         
         $$z = -1 +0.52 +13 +0.2 \times 4 = 3.3$$
@@ -235,11 +250,52 @@
         regression model assumes that the relationship between the predictor variables and the probability of the outcome can be modeled using a linear equation.
         
         <p>From above equation, we can re write following equations:</p>
-        $$\text{ln}\left(\frac{P(Y=1 | X)}{1- P(Y=1 | X)}\right) = z = \beta_0 + \beta_1 x_1 + ... + \beta_n x_n . $$
+        $$\text{ln}\left(\frac{P(Y=1 | X)}{1- P(Y=1 | X)}\right) = z = \theta_0 + \theta_1 x_1 + ... + \theta_n x_n . $$
  
         The right hand side of the equation is a linear function. Such models are called <strong>generalized linear models (GLM)</strong>. In GLM, the errors may not follow normal distribution and there exists a transformation function of the outcome variable that takes a linear 
         functional form.
 
+        <!----------------->
+        <h3>Cost function for Logistic Regression</h3>
+        The cost function for the logistic regression is used to quantify the error between preducted and actua; values.
+        The objective is to minimize this cost. The cost function is defined as:
+        $$J(\theta) = -\frac{1}{m} \sum_{i=1}^{m} \left[ y^{(i)} \log(h_\theta(x^{(i)})) + (1 - y^{(i)}) \log(1 - h_\theta(x^{(i)})) \right] $$
+        Here,
+        <ul>
+          <li>\(m\) is the number of training examples.</li>
+          <li>\(y^{(i)}\) is the actual output for the i-th training example.</li>
+          <li>\(h_\theta (x^{(i)})\) is the predicted output for the i-th training example using the logisict function.</li>
+        </ul>
+        The cost function penalizes large errors, and the logarithmic terms ensure that the cost is higher when the prediction is far from the actual value.
+
+        In training, the goal is to find the parameter vector \(\theta\) that minimizes the cost function. This is often done using optimization algorithms like gradient descent.
+
+        <!----------------->
+        <h4>Gradient Descent Rule:</h4> 
+        The gradient descent algorithm for the logistic regression aims to find the optimal parameters \(\theta\)
+        that minimize the cost function. The update rule is derived from the partial derivatives of the cost function with respect to each parameter. 
+
+        <p>The update rule for the gradient descent algorithm is as follows:</p>
+        $$\theta_j := \theta_j - \alpha \frac{\partial J(\theta)}{\partial \theta_j}$$
+
+        where:
+        <ul>
+          <li>\(\theta_j\) is the j-th parameter (weight or coefficient).</li>
+          <li>\(\alpha\) is the learning rate, a positive scalar determining the size of each step in the parameter  space.</li>
+          <li>\(\frac{\partial J(\theta)}{\partial \theta_j}\) is the partial derivative of the cost function \(J(\theta)\) with respect to \(\theta_j\).</li>
+        </ul>
+
+        <h5>Algorith steps:</h5>
+        <ol>
+          <li>Initialize parameters: \(\theta_0, \theta_1, ..., \theta_n\).</li>
+          <li>Repeat until convergence:
+            <ul>
+              <li>Update each parameter simultaneously using the update rule.</li>
+              <li>Simultaneous update means calculating the new values of all parameters before applying them to the model.</li>
+              <li>Repeat the update until the change in the cost function becomes small or a fixed number of iterations are reached.</li>
+            </ul>
+          </li>
+        </ol>
 
         <!----------------->
         <h4>Model Interpretation</h4>
@@ -250,8 +306,60 @@
 
 
         <!----------------->
+        <div class="box">
+          <h5><strong>Maximum Likelihood Estimation (MLE)</strong></h5>
+          Maximum Likelihood Estimation (MLE) is a statistical method used to estimate the parameters of a statistical model. The fundamental idea behind MLE is to find the values of the model parameters that maximize the likelihood of observing the given data. In other words, MLE seeks the parameter values that make the observed data most probable under the assumed statistical model.
+
+          <p><strong>Key concepts of MLE:</strong></p>
+          <ol>
+            <li><strong>Likelihood Function:</strong>
+              <ul>
+                <li>The likelihood function, denoted as \(L(\theta)\), is a measure of how well the model explains the observed data for a given set of parameter \(\theta\).</li>
+                <li>It is defined as the joint probability (or probability density) of the observed data given the parameters:
+                  $$L(\theta) = P(D | \theta),$$
+                  where \(D\) is the observed data.
+                </li>
+              </ul>
+            </li>
+            <li><strong>Log-Likelihood Function: </strong>
+              <ul>
+                <li>In practice, it is common to work with the log-likelihood function \(l(\theta)\), which is the natural logrithm of the likelihood function.</li>
+                <li>Maximizing the log-likekihood is equivalent to Maximizing the likelihood, and it simplifies computations.</li>
+              </ul>
+            </li>
+            <li><strong>Parameter Estimation: </strong>
+              <ul>
+                <li>The goal of MLE is to find the values of the model parameters that maximize the likelihood (for log-likelihood) function.</li>
+                <li>Mathematically, this is expressed as 
+                  $$\hat{\theta}_{\text{MLE}} = \text{arg max}_\theta L(\theta)$$ 
+                  or 
+                  $$\hat{\theta}_{\text{MLE}} = \text{arg max}_\theta l(\theta)$$
+                </li>
+                <li></li>
+                <li></li>
+              </ul>
+            </li>
+            <li><strong>Optimization: </strong>
+              <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+              </ul>
+            </li>
+          </ol>
+
+
+
+        </div>
+
+
+
+
+
+        <!----------------->
         <h4>Training Objective</h4>
-        The model is trained by finding the optimal values for \(\beta\) that minimize the prediction error. This is typically done using techniques like Maximum Likelihood Estimation (MLE).
+        The model is trained by finding the optimal values for \(\theta\) that minimize the prediction error. This is typically done using techniques like Maximum Likelihood Estimation (MLE).
 
 
 
