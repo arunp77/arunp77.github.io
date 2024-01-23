@@ -380,17 +380,17 @@
 
         <p>Therefore, we can write error function as: \(\epsilon = y_i - h_\theta(x_i) \).</p>
 
-        <p><strong>Objective function:</strong></p>
+        <p><strong>Objectivem or cost function:</strong></p>
         The objective function is to minimize the sum of squared residuals:
 
-        $$\text{RSS}(\theta_0, \theta_1) = \sum_{i=1}^n \left(y_i - (\theta_0+\theta_1 x_i)\right)^2$$
+        $$\text{RSS}(\theta_0, \theta_1) = \frac{1}{n}\sum_{i=1}^n \left(y_i - (\theta_0+\theta_1 x_i)\right)^2$$
           
         <p>Where:</p>
             
           <ul>
             <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>n</mi> </math> is the number of data points.</li>
             <li><math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>y</mi> <mi>i</mi> </msub> </math> is the actual value of the dependent variable for the i-th data point.</li>
-            <li>\(\theta_0, ]theta_1\) are the coefficients.</li>
+            <li>\(\theta_0, \theta_1\) are the coefficients.</li>
           </ul>
 
           Now taking partial derivatives with respect to \(\theta_0\) and \(\theta_1\) and setting them to zero gives the OLS estimates:
@@ -403,7 +403,7 @@
           where 
 
           <ul>
-            <li>\(\bar{x}\) and \(y\) are the means of the Independent and dependent variables, respectively. </li>
+            <li>\(\bar{x}\) and \(\bar{y}\) are the means of the Independent and dependent variables, respectively. </li>
           </ul>
 
           <hr>
@@ -421,7 +421,7 @@
                   <ol>
                     <li><strong>Define the Cost Function: </strong>The cost function for linear regression is the Mean Squared Error (MSE), which measures the average squared difference between the predicted values \(h_\theta(x^{(i)})\) and the actual values \(y^{(i)}\) of the dependent variable.</li>
                     
-                    $$\text{MSE} = \frac{1}{2n} \left(y^{(i)} - h_\theta(x^{(i)})\right)^2$$ 
+                    $$\text{MSE} = \frac{1}{2n}\sum_{i=1}^n \left(y^{(i)} - h_\theta(x^{(i)})\right)^2$$ 
                     
                     <p>Where:</p>
                     <ul>
@@ -445,11 +445,11 @@
                     <li><strong>Update the Parameters: </strong> Update the parameters using the gradient and a learning rate (
                       α), which determines the step size in each iteration.
                       $$\theta_0 = \theta_0 - \alpha \times \frac{\partial (MSE)}{\partial \theta_0}$$
-                      $$\theta_1 = \theta_1 - \alpha \times \frac{\partial (MSE)}{\partial \theta_1}$$
+                      $$\theta_i = \theta_i - \alpha \times \frac{\partial (MSE)}{\partial \theta_i}$$
                       <p>Repeat this update process for a specified number of iterations or until the change in the cost function becomes sufficiently small.</p>
                     </li>
                     <li><strong>Predict: </strong>Once the parameters have converged or reached the desired number of iterations, use the final parameter values to make predictions on new data.
-                      $$h_\theta (x_i)= \theta_0 +\theta_1 x$$
+                      $$h_\theta (x_i)= \theta_0 +\theta_1 x+ ... +\theta_n x_n$$
                       
                         <p>Gradient Descent iteratively adjusts the parameters by updating them in the direction of the negative gradient until it reaches a minimum point in the cost function. This process allows for the estimation of optimal parameters in linear regression, enabling the model to make accurate predictions on unseen data.</p>
                           <figure>
@@ -461,8 +461,6 @@
                             <li>If you decide to take larger steps each time, you may achieve the bottom sooner but, there’s a probability that you could overshoot the bottom of the pit and not even near the bottom.</li>
                             <li>In the gradient descent algorithm, the number of steps you’re taking can be considered as the learning rate, and this decides how fast the algorithm converges to the minima.</li>
                           </ul>
-                        <p><strong>In the gradient descent algorithm, the number of steps you’re taking can be considered as the learning rate i.e. 
-                          α, and this decides how fast the algorithm converges to the minima.</strong></p>
                     </li>
                   </ol>
               </li>
@@ -662,7 +660,7 @@
         This can be done through the gradient decent method or OLS method. We will first look at gradient decent method.
         <ul>
           <li>Lets first import the import libraries:
-            <pre><Code>
+            <pre class="language-python"><Code>
               import pandas as pd 
               import matplotlib.pyplot as plt 
               import numpy as np 
@@ -671,8 +669,8 @@
             </Code></pre>
           </li>
           <li>Next we can load the dataset using:
-            <pre><code>df = pd.read_csv('Weight_height.csv')</code></pre>
-            the table will have two colmns: <pre>df.head()</pre>
+            <pre class="language-python"><code>df = pd.read_csv('Weight_height.csv')</code></pre>
+            the table will have two colmns: <pre class="language-python"><code>df.head()</code></pre>
             <table>
               <thead>
                   <tr>
@@ -711,21 +709,22 @@
             </figure>
           </li>
           <li>Now created the independent and dependent features as:
-            <pre><code>
+            <pre class="language-python"><code>
 # Independe and dependent features
 X = df[['Weight']] ## Always remember that independent features should be dataframe or 2 dimesnional array
 y=df['Height']   ## this variable can be a series or 1D array.
             </code></pre>
           </li>
           <li>Now deviding the dataset into the training an test dataset.
-            <pre><code>
+            <pre class="language-python"><code>
 ## Train test split
 from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.25, random_state=42)              
+X_train, X_test, y_train, y_test = train_test_split(X,y, 
+                        test_size=0.25, random_state=42)              
             </code></pre>
           </li>
           <li>It is best to standardize the training and test datasets.
-            <pre><code>
+            <pre class="language-python"><code>
               ## Standardization 
               from sklearn.preprocessing import StandardScaler
               scaler = StandardScaler()
@@ -738,7 +737,7 @@ X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.25, random_
             and then transform the <code>X_train</code>. Next when we use the same scaler function, we don't need to recalculate the mean and standard deviation.
           </li>
           <li>Now we fit the train datasets, using:
-            <pre><code>
+            <pre class="language-python"><code>
               ## Apply linear regression
               from sklearn.linear_model import LinearRegression
               regression = LinearRegression(n_jobs=-1)
@@ -754,7 +753,7 @@ X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.25, random_
             </pre>
           </li>
           <li>We can see the fitted line:
-            <pre><code>
+            <pre class="language-python"><code>
               ## plot Training data plot and best fit line
 
               plt.scatter(X_train, y_train)
@@ -770,13 +769,13 @@ X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.25, random_
               <li>predicted height output = intercept + coef_(Weight)</li>
               <li>y_pred_test = regression.intercept_ + regression.coef_ * X_test</li>
             </ul>
-            <pre><code>
+            <pre class="language-python"><code>
               ## Prediction for the test data
               y_pred = regression.predict(X_test)
             </code></pre>
           </li>
           <li><strong>Model testing:</strong>
-          <pre><code>
+          <pre class="language-python"><code>
             mse = mean_squared_error(y_test, y_pred)
             mae = mean_absolute_error(y_test, y_pred)
             rmse = np.sqrt(mse)
@@ -792,7 +791,7 @@ X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.25, random_
             The root mean squared error is: 10.944501554013556
           </pre>
           Similalry R-squared can be caluclated as:
-          <pre><code>
+          <pre class="language-python"><code>
             from sklearn.metrics import r2_score
 
             score = r2_score(y_test, y_pred)
@@ -807,38 +806,36 @@ X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.25, random_
             <li>n = The number of observations</li>
             <li>k = The number of predictor variables</li>
           </ul>
-          <pre><code>
-            ## displaying adjusted r squared value 
-            1 - (1-score)*(len(y_test) - 1) / (len(y_test) - X_test.shape[1]-1)
+          <pre class="language-python"><code>
+## displaying adjusted r squared value 
+1 - (1-score)*(len(y_test) - 1) / (len(y_test) - X_test.shape[1]-1)
           </code></pre>  
           and the adjusted r-squared value is: 0.655908385447735
         </li>
         <li>Prediction of height for a person of weight 72 Kgs.
-          <pre><code>
-            ### Prediction for net data
-            new_weight = [[72]]
-            scaled_new_weight = scaler.transform(new_weight) # since we have standardized the training data, we mush use the standardize the weight
-            
-            # Make the prediction
-            prediction_new_height = regression.predict(scaled_new_weight)
-            
-            print(f"Height for the weight 72 Kg is: {prediction_new_height}")
+          <pre class="language-python"><code>
+### Prediction for net data
+new_weight = [[72]]
+scaled_new_weight = scaler.transform(new_weight) # since we have standardized the training data, we mush use the standardize the weight
+
+# Make the prediction
+prediction_new_height = regression.predict(scaled_new_weight)
+
+print(f"Height for the weight 72 Kg is: {prediction_new_height}")
             </code></pre>
         </li>
         The predicted height is 155.37 cms.
        </ul>
        <strong>OLS method:</strong>
        We can also use the OLS method for the above example. 
-       <pre><code>
+       <pre class="language-python"><code>
         import statsmodels.api as sm 
         model = sm.OLS(y_train, X_train).fit()
         prediction = model.predict(X_test)
         print(prediction)
        </code></pre>
        This will give the prediction points for the X_test dataset. The model summary:
-       <pre><code>
-        print(model.summary())
-       </code></pre>
+       <pre class="language-python"><code>print(model.summary())</code></pre>
        shows that the two methods discussed gave same coefficient and the intercept. 
        <figure>
           <img src="assets/img/machine-ln/ols-method.png" alt="" style="max-width: 70%; max-height: 70%;">
@@ -854,7 +851,7 @@ X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.25, random_
         The code also includes visualization to compare actual vs. predicted sales.
         <ul>
           <li><strong>Importing libraries</strong>
-          <pre><code>
+          <pre class="language-python"><code>
             import numpy as np
             import pandas as pd
             import statsmodels.api as sm
@@ -862,21 +859,22 @@ X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.25, random_
           </code></pre>
           </li>
           <li><strong>Generating random data and creating dataframe: </strong>
-          <pre><code>
-            # Set a random seed for reproducibility
-            np.random.seed(42)
-            
-            # Generate synthetic data
-            num_samples = 200
-            advertising_spend = np.random.uniform(50, 200, num_samples)
-            num_salespeople = np.random.randint(3, 10, num_samples)
-            error_term = np.random.normal(0, 20, num_samples)
-            
-            sales = 50 + 2 * advertising_spend + 5 * num_salespeople + error_term    
-            
-            # Create a DataFrame
-            df = pd.DataFrame({'Advertising_Spend': advertising_spend, 'Num_Salespeople': num_salespeople, 'Sales': sales})
-            df.head()
+          <pre class="language-python"><code>
+# Set a random seed for reproducibility
+np.random.seed(42)
+
+# Generate synthetic data
+num_samples = 200
+advertising_spend = np.random.uniform(50, 200, num_samples)
+num_salespeople = np.random.randint(3, 10, num_samples)
+error_term = np.random.normal(0, 20, num_samples)
+
+sales = 50 + 2 * advertising_spend + 5 * num_salespeople + error_term    
+
+# Create a DataFrame
+df = pd.DataFrame({'Advertising_Spend': advertising_spend, 
+                  'Num_Salespeople': num_salespeople, 'Sales': sales})
+df.head()
           </code></pre>
           <table>
             <thead>
@@ -964,13 +962,13 @@ X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.25, random_
           </div>
           </li>
           <li><strong>Feature selection: </strong>Now let's select the features.
-            <pre><code>
+            <pre class="language-python"><code>
               X= df.iloc[:,:-1]
               y = df.iloc[:,-1]              
             </code></pre>
           </li>
           <li><strong>Standardization: </strong>We standardize the data as:
-          <pre><code>
+          <pre class="language-python"><code>
             from sklearn .preprocessing import StandardScaler
             scaler =StandardScaler()
             X_train =scaler.fit_transform(X_train)
@@ -978,19 +976,19 @@ X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.25, random_
           </code></pre>
           </li>
           <li><strong>Regression model:</strong>
-            <pre><code>
+            <pre class="language-python"><code>
               from sklearn.linear_model import LinearRegression
               regression = LinearRegression()
               regression.fit(X_train, y_train)                            
             </code></pre>
             We can calculate the coefficient as:
-            <pre><code>
+            <pre class="language-python"><code>
               print(regression.coef_)              
             </code></pre>
             which gave: <code>[86.62120427  6.33750727]</code>.
           </li>
           <li><strong>Cross-validation method: </strong> Here we use cross-validation method. It is not mandetory but best practice. 
-            <pre><code>
+            <pre class="language-python"><code>
               from sklearn.model_selection import cross_val_score
               validation_score = cross_val_score(regression, X_train, y_train, scoring='neg_mean_squared_error', cv=3)
               validation_score
@@ -999,13 +997,13 @@ X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.25, random_
             The mean of these can be found as: <code>np.mean(validation_score) = -374.1204959020976 </code>.
           </li>
           <li><strong>Prediction: </strong>Now we find the prediction as follows:
-            <pre><code>
+            <pre class="language-python"><code>
               ## prediction
               y_pred = regression.predict(X_test)              
             </code></pre>
           </li>
           <li><strong>Calculating the MSE, MAE:</strong>
-          <pre><code>
+          <pre class="language-python"><code>
             from sklearn.metrics import mean_absolute_error, mean_squared_error
             mse = mean_squared_error(y_test, y_pred)
             mae = mean_absolute_error(y_test, y_pred)
@@ -1023,7 +1021,7 @@ X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.25, random_
           </pre>
           </li>
           <li><strong>R-squared value: </strong>
-          <pre><code>
+          <pre class="language-python"><code>
             from sklearn.metrics import r2_score
 
             score = r2_score(y_test, y_pred)
@@ -1032,7 +1030,7 @@ X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.25, random_
           The r-squared value for the model is= 0.9326105266469662.
           </li>
           <li><strong>Calculating the residuals and seeing it's distribution:</strong>
-          <pre><code>
+          <pre class="language-python"><code>
             residuals = y_test-y_pred
             # plot residuals
             sns.displot(residuals, kind='kde')                        
@@ -1046,7 +1044,7 @@ X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.25, random_
         </ul>
         <strong>OLS method:</strong>
         We can alsi use OLS method for this. 
-        <pre><code>
+        <pre class="language-python"><code>
           import statsmodels.api as sm 
           model = sm.OLS(y_train, X_train).fit()      
           prediction = model.predict(X_test)      
