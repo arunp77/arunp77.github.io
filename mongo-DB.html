@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>SQL-Join</title>
+  <title>NoSQL</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -143,7 +143,7 @@
     <section id="portfolio-details" class="portfolio-details">
       <div class="container">
         <div class="row gy-4">
-          <h1>SQL Joins: A Comprehensive Guide</h1>
+          <h1>NOSQL & MongoDB</h1>
           <div class="col-lg-8">
             <div class="portfolio-details-slider swiper">
               <div class="swiper-wrapper align-items-center"> 
@@ -170,187 +170,75 @@
 
       <section id="introduction">
         <h3>Introduction</h3>
-        In the realm of relational databases, understanding how to combine data from multiple tables is a fundamental skill. SQL Joins provide a powerful mechanism for fetching and consolidating information spread across different tables. This comprehensive guide aims to demystify SQL Joins, offering a step-by-step exploration from the basics to advanced techniques.
-        <img src="assets/img/portfolio/sells-data.png" alt="" style="max-width: 900px; max-height: 800px;">
-
-        <br>
-        <p><span style="color: blue;">JOIN, INNER JOIN, RIGHT JOIN, FULL JOIN, CROSS JOIN</span> operations:</p>
-            <ul>
-                <li>A JOIN clause is used to combine rows from two or more tables, based on a related column between them.</li>
-                <li><strong>Different types of Joins:</strong>
-                    <img src="assets/img/portfolio/sql-join-operation.png" alt="" style="max-width: 80%; max-height: auto;">
-
-                <ul>
-                    <li><span style="color: blue;">INNER JOIN</span>: Returns records that have matching values in both tables.
-                        In a CROSS JOIN, there is no specific condition for joining; it simply forms a combination of all possible pairs of rows from the involved tables.</li>
-                    <li><span style="color: blue;">LEFT JOIN</span>: Returns all records from the left table, and the matched records from the right table</li>
-                    <li><span style="color: blue;">RIGHT JOIN</span>: Returns all records from the right table, and the matched records from the left table</li>
-                    <li><span style="color: blue;">FULL JOIN</span>: Returns all records when there is a match in either left or right table</li>
-                    <li><span style="color: blue;">CROSS JOIN</span>: The CROSS JOIN keyword matches ALL records from the "left" table with EACH record from the "right" table.</li>
-                    <li><span style="color: blue;">FULL OUTER JOIN EXCLUDING INNER JOIN</span>: A FULL OUTER JOIN returns all rows from both tables and includes matching rows. The 
-                        "EXCLUDING INNER JOIN" part suggests that you want to exclude rows that have a match (i.e., rows that would be part of an INNER JOIN) from the result set.</li>
-                    <li><span style="color: blue;">UNION</span>: The UNION operator is used to combine the result-set of two or more queries. The queries in the union must follow these rules:
-                        <ul>
-                            <li>They must have the same number of columns</li>
-                            <li>The columns must have the same data types</li>
-                            <li>The columns must be in the same order</li>
-                        </ul>
-                    </li>
-                    <li><span style="color: blue;">UNION ALL</span>: With the UNION operator, if some rows in the two queries returns the exact same result, only one row will be listed, 
-                        because UNION selects only distinct values. Use UNION ALL to return duplicate values.</li>
-                    <li><span style="color: blue;">FULL JOIN</span>: </li>
-                </ul>
-                </li>
-            </ul>
-            <pre class="language-sql"><code id="sql-code">
-                SELECT product_id, product_name, category_name
-                FROM products
-                INNER JOIN categories ON products.category_id = categories.category_id;
-                -- Join products to categories using the category_id column --
-
-                SELECT testproduct_id, product_name, category_name
-                FROM testproducts
-                INNER JOIN categories ON testproducts.category_id = categories.category_id;
-                -- Join testproducts to categories using the category_id column --
-
-                SELECT testproduct_id, product_name, category_name
-                FROM testproducts
-                FULL JOIN categories ON testproducts.category_id = categories.category_id;
-
-                SELECT testproduct_id, product_name, category_name
-                FROM testproducts
-                CROSS JOIN categories;
-                -- Join testproducts to categories using the CROSS JOIN keyword --
-
-                SELECT product_id, product_name
-                FROM products
-                UNION
-                SELECT testproduct_id, product_name
-                FROM testproducts
-                ORDER BY product_id;
-                -- Combine products and testproducts using the UNION operator --
-
-                SELECT product_id
-                FROM products
-                UNION
-                SELECT testproduct_id
-                FROM testproducts
-                ORDER BY product_id;
-                -- 
-            </code></pre>
-        </li>
-        <li><p><span style="color: blue;">GROUP BY</span>: The GROUP BY clause groups rows that have the same values into summary rows.</p>
-            <pre class="language-sql"><code id="sql-code">
-                SELECT COUNT(customer_id), country
-                FROM customers
-                GROUP BY country;
-                -- Lists the number of customers in each country -- 
-
-                SELECT customers.customer_name, COUNT(orders.order_id)
-                FROM orders
-                LEFT JOIN customers ON orders.customer_id = customers.customer_id
-                GROUP BY customer_name;
-                -- The following SQL statement lists the number of orders made by each customer --
-            </code></pre>
-        </li>
-        <li><p><span style="color: blue;">HAVING</span>: The HAVING clause was added to SQL because the WHERE clause cannot be used 
-            with aggregate functions</p>
-            <pre class="language-sql"><code id="sql-code">
-                SELECT COUNT(customer_id), country
-                FROM customers
-                GROUP BY country
-                HAVING COUNT(customer_id) > 5;
-                -- List only countries that are represented more than 5 times --
-                
-                SELECT order_details.order_id, SUM(products.price)
-                FROM order_details
-                LEFT JOIN products ON order_details.product_id = products.product_id
-                GROUP BY order_id
-                HAVING SUM(products.price) > 400.00;
-                -- lists only orders with a total price of 400$ or more --
-            </code></pre>
-        </li>
-        <li><p><span style="color: blue;">EXISTS</span>: The EXISTS operator is used to test for the existence of any record in a sub query.</p>
-            <pre class="language-sql"><code id="sql-code">
-                SELECT customers.customer_name
-                FROM customers
-                WHERE EXISTS (
-                  SELECT order_id
-                  FROM orders
-                  WHERE customer_id = customers.customer_id
-                );
-                -- Return all customers that is represented in the orders table --
-            </code></pre>
-        </li>
-        <li><p><span style="color: blue;">NOT EXISTS</span>: To check which customers that do not have any orders, we can use the NOT operator together with the EXISTS operator</p>
-            <pre class="language-sql"><code id="sql-code">
-                SELECT customers.customer_name
-                FROM customers
-                WHERE NOT EXISTS (
-                  SELECT order_id
-                  FROM orders
-                  WHERE customer_id = customers.customer_id
-                );
-                -- Return all customers that is NOT represented in the orders table --
-            </code></pre>
-        </li>
-        <li><p><span style="color: blue;">ANY</span>: The ANY operator allows you to perform a comparison between a single column value and a range of other values.</p>
-            <pre class="language-sql"><code id="sql-code">
-                SELECT product_name
-                FROM products
-                WHERE product_id = ANY (
-                SELECT product_id
-                FROM order_details
-                WHERE quantity > 120
-                );
-                -- List products that have ANY records in the order_details table with a quantity larger than 120 --
-            </code></pre>
-        </li>
-        <li><p><span style="color: blue;">ALL</span>: The ALL operator:
+        NoSQL, which stands for "Not Only SQL," is a broad term for a variety of database technologies that are not based on the traditional relational model used in SQL databases. NoSQL databases are designed to store and manage large amounts of unstructured or semi-structured data, which is not well-suited for relational databases.
+        
+        <h5>Characheristics:</h5>
+        Some of the key characteristics of NoSQL databases include:
         <ul>
-            <li>returns a Boolean value as a result</li>
-            <li>returns TRUE if ALL of the sub query values meet the condition</li>
-            <li>is used with SELECT, WHERE and HAVING statements</li>
+            <li><strong>Schemaless: </strong>NoSQL databases do not require a predefined schema, which means that the data structure can evolve over time. This is in contrast to relational databases, which require a rigid schema that is defined in advance.</li>
+            <li><strong>Flexible data structures: </strong>NoSQL databases support a variety of data structures, such as key-value pairs, documents, and graphs. This flexibility allows for more efficient storage and retrieval of different types of data.</li>
+            <li><strong>Horizontal scalability: </strong>NoSQL databases are designed to be horizontally scalable, which means that they can be easily scaled by adding more nodes to the cluster. This is in contrast to relational databases, which are typically vertically scaled by adding more resources to a single server.</li>
         </ul>
-        </p>
-            <pre class="language-sql"><code id="sql-code">
-                SELECT product_name
-                FROM products
-                WHERE product_id = ALL (
-                  SELECT product_id
-                  FROM order_details
-                  WHERE quantity > 10
-                );
-                -- List the products if ALL the records in the order_details with quantity larger than 10. --
-            </code></pre>
-        </li>
-        <li><p><span style="color: blue;">CASE</span>: The CASE expression goes through conditions and 
-            returns a value when the first condition is met (like an if-then-else statement).
-            Once a condition is true, it will stop reading and return the result. If no conditions are 
-            true, it returns the value in the ELSE clause. If there is no ELSE part and no conditions are true, it returns NULL.</p>
-            <pre class="language-sql"><code id="sql-code">
-                SELECT product_name,
-                CASE
-                  WHEN price < 10 THEN 'Low price product'
-                  WHEN price > 50 THEN 'High price product'
-                ELSE
-                  'Normal product'
-                END
-                FROM products;
-                -- Return specific values if the price meets a specific condition --
+        NoSQL databases are often used for applications that require the storage and management of large amounts of unstructured or semi-structured data, such as social media data, e-commerce data, and IoT data. Some popular NoSQL databases include MongoDB, Cassandra, and Couchbase
 
-                SELECT product_name,
-                CASE
-                    WHEN price < 10 THEN 'Low price product'
-                    WHEN price > 50 THEN 'High price product'
-                ELSE
-                    'Normal product'
-                END AS "price category"
-                FROM products;
-                -- Same example, but with an alias for the case column --
-            </code></pre>
-        </li>
-    </ul>
+        <h5>Key differences between the SQL databases and NoSQL databases:</h5>
+        <table>
+            <tr>
+                <th>Feature</th>
+                <th>SQL Databases</th>
+                <th>NoSQL Databases</th>
+            </tr>
+            <tr>
+                <td>Schema</td>
+                <td>Rigid, predefined</td>
+                <td>Schemaless, flexible</td>
+            </tr>
+            <tr>
+                <td>Data structure</td>
+                <td>Tables with rows and columns</td>
+                <td>Key-value pairs, documents, graphs</td>
+            </tr>
+            <tr>
+                <td>Scalability</td>
+                <td>Vertical, limited by single server</td>
+                <td>Horizontal, scalable by adding node</td>
+            </tr>
+            <tr>
+                <td>Use cases</td>
+                <td>Structured data, traditional applications</td>
+                <td>Unstructured or semi-structured data, modern applications</td>
+            </tr>
+        </table>
+
+        <h4>Types of NoSQL Databases:</h4>
+        <ul>
+            <li><strong>Document-Oriented</strong> Stores data in flexible, JSON-like documents. Examples include MongoDB and CouchDB.</li>
+            <li><strong>Key-Value Stores</strong>Simple key-value pairs for data storage. Redis and DynamoDB are examples.</li>
+            <li><strong>Column-Family Stores</strong>Organizes data into columns rather than rows. Apache Cassandra is a popular choice.</li>
+            <li><strong>Graph Databases: </strong> Designed for storing and querying graph-like data structures. Neo4j is a well-known graph database.</li>
+        </ul>
+
+
+        <h4>Use cases:</h4>
+        <ul>
+            <li>NoSQL databases are often used in scenarios where there's a need for quick and agile development.</li>
+            <li>They excel in handling large volumes of data with varying structures.</li>
+            <li>Commonly applied in real-time big data applications and analytics.</li>
+        </ul>
+
+        <h5>Popular NoSQL Databases:</h5>
+        <ul>
+            <li><strong>MongoDB:</strong>Document-oriented and widely used for its scalability and flexibility.</li>
+            <li><strong>Cassandra: </strong>Column-family store known for its high availability and fault tolerance.</li>
+            <li><strong>Redis: </strong>Key-value store with in-memory data storage.</li>
+            <li><strong>Neo4j: </strong>A graph database for handling interconnected data.</li>
+        </ul>
+
+
+
+
+
+
       </section>
        
 
@@ -359,13 +247,7 @@
       <section id="reference">
         <h2>References</h2>
         <ul>
-          <li>My github Repositories on Remote sensing <a href="https://github.com/arunp77/Machine-Learning/" target="_blank">Machine learning</a></li>
-          <li><a href="https://mlu-explain.github.io/linear-regression/" target="_blank">A Visual Introduction To Linear regression</a> (Best reference for theory and visualization).</li>
-          <li>Book on Regression model: <a href="https://avehtari.github.io/ROS-Examples/" target="_blank">Regression and Other Stories</a></li>
-          <li>Book on Statistics: <a href="https://hastie.su.domains/Papers/ESLII.pdf" target="_blank">The Elements of Statistical Learning</a></li>
-          <li>A nice mathematical description on Simple & Multiple Linear Regression Implementation From Basic To Advanced is available at <a href="https://www.youtube.com/watch?v=KZ1mWboXE6g&list=PLZoTAELRMXVPMbdMTjwolBI0cJcvASePD&index=8&ab_channel=KrishNaik" target="_blank">youtube video</a>.</li>
-          <li>A nice mathematical description on Linear Regression,Cost Function,Convergence Algorithm is available at <a href="https://www.youtube.com/watch?v=a22OPjS-4Lc&list=PLZoTAELRMXVPMbdMTjwolBI0cJcvASePD&index=6&ab_channel=KrishNaik" target="_blank">youtube video</a>.</li>
-          <li>A nice mathematical description on Regression Performance Metrics,MSE,MAE,RMSE, R squared is available at <a href="https://www.youtube.com/watch?v=KZ1mWboXE6g&list=PLZoTAELRMXVPMbdMTjwolBI0cJcvASePD&index=8&ab_channel=KrishNaik" target="_blank">youtube video</a>.</li>
+          <li><a href="https://github.com/mongodb/mongo" target="_blank">MongoDB github</a></li>
         </ul>
       </section>
 
