@@ -214,10 +214,139 @@
 
         <h4>Types of NoSQL Databases:</h4>
         <ul>
-            <li><strong>Document-Oriented: </strong> Stores data in flexible, JSON-like documents. Examples include MongoDB and CouchDB.</li>
-            <li><strong>Key-Value Stores: </strong>Simple key-value pairs for data storage. Redis and DynamoDB are examples.</li>
+            <li><strong>Document-Oriented: </strong> Stores data in flexible, JSON-like documents. Examples include MongoDB and CouchDB. Each document contains key-value pairs, and collections group related documents.
+                <pre>
+                    Collection 1
+                    Document 1
+                      {
+                        "field1": "value1",
+                        "field2": "value2",
+                        "field3": "value3"
+                      }
+                    Document 2
+                      {
+                        "field1": "value4",
+                        "field2": "value5",
+                        "field3": "value6"
+                      }
+                  
+                  Collection 2
+                    Document 1
+                      {
+                        "field1": "value7",
+                        "field2": "value8",
+                        "field3": "value9"
+                      }
+                  
+                </pre>
+                <strong>Most dommon data strunctures: </strong>
+                <ul>
+                    <li><strong>JSON or BSON Documents: </strong>Stores data in a flexible, hierarchical format.
+                        <strong>Example: </strong>
+                        <pre>
+                            # Json file
+                            {
+                                "_id": 1,
+                                "name": "John Doe",
+                                "age": 30,
+                                "address": {
+                                  "street": "123 Main St",
+                                  "city": "Exampleville",
+                                  "country": "Exampleland"
+                                }
+                              }                            
+                        </pre>
+                    </li>
+                    <li><strong>Collections: </strong>Groups related documents together for easier organization.
+                        <strong>Example: </strong>
+                        <pre>
+                            // Users Collection
+                            {
+                              "_id": 1,
+                              "name": "John Doe",
+                              "age": 30
+                            }
+                            
+                            // Orders Collection
+                            {
+                              "_id": 101,
+                              "user_id": 1,
+                              "total_amount": 50.00
+                            }                                            
+                        </pre>
+                    </li>
+                </ul>
+            </li>
+            <li><strong>Key-Value Stores: </strong>Simple key-value pairs for data storage. Redis and DynamoDB are examples. In this case data is stored as simple key-value pairs.
+                <pre>
+                    Key: "user:1"
+                    Value: "John Doe"
+                    
+                    Key: "product:42"
+                    Value: "{ name: 'Product A', price: 29.99 }"                    
+                </pre>
+                <strong>Most dommon data strunctures: </strong>
+                <ul>
+                    <li><strong>Hashtable: </strong>Uses keys to directly access data, providing fast retrieval.
+                        <strong>Example: </strong>
+                        <pre>
+                            {
+                                "key1": "value1",
+                                "key2": "value2",
+                                "key3": "value3"
+                              }
+                        </pre>
+                    </li>
+                    <li><strong>B-trees: </strong>Efficiently organizes key-value pairs for range queries and sequential access.
+                        <strong>Example: </strong>
+                        <pre>
+                            {
+                                "key1": "value1",
+                                "key2": "value2",
+                                "key3": "value3"
+                              }
+                        </pre>
+                    </li>
+                </ul>
+            </li>
             <li><strong>Column-Family Stores: </strong>Organizes data into columns rather than rows. Apache Cassandra is a popular choice.</li>
-            <li><strong>Graph Databases: </strong> Designed for storing and querying graph-like data structures. Neo4j is a well-known graph database.</li>
+            <li><strong>Graph Databases: </strong> Designed for storing and querying graph-like data structures. Neo4j is a well-known graph database. In this case data is represented as nodes and relationships between nodes.
+                <pre>
+                    (Node) User1
+                    - Knows
+                      (Node) User2
+                    - Likes
+                      (Node) Product1
+                  
+                  (Node) User3
+                    - Follows
+                      (Node) User1                  
+                </pre>
+                <strong>Most dommon data strunctures: </strong>
+                <ul>
+                    <li><strong>Adjacency List: </strong>Represents graph as a collection of vertices and their adjacent vertices.
+                        <strong>Example: </strong>
+                        <pre>
+                            {
+                                "A": ["B", "C"],
+                                "B": ["A", "D"],
+                                "C": ["A"],
+                                "D": ["B"]
+                              }
+                        </pre>
+                    </li>
+                    <li><strong>Adjacency Matrix: </strong>Stores relationships between vertices in a matrix format.
+                        <strong>Example: </strong>
+                        <pre>
+                            A  B  C  D
+                            A  0  1  1  0
+                            B  1  0  0  1
+                            C  1  0  0  0
+                            D  0  1  0  0
+                        </pre>
+                    </li>
+                </ul>
+            </li>
         </ul>
         <br>
         <table>
@@ -251,7 +380,7 @@
                 <td>Advanced graph search</td>
                 <td>Flexible search</td>
             </tr>
-        </table>
+        </table><br>
 
 
         <h4>Use cases:</h4>
