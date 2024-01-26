@@ -175,11 +175,15 @@
         <h5>Characheristics:</h5>
         Some of the key characteristics of NoSQL databases include:
         <ul>
-            <li><strong>Schemaless: </strong>NoSQL databases do not require a predefined schema, which means that the data structure can evolve over time. This is in contrast to relational databases, which require a rigid schema that is defined in advance.</li>
-            <li><strong>Flexible data structures: </strong>NoSQL databases support a variety of data structures, such as key-value pairs, documents, and graphs. This flexibility allows for more efficient storage and retrieval of different types of data.</li>
-            <li><strong>Horizontal scalability: </strong>NoSQL databases are designed to be horizontally scalable, which means that they can be easily scaled by adding more nodes to the cluster. This is in contrast to relational databases, which are typically vertically scaled by adding more resources to a single server.</li>
+            <li><strong>Schemaless: </strong>NoSQL databases do not require a predefined schema, which means that the data structure can evolve over time. This is in contrast to relational databases, 
+              which require a rigid schema that is defined in advance.</li>
+            <li><strong>Flexible data structures: </strong>NoSQL databases support a variety of data structures, such as key-value pairs, documents, and graphs. This flexibility allows for more 
+              efficient storage and retrieval of different types of data.</li>
+            <li><strong>Horizontal scalability: </strong>NoSQL databases are designed to be horizontally scalable, which means that they can be easily scaled by adding more nodes to the cluster. 
+              This is in contrast to relational databases, which are typically vertically scaled by adding more resources to a single server.</li>
         </ul>
-        NoSQL databases are often used for applications that require the storage and management of large amounts of unstructured or semi-structured data, such as social media data, e-commerce data, and IoT data. Some popular NoSQL databases include MongoDB, Cassandra, and Couchbase
+        NoSQL databases are often used for applications that require the storage and management of large amounts of unstructured or semi-structured data, such as social media data, e-commerce data, 
+        and IoT data. Some popular NoSQL databases include MongoDB, Cassandra, and Couchbase
 
         <p></p>
          
@@ -214,7 +218,8 @@
 
         <h4>Types of NoSQL Databases:</h4>
         <ul>
-            <li><strong>Document-Oriented: </strong> Stores data in flexible, JSON-like documents. Examples include MongoDB and CouchDB. Each document contains key-value pairs, and collections group related documents.
+            <li><strong>Document-Oriented: </strong> Stores data in flexible, JSON-like documents. Examples include MongoDB and CouchDB. 
+              Each document contains key-value pairs, and collections group related documents.
                 <pre>
                     Collection 1
                     Document 1
@@ -310,7 +315,8 @@
                 </ul>
             </li>
             <li><strong>Column-Family Stores: </strong>Organizes data into columns rather than rows. Apache Cassandra is a popular choice.</li>
-            <li><strong>Graph Databases: </strong> Designed for storing and querying graph-like data structures. Neo4j is a well-known graph database. In this case data is represented as nodes and relationships between nodes.
+            <li><strong>Graph Databases: </strong> Designed for storing and querying graph-like data structures. Neo4j is a well-known graph 
+              database. In this case data is represented as nodes and relationships between nodes.
                 <pre>
                     (Node) User1
                     - Knows
@@ -383,6 +389,7 @@
         </table><br>
 
 
+        <!-------------------->
         <h4>Use cases:</h4>
         <ul>
             <li>NoSQL databases are often used in scenarios where there's a need for quick and agile development.</li>
@@ -390,7 +397,8 @@
             <li>Commonly applied in real-time big data applications and analytics.</li>
         </ul>
 
-        <h5>Popular NoSQL Databases:</h5>
+        <!----------------->
+        <h4>Popular NoSQL Databases:</h4>
         <ul>
             <li><strong>MongoDB:</strong>Document-oriented and widely used for its scalability and flexibility.</li>
             <li><strong>Cassandra: </strong>Column-family store known for its high availability and fault tolerance.</li>
@@ -398,9 +406,59 @@
             <li><strong>Neo4j: </strong>A graph database for handling interconnected data.</li>
         </ul>
 
+        <!----------------->
+        <h4>How does MongoDB work?</h4>
+        MongoDB environments offer a server for creating databases, where data is stored as records composed of collections and documents. 
+        Documents, the basic data units, consist of field-value pairs and use Binary JSON (BSON) format for flexibility in data types. 
+        Fields are similar to relational database columns, and documents may include various data types. Collections, akin to tables, group 
+        sets of documents within a database. The mongo shell, an interactive JavaScript interface, facilitates querying, updating, and 
+        administrative operations.
+
+        BSON provides a binary representation of JSON-like documents, enhancing data type accommodation. Automatic sharding enables horizontal 
+        scalability by distributing data across multiple systems. MongoDB utilizes a single master architecture for data consistency, with secondary 
+        databases maintaining copies for automatic failover through replication.
+
+        <!----------------->
+        <h4>Why is MongoDB used?</h4>
+        An organization might want to use MongoDB for the following
+        <ul>
+          <li><strong>Storage: </strong>MongoDB can store large structured and unstructured data volumes and is scalable vertically and horizontally. 
+            Indexes are used to improve search performance. Searches are also done by field, range and expression queries.</li>
+          <li><strong>Data integration: </strong>This integrates data for applications, including for hybrid and multi-cloud applications.</li>
+          <li><strong>Complex data structures descriptions: </strong>Document databases enable the embedding of documents to describe nested 
+            structures (a structure within a structure) and can tolerate variations in data.</li>
+          <li><strong>Load balancing: </strong>MongoDB can be used to run over multiple servers.</li>
+        </ul>
+
+        <!----------------->
+        <h4>Features of MongoDB</h4>
+        Features of MongoDB include the following:
+        <ul>
+          <li><strong>Replication: </strong>A replica set is two or more MongoDB instances used to provide high availability. Replica sets are made 
+            of primary and secondary servers. The primary MongoDB server performs all the read and write operations, while the secondary replica 
+            keeps a copy of the data. If a primary replica fails, the secondary replica is then used.</li>
+          <li><strong>Scalability: </strong>MongoDB supports vertical and horizontal scaling. Vertical scaling works by adding more power to an 
+            existing machine, while horizontal scaling works by adding more machines to a user's resources.</li>
+          <li><strong>Load balancing: </strong>MongoDB handles load balancing without the need for a separate, dedicated load balancer, through either vertical or horizontal scaling.</li>
+          <li><strong>Schema-less: </strong>MongoDB is a schema-less database, which means the database can manage data without the need for a blueprint.</li>
+          <li><strong>Document: </strong>Data in MongoDB is stored in documents with key-value pairs instead of rows and columns, which makes the data more 
+            flexible when compared to SQL databases.</li>
+        </ul>
 
 
+        <!---------------->
+        <h4>Advantages of MongoDB</h4>
+        MongoDB offers several potential benefits:
+        <ul>
+          <li><strong>Schema-less: </strong> Like other NoSQL databases, MongoDB doesn't require predefined schemas. It stores any type of data. This gives users the flexibility to create any number of fields in a document, making it easier to scale MongoDB databases compared to relational databases.</li>
+          <li><strong>Document-oriented: </strong>  One of the advantages of using documents is that these objects map to native data types in several programming languages., Having embedded documents also reduces the need for database joins, which can lower costs.</li>
+          <li><strong>Scalability:</strong>  A core function of MongoDB is its horizontal scalability, which makes it a useful database for companies running big data applications. In addition, sharding lets the database distribute data across a cluster of machines. MongoDB also supports the creation of zones of data based on a shard key.</li>
+          <li><strong>Third-party support: </strong>  MongoDB supports several storage engines and provides pluggable storage engine APIs that let third parties develop their own storage engines for MongoDB.</li>
+          <li><strong>Aggregation: </strong>  The DBMS also has built-in aggregation capabilities, which lets users run MapReduce code directly on the database rather than running MapReduce on Hadoop. MongoDB also includes its own file system called GridFS, akin to the Hadoop Distributed File System. The use of the file system is primarily for storing files larger than BSON's size limit of 16 MB per document. These similarities let MongoDB be used instead of Hadoop, though the database software does integrate with Hadoop, Spark and other data processing frameworks.</li>
 
+        </ul>
+
+        
 
 
       </section>
