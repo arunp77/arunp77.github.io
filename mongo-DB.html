@@ -591,6 +591,134 @@
           <pre class="language-sql"><code>db.students.insertOne({name: "John Doe", age: 25, grade: "A",})</code></pre>
       </ol>
 
+      <!------------------->
+      <h3>Advanced MQL queris:</h3> 
+      Advanced MongoDB Query Language (MQL) queries can involve more complex operations, aggregations, and various stages in the aggregation pipeline. Below are some examples of advanced MQL queries:
+      <ol>
+        <li><strong>Operators:</strong> MongoDB operators are used in queries to perform various operations on documents. Some common operators include:
+          <ul>
+            <li><strong>Comparison Operators:</strong></li>
+            <table>
+              <tr>
+                <th>Operator</th>
+                <th>Description:</th>
+              </tr>
+              <tr>
+                <td><code>$eq</code> </td>
+                <td> Matches values that are equal to a specified value.</td>
+              </tr>
+              <tr>
+                <td><code>$ne</code></td>
+                <td>Matches values that are not equal to a specified value.</td>
+              </tr>
+              <tr>
+                <td><code>$gt</code>, <code>$gte</code></td>
+                <td>Matches values that are greater than (or equal to) a specified value.</td>
+              </tr>
+              <tr>
+                <td><code>$lt</code>, <code>$lte</code></td>
+                <td>Matches values that are less than (or equal to) a specified value.</td>
+              </tr>
+            </table>
+            <li><strong>Logical Operators:</strong></li>
+            <table>
+              <tr>
+                <th>Operator</th>
+                <th>Description:</th>
+              </tr>
+              <tr>
+                <td><code>%and</code>, <code>$or</code>, <code>$not</code></td>
+                <td>Perform logical AND, OR, and NOT operations, respectively.</td>
+              </tr>
+            </table>
+            <li><strong>Element Operators:</strong></li>
+            <table>
+              <tr>
+                <th>Operator</th>
+                <th>Description:</th>
+              </tr>
+              <tr>
+                <td><code>$exists</code></td>
+                <td>Matches documents that have the specified field.</td>
+              </tr>
+              <tr>
+                <td><code>$type</code></td>
+                <td>Selects documents if a field is of the specified type.</td>
+              </tr>
+            </table>
+            <li><strong>Array Operators:</strong></li>
+            <table>
+              <tr>
+                <th>Operator</th>
+                <th>Description:</th>
+              </tr>
+              <tr>
+                <td><code>$in</code></td>
+                <td>Matches any of the values specified in an array.</td>
+              </tr>
+              <tr>
+                <td><code>$all</code></td>
+                <td>Matches arrays that contain all elements specified in the query.</td>
+              </tr>
+            </table>
+          </ul>
+          <pre class="language-sql"><code>
+            // Find documents where age is greater than 25 and grade is "A"
+            db.students.find({ $and: [{ age: { $gt: 25 } }, { grade: "A" }] });          
+          </code></pre>
+        </li>
+        <li><strong>Cursor Methods:</strong>
+          MongoDB provides cursor methods to interact with the result set returned by queries. Common cursor methods include:
+          <table>
+            <tr>
+              <th>Methods</th>
+              <th>Descriptions</th>
+            </tr>
+            <tr>
+              <td><code>limit(n)</code></td>
+              <td>Limits the number of documents returned.</td>
+            </tr>
+            <tr>
+              <td><code>skip(n)</code></td>
+              <td>Skips the first <code>n</code> documents.</td>
+            </tr>
+            <tr>
+              <td><code>sort({ field: 1})</code></td>
+              <td>Sorts the result set in ascending order based on the specified field. Use <code>-1</code> for descending order.</td>
+            </tr>
+            <tr>
+              <td><code>count()</code></td>
+              <td> Returns the count of documents in the result set.</td>
+            </tr>
+            <tr>
+              <td><code>forEach(fn)</code></td>
+              <td>Applies a JavaScript function for each document in the result set.</td>
+            </tr>
+          </table>
+          <strong>Example:</strong>
+          <pre class="language-sql"><code>
+            // Find and limit to 10 documents, skip the first 5, and sort by age in descending order
+            db.students.find().limit(10).skip(5).sort({ age: -1 });          
+          </code></pre>
+        </li>
+        <li><strong>Projections</strong>
+          Projections in MongoDB are used to control which fields are returned in the query result. The <code>project</code> method or the second argument of the <code>find</code> method is used for projections.
+          <ul>
+            <li><strong>Include Fields:</strong></li>
+            <pre class="language-sql"><code>
+              // Only include the name and age fields
+              db.students.find({}, { name: 1, age: 1, _id: 0 });            
+            </code></pre>
+            <li><strong>Exclude Fields:</strong></li>
+            <pre class="language-sql"><code>
+              // Exclude the grade field
+              db.students.find({}, { grade: 0 });            
+            </code></pre>
+            Projections help in reducing the amount of data sent over the network and can improve query performance.
+          </ul>
+        </li>
+      </ol>
+
         
 
  
