@@ -486,6 +486,8 @@
             <li><strong>Find Documents: </strong>
             <pre class="language-sql"><code>db.collection_db.find({ key: value });</code></pre>
             </li>
+            <strong>Example: </strong>
+            <pre class="language-sql"><code>db.students.find({ grade: "A" });</code></pre>
             <li><strong>Specify Multiple Conditions:</strong> 
               <pre class="language-sql"><code>db.collection_db.find({ key1: value1, key2: value2 });</code></pre>
             </li>
@@ -530,9 +532,21 @@
               <pre class="language-sql"><code>db.collection_db.updateOne({ filter }, { $set: { key: value } });</code></pre>
             </li>
             <strong>Example:</strong>
-            <pre class="language-sql"><code>db.collection_db.updateOne({ name: "John Doe" }, { $set: { age: 28 } });</code></pre>
+            <pre class="language-sql"><code>db.students.updateOne(
+              { name: "John Doe" }, 
+              { 
+                $set: : { 
+                  age: 28 
+                } 
+              });</code></pre>
             <li><strong>Update Multiple Documents:</strong>
-              <pre class="language-sql"><code>db.collection_db.updateMany({ filter }, { $set: { key: value } });</code></pre>
+              <pre class="language-sql"><code>db.collection_db.updateMany(
+                { filter }, 
+                { 
+                  $set: { 
+                    key: value 
+                  } 
+                });</code></pre>
             </li>
           </ul>
         </li>
@@ -541,8 +555,10 @@
             <li><strong>Delete a Single Document: </strong>
               <pre class="language-sql"><code>db.collection_db.deleteOne({ filter });</code></pre>
             </li>
+            <strong>Example:</strong>
+            <pre class="language-sql"><code>db.students.deleteOne({ name: "John Doe", });</code></pre>
             <li><strong>Delete Multiple Documents:</strong>
-              <pre class="language-sql"><code>db.collection_db.deleteMany({ filter });</code></pre>
+              <pre class="language-sql"><code>db.students.deleteOne({ filter });</code></pre>
             </li>
           </ul>
         </li>
@@ -572,7 +588,7 @@
           <pre class="language-sql"><code>db.collection_db.insertOne({key1 : value1, key2 : value2})</code></pre>
         </li>
         <strong>Example:</strong>
-          <pre class="language-sql"><code>db.collection_db.insertOne({name: "John Doe", age: 25, grade: "A"})</code></pre>
+          <pre class="language-sql"><code>db.students.insertOne({name: "John Doe", age: 25, grade: "A",})</code></pre>
       </ol>
 
         
