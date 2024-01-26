@@ -450,17 +450,134 @@
         <h4>Advantages of MongoDB</h4>
         MongoDB offers several potential benefits:
         <ul>
-          <li><strong>Schema-less: </strong> Like other NoSQL databases, MongoDB doesn't require predefined schemas. It stores any type of data. This gives users the flexibility to create any number of fields in a document, making it easier to scale MongoDB databases compared to relational databases.</li>
-          <li><strong>Document-oriented: </strong>  One of the advantages of using documents is that these objects map to native data types in several programming languages., Having embedded documents also reduces the need for database joins, which can lower costs.</li>
-          <li><strong>Scalability:</strong>  A core function of MongoDB is its horizontal scalability, which makes it a useful database for companies running big data applications. In addition, sharding lets the database distribute data across a cluster of machines. MongoDB also supports the creation of zones of data based on a shard key.</li>
+          <li><strong>Schema-less: </strong> Like other NoSQL databases, MongoDB doesn't require predefined schemas. It stores any type of data. This gives users the flexibility to create 
+            any number of fields in a document, making it easier to scale MongoDB databases compared to relational databases.</li>
+          <li><strong>Document-oriented: </strong>  One of the advantages of using documents is that these objects map to native data types in several programming languages., 
+            Having embedded documents also reduces the need for database joins, which can lower costs.</li>
+          <li><strong>Scalability:</strong>  A core function of MongoDB is its horizontal scalability, which makes it a useful database for companies running big data applications. In addition, 
+            sharding lets the database distribute data across a cluster of machines. MongoDB also supports the creation of zones of data based on a shard key.</li>
           <li><strong>Third-party support: </strong>  MongoDB supports several storage engines and provides pluggable storage engine APIs that let third parties develop their own storage engines for MongoDB.</li>
-          <li><strong>Aggregation: </strong>  The DBMS also has built-in aggregation capabilities, which lets users run MapReduce code directly on the database rather than running MapReduce on Hadoop. MongoDB also includes its own file system called GridFS, akin to the Hadoop Distributed File System. The use of the file system is primarily for storing files larger than BSON's size limit of 16 MB per document. These similarities let MongoDB be used instead of Hadoop, though the database software does integrate with Hadoop, Spark and other data processing frameworks.</li>
-
+          <li><strong>Aggregation: </strong>  The DBMS also has built-in aggregation capabilities, which lets users run MapReduce code directly on the database rather than running MapReduce on 
+            Hadoop. MongoDB also includes its own file system called GridFS, akin to the Hadoop Distributed File System. The use of the file system is primarily for storing files larger than BSON's 
+            size limit of 16 MB per document. These similarities let MongoDB be used instead of Hadoop, though the database software does integrate with Hadoop, Spark and other data processing frameworks.</li>
         </ul>
+
+        <!----------------------->
+        <h5>Disadvantages of MongoDB</h5>
+        Though there are some valuable benefits to MongoDB, there are some downsides to it as well.
+        <ul>
+          <li><strong>Continuity.: </strong> With its automatic failover strategy, a user sets up just one master node in a MongoDB cluster. If the master fails, another node will automatically convert to the 
+            new master. This switch promises continuity, but it isn't instantaneous -- it can take up to a minute. By comparison, the Cassandra NoSQL database supports multiple master nodes. If one master goes 
+            down, another is standing by, creating a highly available database infrastructure.</li>
+          <li><strong>Write limits: </strong> MongoDB's single master node also limits how fast data can be written to the database. Data writes must be recorded on the master, and writing new information to 
+            the database is limited by the capacity of that master node.</li>
+          <li><strong>Data consistency: </strong> MongoDB doesn't provide full referential integrity through the use of foreign-key constraints, which could affect data consistency.</li>
+          <li><strong>Security: </strong> In addition, user authentication isn't enabled by default in MongoDB databases. However, malicious hackers have targeted large numbers of unsecured MongoDB systems in 
+            attacks, which led to the addition of a default setting that blocks networked connections to databases if they haven't been configured by a database administrator.</li>
+      </ul>
+
+      <!---------------------->
+      <h3>MongoDB query language (MQL):</h3>
+      MongoDB uses a query language called MongoDB Query Language (MQL) for interacting with its databases. MQL provides a set of operators and methods for querying, updating, and manipulating data within 
+      MongoDB collections. Here are some detailed MQL queries for common operations (assume that our collection name is: <code>collection_db</code>): 
+      <ol>
+        <li><strong>Basics of Querying: </strong>
+          <ul>
+            <li><strong>Find Documents: </strong>
+            <pre class="language-sql"><code>db.collection_db.find({ key: value });</code></pre>
+            </li>
+            <li><strong>Specify Multiple Conditions:</strong> 
+              <pre class="language-sql"><code>db.collection_db.find({ key1: value1, key2: value2 });</code></pre>
+            </li>
+            <li><strong>Query with Operators:</strong>
+              <pre class="language-sql"><code>db.collection_db.find({ age: { $gt: 25 } });</code></pre>
+            </li>
+          </ul>
+        </li>
+        <li><strong>Projection: </strong>
+          <ul>
+            <li><strong>Select Fields to Return:</strong>
+              <pre class="language-sql"><code>db.collection_db.find({}).project({ key1: 1, key2: 1 });</code></pre>
+            </li>
+            <li><strong>Exclude Fields:</strong>
+              <pre class="language-sql"><code>db.collection_db.find({}).project({ keyToExclude: 0 });</code></pre>
+            </li>
+          </ul>
+        </li>
+        <li><strong>Sorting: </strong>
+          <ul>
+            <li><strong>Sort in Ascending Order:</strong>
+              <pre class="language-sql"><code>db.collection_db.find({}).sort({ key: 1 });</code></pre>
+            </li>
+            <li><strong>Sort in Descending Order:</strong>
+              <pre class="language-sql"><code>db.collection_db.find({}).sort({ key: -1 });</code></pre>
+            </li>
+          </ul>
+        </li>
+        <li><strong>Limit and skips: </strong>
+          <ul>
+            <li><strong>Limit Results:</strong>
+              <pre class="language-sql"><code>db.collection_db.find({}).limit(10);</code></pre>
+            </li>
+            <li><strong>Skip Results:</strong>
+              <pre class="language-sql"><code>db.collection_db.find({}).skip(5);</code></pre>
+            </li>
+          </ul>
+        </li>
+        <li><strong>Update Documents: </strong> To update a document in a collection:
+          <ul>
+            <li><strong>Update a Single Document:</strong>
+              <pre class="language-sql"><code>db.collection_db.updateOne({ filter }, { $set: { key: value } });</code></pre>
+            </li>
+            <strong>Example:</strong>
+            <pre class="language-sql"><code>db.collection_db.updateOne({ name: "John Doe" }, { $set: { age: 28 } });</code></pre>
+            <li><strong>Update Multiple Documents:</strong>
+              <pre class="language-sql"><code>db.collection_db.updateMany({ filter }, { $set: { key: value } });</code></pre>
+            </li>
+          </ul>
+        </li>
+        <li><strong>Delete Documents: </strong>
+          <ul>
+            <li><strong>Delete a Single Document: </strong>
+              <pre class="language-sql"><code>db.collection_db.deleteOne({ filter });</code></pre>
+            </li>
+            <li><strong>Delete Multiple Documents:</strong>
+              <pre class="language-sql"><code>db.collection_db.deleteMany({ filter });</code></pre>
+            </li>
+          </ul>
+        </li>
+        <li><strong>Aggregration frameworks: </strong>
+          <ul>
+            <li><strong>Aggregate Data:</strong>
+              <pre class="language-sql"><code>
+                db.collection_db.aggregate([
+                { $match: { key: value } },
+                { $group: { _id: "$key", count: { $sum: 1 } } },
+              ]);                
+              </code></pre>
+            </li>
+          </ul>
+        </li>
+        <li><strong>Indexes: </strong>
+          <ul>
+            <li><strong>Create an Index:</strong>
+              <pre class="language-sql"><code>db.collection_db.createIndex({ key: 1 });</code></pre>
+            </li>
+            <li><strong>Explain Query Execution Plan:</strong>
+              <pre class="language-sql"><code>db.collection_db.find({ key: value }).explain("executionStats");</code></pre>
+            </li>
+          </ul>
+        </li>
+        <li><strong>Insert Docuemnt:</strong> To insert a document into a collection: 
+          <pre class="language-sql"><code>db.collection_db.insertOne({key1 : value1, key2 : value2})</code></pre>
+        </li>
+        <strong>Example:</strong>
+          <pre class="language-sql"><code>db.collection_db.insertOne({name: "John Doe", age: 25, grade: "A"})</code></pre>
+      </ol>
 
         
 
-
+ 
       </section>
        
 
