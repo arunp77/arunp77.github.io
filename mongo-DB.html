@@ -488,6 +488,16 @@
             </li>
             <strong>Example: </strong>
             <pre class="language-sql"><code>db.students.find({ grade: "A" });</code></pre>
+            <strong>Example:</strong>
+            <pre class="language-sql"><code>
+              // Example: Search for documents containing the word "MongoDB"
+              db.articles.find({ $text: { $search: "MongoDB" } });              
+            </code></pre>
+            <strong>Example:</strong>
+            <pre class="language-sql"><code>
+              // Example: Find documents where the array "scores" has at least one element greater than 90
+              db.students.find({ "scores": { $elemMatch: { $gt: 90 } } });
+            </code></pre>
             <li><strong>Specify Multiple Conditions:</strong> 
               <pre class="language-sql"><code>db.collection_db.find({ key1: value1, key2: value2 });</code></pre>
             </li>
@@ -571,7 +581,15 @@
                 { $group: { _id: "$key", count: { $sum: 1 } } },
               ]);                
               </code></pre>
+              <strong>Example:</strong>
             </li>
+            <pre class="language-sql"><code>
+              // Example: Calculate the average age of students in each grade
+              db.students.aggregate([
+                { $group: { _id: "$grade", avgAge: { $avg: "$age" } } },
+                { $sort: { avgAge: -1 } },
+              ]);
+            </code></pre>
           </ul>
         </li>
         <li><strong>Indexes: </strong>
