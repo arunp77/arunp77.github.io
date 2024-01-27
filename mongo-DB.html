@@ -737,6 +737,33 @@
         </li>
       </ol>
       </section>
+
+      <!---------------------->
+
+      <h3>CRUD operations</h3>
+      In MongoDB, CRUD stands for Create, Read, Update, and Delete – the basic operations that can be performed on documents in a collection. Here's a brief overview of each CRUD operation in the context of MongoDB:
+      <ol>
+        <li><strong>Create (C):</strong> To insert a new document into a collection, you use the <code>insertOne()</code> or <code>insertMany()</code> method.
+          <pre class="language-sql"><code>
+            db.collection.insertOne({ name: "John Doe", age: 30, city: "Example City" });
+          </code></pre>
+        </li>
+        <li><strong>Read(R):</strong> To retrieve documents from a collection, you use the <code>find()</code> method. You can specify criteria for filtering results.
+          <pre class="language-sql"><code>
+            db.collection.find({ age: { $gt: 25 } });
+          </code></pre>
+        </li>
+        <li><strong>Update (U):</strong> To modify existing documents, you use the <code>updateOne()</code> or <code>updateMany()</code> method. You can specify criteria for matching and define the changes using update operators.
+          <pre class="language-sql"><code>
+            db.collection.updateOne({ name: "John Doe" }, { $set: { age: 31 } });
+          </code></pre>
+        </li>
+        <li><strong>Delte (D):</strong> To remove documents from a collection, you use the <code>deleteOne()</code> or <code>deleteMany()</code> method. You specify criteria for matching documents to be deleted.
+          <pre class="language-sql"><code>
+            db.collection.deleteOne({ name: "John Doe" });
+          </code></pre>
+        </li>
+      </ol>
        
 
 
