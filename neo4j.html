@@ -148,7 +148,7 @@
             <div class="portfolio-details-slider swiper">
               <div class="swiper-wrapper align-items-center"> 
                 <figure>
-                  <img src="assets/img/data-engineering/sql-logo.png" alt="" style="max-width: 80%; max-height: auto;">
+                  <img src="assets/img/data-engineering/neo4j.png" alt="" style="max-width: 80%; max-height: auto;">
                   <figcaption></figcaption>
                 </figure>
               </div>
@@ -168,7 +168,107 @@
         </div>
       </div>
 
-      <section id="introduction">
+      <section>
+        <h3 id="introduction">Introduction</h3>
+        We'll explore graph-oriented databases using Neo4j as a prominent example in the present page. Graph databases are a type of NoSQL database designed to handle data with complex relationships more efficiently than traditional relational databases.
+        This discussion will delve into the organizational structure of data within such databases and 
+        uncover the advantages derived from graph theory.
+
+        <h4>Intoduction to graph theory</h4>
+        Graph theory, a branch of mathematics, focuses on examining the relationships between various entities. To simplify the concept of a graph, it can be defined as a collection of nodes, some of which may be connected by edges.
+        Here are the key points in Graph theory:
+        <ul>
+            <li><strong>Nodes: </strong>Represent entities in the system.</li>
+            <li><strong>Edges: </strong>Define relationships between nodes, often with properties describing the connection.</li>
+            <li><strong>Properties: </strong>Key-value pairs associated with nodes and edges.</li>
+        </ul>
+        The key characteristics of the grapg theory is as follows:
+        <ul>
+            <li><strong>Flexibility: </strong>Graph databases are schema-less, allowing for dynamic and evolving data structures.</li>
+            <li><strong>Performance: </strong>Well-suited for relationship-heavy data, providing fast query performance for complex queries.</li>
+        </ul>
+
+        <h4>Common Graph Database Models</h4>
+        <ul>
+            <li><strong>Property Graph Model: </strong>Nodes and edges can have properties. Commonly used by databases like Neo4j.</li>
+            <pre class="language-sql"><code>
+                (Person)-[:FRIENDS_WITH {since: 2010}]->(Person)
+            </code></pre>
+            <li><strong>Resource Description Framework (RDF): </strong>Represents information in the form of subject-predicate-object triples. Used in databases like Virtuoso and Stardog.</li>
+        </ul>
+
+        <!-------------------->
+        <h3>Cypher Query Language</h3>
+        Cypher is a declarative query language designed specifically for querying graph databases. It is primarily associated with Neo4j, one of the leading graph database management systems. Cypher is designed to express patterns and relationships 
+        in the graph data model efficiently. Here are some key features and concepts of Cypher:
+        <ol>
+            <li><strong>Pattern Matching: </strong>Cypher uses a pattern-matching syntax to describe the structure of the graph you want to query.
+            <pre class="language-sql"><code>
+                MATCH (p:Person)-[:FRIENDS_WITH]->(friend)
+                RETURN p.name, friend.name
+            </code></pre>
+            In this example, it's matching a pattern where a <code>Person</code> node is connected to another <code>Person</code> node with a <code>FRIENDS_WITH</code> relationship.
+            </li>
+            <li><strong>Nodes and Relationships</strong>Nodes are represented by parentheses <code>( )</code>, and relationships by square brackets <code>[ ]</code>. You can assign labels and properties to nodes and specify relationship types and properties.</li>
+            <li><strong>Filtering and Conditions</strong> You can filter query results using conditions in the WHERE clause.
+            <pre class="language-sql"><code>
+                MATCH (p:Person)
+                WHERE p.age > 25
+                RETURN p.name
+            </code></pre>
+            </li>
+            <li><strong>Return Clause</strong> The <code>RETURN</code> clause specifies what data should be returned in the result set.
+            <pre class="language-sql"><code>
+                MATCH (p:Person)-[:FRIENDS_WITH]->(friend)
+                RETURN p.name, friend.name
+            </code></pre>
+            </li>
+            <li><strong>CREATE and SET Clauses: </strong>Used for creating nodes and relationships or updating properties.
+            <pre class="language-sql"><code>
+                CREATE (p:Person {name: 'John'})
+                CREATE (friend)-[:FRIENDS_WITH {since: 2010}]->(p)
+            </code></pre></li>
+            <li><strong>MERGE Clause: </strong> Creates or matches a pattern, ensuring that it's unique in the graph.
+                <pre class="language-sql"><code>MERGE (p:Person {name: 'Alice'})</code></pre></li>
+            <li><strong>DELETE Clause: </strong> Removes nodes, relationships, or properties from the graph.
+            <pre class="language-sql"><code>
+                MATCH (p:Person)
+                WHERE p.name = 'John'
+                DELETE p
+            </code></pre></li>
+            <li><strong>Aggregation Functions: </strong>Cypher supports aggregation functions like <code>COUNT</code>, <code>SUM</code>, <code>AVG</code>, etc., for summarizing data. 
+            <pre class="language-sql"><code>
+                MATCH (p:Person)-[:FRIENDS_WITH]->()
+                RETURN p.name, COUNT(*) AS friendsCount
+            </code></pre></li>
+            <li><strong>ORDER BY and LIMIT: </strong> Used for sorting and limiting the result set.
+            <pre class="language-sql"><code>
+                MATCH (p:Person)
+                RETURN p.name
+                ORDER BY p.age DESC
+                LIMIT 5
+            </code></pre></li>
+        </ol>
+
+
+
+
+
+
+
+        <!-------------------->
+        <h5>Example:</h5>
+        <ul>
+            <li><strong>Social Networks: </strong> Nodes represent individuals, and edges represent connections or friendships between them. Graph theory can help analyze the structure of social networks and identify influential individuals.</li>
+            <li><strong>Transportation Networks: </strong>Nodes can represent cities or locations, and edges represent roads, railways, or flight routes connecting them. Graph theory assists in optimizing transportation routes and understanding network connectivity.</li>
+            <li><strong>Web Pages and Hyperlinks: </strong>Web pages can be represented as nodes, and hyperlinks between pages as edges. Graph theory is applied to analyze the structure of the World Wide Web, identify important pages, and improve search algorithms.</li>
+            <li><strong>Recommendation Systems: </strong>Nodes can represent users, and edges represent preferences or interactions between them. Graph theory helps build recommendation systems by identifying patterns in user preferences and suggesting relevant items.</li>
+            <li><strong>Biological Networks: </strong>Nodes may represent proteins, genes, or other biological entities, and edges represent interactions or relationships between them. Graph theory is used in bioinformatics to study biological networks.</li>
+            <li><strong>Circuit Design: </strong>Components of an electronic circuit can be represented as nodes, and connections between components as edges. Graph theory aids in designing and analyzing electronic circuits.</li>
+            <li><strong>Epidemiology: </strong>Nodes can represent individuals, and edges represent the potential for disease transmission. Graph theory is applied to model and analyze the spread of diseases in populations.</li>
+            <li><strong>Knowledge Graphs: </strong>Nodes represent concepts, and edges represent relationships between concepts. Graph theory is used to build knowledge graphs, facilitating semantic understanding and information retrieval.</li>
+        </ul>
+
 
 
 
@@ -182,7 +282,7 @@
       <section id="reference">
         <h2>References</h2>
         <ul>
-          <li><a href="https://github.com/mongodb/mongo" target="_blank">MongoDB github</a></li>
+          <li><a href="https://neo4j.com/developer/get-started/" target="_blank">Getting Started with Neo4j</a></li>
           <li><a href="https://www.mongodb.com/docs/manual/reference/method/" target="_blank">MongoDB documentation</a>.</li>
         </ul>
       </section>
