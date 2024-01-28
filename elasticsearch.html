@@ -162,11 +162,29 @@
             <h3>Content</h3>
             <ol>
               <li><a href="#introduction">Introduction</a></li>
+              <ul>
+                <li><a href="#application">Application</a></li>
+                <li><a href="#benefits-1">Benefits</a></li>
+                <li><a href="#elk-suite">The Elastic (ELK) suite</a></li>
+              </ul>
+              <li><a href="#dataformat">The data storage format</a></li>
+              <ul>
+                <li><a href="#index-1">Indexes</a></li>
+                <li><a href="#node-system">The node system</a></li>
+              </ul>
+              <li><a href="#sharding">Sharding</a></li>
+              <ul>
+                <li><a href="#sharding-benefits">Benefits of Sharding in Elasticsearch</a></li>
+                <li><a href="#sharding-works">How Sharding Works in Elasticsearch</a></li>
+              </ul>
+              <li><a href="#replication">Replication</a></li>
               <li><a href="#reference">Reference</a></li>
             </ol>
           </div>
         </div>
       </div>
+
+      
 
       <section>
         <h3 id="introduction">Introduction</h3>
@@ -199,7 +217,7 @@
 
 
         <!------------------>
-        <h4>Benefits</h4>
+        <h4 id="benefits-1">Benefits</h4>
         Here are some of the benefits of using Elasticsearch:
         <ul>
             <li><strong>Scalability:</strong> Elasticsearch is designed to be highly scalable, so it can be easily adapted to handle increasing data volumes and usage demands.</li>
@@ -253,7 +271,7 @@
 
 
         <!----------->
-        <h4>Indexes</h4>
+        <h4 id="index-1">Indexes</h4>
         <ul>
           <li>A set of documents is stored in an index. Each index therefore contains a group of documents assembled in a logical way. In comparison, an index in Elasticsearch corresponds 
             to a database in a relational SQL database and can represent a list of users, articles, countries, etc.</li>
@@ -264,7 +282,7 @@
         </ul>
 
         <!----------->
-        <h4>The node system</h4>
+        <h4 id="node-system">The node system</h4>
         <ul>
           <li>A node is essentially an Elasticsearch instance that stores data. If our system contains 3 nodes, that means our data is spread across 3 separate ES instances.</li>
           <li>A node refers to an instance of Elasticsearch, not a machine, so you can run any number of nodes on the same machine. A cluster is a collection of linked nodes that together 
@@ -296,7 +314,7 @@
         By default, each index is stored on a single fragment, but this can be configured when creating an index.
         
         <!----------->
-        <h5>Benefits of Sharding in Elasticsearch</h5>
+        <h5 id="sharding-benefits">Benefits of Sharding in Elasticsearch</h5>
         <ul>
           <li><strong>Horizontal Scalability: </strong>By distributing data across multiple shards and nodes, sharding allows Elasticsearch to handle increasing data volumes without requiring a single node to store the entire dataset. This makes Elasticsearch highly scalable for large-scale deployments.</li>
           <li><strong>Improved Query Performance: </strong>Sharding enables parallelization of indexing and search operations, which can significantly improve query performance. With multiple shards handling search requests, queries can be processed more efficiently and reduce response times.</li>
@@ -304,7 +322,7 @@
         </ul>
 
         <!----------->
-        <h5>How Sharding Works in Elasticsearch:</h5>
+        <h5 id="sharding-works">How Sharding Works in Elasticsearch:</h5>
         <ul>
           <li><strong>Index Creation: </strong>When an index is created, the number of shards is specified. Each shard is a self-contained Lucene index, capable of indexing, searching, and managing documents.</li>
           <li><strong>Shard Distribution: </strong>Shards are distributed across nodes in the cluster based on a predefined allocation strategy. This strategy aims to distribute shards evenly among nodes to balance the load and ensure efficient data access.</li>
@@ -346,6 +364,7 @@
         <h2>References</h2>
         <ul>
           <li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/getting-started.html" target="_blank">Getting Started with Elasticsearch</a></li>
+          <li>This content is part of my study of a module on Elastic search provided by <a href="https://datascientest.com/en/" target="_blank">Datascientist</a>.</li>
         </ul>
       </section>
 
