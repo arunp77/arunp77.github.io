@@ -159,6 +159,20 @@
                         <h3>Content</h3>
                         <ol>
                             <li><a href="#introduction">Introduction</a></li>
+                            <li><a href="#pca-definition">Defining PCA</a></li>
+                            <ul>
+                                <li><a href="#why-pca">Why PCA is useful?</a></li>
+                                <li><a href="#application">Applications of PCA</a></li>
+                                <li><a href="#limitations">Limitations of PCA</a></li>
+                                <li><a href="#Practical-example">Practical example</a></li>
+                                <li><a href="#principal-compoenent">What Are Principal Components?</a></li>
+                            </ul>
+                            <li><a href="#how-pca-works">How PCA works?</a></li>
+                            <ul>
+                                <li><a href="#Process">Process of doing the PCA</a></li>
+                            </ul>
+                            <li><a href="#example-1">Example</a></li>
+                            <li><a href="#PCA-in-machine-learning">Application of PCA in machine learning</a></li>
                             <li><a href="#reference">Reference</a></li>
                         </ol>
                     </div>
@@ -167,10 +181,6 @@
 
             <section>
             <h3 id="introduction">Introduction</h3>
-            Principal component analysis (PCA) is a statistical procedure that is commonly used to reduce the dimensionality of large data sets. It does this by transforming the data into 
-            a new coordinate system where the new variables are linear combinations of the original variables. The new variables are chosen so that they capture the most variance in the data.
-
-            <br><br>
             <p>Imagine you're working on a big data project, and the data has too many features or predicators or variables. Now, picture scenario where the dataset has too many variables.
                 As you delve into the analysis, you may encounter few possible situations. For example, you find that most of the features are correlated on analysis, 
                 and you become clueless about which feature should I choose for your analysis. One possibility to run a model on the whole data. This returns poor accuracy, 
@@ -182,8 +192,13 @@
             <p>In summary, while Ridge, Lasso, and Elastic Net focus on regularization, PCA focuses on reducing dimensionality, which can be beneficial in situations with a high number of features or multicollinearity. 
                 Statistical techniques such as factor analysis and PCA help to overcome such difficulties of choosing important features.</p>
             
+            <!---------------->
+            <h3 id="pca-definition">Defining PCA</h3>
+            Principal component analysis (PCA) is a statistical procedure that is commonly used to reduce the dimensionality of large data sets. It does this by transforming the data into 
+            a new coordinate system where the new variables are linear combinations of the original variables. The new variables are chosen so that they capture the most variance in the data.
+
             <!---------------------->
-            <h3 id="why-pca">Why PCA is useful</h3>
+            <h4 id="why-pca">Why PCA is useful</h4> 
             PCA is useful for several reasons:
             <ul>
                 <li><strong>Dimensionality reduction: </strong>PCA can be used to reduce the dimensionality of large data sets, which can make them easier to analyze and visualize.</li>
@@ -196,7 +211,7 @@
 
 
             <!--------------------->
-            <h3 id="application">Applications of PCA</h3>
+            <h4 id="application">Applications of PCA</h4>
             PCA has a wide range of applications in various fields, including:
             <ul>
                 <li><strong>Machine learning: </strong>PCA is a common preprocessing step in machine learning algorithms. It can be used to reduce the dimensionality of training data, which can improve the performance of the algorithm.</li>
@@ -207,7 +222,7 @@
 
 
             <!---------------------->
-            <h3 id="limitations">Limitations of PCA</h3>
+            <h4 id="limitations">Limitations of PCA</h4>
             PCA is a powerful tool, but it also has some limitations:
             <ul>
                 <li>PCA is based on the assumption that the data is Gaussian. This means that the data should be normally distributed. If the data is not normally distributed, PCA may not be able to accurately capture the most important features of the data.</li>
@@ -217,7 +232,7 @@
 
             <!----------------------->
 
-            <h5>Practical example</h5>
+            <h4 id="Practical-example">Practical example</h4>
             Let's consider a secanrio, you have a datasets of dimention \(n = 1000\) (rows) x \(p = 40\) (columns). These 40 columns represents possible features. 
             But not all columns can be considered to be a feature. There are total row \(p \times (p-1)/2 =780\) numbers of scattered plots one can generate to see the possible relationships between the features. 
             So it's almost impossible to find the relationships between the variables.  In this case, the correlation of all these can actually gives you the clear image of the important features for your model.
@@ -234,7 +249,7 @@
 
             
             <!----------------->
-            <h3 id="principal-compoenent">What Are Principal Components?</h3>
+            <h4 id="principal-compoenent">What Are Principal Components?</h4>
             Principal components are the orthogonal (uncorrelated) linear combinations of the original features in a dataset. These components are ordered by the amount of variance they explain in the data. 
 
             <p>The principal components are obtained through linear combination of the original variables. Let's say you have a dataset 
@@ -319,10 +334,7 @@
                 <li>The new coordinate in \(Y\) represent the data in the principle component space. The first principal component (PC1) captures the most varaince, followd by (PC2), and so on. By choosing a subset of the principal components, you can achieve dimensionality reduction while retaining most of the information present in the original data.</li>
             </ul>
 
-
-            
-
-
+            <!----------------------->
             <h3 id="example-1">Example:</h3>
             <h5>Example-1</h5>
             Let's walk through a simplified mathematical example of Principal Component Analysis (PCA) using a small dataset. Consider the following 2D dataset with three observations:
@@ -468,13 +480,7 @@
                 <li><strong>Anomaly detection: </strong>PCA can be used to detect anomalies in data. This is done by projecting the data onto the principal components, and then looking for outliers in the projected data.</li>
                 <li><strong>Recommendation systems: </strong>PCA can be used to recommend products or services to customers. This is done by analyzing the customer's purchase history and then using PCA to identify patterns in the data. These patterns can then be used to recommend products or services that the customer is likely to be interested in.</li>
             </ul>
-
-
-
             </section>
-
-            
-
 
             <!-------Reference ------->
             <section id="reference">
