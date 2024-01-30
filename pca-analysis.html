@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>PCA</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/Favicon-1.png" rel="icon">
+  <link href="assets/img/Favicon-1.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <!-- Creating a python code section-->
+  <link rel="stylesheet" href="assets/css/prism.css">
+  <script src="assets/js/prism.js"></script>
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- To set the icon, visit https://fontawesome.com/account-->
+  <script src="https://kit.fontawesome.com/5d25c1efd3.js" crossorigin="anonymous"></script>
+  <!-- end of icon-->
+
+  <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+
+<style>
+  /* Add some basic styling for code */
+  pre {
+      background-color: #f4f4f4;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-family: monospace;
+      white-space: pre-wrap;
+  }
+</style>
+
+  <!-- =======================================================
+  * Template Name: iPortfolio
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Mobile nav toggle button ======= -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="d-flex flex-column">
+
+      <div class="profile">
+        <img src="assets/img/myphoto.jpeg" alt="" class="img-fluid rounded-circle">
+        <h1 class="text-light"><a href="index.html">Arun</a></h1>
+        <div class="social-links mt-3 text-center">
+          <a href="https://www.linkedin.com/in/arunp77/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+          <a href="https://github.com/arunp77" class="github"><i class="bx bxl-github"></i></a>
+          <a href="https://twitter.com/arunp77_" class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="https://www.instagram.com/arunp77/" class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="https://arunp77.medium.com/" class="medium"><i class="bx bxl-medium"></i></a>
+        </div>
+      </div>
+
+      <nav id="navbar" class="nav-menu navbar">
+        <ul>
+          <li><a href="index.html#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+          <li><a href="index.html#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
+          <li><a href="index.html#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+          <li><a href="index.html#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+          <li><a href="index.html#skills-and-tools" class="nav-link scrollto"><i class="bx bx-wrench"></i> <span>Skills and Tools</span></a></li>
+          <li><a href="index.html#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li>
+          <li><a href="index.html#professionalcourses" class="nav-link scrollto"><i class="bx bx-book-alt"></i> <span>Professional Certification</span></a></li>
+          <li><a href="index.html#publications" class="nav-link scrollto"><i class="bx bx-news"></i> <span>Publications</span></a></li>
+          <li><a href="index.html#extra-curricular" class="nav-link scrollto"><i class="bx bx-rocket"></i> <span>Extra-Curricular Activities</span></a></li>
+          <li><a href="index.html#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+    </div>
+  </header><!-- End Header -->
+
+<main id="main">
+
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs"> 
+          <div class="container">
+    
+            <div class="d-flex justify-content-between align-items-center">
+              <h2>Machine Learning</h2>
+              <ol>
+                <li><a href="portfolio-details-1.html" class="clickable-box">Content section</a></li>
+                <li><a href="index.html#portfolio" class="clickable-box">Portfolio section</a></li>
+              </ol>
+            </div>
+    
+          </div>
+        </section><!-- End Breadcrumbs -->
+
+    <!------  right dropdown menue ------->
+    <div class="right-side-list">
+      <div class="dropdown">
+          <button class="dropbtn"><strong>Shortcuts:</strong></button>
+          <div class="dropdown-content">
+              <ul>
+                  <li><a href="cloud-compute.html"><i class="fas fa-cloud"></i> Cloud</a></li>
+                  <li><a href="AWS-GCP.html"><i class="fas fa-cloud"></i> AWS-GCP</a></li>
+                  <li><a href="amazon-s3.html"><i class="fas fa-cloud"></i> AWS S3</a></li>
+                  <li><a href="ec2-confi.html"><i class="fas fa-server"></i> EC2</a></li>
+                  <li><a href="Docker-Container.html"><i class="fab fa-docker" style="color: rgb(29, 27, 27);"></i> Docker</a></li>
+                  <li><a href="Jupyter-nifi.html"><i class="fab fa-python" style="color: rgb(34, 32, 32);"></i> Jupyter-nifi</a></li>
+                  <li><a href="snowflake-task-stream.html"><i class="fas fa-snowflake"></i> Snowflake</a></li>
+                  <li><a href="data-model.html"><i class="fas fa-database"></i> Data modeling</a></li>
+                  <li><a href="sql-basics.html"><i class="fas fa-table"></i> QL</a></li>
+                  <li><a href="sql-basic-details.html"><i class="fas fa-database"></i> SQL</a></li>
+                  <li><a href="Bigquerry-sql.html"><i class="fas fa-database"></i> Bigquerry</a></li>
+                  <li><a href="scd.html"><i class="fas fa-archive"></i> SCD</a></li>
+                  <li><a href="sql-project.html"><i class="fas fa-database"></i> SQL project</a></li>
+                    <!-- Add more subsections as needed -->
+                </ul>
+          </div>
+        </div>
+    </div>
+
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container">
+        <div class="row gy-4">
+          <h1>Principal component analysis (PCA)</h1>
+          <div class="col-lg-8">
+            <div class="portfolio-details-slider swiper">
+              <div class="swiper-wrapper align-items-center"> 
+                <figure>
+                  <img src="assets/img/machine-ln/principal-component-analysis.png" alt="" style="max-width: 50%; max-height: auto;">
+                  <figcaption></figcaption>
+                </figure>
+              </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 grey-box">
+          
+          <div class="section-title">
+            <h3>Content</h3>
+            <ol>
+              <li><a href="#introduction">Introduction</a></li>
+              <li><a href="#reference">Reference</a></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <section>
+        <h3 id="introduction">Introduction</h3>
+        Principal component analysis (PCA) is a statistical procedure that is commonly used to reduce the dimensionality of large data sets. It does this by transforming the data into 
+        a new coordinate system where the new variables are linear combinations of the original variables. The new variables are chosen so that they capture the most variance in the data.
+
+        <!--------------->
+        <h3 id="how-pca-works">How PCA works</h3>
+        <ul>
+            <li>PCA is based on the idea that many real-world data sets are high-dimensional, but that most of the information in the data is contained in a relatively small number of dimensions. This means that we can often reduce the dimensionality of the data without losing much information.</li>
+            <li>To do this, PCA first calculates the covariance matrix of the data. The covariance matrix is a square matrix that shows how each pair of variables are correlated with each other.</li>
+            <li>Next, PCA calculates the eigenvectors and eigenvalues of the covariance matrix. The eigenvectors are the directions in which the data varies the most, and the eigenvalues are the magnitudes of the variances along those directions.</li>
+            <li>The principal components are then formed by taking linear combinations of the original variables, where the coefficients are the corresponding eigenvectors. The first principal component is the direction of greatest variance, the second principal component is the direction of second greatest variance that is orthogonal to the first principal component, and so on.</li>
+        </ul>
+
+
+        <!------------------>
+        <h4 id="Process">Process of doing the PCA</h4>
+        Principal Component Analysis (PCA) is a dimensionality reduction technique commonly used in data analysis and machine learning. It helps uncover the underlying structure in high-dimensional datasets by transforming the data into a new coordinate system, where the axes are aligned with the directions of maximum variance.
+        Here's a more detailed explanation of the PCA process:
+
+        <ul>
+            <li><strong>Centering the Data:</strong>The first step in PCA is to standardize the data. This means subtracting the mean from each variable and then dividing by the standard deviation. This ensures that all of the variables are on the same scale and that they have a mean of zero and a standard deviation of one. This ensures that the data is centered around the origin.</li>
+            $$X_c = X- \bar{X}$$
+            where:
+            <ul>
+                <li>\(\bar{X}\) is the mean of each feature from the corresponding values.</li>
+            </ul>
+            <li><strong>Computing the Covariance Matrix: </strong>The covariance matrix is a square matrix that measures the correlation between each pair of variables. The covariance between two variables is equal to the average of the product of the deviations from the mean for those two variables.</li>
+            $$C(x, y) = \frac{X_c^T \cdot X_c}{m-1}$$
+            where:
+            <ul>
+                <li>\(X_c^T\): Transpose of the centered data matrix \(X_c\). This operation swaps the rows and columns of \(X_c\).</li>
+                <li>\(X_c^T\cdot X_c\): Matrix multiplication of the transposed centered data \(X_c^T\) with the original centered data \(X_c\). This results in a square matrix with dimensions \(n\times n\).</li>
+                <li>\(1/(m-1)\): This scaling factor is used to normalize the covariance matrix. It's common to divide by \(m-1\) instead of \(m\) to account for the degrees of freedom in the sample. This makes the covariance matrix an unbiased estimator of the population covariance matrix.</li>
+            </ul>
+            <li><strong>Eigenvalue Decomposition: </strong>The eigenvectors and eigenvalues of the covariance matrix are the directions and magnitudes of the data's variation. The eigenvectors are the columns of a matrix \(C\), and the eigenvalues are the diagonal entries of a diagonal matrix \(\Lambda\).</li>
+            $$C\cdot v_i = \lambda_i \cdot v_i.$$
+            The eigen vectors \(v_i\) is the \(i-\)th eigenvectors, \(\lambda_i\) is the \(i-\) the eigenvalues, and \(\cdot\) denotes matrix multiplication. Each eigen vectors are orthogonal to one another and form an orthogonal basis for the data. It also represent the directions of maximum varaince, and the corressponding eigenvalues indicate the magnitude of varaince along those directions.
+            <li><strong>Sorting and Selecting Principal Components: </strong>The eigenvalues are sorted in descending order, and the corresponding eigenvectors are arranged accordingly. The principal components are selected based on the desired dimensionality reduction. If you want to reduce the data to k dimensions, you select the top k eigenvectors. More precisely,
+            a common rule of thumb is to choose \(k\) principal components, where \(k\) is the maximum number of components that explain at least \(95\%\) of the varaince in the data.
+            </li>
+            <li><strong>Project the data onto the principal components: </strong>The original data is then projected onto the selected principal components. The transformed data matrix \(Y\) is given by:</li>
+            $$Y = W^T \cdot X_c$$
+            where \(W^T\) is the transpose of matrix of eigenvectors and \(X_c\) is the matrix of the standardized data.
+            <li><strong>Normalize the principal components: </strong>The principal components may not be normalized, which means that they may not have unit variance. To normalize the principal components, we divide each component by its standard deviation:</li>
+            $$Y = \frac{Y}{||Y||}$$
+            where:
+            <ul>
+                <li>\(Y\) is the matrix of normalized principle components,</li>
+                <li>\(||Y||\) is the frobenius norm of the mtrix \(Y\).</li>
+            </ul>
+            <li>The new coordinate in \(Y\) represent the data in the principle component space. The first principal component (PC1) captures the most varaince, followd by (PC2), and so on. By choosing a subset of the principal components, you can achieve dimensionality reduction while retaining most of the information present in the original data.</li>
+        </ul>
+
+
+        <!---------------------->
+        <h3 id="why-pca">Why PCA is useful</h3>
+        PCA is useful for several reasons:
+        <ul>
+            <li><strong>Dimensionality reduction: </strong>PCA can be used to reduce the dimensionality of large data sets, which can make them easier to analyze and visualize.</li>
+            <li><strong>Feature extraction: </strong>PCA can be used to extract the most important features from a data set. This can be useful for tasks like classification and clustering.</li>
+            <li><strong>Data visualization: </strong>PCA can be used to visualize high-dimensional data in a way that is easy to understand.</li>
+        </ul>
+
+
+        <!--------------------->
+        <h3 id="application">Applications of PCA</h3>
+        PCA has a wide range of applications in various fields, including:
+        <ul>
+            <li><strong>Machine learning: </strong>PCA is a common preprocessing step in machine learning algorithms. It can be used to reduce the dimensionality of training data, which can improve the performance of the algorithm.</li>
+            <li><strong>Image analysis: </strong>PCA can be used to analyze and compress images. For example, it can be used to reduce the number of pixels in an image without losing much information.</li>
+            <li><strong>Finance: </strong>PCA can be used to analyze financial data, such as stock prices and returns. It can be used to identify patterns in the data and to make predictions about future prices.</li>
+            <li><strong>Chemistry: </strong>PCA can be used to analyze chemical data, such as spectra and molecular structures. It can be used to identify new compounds and to understand the relationships between different compounds.</li>
+        </ul>
+
+
+        <!---------------------->
+        <h3 id="limitations">Limitations of PCA</h3>
+        PCA is a powerful tool, but it also has some limitations:
+        <ul>
+            <li>PCA is based on the assumption that the data is Gaussian. This means that the data should be normally distributed. If the data is not normally distributed, PCA may not be able to accurately capture the most important features of the data.</li>
+            <li>PCA is not scale-invariant. This means that the results of PCA can be sensitive to the scale of the variables. If the variables are measured on different scales, PCA may not be able to identify the most important features of the data.</li>
+        </ul>
+
+
+        <h3 id="example-1">Example:</h3>
+        Let's walk through a simplified mathematical example of Principal Component Analysis (PCA) using a small dataset. Consider the following 2D dataset with three observations:
+        \begin{pmatrix}
+        1 & 2 \\
+        2 & 3 \\
+        3 & 4
+        \end{pmatrix}
+        <ol>
+            <li><strong>Step 1: Centering the Data</strong>Calculate the mean of each feature and center the data by subtracting the means: </li>
+            $$\bar{X} = \left[\frac{1+2+3}{3}   ~~~~ \frac{2+3+4}{3}\right] = [2 ~~~~ 3]$$
+            $$X_c = X- \bar{X} = \begin{pmatrix}
+            -1 & -1 \\
+            0 & 0 \\
+            1 & 1
+            \end{pmatrix}$$ 
+            <li><strong>Step 2: Covariance Matrix</strong></li>
+            $$C = \frac{X_c^T\cdot X_c}{m-1} = \frac{1}{2} \begin{pmatrix}2 &2 \\ 2 & 2 \end{pmatrix} = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$$
+            <li><strong>Step 3: Eigenvalue Decomposition </strong>Find the eigen values \(\lambda_i\) and eigenvectors \(v_i\) of C:</li>
+            $$\text{det}(C - \lambda I) = 0$$
+            $$\text{det} \left(\begin{pmatrix} 1 - \lambda & 1 \\ 1 & 1-\lambda \end{pmatrix}\right) = 0$$
+            Solving for \(\lambda\) gives \(\lambda_1 =0\) and \(\lambda_2 =2\). 
+            <ul>
+                <li>For \(\lambda = 0\), the corresponding eigenvectors is \([1, -1]^T\).</li>
+                <li>For \(\lambda = 2\), the corresponding eigenvectors is \([1, 1]^T\).</li>
+            </ul>
+            <li><strong>Step 4: Sorting and Selecting Principal Components</strong> Sort the eigenvectors by their corresponding eigenvalues in descending order:</li>
+            $$W = \begin{pmatrix} 1 & 1 \\ -1 & 1 \end{pmatrix}$$
+            <li><strong>Step 5: Transforming the Data</strong> Project the centered data onto the new basis:</li>
+            $$Y = X_c \cdot W = \begin{pmatrix} -1 & -1 \\ 0 & 0 \\ 1 & 1 \end{pmatrix} \cdot \begin{pmatrix} 1 & 1 \\ -1 & 1 \end{pmatrix} = \begin{pmatrix} -2 & 0 \\ 0 & 0 \\ 2 & 0 \end{pmatrix}$$
+            The transformed matrix \(Y\) representes the dataset in the principal component space.
+        </ol>
+        This is a simplified example, but it illustrates the key steps of PCA: centering the data, computing the covariance matrix, finding eigenvectors and eigenvalues, selecting principal components, and transforming the data. In practice, PCA is applied to high-dimensional datasets for efficient dimensionality reduction.
+
+        <pre><code class="language-python">
+            import numpy as np
+            from sklearn.decomposition import PCA
+            import matplotlib.pyplot as plt
+            
+            # Sample 2D dataset
+            X = np.array([[1, 2], [2, 3], [3, 4]])
+            
+            # Step 1: Centering the Data
+            mean_X = np.mean(X, axis=0)
+            X_centered = X - mean_X
+            
+            # Step 2: Covariance Matrix
+            cov_matrix = np.cov(X_centered, rowvar=False)
+            
+            # Step 3: Eigenvalue Decomposition
+            eigenvalues, eigenvectors = np.linalg.eig(cov_matrix)
+            
+            # Step 4: Sorting and Selecting Principal Components
+            sorted_indices = np.argsort(eigenvalues)[::-1]
+            eigenvectors_sorted = eigenvectors[:, sorted_indices]
+            principal_components = eigenvectors_sorted[:, :2]  # Selecting the top 2 principal components
+            
+            # Step 5: Transforming the Data
+            X_pca = X_centered.dot(principal_components)
+            
+            # Plotting the original and transformed data
+            plt.figure(figsize=(8, 4))
+            
+            plt.subplot(1, 2, 1)
+            plt.scatter(X[:, 0], X[:, 1])
+            plt.title('Original Data')
+            
+            plt.subplot(1, 2, 2)
+            plt.scatter(X_pca[:, 0], X_pca[:, 1])
+            plt.title('PCA Transformed Data')
+            
+            plt.tight_layout()
+            plt.show()            
+        </code></pre>
+
+
+        
+
+
+
+      </section>
+
+        
+
+
+      <!-------Reference ------->
+      <section id="reference">
+        <h2>References</h2>
+        <ul>
+          <li><a href="https://neo4j.com/developer/get-started/" target="_blank">Getting Started with Neo4j</a></li>
+          <li><a href="https://www.mongodb.com/docs/manual/reference/method/" target="_blank">MongoDB documentation</a>.</li>
+        </ul>
+      </section>
+
+      <hr>
+      
+      <div style="background-color: #f0f0f0; padding: 15px; border-radius: 5px;">
+
+        <h3>Some other interesting things to know:</h3>
+        <ul style="list-style-type: disc; margin-left: 30px;">
+            <li>Visit my website on <a href="sql-project.html">For Data, Big Data, Data-modeling, Datawarehouse, SQL, cloud-compute.</a></li>
+            <li>Visit my website on <a href="Data-engineering.html">Data engineering</a></li>
+        </ul>
+      </div>
+      <p></p>
+
+      <div class="navigation">
+          <a href="index.html#portfolio" class="clickable-box">
+              <span class="arrow-left">Portfolio section</span>
+          </a>
+          
+          <a href="portfolio-details-1.html" class="clickable-box">
+              <span class="arrow-right">Content</span>
+          </a>
+      </div>
+  </div>
+</div>
+</section><!-- End Portfolio Details Section -->
+</main><!-- End #main --
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+  <div class="container">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Arun</span></strong>
+    </div>
+  </div>
+</footer><!-- End  Footer -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="assets/vendor/typed.js/typed.umd.js"></script>
+<script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    hljs.initHighlightingOnLoad();
+  });
+</script>
+
+</body>
+
+</html>
