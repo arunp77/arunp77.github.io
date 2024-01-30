@@ -171,7 +171,7 @@
             a new coordinate system where the new variables are linear combinations of the original variables. The new variables are chosen so that they capture the most variance in the data.
 
             <br><br>
-            <p>Imagine you're working on a big data project, and the data has too many features. Now, picture scenario where the dataset has too many variables (features).
+            <p>Imagine you're working on a big data project, and the data has too many features or predicators or variables. Now, picture scenario where the dataset has too many variables.
                 As you delve into the analysis, you may encounter few possible situations. For example, you find that most of the features are correlated on analysis, 
                 and you become clueless about which feature should I choose for your analysis. One possibility to run a model on the whole data. This returns poor accuracy, 
                 and you feel terrible and start thinking of some strategic method to find a few important variables such as using Ridge, lasso and Elasticnet methods. The <a href="Ridge-lasso-elasticnet.html">Ridge, Lasso, and Elasticnet</a> are regularization 
@@ -181,6 +181,72 @@
 
             <p>In summary, while Ridge, Lasso, and Elastic Net focus on regularization, PCA focuses on reducing dimensionality, which can be beneficial in situations with a high number of features or multicollinearity. 
                 Statistical techniques such as factor analysis and PCA help to overcome such difficulties of choosing important features.</p>
+            
+            <!---------------------->
+            <h3 id="why-pca">Why PCA is useful</h3>
+            PCA is useful for several reasons:
+            <ul>
+                <li><strong>Dimensionality reduction: </strong>PCA can be used to reduce the dimensionality of large data sets, which can make them easier to analyze and visualize.</li>
+                <li><strong>Data visualization: </strong>PCA can be used to visualize high-dimensional data in a way that is easy to understand.</li>
+                <li><strong>Linear Transformation:</strong> PCA performs a linear transformation of data, seeking directions of maximum variance.</li>
+                <li><strong>Feature extraction: </strong>PCA can be used to extract the most important features from a data set. This can be useful for tasks like classification 
+                    and clustering by reducing noise and highlights underlying structure. Principal components are ranked by the variance they explain, allowing for effective feature selection.</li>
+                <li><strong>Data Compression: </strong>PCA can compress data while preserving most of the original information.</li>
+            </ul>
+
+
+            <!--------------------->
+            <h3 id="application">Applications of PCA</h3>
+            PCA has a wide range of applications in various fields, including:
+            <ul>
+                <li><strong>Machine learning: </strong>PCA is a common preprocessing step in machine learning algorithms. It can be used to reduce the dimensionality of training data, which can improve the performance of the algorithm.</li>
+                <li><strong>Image analysis: </strong>PCA can be used to analyze and compress images. For example, it can be used to reduce the number of pixels in an image without losing much information.</li>
+                <li><strong>Finance: </strong>PCA can be used to analyze financial data, such as stock prices and returns. It can be used to identify patterns in the data and to make predictions about future prices.</li>
+                <li><strong>Chemistry: </strong>PCA can be used to analyze chemical data, such as spectra and molecular structures. It can be used to identify new compounds and to understand the relationships between different compounds.</li>
+            </ul>
+
+
+            <!---------------------->
+            <h3 id="limitations">Limitations of PCA</h3>
+            PCA is a powerful tool, but it also has some limitations:
+            <ul>
+                <li>PCA is based on the assumption that the data is Gaussian. This means that the data should be normally distributed. If the data is not normally distributed, PCA may not be able to accurately capture the most important features of the data.</li>
+                <li>PCA is not scale-invariant. This means that the results of PCA can be sensitive to the scale of the variables. If the variables are measured on different scales, PCA may not be able to identify the most important features of the data.</li>
+            </ul>
+
+
+            <!----------------------->
+
+            <h5>Practical example</h5>
+            Let's consider a secanrio, you have a datasets of dimention \(R = 1000\) (rows) x \(C = 40\) (columns). These 40 columns represents possible features. 
+            But not all columns can be considered to be a feature. There are total row \(C \times (C-1)/2 =780\) numbers of scattered plots one can generate to see the possible relationships between the features. 
+            So it's almost impossible to find the relationships between the variables.  In this case, the correlation of all these can actually gives you the clear image of the important features for your model.
+            <p></p>
+            <p>One possibility is to select a subset of the features which captures  most of the variance. This can be done by looking at the explained variation ratio (EVR). After calculating the EVR, 
+            you can plot a cumulative sum of the explained variance. This plot, often referred to as the 'scree plot,' helps visualize how much variance in the data is retained as you include more principal components.</p>
+
+            <p>Next, you can set a threshold for the cumulative explained variance that you find acceptable. For example, you might decide to retain 95% of the variance. The corresponding number of principal 
+                components that cross this threshold gives you the optimal number of features to keep.</p>
+            <p>Once you determine the number of principal components to retain, you can use them to transform your original dataset into a reduced-dimensional space. This new dataset contains only the selected principal components, effectively reducing the number of features while retaining most of the information.</p>
+            <p>It's important to note that PCA assumes that the features are centered (have a mean of zero) and have similar scales. Therefore, it's a good practice to standardize or normalize the data before applying PCA.</p>
+            <p>In summary, PCA is a powerful tool for dimensionality reduction, particularly when dealing with a large number of features. It helps in identifying and retaining the most important information, making your data more manageable for further analysis or model training</p>
+
+
+            <!----------------->
+            <h3 id="principal-compoenent">What Are Principal Components?</h3>
+            Principal components are the orthogonal (uncorrelated) linear combinations of the original features in a dataset. These components are ordered by the amount of variance they explain in the data. 
+
+            <p>Let's consider a example, where we have a set of predictors as \(x^1, x^2, ..., x^p\). The principal component can be written as:</p>
+            $$Z^1 = \phi^{11} x^1 +\phi^{21} x^2 + \phi^{31} x^3 + ... + \phi^{p1} x^p$$
+            where:
+            <ul>
+                <li>\(Z^1\) is the first principal component</li>
+                <li>\(\phi^{p1}\) is the loading vecotr comprising loadings \(\phi^1, \phi^2, ...\) of the first principal component. They follow \(\sqrt{\sum (\phi^1)^2} = 1\) </li>
+                <li>\(x^1, x^2 ... x^p\) are the normlized predicators.</li>
+            </ul>
+
+
+            
             <!--------------->
             <h3 id="how-pca-works">How PCA works</h3>
             <ul>
@@ -231,34 +297,7 @@
             </ul>
 
 
-            <!---------------------->
-            <h3 id="why-pca">Why PCA is useful</h3>
-            PCA is useful for several reasons:
-            <ul>
-                <li><strong>Dimensionality reduction: </strong>PCA can be used to reduce the dimensionality of large data sets, which can make them easier to analyze and visualize.</li>
-                <li><strong>Feature extraction: </strong>PCA can be used to extract the most important features from a data set. This can be useful for tasks like classification and clustering.</li>
-                <li><strong>Data visualization: </strong>PCA can be used to visualize high-dimensional data in a way that is easy to understand.</li>
-            </ul>
-
-
-            <!--------------------->
-            <h3 id="application">Applications of PCA</h3>
-            PCA has a wide range of applications in various fields, including:
-            <ul>
-                <li><strong>Machine learning: </strong>PCA is a common preprocessing step in machine learning algorithms. It can be used to reduce the dimensionality of training data, which can improve the performance of the algorithm.</li>
-                <li><strong>Image analysis: </strong>PCA can be used to analyze and compress images. For example, it can be used to reduce the number of pixels in an image without losing much information.</li>
-                <li><strong>Finance: </strong>PCA can be used to analyze financial data, such as stock prices and returns. It can be used to identify patterns in the data and to make predictions about future prices.</li>
-                <li><strong>Chemistry: </strong>PCA can be used to analyze chemical data, such as spectra and molecular structures. It can be used to identify new compounds and to understand the relationships between different compounds.</li>
-            </ul>
-
-
-            <!---------------------->
-            <h3 id="limitations">Limitations of PCA</h3>
-            PCA is a powerful tool, but it also has some limitations:
-            <ul>
-                <li>PCA is based on the assumption that the data is Gaussian. This means that the data should be normally distributed. If the data is not normally distributed, PCA may not be able to accurately capture the most important features of the data.</li>
-                <li>PCA is not scale-invariant. This means that the results of PCA can be sensitive to the scale of the variables. If the variables are measured on different scales, PCA may not be able to identify the most important features of the data.</li>
-            </ul>
+            
 
 
             <h3 id="example-1">Example:</h3>
