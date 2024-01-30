@@ -219,7 +219,7 @@
                 <li><strong><a href="portfolio-details-3.html">Finance</a>: </strong>PCA can be used to analyze financial data, such as stock prices and returns. It can be used to identify patterns in the data and to make predictions about future prices.</li>
                 <li><strong>Chemistry: </strong>PCA can be used to analyze chemical data, such as spectra and molecular structures. It can be used to identify new compounds and to understand the relationships between different compounds.</li>
             </ul>
-            
+
             <!---------------------->
             <h4 id="limitations">Limitations of PCA</h4>
             PCA is a powerful tool, but it also has some limitations:
@@ -389,7 +389,8 @@
                 # Step 4: Sorting and Selecting Principal Components
                 sorted_indices = np.argsort(eigenvalues)[::-1]
                 eigenvectors_sorted = eigenvectors[:, sorted_indices]
-                principal_components = eigenvectors_sorted[:, :2]  # Selecting the top 2 principal components
+                # Selecting the top 2 principal components
+                principal_components = eigenvectors_sorted[:, :2]  
                 
                 # Step 5: Transforming the Data
                 X_pca = X_centered.dot(principal_components)
