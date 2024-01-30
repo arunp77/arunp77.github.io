@@ -254,6 +254,7 @@
 
 
         <h3 id="example-1">Example:</h3>
+        <h5>Example-1</h5>
         Let's walk through a simplified mathematical example of Principal Component Analysis (PCA) using a small dataset. Consider the following 2D dataset with three observations:
         \begin{pmatrix}
         1 & 2 \\
@@ -286,7 +287,7 @@
         </ol>
         This is a simplified example, but it illustrates the key steps of PCA: centering the data, computing the covariance matrix, finding eigenvectors and eigenvalues, selecting principal components, and transforming the data. In practice, PCA is applied to high-dimensional datasets for efficient dimensionality reduction.
 
-        <pre><code class="language-python">
+        <pre class="language-python"><code>
             import numpy as np
             from sklearn.decomposition import PCA
             import matplotlib.pyplot as plt
@@ -326,6 +327,60 @@
             plt.tight_layout()
             plt.show()            
         </code></pre>
+        <figure>
+            <img src="assets/img/machine-ln/PCA-analysis.png" alt="" style="max-width: 70%; max-height: auto;">
+            <figcaption></figcaption>
+          </figure>
+
+        <h5>Example-2</h5>
+        In this example, PCA is applied to the Iris dataset, and the data is transformed to a 2D space for visualization. The reduced-dimensional representation still captures a significant amount of information, making it easier to analyze and interpret. This is just one use case; PCA is applied similarly in various machine learning scenarios for preprocessing and feature engineering.
+
+        <pre class="language-python" style="overflow-x:auto"><code>
+            import numpy as np
+            from sklearn.decomposition import PCA
+            from sklearn.datasets import load_iris
+            import matplotlib.pyplot as plt
+            
+            # Load Iris dataset as an example
+            iris = load_iris()
+            X = iris.data
+            y = iris.target
+            
+            # Apply PCA for visualization (reduce to 2 components for simplicity)
+            pca = PCA(n_components=2)
+            X_pca = pca.fit_transform(X)
+            
+            # Visualize the original and PCA-transformed data side by side
+            plt.figure(figsize=(12, 6))
+            
+            # Plot original data
+            plt.subplot(1, 2, 1)
+            for i in range(len(np.unique(y))):
+                plt.scatter(X[y == i, 0], X[y == i, 1], label=f'Class {i}')
+            
+            plt.title('Original Data')
+            plt.xlabel('Feature 1')
+            plt.ylabel('Feature 2')
+            plt.legend()
+            
+            # Plot PCA-transformed data
+            plt.subplot(1, 2, 2)
+            for i in range(len(np.unique(y))):
+                plt.scatter(X_pca[y == i, 0], X_pca[y == i, 1], label=f'Class {i}')
+            
+            plt.title('PCA Transformed Data')
+            plt.xlabel('Principal Component 1')
+            plt.ylabel('Principal Component 2')
+            plt.legend()
+            
+            plt.tight_layout()
+            plt.show()
+        </code></pre>
+
+        <figure>
+            <img src="assets/img/machine-ln/PCA-analysis2.png" alt="" style="max-width: 70%; max-height: auto;">
+            <figcaption></figcaption>
+        </figure>
 
 
         
