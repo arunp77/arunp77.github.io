@@ -218,8 +218,8 @@
             <!----------------------->
 
             <h5>Practical example</h5>
-            Let's consider a secanrio, you have a datasets of dimention \(R = 1000\) (rows) x \(C = 40\) (columns). These 40 columns represents possible features. 
-            But not all columns can be considered to be a feature. There are total row \(C \times (C-1)/2 =780\) numbers of scattered plots one can generate to see the possible relationships between the features. 
+            Let's consider a secanrio, you have a datasets of dimention \(n = 1000\) (rows) x \(p = 40\) (columns). These 40 columns represents possible features. 
+            But not all columns can be considered to be a feature. There are total row \(p \times (p-1)/2 =780\) numbers of scattered plots one can generate to see the possible relationships between the features. 
             So it's almost impossible to find the relationships between the variables.  In this case, the correlation of all these can actually gives you the clear image of the important features for your model.
             <p></p>
             <p>One possibility is to select a subset of the features which captures  most of the variance. This can be done by looking at the explained variation ratio (EVR). After calculating the EVR, 
@@ -232,19 +232,40 @@
             <p>In summary, PCA is a powerful tool for dimensionality reduction, particularly when dealing with a large number of features. It helps in identifying and retaining the most important information, making your data more manageable for further analysis or model training</p>
 
 
+            
             <!----------------->
             <h3 id="principal-compoenent">What Are Principal Components?</h3>
             Principal components are the orthogonal (uncorrelated) linear combinations of the original features in a dataset. These components are ordered by the amount of variance they explain in the data. 
 
-            <p>Let's consider a example, where we have a set of predictors as \(x^1, x^2, ..., x^p\). The principal component can be written as:</p>
-            $$Z^1 = \phi^{11} x^1 +\phi^{21} x^2 + \phi^{31} x^3 + ... + \phi^{p1} x^p$$
-            where:
-            <ul>
-                <li>\(Z^1\) is the first principal component</li>
-                <li>\(\phi^{p1}\) is the loading vecotr comprising loadings \(\phi^1, \phi^2, ...\) of the first principal component. They follow \(\sqrt{\sum (\phi^1)^2} = 1\) </li>
-                <li>\(x^1, x^2 ... x^p\) are the normlized predicators.</li>
-            </ul>
+            <p>The principal components are obtained through linear combination of the original variables. Let's say you have a dataset 
+                with variables \(X_1, X_2, ..., X_p\), and you can find the first principal component, denoted as \(PC_1\). The formula for \(PC_1\) is:</p>
+                
+                $$PC_1 = a_1 X_1 +a_2 X_2 + ... +a_p X_p$$ 
 
+                <p>here \(a_1, a_2, ..., a_p\) are the weights or coefficients assigned to each original variable, and they are choosen in such as a way that \(PC_1\) captures the maximum variance in the data. 
+                The weights are determined by solving an optimization problem, specified by finidng the eigne vectors of the covariance matrix of the original variables. The subsequent principal components 
+                \(PC_1, PC_2, ....\) are similarly obtained, subject to the constraint that they are uncorrelated with the previous components.</p>
+
+                <p>In matrix notation, if \(X\) is the matrix of original variables, and \(W\)  is the matrix of weights, the first principal component can be expressed as:</p>
+                $$PC_1 = X W_1$$
+                where \(W_1\) is the first column of the matrix \(W\).
+                
+                <p>This process is repeated to find additional principal components, each capturing orthogonal directions of maximum variance in the data.</p>
+                
+                <p>If the two components are uncorrelated, their directions should be orthogonal (image below). This image is based on simulated data with 2 predictors. Notice the direction of the components; as expected, they are orthogonal. This suggests the correlation b/w these components is zero.</p>
+
+                <figure>
+                    <img src="assets/img/machine-ln/PCA-analysis3.png" alt="" style="max-width: 70%; max-height: auto;">
+                    <figcaption></figcaption>
+                </figure>
+
+                <p>All succeeding principal component follows a similar concept, i.e., they capture the remaining variation without being correlated with the previous component. In general, for \(n \times p\) dimensional data, \(\text{min}(n-1, p)\) principal component can be constructed.</p>
+
+                <p>The directions of these components are identified unsupervised; i.e., the response variable \(Y\) is not used to determine the component direction. Therefore, it is an unsupervised approach.</p>
+            
+                <div class="box">
+                    <strong>Note:</strong> Partial least square (PLS) is a supervised alternative to PCA. PLS assigns a higher weight to variables that are strongly related to response variable to determine principal components.                
+                </div>
 
             
             <!--------------->
