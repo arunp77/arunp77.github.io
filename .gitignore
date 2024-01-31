@@ -50,7 +50,11 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
-.vscode/
+
+# vscode 
+.vscode/*
+!.vscode/settings.json
+!*/.vscode/*
 
 # Translations
 *.mo
