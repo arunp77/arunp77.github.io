@@ -28,11 +28,16 @@ h6 {
 .indented-list {
   margin-left: 20px; /* Adjust the indentation as needed */
 }
+
+
+/* Add some basic styling for code */
 pre {
-  background-color: #f7f7f7;
-  padding: 10px;
-  border: 1px solid #ccc;
+  background-color: #ffffff;
+  padding: 5px;
+  border: 1px solid #ddd;
   border-radius: 5px;
+  font-family: monospace;
+  white-space: pre-wrap;
 }
 
 code.python {
