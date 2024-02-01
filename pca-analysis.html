@@ -409,7 +409,7 @@
             <h5>Example-2</h5>
             In this example, PCA is applied to the Iris dataset, and the data is transformed to a 2D space for visualization. The reduced-dimensional representation still captures a significant amount of information, making it easier to analyze and interpret. This is just one use case; PCA is applied similarly in various machine learning scenarios for preprocessing and feature engineering.
 
-            <pre class="language-python"><code>
+            <pre><code class="language-python">
                 import numpy as np
                 from sklearn.decomposition import PCA
                 from sklearn.datasets import load_iris
@@ -423,7 +423,6 @@
                 # Apply PCA for visualization (reduce to 2 components for simplicity)
                 pca = PCA(n_components=2)
                 X_pca = pca.fit_transform(X)
-                
                 # Visualize the original and PCA-transformed data side by side
                 plt.figure(figsize=(12, 6))
                 
@@ -446,10 +445,10 @@
                 plt.xlabel('Principal Component 1')
                 plt.ylabel('Principal Component 2')
                 plt.legend()
-                
                 plt.tight_layout()
                 plt.show()
             </code></pre>
+
 
             <figure>
                 <img src="assets/img/machine-ln/PCA-analysis2.png" alt="" style="max-width: 60%; max-height: auto;">
