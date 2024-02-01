@@ -144,15 +144,15 @@
 
                 <div class="col-lg-4 grey-box">
                     <div class="section-title">
-                        <h3>Content</h3>
+                        <h3>Table of Contents</h3>
                         <ol>
                             <li><a href="#introduction">Introduction</a></li>
-                            <li><a href="#pca-definition">Defining PCA</a></li>
+                            <li><a href="#key-concept">Apache Spark key concept</a></li>
                             <ul>
-                                <li><a href="#why-pca">Why PCA is useful?</a></li>
-                                <li><a href="#application">Applications of PCA</a></li>
+                                <li><a href="#key-features">Key Features</a></li>
+                                <li><a href="#Components">Components of Apache Spark</a></li>
                                 <li><a href="#limitations">Limitations of PCA</a></li>
-                                <li><a href="#Practical-example">Practical example</a></li>
+                                <li><a href="#use-cases">Use cases</a></li>
                                 <li><a href="#principal-compoenent">What Are Principal Components?</a></li>
                             </ul>
                             <li><a href="#how-pca-works">How PCA works?</a></li>
@@ -174,18 +174,18 @@
             <p>Imagine a powerful engine built for speed and endurance. That's essentially what Spark is. It's an open-source, unified analytics engine designed to process massive datasets efficiently and at lightning speed. It achieves this through its unique distributed architecture, where tasks are split across multiple machines, working in parallel to crunch through your data.</p>
             
             <!-------------------->
-            <h3>Some key concepts of Apache Spark</h3>
+            <h3 id="key-concept">Some key concepts of Apache Spark</h3>
             <ul>
                 <li><strong>Distributed Processing: </strong>Unlike traditional methods that process data on a single machine, Spark distributes tasks across multiple machines (nodes) in a cluster. This allows it to handle massive datasets efficiently by dividing the work and processing it in parallel. Think of it as having many chefs working on different parts of a large meal instead of just one.</li>
                 <li><strong>Resilience: </strong>Spark is designed to be fault-tolerant. If a node fails, the work is automatically reassigned to other nodes, ensuring your processing continues uninterrupted. This is like having backup chefs ready to step in if someone gets sick.</li>
                 <li><strong>In-Memory Computing: </strong>Spark stores frequently accessed data in memory for faster processing compared to reading it from disk. This is like having your ingredients readily available on the counter instead of searching the pantry every time you need something.</li>
-                <li><strong>Lineage: </strong>Spark keeps track of how data is transformed, allowing you to trace the origin and understand how results were obtained. This is like having a recipe that shows you each step involved in creating the final dish.</li>
-                <li><strong></strong></li>
+                <li><strong>Lineage (i.e. version): </strong>Spark keeps track of how data is transformed, allowing you to trace the origin and understand how results were obtained. This is like having a recipe that shows you each step involved in creating the final dish.</li>
+                <li><strong>APIs:</strong>Spark provides APIs in various languages like Python, Java, Scala, and R. This allows you to choose the language you're most comfortable with and write code in a familiar syntax. It's like having different tools (spatulas, whisks, etc.) that work with the same ingredients.</li>
                 <li><strong>Functional Programming: </strong>Spark heavily utilizes functional programming concepts like immutability and lazy evaluation. This makes code cleaner, easier to reason about, and more resistant to errors. Think of it as following precise instructions without modifying the ingredients themselves.</li>
             </ul>
 
             <!-------------------->
-            <h4>Key Features</h4>
+            <h4 id="key-features">Key Features</h4>
             <ul>
                 <li><strong>Speed: </strong>Spark performs in-memory processing, making it much faster than its predecessor, MapReduce. It achieves high performance through advanced DAG (Directed Acyclic Graph) execution engine.</li>
                 <li><strong>Ease of Use: </strong>Spark supports multiple programming languages, including Scala, Java, Python, and R. Its high-level APIs make it easy to use for both batch processing and real-time data processing.</li>
@@ -195,24 +195,33 @@
             </ul>
 
             <!--------------------->
-            <h4>Components of Apache Spark</h4>
+            <h4 id="Components">Components of Apache Spark</h4>
             <ul>
                 <li><strong>Spark Core: </strong>It provides the basic functionality of Spark, including task scheduling, memory management, and fault recovery.</li>
                 <li><strong>Spark SQL: </strong>Allows for querying structured data using SQL as well as Spark's built-in DataFrame API.</li>
                 <li><strong>Spark Streaming: </strong>Enables scalable, high-throughput, fault-tolerant stream processing of live data streams.</li>
-                <li><strong>MLlib (Machine Learning Library): </strong>A distributed machine learning framework for building scalable and robust machine learning models.</li>
-                <li><strong>GraphX: </strong>A graph processing library for graph computation. </li>
-                <li><strong>Structured Streaming: </strong>Allows users to express streaming computations the same way as batch computations, providing unified processing for both.</li>
+                <li><strong>Spark DataFrames: </strong>High-level data structures for manipulating data like a spreadsheet.</li>
+                <li><strong>Spark MLlib (Machine Learning Library): </strong>A distributed machine learning framework for building scalable and robust machine learning models.</li>
+                <li><strong>Spark GraphX: </strong>A graph processing library for graph computation. </li>
+                <li><strong>Spark Structured Streaming: </strong>Allows users to express streaming computations the same way as batch computations, providing unified processing for both.</li>
             </ul>
+            <figure>
+                <img src="assets/img/data-engineering/apache-spark1.png" alt="" style="max-width: 50%; max-height: auto;">
+                <figcaption></figcaption>
+            </figure>
+            
 
             <!-------------------->
-            <h4>Use Cases</h4>
+            <h4 id="use-cases">Use Cases</h4>
             <ul>
                 <li><strong>Big Data Processing:</strong> Spark is widely used for processing and analyzing large datasets efficiently.</li>
                 <li><strong>Machine Learning:</strong> MLlib simplifies the development of scalable machine learning applications.</li>
                 <li><strong>Graph Processing:</strong> GraphX enables the processing of large-scale graph data.</li>
                 <li><strong>Real-time Analytics:</strong> Spark Streaming and Structured Streaming support real-time analytics.   </li>         
             </ul>
+
+            <!--------------------->
+            <h3>What makes Apache Spark special?</h3>
 
 
 
@@ -239,11 +248,9 @@
             <section id="reference">
                 <h2>References</h2>
                 <ol>
-                    <li><a href="https://colab.research.google.com/drive/1uHyINYEHJtEA-ootSQ6MarzXB3rR1KKY?usp=sharing" target="_blank">Google colab notebook with all the codes</a>.</li>
-                    <li>My <a href="https://github.com/arunp77/Machine-Learning" target="_blank">Github repository on machine learning Fundamentals and projects</a></li>
-                    <li><a href="https://www.analyticsvidhya.com/blog/2016/03/pca-practical-guide-principal-component-analysis-python/" target="_blank">Nice explanation on PCA</a>.</li>
-                    <li><a href="https://psycnet.apa.org/record/1995-97110-004" target="_blank">Principal components analysis and exploratory and confirmatory factor analysis, Bryant, F. B., & Yarnold, P. R. (1995)</a>In L. G. Grimm & P. R. Yarnold (Eds.), Reading and understanding multivariate analysis. Washington, DC: American Psychological Association.</li>
-                    <li><a href="https://www.drnishikantjha.com/papersCollection/Multivariate%20Data%20Analysis.pdf" target="_blank">Multivariate data analysis with readings (4th ed.). Hair, J. F., Jr., Anderson, R. E., Tatham, R. L., & Black, W. C. (1995),</a>  Upper Saddle River, NJ: Prentice-Hall (a good reference book)</li>
+                    <li><a href="https://spark.apache.org/docs/latest/" target="_blank">Apache Spark Official Documentation</a>.</li>
+                    <li><a href="https://www.databricks.com/learn" target="_blank">Databricks Learning Academy</a>.</li>
+                    <li><a href="https://sparkbyexamples.com/" target="_blank">Spark by Examples</a>.</li>
                 </ol> 
             </section>
 
