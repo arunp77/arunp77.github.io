@@ -180,7 +180,7 @@
             a new coordinate system where the new variables are linear combinations of the original variables. The new variables are chosen so that they capture the most variance in the data.
 
             <!---------------------->
-            <h4 id="why-pca">Why PCA is useful</h4> 
+            <h4 id="why-pca">Why PCA is useful?</h4> 
             PCA is useful for several reasons:
             <ul>
                 <li><strong>Dimensionality reduction: </strong>PCA can be used to reduce the dimensionality of large data sets, which can make them easier to analyze and visualize.</li>
@@ -218,7 +218,7 @@
             But not all columns can be considered to be a feature. There are total row \(p \times (p-1)/2 =780\) numbers of scattered plots one can generate to see the possible relationships between the features. 
             So it's almost impossible to find the relationships between the variables.  In this case, the correlation of all these can actually gives you the clear image of the important features for your model.
             <p></p>
-            <p>One possibility is to select a subset of the features which captures  most of the variance. This can be done by looking at the explained variation ratio (EVR). After calculating the EVR, 
+            <p>One possibility is to select a subset of the features which captures  most of the variance. This can be done by looking at the <strong>explained variation ratio (EVR)</strong>. After calculating the EVR, 
             you can plot a cumulative sum of the explained variance. This plot, often referred to as the 'scree plot,' helps visualize how much variance in the data is retained as you include more principal components.</p>
 
             <p>Next, you can set a threshold for the cumulative explained variance that you find acceptable. For example, you might decide to retain 95% of the variance. The corresponding number of principal 
@@ -227,6 +227,16 @@
             <p>It's important to note that PCA assumes that the features are centered (have a mean of zero) and have similar scales. Therefore, it's a good practice to standardize or normalize the data before applying PCA.</p>
             <p>In summary, PCA is a powerful tool for dimensionality reduction, particularly when dealing with a large number of features. It helps in identifying and retaining the most important information, making your data more manageable for further analysis or model training</p>
 
+            <div class="box">
+                <Strong>Explained variance ratio</Strong>  The explained variance ratio in the context of Principal Component Analysis (PCA) represents the proportion of the dataset's variance that is captured by each principal component. It helps us understand how much information each principal component retains from the original data. The explained variance ratio for the i-th principal component is calculated as the ratio of the variance of that principal component to the total variance of the dataset.
+
+                $$\text{EVR}_i = \frac{\lambda_i}{\lambda_{\text{total}}}$$
+
+                where  \(\lambda_i\) and \(\lambda_{\text{total}}\) are eigenvalues of covariance matrix and sum of all eigenvalues  (total variance) respectively.
+                
+                For more details, see Example-3 below.
+
+            </div>
 
             
             <!----------------->
@@ -451,6 +461,126 @@
                 <figcaption style="text-align: center;">For the n_components = 3. For the plot, see reference-1 given below.</figcaption>
             </figure>
 
+            <!------------------------------->
+            <h5>Example-3</h5>
+            Let's consider a synthetic financial data.
+            <pre class="language-python"><code>
+                import numpy as np
+                import pandas as pd
+                import seaborn as sns
+                from sklearn.decomposition import PCA
+                import matplotlib.pyplot as plt
+                
+                # Generate synthetic financial data
+                np.random.seed(42)
+                revenue = np.random.rand(100)
+                expenses = 0.5 * revenue + 0.2 * np.random.randn(100)
+                profit_margin = (revenue - expenses) / revenue
+                
+                # Create a DataFrame
+                financial_df = pd.DataFrame({
+                    'Revenue': revenue,
+                    'Expenses': expenses,
+                    'Profit_Margin': profit_margin
+                })
+                
+                financial_df.head()
+            </code></pre>
+            It's output is:
+            <figure>
+                <img src="assets/img/machine-ln/pca-variance-table.png" alt="" style="max-width: 80%; max-height: auto;">
+                <figcaption style="text-align: center;"></figcaption>
+            </figure>
+            <figure>
+                <img src="assets/img/machine-ln/pca-EDA.png" alt="" style="max-width: 80%; max-height: auto;">
+                <figcaption style="text-align: center;">Some visualizations</figcaption>
+            </figure>
+            <pre class="language-python"><code>
+                # Apply PCA
+                pca = PCA(n_components=2)
+                principal_components = pca.fit_transform(financial_df)
+                
+                # Explained variance ratio
+                explained_variance_ratio = pca.explained_variance_ratio_
+                
+                # Plotting original and PCA-transformed data
+                plt.figure(figsize=(12, 6))
+                
+                # Original data
+                plt.subplot(1, 2, 1)
+                plt.scatter(financial_df['Revenue'], financial_df['Expenses'], c=financial_df['Profit_Margin'], cmap='viridis')
+                plt.title('Original Financial Data')
+                plt.xlabel('Revenue')
+                plt.ylabel('Expenses')
+                
+                # PCA-transformed data
+                plt.subplot(1, 2, 2)
+                plt.scatter(principal_components[:, 0], principal_components[:, 1], c=financial_df['Profit_Margin'], cmap='viridis')
+                plt.title('PCA Transformed Data')
+                plt.xlabel('Principal Component 1')
+                plt.ylabel('Principal Component 2')
+                
+                plt.show()
+                
+                # Print explained variance ratio
+                print("Explained Variance Ratio:", explained_variance_ratio)
+            </code></pre> 
+
+            <figure>
+                <img src="assets/img/machine-ln/pca-example3.png" alt="" style="max-width: 80%; max-height: auto;">
+                <figcaption style="text-align: center;">Explained Variance Ratio: [0.9787624  0.01775749]</figcaption>
+            </figure>
+
+            <pre class="language-python"><code>
+                # Extract numerical features from the DataFrame
+                numerical_features = financial_df[['Revenue', 'Expenses', 'Profit_Margin']]
+                
+                # Standardize the features (optional but often recommended in PCA)
+                standardized_features = (numerical_features - numerical_features.mean()) / numerical_features.std()
+                
+                # Assuming pca is the fitted PCA model
+                cumulative_explained_variance = np.cumsum(pca.explained_variance_ratio_) * 100  # Convert to percentage
+                
+                # Individual explained variance as percentages
+                individual_explained_variance = pca.explained_variance_ratio_ * 100
+                
+                # Create the bar plot for individual variances
+                plt.figure(figsize=(12, 7))
+                bar = plt.bar(range(1, len(individual_explained_variance) + 1), individual_explained_variance, alpha=0.6, color='g', label='Individual Explained Variance')
+                
+                # Create the line plot for cumulative variance
+                line = plt.plot(range(1, len(cumulative_explained_variance) + 1), cumulative_explained_variance, marker='o', linestyle='-', color='r', 
+                                label='Cumulative Explained Variance')
+                
+                # Adding percentage values on top of bars and dots
+                for i, (bar, cum_val) in enumerate(zip(bar, cumulative_explained_variance)):
+                    plt.text(bar.get_x() + bar.get_width() / 2, bar.get_height(), f'{individual_explained_variance[i]:.1f}%', 
+                             ha='center', va='bottom')
+                    plt.text(i + 1, cum_val, f'{cum_val:.1f}%', ha='center', va='bottom')
+                
+                # Aesthetics for the plot
+                plt.xlabel('Principal Components')
+                plt.ylabel('Explained Variance (%)')
+                plt.title('Explained Variance by Different Principal Components')
+                plt.xticks(range(1, len(individual_explained_variance) + 1))
+                plt.legend(loc='upper left')
+                plt.ylim(0, 110)  # extend y-axis limit to accommodate text labels
+                plt.grid(True)
+                plt.show()                
+            </code></pre>
+            <figure>
+                <img src="assets/img/machine-ln/pca-EVR.png" alt="" style="max-width: 80%; max-height: auto;">
+                <figcaption style="text-align: center;"></figcaption>
+            </figure>
+            The cumulative explained variance demonstrates a rapid increase initially, indicating that each new component significantly contributes to explaining the variance in the data. However, beyond a certain point, the rate of gain in explained variance diminishes, suggesting that additional components provide progressively smaller contributions to capturing the underlying structure of the data. This pattern becomes particularly evident when dealing with a large number of variables.
+            
+
+
+
+
+
+
+            <!------------------------------->
             <h3 id="PCA-in-machine-learning">Application of PCA in machine learning</h3>
             PCA is a powerful tool that can be used for a variety of machine learning tasks, including dimensionality reduction, feature extraction, and data visualization. Here are some more complex examples of how PCA can be used in machine learning:
 
