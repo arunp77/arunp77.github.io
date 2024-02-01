@@ -212,7 +212,6 @@
 
 
             <!----------------------->
-
             <h4 id="Practical-example">Practical example</h4>
             Let's consider a secanrio, you have a datasets of dimention \(n = 1000\) (rows) x \(p = 40\) (columns). These 40 columns represents possible features. 
             But not all columns can be considered to be a feature. There are total row \(p \times (p-1)/2 =780\) numbers of scattered plots one can generate to see the possible relationships between the features. 
@@ -238,7 +237,7 @@
 
             </div>
 
-            
+            <br><br>
             <!----------------->
             <h4 id="principal-compoenent">What Are Principal Components?</h4>
             Principal components are the orthogonal (uncorrelated) linear combinations of the original features in a dataset. These components are ordered by the amount of variance they explain in the data. 
@@ -275,7 +274,7 @@
                     <strong>Note:</strong> Partial least square (PLS) is a supervised alternative to PCA. PLS assigns a higher weight to variables that are strongly related to response variable to determine principal components.                
                 </div>
 
-            
+            <br>
             <!--------------->
             <h3 id="how-pca-works">How PCA works</h3>
             <ul>
@@ -573,6 +572,91 @@
             </figure>
             The cumulative explained variance demonstrates a rapid increase initially, indicating that each new component significantly contributes to explaining the variance in the data. However, beyond a certain point, the rate of gain in explained variance diminishes, suggesting that additional components provide progressively smaller contributions to capturing the underlying structure of the data. This pattern becomes particularly evident when dealing with a large number of variables.
           
+            <br><br>
+            <!------------->
+            <h5>Example-5 (Multivariable)</h5>
+            Let's now consider a multicolumn datasets and then do the PCA analysis:
+            <pre class="language-python"><code>
+                # Step 1: Generate Data and Create a DataFrame
+                import numpy as np
+                import pandas as pd
+                import seaborn as sns
+                
+                np.random.seed(42)
+                
+                # Generate random data with 6 variables and more variability
+                data = np.random.randn(100, 10) * 5  # 100 samples, 6 variables with more variability
+                columns = ['Var1', 'Var2', 'Var3', 'Var4', 'Var5', 'Var6', 'Var7', 'Var8', 'Var9', 'Var10']
+                df = pd.DataFrame(data, columns=columns)
+                
+                # Step 2: Basic Exploratory Data Analysis (EDA)
+                # You can explore basic statistics, correlations, etc.
+                print("Basic Statistics:")
+                df.describe()
+            </code></pre>
+            <figure>
+                <img src="assets/img/machine-ln/pca-multicolumn-info.png" alt="" style="max-width: 80%; max-height: auto;">
+                <figcaption style="text-align: center;"></figcaption>
+            </figure>
+            <pre class="language-python"><code>
+                # Step 3: Plot PCA Analysis
+                from sklearn.decomposition import PCA
+                import matplotlib.pyplot as plt
+                
+                cumulative_explained_variance = np.cumsum(pca.explained_variance_ratio_)
+                individual_variance = pca.explained_variance_ratio_
+                
+                print("Cumulative Explained Variance:")
+                print(cumulative_explained_variance)
+                
+                print("\nIndividual Variance Ratio:")
+                print(individual_variance)
+            </code></pre>
+            The out gives use:
+            <pre>
+                Cumulative Explained Variance:
+                [0.15598434 0.28624759 0.40740977 0.51957787 0.62005566 0.71457744
+                 0.80326639 0.88455306 0.95248047 1.        ]
+                
+                Individual Variance Ratio:
+                [0.15598434 0.13026324 0.12116218 0.1121681  0.10047779 0.09452177
+                 0.08868896 0.08128667 0.06792741 0.04751953]
+            </pre>
+            Now the PCA gave us following plot:
+            <pre class="language-python"><code>
+                # Convert cumulative explained variance to percentage
+                cumulative_explained_variance_percentage = cumulative_explained_variance * 100
+                
+                # Plot the explained variance ratio with percentage values
+                plt.figure(figsize=(10, 5))
+                
+                # Individual explained variance
+                plt.bar(range(1, 11), individual_variance * 100, alpha=0.7, align='center', label='Individual Variance Ratio')
+                
+                # Cumulative explained variance with percentage values
+                plt.plot(range(1, 11), cumulative_explained_variance_percentage, marker='o', linestyle='-', color='r', label='Cumulative Explained Variance Ratio')
+                
+                # Add percentage values to the plot
+                for i, percentage in enumerate(cumulative_explained_variance_percentage):
+                    plt.text(i + 1, percentage + 1, f'{percentage:.2f}%', ha='center', va='bottom', fontsize=8, color='blue')
+                
+                plt.title('Explained Variance by Principal Components')
+                plt.xlabel('Principal Components')
+                plt.ylabel('Variance Explained (%)')
+                plt.legend()
+                plt.grid(True)
+                plt.show()
+            </code></pre>
+            <figure>
+                <img src="assets/img/machine-ln/pca-multicolumn-plot.png" alt="" style="max-width: 80%; max-height: auto;">
+                <figcaption style="text-align: center;"></figcaption>
+            </figure>
+
+            <p><strong>Description: </strong></p> We can see that around 80% of the variance is explained by the first 7 principal components.
+            The individual variance ratio for each component indicates its contribution to the overall variance.
+
+
+            <br><br>
             <!------------------------------->
             <h3 id="PCA-in-machine-learning">Application of PCA in machine learning</h3>
             PCA is a powerful tool that can be used for a variety of machine learning tasks, including dimensionality reduction, feature extraction, and data visualization. Here are some more complex examples of how PCA can be used in machine learning:
