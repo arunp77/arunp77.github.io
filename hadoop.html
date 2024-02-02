@@ -185,7 +185,25 @@
                 </figure>
 
                 <div class="box">
-                    <strong>Hadoop Cluster</strong> 
+                    <p><strong>Hadoop Cluster?: </strong> A Hadoop cluster is a network of computers or nodes working together to handle large datasets efficiently. 
+                    Think of it as a team of specialists, each with their own expertise, tackling a massive project collaboratively. In this analogy, 
+                    the computers are the specialists, and the data is the project.</p>
+                    <p><strong>Nodes:</strong></p> Nodes are the  machines that make up a cluster. They can be physical or virtual servers in a cloud computing environment.
+                    These nodes are connected with each other through LAN (Local Area Network). The nodes in a cluster share the data, work on the same task and this nodes 
+                    are good enough to work as a single unit means all of them to work together.
+                    The nodes in a Hadoop cluster can be divided into two types:
+                    <ul>
+                        <li><strong>Master Node: </strong> This is the node that manages the overall operation of the cluster. It is responsible for assigning tasks to other nodes, monitoring their progress, and handling failures. The master node in a Hadoop cluster is typically a <code>NameNode (NN)</code> in the case of HDFS (Hadoop Distributed File System).</li>
+                        <li><strong>Worker Nodes: </strong> These are the nodes that perform the actual processing of data. Each worker node is responsible for executing tasks assigned by the master node. In the context of HDFS, the worker nodes are called <code>DataNodes (DN)</code>.</li>
+                    </ul>
+                    <figure>
+                        <img src="assets/img/data-engineering/Hadoop-Cluster-Schema.png" alt="" style="max-width: 50%; max-height: auto;">
+                        <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://www.geeksforgeeks.org/hadoop-cluster-properties-and-its-types/" target="_blanck">geeksforgeeks</a> </figcaption>
+                    </figure>
+
+
+
+
                 </div>
 
 
