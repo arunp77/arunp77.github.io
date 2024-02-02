@@ -188,18 +188,66 @@
                     <p><strong>Hadoop Cluster?: </strong> A Hadoop cluster is a network of computers or nodes working together to handle large datasets efficiently. 
                     Think of it as a team of specialists, each with their own expertise, tackling a massive project collaboratively. In this analogy, 
                     the computers are the specialists, and the data is the project.</p>
+                    
+                    <p><strong>Hadoop daemons: </strong>
+                        In the world of Hadoop, daemons are like the tireless workers behind the scenes, ensuring everything runs smoothly and efficiently. Each daemon has a 
+                        specific role in managing data storage, processing, and resource allocation across the cluster. The core hadoop daemons are:</p>
+                        <ol>
+                            <li><strong>NameNode: </strong>Think of it as: The central authority figure, keeping track of all the files and their locations across the cluster. Their main responsibilities are:
+                                <ul>
+                                    <li>Maintains the HDFS namespace (file system directory structure)</li>
+                                    <li>Manages file system operations like creating, renaming, and deleting files</li>
+                                    <li>Provides information about file locations to DataNodes</li>
+                                </ul>
+                            </li>
+                            <li><strong>DataNode: </strong>Think of it as: The storage worker, tirelessly storing and retrieving data blocks on its local disk. Main responsibilities are:
+                                <ul>
+                                    <li>Stores data blocks assigned by the NameNode</li>
+                                    <li>Replicates data blocks across other DataNodes for fault tolerance</li>
+                                    <li>Retrieves data blocks requested by MapReduce jobs or applications</li>
+                                </ul>
+                            </li>
+                            <li><strong> ResourceManager: </strong>Think of it as: The traffic controller, managing resources (CPU, memory) and scheduling tasks across the cluster. Responsibilities are:
+                                <ul>
+                                    <li>Receives job submissions from clients</li>
+                                    <li>Negotiates resource allocation with NodeManagers</li>
+                                    <li>Monitors the progress of running jobs</li>
+                                </ul>
+                            </li>
+                            <li><strong>NodeManager: </strong> Think of it as: The local supervisor on each worker node, overseeing tasks and resource allocation. Main responsibilities are as follows:
+                                <ul>
+                                    <li>Starts and monitors tasks assigned by the ResourceManager</li>
+                                    <li>Manages resources on the local node (CPU, memory, network)</li>
+                                    <li>Reports resource usage and task progress to the ResourceManager</li>
+                                </ul>
+                            </li>
+                            <li><strong>Secondary NameNode: </strong> Think of it as: The NameNode's backup, ensuring continuity in case of a failure. Responsibilities are:
+                                <ul>
+                                    <li>Periodically synchronizes metadata with the NameNode</li>
+                                    <li>Can be used to take over if the NameNode fails, minimizing downtime</li>
+                                    <li></li>
+                                </ul>
+                            </li>
+                        </ol>
+                    
                     <p><strong>Nodes:</strong></p> Nodes are the  machines that make up a cluster. They can be physical or virtual servers in a cloud computing environment.
                     These nodes are connected with each other through LAN (Local Area Network). The nodes in a cluster share the data, work on the same task and this nodes 
                     are good enough to work as a single unit means all of them to work together.
                     The nodes in a Hadoop cluster can be divided into two types:
                     <ul>
                         <li><strong>Master Node: </strong> This is the node that manages the overall operation of the cluster. It is responsible for assigning tasks to other nodes, monitoring their progress, and handling failures. The master node in a Hadoop cluster is typically a <code>NameNode (NN)</code> in the case of HDFS (Hadoop Distributed File System).</li>
-                        <li><strong>Worker Nodes: </strong> These are the nodes that perform the actual processing of data. Each worker node is responsible for executing tasks assigned by the master node. In the context of HDFS, the worker nodes are called <code>DataNodes (DN)</code>.</li>
+                        <li><strong>Worker (slave) Nodes: </strong> These are the nodes that perform the actual processing of data. Each worker node is responsible for executing tasks assigned by the master node. In the context of HDFS, the worker nodes are called <code>DataNodes (DN)</code>.</li>
                     </ul>
                     <figure>
                         <img src="assets/img/data-engineering/Hadoop-Cluster-Schema.png" alt="" style="max-width: 50%; max-height: auto;">
                         <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://www.geeksforgeeks.org/hadoop-cluster-properties-and-its-types/" target="_blanck">geeksforgeeks</a> </figcaption>
                     </figure>
+
+                    <p><strong>Types of Hadoop clusters</strong> There are mainly two types of Hadoop clusters:</p>
+                    <ul>
+                        <li><strong>Single Node Hadoop Cluster: </strong>This type consists of a single machine running all the essential Hadoop daemons (NameNode, DataNode, ResourceManager, NodeManager) on its own.</li>
+                        <li><strong>Multiple Node Hadoop Cluster: </strong></li>
+                    </ul>
 
 
 
