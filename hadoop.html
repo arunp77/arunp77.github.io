@@ -185,10 +185,12 @@
                 </figure>
 
                 <div class="box">
+                    <h3>Key concepts</h3> 
                     <p><strong>Hadoop Cluster?: </strong> A Hadoop cluster is a network of computers or nodes working together to handle large datasets efficiently. 
                     Think of it as a team of specialists, each with their own expertise, tackling a massive project collaboratively. In this analogy, 
                     the computers are the specialists, and the data is the project.</p>
                     
+                    <hr>
                     <p><strong>Hadoop daemons: </strong>
                         In the world of Hadoop, daemons are like the tireless workers behind the scenes, ensuring everything runs smoothly and efficiently. Each daemon has a 
                         specific role in managing data storage, processing, and resource allocation across the cluster. The core hadoop daemons are:</p>
@@ -225,10 +227,12 @@
                                 <ul>
                                     <li>Periodically synchronizes metadata with the NameNode</li>
                                     <li>Can be used to take over if the NameNode fails, minimizing downtime</li>
-                                    <li></li>
                                 </ul>
                             </li>
                         </ol>
+                        These daemons work together to form the backbone of a Hadoop cluster, enabling reliable and efficient data storage and processing.
+                        The specific roles and names might vary slightly depending on the Hadoop version and configuration.
+                        <hr>
                     
                     <p><strong>Nodes:</strong></p> Nodes are the  machines that make up a cluster. They can be physical or virtual servers in a cloud computing environment.
                     These nodes are connected with each other through LAN (Local Area Network). The nodes in a cluster share the data, work on the same task and this nodes 
@@ -245,8 +249,38 @@
 
                     <p><strong>Types of Hadoop clusters</strong> There are mainly two types of Hadoop clusters:</p>
                     <ul>
-                        <li><strong>Single Node Hadoop Cluster: </strong>This type consists of a single machine running all the essential Hadoop daemons (NameNode, DataNode, ResourceManager, NodeManager) on its own.</li>
-                        <li><strong>Multiple Node Hadoop Cluster: </strong></li>
+                        <li><strong>Single Node Hadoop Cluster: </strong>This type consists of a single machine running all the essential Hadoop daemons (NameNode, DataNode, ResourceManager, NodeManager) on its own.
+                            <p><strong>Pros: </strong>
+                                <ul>
+                                    <li><strong>Simple setup: </strong>Easy to install and configure, ideal for testing or learning.</li>
+                                    <li><strong>Low cost: </strong>Requires only one machine, minimizing hardware expenses.</li>
+                                    <li><strong>No additional infrastructure: </strong>No need for complex network configurations or cluster management tools.</li>
+                                </ul>
+                            </p>
+                            <p><strong>Cons:</strong>
+                                <ul>
+                                    <li><strong>Limited scalability: </strong>Cannot handle large datasets effectively due to resource constraints of a single machine.</li>
+                                    <li><strong>No fault tolerance: </strong>A single point of failure – if the machine fails, the entire cluster goes down.</li>
+                                    <li><strong>Not suitable for production: </strong>Primarily used for small-scale deployments or educational purposes.</li>
+                                </ul>
+                            </p>
+                        </li>
+                        <li><strong>Multiple Node Hadoop Cluster: </strong>This type distributes the workload across multiple machines, each having specific roles (master nodes, worker nodes).
+                            <p><strong>Pros: </strong>
+                                <ul>
+                                    <li><strong>Scalability: </strong>Easily add more nodes to handle growing datasets and processing demands.</li>
+                                    <li><strong>Fault tolerance: </strong>Distributed architecture ensures cluster functionality even if individual nodes fail.</li>
+                                    <li><strong>High performance: </strong>Utilizes combined resources of multiple machines for faster processing.</li>
+                                </ul>
+                            </p>
+                            <p><strong>Cons: </strong>
+                                <ul>
+                                    <li><strong>Complex setup: </strong>Requires more configuration and technical expertise to manage.</li>
+                                    <li><strong>Higher cost: </strong>Hardware and software costs increase with the number of nodes.</li>
+                                    <li><strong>Additional infrastructure: </strong>Requires network setup, cluster management tools, and potentially dedicated resources.</li>
+                                </ul>
+                            </p>
+                        </li>
                     </ul>
 
 
