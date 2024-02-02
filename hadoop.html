@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Pyspark</title>
+  <title>Hadoop</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -129,12 +129,12 @@
         <section id="portfolio-details" class="portfolio-details">
         <div class="container">
             <div class="row gy-4">
-                <h1>Apache Pyspark: Big data processing</h1>
+                <h1>Hadoop: A Comprehensive Overview of Big Data Processing and Storage</h1>
                 <div class="col-lg-8">
                     <div class="portfolio-details-slider swiper">
                         <div class="swiper-wrapper align-items-center"> 
                             <figure>
-                            <img src="assets/img/data-engineering/Apache_Spark_logo.svg.png" alt="" style="max-width: 50%; max-height: auto;">
+                            <img src="assets/img/data-engineering/hadoop-logo.png" alt="" style="max-width: 50%; max-height: auto;">
                             <figcaption></figcaption>
                             </figure>
                         </div>
@@ -169,25 +169,7 @@
 
             <section>
             <h3 id="introduction">Introduction to Apache Spark</h3>
-            <a href="https://spark.apache.org/" target="_blanck">Apache Spark™</a> is an open-source, distributed computing system for processing and analyzing large datasets. 
-            It was initially developed in 2012 at the AMPLab at UC Berkeley 
-            and later donated to the Apache Software Foundation. 
-            <ul>
-                <li>Spark's primary feature is its ability to perform data processing in-memory, which makes it significantly faster 
-                    than Apache <a href="https://hadoop.apache.org/" target="_blanck">Hadoop®</a> for certain types of workloads. Spark supports various types of big data workloads, 
-                    including batch processing, interactive queries, streaming, machine 
-                    learning, and graph processing.</li>
-                <li>On the other hand, Apache <a href="https://hadoop.apache.org/" target="_blanck">Hadoop®</a> is a platform that was first developed in 2006 and is used for distributed 
-                    storage and processing of large datasets. <a href="https://hadoop.apache.org/" target="_blanck">Hadoop®</a> is built using 
-                    the MapReduce programming model, which is based on the idea of mapping and reducing data to process it in parallel across a distributed cluster of computers. 
-                    <a href="https://hadoop.apache.org/" target="_blanck">Hadoop®</a> is known 
-                    for its fault-tolerance, scalability, and cost-effectiveness.</li>
-                <li>Imagine a powerful engine built for speed and endurance. That's essentially what Spark is. It's an open-source, unified analytics engine designed to process massive 
-                    datasets efficiently and at lightning speed. It achieves this through its unique distributed architecture, where tasks are split across multiple machines, working 
-                    in parallel to crunch through your data.</li>
-            </ul>
 
-            <div class="box">
                 <strong>Hadoop: </strong> Hadoop is a framework written in Java that utilizes a large cluster of commodity hardware to maintain and store big size data. 
                 Hadoop works on MapReduce Programming Algorithm that was introduced by Google. Today lots of Big Brand Companies are using Hadoop in their Organization 
                 to deal with big data, eg. Facebook, Yahoo, Netflix, eBay, etc. The Hadoop Architecture Mainly consists of 4 components. 
@@ -201,100 +183,6 @@
                     <img src="assets/img/data-engineering/hadoop-1.webp" alt="" style="max-width: 50%; max-height: auto;">
                     <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://www.talend.com/resources/what-is-mapreduce/#:~:text=achieving%20quicker%20results.-,What%20is%20MapReduce%3F,functioning%20of%20the%20Hadoop%20framework." target="_blanck">Talend</a> </figcaption>
                 </figure>
-            </div>
-            
-            <!-------------------->
-            <h4>Difference between <a href="https://hadoop.apache.org/" target="_blanck">Hadoop®</a> and <a href="https://spark.apache.org/" target="_blanck">Apache Spark™</a></h4>
-            <ul>
-                <li><strong>Performance: </strong>Spark is generally faster than <a href="https://hadoop.apache.org/" target="_blanck">Hadoop®</a> for data processing tasks because 
-                    it performs computations in-memory, reducing the need to read and write data to disk. Spark can be up to 100 times faster than 
-                    <a href="https://hadoop.apache.org/" target="_blanck">Hadoop®</a> for certain workloads.</li>
-                <li><strong>Cost: </strong>Spark can be more expensive than <a href="https://hadoop.apache.org/" target="_blanck">Hadoop®</a> because it requires more memory to perform 
-                    in-memory computations. <a href="https://hadoop.apache.org/" target="_blanck">Hadoop®</a>, on the other hand, is known for its cost-effectiveness as it can run on commodity hardware.</li>
-                <li><strong>Machine Learning Algorithms: </strong>Spark provides built-in machine learning algorithms in its <a href="https://spark.apache.org/mllib/" target="_blanck">MLlib</a> 
-                    library, which can be used for regression, classification, clustering, and other machine learning tasks. <a href="https://hadoop.apache.org/" target="_blanck">Hadoop®</a> 
-                    does not have built-in machine learning libraries, but it can be integrated with other machine learning frameworks such as 
-                    <a href="https://mahout.apache.org//" target="_blanck">Apache Mahout</a>.</li>
-                <li><strong>Data Processing: </strong><a href="https://hadoop.apache.org/" target="_blanck">Hadoop®</a> is primarily used for batch processing, which involves processing large 
-                    datasets in job lots. Spark supports batch processing, but it also supports interactive queries, streaming, and graph processing.</li>
-                <li><strong>Programming Languages: </strong><a href="https://hadoop.apache.org/" target="_blanck">Hadoop®</a> is primarily written in Java, and its MapReduce programming model 
-                    is based on Java. Spark supports programming in Java, Scala, Python, and R, making it more accessible to a wider range of developers.</li>
-            </ul>
-
-            
-            <!-------------------->
-            <h3 id="key-concept">Some key concepts of <a href="https://spark.apache.org/" target="_blanck">Apache Spark™</a></h3>
-            <ul>
-                <li><strong>Distributed Processing: </strong>Unlike traditional methods that process data on a single machine, Spark distributes tasks across multiple machines 
-                    (nodes) in a cluster. This allows it to handle massive datasets efficiently by dividing the work and processing it in parallel. Think of it as having many 
-                    chefs working on different parts of a large meal instead of just one.</li>
-                <li><strong>Resilience: </strong>Spark is designed to be fault-tolerant. If a node fails, the work is automatically reassigned to other nodes, ensuring your processing 
-                    continues uninterrupted. This is like having backup chefs ready to step in if someone gets sick.</li>
-                <li><strong>In-Memory Computing: </strong>Spark stores frequently accessed data in memory for faster processing compared to reading it from disk. This is like having 
-                    your ingredients readily available on the counter instead of searching the pantry every time you need something.</li>
-                <li><strong>Lineage (i.e. version): </strong>Spark keeps track of how data is transformed, allowing you to trace the origin and understand how results were obtained. 
-                    This is like having a recipe that shows you each step involved in creating the final dish.</li>
-                <li><strong>APIs:</strong>Spark provides APIs in various languages like Python, Java, Scala, and R. This allows you to choose the language you're most comfortable with 
-                    and write code in a familiar syntax. It's like having different tools (spatulas, whisks, etc.) that work with the same ingredients.</li>
-                <li><strong>Functional Programming: </strong>Spark heavily utilizes functional programming concepts like immutability and lazy evaluation. This makes code cleaner, easier 
-                    to reason about, and more resistant to errors. Think of it as following precise instructions without modifying the ingredients themselves.</li>
-            </ul>
-
-            <!-------------------->
-            <h4 id="key-features">Key Features</h4>
-            <ul>
-                <li><strong>Speed: </strong>Spark performs in-memory processing, making it much faster than its predecessor, MapReduce. It achieves high performance through advanced DAG 
-                    (Directed Acyclic Graph) execution engine.</li>
-                <li><strong>Ease of Use: </strong>Spark supports multiple programming languages, including Scala, Java, Python, and R. Its high-level APIs make it easy to use for both 
-                    batch processing and real-time data processing.</li>
-                <li><strong>Versatility: </strong>Spark's ecosystem includes libraries for data analysis, machine learning (<a href="https://spark.apache.org/mllib/" target="_blanck">MLlib</a>), 
-                    graph processing (GraphX), and stream processing 
-                    (Structured Streaming). This versatility makes it a 
-                    comprehensive solution for various data-related tasks.</li>
-                <li><strong>Fault Tolerance: </strong>Spark provides fault tolerance through lineage information and recomputation, ensuring that tasks are re-executed in case of node failures.</li>
-                <li><strong>Compatibility: </strong>It can run on various cluster managers, such as Apache Mesos, <a href="https://hadoop.apache.org/" target="_blanck">Hadoop®</a> YARN, or Kubernetes, 
-                    making it compatible with different big data 
-                    environments.</li>
-            </ul>
-
-            <!--------------------->
-            <h4 id="Components">Components of <a href="https://spark.apache.org/" target="_blanck">Apache Spark™</a></h4>
-            Spark Core is the fundamental component of <a href="https://spark.apache.org/" target="_blanck">Apache Spark™</a>, serving as the project's foundation. It offers distributed task 
-            dispatching, scheduling, and basic I/O functionalities. 
-            Spark Core provides an application programming interface (API) for multiple programming languages like Java, Python, Scala, .NET, and R. This API is centered around the Resilient 
-            Distributed Datasets (RDD) abstraction. The Java API, while primarily for JVM languages, can also be used with some non-JVM languages that can connect to the JVM, such as Julia.
-            <ul>
-                <li><strong>Spark Core: </strong>It provides the basic functionality of Spark, including task scheduling, memory management, and fault recovery.</li>
-                <li><strong>Spark SQL: </strong>Allows for querying structured data using SQL as well as Spark's built-in DataFrame API.</li>
-                <li><strong>Spark Streaming: </strong>Enables scalable, high-throughput, fault-tolerant stream processing of live data streams.</li>
-                <li><strong>Spark DataFrames: </strong>High-level data structures for manipulating data like a spreadsheet.</li>
-                <li><strong>Spark <a href="https://spark.apache.org/mllib/" target="_blanck">MLlib</a> (Machine Learning Library): </strong>A distributed machine learning framework for 
-                    building scalable and robust machine learning models.</li>
-                <li><strong>Spark GraphX: </strong>A graph processing library for graph computation. </li>
-                <li><strong>Spark Structured Streaming: </strong>Allows users to express streaming computations the same way as batch computations, providing unified processing for both.</li>
-            </ul>
-            <figure>
-                <img src="assets/img/data-engineering/apache-spark1.png" alt="" style="max-width: 50%; max-height: auto;">
-                <figcaption style="text-align: center;"><strong>Language support: </strong><a href="https://spark.apache.org/" target="_blanck">Apache Spark™</a> has built-in support 
-                    for Scala, Java, SQL, R, and Python with 3rd party support for 
-                    the .NET CLR, Julia, and more.</figcaption>
-            </figure>
-            
-
-            <!-------------------->
-            <h4 id="use-cases">Use Cases</h4>
-            <ul>
-                <li><strong>Big Data Processing:</strong> Spark is widely used for processing and analyzing large datasets efficiently.</li>
-                <li><strong>Machine Learning:</strong> <a href="https://spark.apache.org/mllib/" target="_blanck">MLlib</a> simplifies the development of scalable machine learning applications.</li>
-                <li><strong>Graph Processing:</strong> GraphX enables the processing of large-scale graph data.</li>
-                <li><strong>Real-time Analytics:</strong> Spark Streaming and Structured Streaming support real-time analytics.   </li>         
-            </ul>
-
-            <!--------------------->
-            <h3>What makes <a href="https://spark.apache.org/" target="_blanck">Apache Spark™</a> special?</h3>
-
-
-
 
 
 
