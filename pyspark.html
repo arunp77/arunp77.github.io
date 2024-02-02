@@ -189,13 +189,16 @@
             <ul>
                 <li><strong>Speed: </strong>Spark performs in-memory processing, making it much faster than its predecessor, MapReduce. It achieves high performance through advanced DAG (Directed Acyclic Graph) execution engine.</li>
                 <li><strong>Ease of Use: </strong>Spark supports multiple programming languages, including Scala, Java, Python, and R. Its high-level APIs make it easy to use for both batch processing and real-time data processing.</li>
-                <li><strong>Versatility: </strong>Spark's ecosystem includes libraries for data analysis, machine learning (MLlib), graph processing (GraphX), and stream processing (Structured Streaming). This versatility makes it a comprehensive solution for various data-related tasks.</li>
+                <li><strong>Versatility: </strong>Spark's ecosystem includes libraries for data analysis, machine learning (MLlib), graph processing (GraphX), and stream processing (Structured Streaming). This versatility makes it a 
+                    comprehensive solution for various data-related tasks.</li>
                 <li><strong>Fault Tolerance: </strong>Spark provides fault tolerance through lineage information and recomputation, ensuring that tasks are re-executed in case of node failures.</li>
                 <li><strong>Compatibility: </strong>It can run on various cluster managers, such as Apache Mesos, Hadoop YARN, or Kubernetes, making it compatible with different big data environments.</li>
             </ul>
 
             <!--------------------->
             <h4 id="Components">Components of Apache Spark</h4>
+            Spark Core is the foundation of the overall project. It provides distributed task dispatching, scheduling, and basic I/O functionalities, exposed through an application programming interface (for Java, Python, Scala, .NET and R) 
+            centered on the RDD abstraction (the Java API is available for other JVM languages, but is also usable for some other non-JVM languages that can connect to the JVM, such as Julia).
             <ul>
                 <li><strong>Spark Core: </strong>It provides the basic functionality of Spark, including task scheduling, memory management, and fault recovery.</li>
                 <li><strong>Spark SQL: </strong>Allows for querying structured data using SQL as well as Spark's built-in DataFrame API.</li>
@@ -207,7 +210,7 @@
             </ul>
             <figure>
                 <img src="assets/img/data-engineering/apache-spark1.png" alt="" style="max-width: 50%; max-height: auto;">
-                <figcaption></figcaption>
+                <figcaption style="text-align: center;"><strong>Language support: </strong>Apache Spark has built-in support for Scala, Java, SQL, R, and Python with 3rd party support for the .NET CLR, Julia, and more.</figcaption>
             </figure>
             
 
