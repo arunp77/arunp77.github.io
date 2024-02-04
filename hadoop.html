@@ -168,11 +168,27 @@
             </div>
 
             <section>
-            <h3 id="introduction">Introduction to Apache Spark</h3>
+            <h3 id="introduction">Introduction to Hadoop</h3>
+            In a straightforward scenario with smaller data volumes, one might consider a system where users interact 
+            directly with standard database servers through a centralized system. However, in the case of large and scalable data, processing 
+            such data through a single database bottleneck becomes a challenging task. Hadoop is a framework written in Java that utilizes a 
+            large cluster of commodity hardware to maintain and store big size data. Hadoop works on MapReduce Programming Algorithm that was 
+            introduced by Google. This Algorithm divides the task into small parts and assign them to many computers, and collects the results 
+            from them which when integrated, from the result dataset.
+            <figure>
+                <img src="assets/img/data-engineering/hadoop-mapreduce.png" alt="" style="max-width: 80%; max-height: auto;">
+                <figcaption style="text-align: center;"></figcaption>
+            </figure>
+            Using the solution provided by Google, Doug Cutting and his team developed an Open Source Project called HADOOP. 
+            Hadoop runs applications using the MapReduce algorithm, where the data is processed in parallel with others. 
+            Today lots of Big Brand Companies are using Hadoop in their Organization to deal with big data, eg. Facebook, Yahoo, Netflix, eBay, etc. 
+            <p><strong>Definition: </strong>Hadoop, an Apache open-source framework written in Java, enables the distributed processing of large 
+                datasets across computer clusters using simple programming models. Operating in an environment with distributed storage and 
+                computation across clusters, Hadoop is designed to scale seamlessly from a single server to thousands of machines, each providing 
+                local computation and storage.</p>
 
-                <strong>Hadoop: </strong> Hadoop is a framework written in Java that utilizes a large cluster of commodity hardware to maintain and store big size data. 
-                Hadoop works on MapReduce Programming Algorithm that was introduced by Google. Today lots of Big Brand Companies are using Hadoop in their Organization 
-                to deal with big data, eg. Facebook, Yahoo, Netflix, eBay, etc. The Hadoop Architecture Mainly consists of 4 components. 
+                <p>Hadoop has two major layers namely -- Processing/Computation layer (MapReduce), and Storage layer (Hadoop Distributed File System).
+                     The Hadoop Architecture Mainly consists of 4 components. </p>
                 <ul>
                     <li><strong><a href="https://hadoop.apache.org/docs/r1.2.1/mapred_tutorial.html" target="_blank">MapReduce</a>: </strong></li>
                     <li><strong>HDFS(Hadoop Distributed File System): </strong></li>
