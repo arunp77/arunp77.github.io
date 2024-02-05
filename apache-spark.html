@@ -134,8 +134,8 @@
                     <div class="portfolio-details-slider swiper">
                         <div class="swiper-wrapper align-items-center"> 
                             <figure>
-                            <img src="assets/img/data-engineering/Apache_Spark_logo.svg.png" alt="" style="max-width: 50%; max-height: auto;">
-                            <figcaption></figcaption>
+                                <img src="assets/img/data-engineering/Apache_Spark_logo.svg.png" alt="" style="max-width: 50%; max-height: auto;">
+                                <figcaption></figcaption>
                             </figure>
                         </div>
                         <div class="swiper-pagination"></div>
@@ -154,7 +154,10 @@
                                 <li><a href="#key-features">Key Features</a></li>
                             </ul>
                             <li><a href="#Components">Components of Apache Spark</a></li>
-                            
+                            <ul>
+                                <li><a href="#use-cases">Use Cases</a></li>
+                            </ul>
+                            <li><a href="#rdd">Resilient Distributed Datasets (RDD)</a></li>
                             <li><a href="#reference">Reference</a></li>
                         </ol>
                     </div>
@@ -302,6 +305,164 @@
                 <li><strong>Graph Processing:</strong> GraphX enables the processing of large-scale graph data.</li>
                 <li><strong>Real-time Analytics:</strong> Spark Streaming and Structured Streaming support real-time analytics.   </li>         
             </ul>
+
+
+            <!----------------------->
+            <h3 id="spark-Architecture">Spark Architecture</h3>
+            Apache Spark's architecture is designed for efficient and scalable processing of large datasets. It achieves this through two main pillars:
+            <ol>
+                <li><strong>Master-Slave Architecture: </strong>
+                    <ul>
+                        <li><strong>Master (Driver): </strong>Submits applications, coordinates task scheduling, and manages communication between components. Think of it as the conductor of an orchestra, overseeing the entire performance.</li>
+                        <li><strong>Slaves (Executors): </strong>Worker nodes distributed across the cluster, carrying out the actual computations on partitioned data. Imagine them as the different sections of the orchestra, each playing their assigned parts.</li>
+                    </ul>
+                </li>
+                <li><strong>Data Abstraction: </strong>
+                    <ul>
+                        <li><strong>Resilient Distributed Datasets (RDDs): </strong>Immutable, fault-tolerant collections of data distributed across the cluster. RDDs are the fundamental unit of data in Spark and can be created from various sources like files, databases, or other RDDs. Think of them as sheet music distributed to each section of the orchestra, ensuring everyone plays the same song simultaneously.</li>
+                    </ul>
+                </li>
+            </ol>
+            Apache Spark follows a distributed architecture designed for scalability and fault tolerance. The key components in Spark's architecture include:
+            <ul>
+                <li><strong>Driver Program:</strong>
+                    <ul>
+                        <li>The entry point of any Spark application.</li>
+                        <li>Contains the main function and creates a SparkContext to coordinate the execution of tasks.</li>
+                    </ul>
+                </li>
+            
+                <li><strong>Cluster Manager:</strong>
+                    <ul>
+                        <li>Manages resources across the cluster.</li>
+                        <li>Common cluster managers include Apache Mesos, Hadoop YARN, and Spark's standalone cluster manager.</li>
+                    </ul>
+                </li>
+            
+                <li><strong>SparkContext:</strong>
+                    <ul>
+                        <li>Created by the driver program and coordinates the execution of tasks on the cluster.</li>
+                        <li>Communicates with the cluster manager to acquire resources and manage the execution of tasks.</li>
+                    </ul>
+                </li>
+            
+                <li><strong>Distributed Data:</strong>
+                    <ul>
+                        <li>Data is distributed across the cluster in partitions.</li>
+                        <li>Resilient Distributed Datasets (RDDs) or DataFrames represent distributed collections of data.</li>
+                    </ul>
+                </li>
+            
+                <li><strong>Executor:</strong>
+                    <ul>
+                        <li>Each worker node in the cluster has an executor.</li>
+                        <li>Executes tasks assigned by the SparkContext and manages the data stored on that node.</li>
+                    </ul>
+                </li>
+            
+                <li><strong>Task:</strong>
+                    <ul>
+                        <li>The smallest unit of work in Spark.</li>
+                        <li>Executed on an executor and performs operations on the partitions of the distributed data.</li>
+                    </ul>
+                </li>
+            
+                <li><strong>Job:</strong>
+                    <ul>
+                        <li>A collection of tasks that are submitted to Spark for execution.</li>
+                        <li>Jobs are divided into stages based on the transformations and actions applied to the data.</li>
+                    </ul>
+                </li>
+            
+                <li><strong>Stage:</strong>
+                    <ul>
+                        <li>A set of tasks that can be executed in parallel without shuffling data between them.</li>
+                        <li>Stages are determined by the transformations in the application.</li>
+                    </ul>
+                </li>
+            
+                <li><strong>RDD lineage and DAG:</strong>
+                    <ul>
+                        <li>RDD lineage records the sequence of transformations applied to construct an RDD.</li>
+                        <li>Directed Acyclic Graph (DAG) is a logical representation of the sequence of stages and tasks.</li>
+                    </ul>
+                </li>
+            
+                <li><strong>Shuffling:</strong>
+                    <ul>
+                        <li>Occurs when data needs to be redistributed across the cluster, typically between stages.</li>
+                        <li>Can be an expensive operation in terms of performance.</li>
+                    </ul>
+                </li>
+            
+                <li><strong>Broadcasting:</strong>
+                    <ul>
+                        <li>Efficiently sends read-only variables to all the worker nodes, reducing data transfer overhead.</li>
+                    </ul>
+                </li>
+            </ul>
+            <figure>
+                <img src="assets/img/data-engineering/spark-architecture.png" alt="" style="max-width: 90%; max-height: auto;">
+                <figcaption style="text-align: center;">Generated through: <a href="https://mermaid.live/" target="_blank">mermaid.live</a> using graph LR code given below.</figcaption>
+            </figure>
+            <pre> 
+                #!graph lr
+                graph LR
+                subgraph cluster_driver
+                  Driver_Program --> SparkContext
+                end
+              
+                subgraph cluster_spark
+                  SparkContext --> Cluster_Manager
+                end
+              
+                subgraph cluster_manager
+                  Cluster_Manager --> |Allocates Resources| Executor_1
+                  Cluster_Manager --> |Allocates Resources| Executor_2
+                  Cluster_Manager --> |Allocates Resources| Executor_N
+                end
+              
+                subgraph cluster_executor
+                  Executor_1 --> Task_1
+                  Executor_2 --> Task_2
+                  Executor_N --> Task_N
+                end
+              
+                subgraph cluster_task
+                  Task_1 --> Distributed_Data_1
+                  Task_2 --> Distributed_Data_2
+                  Task_N --> Distributed_Data_N
+                end
+            </pre>
+            
+
+
+
+
+
+
+
+
+            <!------------------------>
+            <h3 id="rdd">Resilient Distributed Datasets (RDD)</h3>
+            Resilient Distributed Datasets (RDD) is a fundamental data structure of Spark. It is an immutable distributed collection of objects. Each dataset in RDD is divided into logical partitions, 
+            which may be computed on different nodes of the cluster. RDDs can contain any type of Python, Java, or Scala objects, including user-defined classes.
+
+            There are two ways to create RDDs:
+            <ul>
+                <li>parallelizing an existing collection in your driver program or</li>
+                <li> referencing a dataset in an external storage system, such as a shared file system, HDFS, HBase, or any data source offering a Hadoop Input Format.</li>
+            </ul>
+
+            <p>Data sharing is slow in MapReduce due to replication, serialization, and disk IO. Most of the Hadoop applications, they spend more than 90% of the time doing HDFS read-write operations.
+                Recognizing this problem, researchers developed a specialized framework called Apache Spark. The key idea of spark is Resilient Distributed Datasets (RDD); it supports in-memory 
+                processing computation. This means, it stores the state of memory as an object across the jobs and the object is sharable between those jobs. Data sharing in memory is 10 to 100 
+                times faster than network and Disk
+            </p>
+
+
+
+
 
             </section>
 
