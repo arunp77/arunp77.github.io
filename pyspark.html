@@ -146,21 +146,14 @@
                     <div class="section-title">
                         <h3>Table of Contents</h3>
                         <ol>
-                            <li><a href="#introduction">Introduction</a></li>
-                            <li><a href="#key-concept"><a href="https://spark.apache.org/" target="_blanck">Apache Spark™</a> key concept</a></li>
+                            <li><a href="#introduction">Introduction to Apache Spark</a></li>
                             <ul>
+                                <li><a href="#difference">Difference between Hadoop and Apache Spark</a></li>
+                                <li><a href="#key-concept">Some key concepts of Apache Spark</a></li>
                                 <li><a href="#key-features">Key Features</a></li>
-                                <li><a href="#Components">Components of <a href="https://spark.apache.org/" target="_blanck">Apache Spark™</a></a></li>
-                                <li><a href="#limitations">Limitations of PCA</a></li>
-                                <li><a href="#use-cases">Use cases</a></li>
-                                <li><a href="#principal-compoenent">What Are Principal Components?</a></li>
                             </ul>
-                            <li><a href="#how-pca-works">How PCA works?</a></li>
-                            <ul>
-                                <li><a href="#Process">Process of doing the PCA</a></li>
-                            </ul>
-                            <li><a href="#example-1">Example</a></li>
-                            <li><a href="#PCA-in-machine-learning">Application of PCA in machine learning</a></li>
+                            <li><a href="#Components">Apache Spark™ key concept</a></li>
+                            <li><a href="#"></a></li>
                             <li><a href="#reference">Reference</a></li>
                         </ol>
                     </div>
@@ -202,7 +195,7 @@
             <br>
             
             <!-------------------->
-            <h4>Difference between <a href="https://hadoop.apache.org/" target="_blanck">Hadoop®</a> and <a href="https://spark.apache.org/" target="_blanck">Apache Spark™</a></h4>
+            <h5 id="difference">Difference between <a href="https://hadoop.apache.org/" target="_blanck">Hadoop®</a> and <a href="https://spark.apache.org/" target="_blanck">Apache Spark™</a></h5>
             <ul>
                 <li><strong>Performance: </strong>Spark is generally faster than <a href="https://hadoop.apache.org/" target="_blanck">Hadoop®</a> for data processing tasks because 
                     it performs computations in-memory, reducing the need to read and write data to disk. Spark can be up to 100 times faster than 
@@ -221,7 +214,7 @@
 
             
             <!-------------------->
-            <h3 id="key-concept">Some key concepts of <a href="https://spark.apache.org/" target="_blanck">Apache Spark™</a></h3>
+            <h5 id="key-concept">Some key concepts of Apache Spark™</h5>
             <ul>
                 <li><strong>Distributed Processing: </strong>Unlike traditional methods that process data on a single machine, Spark distributes tasks across multiple machines 
                     (nodes) in a cluster. This allows it to handle massive datasets efficiently by dividing the work and processing it in parallel. Think of it as having many 
@@ -239,7 +232,7 @@
             </ul>
 
             <!-------------------->
-            <h4 id="key-features">Key Features</h4>
+            <h5 id="key-features">Key Features</h5 >
             <ul>
                 <li><strong>Speed: </strong>Spark performs in-memory processing, making it much faster than its predecessor, MapReduce. It achieves high performance through advanced DAG 
                     (Directed Acyclic Graph) execution engine.</li>
@@ -256,7 +249,7 @@
             </ul>
 
             <!--------------------->
-            <h4 id="Components">Components of <a href="https://spark.apache.org/" target="_blanck">Apache Spark™</a></h4>
+            <h3 id="Components">Components of Apache Spark™</h3>
             Spark Core is the fundamental component of <a href="https://spark.apache.org/" target="_blanck">Apache Spark™</a>, serving as the project's foundation. It offers distributed task 
             dispatching, scheduling, and basic I/O functionalities. 
             Spark Core provides an application programming interface (API) for multiple programming languages like Java, Python, Scala, .NET, and R. This API is centered around the Resilient 
