@@ -147,13 +147,14 @@
                         <h3>Table of Contents</h3>
                         <ol>
                             <li><a href="#introduction">Introduction to Apache Spark</a></li>
+                            <li><a href="#how-it-works">How does Spark work?</a></li>
                             <ul>
                                 <li><a href="#difference">Difference between Hadoop and Apache Spark</a></li>
                                 <li><a href="#key-concept">Some key concepts of Apache Spark</a></li>
                                 <li><a href="#key-features">Key Features</a></li>
                             </ul>
-                            <li><a href="#Components">Apache Spark™ key concept</a></li>
-                            <li><a href="#"></a></li>
+                            <li><a href="#Components">Components of Apache Spark</a></li>
+                            
                             <li><a href="#reference">Reference</a></li>
                         </ol>
                     </div>
@@ -179,6 +180,16 @@
                     datasets efficiently and at lightning speed. It achieves this through its unique distributed architecture, where tasks are split across multiple machines, working 
                     in parallel to crunch through your data.</li>
             </ul>
+
+            <!--------------------->
+            <h3 id="how-it-works">How does Spark work?</h3>
+            <p>Spark's operational model adheres to the hierarchical primary-secondary principle, commonly known as the master-slave principle. The Spark driver functions as the master node, overseen by the 
+            cluster manager, which, in turn, manages the slave nodes and directs data analyses to the client. The distribution and monitoring of executions and queries are facilitated through the SparkContext, 
+            established by the Spark driver, collaborating with cluster managers like Spark, YARN, Hadoop, or Kubernetes. The Resilient Distributed Datasets (RDDs) play a pivotal role in this process.</p>
+            <p>Spark dynamically determines resource utilization for data querying or storage, deciding where queried data is directed. The engine's ability to process data directly in the memory of server 
+                clusters dynamically reduces latency and ensures rapid performance. Additionally, the implementation of parallel work steps and the utilization of both virtual and physical memory contribute to its efficiency.</p>
+            <p>Apache Spark also processes data from various data stores . These include the Hadoop Distributed File System (HDFS) and relational data storage such as Hive or NoSQL databases. In addition, there is performance-enhancing in-memory or hard-disk processing - depending on how large the data sets in question are</p>
+
 
             <div class="grey-box">
                 <strong>Hadoop: </strong> Hadoop is a framework written in Java that utilizes a large cluster of commodity hardware to maintain and store big size data. 
@@ -292,7 +303,8 @@
                 <li><strong>Real-time Analytics:</strong> Spark Streaming and Structured Streaming support real-time analytics.   </li>         
             </ul>
 
-            <!--------------------->
+            
+
             
 
 
