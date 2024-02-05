@@ -195,7 +195,7 @@
             <br>
             
             <!-------------------->
-            <h5 id="difference">Difference between <a href="https://hadoop.apache.org/" target="_blanck">Hadoop®</a> and <a href="https://spark.apache.org/" target="_blanck">Apache Spark™</a></h5>
+            <h5 id="difference">Difference between Hadoop® and Apache Spark™</h5>
             <ul>
                 <li><strong>Performance: </strong>Spark is generally faster than <a href="https://hadoop.apache.org/" target="_blanck">Hadoop®</a> for data processing tasks because 
                     it performs computations in-memory, reducing the need to read and write data to disk. Spark can be up to 100 times faster than 
@@ -255,13 +255,16 @@
             Spark Core provides an application programming interface (API) for multiple programming languages like Java, Python, Scala, .NET, and R. This API is centered around the Resilient 
             Distributed Datasets (RDD) abstraction. The Java API, while primarily for JVM languages, can also be used with some non-JVM languages that can connect to the JVM, such as Julia.
             <ul>
-                <li><strong>Spark Core: </strong>It provides the basic functionality of Spark, including task scheduling, memory management, and fault recovery.</li>
-                <li><strong>Spark SQL: </strong>Allows for querying structured data using SQL as well as Spark's built-in DataFrame API.</li>
-                <li><strong>Spark Streaming: </strong>Enables scalable, high-throughput, fault-tolerant stream processing of live data streams.</li>
+                <li><strong>Spark Core: </strong>Spark Core is the underlying general execution engine for spark platform that all other functionality is built upon. It provides In-Memory computing and referencing datasets in external storage systems. 
+                    It provides the basic functionality of Spark, including task scheduling, memory management, and fault recovery.</li>
+                <li><strong>Spark SQL: </strong>Spark SQL is a component on top of Spark Core that introduces a new data abstraction called SchemaRDD, which provides support for structured and semi-structured data.
+                    Allows for querying structured data using SQL as well as Spark's built-in DataFrame API.</li>
+                <li><strong>Spark Streaming: </strong>Spark Streaming leverages Spark Core's fast scheduling capability to perform streaming analytics. It ingests data in mini-batches and performs RDD (Resilient Distributed Datasets) transformations on those mini-batches of data.
+                    Enables scalable, high-throughput, fault-tolerant stream processing of live data streams.</li>
                 <li><strong>Spark DataFrames: </strong>High-level data structures for manipulating data like a spreadsheet.</li>
                 <li><strong>Spark <a href="https://spark.apache.org/mllib/" target="_blanck">MLlib</a> (Machine Learning Library): </strong>A distributed machine learning framework for 
-                    building scalable and robust machine learning models.</li>
-                <li><strong>Spark GraphX: </strong>A graph processing library for graph computation. </li>
+                    building scalable and robust machine learning models. Spark MLlib is nine times as fast as the Hadoop disk-based version of Apache Mahout (before Mahout gained a Spark interface).</li>
+                <li><strong>Spark GraphX: </strong>GraphX is a distributed graph-processing framework on top of Spark. It provides an API for expressing graph computation that can model the user-defined graphs by using Pregel abstraction API. It also provides an optimized runtime for this abstraction.</li>
                 <li><strong>Spark Structured Streaming: </strong>Allows users to express streaming computations the same way as batch computations, providing unified processing for both.</li>
             </ul>
             <figure>
