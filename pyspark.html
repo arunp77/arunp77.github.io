@@ -163,11 +163,192 @@
 
             <section>
             <h3 id="introduction">Introduction to Apache pySpark</h3>
-            
+            PySpark is the Python API for Apache Spark, an open-source, distributed computing framework designed for large-scale data processing. It allows you to leverage the power of Spark from the familiar and approachable Python environment.
+            It provides Python bindings that allow developers to create, test, and deploy applications using the Spark API. 
+
+            <h5>Capabilities</h5>
+            <ul>
+                <li>Large-scale Data Processing: Efficiently handle massive datasets across distributed clusters.</li>
+                <li>Fault Tolerance: Built-in mechanisms to handle node failures and ensure job completion.</li>
+                <li>Structured, Semi-structured, and Unstructured Data Support: Work with various data formats like CSV, JSON, XML, and text files.</li>
+                <li>SQL-like Queries: Utilize Spark SQL for familiar data analysis using SQL syntax.</li>
+                <li>Machine Learning: Build and train various machine learning models with Spark MLlib.</li>
+                <li>Real-time Data Processing: Analyze streaming data with Spark Streaming.</li>
+            </ul>
 
 
+            <h5>Key Components</h5>
+            <ul>
+                <li><strong>SparkContext:</strong> Entry point for interacting with Spark, managing cluster connections and resources.</li>
+                <li><strong>Resilient Distributed Datasets (RDDs):</strong> Immutable, fault-tolerant data collections distributed across the cluster.</li>
+                <li><strong>DataFrames:</strong> Higher-level API for data manipulation, similar to Pandas DataFrames.</li>
+                <li><strong>Spark SQL:</strong> Enables SQL-like operations on structured data.</li>
+                <li><strong>Spark MLlib:</strong> Machine learning library for building and training models.</li>
+                <li><strong>Spark Streaming:</strong> Framework for real-time data processing.</li>
+            </ul>
 
 
+            <h5>Advantages of PySpark</h5>
+            <ul>
+                <li><strong>Leverages Python's Ease of Use:</strong> Familiar syntax and extensive data science libraries in the Python ecosystem.</li>
+                <li><strong>Scalability and Performance:</strong> Handles large datasets effectively on distributed clusters.</li>
+                <li><strong>Versatility:</strong> Supports various data types, processing needs, and languages.</li>
+            </ul>
+
+            <h3>PySpark methods</h3>
+            <table>
+                <tr>
+                    <th>Functionality</th>
+                    <th>PySpark Method</th>
+                </tr>
+                <tr>
+                    <td>SparkSession</td>
+                    <td>
+                        <ul>
+                            <li><code>SparkSession.builder.appName()</code>: Set the application name.</li>
+                            <li><code>SparkSession.builder.getOrCreate()</code>: Create a SparkSession or get an existing one.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Reading and Writing Data:</td>
+                    <td>
+                        <ul>
+                            <li><code>spark.read.format().option().load()</code>: Read data from various sources.</li>
+                            <li><code>DataFrame.write.format().mode().save()</code>: Write data to various storage systems.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>DataFrame Operations: </td>
+                    <td>
+                        <ul>
+                            <li><code>DataFrame.show()</code>: Display the contents of a DataFrame.</li>
+                            <li><code>DataFrame.select()</code>:  Select specific columns.</li>
+                            <li><code>DataFrame.filter()</code>: Filter rows based on conditions.</li>
+                            <li><code>DataFrame.groupBy()</code>:  Group data based on one or more columns.</li>
+                            <li><code>DataFrame.join()</code>: Perform join operations between DataFrames.</li>
+                            <li><code></code>: </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Transformations:</td>
+                    <td>
+                        <ul>
+                            <li><code>DataFrame.withColumn()</code>: Add or replace columns.</li>
+                            <li><code>DataFrame.drop()</code>: Drop specified columns.</li>
+                            <li><code>DataFrame.na.fill()</code>: DataFrame.na.fill()</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Actions</td>
+                    <td>
+                        <ul>
+                            <li><code>DataFrame.count()</code>: Count the number of rows.</li>
+                            <li><code>DataFrame.collect()</code>: Retrieve all data from the DataFrame.</li>
+                            <li><code>DataFrame.take()</code>: Retrieve a specified number of rows.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>SQL Queries:</td>
+                    <td>
+                        <ul>
+                            <li><code>DataFrame.createOrReplaceTempView()</code>: Register DataFrame as a temporary table.</li>
+                            <li><code>spark.sql()</code>: Execute SQL queries on DataFrames.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Data Aggregation and Summary</td>
+                    <td>
+                        <ul>
+                            <li><code>DataFrame.describe()</code>: Generates descriptive statistics</li>
+                            <li><code>DataFrame.approxQuantile()</code>: Approximate quantiles of numerical columns.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Data Cleaning and Handling:</td>
+                    <td>
+                        <ul>
+                            <li><code>DataFrame.dropDuplicates()</code>: Remove duplicate rows.</li>
+                            <li><code>DataFrame.fillna()</code>:  Replace null values with specified values.</li>
+                            <li><code>DataFrame.dropna()</code>: Remove rows with null values.</li>
+                            <li><code>DataFrame.replace()</code>: Replace specified values.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Window Functions:</td>
+                    <td>
+                        <ul>
+                            <li><code>pyspark.sql.functions.row_number()</code>: Assigns a unique number to each row within a partition.</li>
+                            <li><code>pyspark.sql.functions.rank()</code>: Computes the rank of rows within a partition.</li>
+                            <li><code>pyspark.sql.functions.lead()</code> and <code>pyspark.sql.functions.lag()</code>: Access data from subsequent or preceding rows.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Caching</td>
+                    <td>
+                        <ul>
+                            <li><code>DataFrame.cache()</code>: Persist the DataFrame in memory for faster access.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Machine Learning:</td>
+                    <td>
+                        <ul>
+                            <li>PySpark includes various MLlib functions for machine learning tasks.</li>
+                            <li><code>pyspark.ml.Pipeline()</code>: Define a machine learning pipeline.</li>
+                            <li>PySpark MLlib provides various algorithms for classification, regression, clustering, and collaborative filtering.</li>
+                            <li>Methods like <code>pyspark.ml.classification.LogisticRegression()</code>, and <code>pyspark.ml.regression.LinearRegression()</code> etc.</li>
+                        </ul>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Statistical Functions:</td>
+                    <td>
+                        <ul>
+                            <li><code>pyspark.sql.functions.corr()</code></li>
+                            <li><code>pyspark.sql.functions.covar_pop()</code> and <code>pyspark.sql.functions.covar_samp()</code>: Compute population and sample covariance.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Time Series and Date Functions:</td>
+                    <td>
+                        <ul>
+                            <li><code>pyspark.sql.functions.year()</code> and <code>pyspark.sql.functions.month()</code>: etc.: Extract components from a date.</li>
+                            <li><code>pyspark.sql.functions.datediff()</code>: Calculate the difference between two dates</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Graph Processing (GraphFrames):</td>
+                    <td>
+                        <ul>
+                            <li>GraphFrames is an extension of DataFrames for graph processing.</li>
+                            <li>Methods like <code>g.vertices</code>, <code>g.edges</code>, <code>g.bfs()</code>, etc., for graph analysis.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>User-Defined Functions (UDFs):</td>
+                    <td>
+                        <ul>
+                            <li><code>pyspark.sql.functions.udf()</code>: Define a User-Defined Function.
+                            </li>
+                            <li><code>pyspark.sql.functions.when()</code>: Conditional expressions in a DataFrame.</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
 
 
 
@@ -177,9 +358,9 @@
             <section id="reference">
                 <h2>References</h2>
                 <ol>
-                    <li><a href="https://spark.apache.org/docs/latest/" target="_blank"><a href="https://spark.apache.org/" target="_blanck">Apache Spark™</a> Official Documentation</a>.</li>
-                    <li><a href="https://www.databricks.com/learn" target="_blank">Databricks Learning Academy</a>.</li>
-                    <li><a href="https://sparkbyexamples.com/" target="_blank">Spark by Examples</a>.</li>
+                    <li><a href="https://spark.apache.org/documentation.html" target="_blank"> Official Documentation</a></li>
+                    <li><a href="https://www.databricks.com/learn/training/login" target="_blank">Databricks Learning Academy</a></li>
+                    <li><a href="https://sparkbyexamples.com/" target="_blank">Spark by Examples</a></li>
                 </ol> 
             </section>
 
