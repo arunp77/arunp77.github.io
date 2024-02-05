@@ -134,8 +134,8 @@
                     <div class="portfolio-details-slider swiper">
                         <div class="swiper-wrapper align-items-center"> 
                             <figure>
-                            <img src="assets/img/data-engineering/hadoop-logo.png" alt="" style="max-width: 50%; max-height: auto;">
-                            <figcaption></figcaption>
+                            <img src="assets/img/data-engineering/apache-ecosystem.png" alt="" style="max-width: 90%; max-height: auto;">
+                            <figcaption style="text-align: center;">Apache ecosystem (<strong>Image credit:</strong><a href="https://www.oreilly.com/library/view/apache-hive-essentials/9781788995092/e846ea02-6894-45c9-983a-03875076bb5b.xhtml" target="_blank"> O'REILLY</a> )</figcaption> 
                             </figure>
                         </div>
                         <div class="swiper-pagination"></div>
@@ -207,15 +207,38 @@
                 <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://www.talend.com/resources/what-is-mapreduce/#:~:text=achieving%20quicker%20results.-,What%20is%20MapReduce%3F,functioning%20of%20the%20Hadoop%20framework." target="_blanck">Talend</a> </figcaption>
             </figure>
 
+            <h4>Advantegs of Hadoop</h4>
+            <ul>
+                <li><strong>Scalability: </strong>Hadoop is highly scalable, allowing for the easy addition of nodes to a cluster to handle increased data volume and processing requirements.</li>
+                <li><strong>Cost-Effective:</strong>Hadoop can store and process large volumes of data on commodity hardware, making it a cost-effective solution compared to traditional database systems.</li>
+                <li><strong>Parallel Processing: </strong>The MapReduce programming model enables parallel processing, distributing data across multiple nodes for faster and more efficient computation.</li>
+                <li><strong>Fault Tolerance: </strong>Hadoop is designed to be fault-tolerant. If a node fails, data can be easily recovered as it exists in multiple copies across the cluster.</li>
+                <li><strong>Flexibility: </strong>Hadoop can handle structured and unstructured data, making it suitable for a variety of data types, including text, images, and videos.</li>
+                <li><strong>Open Source: </strong>Hadoop is an open-source framework, which means it is accessible and customizable. The community support and continuous development contribute to its robustness.</li>
+                <li><strong>Ecosystem: </strong>The Hadoop ecosystem includes a variety of tools and frameworks (like Hive, Pig, Spark) that extend its functionality for different use cases, such as data warehousing, machine learning, and real-time processing.</li>
+            </ul>
+
+            <h4>Disadvantages of Hadoop</h4>
+            <ul>
+                <li><strong>Complexity: </strong>Implementing and managing a Hadoop cluster can be complex. It requires expertise in system administration, configuration, and tuning for optimal performance.</li>
+                <li><strong>Programming Model: </strong>Developing applications in the MapReduce programming model may be challenging for those unfamiliar with it. However, higher-level abstractions like Apache Spark have addressed some of these concerns.</li>
+                <li><strong>Real-time Processing: </strong>Hadoop's traditional batch processing model may not be suitable for real-time or low-latency processing requirements. Other tools like Apache Spark or Flink are better suited for these scenarios.</li>
+                <li><strong>Hardware Dependency: </strong>While Hadoop can run on commodity hardware, optimal performance often requires a dedicated cluster of powerful machines, which may increase infrastructure costs.</li>
+                <li><strong>Data Security: </strong>Hadoop's security features have evolved, but ensuring robust data security and access control can still be a concern, especially in large and complex deployments.</li>
+                <li><strong>Data Locality: </strong>While Hadoop aims for data locality (processing data on the node where it's stored), achieving perfect data locality is not always possible, impacting performance.</li>
+                <li><strong>Learning Curve: </strong>There is a learning curve associated with understanding and effectively using Hadoop and its associated tools, which may require additional training for teams unfamiliar with the ecosystem.</li>
+            </ul>
+            (For Apache spark see the <a href="pyspark.html">Link</a>.)
+
 
             <!----------------------->
-            <h3 id="mapreduce"><a href="https://hadoop.apache.org/docs/r1.2.1/mapred_tutorial.html" target="_blank">MapReduce</a></h3>
-            MapReduce is a parallel programming model for writing distributed applications devised at Google for efficient processing of 
+            <h3 id="mapreduce">MapReduce</h3>
+            <a href="https://hadoop.apache.org/docs/r1.2.1/mapred_tutorial.html" target="_blank">MapReduce</a> is a parallel programming model for writing distributed applications devised at Google for efficient processing of 
             large amounts of data (multi-terabyte data-sets), on large clusters (thousands of nodes) of commodity hardware in a reliable, 
-            fault-tolerant manner. The significance of MapReduce is to facilitate concurrent data processing. To achieve this, massive 
+            fault-tolerant manner. The significance of <a href="https://hadoop.apache.org/docs/r1.2.1/mapred_tutorial.html" target="_blank">MapReduce</a> is to facilitate concurrent data processing. To achieve this, massive 
             volumes of data, often in the order of several petabytes, are divided into smaller chunks. These data chunks are processed 
             in parallel on Hadoop servers. After processing, the data from multiple servers is aggregated to provide a consolidated 
-            result to the application. Hadoop is capable of executing MapReduce programs written in various languages, including Java, Ruby, Python, C++, etc.
+            result to the application. Hadoop is capable of executing <a href="https://hadoop.apache.org/docs/r1.2.1/mapred_tutorial.html" target="_blank">MapReduce</a> programs written in various languages, including Java, Ruby, Python, C++, etc.
             Data access and storage are disk-based. The inputs are stored as files containing structured, semi-structured, or unstructured data. 
             The output is also stored as files.
             <figure>
@@ -245,8 +268,10 @@
 
 
 
+            <br><br>
             <!------------------------->
-            <strong>HDFS(Hadoop Distributed File System): </strong>The Hadoop Distributed File System (HDFS) is based on the Google File 
+            <h3>HDFS (Hadoop Distributed File System)</h3>
+            The Hadoop Distributed File System (HDFS) is based on the Google File 
                 System (GFS) and provides a distributed file system that is designed to run on commodity hardware. It has many similarities 
                 with existing distributed file systems. However, the differences from other distributed file systems are significant. It is 
                 highly fault-tolerant and is designed to be deployed on low-cost hardware. It provides high throughput access to application 
@@ -385,6 +410,124 @@
 
 
 
+            </section>
+
+            <!---------->
+            <section>
+                <div class="grey-box">
+                    <h3>Apache Ecosystem</h3>
+                    The Hadoop ecosystem includes a wide variety of open source Big Data tools. 
+                    These various tools complement Hadoop and enhance its Big Data processing capability. Among the most popular, 
+                    Apache Hive is a Data Warehouse dedicated to processing large datasets stored in HDFS. The Zookeeper tool automates failovers and reduces the impact of a NameNode failure.
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>Hadoop Distributed File System (HDFS)</td>
+                            <td>HDFS is the primary storage system for Hadoop, designed to store large files across multiple nodes in a distributed manner.</td>
+                        </tr>
+                        <tr>
+                            <td>MapReduce</td>
+                            <td>The original programming model for distributed processing in Hadoop, as previously mentioned.</td>
+                        </tr>
+                        <tr>
+                            <td>Apache Hive</td>
+                            <td>A data warehousing and SQL-like query language for Hadoop. It allows users to query and analyze large datasets stored in Hadoop</td>
+                        </tr>
+                        <tr>
+                            <td>Apache Pig</td>
+                            <td>A high-level platform and scripting language built on top of Hadoop, designed for processing and analyzing large datasets</td>
+                        </tr>
+                        <tr>
+                            <td>Apache HBase</td>
+                            <td>A distributed, scalable, and NoSQL database that provides real-time read/write access to large datasets.</td>
+                        </tr>
+                        <tr>
+                            <td>Apache Kafka</td>
+                            <td>A distributed streaming platform for building real-time data pipelines and streaming applications.</td>
+                        </tr>
+                        <tr>
+                            <td>Apache Spark</td>
+                            <td>A fast and general-purpose cluster computing framework that supports in-memory processing and provides APIs for various programming languages.</td>
+                        </tr>
+                        <tr>
+                            <td>Apache Flink</td>
+                            <td>A stream processing framework for big data processing and analytics.</td>
+                        </tr>
+                        <tr>
+                            <td>Apache Sqoop</td>
+                            <td>A tool for efficiently transferring bulk data between Apache Hadoop and structured data stores such as relational databases</td>
+                        </tr>
+                        <tr>
+                            <td>Apache Flume</td>
+                            <td>A distributed, reliable, and available service for efficiently collecting, aggregating, and moving large amounts of log data.</td>
+                        </tr>
+                        <tr>
+                            <td>Apache Oozie</td>
+                            <td>A workflow scheduler for managing Hadoop jobs, allowing the coordination of various tasks in a Hadoop ecosystem.</td>
+                        </tr>
+                        <tr>
+                            <td>Apache Zeppelin</td>
+                            <td>A web-based notebook for data analytics and visualization, supporting multiple languages including SQL, Python, and Scal.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Apache ZooKeeper:</strong></td>
+                            <td>A distributed coordination service that provides distributed synchronization and helps in managing configuration information and naming services for distributed systems.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Apache Mahout:</strong></td>
+                            <td>A machine learning library and framework for building scalable and distributed machine learning algorithms.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Apache Accumulo:</strong></td>
+                            <td>A NoSQL database that is built on top of Apache Hadoop and based on Google's BigTable design.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Apache Drill:</strong></td>
+                            <td>A schema-free SQL query engine for Hadoop, NoSQL databases, and cloud storage.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Apache Knox:</strong></td>
+                            <td>A gateway for providing secure access to the Hadoop ecosystem through REST APIs.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Apache Ranger:</strong></td>
+                            <td>A framework for managing access and authorization to various components within the Hadoop ecosystem.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Apache Atlas:</strong></td>
+                            <td>A metadata management and governance framework for Hadoop, providing a scalable and extensible solution for cataloging and managing metadata.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Apache Ambari:</strong></td>
+                            <td>A management and monitoring platform that simplifies the provisioning, managing, and monitoring of Hadoop clusters.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Apache NiFi:</strong></td>
+                            <td>A data integration and automation tool that facilitates the flow of data between systems.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Apache Kylin:</strong></td>
+                            <td>An open-source distributed analytics engine designed for OLAP (Online Analytical Processing) on big data.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Apache Livy:</strong></td>
+                            <td>A REST service for Apache Spark that enables easy interaction with Spark clusters over a web interface.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Apache Superset:</strong></td>
+                            <td>A modern, enterprise-ready business intelligence web application that facilitates data exploration and visualization.</td>
+                        </tr>  
+                        <tr>
+                            <td><strong>Apache Airflow:</strong></td>
+                            <td>
+                                Apache Airflow is an open-source platform to programmatically author, schedule, and monitor workflows. It allows you to define a directed acyclic graph (DAG) of tasks and their dependencies, enabling the automation of complex data workflows.
+                            </td>
+                        </tr>                  
+                    </table>
+                </div>
             </section>
 
             <!-------Reference ------->
