@@ -187,142 +187,188 @@
                 computation across clusters, Hadoop is designed to scale seamlessly from a single server to thousands of machines, each providing 
                 local computation and storage.</p>
 
-                <p>Hadoop has two major layers namely -- Processing/Computation layer (MapReduce), and Storage layer (Hadoop Distributed File System).
-                     The Hadoop Architecture Mainly consists of 4 components. </p>
+            <p><strong>Example: </strong>For example, consider a dataset of 5 terabytes. If you distribute the processing across a Hadoop cluster of 
+                10,000 servers, each server would need to process approximately 500 megabytes of data. This allows the entire dataset to be processed much faster than traditional sequential processing.</p>
+
+            <p>Hadoop has two major layers namely -- 
                 <ul>
-                    <li><strong><a href="https://hadoop.apache.org/docs/r1.2.1/mapred_tutorial.html" target="_blank">MapReduce</a>: </strong></li>
-                    <li><strong>HDFS(Hadoop Distributed File System): </strong></li>
-                    <li><strong><a href="https://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-site/YARN.html" target="_blank">YARN</a>(Yet Another Resource Negotiator): </strong></li>
-                    <li><strong>Common Utilities or Hadoop Common: </strong></li>
+                    <li>Processing/Computation layer (MapReduce)</li>
+                    <li>Storage layer (Hadoop Distributed File System).</li>
                 </ul>
-                <figure>
-                    <img src="assets/img/data-engineering/hadoop-1.webp" alt="" style="max-width: 50%; max-height: auto;">
-                    <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://www.talend.com/resources/what-is-mapreduce/#:~:text=achieving%20quicker%20results.-,What%20is%20MapReduce%3F,functioning%20of%20the%20Hadoop%20framework." target="_blanck">Talend</a> </figcaption>
-                </figure>
+                    The Hadoop Architecture Mainly consists of 4 components. </p>
+            <ul>
+                <li>MapReduce</li>
+                <li>HDFS(Hadoop Distributed File System)</li>
+                <li><a href="https://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-site/YARN.html" target="_blank">YARN</a>(Yet Another Resource Negotiator)</li>
+                <li>Common Utilities or Hadoop Common</li>
+            </ul>
+            <figure>
+                <img src="assets/img/data-engineering/hadoop-1.webp" alt="" style="max-width: 80%; max-height: auto;">
+                <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://www.talend.com/resources/what-is-mapreduce/#:~:text=achieving%20quicker%20results.-,What%20is%20MapReduce%3F,functioning%20of%20the%20Hadoop%20framework." target="_blanck">Talend</a> </figcaption>
+            </figure>
 
-                <div class="box">
-                    <h3>Key concepts</h3> 
-                    <p><strong>Hadoop Cluster?: </strong> A Hadoop cluster is a network of computers or nodes working together to handle large datasets efficiently. 
-                    Think of it as a team of specialists, each with their own expertise, tackling a massive project collaboratively. In this analogy, 
-                    the computers are the specialists, and the data is the project.</p>
-                    
+
+            <!----------------------->
+            <h3 id="mapreduce"><a href="https://hadoop.apache.org/docs/r1.2.1/mapred_tutorial.html" target="_blank">MapReduce</a></h3>
+            MapReduce is a parallel programming model for writing distributed applications devised at Google for efficient processing of 
+            large amounts of data (multi-terabyte data-sets), on large clusters (thousands of nodes) of commodity hardware in a reliable, 
+            fault-tolerant manner. The significance of MapReduce is to facilitate concurrent data processing. To achieve this, massive 
+            volumes of data, often in the order of several petabytes, are divided into smaller chunks. These data chunks are processed 
+            in parallel on Hadoop servers. After processing, the data from multiple servers is aggregated to provide a consolidated 
+            result to the application. Hadoop is capable of executing MapReduce programs written in various languages, including Java, Ruby, Python, C++, etc.
+            Data access and storage are disk-based. The inputs are stored as files containing structured, semi-structured, or unstructured data. 
+            The output is also stored as files.
+            <figure>
+                <img src="assets/img/data-engineering/Hadoop-Cluster-Schema.png" alt="" style="max-width: 70%; max-height: auto;">
+                <figcaption style="text-align: center;">Mapreduce enables the analysis of massive volumes of Big Data through parallel processing. Discover 
+                    everything you need to know: overview, functioning, alternatives, benefits, training...
+                    (<strong>Image credit: </strong><a href="https://datascientest.com/en/mapreduce-how-to-use-it-for-big-data" target="_blanck">datascientest.com</a>)</figcaption>
+            </figure>
+            <p><strong>How does MapReduce work?</strong></p> The operation of MapReduce primarily revolves around two functions: Map and Reduce. 
+            To put it simply, Map is used to break down and map the data, while Reduce combines and reduces the data. 
+            These functions are executed sequentially. The servers running the Map and Reduce functions are referred to as Mappers and Reducers. 
+            However, they can be the same servers.
+            <ol>
+            <li><strong>Map Phase: </strong>Input data is divided into chunks, and each chunk is processed independently by a set of mappers. 
+                Mappers apply a user-defined function (map function) to transform the input data into a set of key-value pairs.</li>
+            <li><strong>Shuffle and Sort Phase: </strong>The framework redistributes the output of the mappers based on the keys to 
+                group related data together. This phase ensures that all data with the same key is sent to the same reducer.</li>
+            <li><strong>Reduce Phase: </strong>Reducers receive the grouped data and apply a user-defined function (reduce function) to produce the final output. 
+                The reduce function typically aggregates, filters, or performs some computation on the grouped data.</li>
+            <li><strong>Output: </strong>The final results from the reducers are collected as the output of the MapReduce job.</li>
+            </ol>
+            MapReduce allows for the efficient processing of large datasets by distributing the workload across multiple nodes in a cluster. It's particularly 
+            suitable for tasks that can be divided into independent subproblems, making it a powerful tool for big data analytics and processing.
+
+
+
+
+
+
+            <!------------------------->
+            <strong>HDFS(Hadoop Distributed File System): </strong>The Hadoop Distributed File System (HDFS) is based on the Google File 
+                System (GFS) and provides a distributed file system that is designed to run on commodity hardware. It has many similarities 
+                with existing distributed file systems. However, the differences from other distributed file systems are significant. It is 
+                highly fault-tolerant and is designed to be deployed on low-cost hardware. It provides high throughput access to application 
+                data and is suitable for applications having large datasets.
+
+
+            <div class="box">
+                <h3>Key concepts</h3> 
+                <p><strong>Hadoop Cluster?: </strong> A Hadoop cluster is a network of computers or nodes working together to handle large datasets efficiently. 
+                Think of it as a team of specialists, each with their own expertise, tackling a massive project collaboratively. In this analogy, 
+                the computers are the specialists, and the data is the project.</p>
+                
+                <hr>
+                <p><strong>Hadoop daemons: </strong>
+                    In the world of Hadoop, daemons are like the tireless workers behind the scenes, ensuring everything runs smoothly and efficiently. Each daemon has a 
+                    specific role in managing data storage, processing, and resource allocation across the cluster. The core hadoop daemons are:</p>
+                    <ol>
+                        <li><strong>NameNode: </strong>Think of it as: The central authority figure, keeping track of all the files and their locations across the cluster. Their main responsibilities are:
+                            <ul>
+                                <li>Maintains the HDFS namespace (file system directory structure)</li>
+                                <li>Manages file system operations like creating, renaming, and deleting files</li>
+                                <li>Provides information about file locations to DataNodes</li>
+                            </ul>
+                        </li>
+                        <li><strong>DataNode: </strong>Think of it as: The storage worker, tirelessly storing and retrieving data blocks on its local disk. Main responsibilities are:
+                            <ul>
+                                <li>Stores data blocks assigned by the NameNode</li>
+                                <li>Replicates data blocks across other DataNodes for fault tolerance</li>
+                                <li>Retrieves data blocks requested by MapReduce jobs or applications</li>
+                            </ul>
+                        </li>
+                        <li><strong> ResourceManager: </strong>Think of it as: The traffic controller, managing resources (CPU, memory) and scheduling tasks across the cluster. Responsibilities are:
+                            <ul>
+                                <li>Receives job submissions from clients</li>
+                                <li>Negotiates resource allocation with NodeManagers</li>
+                                <li>Monitors the progress of running jobs</li>
+                            </ul>
+                        </li>
+                        <li><strong>NodeManager: </strong> Think of it as: The local supervisor on each worker node, overseeing tasks and resource allocation. Main responsibilities are as follows:
+                            <ul>
+                                <li>Starts and monitors tasks assigned by the ResourceManager</li>
+                                <li>Manages resources on the local node (CPU, memory, network)</li>
+                                <li>Reports resource usage and task progress to the ResourceManager</li>
+                            </ul>
+                        </li>
+                        <li><strong>Secondary NameNode: </strong> Think of it as: The NameNode's backup, ensuring continuity in case of a failure. Responsibilities are:
+                            <ul>
+                                <li>Periodically synchronizes metadata with the NameNode</li>
+                                <li>Can be used to take over if the NameNode fails, minimizing downtime</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    These daemons work together to form the backbone of a Hadoop cluster, enabling reliable and efficient data storage and processing.
+                    The specific roles and names might vary slightly depending on the Hadoop version and configuration.
                     <hr>
-                    <p><strong>Hadoop daemons: </strong>
-                        In the world of Hadoop, daemons are like the tireless workers behind the scenes, ensuring everything runs smoothly and efficiently. Each daemon has a 
-                        specific role in managing data storage, processing, and resource allocation across the cluster. The core hadoop daemons are:</p>
-                        <ol>
-                            <li><strong>NameNode: </strong>Think of it as: The central authority figure, keeping track of all the files and their locations across the cluster. Their main responsibilities are:
-                                <ul>
-                                    <li>Maintains the HDFS namespace (file system directory structure)</li>
-                                    <li>Manages file system operations like creating, renaming, and deleting files</li>
-                                    <li>Provides information about file locations to DataNodes</li>
-                                </ul>
-                            </li>
-                            <li><strong>DataNode: </strong>Think of it as: The storage worker, tirelessly storing and retrieving data blocks on its local disk. Main responsibilities are:
-                                <ul>
-                                    <li>Stores data blocks assigned by the NameNode</li>
-                                    <li>Replicates data blocks across other DataNodes for fault tolerance</li>
-                                    <li>Retrieves data blocks requested by MapReduce jobs or applications</li>
-                                </ul>
-                            </li>
-                            <li><strong> ResourceManager: </strong>Think of it as: The traffic controller, managing resources (CPU, memory) and scheduling tasks across the cluster. Responsibilities are:
-                                <ul>
-                                    <li>Receives job submissions from clients</li>
-                                    <li>Negotiates resource allocation with NodeManagers</li>
-                                    <li>Monitors the progress of running jobs</li>
-                                </ul>
-                            </li>
-                            <li><strong>NodeManager: </strong> Think of it as: The local supervisor on each worker node, overseeing tasks and resource allocation. Main responsibilities are as follows:
-                                <ul>
-                                    <li>Starts and monitors tasks assigned by the ResourceManager</li>
-                                    <li>Manages resources on the local node (CPU, memory, network)</li>
-                                    <li>Reports resource usage and task progress to the ResourceManager</li>
-                                </ul>
-                            </li>
-                            <li><strong>Secondary NameNode: </strong> Think of it as: The NameNode's backup, ensuring continuity in case of a failure. Responsibilities are:
-                                <ul>
-                                    <li>Periodically synchronizes metadata with the NameNode</li>
-                                    <li>Can be used to take over if the NameNode fails, minimizing downtime</li>
-                                </ul>
-                            </li>
-                        </ol>
-                        These daemons work together to form the backbone of a Hadoop cluster, enabling reliable and efficient data storage and processing.
-                        The specific roles and names might vary slightly depending on the Hadoop version and configuration.
-                        <hr>
-                    
-                    <p><strong>Nodes:</strong></p> Nodes are the  machines that make up a cluster. They can be physical or virtual servers in a cloud computing environment.
-                    These nodes are connected with each other through LAN (Local Area Network). The nodes in a cluster share the data, work on the same task and this nodes 
-                    are good enough to work as a single unit means all of them to work together.
-                    The nodes in a Hadoop cluster can be divided into two types:
-                    <ul>
-                        <li><strong>Master Node: </strong> This is the node that manages the overall operation of the cluster. It is responsible for assigning tasks to other nodes, monitoring their progress, and handling failures. The master node in a Hadoop cluster is typically a <code>NameNode (NN)</code> in the case of HDFS (Hadoop Distributed File System).</li>
-                        <li><strong>Worker (slave) Nodes: </strong> These are the nodes that perform the actual processing of data. Each worker node is responsible for executing tasks assigned by the master node. In the context of HDFS, the worker nodes are called <code>DataNodes (DN)</code>.</li>
-                    </ul>
-                    <figure>
-                        <img src="assets/img/data-engineering/Hadoop-Cluster-Schema.png" alt="" style="max-width: 50%; max-height: auto;">
-                        <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://www.geeksforgeeks.org/hadoop-cluster-properties-and-its-types/" target="_blanck">geeksforgeeks</a> </figcaption>
-                    </figure>
-                    <figure>
-                        <img src="assets/img/data-engineering/hadoop-master-slave.png" alt="" style="max-width: 90%; max-height: auto;">
-                        <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://mermaid.live/edit#pako:eNpVkU9vwjAMxb9KlFOR4DC49TAJWv4PDnBbwyG0BjLapEscaVPFd59JVxDyxfo95yn2a3huCuAxF_peZyvrC_vYCT3OklKBxgMbDN7ZJNr7Y6XQsS9zZBa-PTjsCT0JapJtpEOwbEteB6GTQNNsB854m8NGankGS0oalGlzH_yn7O3W8dkLHz74_IWPiE8DX2SpRHnX2BuZzwJcPuGQ4DzA1ROOCC4CXDfTH8g9gmMo3dWR77IVhF51zbrdJdqDLhxt7nyJrtf9LIlWdI_cVHUJCL1u9Um0NahOipzzcMXHqcbhwdOmLd7nFdhKqoKSaIRmTHC8QAWCx9QW0l4FJXSjOenR7H91zmO0Hvrc14VESJWk6Coen2TpiEKh0NhNG21IuM9rqT-N6WZuf176o8o" target="_blanck">These images can be created here.</a> </figcaption>
-                    </figure>
-                    where:
-                    <ul>
-                        <li><strong>Client: </strong>Submits a job request to the Master Node.</li>
-                        <li><strong>Master Node: </strong>Receives the job request and coordinates its execution.</li>
-                        <li><strong>ResourceManager: </strong>Manages resources (CPU, memory) across the cluster and allocates them to tasks.</li>
-                        <li><strong>NodeMangers: </strong>Run on each worker node, managing tasks and reporting progress to the ResourceManager.</li>
-                        <li><strong>DataNodes: </strong>Store data blocks and provide access to them for task execution.</li>
-                        <li><strong>Tasks: </strong> Individual units of work that make up a job, executed on worker nodes.</li>
-                        <li><strong>Results: </strong>Generated by tasks and sent back to the ResourceManager, eventually reaching the client.</li>
-                    </ul>
+                
+                <p><strong>Nodes:</strong></p> Nodes are the  machines that make up a cluster. They can be physical or virtual servers in a cloud computing environment.
+                These nodes are connected with each other through LAN (Local Area Network). The nodes in a cluster share the data, work on the same task and this nodes 
+                are good enough to work as a single unit means all of them to work together.
+                The nodes in a Hadoop cluster can be divided into two types:
+                <ul>
+                    <li><strong>Master Node: </strong> This is the node that manages the overall operation of the cluster. It is responsible for assigning tasks to other nodes, monitoring their progress, and handling failures. The master node in a Hadoop cluster is typically a <code>NameNode (NN)</code> in the case of HDFS (Hadoop Distributed File System).</li>
+                    <li><strong>Worker (slave) Nodes: </strong> These are the nodes that perform the actual processing of data. Each worker node is responsible for executing tasks assigned by the master node. In the context of HDFS, the worker nodes are called <code>DataNodes (DN)</code>.</li>
+                </ul>
+                
+                <figure>
+                    <img src="assets/img/data-engineering/hadoop-master-slave.png" alt="" style="max-width: 90%; max-height: auto;">
+                    <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://mermaid.live/edit#pako:eNpVkU9vwjAMxb9KlFOR4DC49TAJWv4PDnBbwyG0BjLapEscaVPFd59JVxDyxfo95yn2a3huCuAxF_peZyvrC_vYCT3OklKBxgMbDN7ZJNr7Y6XQsS9zZBa-PTjsCT0JapJtpEOwbEteB6GTQNNsB854m8NGankGS0oalGlzH_yn7O3W8dkLHz74_IWPiE8DX2SpRHnX2BuZzwJcPuGQ4DzA1ROOCC4CXDfTH8g9gmMo3dWR77IVhF51zbrdJdqDLhxt7nyJrtf9LIlWdI_cVHUJCL1u9Um0NahOipzzcMXHqcbhwdOmLd7nFdhKqoKSaIRmTHC8QAWCx9QW0l4FJXSjOenR7H91zmO0Hvrc14VESJWk6Coen2TpiEKh0NhNG21IuM9rqT-N6WZuf176o8o" target="_blanck">These images can be created here.</a> </figcaption>
+                </figure>
+                where:
+                <ul>
+                    <li><strong>Client: </strong>Submits a job request to the Master Node.</li>
+                    <li><strong>Master Node: </strong>Receives the job request and coordinates its execution.</li>
+                    <li><strong>ResourceManager: </strong>Manages resources (CPU, memory) across the cluster and allocates them to tasks.</li>
+                    <li><strong>NodeMangers: </strong>Run on each worker node, managing tasks and reporting progress to the ResourceManager.</li>
+                    <li><strong>DataNodes: </strong>Store data blocks and provide access to them for task execution.</li>
+                    <li><strong>Tasks: </strong> Individual units of work that make up a job, executed on worker nodes.</li>
+                    <li><strong>Results: </strong>Generated by tasks and sent back to the ResourceManager, eventually reaching the client.</li>
+                </ul>
 
 
-                    <p><strong>Types of Hadoop clusters</strong> There are mainly two types of Hadoop clusters:</p>
-                    <ul>
-                        <li><strong>Single Node Hadoop Cluster: </strong>This type consists of a single machine running all the essential Hadoop daemons (NameNode, DataNode, ResourceManager, NodeManager) on its own.
-                            <p><strong>Pros: </strong>
-                                <ul>
-                                    <li><strong>Simple setup: </strong>Easy to install and configure, ideal for testing or learning.</li>
-                                    <li><strong>Low cost: </strong>Requires only one machine, minimizing hardware expenses.</li>
-                                    <li><strong>No additional infrastructure: </strong>No need for complex network configurations or cluster management tools.</li>
-                                </ul>
-                            </p>
-                            <p><strong>Cons:</strong>
-                                <ul>
-                                    <li><strong>Limited scalability: </strong>Cannot handle large datasets effectively due to resource constraints of a single machine.</li>
-                                    <li><strong>No fault tolerance: </strong>A single point of failure – if the machine fails, the entire cluster goes down.</li>
-                                    <li><strong>Not suitable for production: </strong>Primarily used for small-scale deployments or educational purposes.</li>
-                                </ul>
-                            </p>
-                        </li>
-                        <li><strong>Multiple Node Hadoop Cluster: </strong>This type distributes the workload across multiple machines, each having specific roles (master nodes, worker nodes).
-                            <p><strong>Pros: </strong>
-                                <ul>
-                                    <li><strong>Scalability: </strong>Easily add more nodes to handle growing datasets and processing demands.</li>
-                                    <li><strong>Fault tolerance: </strong>Distributed architecture ensures cluster functionality even if individual nodes fail.</li>
-                                    <li><strong>High performance: </strong>Utilizes combined resources of multiple machines for faster processing.</li>
-                                </ul>
-                            </p>
-                            <p><strong>Cons: </strong>
-                                <ul>
-                                    <li><strong>Complex setup: </strong>Requires more configuration and technical expertise to manage.</li>
-                                    <li><strong>Higher cost: </strong>Hardware and software costs increase with the number of nodes.</li>
-                                    <li><strong>Additional infrastructure: </strong>Requires network setup, cluster management tools, and potentially dedicated resources.</li>
-                                </ul>
-                            </p>
-                        </li>
-                    </ul>
-                    <p><strong>Single and multi-node: </strong>Next question one can ask is how to Choose between single-node and multi-node? The choice depends on specific needs:</p>
-                    <ul>
-                        <li>For small datasets, basic testing, or learning purposes, a single-node cluster might suffice.</li>
-                        <li>For production environments with larger datasets, complex workloads, and scalability requirements, a multi-node cluster is essential.</li>
-                    </ul>
-
-
-
-
-                </div>
+                <p><strong>Types of Hadoop clusters</strong> There are mainly two types of Hadoop clusters:</p>
+                <ul>
+                    <li><strong>Single Node Hadoop Cluster: </strong>This type consists of a single machine running all the essential Hadoop daemons (NameNode, DataNode, ResourceManager, NodeManager) on its own.
+                        <p><strong>Pros: </strong>
+                            <ul>
+                                <li><strong>Simple setup: </strong>Easy to install and configure, ideal for testing or learning.</li>
+                                <li><strong>Low cost: </strong>Requires only one machine, minimizing hardware expenses.</li>
+                                <li><strong>No additional infrastructure: </strong>No need for complex network configurations or cluster management tools.</li>
+                            </ul>
+                        </p>
+                        <p><strong>Cons:</strong>
+                            <ul>
+                                <li><strong>Limited scalability: </strong>Cannot handle large datasets effectively due to resource constraints of a single machine.</li>
+                                <li><strong>No fault tolerance: </strong>A single point of failure – if the machine fails, the entire cluster goes down.</li>
+                                <li><strong>Not suitable for production: </strong>Primarily used for small-scale deployments or educational purposes.</li>
+                            </ul>
+                        </p>
+                    </li>
+                    <li><strong>Multiple Node Hadoop Cluster: </strong>This type distributes the workload across multiple machines, each having specific roles (master nodes, worker nodes).
+                        <p><strong>Pros: </strong>
+                            <ul>
+                                <li><strong>Scalability: </strong>Easily add more nodes to handle growing datasets and processing demands.</li>
+                                <li><strong>Fault tolerance: </strong>Distributed architecture ensures cluster functionality even if individual nodes fail.</li>
+                                <li><strong>High performance: </strong>Utilizes combined resources of multiple machines for faster processing.</li>
+                            </ul>
+                        </p>
+                        <p><strong>Cons: </strong>
+                            <ul>
+                                <li><strong>Complex setup: </strong>Requires more configuration and technical expertise to manage.</li>
+                                <li><strong>Higher cost: </strong>Hardware and software costs increase with the number of nodes.</li>
+                                <li><strong>Additional infrastructure: </strong>Requires network setup, cluster management tools, and potentially dedicated resources.</li>
+                            </ul>
+                        </p>
+                    </li>
+                </ul>
+                <p><strong>Single and multi-node: </strong>Next question one can ask is how to Choose between single-node and multi-node? The choice depends on specific needs:</p>
+                <ul>
+                    <li>For small datasets, basic testing, or learning purposes, a single-node cluster might suffice.</li>
+                    <li>For production environments with larger datasets, complex workloads, and scalability requirements, a multi-node cluster is essential.</li>
+                </ul>
+            </div>
 
 
 
