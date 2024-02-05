@@ -230,7 +230,7 @@
             </ul>
             (For Apache spark see the <a href="pyspark.html">Link</a>.)
 
-
+            <br><br>
             <!----------------------->
             <h3 id="mapreduce">MapReduce</h3>
             <a href="https://hadoop.apache.org/docs/r1.2.1/mapred_tutorial.html" target="_blank">MapReduce</a> is a parallel programming model for writing distributed applications devised at Google for efficient processing of 
@@ -263,21 +263,38 @@
             MapReduce allows for the efficient processing of large datasets by distributing the workload across multiple nodes in a cluster. It's particularly 
             suitable for tasks that can be divided into independent subproblems, making it a powerful tool for big data analytics and processing.
 
-
-
-
-
-
+            <br><br>
+            <div class="grey-box">
+                Filesystems that manage the storage across a network of machines are called distributed file systems.
+            </div>
             <br><br>
             <!------------------------->
             <h3>HDFS (Hadoop Distributed File System)</h3>
-            The Hadoop Distributed File System (HDFS) is based on the Google File 
-                System (GFS) and provides a distributed file system that is designed to run on commodity hardware. It has many similarities 
-                with existing distributed file systems. However, the differences from other distributed file systems are significant. It is 
-                highly fault-tolerant and is designed to be deployed on low-cost hardware. It provides high throughput access to application 
-                data and is suitable for applications having large datasets.
+            Hadoop Distributed File System (HDFS) is the storage component of Hadoop. All data stored on Hadoop is stored in a distributed manner across a cluster of machines. 
+            The Hadoop Distributed File System (HDFS) is based on the Google File System (GFS) and provides a distributed file system that is designed to run on commodity hardware. 
+            It has many similarities with existing distributed file systems. However, the differences from other distributed file systems are significant. 
+            It is highly fault-tolerant and is designed to be deployed on low-cost hardware. It provides high throughput access to application data and is suitable for applications having large datasets.
+            <br> 
+
+            <h5>What are the components of the Hadoop Distributed File System(HDFS)?</h5>
+            HDFS has two main components, broadly speaking, – data blocks and nodes storing those data blocks.
+            <ul>
+                <li><strong>HDFS Blocks: </strong>HDFS breaks down a file into smaller units. Each of these units is stored on different machines in the cluster. This, however, is transparent to the user working on HDFS. 
+                    To them, it seems like storing all the data onto a single machine. These smaller units are the blocks in HDFS. The size of each of these blocks is 128MB by default, you can easily change it according to requirement.
+                    There are several perks to storing data in blocks rather than saving the complete file.
+                    <ul>
+                        <li>The file itself would be too large to store on any single disk alone. Therefore, it is prudent to spread it across different machines on the cluster.</li>
+                        <li>It would also enable a proper spread of the workload and prevent the choke of a single machine by taking advantage of parallelism.</li>
+                    </ul>
+                </li>
+                <li><strong></strong></li>
+                <li><strong></strong></li>
+                <li><strong></strong></li>
+                <li><strong></strong></li>
+            </ul>
 
 
+            <br><br>
             <div class="box">
                 <h3>Key concepts</h3> 
                 <p><strong>Hadoop Cluster?: </strong> A Hadoop cluster is a network of computers or nodes working together to handle large datasets efficiently. 
