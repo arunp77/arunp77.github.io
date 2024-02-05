@@ -146,21 +146,17 @@
                     <div class="section-title">
                         <h3>Table of Contents</h3>
                         <ol>
-                            <li><a href="#introduction">Introduction</a></li>
-                            <li><a href="#key-concept"><a href="https://spark.apache.org/" target="_blanck">Apache Spark™</a> key concept</a></li>
+                            <li><a href="#introduction">Introduction to hadoop</a></li>
                             <ul>
-                                <li><a href="#key-features">Key Features</a></li>
-                                <li><a href="#Components">Components of <a href="https://spark.apache.org/" target="_blanck">Apache Spark™</a></a></li>
-                                <li><a href="#limitations">Limitations of PCA</a></li>
-                                <li><a href="#use-cases">Use cases</a></li>
-                                <li><a href="#principal-compoenent">What Are Principal Components?</a></li>
+                                <li><a href="#hadoop-advantages">Advantages</a></li>
+                                <li><a href="#hadoop-disadvantages">Disadvantages</li>
                             </ul>
-                            <li><a href="#how-pca-works">How PCA works?</a></li>
-                            <ul>
-                                <li><a href="#Process">Process of doing the PCA</a></li>
-                            </ul>
-                            <li><a href="#example-1">Example</a></li>
-                            <li><a href="#PCA-in-machine-learning">Application of PCA in machine learning</a></li>
+                            <li><a href="#mapreduce">Mapreduce</a></li>
+                            
+                            <li><a href="#hdfs">HDFS (Hadoop Distributed File System)</a></li>
+                            <li><a href="#yarn">YARN</a></li>
+                            <li><a href="#key-concepts">Key concepts</a></li>
+                            <li><a href="#ecosystem">Apache Ecosystem</a></li>
                             <li><a href="#reference">Reference</a></li>
                         </ol>
                     </div>
@@ -207,7 +203,7 @@
                 <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://www.talend.com/resources/what-is-mapreduce/#:~:text=achieving%20quicker%20results.-,What%20is%20MapReduce%3F,functioning%20of%20the%20Hadoop%20framework." target="_blanck">Talend</a> </figcaption>
             </figure>
 
-            <h4>Advantegs of Hadoop</h4>
+            <h4 id="hadoop-advantages">Advantegs of Hadoop</h4>
             <ul>
                 <li><strong>Scalability: </strong>Hadoop is highly scalable, allowing for the easy addition of nodes to a cluster to handle increased data volume and processing requirements.</li>
                 <li><strong>Cost-Effective:</strong>Hadoop can store and process large volumes of data on commodity hardware, making it a cost-effective solution compared to traditional database systems.</li>
@@ -218,7 +214,7 @@
                 <li><strong>Ecosystem: </strong>The Hadoop ecosystem includes a variety of tools and frameworks (like Hive, Pig, Spark) that extend its functionality for different use cases, such as data warehousing, machine learning, and real-time processing.</li>
             </ul>
 
-            <h4>Disadvantages of Hadoop</h4>
+            <h4 id="hadoop-disadvantages">Disadvantages of Hadoop</h4>
             <ul>
                 <li><strong>Complexity: </strong>Implementing and managing a Hadoop cluster can be complex. It requires expertise in system administration, configuration, and tuning for optimal performance.</li>
                 <li><strong>Programming Model: </strong>Developing applications in the MapReduce programming model may be challenging for those unfamiliar with it. However, higher-level abstractions like Apache Spark have addressed some of these concerns.</li>
@@ -331,7 +327,7 @@
 
             <br><br>
             <div class="box">
-                <h3>Key concepts</h3> 
+                <h3 id="key-concepts">Key concepts</h3> 
                 <p><strong>Hadoop Cluster?: </strong> A Hadoop cluster is a network of computers or nodes working together to handle large datasets efficiently. 
                 Think of it as a team of specialists, each with their own expertise, tackling a massive project collaboratively. In this analogy, 
                 the computers are the specialists, and the data is the project.</p>
@@ -422,7 +418,7 @@
             <!---------->
             <section>
                 <div class="grey-box">
-                    <h3><a href="https://www.edureka.co/blog/hadoop-ecosystem" target="_blank"> Apache Ecosystem</a></h3>
+                    <h3 id="ecosystem"><a href="https://www.edureka.co/blog/hadoop-ecosystem" target="_blank"> Apache Ecosystem</a></h3>
                     The Hadoop ecosystem includes a wide variety of open source Big Data tools. 
                     These various tools complement Hadoop and enhance its Big Data processing capability. Among the most popular, 
                     Apache Hive is a Data Warehouse dedicated to processing large datasets stored in HDFS. The Zookeeper tool 
