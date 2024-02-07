@@ -357,7 +357,55 @@
                 In this repository, I have done analysis on some examples datasets using Pyspark Dataframe and RDD methods. 
             </div>
 
+            <br>
+            <!-------------->
+            <h3>RDD's Resilient Distributed Datasets (RDDs)</h3>
+            The RDD structure is the elementary structure of Spark. It is flexible and optimal in performance for any  linear operation. 
+            However, this structure has limited performance when it comes to non-linear operations.
 
+            <h5>SparkContext:</h5>
+            <code>SparkContext</code> is a crucial entry point for any Spark functionality in Apache Spark applications. It coordinates the execution of Spark jobs 
+            and manages the resources allocated for these jobs. In Spark versions before 2.0, it was the main entry point for Spark, but in later versions, 
+            <code>SparkSession</code> is typically used, which internally creates a <code>SparkContext</code> object.
+            <ul>
+                <li><strong>Definition: </strong><code>SparkContext</code> is the  main entry point for Spark functionality in Spark applications.</li>
+                <li><strong>Purpose: </strong> It coordinates the execution of Spark jobs and manages the resources allocated for these jobs.</li>
+                <li><strong>Usage: </strong> In older versions of Spark, it was directly created by developers. In newer versions, it's often implicitly created as part of a <code>SparkSession</code>.</li>
+            </ul>
+
+            To start a <code>SparkContext</code>, we typically create an instance of it in the Spark application code. However, in newer versions of Spark (2.0 and above), it's recommended to use 
+            <code>SparkSession</code> instead, which internally manages the <code>SparkCOntext</code>. 
+
+            <ul>
+                <li><strong>Using SparkContext</strong>:
+                    <pre class="language-python"><code>
+                        from pyspark import SparkContext
+
+                        # Create a SparkContext object
+                        sc = SparkContext("local", "MyApp")
+                    </code></pre>
+                    In this example:
+                    <ul>
+                        <li>"local" specifies that Spark should run in local mode using a single thread.</li>
+                        <li>"MyApp" is a name for your Spark application.</li>
+                    </ul>
+                </li>
+                <li><strong>Using SparkSession</strong>: For newer versions of Spark, you typically use SparkSession, which internally creates a SparkContext. Here's how you do it:
+                    <pre class="language-python"><code>
+                        from pyspark.sql import SparkSession
+
+                        # Create a SparkSession object
+                        spark = SparkSession.builder \
+                            .appName("MyApp") \
+                            .getOrCreate() 
+                    </code></pre>
+                    In this case:
+                    <ul>
+                        <li>"MyApp" is also the name for your Spark application.</li>
+                        <li>getOrCreate() method ensures that if a SparkSession already exists, it returns that session; otherwise, it creates a new one.</li>
+                    </ul>
+                </li>
+            </ul>
 
             </section>
 
@@ -369,7 +417,8 @@
                     <li><a href="https://www.databricks.com/learn/training/login" target="_blank">Databricks Learning Academy</a></li>
                     <li><a href="https://sparkbyexamples.com/" target="_blank">Spark by Examples</a></li>
                     <li><a href="https://www.datacamp.com/tutorial/pyspark-tutorial-getting-started-with-pyspark" target="_blank">Datacamp tutorial</a>.</li>
-                    <li>For databricks, you can look at tutorial videos on youtube at <a href="https://www.youtube.com/watch?v=ChISx0-cMpU" target="_blank">youtube video by Bryan Cafferky</a>, writer of the book "Master Azure Databricks". A great playlist for someone who just want to learn about the big data analytics at Databricks Azure cloud platform.</li>
+                    <li>For databricks, you can look at tutorial videos on youtube at <a href="https://www.youtube.com/watch?v=ChISx0-cMpU" target="_blank">youtube video by Bryan Cafferky</a>, 
+                        writer of the book "Master Azure Databricks". A great playlist for someone who just want to learn about the big data analytics at Databricks Azure cloud platform.</li>
                     <li>See the video for <a href="https://www.youtube.com/watch?v=_C8kWso4ne4" target="_blank">pyspark basics by Krish Naik</a>. Great video for starter.</li>
                     <li><a href="https://www.youtube.com/watch?v=QLGrLFOzMRw" target="_blank">Great youtube on Apache spark</a> one premise working.</li>
                 </ol> 
