@@ -446,7 +446,43 @@
                 </code></pre>
                 This combines couples with the same key by the lambda function here to them, and pair (x,y) returns x+y. 
             </ol>
+            The map operation is applied in parallel to different partitions of the dataset, and then the results are shuffled and aggregated using the reduce operation to produce the final output.
 
+            <br><br>
+            <div class="grey-box">
+                <Strong>DataFrame for structured data:</Strong>
+                The RDD structure is not optimized for column tasks or Machine learning. The <code>DataFrame</code> structure was created to meet this need.
+                It uses the underlying bases of a RDD but it has been structured in columns and rows in a SQL structure in a form inspired by the <code>DataFrame</code> of the python pandas module.
+                <p><Strong>Advantages:</Strong> The DataFrame structure has two main Advantages. First of all, this structure is similar to the pandas DataFrame and is therefore
+                easy to learn. It is also efficient. A DataFrame om PySpark is as fast as a DataFrame in scala and it is the most optimized distributed structure in machine learning. </p>
+                Let's take a example to understand the basics of this:
+                <ul>
+                    <li>Let's first build the spark session:
+                        <pre class="language-python"><code>
+                            # Importing Spark Session and SparkContext
+                            from pyspark.sql import SparkSession
+                            from pyspark import SparkContext
+                            
+                            # Definition of a SparkContext
+                            SparkContext.getOrCreate() 
+                            
+                            # Definition of a SparkSession
+                            spark = SparkSession \
+                                .builder \
+                                .master("local") \
+                                .appName("Introduction to DataFrame") \
+                                .getOrCreate()
+                                
+                            spark
+                        </code></pre>
+                        <figure>
+                            <img src="assets/img/data-engineering/spark-session-1.png" alt="" style="max-width: 50%; max-height: auto;">
+                            <figcaption></figcaption>
+                        </figure>
+                    </li>
+                <strong>For more details you can always go to my github repo: <a href="https://github.com/arunp77/Database-datapipeline-ETL/tree/main/pyspark" target="_blank">Pyspark repo</a>.</strong>
+                </ul>
+            </div>
 
 
 
