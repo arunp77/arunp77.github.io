@@ -407,6 +407,50 @@
                 </li>
             </ul>
 
+            <h5>Example:</h5>
+            The <code>textFile</code> method of <code>SparkContext</code> allows to load a CSV file into a RDD. 
+            <pre class="language-python"><code>rdd = sc.textFile("path_to_file.ext")</code></pre>
+            To display top 5 elements of the rdd, we can use <code>take(5)</code> function:
+            <pre class="language-python"><code>rdd.take(5)</code></pre>
+            To count the number of lines a rdd, <code>count()</code> can be used:
+            <pre class="language-python"><code>count = rdd.count()</code></pre>
+            <strong>Map & Reduce:</strong>
+            Map and Reduce are fundamental operations in distributed computing, popularized by frameworks like Apache Hadoop and Apache Spark. They originated from functional 
+            programming concepts and are widely used for processing large-scale datasets efficiently. Here's an explanation of each:
+
+            <ol>
+                <li><strong>Map:</strong></li> The map operation applies a function to each element in a dataset and produces a new dataset of the same size. It transforms each element 
+                into another element based on the function provided. The map operation is typically used for tasks like data cleaning, transformation, or feature extraction.
+                <pre class="language-python"><code>
+                    # Applying a map operation to double each element in a list
+                    numbers = [1, 2, 3, 4, 5]
+                    doubled_numbers = list(map(lambda x: x * 2, numbers))
+                    print(doubled_numbers)
+                </code></pre>
+                <pre>Output: [2, 4, 6, 8, 10]</pre>
+                <li><strong>Reduce:</strong></li> The reduce operation combines elements of a dataset pairwise using a given function until a single result is obtained. It repeatedly 
+                applies the function to pairs of elements until only one element remains. The reduce operation is commonly used for tasks like aggregation, summarization, or finding totals.
+                <pre class="language-python"><code>
+                    from functools import reduce
+
+                    # Applying a reduce operation to find the sum of elements in a list
+                    numbers = [1, 2, 3, 4, 5]
+                    total_sum = reduce(lambda x, y: x + y, numbers)
+                    print(total_sum)
+                </code></pre>
+                <pre>Output: 15</pre>
+                The RDD works very well for "line-by-line" operations, which is why the <code>mao</code> and <code>reduce</code> methods are extremely effective for these calculations.
+                Applying successively the map method and then the <code>reduceByKey</code>  method allows us to cleverly summarize our data.
+                <pre class="language-python"><code>
+                    rdd.map(lambda x: (x[7]:1)).reduceByKey(lambda x,y:x+y)
+                </code></pre>
+                This combines couples with the same key by the lambda function here to them, and pair (x,y) returns x+y. 
+            </ol>
+
+
+
+
+
             </section>
 
             <!-------Reference ------->
