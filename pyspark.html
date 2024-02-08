@@ -379,10 +379,10 @@
             <ul>
                 <li><strong>Using SparkContext</strong>:
                     <pre class="language-python"><code>
-                        from pyspark import SparkContext
+from pyspark import SparkContext
 
-                        # Create a SparkContext object
-                        sc = SparkContext("local", "MyApp")
+# Create a SparkContext object
+sc = SparkContext("local", "MyApp")
                     </code></pre>
                     In this example:
                     <ul>
@@ -392,15 +392,15 @@
                 </li>
                 <li><strong>Using SparkSession</strong>: For newer versions of Spark, you typically use SparkSession, which internally creates a SparkContext. Here's how you do it:
                     <pre class="language-python"><code>
-                        from pyspark.sql import SparkSession
+from pyspark.sql import SparkSession
 
-                        # Create a SparkSession object
-                        spark = SparkSession \
-                            .builder \
-                            .master("local") \
-                            .appName("MyApp") \
-                            .getOrCreate()
-                    spark
+# Create a SparkSession object
+spark = SparkSession \
+    .builder \
+    .master("local") \
+    .appName("MyApp") \
+    .getOrCreate()
+spark
                     </code></pre>
                     In this case:
                     <ul>
@@ -409,16 +409,16 @@
                     </ul>
                     The <cod>SparkContext</cod> can also be created using SparkSession:
                     <pre class="language-python"><code>
-                        # Creating SparkContext through SparkSession
-                        from pyspark.sql import SparkSession
+# Creating SparkContext through SparkSession
+from pyspark.sql import SparkSession
 
-                        # Create a SparkContext object
-                        spark = SparkSession.builder \
-                            .appName("MyApp") \
-                            .getOrCreate()
+# Create a SparkContext object
+spark = SparkSession.builder \
+    .appName("MyApp") \
+    .getOrCreate()
 
-                        # Access SparkContext from sparksession 
-                        sc = spark.SparkContext
+# Access SparkContext from sparksession 
+sc = spark.SparkContext
                     </code></pre>
                 </li>
             </ul>
@@ -438,27 +438,27 @@
                 <li><strong>Map:</strong></li> The map operation applies a function to each element in a dataset and produces a new dataset of the same size. It transforms each element 
                 into another element based on the function provided. The map operation is typically used for tasks like data cleaning, transformation, or feature extraction.
                 <pre class="language-python"><code>
-                    # Applying a map operation to double each element in a list
-                    numbers = [1, 2, 3, 4, 5]
-                    doubled_numbers = list(map(lambda x: x * 2, numbers))
-                    print(doubled_numbers)
+# Applying a map operation to double each element in a list
+numbers = [1, 2, 3, 4, 5]
+doubled_numbers = list(map(lambda x: x * 2, numbers))
+print(doubled_numbers)
                 </code></pre>
                 <pre>Output: [2, 4, 6, 8, 10]</pre>
                 <li><strong>Reduce:</strong></li> The reduce operation combines elements of a dataset pairwise using a given function until a single result is obtained. It repeatedly 
                 applies the function to pairs of elements until only one element remains. The reduce operation is commonly used for tasks like aggregation, summarization, or finding totals.
                 <pre class="language-python"><code>
-                    from functools import reduce
+from functools import reduce
 
-                    # Applying a reduce operation to find the sum of elements in a list
-                    numbers = [1, 2, 3, 4, 5]
-                    total_sum = reduce(lambda x, y: x + y, numbers)
-                    print(total_sum)
+# Applying a reduce operation to find the sum of elements in a list
+numbers = [1, 2, 3, 4, 5]
+total_sum = reduce(lambda x, y: x + y, numbers)
+print(total_sum)
                 </code></pre>
                 <pre>Output: 15</pre>
                 The RDD works very well for "line-by-line" operations, which is why the <code>mao</code> and <code>reduce</code> methods are extremely effective for these calculations.
                 Applying successively the map method and then the <code>reduceByKey</code>  method allows us to cleverly summarize our data.
                 <pre class="language-python"><code>
-                    rdd.map(lambda x: (x[7]:1)).reduceByKey(lambda x,y:x+y)
+rdd.map(lambda x: (x[7]:1)).reduceByKey(lambda x,y:x+y)
                 </code></pre>
                 This combines couples with the same key by the lambda function here to them, and pair (x,y) returns x+y. 
             </ol>
@@ -475,21 +475,21 @@
                 <ul>
                     <li>Let's first build the spark session:
                         <pre class="language-python"><code>
-                            # Importing Spark Session and SparkContext
-                            from pyspark.sql import SparkSession
-                            from pyspark import SparkContext
-                            
-                            # Definition of a SparkContext
-                            SparkContext.getOrCreate() 
-                            
-                            # Definition of a SparkSession
-                            spark = SparkSession \
-                                .builder \
-                                .master("local") \
-                                .appName("Introduction to DataFrame") \
-                                .getOrCreate()
-                                
-                            spark
+# Importing Spark Session and SparkContext
+from pyspark.sql import SparkSession
+from pyspark import SparkContext
+
+# Definition of a SparkContext
+SparkContext.getOrCreate() 
+
+# Definition of a SparkSession
+spark = SparkSession \
+    .builder \
+    .master("local") \
+    .appName("Introduction to DataFrame") \
+    .getOrCreate()
+    
+spark
                         </code></pre>
                         <figure>
                             <img src="assets/img/data-engineering/spark-session-1.png" alt="" style="max-width: 50%; max-height: auto;">
