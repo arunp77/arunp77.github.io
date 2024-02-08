@@ -407,6 +407,18 @@
                         <li>"MyApp" is also the name for your Spark application.</li>
                         <li>getOrCreate() method ensures that if a SparkSession already exists, it returns that session; otherwise, it creates a new one.</li>
                     </ul>
+                    The <cod>SparkContext</cod> can also be created using SparkSession:
+                    <pre class="language-python"><code>
+                        from pyspark.sql import SparkSession
+
+                        # Create a SparkContext object
+                        spark = SparkSession.builder \
+                            .appName("MyApp") \
+                            .getOrCreate()
+
+                        # Access SparkContext from sparksession 
+                        sc = spark.SparkContext
+                    </code></pre>
                 </li>
             </ul>
 
