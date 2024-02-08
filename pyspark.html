@@ -395,9 +395,12 @@
                         from pyspark.sql import SparkSession
 
                         # Create a SparkSession object
-                        spark = SparkSession.builder \
-                            .appName("MyApp") \
-                            .getOrCreate() 
+                        spark = SparkSession \
+                            .builder \
+                            .master("local") \
+                            .appName("Introduction to DataFrame") \
+                            .getOrCreate()
+                    spark
                     </code></pre>
                     In this case:
                     <ul>
