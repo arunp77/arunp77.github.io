@@ -232,31 +232,34 @@
                                 </code></pre>
                             </li>
                             <li><strong>SQL queries: </strong>SparkSession allows you to run SQL queries on DataFrames using the sql() method. For example:
-                                <pre class="language-python"><code>
-                                    df.createOrReplaceTempView("people")
-                                    result = spark.sql("SELECT * FROM people WHERE age > 20")
-                                </code></pre>
+                            <pre class="language-python"><code>
+                                df.createOrReplaceTempView("people")
+                                result = spark.sql("SELECT * FROM people WHERE age > 20")
+                            </code></pre>
                             </li>
                             <li><strong>DataFrame operations: </strong>You can perform various operations on DataFrames like <code>select()</code>, <code>filter()</code>, <code>join()</code>, <code>orderBy()</code>, <code>agg()</code> etc. For example:
                                 <pre class="language-python"><code>result = df.select("name").filter(df.age > 20).orderBy(df.name)</code></pre>
                             </li>
                             <li><strong>Window functions: </strong>You can use window functions for advanced analytics tasks like ranking, lead/lag analysis, etc. For example: 
+                            <pre class="language-python"><code>
+                            from pyspark.sql.window import Window
+                            from pyspark.sql.functions import rank
+                            
+                            window = Window.partitionBy("department").orderBy("salary")
+                            result = df.withColumn("rank", rank().over(window))
+                            </code></pre>
+                            </li>
+                            <li><strong>Machine learning: </strong>We can use Spark MLlib, a scalable machine learning library, to train and apply machine learning models on DataFrames. For example:
                                 <pre class="language-python"><code>
-                                    from pyspark.sql.window import Window
-                                    from pyspark.sql.functions import rank
-                                    
-                                    window = Window.partitionBy("department").orderBy("salary")
-                                    result = df.withColumn("rank", rank().over(window))
+                                    from pyspark.ml.classification import LogisticRegression
+
+                                    lr = LogisticRegression(featuresCol="features", labelCol="label")
+                                    model = lr.fit(train_data)
+                                    predictions = model.transform(test_data)
                                 </code></pre>
                             </li>
-                            <li><strong></strong> For example:<code></code>
-                                <pre class="language-python"><code></code></pre>
-                            </li>
-                            <li><strong></strong> For example:<code></code>
-                                <pre class="language-python"><code></code></pre>
-                            </li>
-                            <li><strong></strong> For example:<code></code>
-                                <pre class="language-python"><code></code></pre>
+                            <li><strong>Streaming data:</strong>We can process streaming data using Spark Structured Streaming, which provides high-level APIs for streaming processing. For example:
+                                <pre class="language-python"><code>stream_df = spark.readStream.format("kafka").option("kafka.bootstrap.servers", "host:port").load()</code></pre>
                             </li>
                         </ul>
                         </li>
@@ -284,8 +287,27 @@
                                 <li><strong>Accumulators: </strong>We can can use accumulators to aggregate information across all tasks, such as counting occurrences of certain events. For example: <code>accumulator = sc.accumulator(0)</code>.</li>
                             </ul>
                         </li>
-                        <li><strong>RDD Spark: </strong></li>
-                        <li><strong></strong></li>
+                        <div class="grey-box">
+                            <h5>Difference between SparkContext and SparkSession</h5>
+                            <ol>
+                                <li><strong>SparkContext (sc): </strong>
+                                    <ul>
+                                        <li>SparkContext is the entry point to Spark functionality and represents the connection to a Spark cluster. It coordinates the execution of operations on the cluster.</li>
+                                        <li>It provides access to the underlying Spark functionality, including RDDs (Resilient Distributed Datasets), which are the fundamental data abstraction in Spark.</li>
+                                        <li>SparkContext is primarily used for low-level operations and interactions with RDDs, such as creating RDDs, performing transformations, and executing actions.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>SparkSession (spark): </strong>
+                                    <ul>
+                                        <li>SparkSession, introduced in Spark 2.x, is a higher-level abstraction on top of SparkContext and provides a unified entry point to Spark SQL, DataFrame, and Dataset APIs.</li>
+                                        <li>It is the recommended way to interact with Spark in modern Spark applications, as it provides a more user-friendly and consistent interface for working with structured data.</li>
+                                        <li>SparkSession encapsulates SparkContext and provides additional functionalities, including reading and writing structured data from various sources, running SQL queries, and performing DataFrame operations.</li>
+                                        <li>SparkSession also manages the underlying SparkContext internally, so there's no need to create a SparkContext explicitly when using SparkSession.</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                            In summary, while SparkContext is primarily focused on low-level distributed computing operations with RDDs, SparkSession provides a higher-level interface for working with structured data, including DataFrames and Datasets, as well as integrating with Spark SQL, MLlib, and other Spark components. It's generally recommended to use SparkSession for modern Spark applications unless you have specific requirements that necessitate working directly with RDDs and SparkContext.
+                        </div>
                     </ul>
 
 
