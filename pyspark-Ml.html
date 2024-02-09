@@ -413,6 +413,7 @@
                         </figure>
                         <li>For the regression model, we create train and test datasets using <code>train, test = df.randomSplit([.7, .3], seed= 222)</code>.</li>
                         <pre class="language-python"><code>train, test = df_ml.randomSplit([.8, .2], seed= 1234)</code></pre>
+                        Here this createa training DataFrame containing 70% of the data and a test one containing 30%.
                         <li><strong>Linear Regression:</strong> Spark ML contains many Machine Learning functions. Let's start here with the most basic one: linear regression. It is present under the name <code>LinearRegression</code> 
                             in the module <code>pyspark.ml.regression</code>. This function allows you to perform a regression in a distributed way and performs calculations on the different clusters predefined in the SparkSession, 
                             regardless of their number or the size of the database. To use it, we must proceed with the two usual steps:
@@ -440,18 +441,41 @@
                             # Printing prediction
                             predicted.show()
                         </code></pre>
-                        <li></li>
-                        <pre class="language-python"><code></code></pre>
-                        <li></li>
-                        <pre class="language-python"><code></code></pre>
-                        <li></li>
-                        <pre class="language-python"><code></code></pre>
+                        <li><strong>Model evaluation: </strong>In order to evaluate the quality of the model, it is possible to search for information within the summary attribute of our model, which can be done through function <code>linearModel.summary</code>.</li>
+                        <pre class="language-python"><code>
+                            print("RMSE:", linearModel.summary.rootMeanSquaredError)
+
+                            print("R2:  ", linearModel.summary.r2)
+                        </code></pre>
+                        Here we display the RMSE and R<sup>2</sup> values. 
+                        <pre>
+                            RMSE: 9.548411838648486
+                            
+                            R2:   0.2363424607632092
+                        </pre> 
+                        <li><strong>Coefficients: </strong>We can calculate the Coefficients using:</li>
+                        <pre class="language-python"><code>
+                            from pprint import pprint
+                            pprint(linearModel.coefficients)</code></pre>
+                        which shows:
+                        <pre>
+DenseVector([0.876, -0.0562, -0.0439, 0.0036, -0.0149, -0.2193, -0.0071, -0.0997, -0.0705, 0.0263, -0.1676, -0.0002, 0.0466, 0.0004, -0.0004, 0.0006, 0.0005, 0.0014, 0.002, 0.0021, 0.0007, -0.0001, 0.0074, 0.0029, -0.0036, 0.0001, 0.0016, 0.0005, 0.001, -0.0003, -0.0013, -0.0015, -0.0054, 0.0026, 0.0017, -0.0052, -0.0003, 0.0007, 0.0014, -0.0016, -0.0019, -0.0008, -0.0014, -0.0024, -0.0033, 0.0067, 0.0005, -0.0021, 0.0003, 0.0019, 0.0002, -0.0016, 0.0019, 0.0004, -0.0, 0.0002, -0.002, 0.0019, -0.0013, 0.0002, -0.0031, -0.002, -0.0075, 0.0012, -0.0021, 0.0006, -0.0001, -0.0004, -0.0043, -0.0052, -0.0011, 0.0002, 0.0007, 0.004, 0.0028, 0.0156, 0.0002, -0.0044, -0.0002, -0.0002, -0.0002, -0.0005, 0.0013, 0.0011, 0.0257, 0.0002, 0.0011, -0.0309, -0.0014, -0.0014])
+                        </pre>
                     </ul>
 
 
-                    <pre class="language-python"><code></code></pre>
+                    <div class="box">
+                        Spark provides other Machine learning  algorithms like Classification, Clustering etc., but for simplicity let's go with Regression. SOme of the important function that are being developed for the spark as follows:
+                        <ul>
+                            <li><code>LinearRegression()</code>: to perform a linear regression when the label is supposed to follow a normal distribution</li>
+                            <li><code>GeneralizedLinearRegression()</code>: to perform a generalized linear regression when the label is supposed to follow another law specified in the parameter family (gaussian, binomial, poisson, gamma)</li>
+                            <li><code>AFTSurvivalRegression()</code>: to perform a survival analysis.</li>
+                            <li><code>DecisionTreeRegressor()</code>: for a decision tree</li>
+                            <li><code>RandomForestRegressor()</code>: for a random forest of decision trees</li>
+                            <li><code>GBTRegressor()</code>: for a forest of gradient-boosted trees.</li>
+                        </ul>
+                    </div>
 
-                    
 
                     
 
