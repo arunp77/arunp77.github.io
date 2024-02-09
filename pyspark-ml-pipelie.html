@@ -291,12 +291,106 @@
                             <img src="assets/img/data-engineering/pyspark-ml-pipeline1.png" alt="" style="max-width: 100%; max-height: auto;">
                             <figcaption></figcaption>
                         </figure>
-                        Now we use <code>StringIndexer</code> function of the package <code>pyspark,ml.feature</code> allows to index the variables according to the frequency of their values.
+                        <div class="grey-box">    
+                        <strong>Note: </strong>The <code>StringIndexer</code> is a feature transformer in Apache Spark MLlib that is commonly used for handling categorical variables. It indexes each distinct string value in a column 
+                        to a numerical index. This transformation is useful for algorithms that expect numerical input features, such as decision trees or logistic regression. It is to be noted that the input column should contain 
+                        string values representing categorical variables (e.g., department names, job titles, etc.). The output column will contain numerical 
+                        indices corresponding to the string values in the input column. The <code>StringIndexer</code>  assigns a unique numerical index to each distinct string value in the input column.
+                        The indices start from 0 and increase sequentially for each unique string value. After indexing, the transformed numerical indices can be used as input features for machine learning algorithms. However, 
+                        some algorithms may require additional processing, such as one-hot encoding for handling categorical variables properly.
+                        <pre class="language-python"><code>
+                            from pyspark.ml.feature import StringIndexer
 
+                            # Define the StringIndexer transformer
+                            string_indexer = StringIndexer(inputCol="department", outputCol="department_index")
+                            
+                            # Fit the StringIndexer to the input data
+                            indexed_data = string_indexer.fit(input_data).transform(input_data)
+                            
+                            # Show the transformed data
+                            indexed_data.show()
+                        </code></pre>
+                        In this example, the StringIndexer is applied to the "department" column in the input data, and the transformed output is stored in a new column named "department_index". Each distinct department name in 
+                        the "department" column will be assigned a unique numerical index in the "department_index" column.
+                        </div>
+                        <br>
+                        The <code>StringIndexer</code> is used in two steps:
+                        <ul>
+                            <li>Create an indexer by specifying the input and output columns (<code>inputCol=, outputCol=</code>) and search the database for discrete values using the <code>fit</code> method.</li>
+                            <li>Apply the indexer to the database using the method transform</li>
+                        </ul>
+                        In the present case, 
+                        <pre class="language-python"><code>
+                        from pyspark.ml.feature import StringIndexer
 
+                        # Creation of an indexer transforming a dirty variable into indexedSales
+                        salesIndexer = StringIndexer(inputCol='sales', outputCol='indexedSales').fit(hr)
+
+                        # Creating a DataFrame hrSalesIndexed indexing the variable sales
+                        hrSalesIndexed = salesIndexer.transform(hr)
+
+                        # Displaying an extract from the hrSalesIndexed data frame 
+                        hrSalesIndexed.sample(False, 0.001 , seed = 222).toPandas()
+                        </code></pre>
+                        <figure>
+                            <img src="assets/img/data-engineering/pyspark-ml-indexed.png" alt="" style="max-width: 100%; max-height: auto;">
+                            <figcaption></figcaption>
+                        </figure>
+                        An indexer built this way keeps in memory the indexed values. The <code>IndexToString</code> function allows you to find an original variable from an indexed variable, or from a prediction of this variable. It works with the following arguments:
+                        <ul>
+                            <li><code>inputCol</code> : the name of the indexed input column</li>
+                            <li><code>outputCol</code> : the name of the output column to be rebuilt</li>
+                            <li><code>labels</code> : the location of the labels</li>   
+                        </ul>
+                        <pre class="language-python"><code>
+                            ### Insert your code here
+                            from pyspark.ml.feature import IndexToString
+                            
+                            # Creating a new salesReconstructed column
+                            SalesReconstructor = IndexToString(inputCol='indexedSales',
+                                                                outputCol='salesReconstructed',
+                                                                labels = salesIndexer.labels)
+                            
+                            # Apply the SalesReconstructor transformer
+                            hrSalesReconstructed = SalesReconstructor.transform(hrSalesIndexed)
+                            
+                            # Displaying an extract from the database
+                            hrSalesReconstructed.sample(False, 0.001 , seed = 222).toPandas()                            
+                        </code></pre>
+                        Here we create a variable <code>salesReconstructed</code> from <code>indexedSales</code> and a new table <code>hrSalesReconstructed</code> is created.
+                        <figure>
+                            <img src="assets/img/data-engineering/pyspark-ml-reindexed.png" alt="" style="max-width: 100%; max-height: auto;">
+                            <figcaption></figcaption>
+                        </figure>
+
+                        <h5>Pipelines</h5>
+                        A pipeline is a sequence of stages that are executed in a specific order to process and transform data. Each stage typically represents a transformation or an estimator (machine learning algorithm) that operates on the data. 
+                        The pipeline allows you to chain together multiple data processing and modeling steps, making it easy to manage and deploy complex machine learning workflows.
+                        <pre class="language-python"><code>
+                            from pyspark.ml import Pipeline
+
+                            # Creation of indexers
+                            SalesIndexer = StringIndexer(inputCol='sales', outputCol='indexedSales')
+                            SalaryIndexer = StringIndexer(inputCol='salary', outputCol='indexedSalary')
+                            
+                            # Creating a pipeline
+                            indexer = Pipeline(stages =  [SalaryIndexer, SalesIndexer])
+                            
+                            # Index the variables of "hr"
+                            hrIndexed = indexer.fit(hr).transform(hr)
+                            
+                            # Displaying an extract
+                            hrIndexed.sample(False, 0.001 , seed = 222).toPandas()
+                        </code></pre>    
+                        This will first import <code>Pipeline</code> from <code>pyspark.ml</code> and then a >code>SalesIndexer trasnfroming a sales variable from <code>indexedSales</code>. 
+                        Similarly, a SalesIndexer is also created for Salary variable indo <code>indexedSalary</code>. A pipeline is created using <code>Pipeline</code>
+                        <figure>
+                            <img src="assets/img/data-engineering/pyspark-ml-pipeline2.png" alt="" style="max-width: 100%; max-height: auto;">
+                            <figcaption></figcaption>
+                        </figure>
                     
 
-                    <pre class="language-python"><code></code></pre>
+                    
 
                     
 
