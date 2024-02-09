@@ -365,7 +365,8 @@
 
                         <h5>Pipelines</h5>
                         A pipeline is a sequence of stages that are executed in a specific order to process and transform data. Each stage typically represents a transformation or an estimator (machine learning algorithm) that operates on the data. 
-                        The pipeline allows you to chain together multiple data processing and modeling steps, making it easy to manage and deploy complex machine learning workflows.
+                        The pipeline allows you to chain together multiple data processing and modeling steps, making it easy to manage and deploy complex machine learning workflows. A example syntex is given by:
+                        <code>Pipeline(stages=[estimator1, estimator2, estimator3, ...])</code>.
                         <pre class="language-python"><code>
                             from pyspark.ml import Pipeline
 
@@ -388,15 +389,155 @@
                             <img src="assets/img/data-engineering/pyspark-ml-pipeline2.png" alt="" style="max-width: 100%; max-height: auto;">
                             <figcaption></figcaption>
                         </figure>
-                    
-
-                    
-
-                    
 
 
+                        <h5>Formatting the database in <code>svmlib</code> format</h5>
+                        At this point, the variables are of numerical type. It is therefore possible to transform the database. First of all, it is necessary to exclude the non-indexed versions of the variables.
+                        <pre class="language-python"><code>
+                            from pyspark.ml.linalg import DenseVector
 
+                            # Creation of a database excluding non-indexed variables
+                            hrNumeric = hrIndexed.select('left',
+                                                            'satisfaction_level',
+                                                            'last_evaluation',
+                                                            'number_project',
+                                                            'average_montly_hours',
+                                                            'time_spend_company',
+                                                            'Work_accident',
+                                                            'promotion_last_5years',
+                                                            'indexedSales',
+                                                            'indexedSalary')
+                            
+                            # Creation of a DenseVector variable containing the features via the RDD structure
+                            hrRdd = hrNumeric.rdd.map(lambda x: (x[0], DenseVector(x[1:])))
+                            
+                            # transformation into DataFrame and naming variables to get a base of the form libsvm
+                            hrLibsvm = spark.createDataFrame(hrRdd, ['label', 'features'])
+                            
+                            # Displaying an extract
+                            hrLibsvm.sample(False, .001, seed = 222).toPandas()
+                        </code></pre>
+                        <figure>
+                            <img src="assets/img/data-engineering/pyspark-ml-label-feature.png" alt="" style="max-width: 100%; max-height: auto;">
+                            <figcaption></figcaption>
+                        </figure>
+                        The conversion of a database to libsvm format is done as follows :
+                        <ul>
+                            <li>Import the function DenseVector</li>
+                            <li>Transform each line into a pair containing a label and a feature vector using the method map</li>
+                            <li>Transform this rdd into a DataFrame whose variables are named label and features</li>
+                        </ul>
+
+
+                        <!------------------->
+                        <h5>Application of a Spark ML classifier</h5>
+                        Import <code>VectorIndexer</code> from <code>pyspark.ml.feature</code>. Create a featureIndexer transformer indexing features for a maximum number of values: maxCategories = 10
+                        <pre class="language-python"><code>
+                            from pyspark.ml.feature import VectorIndexer
+
+                            # Creation of a transformer indexing the features
+                            featureIndexer = VectorIndexer(inputCol="features",
+                                                        outputCol="indexedFeatures",
+                                                        maxCategories = 10).fit(hrLibsvm)
+                        </code></pre>
+                        <div class="grey-box">
+                            <strong>Note: </strong>  A maximum number of discrete values is one of the limitations of Spark. Indeed, the current version of Spark ML (2.2) does not allow the data scientist to select the continuous and categorical features by himself.
+
+                            For example, 'sales' is a categorical variable with 10 different values, but the variable 'number_project' contains integers between 2 and 7. Setting the threshold to 10 would therefore push the algorithm to consider the variable 'number_project' as categorical. The algorithm then loses the order of this variable and considers that the difference between 2 and 3 realized projects is the same as between 2 and 7. Conversely, if the threshold is set to 4, the algorithm creates an artificial order (depending on the frequency of the discrete values) in the variable 'sales'.
+                            
+                            Faced with this problem, it is necessary to test several thresholds and look at the importance of the variables concerned. You are also invited to look at the documentation Spark ML if this problem has been solved - Spark is indeed very recent and in constant improvement.
+                        </div>
+                        Then, Random Forest is the classifier proposed as a learning algorithm. Random forests are composed of a set of decision trees. These trees are distinguished from each other by the subsample of data on which they are trained. These sub-samples are randomly selected from the initial data set.
+
+                        The principle of a random forest is simple: many small classification trees are produced on a random fraction of data. Random Forest votes on the classification trees in order to deduce the order and importance of the explanatory variables.
+
+                        The function RandomForestClassifier() of the package pyspark.ml.classification creates a classifier and takes the following arguments :
+                        <ul>
+                            <li><code>labelCol</code> : name of the column to be used as a label</li>
+                            <li><code>featuresCol</code> : name of the column to use containing the feature vector</li>
+                            <li><code>predictionCol</code> : name of the column containing the predictions (by default = prediction)</li>
+                            <li><code>seed</code> : fixed integer to make the results reproducible</li>
+                            <li>The Random Forest parameters to refine the analysis, available in the documentation of Random Forest.</li>
+                        </ul>
+                        In the present case, do following:
+                        <ul>
+                            <li>Import the function RandomForestClassifier from the package pyspark.ml.classification</li>
+
+                            <li>Create two transformers labelIndexer and featureIndexer indexing label and features of hrLibsvm</li>
+
+                            <li>Create a Random Forest Classifier, rf, working on indexed versions of features and labels</li>
+
+                            <li>Using IndexToString, create a transformer labelConverter to restore prediction labels</li>
+
+                            <li>Create a Pipeline, pipeline, containing the 4 estimators/transformers created</li>
+
+                            <li>Create two sets train and test containing respectively 70% and 30% of hrLibsvm</li>
+
+                            <li>Create a model model that fits the Pipeline to the database train</li>
+                        </ul>
+                        <pre class="language-python"><code>
+                            from pyspark.ml.feature import IndexToString
+                            # Import of the RandomForestClassifier from the pyspark.ml.classification package
+                            from pyspark.ml.classification import RandomForestClassifier
+                            
+                            # Creation of transformers
+                            labelIndexer = StringIndexer(inputCol="label", outputCol="indexedLabel").fit(hrLibsvm)
+                            featureIndexer = VectorIndexer(inputCol="features", outputCol="indexedFeatures", maxCategories = 10).fit(hrLibsvm)
+                            
+                            # Creation of a classifier 
+                            rf = RandomForestClassifier(labelCol="indexedLabel", featuresCol="indexedFeatures", predictionCol='prediction', seed = 222)
+                            
+                            # Creation of a transformer to restore the labels of predictions
+                            labelConverter = IndexToString(inputCol="prediction", outputCol="predictedLabel",
+                                                            labels=labelIndexer.labels)
+                            
+                            # Creating a Pipeline 
+                            pipeline = Pipeline(stages=[labelIndexer, featureIndexer, rf, labelConverter])
+                            
+                            # Splitting data into two sets: training and test 
+                            (train, test) = hrLibsvm.randomSplit([0.7, 0.3], seed = 222)
+                            
+                            # Training the model using the training data
+                            model = pipeline.fit(train)
+                        </code></pre>
+                        Model prediction:
+                        <pre class="language-python"><code>
+                            predictions = model.transform(test)
+
+                            # Display of an extract of the predictions  
+                            predictions.sample(False, 0.001 , seed = 222).toPandas()
+                        </code></pre>
+                        <figure>
+                            <img src="assets/img/data-engineering/pyspark-ml-decisiontree.png" alt="" style="max-width: 100%; max-height: auto;">
+                            <figcaption></figcaption>
+                        </figure>
+                        <strong>Model evaluation:</strong>
+                        Once the model is built, it is important to check the reliability of the predictions, both to compare it with other classification models and to optimize the parameters. For this purpose, there is a submodule pyspark.ml.evaluation containing all the evaluation metrics. In particular, you will find the function MulticlassClassificationEvaluator to evaluate classification models. This function takes 3 main arguments :
+
+                        <ul>
+                            <li><code>metricName</code> : the metric to be used, typically : 'accuracy'</li>
+                            <li><code>labelCol</code> : the name of the column to be predicted</li>
+                            <li><code>predictionCol</code> : the name of the prediction column</li>
+                        </ul>
+                        <pre class="language-python"><code>
+                        from pyspark.ml.evaluation import MulticlassClassificationEvaluator
+
+                        # Creation of an evaluator 
+                        evaluator = MulticlassClassificationEvaluator(metricName='accuracy',
+                                                                    labelCol= 'indexedLabel',
+                                                                    predictionCol= 'prediction')
+                        # Calculation and display of model accuracy 
+                        accuracy = evaluator.evaluate(predictions)
+                        print(accuracy)
+                        </code></pre>
+                        Which gives:
+                        <pre>0.963758389261745</pre>
+                        The metric accuracy corresponds to the number of correct predictions divided by the number of predictions made. It is therefore between 0 and 1; 0 accuracy corresponds to completely false predictions and an accuracy of 1 corresponds to the absence of errors in the prediction.
                 </section>
+
+                <div class="box">
+                    <strong>Disclaimer: </strong> This notebook is a part of my study on various topics related to data enegineering course provided by <a href="Datascientist.com" target="_blank">Datascientist.com</a> Germany.
+                </div>
 
                 <!-------Reference ------->
                 <section id="reference">
