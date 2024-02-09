@@ -433,8 +433,13 @@
                             # Fitting of training data "train".
                             linearModel = lr.fit(train)
                         </code></pre>
-                        <li></li>
-                        <pre class="language-python"><code></code></pre>
+                        <li>Now that the learning model is built, it is possible to predict labels on the test data. To do this, the Spark ML models have a <code>transform()</code> method to make predictions using only the test set as an argument.</li>
+                        <pre class="language-python"><code>
+                            predicted = linearModel.transform(test)
+
+                            # Printing prediction
+                            predicted.show()
+                        </code></pre>
                         <li></li>
                         <pre class="language-python"><code></code></pre>
                         <li></li>
