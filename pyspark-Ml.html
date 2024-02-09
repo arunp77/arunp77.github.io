@@ -159,21 +159,216 @@
                 </div>
 
                 <section>
-
-
-
-
-                    <!------------------------>
                     <h3 id="rdd">RDD's - Resilient Distributed Datasets</h3>
                     The RDD structure is the elementary structure of Spark. It is flexible and optimal in performance for any linear operation. However, this structure has limited performance when it comes to non-linear operations, which is why we will introduce the DataFrame structure in the following exercise.
                     <div class="grey-box">
                         A good reference for the pyspark can be found at <a href="https://www.tutorialspoint.com/pyspark/index.htm">Link</a>. Another link with some 
                         good examples can be found at <a href="https://sparkbyexamples.com/" target="_blank">Link</a>.
                     </div>
-                    <p><strong>SparkContext</strong></p>
 
+                    <hr>
+                    <!-------------- example ------------------->
+                    <h3>Example</h3>
+                    Let's do a example here. First we will create a Sparkcontext via sparksession and then load a datafile and in the end do some Machine learning analysis.
+                    <ul>
+                        <li><strong>Step-1: </strong>Build the SparkSession</li>
+                        <pre class="language-python"><code>
+                            # Importing Spark Session and SparkContext
+                            from pyspark.sql import SparkSession
+                            from pyspark import SparkContext
+                            
+                            # Definition of a SparkContext
+                            SparkContext.getOrCreate() 
+                            
+                            # Definition of a SparkSession
+                            spark = SparkSession \
+                                .builder \
+                                .master("local") \
+                                .appName("Introduction to DataFrame") \
+                                .getOrCreate()
+                                
+                            spark
+                        </code></pre>
+                        Here it will create a spark context and sparksession both. We will focus on SparkCOntext only here as it allows to work with RDD. So we create a SparkCOntext:
+                        <pre class="language-python"><code>
+                            # Creating a shortcut to the SparkContext already created
+                            sc = SparkContext.getOrCreate()
+                            sc                            
+                        </code></pre>
+                        <li><strong>Step-2</strong>Here we will load the textfile in .csv format.  Next we create a rdd from the database. A <code>rdd_row</code> will also be created using the <code>map</code>, applying on each line the structure Row with the explanatory variables <code>year</code>, <code>month</code>, <code>day</code> and <code>flightNum</code>. 
+                        The data file is available at <a href="https://raw.githubusercontent.com/nraychaudhuri/ibm-spark-examples/master/data/airline-flights/alaska-airlines/2008.csv" target="_blank">Github repo</a>.</li>
+                        <pre class="language-python"><code>
+                        # Importing Row from the pyspark.sql package
+                        from pyspark.sql import Row
+                        
+                        # Loading the file '2008_raw.csv'
+                        rdd = sc.textFile('2008_raw.csv').map(lambda line: line.split(","))
+                        
+                        # Creating a new rdd by selecting the explanatory variables
+                        rdd_row = rdd.map(lambda line: Row(year = line[0],
+                                                            month = line[1],
+                                                            day = line[2],
+                                                            flightNum = line[5]))
+                        
+                        # Creating a data frame from an rdd
+                        df = spark.createDataFrame(rdd_row)
+                        df.show(5) # to show the top 5 rows.
+                        </code></pre>
+                        <li><strong>Step-3: </strong>Creating the DataFrame from a CSV using the SparkSession. </li>
+                        <pre class="language-python"><code>raw_df = spark.read.csv('2008.csv', header=True)</code></pre>
+                        To print the schema, we can use <pre class="language-python"><code>raw_df.printSchema()</code></pre>.
+                        <li><strong>Step-4: </strong> Exploring and manipulating a DataFrame. Now we create <code>flights1</code> dataframe, containing only the variables: 'year', 'month', 'day', 'flightNum', 'origin', 'dest', 'distance', 'canceled', 'cancellationCode'. and then displaying the first 20 lines:</li>
+                        <pre class="language-python"><code>
+                            # Creating a data frame containing only the explanatory variables
+                            flights1 = raw_df.select('year', 'month', 'day', 'flightNum', 'origin', 'dest', 'distance', 'canceled', 'cancellationCode', 'carrierDelay')
+                            
+                            # Display of 20 first lines
+                            flights1.show() # 'show' displays 20 lines by default
+                        </code></pre>
+                        Now we can also create the dataframe with a specific datatype in each column using:
+                        <pre class="language-python"><code>
+                            flights = raw_df.select(raw_df.year.cast("int"),
+                            raw_df.month.cast("int"),
+                            raw_df.day.cast("int"),
+                            raw_df.flightNum.cast("int"),
+                            raw_df.origin.cast("string"),
+                            raw_df.dest.cast("string"),
+                            raw_df.distance.cast("int"),
+                            raw_df.canceled.cast("boolean"),
+                            raw_df.cancellationCode.cast("string"),
+                            raw_df.carrierDelay.cast("int"))
+                            
+                            # Display of 20 first lines
+                            flights.show()
+                        </code></pre>
+                        <li><strong>Step-5</strong> Some manipulation:</li>
+                        To count the  number of flights that were delayed, you can use the following code snippet:
+                        <pre class="language-python"><code>flights.select('flightNum').distinct().count()</code></pre>
+                        Just like Pandas dataframe, we can have similar function <code>describe</code> to obtain a summary of the dataframe.
+                        <pre class="language-python"><code>flights.describe().toPandas()</code></pre>
+                        This will create  a pandas DataFrame that contains the statistical summary for numerical columns (e.g., min, max etc).
+                        <p>A groupby just like python can be used to do some more analysis.</p>
+                        <pre class="language-python"><code>flights.groupBy('cancellationCode', 'canceled').count().show()</code></pre>
+                        Summarize the variable 'cancellationCode' and 'canceled' by displaying the number of observations of each value
+                        <p>A <code>filter</code> can be used to  select certain rows based on conditions.</p>
+                        <pre class="language-python"><code>flights.filter(flights.cancellationCode == 'C').show()</code></pre>
+                        This will show the cancelled flights for the reason 'C'.
+                        <p>The <code>withColumn</code> methods allows us to create a new column.</p>
+                        <pre class="language-python"><code>flights.withColumn('isLongFlight', flights.distance > 1000 ).show(10)</code></pre>
+                        This create a new Boolean variable <code>isLongFlight</code> that will be true if the flight is more than 1000 miles long and then displays first 10 line.
+                        <p></p>
+                        <li><strong>Step-6: </strong>Handling missing values. Missing values appear as null in the database. There are functions such as <code>dropna</code> or <code>fillna</code>, as in module Pandas. </li>
+                        <pre class="language-python"><code>df.fillna( newValue, 'columnName') </code></pre>
+                        This is the syntax to handle the missing value in the column 'columnName'.
+                        <pre class="language-python"><code>flights.fillna(0, 'carrierDelay').show(6)</code></pre>
+                        <p>To replace a value with some other value, we can use <code>df.replace(oldValue, newValue)</code>. To replace on a specific column, we can use <code> df.replace(oldValue, newValue, 'columnName'</code>
+                        To replace sevral values to be replaced: <code>df.replace([oldValue1, oldValue2], [newValue1, newValue2], 'columnName')</code></p>
+                        <li><strong>Step-7: </strong>Order by operation can be used to order the dataframe according to the values of one of its variables. <code>df.orderBy(df.age)</code> or <code>df.orderBy(df.age.desc())</code> 
+                            to order the dataframe on the basis of variable age in a decreasing order.</li>
+                        <pre class="language-python"><code>flights.orderBy(flights.flightNum.desc()).show()</code></pre>
+                        <li><strong>Step-8: </strong>Spark SQL also allows you to use the SQL language. It is possible to run Pyspark using the method sql. The first step is to create a SQL view, referenced in the SQL code using the <code>createOrReplaceTempView</code>.</li>
+                        <pre class="language-python"><code>
+                            # Creating an SQL view
+                            flights.createOrReplaceTempView("flightsView")
+                            
+                            # Creating a data frame containing only the variable "carrierDelay"
+                            sqlDF = spark.sql("SELECT carrierDelay FROM flightsView")
+                            
+                            # Display of the first 10 lines
+                            sqlDF.show(10)
+                        </code></pre>
+                        This create a SQL view of flights that will be called <code>flightsView</code> and then we create a DataFrame called <Code>sqlDF</Code> containing only the <code>carrierDelay</code> variable using a sql query. In the end we display the first line.
+                        <li><strong>Step-9: Sample and displaying tips</strong>The disadvantage of the method show is that it has a bad rendering when a database contains a large number of variables. It is possible to use the method toPandas to fix this problem. 
+                            This method only works on a small database. To do this, the sample method returns an extract from the data, essentially taking 3 arguments:
+                            <ul>
+                                <li><code>withRemplacement</code>: a Boolean to specify <code>False</code> if you don't want to overwrite the DataFrame</li>
+                                <li><code>fraction</code>: the fraction of data to be kept</li>
+                                <li><code>seed</code> : an integer that allows the results to be reproduced: for the same seed, a function, although random, will always give the same results</li>
+                            </ul>
+                            <code>flights.sample(False, .0001, seed = 222).toPandas()</code>
+                            This display around ten lines of the database in an elegant way (just like pandas dataframe).
+                        </li>
+                        
+                    </ul>
+                    <pre class="language-python"><code></code></pre>
 
+                    <br>
+                    <h3 id="ml-pyspark">Machine learning with Pyspark Regression with PySpark </h3>
+                    Spark ML is a very recent module, developed in parallel by Databricks and UC Berkeley AMPLab and launched at the end of 2015. Spark ML allows to run the majority of the 
+                    algorithms of Machine Learning in a distributed way with a very big gain in performance.
+                    In this part, we will study the case of a simple regression in order to understand how to prepare the data and deal with a Machine Learning problem using Spark ML. 
+                    More advanced algorithms are the objective of the following exercise. Let's break this again:
+                    <ul>
+                        <li>Run the cell below to build a SparkSession for our exercise.</li>
+                        <pre class="language-python"><code>
+                            # Importing SparkSession and SparkContext
+                            from pyspark.sql import SparkSession
+                            from pyspark import SparkContext
+                            
+                            # Defining a SparkContext locally
+                            sc = SparkContext.getOrCreate()
+                            
+                            # Building a Spark Session
+                            spark = SparkSession \
+                                .builder \
+                                .appName("Introduction to Spark ML") \
+                                .getOrCreate()
+                                
+                            spark
+                        </code></pre>
+                        <li>In this case, we use following dataset available at <a href="https://archive.ics.uci.edu/dataset/203/yearpredictionmsd" target="_blank">link</a>. This dataset contains audio 
+                            audio characteristics of 515345 songs released between 1922 and 2011. These songs are essentially Western commercial hits. This database contains 91 columns:
+                            <ul>
+                                <li>A variable containing the year of the song</li>
+                                <li>12 variables containing a 12-dimensional projection of the song's audio timbre</li>
+                                <li>78 variables containing audio timbre covariance information</li>
+                            </ul>
+                            The objective is then to estimate the year of release of a song according to its audio characteristics. The goal is to perform a simple linear regression on the timbre information to predict the release year.
+                        </li>
+                        <li><strong>Loading the dataset: </strong>Next we load the datafile: <code>YearPredictionMSD.txt</code> into a dataframe <code>df_raw</code>.</li>
+                        <pre class="language-python"><code>
+                            df_raw = spark.read.csv('YearPredictionMSD.txt')
 
+                            # First display method
+                            df_raw.show(2, truncate = 4)
+                            # By modifying the values of 'truncate', this method does not allow a good visualization of the data
+                            # by the number of variables
+                            
+                            # Second display method
+                            df_raw.sample(False, .00001, seed = 222).toPandas()
+                        </code></pre>
+                        <figure>
+                            <img src="assets/img/data-engineering/pyspark-ml.png" alt="" style="max-width: 90%; max-height: auto;">
+                            <figcaption></figcaption>
+                            </figure>
+                        <div class="grey-box">
+                            Displaying a database with the method <code>show()</code> is faster. However, the result can sometimes be incomprehensible when there are too many variables.
+                            We can then select a few variables and truncate the display to make them clean or privilege the succession of methods <code>sample()</code> and <code>toPandas()</code> 
+                            taking care to choose a reasonable number of lines to display. It should be kept in mind that even if the sample method is relatively fast, it necessarily involves a 
+                            counting of lines, a simple but slow operation in Spark.
+                        </div>
+                        The DataSchema can be checked using <code>df_raw.printSchema()</code>. To change the type of each variable, it would be necessary to change its type as follows :
+                        <pre><code>
+                            df_raw.select(df_raw._c0.cast("double"),
+                            df_raw._c1.cast("double"),
+                            df_raw._c2.cast("double"),
+                            df_raw._c3.cast("double"),
+                            ...
+                            )
+                        </code></pre>
+                        Such a task becomes more and more tedious when the number of variables becomes large. This approach can be automated using the col function from the sub-module <code>pyspark.sql.functions</code>. 
+                        The col function allows you to directly name a column and automate this type of approach within a loop. The next two rows then allow you to change all the columns to dual' in a new DataFrame <code>df</code>:
+                        <li><strong></strong></li>
+                        <pre class="language-python"><code></code></pre>
+                        <li><strong></strong></li>
+                        <pre class="language-python"><code></code></pre>
+                        <li><strong></strong></li>
+                        <pre class="language-python"><code></code></pre>
+                        <li><strong></strong></li>
+                        <pre class="language-python"><code></code></pre>
+                        <li><strong></strong></li>
+                        <pre class="language-python"><code></code></pre>
+                    </ul>
 
 
 
