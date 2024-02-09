@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Pyspark</title>
+    <title>Pyspark: ML Pipeline</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
     <!-- Favicons -->
@@ -127,13 +127,13 @@
         <section id="portfolio-details" class="portfolio-details">
             <div class="container">
                 <div class="row gy-4">
-                    <h1>Big data processing with Pyspark DataFrames</h1>
+                    <h1>Machine learning with Pyspark: Use of ML pipeline</h1>
                     <div class="col-lg-8">
                         <div class="portfolio-details-slider swiper">
                             <div class="swiper-wrapper align-items-center"> 
                                 <figure>
-                                <img src="assets/img/data-engineering/Apache_Spark_logo.svg.png" alt="" style="max-width: 50%; max-height: auto;">
-                                <figcaption></figcaption>
+                                    <img src="assets/img/data-engineering/Apache_Spark_logo.svg.png" alt="" style="max-width: 50%; max-height: auto;">
+                                    <figcaption></figcaption>
                                 </figure>
                             </div>
                             <div class="swiper-pagination"></div>
@@ -159,8 +159,144 @@
                 </div>
 
                 <section>
-                    <h3 id="introduction"></h3>
+                    <div class="grey-box">
+                        <h3 id="introduction">Introduction</h3>
+                        A Spark ML Pipeline is an API provided by Apache Spark for building and deploying end-to-end machine learning workflows. It allows you to chain together multiple stages of machine learning algorithms and data transformations into a single pipeline, making it easier to manage and deploy complex machine learning models.
+                        <ul>
+                            <li><strong>Step-1: Import necessary libraries: </strong></li>
+                            <pre class="language-python"><code>
+                                from pyspark.ml import Pipeline
+                                from pyspark.ml.feature import VectorAssembler, StringIndexer
+                                from pyspark.ml.classification import RandomForestClassifier
+                            </code></pre>
+                            <li><strong>Step-2: Define stages: </strong>Define the stages of the pipeline. Stages can include data preprocessing, feature engineering, and model training.</li>
+                            <pre class="language-python"><code>
+                                # Define feature vector assembler
+                                feature_cols = ["feature1", "feature2", ...]
+                                feature_assembler = VectorAssembler(inputCols=feature_cols, outputCol="features")
+                                
+                                # Define label indexer (if target variable is categorical)
+                                label_indexer = StringIndexer(inputCol="label", outputCol="indexedLabel")
+                                
+                                # Define classifier (e.g., RandomForestClassifier)
+                                classifier = RandomForestClassifier(featuresCol="features", labelCol="indexedLabel", seed=42)
+                            </code></pre>
+                            <li><strong>Step-3: Create pipeline: </strong>Create a pipeline by specifying the stages in sequential order.</li>
+                            <pre class="language-python"><code>pipeline = Pipeline(stages=[feature_assembler, label_indexer, classifier])</code></pre>
+                            <li><strong>Step-4: Fit pipeline: </strong>Fit the pipeline to your training data.</li>
+                            <pre class="language-python"><code>pipeline_model = pipeline.fit(train_data)</code></pre>
+                            <li><strong>Step-5: Make predictions: </strong>Use the fitted pipeline to make predictions on new data.</li>
+                            <pre class="language-python"><code>predictions = pipeline_model.transform(test_data)</code></pre>
+                            <li><strong>Step-6: Evaluate model: </strong>Evaluate the performance of the model using appropriate evaluation metrics.</li>
+                            <pre class="language-python"><code>
+                                from pyspark.ml.evaluation import BinaryClassificationEvaluator
 
+                                evaluator = BinaryClassificationEvaluator(labelCol="indexedLabel")
+                                accuracy = evaluator.evaluate(predictions)
+                            </code></pre>
+                            <li><strong>Step-7: Parameter tuning: </strong>We can perform hyperparameter tuning using techniques like cross-validation.</li>
+                            <pre class="language-python"><code>
+                                from pyspark.ml.tuning import CrossValidator, ParamGridBuilder
+
+                                param_grid = ParamGridBuilder() \
+                                    .addGrid(classifier.maxDepth, [5, 10, 15]) \
+                                    .addGrid(classifier.numTrees, [10, 20, 30]) \
+                                    .build()
+                                
+                                crossval = CrossValidator(estimator=pipeline,
+                                                            estimatorParamMaps=param_grid,
+                                                            evaluator=evaluator,
+                                                            numFolds=3)
+                                
+                                cv_model = crossval.fit(train_data)
+                            </code></pre>
+                        </ul>
+                    </div>
+                    <hr>
+
+                    <!----------------------->
+                    <h3 id="objective">Objective</h3>
+                    <p>In this project, the objective is to develop a classification machine learning model using Spark MLlib's pipeline framework. The goal is to leverage the power of Spark's distributed computing capabilities to build a 
+                        robust and scalable pipeline that can efficiently preprocess the HR dataset and train a classification algorithm to predict employee terminations. By implementing the pipeline, we aim to explore the relationships 
+                        between various features such as employee demographics, performance metrics, and engagement scores, and the likelihood of termination. Through this analysis, we seek to achieve a high level of accuracy in 
+                        predicting employee terminations, thereby providing valuable insights for HR management and facilitating proactive decision-making in employee retention strategies.</p> 
+                    
+                        <div class="grey-box">
+                            <p><strong>About data:</strong> In the present project, we have considered following datasets on at <a href="https://www.kaggle.com/datasets/pankeshpatel/hrcommasep?select=HR_comma_sep.csv" target="_blank">Kaggle on "Human Resources Dataset"</a>.
+                                This is dataset useful for HR in a company. A company records different parameters of an employee (such as satisfaction level, Salary, number of promotion, left the company etc.) . This dataset can be used to predict whether an employee 
+                                leave the company or stay in the company.</p>
+                            <p>Following are the data columns:</p>
+                            <ul>
+                                <li><code>satisfaction_level</code>: Level of employee satisfaction.</li>
+                                <li><code>last_evaluation</code>: Last performance evaluation score.</li>
+                                <li><code>number_project</code>: Number of projects assigned to the employee.</li>
+                                <li><code>average_montly_hours</code>: Average number of monthly work hours.</li>
+                                <li><code>time_spend_company</code>: Number of years spent in the company.</li>
+                                <li><code>Work_accident</code>: Indicator for whether the employee had a work accident (e.g., 1 for yes, 0 for no).</li>
+                                <li><code>left</code>: Indicator for whether the employee left the company (e.g., 1 for yes, 0 for no).</li>
+                                <li><code>promotion_last_5</code>: Indicator for whether the employee was promoted in the last 5 years (e.g., 1 for yes, 0 for no).</li>
+                                <li><code>years</code>: Number of years the employee has been with the company.</li>
+                                <li><code>Department</code>: Department in which the employee works.</li>
+                                <li><code>salary</code>: Level of salary for the employee (e.g., low, medium, high).</li>
+                            </ul>
+                        </div>
+
+                        <h5>Building the <code>SparkSession</code> and loading the datasets:</h5>
+                        <pre class="language-python"><code>
+                            from pyspark.sql import SparkSession
+                            from pyspark import SparkContext
+                            
+                            # Defining a SparkContext locally
+                            sc = SparkContext.getOrCreate()
+                            
+                            # Building a Spark Session
+                            spark = SparkSession \
+                                .builder \
+                                .appName("Pipelines Spark ML") \
+                                .getOrCreate()
+                                
+                            spark
+                        </code></pre>
+
+                        Loading the datasets
+                        <pre class="language-python"><code>
+                            hr = spark.read.csv('HR_comma_sep.csv', header = True)
+
+                            # Displaying an extract from the data frame
+                            hr.sample(False, 0.001 , seed = 222).toPandas()
+                        </code></pre>
+
+                        <h5>Selecting the Categorical variables:</h5>
+                        Before training classification models, it is important to understand that the <code>svmlib</code> 
+                        format does not support <code>Strings</code>. It is therefore necessary to use an indexer, 
+                        i.e. a model to transform a categorical variable into a series of indices. In the data column <code>left</code>
+                        is the variable to be predicted, indicates that if the employee left the company voluntarily or not.
+                        <pre class="language-python"><code>
+                            hr = hr.select( 'left',
+                                'satisfaction_level',
+                                'last_evaluation',
+                                'number_project',
+                                'average_montly_hours',
+                                'time_spend_company',
+                                'Work_accident',
+                                'promotion_last_5years',
+                                'sales',
+                                'salary'
+                                )
+
+                            # Display of a description of the variables
+                            hr.describe().toPandas()
+                        </code></pre>
+                        <figure>
+                            <img src="assets/img/data-engineering/pyspark-ml-pipeline1.png" alt="" style="max-width: 100%; max-height: auto;">
+                            <figcaption></figcaption>
+                        </figure>
+                        Now we use <code>StringIndexer</code> function of the package <code>pyspark,ml.feature</code> allows to index the variables according to the frequency of their values.
+
+
+                    
+
+                    <pre class="language-python"><code></code></pre>
 
                     
 
