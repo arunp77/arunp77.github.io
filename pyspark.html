@@ -166,34 +166,157 @@
             PySpark is the Python API for Apache Spark, an open-source, distributed computing framework designed for large-scale data processing. It allows you to leverage the power of Spark from the familiar and approachable Python environment.
             It provides Python bindings that allow developers to create, test, and deploy applications using the Spark API. 
 
-            <h5>Capabilities</h5>
+            <h3 id="summary-spark">Summary Apache Spark</h3>
             <ul>
-                <li>Large-scale Data Processing: Efficiently handle massive datasets across distributed clusters.</li>
-                <li>Fault Tolerance: Built-in mechanisms to handle node failures and ensure job completion.</li>
-                <li>Structured, Semi-structured, and Unstructured Data Support: Work with various data formats like CSV, JSON, XML, and text files.</li>
-                <li>SQL-like Queries: Utilize Spark SQL for familiar data analysis using SQL syntax.</li>
-                <li>Machine Learning: Build and train various machine learning models with Spark MLlib.</li>
-                <li>Real-time Data Processing: Analyze streaming data with Spark Streaming.</li>
+                <li><strong>Definition: </strong>Apache Spark is an Open source analytical processing engine for large-scale powerful distributed data processing and machine learning applications.
+                    Apache Spark 3.5 is a framework that is supported in Scala, Python, R Programming, and Java. Below are different implementations of Spark.
+                    <ul>
+                        <li>Spark - Default interface for Scala and Java</li>
+                        <li>PySpark – Python interface for Spark</li>
+                        <li>SparklyR – R interface for Spark.</li>
+                    </ul>
+                </li>
+                <li><strong>Features of Apache Spark:</strong>
+                    <ul>
+                        <li>In-memory computation</li>
+                        <li>Distributed processing using parallelize</li>
+                        <li>Can be used with many cluster managers (Spark, Yarn, Mesos e.t.c)</li>
+                        <li>Fault-tolerant</li>
+                        <li>Immutable</li>
+                        <li>Lazy evaluation</li>
+                        <li>Cache & persistence</li>
+                        <li>Inbuild-optimization when using DataFrames</li>
+                        <li>Supports ANSI SQL</li>
+                    </ul>
+                </li>
+                <li><strong>Advantages of Apache Spark:</strong>
+                    <ul>
+                        <li>Spark is a general-purpose, in-memory, fault-tolerant, distributed processing engine that allows you to process data efficiently in a distributed fashion.</li>
+                        <li>Applications running on Spark are 100x faster than traditional systems.</li>
+                        <li>There are so many benefits from using Spark for data ingestion pipelines.</li>
+                        <li>Using Spark we can process data from Hadoop HDFS, AWS S3, Databricks DBFS, Azure Blob Storage, and many file systems.</li>
+                        <li>Spark also is used to process real-time data using Streaming and Kafka.</li>
+                        <li>Using Spark Streaming you can also stream files from the file system and also stream from the socket.</li>
+                        <li>Spark natively has machine learning and graph libraries.</li>
+                        <li>Provides connectors to store the data in NoSQL databases like MongoDB.</li>
+                    </ul>
+                </li>
+                <li><strong>Apache Spark Architecture: </strong>
+                    Spark works in a master-slave architecture where the master is called the “Driver” and slaves are called “Workers”. When you run a Spark application, Spark Driver creates a context that is an entry point to your application, and all operations (transformations and actions) are executed on worker nodes, and the resources are managed by Cluster Manager.
+                    <figure>
+                        <img src="assets/img/data-engineering/pyspark-summary.png" alt="" style="max-width: 50%; max-height: auto;">
+                        <figcaption></figcaption>
+                    </figure>
+                </li>
+                <li><strong>Cluster Manager Types: </strong>Standalone, Apache Mesos, Hadoop YARN, Kubernetes, local (for master() in order to run Spark on local computer).</li>
+                <li><strong>Spark Modules: </strong>Spark Core, Spark SQL, Spark Streaming, Spark MLlib, Spark GraphX</li>
+                <li><strong>Spark Core: </strong>Spark Core is the main base library of Spark which provides the abstraction of how distributed task dispatching, scheduling, basic I/O functionalities etc.</li>
+                <li><strong>SparkSession: </strong>It is an entry point to underlying Spark functionality in order to programmetically use Spark RDD, DataFrame, and Dataset. It's object <code>spark</code> is default available in spark-shell.
+                    The initial step in a Spark program involving RDDs, DataFrames, or Datasets would be to create a SparkSession instance. The Sparksession will be created using <code>SparkSession.builder()</code>. 
+                    <pre class="language-python"><code>
+                from pyspark.sql import SparkSession
+                # Create a SparkSession object
+                spark = SparkSession.builder \
+                    .appName("YourAppName") \
+                    .master("local[*]") \
+                    .getOrCreate()
+            
+                spark # to call spark
+                    </code></pre>                        
+                If you're using SparkSession, which is the entry point to Spark SQL, you can work with DataFrames and Datasets, which provide higher-level abstractions and optimizations compared to RDDs.
+                Here are some common tasks you can perform with SparkSession:
+                <ul>
+                    <li><strong>Read and write data: </strong>SparkSession provides methods to read data from various sources such as Parquet, JSON, CSV, JDBC, Avro, ORC, and many more. Similarly, you can write data to different formats and locations.
+                        For example:<code>df = spark.read.csv("file.csv")</code> and <code>df.write.parquet("output.parquet")</code></li>
+                    <li><strong>Create DataFrames: </strong>You can create DataFrames from existing RDDs, lists, dictionaries, or by applying transformations on other DataFrames. For example:<code></code>
+                        <pre class="language-python"><code>
+                            from pyspark.sql import Row
+
+                            data = [(1, "Alice"), (2, "Bob")]
+                            rdd = sc.parallelize(data)
+                            row_rdd = rdd.map(lambda x: Row(id=x[0], name=x[1]))
+                            df = spark.createDataFrame(row_rdd)
+                        </code></pre>
+                    </li>
+                    <li><strong>SQL queries: </strong>SparkSession allows you to run SQL queries on DataFrames using the sql() method. For example:
+                    <pre class="language-python"><code>
+                        df.createOrReplaceTempView("people")
+                        result = spark.sql("SELECT * FROM people WHERE age > 20")
+                    </code></pre>
+                    </li>
+                    <li><strong>DataFrame operations: </strong>You can perform various operations on DataFrames like <code>select()</code>, <code>filter()</code>, <code>join()</code>, <code>orderBy()</code>, <code>agg()</code> etc. For example:
+                        <pre class="language-python"><code>result = df.select("name").filter(df.age > 20).orderBy(df.name)</code></pre>
+                    </li>
+                    <li><strong>Window functions: </strong>You can use window functions for advanced analytics tasks like ranking, lead/lag analysis, etc. For example: 
+                    <pre class="language-python"><code>
+                    from pyspark.sql.window import Window
+                    from pyspark.sql.functions import rank
+                    
+                    window = Window.partitionBy("department").orderBy("salary")
+                    result = df.withColumn("rank", rank().over(window))
+                    </code></pre>
+                    </li>
+                    <li><strong>Machine learning: </strong>We can use Spark MLlib, a scalable machine learning library, to train and apply machine learning models on DataFrames. For example:
+                        <pre class="language-python"><code>
+                            from pyspark.ml.classification import LogisticRegression
+
+                            lr = LogisticRegression(featuresCol="features", labelCol="label")
+                            model = lr.fit(train_data)
+                            predictions = model.transform(test_data)
+                        </code></pre>
+                    </li>
+                    <li><strong>Streaming data:</strong>We can process streaming data using Spark Structured Streaming, which provides high-level APIs for streaming processing. For example:
+                        <pre class="language-python"><code>stream_df = spark.readStream.format("kafka").option("kafka.bootstrap.servers", "host:port").load()</code></pre>
+                    </li>
+                </ul>
+                </li>
+                <li><strong>Spark Context: </strong>It is also a entry point to Spark and PySpark. Before SparkSession 2.0, it was the main entry point.
+                    Creating SparkContext was the first step to the program with RDD and to connect to Spark Cluster. It’s object sc by default available in <code>spark-shell</code>.
+                    Since Spark 2.0, when we create <code>SparkSession</code>, <code>SparkContext</code> object is by default created and it can be accessed using <code>spark.sparkContext</code>.
+                <pre class="language-python"><code>
+                from pyspark.sql import SparkSession
+
+                # Create a SparkSession
+                spark = SparkSession.builder \
+                    .appName("YourAppName") \
+                    .master("local[*]") \
+                    .getOrCreate()
+                
+                # Access the SparkContext from the SparkSession
+                sc = spark.sparkContext
+                </code></pre>
+                Once the spark context is created, we can do following things:
+                    <ul>
+                        <li><strong>Parallelize data: </strong>We can parallelize an existing collection in your driver program (e.g., a list or array) using the <code>parallelize()</code> method. This will distribute the data across the nodes in your Spark cluster and create an RDD. <code>rdd  = sc.parallelize(data)</code></li>
+                        <li><strong>Read data from external sources: </strong>We can read data from various external sources such as HDFS, S3, HBase, or any supported data source using the methods provided by SparkContext, such as <code>textFile()</code> for reading text files.<code>text_rdd = sc.textFile("hdfs://path/to/file.txt")</code></li>
+                        <li><strong>Transformations: </strong>can perform various transformations on RDDs, such as <code>map()</code>, <code>filter()</code>, <code>flatMap()</code>, <code>reduceByKey()</code>, etc., to process and manipulate the data. For example: <code>squared_rdd = rdd.map(lambda x: x * x)</code></li>
+                        <li><strong>Caching: </strong>We  can cache RDDs in memory to speed up iterative or interactive computations by using the <code>cache()</code> method. For example: <code>rdd.cache()</code></li>
+                        <li><strong>Accumulators: </strong>We can can use accumulators to aggregate information across all tasks, such as counting occurrences of certain events. For example: <code>accumulator = sc.accumulator(0)</code>.</li>
+                    </ul>
+                </li>
+                <div class="grey-box">
+                    <h5>Difference between SparkContext and SparkSession</h5>
+                    <ol>
+                        <li><strong>SparkContext (sc): </strong>
+                            <ul>
+                                <li>SparkContext is the entry point to Spark functionality and represents the connection to a Spark cluster. It coordinates the execution of operations on the cluster.</li>
+                                <li>It provides access to the underlying Spark functionality, including RDDs (Resilient Distributed Datasets), which are the fundamental data abstraction in Spark.</li>
+                                <li>SparkContext is primarily used for low-level operations and interactions with RDDs, such as creating RDDs, performing transformations, and executing actions.</li>
+                            </ul>
+                        </li>
+                        <li><strong>SparkSession (spark): </strong>
+                            <ul>
+                                <li>SparkSession, introduced in Spark 2.x, is a higher-level abstraction on top of SparkContext and provides a unified entry point to Spark SQL, DataFrame, and Dataset APIs.</li>
+                                <li>It is the recommended way to interact with Spark in modern Spark applications, as it provides a more user-friendly and consistent interface for working with structured data.</li>
+                                <li>SparkSession encapsulates SparkContext and provides additional functionalities, including reading and writing structured data from various sources, running SQL queries, and performing DataFrame operations.</li>
+                                <li>SparkSession also manages the underlying SparkContext internally, so there's no need to create a SparkContext explicitly when using SparkSession.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    In summary, while SparkContext is primarily focused on low-level distributed computing operations with RDDs, SparkSession provides a higher-level interface for working with structured data, including DataFrames and Datasets, as well as integrating with Spark SQL, MLlib, and other Spark components. It's generally recommended to use SparkSession for modern Spark applications unless you have specific requirements that necessitate working directly with RDDs and SparkContext.
+                </div>
             </ul>
-
-
-            <h5>Key Components</h5>
-            <ul>
-                <li><strong>SparkContext:</strong> Entry point for interacting with Spark, managing cluster connections and resources.</li>
-                <li><strong>Resilient Distributed Datasets (RDDs):</strong> Immutable, fault-tolerant data collections distributed across the cluster.</li>
-                <li><strong>DataFrames:</strong> Higher-level API for data manipulation, similar to Pandas DataFrames.</li>
-                <li><strong>Spark SQL:</strong> Enables SQL-like operations on structured data.</li>
-                <li><strong>Spark MLlib:</strong> Machine learning library for building and training models.</li>
-                <li><strong>Spark Streaming:</strong> Framework for real-time data processing.</li>
-            </ul>
-
-
-            <h5>Advantages of PySpark</h5>
-            <ul>
-                <li><strong>Leverages Python's Ease of Use:</strong> Familiar syntax and extensive data science libraries in the Python ecosystem.</li>
-                <li><strong>Scalability and Performance:</strong> Handles large datasets effectively on distributed clusters.</li>
-                <li><strong>Versatility:</strong> Supports various data types, processing needs, and languages.</li>
-            </ul>
+            <hr>
 
             <h3>PySpark methods</h3>
             <table>
