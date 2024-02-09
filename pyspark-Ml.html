@@ -340,37 +340,113 @@
                         <figure>
                             <img src="assets/img/data-engineering/pyspark-ml.png" alt="" style="max-width: 90%; max-height: auto;">
                             <figcaption></figcaption>
-                            </figure>
+                        </figure>
                         <div class="grey-box">
                             Displaying a database with the method <code>show()</code> is faster. However, the result can sometimes be incomprehensible when there are too many variables.
                             We can then select a few variables and truncate the display to make them clean or privilege the succession of methods <code>sample()</code> and <code>toPandas()</code> 
                             taking care to choose a reasonable number of lines to display. It should be kept in mind that even if the sample method is relatively fast, it necessarily involves a 
-                            counting of lines, a simple but slow operation in Spark.
+                            counting of lines, a simple but slow operation in Spark. The DataSchema can be checked using <code>df_raw.printSchema()</code>. To change the type of each variable, it would be necessary to change its type as follows :
+                            <pre><code>
+                                df_raw.select(df_raw._c0.cast("double"),
+                                df_raw._c1.cast("double"),
+                                df_raw._c2.cast("double"),
+                                df_raw._c3.cast("double"),
+                                ...
+                                )
+                            </code></pre>
+                            Such a task becomes more and more tedious when the number of variables becomes large. This approach can be automated using the <code>col</code> function from the sub-module <code>pyspark.sql.functions</code>. 
+                            The <code>col</code> function allows you to directly name a column and automate this type of approach within a loop. The next two rows then allow you to change all the columns to dual' in a new DataFrame <code>df</code>:
+                            <pre><code>
+                    exprs = [col(c).cast("double") for c in df_raw.columns]
+                    df = df_raw.select(*exprs)
+                            </code></pre>
                         </div>
-                        The DataSchema can be checked using <code>df_raw.printSchema()</code>. To change the type of each variable, it would be necessary to change its type as follows :
-                        <pre><code>
-                            df_raw.select(df_raw._c0.cast("double"),
-                            df_raw._c1.cast("double"),
-                            df_raw._c2.cast("double"),
-                            df_raw._c3.cast("double"),
-                            ...
-                            )
+                        <li>We create dataframe <code>df</code> from <code>df_raw</code> by changing the types of columns related to the timbre to <code>double</code> and the year to <code>int</code>.</li>
+                        <pre class="language-python"><code>
+                            from pyspark.sql.functions import col
+
+                            # Convert columns related to timbre to double and year to int
+                            exprs = [col(c).cast("double") for c in df_raw.columns[1:91]]
+                            df = df_raw.select(df_raw._c0.cast('int'), *exprs)
+                            
+                            # display of the variable schema
+                            df.printSchema()
                         </code></pre>
-                        Such a task becomes more and more tedious when the number of variables becomes large. This approach can be automated using the col function from the sub-module <code>pyspark.sql.functions</code>. 
-                        The col function allows you to directly name a column and automate this type of approach within a loop. The next two rows then allow you to change all the columns to dual' in a new DataFrame <code>df</code>:
-                        <li><strong></strong></li>
+                        <figure>
+                            <img src="assets/img/data-engineering/pyspark-ml-schema.png" alt="" style="max-width: 90%; max-height: auto;">
+                            <figcaption></figcaption>
+                        </figure>
+                        To view the descriptive summary of the database <code>df</code> using <code>df.describe().toPandas()</code>.
+                        <li><strong>Formatting the database in <code>svmlib</code> format:</strong> To be used by the Machine Learning algorithms of Spark ML, the database must be a DataFrame containing 2 columns:
+                            <ul>
+                                <li><code>label</code>: containing the variable to be predicted</li>
+                                <li><code>features</code>: containing the explanatory variables.</li>
+                            </ul>
+                            The <code>DenseVector()</code> function, from the package <code>pyspark.ml.linalg</code>, allows you to group several variables into one.
+                            <div class="grey-box"><strong>Note: </strong>To be able to use the function <code>DenseVector</code>, we have to use the method <code>map</code> after transforming the <code>DataFrame</code> to <code>rdd</code>.
+                            <pre><code>
+                            rdd_ml = df.rdd.map(lambda x: (x[0], 
+                                DenseVector(x[1:])))
+                            # assuming that the variable to be explained is 
+                            # in the first position
+                            </code></pre>
+                            and then
+                            <pre>df_ml = spark.createDataFrame(rdd_ml, ['label', 'features'])</pre>
+                            </div>
+                        </li>
+                        <li>Now in the present we first import <code>DenseVector</code>, then create <code>rdd_ml</code> separating the variable to be explained from the features (to be put in the form <code>DenseVector</code>). df_ml is created containing the database under the two variables: 'labels' and 'features'. </li>
+                        <pre class="language-python"><code>
+                            from pyspark.ml.linalg import DenseVector
+
+                            # Creating an rdd by separating the variable to be explained from the features
+                            rdd_ml = df.rdd.map(lambda x: (x[0], DenseVector(x[1:])))
+                            
+                            # Creation of a data frame composed of two variables: label and features
+                            df_ml = spark.createDataFrame(rdd_ml, ['label', 'features'])
+                            
+                            # Display of the first 10 lines of the data frame
+                            df_ml.show(10)
+                        </code></pre>
+                        <figure>
+                            <img src="assets/img/data-engineering/pyspark-ml-features.png" alt="" style="max-width: 90%; max-height: auto;">
+                            <figcaption></figcaption>
+                        </figure>
+                        <li>For the regression model, we create train and test datasets using <code>train, test = df.randomSplit([.7, .3], seed= 222)</code>.</li>
+                        <pre class="language-python"><code>train, test = df_ml.randomSplit([.8, .2], seed= 1234)</code></pre>
+                        <li><strong>Linear Regression:</strong> Spark ML contains many Machine Learning functions. Let's start here with the most basic one: linear regression. It is present under the name <code>LinearRegression</code> 
+                            in the module <code>pyspark.ml.regression</code>. This function allows you to perform a regression in a distributed way and performs calculations on the different clusters predefined in the SparkSession, 
+                            regardless of their number or the size of the database. To use it, we must proceed with the two usual steps:
+                            <ul>
+                                <li>Create the function with context-specific parameters,</li>
+                                <li>Use the <code>fit</code> method to apply it to the data.</li>
+                            </ul>
+                            <div class="grey-box">For more details on this method, we can go to following <a href="https://spark.apache.org/docs/latest/ml-classification-regression.html" target="_blank">link</a>.</div>
+                            We now import the <code>LinearRegression</code>, create a distributed linear regression function <code>lr</code> to be applied to the set <code>train</code>. We then create <code>linearModel</code>,
+                            the model from <code>lr</code> applied to <code>train</code>.
+                        </li> 
+                        <pre class="language-python"><code>
+                            from pyspark.ml.regression import LinearRegression
+
+                            # Creating a linear regression function
+                            lr = LinearRegression(labelCol='label', featuresCol= 'features')
+                            
+                            # Fitting of training data "train".
+                            linearModel = lr.fit(train)
+                        </code></pre>
+                        <li></li>
                         <pre class="language-python"><code></code></pre>
-                        <li><strong></strong></li>
+                        <li></li>
                         <pre class="language-python"><code></code></pre>
-                        <li><strong></strong></li>
+                        <li></li>
                         <pre class="language-python"><code></code></pre>
-                        <li><strong></strong></li>
-                        <pre class="language-python"><code></code></pre>
-                        <li><strong></strong></li>
+                        <li></li>
                         <pre class="language-python"><code></code></pre>
                     </ul>
 
 
+                    <pre class="language-python"><code></code></pre>
+
+                    
 
                     
 
