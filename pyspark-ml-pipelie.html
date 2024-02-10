@@ -144,14 +144,17 @@
                         <div class="section-title">
                             <h3>Table of Contents</h3>
                             <ol>
-                                <li><a href="#introduction">Introduction to Apache Spark</a></li>
-                                <li><a href="#how-it-works">How does Spark work?</a></li>
+                                <li><a href="#introduction">Introduction</a></li>
+                                <li><a href="#objective">Objective</a></li>
                                 <ul>
-                                    <li><a href="#difference">Difference between Hadoop and Apache Spark</a></li>
-                                    <li><a href="#key-concept">Some key concepts of Apache Spark</a></li>
-                                    <li><a href="#key-features">Key Features</a></li>
+                                    <li><a href="#buildsparksession">Building the SparkSession and loading the datasets</a></li>
+                                    <li><a href="#select-categorical">Selecting the Categorical variables</a></li>
+                                    <li><a href="#pipelines">Pipelines</a></li>
+                                    <li><a href="#svmlib">Formatting the database in svmlib format</a></li>
+                                    <li><a href="#application">Application of a Spark ML classifier</a></li>
+                                    <li><a href="#model">Model prediction</a></li>
+                                    <li><a href="#model-evaluate">Model evaluation</a></li>
                                 </ul>
-                                <li><a href="#Components">Components of Apache Spark</a></li>
                                 <li><a href="#reference">Reference</a></li>
                             </ol>
                         </div>
@@ -241,7 +244,7 @@
                             </ul>
                         </div>
 
-                        <h5>Building the <code>SparkSession</code> and loading the datasets:</h5>
+                        <h5 id="buildsparksession">Building the <code>SparkSession</code> and loading the datasets:</h5>
                         <pre class="language-python"><code>
                             from pyspark.sql import SparkSession
                             from pyspark import SparkContext
@@ -363,7 +366,7 @@
                             <figcaption></figcaption>
                         </figure>
 
-                        <h5>Pipelines</h5>
+                        <h5 id="pipelines">Pipelines</h5>
                         A pipeline is a sequence of stages that are executed in a specific order to process and transform data. Each stage typically represents a transformation or an estimator (machine learning algorithm) that operates on the data. 
                         The pipeline allows you to chain together multiple data processing and modeling steps, making it easy to manage and deploy complex machine learning workflows. A example syntex is given by:
                         <code>Pipeline(stages=[estimator1, estimator2, estimator3, ...])</code>.
@@ -391,7 +394,7 @@
                         </figure>
 
 
-                        <h5>Formatting the database in <code>svmlib</code> format</h5>
+                        <h5 id="svmlib">Formatting the database in <code>svmlib</code> format</h5>
                         At this point, the variables are of numerical type. It is therefore possible to transform the database. First of all, it is necessary to exclude the non-indexed versions of the variables.
                         <pre class="language-python"><code>
                             from pyspark.ml.linalg import DenseVector
@@ -430,7 +433,7 @@
 
 
                         <!------------------->
-                        <h5>Application of a Spark ML classifier</h5>
+                        <h5 id="application">Application of a Spark ML classifier</h5>
                         Import <code>VectorIndexer</code> from <code>pyspark.ml.feature</code>. Create a featureIndexer transformer indexing features for a maximum number of values: maxCategories = 10
                         <pre class="language-python"><code>
                             from pyspark.ml.feature import VectorIndexer
@@ -500,7 +503,7 @@
                             # Training the model using the training data
                             model = pipeline.fit(train)
                         </code></pre>
-                        Model prediction:
+                        <h5 id="model">Model prediction</h5>
                         <pre class="language-python"><code>
                             predictions = model.transform(test)
 
@@ -511,7 +514,7 @@
                             <img src="assets/img/data-engineering/pyspark-ml-decisiontree.png" alt="" style="max-width: 100%; max-height: auto;">
                             <figcaption></figcaption>
                         </figure>
-                        <strong>Model evaluation:</strong>
+                        <h5 id="model-evaluate">Model evaluation:</h5>
                         Once the model is built, it is important to check the reliability of the predictions, both to compare it with other classification models and to optimize the parameters. For this purpose, there is a submodule pyspark.ml.evaluation containing all the evaluation metrics. In particular, you will find the function MulticlassClassificationEvaluator to evaluate classification models. This function takes 3 main arguments :
 
                         <ul>
