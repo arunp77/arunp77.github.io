@@ -268,15 +268,68 @@
                         <li><strong>Traits: </strong>Similar to interfaces in Java, they define abstract methods and fields. A class can extend multiple traits.</li>
                         <li><strong>Expressions: </strong>Any piece of code that evaluates to a value.</li>
                     </ol>
-                        
+                </section>
+
+
+                <section>
+                    <h3 id="file-format">File formats: CSV, Parquet, ORC and AVRO</h3>
+                    The selection of a file format profoundly influences the performance and manageability of a data system. As a result, various open-source solutions have emerged to 
+                    efficiently store data. Among these, popular storage formats include JSON, Apache Avro, Apache Parquet, Apache ORC, Apache Arrow, and traditional delimited text 
+                    files like CSV. Each format entails tradeoffs regarding factors such as flexibility, software compatibility, efficiency, and performance.
+
+                    <ol>
+                        <li><strong>JSON (JavaScript Object Notation):</strong>
+                            <ul>
+                                <li>JSON is a lightweight and human-readable data interchange format.</li>
+                                <li>It is commonly used for transmitting data between a server and a web application.</li>
+                                <li>JSON is text-based and easy to parse, making it popular for web APIs and configuration files.</li>
+                                <li>However, JSON files can be larger and less efficient compared to binary formats for large datasets.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Apache Avro:</strong>
+                            <ul>
+                                <li>Avro is a binary serialization format developed within the Apache Hadoop project.</li>
+                                <li>It provides a compact, fast, and efficient data serialization framework.</li>
+                                <li>Avro supports schema evolution, allowing for changes to the schema without breaking compatibility with older data.</li>
+                                <li>It is widely used in the Hadoop ecosystem, especially with tools like Apache Kafka and Apache Spark.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Apache Parquet:</strong>
+                            <ul>
+                                <li>Parquet is a columnar storage format optimized for use with big data processing frameworks.</li>
+                                <li>It stores data column-wise rather than row-wise, which improves compression and query performance.</li>
+                                <li>Parquet is efficient for analytics workloads, especially when dealing with large datasets.</li>
+                                <li>It is commonly used with Apache Hadoop, Apache Spark, and other big data tools.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Apache ORC (Optimized Row Columnar):</strong>
+                            <ul>
+                                <li>ORC is another columnar storage format developed within the Apache Hive project.</li>
+                                <li>Similar to Parquet, ORC organizes data by column rather than by row for improved compression and query performance.</li>
+                                <li>ORC supports advanced features like predicate pushdown and stripe-level statistics, enhancing query performance further.</li>
+                                <li>It is often used in data warehousing and analytics applications within the Hadoop ecosystem.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Apache Arrow:</strong>
+                            <ul>
+                                <li>Arrow is a cross-language development platform for in-memory data.</li>
+                                <li>It provides a standardized language-independent columnar memory format for data interchange between different systems.</li>
+                                <li>Arrow enables efficient data sharing and interoperability between various programming languages and analytical tools.</li>
+                                <li>It is particularly beneficial for high-performance analytics and machine learning applications.</li>
+                            </ul>
+                        </li>
+                        <li><strong>CSV (Comma-Separated Values):</strong>
+                            <ul>
+                                <li>CSV is a simple and widely used file format for tabular data.</li>
+                                <li>It stores data in plain text format with each record separated by a delimiter, commonly a comma.</li>
+                                <li>CSV files are human-readable and widely supported by spreadsheet applications and databases.</li>
+                                <li>However, they lack advanced features like schema enforcement and efficient compression compared to more modern formats like Parquet or Avro.</li>
+                            </ul>
+                        </li>
+                    </ol>
                     
-                
-                
-                
-                
-                
-                
-                
+
+
                 </section>
 
                 
