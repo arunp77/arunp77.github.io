@@ -217,56 +217,134 @@
             <br><br>
             <!----------------------->
             <h3>Deep Learning model classification</h3>
-            <p>There are several categories or architectures within deep learning. Here are three prominent ones along with examples:</p>
-            <ul>
-                <li><strong>Convolutional Neural Networks (CNNs): </strong>CNNs are primarily used for image and video processing tasks. They excel at learning spatial hierarchies and capturing local patterns by applying convolutional layers that perform feature extraction and pooling layers that downsample the data. CNNs have achieved breakthrough performance in tasks like image classification, object detection, and image segmentation. An example is the famous image recognition model called "AlexNet," which won the ImageNet Large Scale Visual Recognition Challenge in 2012.</li>
-                <li><strong>Recurrent Neural Networks (RNNs): </strong>RNNs are designed for sequential data and have internal memory to process information with temporal dependencies, making them suitable for tasks like speech recognition, language modeling, and machine translation. They have loops within their architecture, allowing information to persist and be passed from one step to another. An example is the "Long Short-Term Memory" (LSTM) network, which is capable of handling long-term dependencies and is widely used in natural language processing applications.</li>
-                <li><strong>Generative Adversarial Networks (GANs): </strong>GANs consist of two neural networks—a generator and a discriminator—competing against each other. The generator network learns to create realistic data instances, such as images, while the discriminator network tries to distinguish between the generated data and real data. GANs are popular for generating synthetic data, image synthesis, image-to-image translation, and even creating deepfake videos. One notable example is the "Deepfake" technology, which uses GANs to manipulate and create realistic video content.</li>
-            </ul>
-            <p>Deep learning models can be classified into several categories based on their architecture and the type of data they are designed to process. Here are some common types of deep learning models along with examples:</p>
+            <p>Deep learning models can be classified into several categories based on their architecture and the type of data they are designed to process. Here are some common types of deep learning models along with 
+                examples:</p>
             <ol>
                 <li><strong>Convolutional Neural Networks (CNNs): </strong>
                     <ul>
-                        <li><strong>Description: </strong>Convolutional Neural Networks (CNNs) are a class of deep learning models primarily used for image and video processing (computer vision) tasks. They excel at learning spatial hierarchies and capturing local patterns. CNNs consist of convolutional layers that apply filters to input images, enabling feature extraction. These filters detect patterns such as edges, textures, and shapes. Following convolutional layers, pooling layers are often used to downsample the data, reducing dimensionality while preserving important features. Finally, fully connected layers are employed for classification tasks, where the extracted features are combined to make predictions. CNNs have achieved breakthrough performance in various computer vision tasks, including image classification, object detection, and image segmentation.</li>
-                        <li><strong>Example: </strong>An example of CNN is the VGG (Visual Geometry Group) network, which achieved high performance on image classification tasks. Another example is the popular ResNet (Residual Network), known for its deep architecture and efficient training.</li>
+                        <li><strong>Description: </strong>Convolutional Neural Networks (CNNs) are a class of deep learning models primarily used for image and video processing (computer vision) tasks. They excel at 
+                            learning spatial hierarchies and capturing local patterns. CNNs consist of convolutional layers that apply filters to input images, enabling feature extraction. These filters detect patterns 
+                            such as edges, textures, and shapes. Following convolutional layers, pooling layers are often used to downsample the data, reducing dimensionality while preserving important features. Finally, 
+                            fully connected layers are employed for classification tasks, where the extracted features are combined to make predictions. CNNs have achieved breakthrough performance in various computer 
+                            vision tasks, including image classification, object detection, and image segmentation.</li>
+                        <li><strong>Example: </strong>An example of CNN is the VGG (Visual Geometry Group) network, which achieved high performance on image classification tasks. Another example is the popular ResNet 
+                            (Residual Network), known for its deep architecture and efficient training.</li>
                     </ul>
                 </li>
                 <li><strong>Recurrent Neural Networks (RNNs): </strong>
                     <ul>
-                        <li><strong>Description: </strong>RNNs are designed to process sequential data, such as time series or natural language. They have recurrent connections that allow them to maintain a memory of past inputs, making them suitable for tasks with temporal dependencies.</li>
-                        <li><strong>Example: </strong>An example of an RNN is the Long Short-Term Memory (LSTM) network, which addresses the vanishing gradient problem in traditional RNNs and is widely used for tasks like speech recognition, language translation, and text generation.</li>
+                        <li><strong>Description: </strong>Recurrent Neural Networks (RNNs) are a class of deep learning models specifically designed for processing sequential data, such as time series or natural language. 
+                            They are equipped with internal memory, which enables them to maintain a memory of past inputs and process information with temporal dependencies. This memory allows RNNs to capture sequential 
+                            patterns and context, making them well-suited for tasks like speech recognition, language modeling, and machine translation. RNNs incorporate recurrent connections within their architecture, 
+                            forming loops that allow information to persist and be passed from one time step to another, facilitating the modeling of sequential relationships in the data.</li>
+                        <li><strong>Example: </strong>An example of an RNN is the Long Short-Term Memory (LSTM) network, which addresses the vanishing gradient problem in traditional RNNs and is widely used for tasks 
+                            like speech recognition, language translation, and text generation.</li>
                     </ul>
                 </li>
                 <li><strong>Generative Adversarial Networks (GANs): </strong>
                     <ul>
-                        <li><strong>Description: </strong>GANs consist of two neural networks, a generator and a discriminator, trained simultaneously in a competitive setting. The generator creates synthetic data samples, while the discriminator tries to distinguish between real and fake data. This framework is used for generating realistic synthetic data.</li>
-                        <li><strong>Example: </strong>An example of GAN is the DCGAN (Deep Convolutional Generative Adversarial Network), which extends the GAN architecture with convolutional layers. DCGANs are used for generating high-quality images and video synthesis.</li>
+                        <li><strong>Description: </strong>GANs consist of two neural networks—a generator and a discriminator—competing against each other. The generator network learns to create realistic data instances, such as images, while the discriminator network tries to distinguish between the generated data and real data. GANs are popular for generating synthetic data, image synthesis, image-to-image translation, and even creating deepfake videos.</li>
+                        <li><strong>Example: </strong>An example of GAN is the DCGAN (Deep Convolutional Generative Adversarial Network), which extends the GAN architecture with convolutional layers. DCGANs are used 
+                            for generating high-quality images and video synthesis.</li>
                     </ul>
                 </li>
                 <li><strong>Autoencoders: </strong>
                     <ul>
-                        <li><strong>Description: </strong>Autoencoders are neural networks trained to reconstruct input data, typically used for dimensionality reduction and feature learning. They consist of an encoder network that compresses the input into a lower-dimensional representation (encoding), and a decoder network that reconstructs the input from the encoding.</li>
-                        <li><strong>Example: </strong>An example of an autoencoder is the Variational Autoencoder (VAE), which adds a probabilistic interpretation to the latent space learned by the encoder. VAEs are used for generating new data samples and performing data imputation.</li>
+                        <li><strong>Description: </strong>Autoencoders are neural networks trained to reconstruct input data, typically used for dimensionality reduction and feature learning. They consist of an encoder 
+                            network that compresses the input into a lower-dimensional representation (encoding), and a decoder network that reconstructs the input from the encoding.</li>
+                        <li><strong>Example: </strong>An example of an autoencoder is the Variational Autoencoder (VAE), which adds a probabilistic interpretation to the latent space learned by the encoder. 
+                            VAEs are used for generating new data samples and performing data imputation.</li>
                     </ul>
                 </li>
                 <li><strong>Transformer Models: </strong>
                     <ul>
-                        <li><strong>Description: </strong>Transformer models are designed for processing sequential data, particularly suited for natural language processing tasks. They rely on self-attention mechanisms to capture long-range dependencies in input sequences without recurrent connections.</li>
-                        <li><strong>Example: </strong>The Transformer architecture, introduced in the paper "Attention is All You Need", is widely used in state-of-the-art NLP models such as BERT (Bidirectional Encoder Representations from Transformers) for tasks like text classification, question answering, and language translation.</li>
+                        <li><strong>Description: </strong>Transformer models are designed for processing sequential data, particularly suited for natural language processing tasks. They rely on self-attention 
+                            mechanisms to capture long-range dependencies in input sequences without recurrent connections.</li>
+                        <li><strong>Example: </strong>The Transformer architecture, introduced in the paper "Attention is All You Need", is widely used in state-of-the-art NLP models such as BERT (Bidirectional 
+                            Encoder Representations from Transformers) for tasks like text classification, question answering, and language translation.</li>
                     </ul>
                 </li>
             </ol>
-
-
-
-
             </section>
+
+            <!----------------->
+            <h3 id="neural">Neural Networks</h3>
+            <p>Neural networks are a computational model inspired by the structure and function of biological neural networks in the human brain. They consist of interconnected nodes, called neurons, organized in layers. Each neuron receives input signals, performs a computation, and produces an output signal. Neural networks are capable of learning complex patterns and relationships in data, making them powerful tools for various machine learning tasks.</p>
+            <p>Here's the core idea:</p>
+            <ul>
+                <li><strong>Neurons: </strong>The basic units of computation. In an artificial neural network, these are usually simple mathematical functions. They receive inputs, process them, and produce an output.</li>
+                <li><strong>Connections: </strong> Like neurons of the brain are connected by synapses, artificial neurons are linked. Each connection has a weight that represents its importance.</li>
+                <li><strong>Learning: </strong>The power of neural networks lies in their ability to adjust the weights of these connections based on training data. This allows them to learn complex patterns and relationships.</li>
+            </ul>
+            <h5 id="types">Types of Neural Network Diagrams</h5>
+            <ol>
+                <li><strong><a href="https://learnopencv.com/understanding-feedforward-neural-networks/" target="_blank">Simple Feedforward Network</a>: </strong>
+                    <ul>
+                        <li><strong>Structure: </strong>Neurons arranged in layers. Data flows in one direction, from input to output.</li>
+                        <li><strong>Layers: </strong>
+                            <ul>
+                                <li><strong>Input Layer: </strong>Takes the raw data.</li>
+                                <li><strong>Hidden Layers: </strong>One or more layers where computation happens.</li>
+                                <li><strong>Output Layer: </strong>Generates the final prediction or classification.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <figure>
+                        <img src="assets/img/machine-ln/deep-smf.png" alt="" style="max-width: 70%; max-height: auto;">
+                        <figcaption style="text-align: center;">An example of a feed forward Neural Network with one hidden layer (with 3 neurons)(<strong>Image Credit:</strong> © <a href="index.html">Arun</a>) </figcaption>
+                    </figure>
+                </li>
+                <li><strong><a href="https://learnopencv.com/understanding-convolutional-neural-networks-cnn/" target="_blank">Convolutional Neural Network (CNN)</a>: </strong>
+                    <ul>
+                        <li><strong>Specialization: </strong>Highly effective for image and video analysis.</li>
+                        <li><strong>Convolutional Layers: </strong> Extract features from images using filters. Think of these filters as sliding windows searching for edges, shapes, textures, etc.</li>
+                        <li><strong>Pooling Layers: </strong>Reduce data size and make the network more robust to slight variations in the input.</li>
+                        <figure>
+                            <img src="assets/img/machine-ln/deep-convoluition.png" alt="" style="max-width: 70%; max-height: auto;">
+                            <figcaption style="text-align: center;">Schematic diagram of a basic convolutional neural network (CNN) architecture (<strong>Image Credit:</strong> © <a href="https://www.mdpi.com/2076-3417/9/21/4500">Van Hiep Phung and Eun Joo Rhee</a>) </figcaption>
+                        </figure>
+                    </ul>
+                </li>
+                <li><strong>Recurrent Neural Network (RNN) </strong>
+                    <ul>
+                        <li><strong>Memory: </strong> Designed to handle sequential data (text, time series). These networks have internal memory (hidden states) which allows them to 'remember' past information.</li>
+                        <li><strong>Common Architectures: </strong>LSTM (Long Short-Term Memory) and GRU (Gated Recurrent Unit) networks are more advanced types of RNNs designed to address potential shortcomings in the plain RNN.</li>
+                    </ul>
+                    <figure>
+                        <img src="assets/img/machine-ln/deep-recurrent.png" alt="" style="max-width: 40%; max-height: auto;">
+                        <figcaption style="text-align: center;">Schematic diagram of a Recurrent neural network architecture (<strong>Image Credit:</strong> © <a href="index.html">Arun</a>) </figcaption>
+                    </figure>
+                </li>
+                <li><strong>Autoencoders: </strong>Used for dimensionality reduction and data compression. They consist of an encoder and decoder; the encoder learns to compress data into a compact representation, while the decoder tries to reconstruct the original input from this compressed form.</li>
+                <figure>
+                    <img src="assets/img/machine-ln/deep-autoencoders.png" alt="" style="max-width: 80%; max-height: auto;">
+                    <figcaption style="text-align: center;">Schematic diagram of a Recurrent neural network architecture (<strong>Image Credit:</strong> © <a href="index.html">Arun</a>) </figcaption>
+                </figure>
+                <li><strong>Generative Adversarial Networks (GANs): </strong>Two neural networks playing a game. One network (generator) produces synthetic data, while the other (discriminator) tries to distinguish real data from the generated data. This leads to models capable of creating incredibly realistic fake images, audio, and even text.</li>
+                <figure>
+                    <img src="assets/img/machine-ln/deep-gans.jpg" alt="" style="max-width: 80%; max-height: auto;">
+                    <figcaption style="text-align: center;">Schematic diagram of a Recurrent neural network architecture (<strong>Image Credit:</strong> © <a href="https://www.geeksforgeeks.org/generative-adversarial-network-gan/" target="_blank"> geeksforgeeks.org</a>) </figcaption>
+                </figure>
+            </ol>
+
+            
+            <h5>Key Points:</h5>
+            <ul>
+                <li>Neural networks are incredibly flexible – the right architecture depends on the problem you're solving.</li>
+                <li>Diagrams make a complex topic visual and easier to grasp.</li>
+                <li>Deep learning utilizes multiple layers of neurons, which is where the 'deep' comes from.</li>
+            </ul>
+
+
+
+
+
 
             <!-------Reference ------->
             <section id="reference">
                 <h2>References</h2>
                 <ol>
-                    <li><a href="https://colab.research.google.com/drive/1uHyINYEHJtEA-ootSQ6MarzXB3rR1KKY?usp=sharing" target="_blank">Google colab notebook with all the codes</a>.</li>
+                    <li><a href="https://learnopencv.com/getting-started-with-tensorflow-keras/" target="_blank">Getting started with Keras & Tensorflow</a>.</li>
                     <li>My <a href="https://github.com/arunp77/Machine-Learning" target="_blank">Github repository on machine learning Fundamentals and projects</a></li>
                     <li><a href="https://www.analyticsvidhya.com/blog/2016/03/pca-practical-guide-principal-component-analysis-python/" target="_blank">Nice explanation on PCA</a>.</li>
                     <li><a href="https://psycnet.apa.org/record/1995-97110-004" target="_blank">Principal components analysis and exploratory and confirmatory factor analysis, Bryant, F. B., & Yarnold, P. R. (1995)</a>In L. G. Grimm & P. R. Yarnold (Eds.), Reading and understanding multivariate analysis. Washington, DC: American Psychological Association.</li>
