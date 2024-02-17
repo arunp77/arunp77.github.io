@@ -541,6 +541,17 @@
             <h4 id="how-learn">How does the network learn?</h4>
             Neural networks learn through a process called backpropagation, which is a fundamental algorithm for training deep learning models. The process of learning involves adjusting the parameters (weights and biases) of the neural network to minimize a chosen loss function, which measures the difference between the predicted outputs and the true targets in the training data.
 
+            <p>Here's a step-by-step overview of how neural networks works learn:</p>
+            <ol>
+                <li><strong>Initialization:</strong> The parameters of the neural network (weights and biases) are initialized with random values.</li>
+                <li><strong>Forward Propagation:</strong> During the forward propagation step, input data is passed through the network, layer by layer, to generate predictions. Each neuron performs a weighted sum of its inputs, applies an activation function, and passes the result to the neurons in the next layer. This process continues until the output is produced.</li>
+                <li><strong>Loss Calculation:</strong> Once the predictions are obtained, a loss function is used to quantify the difference between the predicted outputs and the true targets in the training data. Common loss functions include mean squared error (MSE) for regression tasks and categorical cross-entropy for classification tasks.</li>
+                <li><strong>Backpropagation:</strong> Backpropagation is the heart of the learning process in neural networks. It involves computing the gradients of the loss function with respect to the network parameters using the chain rule of calculus. The gradients represent the direction and magnitude of the changes needed to minimize the loss.</li>
+                <li><strong>Gradient Descent:</strong> With the gradients computed, the network parameters are updated iteratively using optimization algorithms such as gradient descent. The parameters are adjusted in the direction that reduces the loss, with the size of the updates controlled by the learning rate.</li>
+                <li><strong>Iteration:</strong> Steps 2 to 5 are repeated for multiple iterations (epochs) over the entire training dataset. Each iteration consists of forward propagation to generate predictions, backpropagation to compute gradients, and parameter updates using gradient descent.</li>
+                <li><strong>Validation:</strong> Periodically, the model's performance is evaluated on a separate validation dataset to monitor its generalization ability and prevent overfitting. The validation loss is used as a proxy for the model's performance on unseen data.</li>
+                <li><strong>Termination:</strong> Training continues until a stopping criterion is met, such as reaching a maximum number of epochs or observing no improvement in the validation loss.</li>
+            </ol>
 
 
 
