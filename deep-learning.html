@@ -389,6 +389,114 @@
             </ol>
 
 
+            <!-------------------------->
+            <h3 id="neural-network">Understanding the Neural Network Jargon</h3>
+            The important jargon in the world of neural networks are:
+            <ul>
+                <li><strong>Neuron (or Perceptron): </strong> The basic computational unit in a neural network. It receives inputs, performs a weighted sum of those inputs, potentially applies an activation function, and produces an output.
+                    <figure>
+                        <img src="assets/img/machine-ln/deep-neuron.png" alt="" style="max-width: 50%; max-height: auto;">
+                        <figcaption style="text-align: center;">An example of a neuron showing the input \(x_1, x_2, ...x_n\), their corresponding weights \((w_1 - w_n)\), a bias \(b\) and the activation function \(f\) applied to the weighted sum of the inputs. (<strong>Image Credit:</strong> © <a href="index.html"> Arun</a>) </figcaption>
+                    </figure>
+                    As seen in the figure, it works in two steps - it calculates the weighted sum of its inputs and then applies an activation function to normalize the sum. The activation functions can be linear or nonlinear. Also, there are weights associated with each input of a neuron. These are the parameters which the network has to learn during the training phase.
+                </li>
+                <li><strong>Input Layer: </strong>Where you feed the raw data (pixels of an image, words in a sentence) into the network.</li>
+                <li><strong>Hidden Layers: </strong> Layers between the input and output. This is where the majority of the computation and "learning" occurs. The more hidden layers, the 'deeper' the neural network.</li>
+                <li><strong>Output Layer: </strong>Delivers the final prediction or classification from the network. The activation function to be used in this layer is different for different problems. For a binary classification problem, we want the output to be either 0 or 1. Thus, a sigmoid activation function is used. For a Multiclass classification problem, a Softmax ( think of it as a generalization of sigmoid to multiple classes ) is used. For a regression problem, where the output is not a predefined category, we can simply use a linear unit.</li>
+                <li><strong>Weights: </strong>Each connection between neurons has a weight, signifying its relative importance to the neural network's final prediction. Training a neural network involves fine-tuning these weights.</li>
+                <li><strong>Bias: </strong>Acts as a sort of intercept term, adding an extra value to a neuron's calculation. This helps give the network extra flexibility when fitting the data.</li>
+            </ul>
+
+            <!-------------------------->
+            <h4 id="learning-tech">Learning Terminology</h4>
+            <ul> 
+                <li><strong>Activation Function:</strong> A non-linear function (e.g., Sigmoid, ReLU, Tanh) applied to the output of a neuron. It introduces non-linearity, essential for the network to represent complex patterns.</li> 
+                <li><strong>Backpropagation:</strong> The core algorithm for training neural networks. Through iterations of forward and backward passes, it calculates how much each weight contributes to the final error and adjusts those weights accordingly.</li> 
+                <li><strong>Gradient Descent:</strong> An optimization algorithm widely used in deep learning. It guides the process of updating weights during backpropagation by moving "downhill" on a function representing the error of the network.</li> 
+                <li><strong>Loss Function:</strong> Measures the error between the network's prediction and the true label. During training, the aim is to minimize the loss function.</li> 
+                <li><strong>Epoch:</strong> One full pass through the entire training dataset.</li> 
+                <li><strong>Batch Size:</strong> The number of data samples processed before updating weights during training.</li> 
+            </ul>
+
+            <!-------------------->
+            <h4 id="other-term">Other Important Terms</h4>
+            <ul>
+                <li><strong>Hyperparameters:</strong> Settings you choose before training like the number of layers, learning rate, etc. Fine-tuning these is part of the art of deep learning.</li>
+                <li><strong>Overfitting:</strong> When a model is too complex for the data and starts memorizing specific examples rather than learning general patterns.</li>
+                <li><strong>Regularization:</strong> Techniques to prevent overfitting (like L1/L2 regularization, dropout).</li>
+            </ul>
+
+            <!------------------->
+            <h4 id="activation">Activation function</h4>
+            Activation functions are mathematical functions applied to the output of neurons in neural networks. They introduce non-linearity into the network, allowing it to learn complex patterns and relationships in the data. Here are some common activation functions used in machine learning along with their formulas:
+            <figure>
+                <img src="assets/img/machine-ln/deep-activationfun-1.png" alt="" style="max-width: 100%; max-height: auto;">
+                <figcaption style="text-align: center;">Various activation functions</figcaption>
+            </figure>
+            <ol>
+                <li><strong>Sigmoid Function: </strong>
+                    <ul>
+                        <li><strong>Formula: </strong> \(\sigma(x) = \frac{1}{1+ e^{-x}}\)</li>
+                        <li><strong>Range: </strong> (0, 1)</li>
+                        <li><strong>Description: </strong>Sigmoid function squashes the input values to a range between 0 and 1. It is useful in binary classification tasks where the output needs to be interpreted as probabilities.</li>
+                    </ul>
+                </li>
+                <li><strong>Hyperbolic Tangent (Tanh) Function: </strong>
+                    <ul>
+                        <li><strong>Formula: </strong>\(\text{tanh}(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}\)</li>
+                        <li><strong>Range: </strong>(-1,1)</li>
+                        <li><strong>Description: </strong>Tanh function squashes the input values to a range between -1 and 1, making it suitable for classification tasks where the output needs to be centered around zero.</li>
+                    </ul>
+                </li>
+                <li><strong>Rectified Linear Unit (ReLU): </strong>
+                    <ul>
+                        <li><strong>Formula: </strong>\(f(x) = \text{max}(0,x)\)</li>
+                        <li><strong>Range: </strong>\([0, +∞]\)</li>
+                        <li><strong>Description: </strong>ReLU function returns 0 for negative inputs and the input value for positive inputs. It is the most commonly used activation function in deep learning due to its simplicity and effectiveness.</li>
+                    </ul>
+                </li>
+                <li><strong>Leaky ReLU: </strong>
+                    <ul>
+                        <li><strong>Formula: </strong>
+                            <div>
+                                $$f(x) = \begin{cases} x, & \text{if } x > 0 \\ \alpha x, & \text{otherwise} \end{cases}$$
+                            </div>
+                            where \(\alpha\) is a small constant (\(<1\))
+                        </li>
+                        <li><strong>Range: </strong>(-∞, +∞)</li>
+                        <li><strong>Description: </strong>Leaky ReLU addresses the "dying ReLU" problem by allowing a small gradient for negative inputs, preventing neurons from becoming inactive.</li>
+                    </ul>
+                </li>
+                <li><strong>Exponential Linear Unit (ELU):</strong>
+                    <ul>
+                        <li><strong>Formula: </strong>
+                            <div>
+                                $$f(x) = \begin{cases} x, & \text{if } x > 0 \\ \alpha (e^x - 1), & \text{otherwise} \end{cases}$$
+                            </div>
+                            where \(\alpha\) is a Hyperparameter.
+                        </li>
+                        <li><strong>Range: </strong>(-∞, +∞)</li>
+                        <li><strong>Description: </strong>ELU function smoothly handles negative inputs and can converge faster than ReLU, but it may be computationally more expensive.</li>
+                    </ul>
+                </li>
+                <li><strong>Softmax Function: </strong>
+                    <ul>
+                        <li><strong>Formula: </strong>\(\text{softmax}(x_i) = \frac{e^{x_i}}{\sum_{j=1}^k e^{x_j}}\)
+                        for \(i=1,2, ... k\) where \(k\) is the number of classes.
+                        </li>
+                        <li><strong>Range: </strong>(0, 1) for each class, with all probabilities summing up to 1</li>
+                        <li><strong>Description: </strong>Softmax function is commonly used in the output layer of a neural network for multi-class classification tasks. It converts raw scores into probabilities.</li>
+                    </ul>
+                    <figure>
+                        <img src="assets/img/machine-ln/deep-activationfun-softmax.png" alt="" style="max-width: 50%; max-height: auto;">
+                        <figcaption style="text-align: center;"></figcaption> 
+                    </figure>
+                </li>
+            </ol>
+            These activation functions play a crucial role in the training and performance of neural networks by controlling the output of neurons and enabling the network to learn complex relationships in the data.
+
+
+
 
 
 
