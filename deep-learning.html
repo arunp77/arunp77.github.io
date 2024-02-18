@@ -166,16 +166,26 @@
 
             <section>
             <h3 id="introduction">Introduction</h3>
-            Deep learning is a subset of machine learning that focuses on artificial neural networks with multiple layers, enabling the model to learn hierarchical representations of data. These neural networks are composed of multiple layers of interconnected nodes, called neurons, that can learn hierarchical representations of the data. Deep learning algorithms excel at processing complex, high-dimensional data, such as images, speech, and text. DL has gained significant attention and success in recent years, achieving state-of-the-art performance in various domains, including computer vision, natural language processing, and speech recognition.
+            Deep learning is a subset of machine learning that focuses on artificial neural networks with multiple layers, enabling the model to learn hierarchical representations of data. 
+            These neural networks are composed of multiple layers of interconnected nodes, called neurons, that can learn hierarchical representations of the data. Deep learning algorithms 
+            excel at processing complex, high-dimensional data, such as images, speech, and text. DL has gained significant attention and success in recent years, achieving state-of-the-art 
+            performance in various domains, including computer vision, natural language processing, and speech recognition.
             
             <br><br>
             <!------------------------->
             <h4 id="key-difference">Key Differences Between Machine Learning And Deep Learning</h4>
-            <p>If deep learning is a subset of machine learning, how do they differ? Deep learning distinguishes itself from classical machine learning by the type of data that it works with and the methods in which it learns.</p>
-            <p>Machine learning algorithms leverage structured, labeled data to make predictions—meaning that specific features are defined from the input data for the model and organized into tables. This doesn’t necessarily mean that it doesn’t use unstructured data; it just means that if it does, it generally goes through some pre-processing to organize it into a structured format.</p>
-            <p>Deep learning eliminates some of data pre-processing that is typically involved with machine learning. These algorithms can ingest and process unstructured data, like text and images, and it automates feature extraction, removing some of the dependency on human experts. </p>
-            <p><strong>Example: </strong>For example, let’s say that we had a set of photos of different pets, and we wanted to categorize by “cat”, “dog”, “hamster”, et cetera. Deep learning algorithms can determine which features (e.g. ears) are most important to distinguish each animal from another. In machine learning, this hierarchy of features is established manually by a human expert.
-                Then, through the processes of gradient descent and backpropagation, the deep learning algorithm adjusts and fits itself for accuracy, allowing it to make predictions about a new photo of an animal with increased precision. 
+            <p>If deep learning is a subset of machine learning, how do they differ? Deep learning distinguishes itself from classical machine learning by the type of data that it works with 
+                and the methods in which it learns.</p>
+            <p>Machine learning algorithms leverage structured, labeled data to make predictions—meaning that specific features are defined from the input data for the model and organized into 
+                tables. This doesn’t necessarily mean that it doesn’t use unstructured data; it just means that if it does, it generally goes through some pre-processing to organize it into a 
+                structured format.</p>
+            <p>Deep learning eliminates some of data pre-processing that is typically involved with machine learning. These algorithms can ingest and process unstructured data, like text and 
+                images, and it automates feature extraction, removing some of the dependency on human experts. </p>
+            <p><strong>Example: </strong>For example, let’s say that we had a set of photos of different pets, and we wanted to categorize by “cat”, “dog”, “hamster”, et cetera. Deep learning 
+                algorithms can determine which features (e.g. ears) are most important to distinguish each animal from another. In machine learning, this hierarchy of features is established 
+                manually by a human expert.
+                Then, through the processes of gradient descent and backpropagation, the deep learning algorithm adjusts and fits itself for accuracy, allowing it to make predictions about a 
+                new photo of an animal with increased precision. 
             </p>
             <table border="1">
                 <tr>
@@ -214,40 +224,54 @@
             <br><br>
             <!----------------------->
             <h3 id="classification">Deep Learning model classification</h3>
-            <p>Deep learning models can be classified into several categories based on their architecture and the type of data they are designed to process. Here are some common types of deep learning models along with 
+            <p>Deep learning models can be classified into several categories based on their architecture and the type of data they are designed to process. Here are some common types of deep 
+                learning models along with 
                 examples:</p>
             <ol>
                 <li><strong>Convolutional Neural Networks (CNNs): </strong>
                     <ul>
-                        <li><strong>Description: </strong>Convolutional Neural Networks (CNNs) are a class of deep learning models primarily used for image and video processing (computer vision) tasks. They excel at 
-                            learning spatial hierarchies and capturing local patterns. CNNs consist of convolutional layers that apply filters to input images, enabling feature extraction. These filters detect patterns 
-                            such as edges, textures, and shapes. Following convolutional layers, pooling layers are often used to downsample the data, reducing dimensionality while preserving important features. Finally, 
-                            fully connected layers are employed for classification tasks, where the extracted features are combined to make predictions. CNNs have achieved breakthrough performance in various computer 
+                        <li><strong>Description: </strong>Convolutional Neural Networks (CNNs) are a class of deep learning models primarily used for image and video processing (computer vision) tasks. 
+                            They excel at 
+                            learning spatial hierarchies and capturing local patterns. CNNs consist of convolutional layers that apply filters to input images, enabling feature extraction. These filters 
+                            detect patterns 
+                            such as edges, textures, and shapes. Following convolutional layers, pooling layers are often used to downsample the data, reducing dimensionality while preserving important 
+                            features. Finally, 
+                            fully connected layers are employed for classification tasks, where the extracted features are combined to make predictions. CNNs have achieved breakthrough performance in 
+                            various computer 
                             vision tasks, including image classification, object detection, and image segmentation.</li>
-                        <li><strong>Example: </strong>An example of CNN is the VGG (Visual Geometry Group) network, which achieved high performance on image classification tasks. Another example is the popular ResNet 
+                        <li><strong>Example: </strong>An example of CNN is the VGG (Visual Geometry Group) network, which achieved high performance on image classification tasks. Another example is the 
+                            popular ResNet 
                             (Residual Network), known for its deep architecture and efficient training.</li>
                     </ul>
                 </li>
                 <li><strong>Recurrent Neural Networks (RNNs): </strong>
                     <ul>
-                        <li><strong>Description: </strong>Recurrent Neural Networks (RNNs) are a class of deep learning models specifically designed for processing sequential data, such as time series or natural language. 
-                            They are equipped with internal memory, which enables them to maintain a memory of past inputs and process information with temporal dependencies. This memory allows RNNs to capture sequential 
-                            patterns and context, making them well-suited for tasks like speech recognition, language modeling, and machine translation. RNNs incorporate recurrent connections within their architecture, 
+                        <li><strong>Description: </strong>Recurrent Neural Networks (RNNs) are a class of deep learning models specifically designed for processing sequential data, such as time series or 
+                            natural language. 
+                            They are equipped with internal memory, which enables them to maintain a memory of past inputs and process information with temporal dependencies. This memory allows RNNs to 
+                            capture sequential 
+                            patterns and context, making them well-suited for tasks like speech recognition, language modeling, and machine translation. RNNs incorporate recurrent connections within their 
+                            architecture, 
                             forming loops that allow information to persist and be passed from one time step to another, facilitating the modeling of sequential relationships in the data.</li>
-                        <li><strong>Example: </strong>An example of an RNN is the Long Short-Term Memory (LSTM) network, which addresses the vanishing gradient problem in traditional RNNs and is widely used for tasks 
+                        <li><strong>Example: </strong>An example of an RNN is the Long Short-Term Memory (LSTM) network, which addresses the vanishing gradient problem in traditional RNNs and is widely used 
+                            for tasks 
                             like speech recognition, language translation, and text generation.</li>
                     </ul>
                 </li>
                 <li><strong>Generative Adversarial Networks (GANs): </strong>
                     <ul>
-                        <li><strong>Description: </strong>GANs consist of two neural networks—a generator and a discriminator—competing against each other. The generator network learns to create realistic data instances, such as images, while the discriminator network tries to distinguish between the generated data and real data. GANs are popular for generating synthetic data, image synthesis, image-to-image translation, and even creating deepfake videos.</li>
-                        <li><strong>Example: </strong>An example of GAN is the DCGAN (Deep Convolutional Generative Adversarial Network), which extends the GAN architecture with convolutional layers. DCGANs are used 
+                        <li><strong>Description: </strong>GANs consist of two neural networks—a generator and a discriminator—competing against each other. The generator network learns to create realistic 
+                            data instances, such as images, while the discriminator network tries to distinguish between the generated data and real data. GANs are popular for generating synthetic data, 
+                            image synthesis, image-to-image translation, and even creating deepfake videos.</li>
+                        <li><strong>Example: </strong>An example of GAN is the DCGAN (Deep Convolutional Generative Adversarial Network), which extends the GAN architecture with convolutional layers. 
+                            DCGANs are used 
                             for generating high-quality images and video synthesis.</li>
                     </ul>
                 </li>
                 <li><strong>Autoencoders: </strong>
                     <ul>
-                        <li><strong>Description: </strong>Autoencoders are neural networks trained to reconstruct input data, typically used for dimensionality reduction and feature learning. They consist of an encoder 
+                        <li><strong>Description: </strong>Autoencoders are neural networks trained to reconstruct input data, typically used for dimensionality reduction and feature learning. They consist 
+                            of an encoder 
                             network that compresses the input into a lower-dimensional representation (encoding), and a decoder network that reconstructs the input from the encoding.</li>
                         <li><strong>Example: </strong>An example of an autoencoder is the Variational Autoencoder (VAE), which adds a probabilistic interpretation to the latent space learned by the encoder. 
                             VAEs are used for generating new data samples and performing data imputation.</li>
@@ -266,12 +290,16 @@
 
             <!----------------->
             <h3 id="neural">Neural Networks</h3>
-            <p>Neural networks are a computational model inspired by the structure and function of biological neural networks in the human brain. They consist of interconnected nodes, called neurons, organized in layers. Each neuron receives input signals, performs a computation, and produces an output signal. Neural networks are capable of learning complex patterns and relationships in data, making them powerful tools for various machine learning tasks.</p>
+            <p>Neural networks are a computational model inspired by the structure and function of biological neural networks in the human brain. They consist of interconnected nodes, called neurons, 
+                organized in layers. Each neuron receives input signals, performs a computation, and produces an output signal. Neural networks are capable of learning complex patterns and relationships 
+                in data, making them powerful tools for various machine learning tasks.</p>
             <p>Here's the core idea:</p>
             <ul>
-                <li><strong>Neurons: </strong>The basic units of computation. In an artificial neural network, these are usually simple mathematical functions. They receive inputs, process them, and produce an output.</li>
+                <li><strong>Neurons: </strong>The basic units of computation. In an artificial neural network, these are usually simple mathematical functions. They receive inputs, process them, and produce 
+                    an output.</li>
                 <li><strong>Connections: </strong> Like neurons of the brain are connected by synapses, artificial neurons are linked. Each connection has a weight that represents its importance.</li>
-                <li><strong>Learning: </strong>The power of neural networks lies in their ability to adjust the weights of these connections based on training data. This allows them to learn complex patterns and relationships.</li>
+                <li><strong>Learning: </strong>The power of neural networks lies in their ability to adjust the weights of these connections based on training data. This allows them to learn complex patterns 
+                    and relationships.</li>
             </ul>
             <h5 id="types">Types of Neural Network Diagrams</h5>
             <ol>
@@ -305,19 +333,22 @@
                 <li><strong>Recurrent Neural Network (RNN) </strong>
                     <ul>
                         <li><strong>Memory: </strong> Designed to handle sequential data (text, time series). These networks have internal memory (hidden states) which allows them to 'remember' past information.</li>
-                        <li><strong>Common Architectures: </strong>LSTM (Long Short-Term Memory) and GRU (Gated Recurrent Unit) networks are more advanced types of RNNs designed to address potential shortcomings in the plain RNN.</li>
+                        <li><strong>Common Architectures: </strong>LSTM (Long Short-Term Memory) and GRU (Gated Recurrent Unit) networks are more advanced types of RNNs designed to address potential shortcomings 
+                            in the plain RNN.</li>
                     </ul>
                     <figure>
                         <img src="assets/img/machine-ln/deep-rnn.png" alt="" style="max-width: 30%; max-height: auto;"> 
                         <figcaption style="text-align: center;">Schematic diagram of a Recurrent neural network architecture (<strong>Image Credit: </strong> © <a href="index.html">Arun</a>) </figcaption>
                     </figure>
                 </li>
-                <li><strong>Autoencoders: </strong>Used for dimensionality reduction and data compression. They consist of an encoder and decoder; the encoder learns to compress data into a compact representation, while the decoder tries to reconstruct the original input from this compressed form.</li>
+                <li><strong>Autoencoders: </strong>Used for dimensionality reduction and data compression. They consist of an encoder and decoder; the encoder learns to compress data into a compact representation, 
+                    while the decoder tries to reconstruct the original input from this compressed form.</li>
                 <figure>
                     <img src="assets/img/machine-ln/deep-autoencoders.png" alt="" style="max-width: 60%; max-height: auto;">
                     <figcaption style="text-align: center;">Schematic diagram of a Autoencoders architecture (<strong>Image Credit: </strong> © <a href="index.html">Arun</a>) </figcaption>
                 </figure>
-                <li><strong>Generative Adversarial Networks (GANs): </strong>Two neural networks playing a game. One network (generator) produces synthetic data, while the other (discriminator) tries to distinguish real data from the generated data. This leads to models capable of creating incredibly realistic fake images, audio, and even text.</li>
+                <li><strong>Generative Adversarial Networks (GANs): </strong>Two neural networks playing a game. One network (generator) produces synthetic data, while the other (discriminator) tries to distinguish 
+                    real data from the generated data. This leads to models capable of creating incredibly realistic fake images, audio, and even text.</li>
                 <figure>
                     <img src="assets/img/machine-ln/deep-gans1.png" alt="" style="max-width: 50%; max-height: auto;">
                     <figcaption style="text-align: center;">Schematic diagram of a GANs architecture (<strong>Image Credit:</strong> © <a href="index.html" target="_blank">Arun</a>) </figcaption>
@@ -336,7 +367,8 @@
             <ul>
                 <li><strong>Learning Complex Patterns:</strong> Deep learning systems can discover intricate patterns in huge datasets too complex for humans to spot.</li>
                 <li><strong>Generalization:</strong> They generalize well to new, unseen data because these complex patterns help them make intelligent inferences.</li>
-                <li><strong>Feature Engineering:</strong> Traditionally, extracting meaningful features from data was labor-intensive. Deep learning automates much of this, allowing the model to discover helpful representations.</li>
+                <li><strong>Feature Engineering:</strong> Traditionally, extracting meaningful features from data was labor-intensive. Deep learning automates much of this, allowing the model to discover helpful 
+                    representations.</li>
             </ul>
             
 
@@ -348,7 +380,8 @@
                     <ul>
                         <li><strong>Image Classification:</strong> Categorizing images (cats vs. dogs, types of clothing, etc.).</li>
                         <li><strong>Object Detection:</strong> Finding and identifying objects within an image (for self-driving cars, robotics, security).</li>
-                        <li><strong>Semantic Segmentation:</strong> Labeling every pixel in an image with its corresponding class (road, building, etc.). This has applications in urban planning and augmented reality.</li>
+                        <li><strong>Semantic Segmentation:</strong> Labeling every pixel in an image with its corresponding class (road, building, etc.). This has applications in urban planning and augmented 
+                            reality.</li>
                         <li><strong>Image Generation and Style Transfer:</strong> Creating realistic images with tools like GANs, or applying artistic styles to photos. </li>
                     </ul>
                 </li>
@@ -398,26 +431,36 @@
             <h3 id="neural-network">Understanding the Neural Network Jargon</h3>
             The important jargon in the world of neural networks are:
             <ul>
-                <li><strong>Neuron (or Perceptron): </strong> The basic computational unit in a neural network. It receives inputs, performs a weighted sum of those inputs, potentially applies an activation function, and produces an output.
+                <li><strong>Neuron (or Perceptron): </strong> The basic computational unit in a neural network. It receives inputs, performs a weighted sum of those inputs, potentially applies an activation 
+                    function, and produces an output.
                     <figure>
                         <img src="assets/img/machine-ln/deep-neuron.png" alt="" style="max-width: 50%; max-height: auto;">
-                        <figcaption style="text-align: center;">An example of a neuron showing the input \(x_1, x_2, ...x_n\) their corresponding weights \((w_1 - w_n)\), a bias \(b\) and the activation function \(f\) applied to the weighted sum of the inputs. (<strong>Image Credit:</strong> © <a href="index.html"> Arun</a>) </figcaption>
+                        <figcaption style="text-align: center;">An example of a neuron showing the input \(x_1, x_2, ...x_n\) their corresponding weights \((w_1 - w_n)\), a bias \(b\) and the activation 
+                            function \(f\) applied to the weighted sum of the inputs. (<strong>Image Credit:</strong> © <a href="index.html"> Arun</a>) </figcaption>
                     </figure>
-                    As seen in the figure, it works in two steps - it calculates the weighted sum of its inputs and then applies an activation function to normalize the sum. The activation functions can be linear or nonlinear. Also, there are weights associated with each input of a neuron. These are the parameters which the network has to learn during the training phase.
+                    As seen in the figure, it works in two steps - it calculates the weighted sum of its inputs and then applies an activation function to normalize the sum. The activation functions can be 
+                    linear or nonlinear. Also, there are weights associated with each input of a neuron. These are the parameters which the network has to learn during the training phase.
                 </li>
                 <li><strong>Input Layer: </strong>Where you feed the raw data (pixels of an image, words in a sentence) into the network.</li>
-                <li><strong>Hidden Layers: </strong> Layers between the input and output. This is where the majority of the computation and "learning" occurs. The more hidden layers, the 'deeper' the neural network.</li>
-                <li><strong>Output Layer: </strong>Delivers the final prediction or classification from the network. The activation function to be used in this layer is different for different problems. For a binary classification problem, we want the output to be either 0 or 1. Thus, a sigmoid activation function is used. For a Multiclass classification problem, a Softmax ( think of it as a generalization of sigmoid to multiple classes ) is used. For a regression problem, where the output is not a predefined category, we can simply use a linear unit.</li>
-                <li><strong>Weights: </strong>Each connection between neurons has a weight, signifying its relative importance to the neural network's final prediction. Training a neural network involves fine-tuning these weights.</li>
+                <li><strong>Hidden Layers: </strong> Layers between the input and output. This is where the majority of the computation and "learning" occurs. The more hidden layers, the 'deeper' the neural 
+                    network.</li>
+                <li><strong>Output Layer: </strong>Delivers the final prediction or classification from the network. The activation function to be used in this layer is different for different problems. 
+                    For a binary classification problem, we want the output to be either 0 or 1. Thus, a sigmoid activation function is used. For a Multiclass classification problem, a Softmax 
+                    (think of it as a generalization of sigmoid to multiple classes ) is used. For a regression problem, where the output is not a predefined category, we can simply use a linear unit.</li>
+                <li><strong>Weights: </strong>Each connection between neurons has a weight, signifying its relative importance to the neural network's final prediction. Training a neural network 
+                    involves fine-tuning these weights.</li>
                 <li><strong>Bias: </strong>Acts as a sort of intercept term, adding an extra value to a neuron's calculation. This helps give the network extra flexibility when fitting the data.</li>
             </ul>
 
             <!-------------------------->
             <h4 id="learning-tech">Learning Terminology</h4>
             <ul> 
-                <li><strong>Activation Function:</strong> A non-linear function (e.g., Sigmoid, ReLU, Tanh) applied to the output of a neuron. It introduces non-linearity, essential for the network to represent complex patterns.</li> 
-                <li><strong>Backpropagation:</strong> The core algorithm for training neural networks. Through iterations of forward and backward passes, it calculates how much each weight contributes to the final error and adjusts those weights accordingly.</li> 
-                <li><strong>Gradient Descent:</strong> An optimization algorithm widely used in deep learning. It guides the process of updating weights during backpropagation by moving "downhill" on a function representing the error of the network.</li> 
+                <li><strong>Activation Function:</strong> A non-linear function (e.g., Sigmoid, ReLU, Tanh) applied to the output of a neuron. It introduces non-linearity, essential for the network 
+                    to represent complex patterns.</li> 
+                <li><strong>Backpropagation:</strong> The core algorithm for training neural networks. Through iterations of forward and backward passes, it calculates how much each weight contributes 
+                    to the final error and adjusts those weights accordingly.</li> 
+                <li><strong>Gradient Descent:</strong> An optimization algorithm widely used in deep learning. It guides the process of updating weights during backpropagation by moving "downhill" on 
+                    a function representing the error of the network.</li> 
                 <li><strong>Loss Function:</strong> Measures the error between the network's prediction and the true label. During training, the aim is to minimize the loss function.</li> 
                 <li><strong>Epoch:</strong> One full pass through the entire training dataset.</li> 
                 <li><strong>Batch Size:</strong> The number of data samples processed before updating weights during training.</li> 
@@ -433,7 +476,8 @@
 
             <!------------------->
             <h4 id="activation">Activation function</h4>
-            Activation functions are mathematical functions applied to the output of neurons in neural networks. They introduce non-linearity into the network, allowing it to learn complex patterns and relationships in the data. Here are some common activation functions used in machine learning along with their formulas:
+            Activation functions are mathematical functions applied to the output of neurons in neural networks. They introduce non-linearity into the network, allowing it to learn complex patterns 
+            and relationships in the data. Here are some common activation functions used in machine learning along with their formulas:
             <figure>
                 <img src="assets/img/machine-ln/deep-activationfun-1.png" alt="" style="max-width: 100%; max-height: auto;">
                 <figcaption style="text-align: center;">Various activation functions</figcaption>
@@ -444,11 +488,14 @@
                         <li><strong>Formula: </strong></li>
                         $$\sigma(x) = \frac{1}{1+ e^{-x}}$$
                         <li><strong>Range: </strong> (0, 1)</li>
-                        <li><strong>Description: </strong>Sigmoid function squashes the input values to a range between 0 and 1. It is useful in binary classification tasks where the output needs to be interpreted as probabilities.</li>
+                        <li><strong>Description: </strong>Sigmoid function squashes the input values to a range between 0 and 1. It is useful in binary classification tasks where the output needs 
+                            to be interpreted as probabilities.</li>
                         <li><strong>Shortcomings: </strong>
                             <ul>
-                                <li><strong>Vanishing Gradient: </strong>Sigmoid functions saturate for large positive or negative inputs, leading to vanishing gradients during backpropagation, which can slow down or hinder learning, especially in deep networks.</li>
-                                <li><strong>Output Range: </strong>The output of the sigmoid function is not centered around zero, which may result in unstable gradients and slower convergence when used in deep networks.</li>
+                                <li><strong>Vanishing Gradient: </strong>Sigmoid functions saturate for large positive or negative inputs, leading to vanishing gradients during backpropagation, 
+                                    which can slow down or hinder learning, especially in deep networks.</li>
+                                <li><strong>Output Range: </strong>The output of the sigmoid function is not centered around zero, which may result in unstable gradients and slower convergence 
+                                    when used in deep networks.</li>
                             </ul>
                         </li>
                     </ul>
@@ -458,12 +505,15 @@
                         <li><strong>Formula: </strong></li>
                         $$\text{tanh}(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$$
                         <li><strong>Range: </strong>(-1,1)</li>
-                        <li><strong>Description: </strong>Tanh function squashes the input values to a range between -1 and 1, making it suitable for classification tasks where the output needs to be centered around zero.
-                            Tanh functions are commonly used in hidden layers of neural networks, especially in recurrent neural networks (RNNs), to capture non-linearities and maintain gradients within a centered range.
+                        <li><strong>Description: </strong>Tanh function squashes the input values to a range between -1 and 1, making it suitable for classification tasks where the output needs 
+                            to be centered around zero.
+                            Tanh functions are commonly used in hidden layers of neural networks, especially in recurrent neural networks (RNNs), to capture non-linearities and maintain gradients 
+                            within a centered range.
                         </li>
                         <li><strong>Shortcomings: </strong>
                             <ul>
-                                <li><strong>Vanishing Gradient: </strong>Similar to the sigmoid function, tanh functions also suffer from the vanishing gradient problem for large inputs, particularly in deep networks.</li>
+                                <li><strong>Vanishing Gradient: </strong>Similar to the sigmoid function, tanh functions also suffer from the vanishing gradient problem for large inputs, particularly 
+                                    in deep networks.</li>
                                 <li><strong>Saturation: </strong>Tanh functions saturate for large inputs, leading to slower convergence and potentially unstable gradients.</li>
                             </ul>
                         </li>
@@ -474,13 +524,17 @@
                         <li><strong>Formula: </strong></li>
                         $$f(x) = \text{max}(0,x)$$
                         <li><strong>Range: </strong>\([0, +∞]\)</li>
-                        <li><strong>Description: </strong>ReLU function returns 0 for negative inputs and the input value for positive inputs. It is the most commonly used activation function in deep learning due to its simplicity and effectiveness.
-                            ReLU functions are widely used in deep learning due to their simplicity and effectiveness. They allow for faster convergence and are less prone to vanishing gradients compared to sigmoid and tanh functions.
+                        <li><strong>Description: </strong>ReLU function returns 0 for negative inputs and the input value for positive inputs. It is the most commonly used activation function in deep 
+                            learning due to its simplicity and effectiveness.
+                            ReLU functions are widely used in deep learning due to their simplicity and effectiveness. They allow for faster convergence and are less prone to vanishing gradients compared 
+                            to sigmoid and tanh functions.
                         </li>
                         <li><strong>Shortcomings: </strong>
                             <ul>
-                                <li><strong>Dying ReLU: </strong>ReLU neurons can become inactive (or "die") for negative inputs during training, leading to dead neurons and a sparse representation of the input space. This issue is addressed by variants such as Leaky ReLU and Parametric ReLU.</li>
-                                <li><strong>Unbounded Output: </strong>ReLU functions have an unbounded output for positive inputs, which may lead to exploding gradients during training, especially in deeper networks.</li>
+                                <li><strong>Dying ReLU: </strong>ReLU neurons can become inactive (or "die") for negative inputs during training, leading to dead neurons and a sparse representation of the 
+                                    input space. This issue is addressed by variants such as Leaky ReLU and Parametric ReLU.</li>
+                                <li><strong>Unbounded Output: </strong>ReLU functions have an unbounded output for positive inputs, which may lead to exploding gradients during training, especially in deeper 
+                                    networks.</li>
                             </ul>
                         </li>
                     </ul>
@@ -497,7 +551,8 @@
                         <li><strong>Description: </strong>Leaky ReLU addresses the "dying ReLU" problem by allowing a small gradient for negative inputs, preventing neurons from becoming inactive.</li>
                         <li><strong>Shortcomings: </strong>
                             <ul>
-                                <li><strong>Hyperparameter Tuning: </strong> Leaky ReLU introduces a hyperparameter (the leak coefficient) that needs to be manually tuned, which can be cumbersome and time-consuming.</li>
+                                <li><strong>Hyperparameter Tuning: </strong> Leaky ReLU introduces a hyperparameter (the leak coefficient) that needs to be manually tuned, which can be cumbersome and 
+                                    time-consuming.</li>
                             </ul>
                         </li>
                     </ul>
@@ -529,11 +584,13 @@
                         </li>
                         <li><strong>Range: </strong>(0, 1) for each class, with all probabilities summing up to 1</li>
                         <li><strong>Description: </strong>Softmax function is commonly used in the output layer of a neural network for multi-class classification tasks. It converts raw scores into probabilities.
-                            Softmax functions are used in the output layer of neural networks for multi-class classification tasks. They convert raw scores into probabilities, enabling the model to make predictions across multiple classes.
+                            Softmax functions are used in the output layer of neural networks for multi-class classification tasks. They convert raw scores into probabilities, enabling the model to make 
+                            predictions across multiple classes.
                         </li>
                         <li><strong>Shortcomings: </strong>
                             <ul>
-                                <li><strong>Sensitivity to Outliers: </strong>Softmax functions are sensitive to outliers and large input values, which may affect the stability and reliability of the predicted probabilities.</li>
+                                <li><strong>Sensitivity to Outliers: </strong>Softmax functions are sensitive to outliers and large input values, which may affect the stability and reliability of the 
+                                    predicted probabilities.</li>
                             </ul>
                         </li>
                     </ul>
@@ -543,22 +600,32 @@
                     </figure>
                 </li>
             </ol>
-            <p>These activation functions play a crucial role in the training and performance of neural networks by controlling the output of neurons and enabling the network to learn complex relationships in the data.</p>
-            <p>In summary, the choice of activation function depends on the specific requirements of the task, the architecture of the neural network, and empirical performance on the validation data. It is often beneficial to experiment with different activation functions and monitor the training dynamics and model performance to select the most suitable one for a given problem. Additionally, using advanced techniques such as batch normalization and adaptive learning rate methods can help mitigate some of the shortcomings associated with activation functions.</p>
+            <p>These activation functions play a crucial role in the training and performance of neural networks by controlling the output of neurons and enabling the network to learn complex 
+                relationships in the data.</p>
+            <p>In summary, the choice of activation function depends on the specific requirements of the task, the architecture of the neural network, and empirical performance on the validation data. 
+                It is often beneficial to experiment with different activation functions and monitor the training dynamics and model performance to select the most suitable one for a given problem. 
+                Additionally, using advanced techniques such as batch normalization and adaptive learning rate methods can help mitigate some of the shortcomings associated with activation functions.</p>
 
             <!--------------------->
             <h4 id="how-learn">How does the network learn?</h4>
-            Neural networks learn through a process called backpropagation, which is a fundamental algorithm for training deep learning models. The process of learning involves adjusting the parameters (weights and biases) of the neural network to minimize a chosen loss function, which measures the difference between the predicted outputs and the true targets in the training data.
+            Neural networks learn through a process called backpropagation, which is a fundamental algorithm for training deep learning models. The process of learning involves adjusting the parameters 
+            (weights and biases) of the neural network to minimize a chosen loss function, which measures the difference between the predicted outputs and the true targets in the training data.
 
             <p>Here's a step-by-step overview of how neural networks works learn:</p>
             <ol>
                 <li><strong>Initialization:</strong> The parameters of the neural network (weights and biases) are initialized with random values.</li>
-                <li><strong>Forward Propagation:</strong> During the forward propagation step, input data is passed through the network, layer by layer, to generate predictions. Each neuron performs a weighted sum of its inputs, applies an activation function, and passes the result to the neurons in the next layer. This process continues until the output is produced.</li>
-                <li><strong>Loss Calculation:</strong> Once the predictions are obtained, a loss function is used to quantify the difference between the predicted outputs and the true targets in the training data. Common loss functions include mean squared error (MSE) for regression tasks and categorical cross-entropy for classification tasks.</li>
-                <li><strong>Backpropagation:</strong> Backpropagation is the heart of the learning process in neural networks. It involves computing the gradients of the loss function with respect to the network parameters using the chain rule of calculus. The gradients represent the direction and magnitude of the changes needed to minimize the loss.</li>
-                <li><strong>Gradient Descent:</strong> With the gradients computed, the network parameters are updated iteratively using optimization algorithms such as gradient descent. The parameters are adjusted in the direction that reduces the loss, with the size of the updates controlled by the learning rate.</li>
-                <li><strong>Iteration:</strong> Steps 2 to 5 are repeated for multiple iterations (epochs) over the entire training dataset. Each iteration consists of forward propagation to generate predictions, backpropagation to compute gradients, and parameter updates using gradient descent.</li>
-                <li><strong>Validation:</strong> Periodically, the model's performance is evaluated on a separate validation dataset to monitor its generalization ability and prevent overfitting. The validation loss is used as a proxy for the model's performance on unseen data.</li>
+                <li><strong>Forward Propagation:</strong> During the forward propagation step, input data is passed through the network, layer by layer, to generate predictions. Each neuron performs a 
+                    weighted sum of its inputs, applies an activation function, and passes the result to the neurons in the next layer. This process continues until the output is produced.</li>
+                <li><strong>Loss Calculation:</strong> Once the predictions are obtained, a loss function is used to quantify the difference between the predicted outputs and the true targets in the 
+                    training data. Common loss functions include mean squared error (MSE) for regression tasks and categorical cross-entropy for classification tasks.</li>
+                <li><strong>Backpropagation:</strong> Backpropagation is the heart of the learning process in neural networks. It involves computing the gradients of the loss function with respect to 
+                    the network parameters using the chain rule of calculus. The gradients represent the direction and magnitude of the changes needed to minimize the loss.</li>
+                <li><strong>Gradient Descent:</strong> With the gradients computed, the network parameters are updated iteratively using optimization algorithms such as gradient descent. The parameters 
+                    are adjusted in the direction that reduces the loss, with the size of the updates controlled by the learning rate.</li>
+                <li><strong>Iteration:</strong> Steps 2 to 5 are repeated for multiple iterations (epochs) over the entire training dataset. Each iteration consists of forward propagation to generate 
+                    predictions, backpropagation to compute gradients, and parameter updates using gradient descent.</li>
+                <li><strong>Validation:</strong> Periodically, the model's performance is evaluated on a separate validation dataset to monitor its generalization ability and prevent overfitting. The 
+                    validation loss is used as a proxy for the model's performance on unseen data.</li>
                 <li><strong>Termination:</strong> Training continues until a stopping criterion is met, such as reaching a maximum number of epochs or observing no improvement in the validation loss.</li>
             </ol>
 
