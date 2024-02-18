@@ -148,16 +148,17 @@
                         <ol>
                             <li><a href="#introduction">Introduction</a></li>
                             <li><a href="#key-difference">Key Differences Between Machine Learning And Deep Learning</a></li>
+                            <li><a href="#applications">Applications of Deep Learning</a></li>
                             <li><a href="#classification">Deep Learning model classification</a></li>
                             <li><a href="#neural">Neural Networks</a></li>
                             <li><a href="#types">Types of Neural Network Diagrams</a></li>
                             <li><a href="#key-points">Key Points</a></li>
-                            <li><a href="#applications">Applications of Deep Learning</a></li>
                             <li><a href="#neural-network">Understanding the Neural Network Jargon</a></li>
                             <li><a href="#learning-tech">Learning Terminology</a></li>
                             <li><a href="#other-term">Other Important Terms</a></li>
                             <li><a href="#activation">Activation function</a></li>
                             <li><a href="#how-learn">How does the network learn?</a></li>
+                            <li><a href="#hardware">Deep Learning hardware requirements</a></li>
                             <li><a href="#reference">Reference</a></li>
                         </ol>
                     </div>
@@ -218,10 +219,63 @@
                     <td>Forecasting, predicting and other simple applications</td>
                     <td>More complex applications like autonomous vehicles</td>
                 </tr>
-            </table>
+            </table><br>
 
+            <!------------------- applications ------------->
+            <h4 id="applications">Applications of Deep Learning</h4>
+            Key application areas and some specific examples:
+            <ol>
+                <li><strong>Computer Vision: </strong>
+                    <ul>
+                        <li><strong>Image Classification:</strong> Categorizing images (cats vs. dogs, types of clothing, etc.).</li>
+                        <li><strong>Object Detection:</strong> Finding and identifying objects within an image (for self-driving cars, robotics, security).</li>
+                        <li><strong>Semantic Segmentation:</strong> Labeling every pixel in an image with its corresponding class (road, building, etc.). This has applications in urban planning and augmented 
+                            reality.</li>
+                        <li><strong>Image Generation and Style Transfer:</strong> Creating realistic images with tools like GANs, or applying artistic styles to photos. </li>
+                    </ul>
+                </li>
+                <li><strong>Natural Language Processing (NLP): </strong>
+                    <ul>
+                        <li><strong>Machine Translation:</strong> Automatic translation between languages (Google Translate, DeepL).</li>
+                        <li><strong>Text Generation:</strong> Creating human-quality text, from creative writing to writing marketing copy.</li>
+                        <li><strong>Sentiment Analysis:</strong> Analyzing the emotional tone of reviews, social media posts, and more.</li>
+                        <li><strong>Chatbots and Virtual Assistants:</strong> Interacting with customers, providing support (Siri, Alexa).</li>
+                    </ul>
+                </li>
+                <li><strong>Healthcare: </strong>
+                    <ul>
+                        <li><strong>Medical Image Analysis:</strong> Detecting tumors, diagnosing diseases from X-rays, CT Scans, MRIs, and more.</li>
+                        <li><strong>Drug Discovery:</strong> Analyzing vast chemical databases to design potentially effective new drugs.</li>
+                        <li><strong>Genomics:</strong> Understanding the relationship between genes and diseases, improving personalized medicine.</li>
+                        <li><strong>Predictive Healthcare:</strong> Predicting patient outcomes and helping with treatment plans.</li>
+                    </ul>
+                </li>
+                <li><strong>Recommender Systems: </strong>
+                    <ul>
+                        <li><strong>Product recommendations:</strong> Predicting which products someone might like (Amazon, Netflix).</li>
+                        <li><strong>Content Personalization:</strong> Tailoring news feeds, music playlists, and other content to a user's preferences.</li>
+                        <li><strong>Advertising:</strong> Using deep learning to better target online ads based on a user's interests.</li>
+                    </ul>
+                </li>
+                <li><strong>Finance: </strong>
+                    <ul>
+                        <li><strong>Fraud Detection:</strong> Analyzing patterns to flag suspicious financial activity.</li>
+                        <li><strong>Algorithmic Trading:</strong> Using deep learning to develop trading strategies and automatically execute trades. </li>
+                        <li><strong>Risk Assessment:</strong> Assessing the creditworthiness of customers or organizations.</li>
+                    </ul>
+                </li>
+                <li><strong>Other Notable Applications: </strong>
+                    <ul>
+                        <li><strong>Self-driving Cars:</strong> Perception systems in autonomous vehicles heavily rely on deep learning for recognizing objects, lane lines, and making decisions.</li>
+                        <li><strong>Robotics:</strong> Deep learning enables robots to perceive the world, navigate complex environments, and manipulate objects.</li>
+                        <li><strong>Gaming:</strong> Creating intelligent game AI, generating complex game environments, and enhancing the player experience.</li>
+                        <li><strong>Agriculture:</strong> Monitoring crop health, identifying pests, and improving farming practices. </li>
+                        <li><strong>Accessibility:</strong> Creating tools for people with visual or hearing impairments through image captioning and automated sign language translation.</li>
+                    </ul>
+                </li>
+            </ol>
 
-            <br><br>
+            <br>
             <!----------------------->
             <h3 id="classification">Deep Learning model classification</h3>
             <p>Deep learning models can be classified into several categories based on their architecture and the type of data they are designed to process. Here are some common types of deep 
@@ -372,59 +426,7 @@
             </ul>
             
 
-            <!------------------- applications ------------->
-            <h4 id="applications">Applications of Deep Learning</h4>
-            Key application areas and some specific examples:
-            <ol>
-                <li><strong>Computer Vision: </strong>
-                    <ul>
-                        <li><strong>Image Classification:</strong> Categorizing images (cats vs. dogs, types of clothing, etc.).</li>
-                        <li><strong>Object Detection:</strong> Finding and identifying objects within an image (for self-driving cars, robotics, security).</li>
-                        <li><strong>Semantic Segmentation:</strong> Labeling every pixel in an image with its corresponding class (road, building, etc.). This has applications in urban planning and augmented 
-                            reality.</li>
-                        <li><strong>Image Generation and Style Transfer:</strong> Creating realistic images with tools like GANs, or applying artistic styles to photos. </li>
-                    </ul>
-                </li>
-                <li><strong>Natural Language Processing (NLP): </strong>
-                    <ul>
-                        <li><strong>Machine Translation:</strong> Automatic translation between languages (Google Translate, DeepL).</li>
-                        <li><strong>Text Generation:</strong> Creating human-quality text, from creative writing to writing marketing copy.</li>
-                        <li><strong>Sentiment Analysis:</strong> Analyzing the emotional tone of reviews, social media posts, and more.</li>
-                        <li><strong>Chatbots and Virtual Assistants:</strong> Interacting with customers, providing support (Siri, Alexa).</li>
-                    </ul>
-                </li>
-                <li><strong>Healthcare: </strong>
-                    <ul>
-                        <li><strong>Medical Image Analysis:</strong> Detecting tumors, diagnosing diseases from X-rays, CT Scans, MRIs, and more.</li>
-                        <li><strong>Drug Discovery:</strong> Analyzing vast chemical databases to design potentially effective new drugs.</li>
-                        <li><strong>Genomics:</strong> Understanding the relationship between genes and diseases, improving personalized medicine.</li>
-                        <li><strong>Predictive Healthcare:</strong> Predicting patient outcomes and helping with treatment plans.</li>
-                    </ul>
-                </li>
-                <li><strong>Recommender Systems: </strong>
-                    <ul>
-                        <li><strong>Product recommendations:</strong> Predicting which products someone might like (Amazon, Netflix).</li>
-                        <li><strong>Content Personalization:</strong> Tailoring news feeds, music playlists, and other content to a user's preferences.</li>
-                        <li><strong>Advertising:</strong> Using deep learning to better target online ads based on a user's interests.</li>
-                    </ul>
-                </li>
-                <li><strong>Finance: </strong>
-                    <ul>
-                        <li><strong>Fraud Detection:</strong> Analyzing patterns to flag suspicious financial activity.</li>
-                        <li><strong>Algorithmic Trading:</strong> Using deep learning to develop trading strategies and automatically execute trades. </li>
-                        <li><strong>Risk Assessment:</strong> Assessing the creditworthiness of customers or organizations.</li>
-                    </ul>
-                </li>
-                <li><strong>Other Notable Applications: </strong>
-                    <ul>
-                        <li><strong>Self-driving Cars:</strong> Perception systems in autonomous vehicles heavily rely on deep learning for recognizing objects, lane lines, and making decisions.</li>
-                        <li><strong>Robotics:</strong> Deep learning enables robots to perceive the world, navigate complex environments, and manipulate objects.</li>
-                        <li><strong>Gaming:</strong> Creating intelligent game AI, generating complex game environments, and enhancing the player experience.</li>
-                        <li><strong>Agriculture:</strong> Monitoring crop health, identifying pests, and improving farming practices. </li>
-                        <li><strong>Accessibility:</strong> Creating tools for people with visual or hearing impairments through image captioning and automated sign language translation.</li>
-                    </ul>
-                </li>
-            </ol>
+            
 
 
             <!-------------------------->
@@ -460,7 +462,7 @@
                 <li><strong>Backpropagation:</strong> The core algorithm for training neural networks. Through iterations of forward and backward passes, it calculates how much each weight contributes 
                     to the final error and adjusts those weights accordingly.</li> 
                 <li><strong>Gradient Descent:</strong> An optimization algorithm widely used in deep learning. It guides the process of updating weights during backpropagation by moving "downhill" on 
-                    a function representing the error of the network.</li> 
+                    a function representing the error of the network. (for more details, see <a href="Linear-reg.html">Gradient Descent method and linear regression</a>.)</li> 
                 <li><strong>Loss Function:</strong> Measures the error between the network's prediction and the true label. During training, the aim is to minimize the loss function.</li> 
                 <li><strong>Epoch:</strong> One full pass through the entire training dataset.</li> 
                 <li><strong>Batch Size:</strong> The number of data samples processed before updating weights during training.</li> 
@@ -628,6 +630,47 @@
                     validation loss is used as a proxy for the model's performance on unseen data.</li>
                 <li><strong>Termination:</strong> Training continues until a stopping criterion is met, such as reaching a maximum number of epochs or observing no improvement in the validation loss.</li>
             </ol>
+
+
+            <h4 id ="hardware">Deep learning hardware requirements</h4>
+            Deep learning requires a tremendous amount of computing power. High performance graphical processing units (GPUs) are ideal because they can handle a large volume of calculations in multiple cores with copious memory available. However, managing multiple GPUs on-premises can create a large demand on internal resources and be incredibly costly to scale.
+            However, here are some general guidelines for the hardware needed for deep learning:
+            <ol>
+                <li><strong>GPU (Graphics Processing Unit): </strong>
+                    <ul>
+                        <li>GPUs are essential for accelerating deep learning training and inference processes. They are highly parallel processors capable of performing large-scale matrix operations in parallel, which are common in deep learning computations.</li>
+                        <li>NVIDIA GPUs are the most commonly used for deep learning due to their superior performance and support for popular deep learning frameworks such as TensorFlow and PyTorch.</li>
+                        <li>The choice of GPU depends on budget and requirements, with higher-end GPUs offering more compute power and memory for training larger models and handling larger datasets.</li>
+                    </ul>
+                </li>
+                <li><strong>CPU (Central Processing Unit): </strong>
+                    <ul>
+                        <li>While not as critical as GPUs for deep learning, CPUs are still necessary for handling various tasks such as data preprocessing, managing I/O operations, and running parts of the deep learning pipeline that are not GPU-accelerated.</li>
+                        <li>Modern CPUs with multiple cores and high clock speeds can improve overall system performance and multitasking capabilities.</li>
+                    </ul>
+                </li>
+                <li><strong>RAM (Random Access Memory): </strong>
+                    <ul>
+                        <li>Sufficient RAM is crucial for loading and manipulating large datasets, storing model parameters and intermediate computations during training, and running multiple processes concurrently.</li>
+                        <li>The amount of RAM needed depends on the size of the datasets and models being used. Deep learning models with larger numbers of parameters and larger batch sizes require more RAM.</li>
+                    </ul>
+                </li>
+                <li><strong>Storage: </strong>
+                    <ul>
+                        <li>Fast and ample storage is necessary for storing datasets, model checkpoints, training logs, and other resources.</li>
+                        <li>SSDs (Solid State Drives) are preferred over HDDs (Hard Disk Drives) for faster data access and better overall performance, especially during data loading and model training.</li>
+                    </ul>
+                </li>
+                <li><strong>Cluster/Cloud Computing: </strong>
+                    <ul>
+                        <li>For large-scale deep learning tasks, such as training complex models on massive datasets, distributed computing resources such as GPU clusters or cloud computing platforms may be required.</li>
+                        <li>Cloud-based services like Amazon Web Services (AWS), Google Cloud Platform (GCP), and Microsoft Azure offer GPU-accelerated instances and managed services for deep learning at scale.</li>
+                    </ul>
+                </li>
+                <li><strong>Power Supply and Cooling: </strong>High-performance GPUs can consume a significant amount of power and generate a lot of heat during intensive computations. Adequate power supply and cooling solutions, such as high-wattage power supplies and efficient cooling systems, are necessary to ensure stable operation and prevent overheating.</li>
+            </ol>
+            Overall, the hardware requirements for deep learning depend on factors such as the complexity of the models, size of the datasets, desired training speed, and budget constraints. It's essential to carefully consider these factors when selecting hardware for deep learning tasks to ensure optimal performance and efficiency.
+
 
 
 
