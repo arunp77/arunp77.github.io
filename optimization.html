@@ -134,7 +134,7 @@
                     <div class="portfolio-details-slider swiper">
                         <div class="swiper-wrapper align-items-center"> 
                             <figure>
-                            <img src="assets/img/machine-ln/cnn-2.jpg" alt="" style="max-width: 70%; max-height: auto;">
+                            <img src="assets/img/machine-ln/gradient-discent.png" alt="" style="max-width: 90%; max-height: auto;">
                             <figcaption style="text-align: center;">(<strong>Image credit: </strong> © <a href="https://www.kaggle.com/code/kanncaa1/convolutional-neural-network-cnn-tutorial">Kaggle</a>)</figcaption>
                             </figure>
                         </div>
@@ -147,17 +147,16 @@
                         <h3>Content</h3>
                         <ol>
                             <li><a href="#introduction">Introduction</a></li>
-                            <li><a href="#key-difference">Key Differences Between Machine Learning And Deep Learning</a></li>
-                            <li><a href="#classification">Deep Learning model classification</a></li>
-                            <li><a href="#neural">Neural Networks</a></li>
-                            <li><a href="#types">Types of Neural Network Diagrams</a></li>
-                            <li><a href="#key-points">Key Points</a></li>
-                            <li><a href="#applications">Applications of Deep Learning</a></li>
-                            <li><a href="#neural-network">Understanding the Neural Network Jargon</a></li>
-                            <li><a href="#learning-tech">Learning Terminology</a></li>
-                            <li><a href="#other-term">Other Important Terms</a></li>
-                            <li><a href="#activation">Activation function</a></li>
-                            <li><a href="#how-learn">How does the network learn?</a></li>
+                            <li><a href="#reasons">Optimization in deep learning is vital for several reasons</a></li>
+                            <li><a href="#opti-work">Optimization at work</a></li>
+                            <li><a href="#optimization-dl">Optimization Methods in Deep Learning</a></li>
+                            <li><a href="#Terminologies">Terminologies</a></li>
+                            <li><a href="#gd">Gradient Descent (GD)</a></li>
+                            <li><a href="#sgd">Stochastic Gradient Descent (SGD)</a></li>
+                            <li><a href="#mgd">Mini-batch Gradient Descent</a></li>
+                            <li><a href="#momentum">Momentum</a></li>
+                            <li><a href="#adam">Adam (Adaptive Moment Estimation)</a></li>
+                            <li><a href="#rmsprop">RMSprop (Root Mean Square Propagation)</a></li>
                             <li><a href="#reference">Reference</a></li>
                         </ol>
                     </div>
@@ -240,7 +239,7 @@
             </figure>
 
             <!-------------------------------------->
-            <div class="grey-box" style="border: 1px solid black;">
+            <div class="box" style="border: 1px solid black;">
                 <h4 id="gd">Gradient Descent (GD): </h4>
                 <ol>
                     <li><strong>Objective: </strong>Gradient Descent is an iterative optimization algorithm used to minimize a given cost function \(J(\theta)\) by adjusting the parameters 
@@ -356,7 +355,8 @@
             </div><br>
 
             <div class="box" style="background-color: rgba(1, 243, 231, 0.226); border: 1px solid black;">
-                <h4 id="mgd">Mini-batch Gradient Descent: </h4> Mini-batch Gradient Descent (MBGD) is a variation of the traditional Gradient Descent algorithm that updates the model parameters using mini-batches of training data instead of the entire dataset at once. This approach combines the efficiency of Stochastic Gradient Descent (SGD) with the stability of Gradient Descent (GD). Here's a detailed explanation of MBGD along with the relevant formulas:
+                <h4 id="mgd">Mini-batch Gradient Descent: </h4> 
+                Mini-batch Gradient Descent (MBGD) is a variation of the traditional Gradient Descent algorithm that updates the model parameters using mini-batches of training data instead of the entire dataset at once. This approach combines the efficiency of Stochastic Gradient Descent (SGD) with the stability of Gradient Descent (GD). Here's a detailed explanation of MBGD along with the relevant formulas:
                 <ol>
                     <li><strong>Overview: </strong>Mini-batch Gradient Descent divides the training data into small batches of size \(n\). Instead of computing the gradient on the entire dataset (GD) on on a single data point (SGD), MBGD computes the gradient on a mini-batch of training examples.</li>
                     <li><strong>Formulation: </strong>Let's consider a dataset with \(m\) training examples. The cost function \(J(\theta)\) measures the difference between the model predictions and the actual targets. The update rule for Mini-batch Gradient Descent at iteration \(t\) is given by:</li>
@@ -446,7 +446,7 @@
             </div><br>
 
             <div class="box" style="background-color: rgba(243, 207, 1, 0.226);">
-                <h4>Adam (Adaptive Moment Estimation): </h4>
+                <h4 id="adam">Adam (Adaptive Moment Estimation): </h4>
                 Adam (Adaptive Moment Estimation) is an optimization algorithm commonly used in deep learning, known for its adaptive learning rate and momentum properties. It combines the advantages of two other popular optimization algorithms, RMSprop and Momentum, to efficiently navigate the parameter space during training. Let's delve into the details of Adam and explain its various components using formulas:
                 <p><strong>Algorithm Overview:</strong></p>
                 <ol>
@@ -529,7 +529,8 @@
             </div><br>
 
             <div class="box" style="background-color: rgba(243, 1, 13, 0.226);">
-                <strong>RMSprop (Root Mean Square Propagation): </strong> RMSprop (Root Mean Square Propagation) is an optimization algorithm commonly used in deep learning to adaptively adjust the learning rates for each parameter. It addresses some of the limitations of other optimization algorithms, particularly when dealing with sparse data and non-stationary objectives. Here's a detailed explanation of RMSprop along with formulas:
+                <h4 id="rmsprop">RMSprop (Root Mean Square Propagation): </h4> 
+                RMSprop (Root Mean Square Propagation) is an optimization algorithm commonly used in deep learning to adaptively adjust the learning rates for each parameter. It addresses some of the limitations of other optimization algorithms, particularly when dealing with sparse data and non-stationary objectives. Here's a detailed explanation of RMSprop along with formulas:
                 <p><strong>Overview: </strong>RMSprop is an extension of the gradient descent optimization algorithm that aims to improve convergence speed and stability, especially in the presence of sparse gradients or noisy data. It accomplishes this by adjusting the learning rates of each parameter individually based on the magnitude of recent gradients.</p>
                 <p><strong>Algorithm Steps: </strong></p>
                 <ol>
@@ -559,27 +560,11 @@
                 RMSprop is a powerful optimization algorithm widely used in training deep neural networks. By adaptively adjusting learning rates based on the magnitude of gradients, it addresses some of the challenges faced by traditional gradient descent methods, leading to faster convergence and improved performance.
             </div>
 
-
-
-
-
-
-
-
-            
-            
-
-
-            
-
-
             <!-------Reference ------->
             <section id="reference">
-                <h2>References</h2>
+                <h3>References</h3>
                 <ol>
                     <li><a href="https://hamdi-ghorbel78.medium.com/deep-learning-optimization-techniques-3257b51accd0" target="_blank">“Deep Learning”: Optimization Techniques</a>.</li>
-                    <li><a href="https://www.geeksforgeeks.org/introduction-deep-learning/?ref=lbp" target="_blank">Introduction to Deep Learning</a></li>
-                    <li><a href="https://www.ibm.com/topics/deep-learning?cm_sp=ibmdev-_-developer-articles-_-ibmcom" target="_blank">What is deep learning?</a></li>
                     <li><a href="https://developer.ibm.com/articles/cc-machine-learning-deep-learning-architectures/" target="_blank">Deep learning architectures</a></li>
                     <li>Hands on Machine Learning with Scikit-Learn, Keras, & TensorFlow, Aurelien Geron</li>
                 </ol> 
@@ -591,6 +576,7 @@
 
                 <h3>Some other interesting things to know:</h3>
                 <ul style="list-style-type: disc; margin-left: 30px;">
+                    <li>Look at <a href="deep-learning.html">my Deep Learning page</a>.</li>
                     <li>Visit my website on <a href="sql-project.html">For Data, Big Data, Data-modeling, Datawarehouse, SQL, cloud-compute.</a></li>
                     <li>Visit my website on <a href="Data-engineering.html">Data engineering</a></li>
                 </ul>

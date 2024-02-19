@@ -1205,6 +1205,7 @@ section {
 # Creating a box of text
 --------------------------------------------------------------*/
 .box {
+  width: 98%; /* Set your desired width here */
   border: 1px solid #ccc;
   padding: 10px;
   margin-bottom: 10px;
