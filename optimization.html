@@ -70,9 +70,9 @@
         <nav id="navbar" class="nav-menu navbar">
             <ul>
                 <li><a href="index.html#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
-                <li><a href="index.html#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
-                <li><a href="index.html#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
-                <li><a href="index.html#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+                <li><a href="index.html#about" class="nav-link scrollto"><i class="bx bx-user"></i><span>About</span></a></li>
+                <li><a href="index.html#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i><span>Resume</span></a></li>
+                <li><a href="index.html#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i><span>Portfolio</span></a></li>
                 <li><a href="index.html#skills-and-tools" class="nav-link scrollto"><i class="bx bx-wrench"></i> <span>Skills and Tools</span></a></li>
                 <li><a href="index.html#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li>
                 <li><a href="index.html#professionalcourses" class="nav-link scrollto"><i class="bx bx-book-alt"></i> <span>Professional Certification</span></a></li>
@@ -239,12 +239,13 @@
             <p>Now let’s explore each optimizer.</p>
             <figure>
                 <img src="assets/img/machine-ln/optimization-trajectory.png" alt="" style="max-width: 100%; max-height: auto;">
-                <figcaption style="text-align: center;">Various optimization methods. This is just for representation purpose. (<strong>Image credit: </strong> @ <a href="https://github.com/arunp77/Machine-Learning/tree/main/Deep-learning" target="_blank">Arunp77</a>).</figcaption>
+                <figcaption style="text-align: center;">Various optimization methods. This is just for representation purpose. Here choosen cost function is of the form \(x^2\). (<strong>Image credit: </strong> @ <a href="https://github.com/arunp77/Machine-Learning/tree/main/Deep-learning" target="_blank">Arunp77</a>).</figcaption>
             </figure>
 
             <!-------------------------------------->
             <div class="box" style="border: 1px solid black;">
-                <h4 id="gd">1. Gradient Descent (GD): </h4>
+                <h4 id="gd">1. Gradient Descent (GD): </h4> 
+                <div class="grey-box"><i class="fa fa-info-circle"></i> &emsp; For more details on this method in the context of linear regression can be found at <a href="Linear-reg.html">link</a>.</div><br>
                 <ol>
                     <li><strong>Objective: </strong>Gradient Descent is an iterative optimization algorithm used to minimize a given cost function \(J(\theta)\) by adjusting the parameters 
                         \(\theta\) iteratively.</li>
@@ -335,7 +336,7 @@
                         <ul>
                             <li>\(\theta_t\) is the parameter vector at iteration \(t\).</li>
                             <li>\(\eta\) is the learning rate.</li>
-                            <li>\(\nabla J(\theta_{t,i})\) is the gradient of the loss function with respect to the parameters computed using the \(i-\)th training example/</li>
+                            <li>\(\nabla J(\theta_{t,i})\) is the gradient of the loss function with respect to the parameters computed using the \(i-\)th training example.</li>
                         </ul>
                     </li>
                     <li><strong>Advantages: </strong>
@@ -459,7 +460,7 @@
                             <li>\(\theta_0\): Model parameters (weights and biases).</li>
                             <li>\(m_0\) = 0: Initial first moment vector (mean),</li>
                             <li>\(v_0\) =0: Initial second moment vector (uncentered variance).</li>
-                            <li>\(\beta_1, \beta_2 \epsilon [0,1)\): Exponential decay rates for moment estimates.</li>
+                            <li>\(\beta_1, \beta_2 \in [0,1)\): Exponential decay rates for moment estimates.</li>
                             <li>\(\eta\): Learning rate.</li>
                             <li>\(\epsilon\): small constant to prevent division by zero. Defaults to 1e-8.</li>
                         </ul> 
