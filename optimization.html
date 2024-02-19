@@ -545,19 +545,15 @@
                 </ol>
                 <p><strong>Detailed Explanation: </strong></p>
                 <ol>
-                    <li><strong></strong></li>
-                    <li><strong></strong></li>
-                    <li><strong></strong></li>
-                    <li><strong></strong></li>
-                    <li><strong></strong></li>
+                    <li><strong>Accumulation of Squared Gradients \(v\): </strong>RMSprop maintains an exponentially decaying average of squared gradients using the parameter \(\beta\). This moving average helps smooth out the gradient updates and adaptively adjust the learning rates.</li>
+                    <li><strong>Normalization of Gradients: </strong>Before updating the parameters, RMSprop normalizes the gradients by dividing them by the square root of the accumulated squared gradients plus a small constant \(\epsilon\). This Normalization scales down the learning rates for parameters with large gradients and vice versa.</li>
+                    <li><strong>Adaptive Learning Rates: </strong>By adjusting the learning rates based on the magnitude of gradients, RMSprop adapts to the geometry of the loss function and speeds up convergence, especially in deep neural networks with complex and non-convex surfaces.</li>
                 </ol>
                 <p><strong>Key Advantages: </strong></p>
                 <ol>
-                    <li><strong></strong></li>
-                    <li><strong></strong></li>
-                    <li><strong></strong></li>
-                    <li><strong></strong></li>
-                    <li><strong></strong></li>
+                    <li><strong>Adaptive Learning Rates: </strong>RMSprop adapts the learning rates for each parameter individually based on the recent gradient history, leading to faster convergence and improved stability.</li>
+                    <li><strong>Sparse Data Handling: </strong>The algorithm performs well with sparse data or noisy gradients, thanks to its adaptive nature and normalization of gradients.</li>
+                    <li><strong>Robustness: </strong>RMSprop is robust to variations in hyperparameters and works well across different architectures and datasets.</li>
                 </ol>
                 <p><strong>Summary: </strong></p>
                 RMSprop is a powerful optimization algorithm widely used in training deep neural networks. By adaptively adjusting learning rates based on the magnitude of gradients, it addresses some of the challenges faced by traditional gradient descent methods, leading to faster convergence and improved performance.
