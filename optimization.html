@@ -441,18 +441,90 @@
                         </ul>
                     </li>
                 </ol>
-                In summary, Momentum is a powerful optimization technique in deep learning that improves convergence speed and stability by incorporating information from previous gradients. It is widely used in conjunction with gradient descent-based optimization algorithms like SGD and Adam.
+                In summary, Momentum is a powerful optimization technique in deep learning that improves convergence speed and stability by incorporating information from previous gradients. It is widely used in conjunction 
+                with gradient descent-based optimization algorithms like SGD and Adam.
             </div><br>
 
             <div class="box" style="background-color: rgba(243, 207, 1, 0.226);">
                 <h4>Adam (Adaptive Moment Estimation): </h4>
+                Adam (Adaptive Moment Estimation) is an optimization algorithm commonly used in deep learning, known for its adaptive learning rate and momentum properties. It combines the advantages of two other popular optimization algorithms, RMSprop and Momentum, to efficiently navigate the parameter space during training. Let's delve into the details of Adam and explain its various components using formulas:
+                <p><strong>Algorithm Overview:</strong></p>
                 <ol>
-                    <li><strong></strong></li>
-                    <li><strong></strong></li>
-                    <li><strong></strong></li>
-                    <li><strong></strong></li>
-                    <li><strong></strong></li>
+                    <li><strong>Initialization: </strong>First Initialize parameters:
+                        <ul>
+                            <li>\(\theta_0\): Model parameters (weights and biases).</li>
+                            <li>\(m_0\) = 0: Initial first moment vector (mean),</li>
+                            <li>\(v_0\) =0: Initial second moment vector (uncentered variance).</li>
+                            <li>\(\beta_1, \beta_2 \epsilon [0,1)\): Exponential decay rates for moment estimates.</li>
+                            <li>\(\eta\): Learning rate.</li>
+                            <li>\(\epsilon\): small constant to prevent division by zero. Defaults to 1e-8.</li>
+                        </ul> 
+                    </li>
+                    <li><strong>Update at each time step \(t\): </strong>
+                        <ul>
+                            <li>Compute gradient:</li>
+                            $$g_t = \nabla J(\theta_t)$$
+                            where \(J\) is the loss function.
+                            <li>Update biased first moment estimate:</li>
+                            $$m_t = \beta_1\cdot m_{t-1} +(1-\beta_1)\cdot g_t$$
+                            <li>Update biased second raw moment estimate: </li>
+                            $$v_t = \beta_2 \cdot v_{t-1} + (1-\beta_2)\cdot g_t^2$$
+                            <li>Correct bias in first moment: </li>
+                            $$\hat{m}_t = \frac{m_t}{1-\beta_1^t}.$$
+                            <li>Correct bias in second moment: </li>
+                            $$\hat{v}_t = \frac{v_t}{1-\beta_2^t}$$
+                            <li>Update parameters: </li>
+                            $$\theta_{t+1} = \theta_t - \eta\cdot \frac{\hat{m}_t}{\sqrt{\hat{v}_t}+\epsilon} $$
+                        </ul>
+                    </li>
                 </ol>
+                <p><strong>Detailed Explanation of Formulas:</strong></p>
+                <ol>
+                    <li><strong>First Moment Estimation (Mean): </strong></li>
+                    $$m_t = \beta_1 \cdot m_{t-1} +(1-\beta_1)\cdot g_t$$
+                    where:
+                        <ul>
+                            <li>\(m_t\): Biased first moment estimate (mean of gradients)</li>
+                            <li>\(\beta_1\): Exponential decay rate for the first moment.</li>
+                            <li>\(g_t\): Gradient at time step.</li>
+                        </ul>
+                    <li><strong>Second Moment Estimation (Uncentered Variance):  </strong></li>
+                    $$v_t = \beta_2 \cdot v_{t-1}+(1-\beta_2)\cdot g_t^2$$
+                    where:
+                        <ul>
+                            <li>\(v_t\): Biased second raw moment estimate (uncentered variance of gradients).</li>
+                            <li>\(\beta_2\): Exponential decay rate for the second moment.</li>
+                            <li>\(g_t^2\): Element-wise square of the gradient at time step \(t\).</li>
+                        </ul>
+                    <li><strong>Bias Correction:</strong></li>
+                    $$\hat{m}_t = \frac{m_t}{1-\beta_1^t}$$
+                    and 
+                    $$\hat{v}_t = \frac{v_t}{1-\beta_2^t}.$$
+                    where:
+                        <ul>
+                            <li>Corrects bias in the first and second moment estimates, especially during the initial time steps when \(m_t\) and \(v_t\) are biased towards zero.</li>
+                        </ul>
+                    <li><strong>Parameter Update: </strong></li>
+                    $$\theta_{t+1} = \theta_t -\eta \cdot \frac{\hat{m}_t}{\sqrt{\hat{v}_t}+\epsilon}.$$
+                    where:
+                        <ul>
+                            <li>Corrects bias in the first and second moment estimates, especially during the initial time steps when \(m_t\) and \(v_t\) are biased towards zero.</li>
+                        </ul>
+                    <li><strong>Parameter Update: </strong></li>
+                    $$\theta_{t+1} = \theta_t - \eta\cdot \frac{\hat{m}_t}{\sqrt{\hat{v}_t}+\epsilon}.$$
+                    <ul>
+                        <li>Updates the model parameters using the corrected first and second moment estimates.</li>
+                        <li>\(\eta\): Learning rate.</li>
+                        <li>\(\epsilon\): Small constant to prevent division by zero.</li>
+                    </ul>
+                </ol> 
+                <p><strong>Key Features:</strong></p>
+                <ul>
+                    <li><strong>Adaptive Learning Rate: </strong>The learning rate is adjusted for each parameter based on the estimates of the first and second moments of the gradients.</li>
+                    <li><strong>Bias Correction: </strong>Adam corrects the bias in the moment estimates, especially at the beginning of training.</li>
+                    <li><strong>Momentum: </strong>The first moment term \(m_t\) acts like a momentum term, allowing the algorithm to accelerate in the relevant direction and dampen oscillations.</li>
+                    <li><strong>Efficiency: </strong>Adam is computationally efficient and requires little memory.</li>
+                </ul>
             </div><br>
 
             <div class="box" style="background-color: rgba(243, 1, 13, 0.226);">
