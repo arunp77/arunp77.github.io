@@ -147,16 +147,20 @@
                         <h3>Content</h3>
                         <ol>
                             <li><a href="#introduction">Introduction</a></li>
-                            <li><a href="#reasons">Optimization in deep learning is vital for several reasons</a></li>
-                            <li><a href="#opti-work">Optimization at work</a></li>
+                            <ul>
+                                <li><a href="#reasons">Optimization in deep learning is vital for several reasons</a></li>
+                                <li><a href="#opti-work">Optimization at work</a></li>
+                            </ul>
                             <li><a href="#optimization-dl">Optimization Methods in Deep Learning</a></li>
-                            <li><a href="#Terminologies">Terminologies</a></li>
-                            <li><a href="#gd">Gradient Descent (GD)</a></li>
-                            <li><a href="#sgd">Stochastic Gradient Descent (SGD)</a></li>
-                            <li><a href="#mgd">Mini-batch Gradient Descent</a></li>
-                            <li><a href="#momentum">Momentum</a></li>
-                            <li><a href="#adam">Adam (Adaptive Moment Estimation)</a></li>
-                            <li><a href="#rmsprop">RMSprop (Root Mean Square Propagation)</a></li>
+                            <ul>
+                                <li><a href="#Terminologies">Terminologies</a></li>
+                                <li><a href="#gd">1. Gradient Descent (GD)</a></li>
+                                <li><a href="#sgd">2. Stochastic Gradient Descent (SGD)</a></li>
+                                <li><a href="#mgd">3. Mini-batch Gradient Descent</a></li>
+                                <li><a href="#momentum">4. Momentum</a></li>
+                                <li><a href="#adam">5. Adam (Adaptive Moment Estimation)</a></li>
+                                <li><a href="#rmsprop">6. RMSprop (Root Mean Square Propagation)</a></li>
+                            </ul>
                             <li><a href="#reference">Reference</a></li>
                         </ol>
                     </div>
@@ -169,9 +173,9 @@
             natural language processing, and 
             reinforcement learning. By iteratively adjusting the parameters of a neural network, optimization algorithms seek to minimize a predefined objective function, often referred 
             to as the loss or cost function. 
-            This process involves finding the optimal set of parameters that result in the best possible model performance.
+            <p>This process involves finding the optimal set of parameters that result in the best possible model performance.</p>
             
-            <p>In this blog post, we will discuss the role and importance of optimization techniques in deep learning.</p>
+            <p>Below, I will discuss the role and importance of optimization techniques in deep learning.</p>
             
             <!------------------------->
             <h5 id="reasons">Optimization in deep learning is vital for several reasons:</h5>
@@ -235,12 +239,12 @@
             <p>Now let’s explore each optimizer.</p>
             <figure>
                 <img src="assets/img/machine-ln/optimization-trajectory.png" alt="" style="max-width: 100%; max-height: auto;">
-                <figcaption style="text-align: center;">Various optimization methods. (<strong>Image credit: </strong> @ <a href="https://github.com/arunp77/Machine-Learning/tree/main/Deep-learning" target="_blank">Arunp77</a>).</figcaption>
+                <figcaption style="text-align: center;">Various optimization methods. This is just for representation purpose. (<strong>Image credit: </strong> @ <a href="https://github.com/arunp77/Machine-Learning/tree/main/Deep-learning" target="_blank">Arunp77</a>).</figcaption>
             </figure>
 
             <!-------------------------------------->
             <div class="box" style="border: 1px solid black;">
-                <h4 id="gd">Gradient Descent (GD): </h4>
+                <h4 id="gd">1. Gradient Descent (GD): </h4>
                 <ol>
                     <li><strong>Objective: </strong>Gradient Descent is an iterative optimization algorithm used to minimize a given cost function \(J(\theta)\) by adjusting the parameters 
                         \(\theta\) iteratively.</li>
@@ -285,7 +289,7 @@
                 direction opposite to the gradient of the cost function, scaled by a learning rate.
             </div><br>
             <div class="box" style="background-color: rgb(214, 226, 230); border: 1px solid black;"> 
-                <h4 id="sgd">Stochastic Gradient Descent (SGD): </h4>
+                <h4 id="sgd">2. Stochastic Gradient Descent (SGD): </h4>
                 <ol>
                     <li><strong>Objective: </strong>SGD is an optimization algorithm commonly used in machine learning and deep learning for training models. It aims to minimize a given loss 
                         function by iteratively updating the model parameters. </li>
@@ -355,7 +359,7 @@
             </div><br>
 
             <div class="box" style="background-color: rgba(1, 243, 231, 0.226); border: 1px solid black;">
-                <h4 id="mgd">Mini-batch Gradient Descent: </h4> 
+                <h4 id="mgd">3. Mini-batch Gradient Descent: </h4> 
                 Mini-batch Gradient Descent (MBGD) is a variation of the traditional Gradient Descent algorithm that updates the model parameters using mini-batches of training data instead of the entire dataset at once. This approach combines the efficiency of Stochastic Gradient Descent (SGD) with the stability of Gradient Descent (GD). Here's a detailed explanation of MBGD along with the relevant formulas:
                 <ol>
                     <li><strong>Overview: </strong>Mini-batch Gradient Descent divides the training data into small batches of size \(n\). Instead of computing the gradient on the entire dataset (GD) on on a single data point (SGD), MBGD computes the gradient on a mini-batch of training examples.</li>
@@ -397,7 +401,7 @@
             </div><br>
 
             <div class="box" style="background-color: rgba(10, 214, 78, 0.226);">
-                <h4 id="momentum">Momentum: </h4> 
+                <h4 id="momentum">4. Momentum: </h4> 
                 Momentum is an optimization technique that helps accelerate gradient descent algorithms in the relevant direction and dampens oscillations. It accomplishes this by adding a fraction of the previous update vector to the current gradient. This helps to smooth out the steps taken during optimization, especially when the cost surface has high curvature or noisy gradients.
                 <p>Here's a detailed explanation of Momentum along with the formulas involved:</p>
                 <ol>
@@ -446,7 +450,7 @@
             </div><br>
 
             <div class="box" style="background-color: rgba(243, 207, 1, 0.226);">
-                <h4 id="adam">Adam (Adaptive Moment Estimation): </h4>
+                <h4 id="adam">5. Adam (Adaptive Moment Estimation): </h4>
                 Adam (Adaptive Moment Estimation) is an optimization algorithm commonly used in deep learning, known for its adaptive learning rate and momentum properties. It combines the advantages of two other popular optimization algorithms, RMSprop and Momentum, to efficiently navigate the parameter space during training. Let's delve into the details of Adam and explain its various components using formulas:
                 <p><strong>Algorithm Overview:</strong></p>
                 <ol>
@@ -529,7 +533,7 @@
             </div><br>
 
             <div class="box" style="background-color: rgba(243, 1, 13, 0.226);">
-                <h4 id="rmsprop">RMSprop (Root Mean Square Propagation): </h4> 
+                <h4 id="rmsprop">6. RMSprop (Root Mean Square Propagation): </h4> 
                 RMSprop (Root Mean Square Propagation) is an optimization algorithm commonly used in deep learning to adaptively adjust the learning rates for each parameter. It addresses some of the limitations of other optimization algorithms, particularly when dealing with sparse data and non-stationary objectives. Here's a detailed explanation of RMSprop along with formulas:
                 <p><strong>Overview: </strong>RMSprop is an extension of the gradient descent optimization algorithm that aims to improve convergence speed and stability, especially in the presence of sparse gradients or noisy data. It accomplishes this by adjusting the learning rates of each parameter individually based on the magnitude of recent gradients.</p>
                 <p><strong>Algorithm Steps: </strong></p>
