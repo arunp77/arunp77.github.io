@@ -166,8 +166,10 @@
 
             <section>
             <h3 id="introduction">Introduction</h3>
-            Optimization lies at the heart of deep learning, playing a crucial role in training neural networks to achieve high performance on various tasks such as image classification, natural language processing, and 
-            reinforcement learning. By iteratively adjusting the parameters of a neural network, optimization algorithms seek to minimize a predefined objective function, often referred to as the loss or cost function. 
+            Optimization lies at the heart of deep learning, playing a crucial role in training neural networks to achieve high performance on various tasks such as image classification, 
+            natural language processing, and 
+            reinforcement learning. By iteratively adjusting the parameters of a neural network, optimization algorithms seek to minimize a predefined objective function, often referred 
+            to as the loss or cost function. 
             This process involves finding the optimal set of parameters that result in the best possible model performance.
             
             <p>In this blog post, we will discuss the role and importance of optimization techniques in deep learning.</p>
@@ -175,10 +177,13 @@
             <!------------------------->
             <h5 id="reasons">Optimization in deep learning is vital for several reasons:</h5>
             <ul>
-                <li><strong>Model Convergence:</strong> Effective optimization ensures that the training process converges to a set of parameters where the model exhibits satisfactory performance on unseen data.</li>
+                <li><strong>Model Convergence:</strong> Effective optimization ensures that the training process converges to a set of parameters where the model exhibits satisfactory 
+                    performance on unseen data.</li>
                 <li><strong>Enhanced Performance:</strong> Well-optimized models tend to achieve higher accuracy, better generalization, and faster convergence during training.</li>
-                <li><strong>Scalability:</strong> Optimization algorithms need to scale efficiently to handle large datasets and complex neural network architectures commonly encountered in deep learning tasks.</li>
-                <li><strong>Robustness:</strong> Robust optimization methods help neural networks avoid overfitting and learn meaningful representations from data, leading to improved performance on diverse tasks. </li>
+                <li><strong>Scalability:</strong> Optimization algorithms need to scale efficiently to handle large datasets and complex neural network architectures commonly encountered 
+                    in deep learning tasks.</li>
+                <li><strong>Robustness:</strong> Robust optimization methods help neural networks avoid overfitting and learn meaningful representations from data, leading to improved 
+                    performance on diverse tasks. </li>
             </ul>
 
 
@@ -195,22 +200,31 @@
 
             <!--------------------------->
             <h3 id="optimization-dl">Optimization Methods in Deep Learning</h3>
-            <p>In deep learning, optimizers are crucial as algorithms that dynamically fine-tune a model’s parameters throughout the training process, aiming to minimize a predefined loss function. These specialized 
-            algorithms facilitate the learning process of neural networks by iteratively refining the weights and biases based on the feedback received from the data. Well-known optimizers in deep learning encompass 
-            Stochastic Gradient Descent (SGD), Adam, and RMSprop, each equipped with distinct update rules, learning rates, and momentum strategies, all geared towards the overarching goal of discovering and converging 
+            <p>In deep learning, optimizers are crucial as algorithms that dynamically fine-tune a model’s parameters throughout the training process, aiming to minimize a predefined loss 
+                function. These specialized 
+            algorithms facilitate the learning process of neural networks by iteratively refining the weights and biases based on the feedback received from the data. Well-known optimizers 
+            in deep learning encompass 
+            Stochastic Gradient Descent (SGD), Adam, and RMSprop, each equipped with distinct update rules, learning rates, and momentum strategies, all geared towards the overarching goal 
+            of discovering and converging 
             upon optimal model parameters, thereby enhancing overall performance.</p>
-            <p><strong>Optimizers: </strong>During the training of deep learning models, optimizers play a crucial role by adjusting parameters like weights and learning rates to minimize the loss function and enhance accuracy. 
-                As deep learning models typically contain millions of parameters, selecting the right optimizer is a challenging task. Understanding various optimization algorithms is essential for data scientists to effectively 
-                navigate the field. Different optimizers can be employed in machine learning models to alter weights and learning rates. However, the choice of the best optimizer depends on the specific application. While it may 
-                seem tempting for beginners to experiment with various optimizers and select the one yielding the best results, this approach becomes impractical when dealing with large datasets. Randomly selecting an optimizer 
-                can lead to significant time wastage, akin to gambling with valuable resources. Therefore, it's crucial to make informed decisions when choosing optimizers to avoid unnecessary delays and optimize training efficiency.
+            <p><strong>Optimizers: </strong>During the training of deep learning models, optimizers play a crucial role by adjusting parameters like weights and learning rates to minimize 
+                the loss function and enhance accuracy. 
+                As deep learning models typically contain millions of parameters, selecting the right optimizer is a challenging task. Understanding various optimization algorithms 
+                is essential for data scientists to effectively 
+                navigate the field. Different optimizers can be employed in machine learning models to alter weights and learning rates. However, the choice of the best optimizer depends on 
+                the specific application. While it may 
+                seem tempting for beginners to experiment with various optimizers and select the one yielding the best results, this approach becomes impractical when dealing with large datasets. 
+                Randomly selecting an optimizer 
+                can lead to significant time wastage, akin to gambling with valuable resources. Therefore, it's crucial to make informed decisions when choosing optimizers to avoid unnecessary 
+                delays and optimize training efficiency.
             </p>
 
             <!----------------->
             <h5 id="Terminologies">Terminologies</h5>
             <ul>
                 <li><strong>Model:</strong> A mathematical function that transforms inputs into outputs, incorporating a set of adjustable parameters and an accompanying algorithm for optimization.</li>
-                <li><strong>Model Parameter:</strong> A tunable element within a neural network, utilized to refine the accuracy and efficiency of the model. Common instances include weights and biases in a feedforward neural network, which are adjusted during training to optimize performance.</li>
+                <li><strong>Model Parameter:</strong> A tunable element within a neural network, utilized to refine the accuracy and efficiency of the model. Common instances include weights and 
+                    biases in a feedforward neural network, which are adjusted during training to optimize performance.</li>
                 <li><strong>Epoch:</strong> The number of times the algorithm runs on the whole training dataset.</li>
                 <li><strong>Sample:</strong> A single row of a dataset</li>
                 <li><strong>Batch: </strong> It denotes the number of samples to be taken to for updating the model parameters.</li>
@@ -220,52 +234,246 @@
             </ul>
                 
             <p>Now let’s explore each optimizer.</p>
-
-
-            <!-------------------------->
-            <h3 id="optimizers"></h3> 
-            <ol>
-                <li><strong>Gradient Descent (GD): </strong>
-                    <ul>
-                        <li><strong></strong></li>
-                    </ul>
-                </li>
-                <li><strong>Stochastic Gradient Descent (SGD): </strong>
-                    <ul>
-                        <li><strong></strong></li>
-                    </ul>
-                </li>
-                <li><strong>Mini-batch Gradient Descent: </strong>
-                    <ul>
-                        <li><strong></strong></li>
-                    </ul>
-                </li>
-                <li><strong>Momentum: </strong>
-                    <ul>
-                        <li><strong></strong></li>
-                    </ul>
-                </li>
-                <li><strong>Adam (Adaptive Moment Estimation): </strong>
-                    <ul>
-                        <li><strong></strong></li>
-                    </ul>
-                </li>
-                <li><strong>RMSprop (Root Mean Square Propagation): </strong>
-                    <ul>
-                        <li><strong></strong></li>
-                    </ul>
-                </li>
-            </ol>
-
-
-
-
-
-
             <figure>
-                <img src="assets/img/machine-ln/deep-convoluition.png" alt="" style="max-width: 70%; max-height: auto;">
-                <figcaption style="text-align: center;">Schematic diagram of a basic convolutional neural network (CNN) architecture (<strong>Image Credit: </strong> © <a href="https://www.mdpi.com/2076-3417/9/21/4500">Van Hiep Phung and Eun Joo Rhee</a>) </figcaption>
+                <img src="assets/img/machine-ln/optimization-trajectory.png" alt="" style="max-width: 100%; max-height: auto;">
+                <figcaption style="text-align: center;">Various optimization methods. (<strong>Image credit: </strong> @ <a href="https://github.com/arunp77/Machine-Learning/tree/main/Deep-learning" target="_blank">Arunp77</a>).</figcaption>
             </figure>
+
+            <!-------------------------------------->
+            <div class="grey-box" style="border: 1px solid black;">
+                <h4 id="gd">Gradient Descent (GD): </h4>
+                <ol>
+                    <li><strong>Objective: </strong>Gradient Descent is an iterative optimization algorithm used to minimize a given cost function \(J(\theta)\) by adjusting the parameters 
+                        \(\theta\) iteratively.</li>
+                    <li><strong>Components: </strong>
+                        <ul class="lower-alpha">
+                            <li><strong>Cost Function (Loss Function): </strong>J(\theta_t) represents the cost function or loss function that measures how well the model performs on the 
+                                training data with respect to its parameters \(\theta\).</li>
+                            <li><strong>Gradient: </strong>The gradient of the cost function \(J(\theta)\) with respect to the parameters \(\theta\), denoted by \(\nabla J(\theta)\), 
+                                represents the direction of the steepest ascent. The negative gradient \(-\nabla J(\theta)\) points in the direction of the steepest descent, i.e., 
+                                the direction in which the function decreases most rapidly.</li>
+                            <li><strong>Learning rate (\(\eta\)): </strong>\(\eta\)  is a hyperparameter known as the learning rate. It determines the size of the steps taken in the 
+                                parameter space during each iteration of the optimization process.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Steps: </strong>
+                        <ul class="lower-alpha">
+                            <li><strong>Initialization: </strong>Initialize the parameters \(\theta\) randomly or with certain pre-defined values.</li>
+                            <li><strong>Compute Gradient: </strong>Calculate the gradient of the cost function \(J(\theta)\) with respect to the parameters \(\theta\) at the current parameter values</li>
+                            <li><strong>Update Parameters: </strong>Update the parameters \(\theta\) in the opposite direction of the gradient by taking a step proportional to the 
+                                negative gradient and the learning rate. This step is expressed by the formula:
+                            $$\theta_{t+1} = \theta_t - \eta \nabla J(\theta_t)$$
+                            where
+                            <ul>
+                                <li>\(\theta_{t+1}\) is the updated value of parameters at iteration \(t+1\).</li>
+                                <li>\(\theta_t\) is the current value of parameters at iteration \(t\).</li>
+                                <li>\(\nabla J(\theta_t)\) is the </li>
+                                <li>\(\eta\) is the learning rate</li>
+                            </ul>
+                            </li>
+                            <li><strong>Repeat</strong></li>
+                        </ul>
+                    </li>
+                    <li><strong>Convergence: </strong>Convergence occurs when the algorithm reaches a point where further updates to the parameters do not significantly reduce the value of the 
+                        
+                        cost function.</li>
+                    <li><strong>Summary: </strong>Gradient Descent iteratively updates the parameters \(\theta\) in the direction of the steepest descent of the cost function, aiming to minimize 
+                        the cost function and thereby optimize the model.</li>
+                    <li><strong>Variants: </strong>Various variants of Gradient Descent, such as Stochastic Gradient Descent (SGD), Mini-batch Gradient Descent, Momentum, Adam, and RMSprop, 
+                        introduce modifications to the basic algorithm to improve convergence speed, stability, and efficiency.</li>
+                </ol>
+                In summary, Gradient Descent is a fundamental optimization algorithm in machine learning used to minimize a cost function by iteratively adjusting the parameters in the 
+                direction opposite to the gradient of the cost function, scaled by a learning rate.
+            </div><br>
+            <div class="box" style="background-color: rgb(214, 226, 230); border: 1px solid black;"> 
+                <h4 id="sgd">Stochastic Gradient Descent (SGD): </h4>
+                <ol>
+                    <li><strong>Objective: </strong>SGD is an optimization algorithm commonly used in machine learning and deep learning for training models. It aims to minimize a given loss 
+                        function by iteratively updating the model parameters. </li>
+                    <li><strong>Basic Idea:: </strong>Instead of computing the gradient of the loss function over the entire dataset (as in batch gradient descent), SGD computes the gradient 
+                        over a single random training example at each iteration.</li>
+                    <li><strong>Algorithm: </strong>
+                        <ul>
+                            <li><strong>Initialization: </strong>Start with initial parameter values \(\theta_0\).</li>
+                            <li><strong>Loop: </strong>Repeat until convergence or for a fixed number of iterations: 
+                                <ul class="upper-alpha">
+                                    <li>Randomly shuffle the training dataset.</li>
+                                    <li>For each training example \(i\) in the dataset:
+                                        <ul class="roman">
+                                            <li>Compute the gradient of the loss function with respect to the parameters using the current example: \(\nabla J(\theta_{t, i})\).</li>
+                                            <li>Update the parameters using the gradient descent update rule:</li>
+                                            $$\theta_{t+1} = \theta_t - \eta \nabla J(\theta_{t,i})$$
+                                            where:
+                                            <ul>
+                                                <li>\(\theta_t\) is the parameter vector at iteration \(t\).</li>
+                                                <li>\(\eta\) is the learning rate, determining the step size.</li>
+                                            </ul>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Key Aspects: </strong>
+                        <ul>
+                            <li><strong>Randomness: </strong>SGD introduces randomness by using a random training example at each iteration. This randomness helps escape local minima and can 
+                                lead to faster convergence, especially in large datasets.</li>
+                            <li><strong>Efficiency: </strong>Since only one training example is processed per iteration, SGD is computationally efficient and can handle large datasets that may 
+                                not fit into memory.</li>
+                            <li><strong>Noisy Updates: </strong>Due to the randomness, SGD updates can be noisy, leading to oscillations around the optimal solution. However, this noise can 
+                                sometimes help the optimization process by escaping sharp local minima.</li>
+                            <li><strong>Learning Rate Tuning: </strong>The learning rate \(\eta\) plays a crucial role in SGD. Choosing an appropriate learning rate is essential for convergence. 
+                                It may need to be tuned during training using techniques like learning rate schedules or adaptive learning rate methods.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Formula: </strong> The update rule for SGD using a single training example \(i\) can be represented as:
+                        $$\theta_{t+1} = \theta_{t} - \eta \nabla J(\theta_{t,i})$$
+                        where:
+                        <ul>
+                            <li>\(\theta_t\) is the parameter vector at iteration \(t\).</li>
+                            <li>\(\eta\) is the learning rate.</li>
+                            <li>\(\nabla J(\theta_{t,i})\) is the gradient of the loss function with respect to the parameters computed using the \(i-\)th training example/</li>
+                        </ul>
+                    </li>
+                    <li><strong>Advantages: </strong>
+                        <ul>
+                            <li><strong>Efficiency: </strong>SGD is computationally efficient, making it suitable for large-scale datasets.</li>
+                            <li><strong>Generalization: </strong>It often leads to better generalization since it avoids overfitting by updating parameters frequently with different examples.</li>
+                            <li><strong>Parallelism: </strong>SGD is inherently parallelizable, allowing for efficient implementation on parallel computing architectures.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Disadvantages: </strong>
+                        <ul>
+                            <li><strong>Noisy Updates: </strong>The randomness in SGD updates can lead to noisy convergence, making it challenging to find the exact optimal solution.</li>
+                            <li><strong>Learning Rate Tuning: </strong>Proper tuning of the learning rate is crucial for stable convergence. An inappropriate learning rate can lead to slow 
+                                convergence or divergence.</li>
+                            <li><strong>Sensitive to Scaling: </strong>SGD can be sensitive to feature scaling, requiring careful preprocessing of the input data.</li>
+                        </ul>
+                    </li>
+                </ol>
+                In summary, Stochastic Gradient Descent (SGD) is a popular optimization algorithm in machine learning and deep learning, known for its efficiency and ability to handle large datasets. 
+                Despite its noisy updates and sensitivity to learning rate, SGD remains a fundamental and widely used optimization method in practice.
+            </div><br>
+
+            <div class="box" style="background-color: rgba(1, 243, 231, 0.226); border: 1px solid black;">
+                <h4 id="mgd">Mini-batch Gradient Descent: </h4> Mini-batch Gradient Descent (MBGD) is a variation of the traditional Gradient Descent algorithm that updates the model parameters using mini-batches of training data instead of the entire dataset at once. This approach combines the efficiency of Stochastic Gradient Descent (SGD) with the stability of Gradient Descent (GD). Here's a detailed explanation of MBGD along with the relevant formulas:
+                <ol>
+                    <li><strong>Overview: </strong>Mini-batch Gradient Descent divides the training data into small batches of size \(n\). Instead of computing the gradient on the entire dataset (GD) on on a single data point (SGD), MBGD computes the gradient on a mini-batch of training examples.</li>
+                    <li><strong>Formulation: </strong>Let's consider a dataset with \(m\) training examples. The cost function \(J(\theta)\) measures the difference between the model predictions and the actual targets. The update rule for Mini-batch Gradient Descent at iteration \(t\) is given by:</li>
+                    $$\theta_{t+1} = \theta_t - \eta \nabla J(\theta_{t,i:i+n})$$
+                    where:
+                        <ul>
+                            <li>\(\theta_t\) is the parameter vector at iteration \(t\).</li>
+                            <li>\(\eta\) is the learning rate.</li>
+                            <li>\(\nabla J(\theta_{t,i:i+n})\) is the gradient of the cost function \(j(\theta)\) computed on the mini-batch \(i:i+n\).</li>
+                        </ul>
+                    <li><strong>Algorithm Steps: </strong>
+                        <ul class="lower-alpha">
+                            <li><strong>Initialization: </strong>Initialize the model parameters \(\theta\)  and hyperparameters like the learning rate \(\eta\).</li>
+                            <li><strong>Mini-batch Formation: </strong>Randomly shuffle the training data and divide it into mini-batches of size \(n\). If the dataset size is not divisible by \(n\), the last mini-batch may have fewer examples.</li>
+                            <li><strong>Gradient Computation: </strong>For each mini-batch \(i : i+n\), compute the gradient of the cost function \(J(\theta)\) with respect to the parameters \(\theta\):</li>
+                            $$\nabla J(\theta_{t,i:i+n}) = \frac{1}{n} \sum_{j=i}^{i+n} \nabla J(\theta_{t},x_j, y_j)$$
+                            where (\(x_j,y_j\)) are the input features and corresponding target labels in the min-batch.
+                            <li><strong>Parameter Update: </strong>Update the parameter \(\theta\) using the computed gradient:</li>
+                            $$\theta_{t+1} = \theta_t - \eta \nabla J(\theta_{t,i:i+n})$$
+                            <li><strong>Repeat: </strong>Repeat steps <strong>(c)</strong> and <strong>(d)</strong> for a fixed number of iterations or until convergence criteria are met.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Benefits of Mini-batch Gradient Descent: </strong>
+                        <ul>
+                            <li><strong>Efficiency: </strong>MBGD utilizes vectorized operations, making it computationally efficient compared to SGD.</li>
+                            <li><strong>Stability: </strong> It offers more stable convergence than SGD as it considers a mini-batch of examples.</li>
+                            <li><strong>Memory Usage: </strong> It allows for efficient memory usage by processing only a subset of data at a time.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Hyperparameter Tuning: </strong>
+                        <ul>
+                            <li><strong>Batch Size \(n\): </strong>The choice of mini-batch size affects the convergence speed and memory requirements.</li>
+                            <li><strong>Learning Rate \(\eta\): </strong>The learning rate determines the step size during parameter updates and impacts convergence.</li>
+                        </ul>
+                    </li>
+                </ol>
+                In summary, Mini-batch Gradient Descent is a popular optimization algorithm in deep learning that strikes a balance between efficiency and stability by updating model parameters using mini-batches of training data.
+            </div><br>
+
+            <div class="box" style="background-color: rgba(10, 214, 78, 0.226);">
+                <h4 id="momentum">Momentum: </h4> 
+                Momentum is an optimization technique that helps accelerate gradient descent algorithms in the relevant direction and dampens oscillations. It accomplishes this by adding a fraction of the previous update vector to the current gradient. This helps to smooth out the steps taken during optimization, especially when the cost surface has high curvature or noisy gradients.
+                <p>Here's a detailed explanation of Momentum along with the formulas involved:</p>
+                <ol>
+                    <li><strong>Update Formulas: </strong>
+                        <ul>
+                            <li>Momentum introduces a variable \(v\) which accumulates the gradients of the past steps.</li>
+                            <li>The update for \(v\) at each iteration \(t\) is given by:</li>
+                            $$v_{t+1}= \beta v_t + (1-\beta) \nabla J(\theta_t)$$
+                            where:
+                                <ul>
+                                    <li>\(v_t\) is the momentum at time step \(t\),</li>
+                                    <li>\(\nabla J(\theta_t)\) is the gradient of the cost function \(J\) with respect to the parameters \(\theta\) at time step \(t\),</li>
+                                    <li>\(\beta\) is the momentum parameter, typically set to a value close to 1, e.g., 0.9.</li>
+                                </ul>
+                            <li>Then, the parameter \(\theta\) are updated using the momentum term:
+                                $$\theta_{t+1} = \theta_t - \eta v_{t+1}$$
+                                where \(\eta\) is the learning rate.
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Explanation of Formulas: </strong>
+                        <ul>
+                            <li>The first term in the update equation for \(v\) is the momentum term (\(\beta v_t\)), which is the previous momentum scaled by the momentum parameter \(\beta\).</li>
+                            <li>The second term in the update equation is the gradient of the cost function scaled by (1-\(\beta\)), which gives the contribution of the current gradient.</li>
+                            <li>The momentum term effectively remembers the direction of previous gradients and reinforces the current direction if gradients keep pointing in the same direction, thus helping to speed up convergence.</li>
+                            <li>If the gradients keep changing direction (e.g., during oscillations), the momentum term helps to smooth out these oscillations by accumulating gradients in a consistent direction.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Advantages of Momentum: </strong>
+                        <ul>
+                            <li>Helps accelerate convergence, especially in the presence of high curvature or noisy gradients.</li>
+                            <li>Dampens oscillations and overshooting in the optimization process, leading to more stable and efficient training.</li>
+                            <li>Helps to escape local minima or saddle points by accumulating momentum to push through flat regions.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Choosing the Momentum Parameter \(\beta\): </strong>
+                        <ul>
+                            <li>The momentum parameter \(\beta\) typically ranges from 0.8 to 0.999.</li>
+                            <li>A higher value of \(\beta\) takes the algorithm more "momentum-heavy," which can help in smoothing our oscillations but might overshoot minima.</li>
+                            <li>A lower value of \(\beta\) makes the algorithm more responsive to recent gradients but might slow down convergence.</li>
+                        </ul>
+                    </li>
+                </ol>
+                In summary, Momentum is a powerful optimization technique in deep learning that improves convergence speed and stability by incorporating information from previous gradients. It is widely used in conjunction with gradient descent-based optimization algorithms like SGD and Adam.
+            </div><br>
+
+            <div class="box" style="background-color: rgba(243, 207, 1, 0.226);">
+                <h4>Adam (Adaptive Moment Estimation): </h4>
+                <ol>
+                    <li><strong></strong></li>
+                    <li><strong></strong></li>
+                    <li><strong></strong></li>
+                    <li><strong></strong></li>
+                    <li><strong></strong></li>
+                </ol>
+            </div><br>
+
+            <div class="box" style="background-color: rgba(243, 1, 13, 0.226);">
+                <strong>RMSprop (Root Mean Square Propagation): </strong>
+                <ol>
+                    <li><strong></strong></li>
+                    <li><strong></strong></li>
+                    <li><strong></strong></li>
+                    <li><strong></strong></li>
+                    <li><strong></strong></li>
+                </ol>
+            </div>
+
+
+
+
+
+
+
+
+            
             
 
 
