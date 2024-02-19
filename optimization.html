@@ -529,7 +529,21 @@
             </div><br>
 
             <div class="box" style="background-color: rgba(243, 1, 13, 0.226);">
-                <strong>RMSprop (Root Mean Square Propagation): </strong>
+                <strong>RMSprop (Root Mean Square Propagation): </strong> RMSprop (Root Mean Square Propagation) is an optimization algorithm commonly used in deep learning to adaptively adjust the learning rates for each parameter. It addresses some of the limitations of other optimization algorithms, particularly when dealing with sparse data and non-stationary objectives. Here's a detailed explanation of RMSprop along with formulas:
+                <p><strong>Overview: </strong>RMSprop is an extension of the gradient descent optimization algorithm that aims to improve convergence speed and stability, especially in the presence of sparse gradients or noisy data. It accomplishes this by adjusting the learning rates of each parameter individually based on the magnitude of recent gradients.</p>
+                <p><strong>Algorithm Steps: </strong></p>
+                <ol>
+                    <li><strong>Initialize Parameters: </strong>Initialize model parameters \(\theta\), typically randomly or using pre-trained values. Initialize a decay rate \(\beta\), usually close to 1, and a small constant \(\epsilon\) for numerical stability.</li>
+                    <li><strong>Initialize Variables: </strong>Initialize an accumulation variable \(v\) to store the exponentially weighted moving average (EWMA) of squared gradients.</li>
+                    <li><strong>Compute Gradients: </strong>Compute the gradients of the loss function with respect to the parameters \(\nabla J(\theta)\) using backpropagation.</li>
+                    <li><strong>Update Accumulation: </strong>Update the accumulation variable \(v\) by taking an EWMA of the squared gradients:</li>
+                    $$v = \beta v+(1-\beta)(\nabla J(\theta))^2$$
+                    where \(\beta\) is the decay rate \((\nabla J(\theta))^2\) represents element-wise squaring of the gradients.
+                    <li><strong>Update Parameters: </strong>Update the parameters \(\theta\) using the RMSprop update rule:</li> 
+                    $$\theta = \theta - \eta \frac{\nabla J(\theta)}{\sqrt{v}+\epsilon}$$
+                    where \(\eta\) is the learning rate and \(\epsilon\) is a small constant added for numerical stability to avoid division by zero.
+                </ol>
+                <p><strong>Detailed Explanation: </strong></p>
                 <ol>
                     <li><strong></strong></li>
                     <li><strong></strong></li>
@@ -537,6 +551,16 @@
                     <li><strong></strong></li>
                     <li><strong></strong></li>
                 </ol>
+                <p><strong>Key Advantages: </strong></p>
+                <ol>
+                    <li><strong></strong></li>
+                    <li><strong></strong></li>
+                    <li><strong></strong></li>
+                    <li><strong></strong></li>
+                    <li><strong></strong></li>
+                </ol>
+                <p><strong>Summary: </strong></p>
+                RMSprop is a powerful optimization algorithm widely used in training deep neural networks. By adaptively adjusting learning rates based on the magnitude of gradients, it addresses some of the challenges faced by traditional gradient descent methods, leading to faster convergence and improved performance.
             </div>
 
 
