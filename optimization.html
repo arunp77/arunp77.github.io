@@ -247,9 +247,14 @@
                 <h4 id="gd">1. Gradient Descent (GD): </h4> 
                 <div class="grey-box"><i class="fa fa-info-circle"></i> &emsp; For more details on this method in the context of linear regression can be found at <a href="Linear-reg.html">link</a>.</div><br>
                 <figure>
-                    <img src="assets/img/machine-ln/deep-gd-method.png" alt="" style="max-width: 60%; max-height: auto;">
-                    <figcaption style="text-align: center;">In Gradient Descent, model parameters start randomly and are updated iteratively to minimize the cost function. The step size decreases as the cost approaches its minimum. (<strong>Image credit: </strong> @ <a href="index.html" target="_blank">Arunp77</a>).</figcaption>
+                    <img src="assets/img/machine-ln/deep-gd-method.png" alt="" style="max-width: 80%; max-height: auto;">
+                    <figcaption style="text-align: center;">(<strong>Image credit: </strong> @ <a href="index.html" target="_blank">Arunp77</a>).</figcaption>
                 </figure>
+                <div class="box"><strong>Image description: </strong>In Gradient Descent, model parameters start randomly and are updated iteratively to minimize the cost function. The step size decreases as the cost approaches 
+                    its minimum (first image). A high learning rate can cause the algorithm to overshoot the minimum and end up on the opposite side of a valley, potentially even higher than the initial position. This can lead to divergence, with the algorithm producing increasingly larger values and failing to find an optimal solution.
+                    In non-ideal scenarios, the cost function may have irregular shapes like holes, ridges, or plateaus, making convergence to the minimum challenging. In the case of the second image with local and global minimum structures, starting the algorithm on the left may lead to convergence to a local minimum, which is inferior 
+                    to the global minimum. Conversely, starting on the right at the plateau could prolong the convergence process significantly. Moreover, stopping too early may prevent reaching the global minimum altogether.
+                </div>
     
                 <ol>
                     <li><strong>Objective: </strong>Gradient Descent is an iterative optimization algorithm used to minimize a given cost function \(J(\theta)\) by adjusting the parameters 
