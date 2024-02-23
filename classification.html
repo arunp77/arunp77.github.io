@@ -277,8 +277,35 @@
                 <li><strong>One-vs-One (OvO): </strong> In this approach, a binary classifier is trained for each pair of classes. This results in \(\frac{N\times (N-1)}{2}\) classifiers for \(N\) classes.</li>
               </ul>
           </li>
-          <li><strong>Multi-Label Classification:</strong> Assigning multiple labels to each example, like tagging a post with multiple topics.</li>
-          <li><strong>Imbalanced Classification:</strong> Dealing with datasets where one category is much more common than the others.</li>
+          <li><strong>Multi-Label Classification:</strong> Multi-label classification involves predicting two or more class labels for each example, unlike multi-class or binary classification, where only one label is predicted.
+            For example: tagging a post with multiple topics, or  in photo classification, a model might predict the presence of multiple objects like "person," "apple," and "bicycle" in a single image, as opposed to just one label.
+            <p>Multi-label classification problems are often addressed using models that predict multiple outcomes, treating each prediction as a binary classification. This means each label is predicted independently, similar to a 
+              Bernoulli probability distribution.</p>
+            Specialized versions of conventional classification algorithms, such as 
+            <ul>
+              <li>Multi-label Gradient Boosting,</li> 
+              <li>Multi-label Random Forests, and</li> 
+              <li>Multi-label Decision Trees</li>
+            </ul>
+            are used for multi-label classification tasks. 
+          </li>
+          <div class="grey-box">
+            <p><strong>Difference between the Multi-class and Multi-Label classification models:</strong></p>
+            <p>In multi-class classification, each example is assigned to one and only one class label from a set of two or more mutually exclusive classes. The goal is to predict the single most appropriate class label for each instance. 
+              Examples include predicting the species of a flower from among several categories (e.g., iris, daisy, rose) or classifying emails into different folders (e.g., work, personal, promotions). Only one class label is assigned to 
+              each instance.</p>
+            <p>In multi-label classification, each example can be assigned to multiple class labels simultaneously. The model predicts the presence or absence of each label independently for every instance. This approach is suitable for 
+              problems where instances may belong to multiple classes at the same time. For example, in image classification, a single image may contain multiple objects (e.g., person, dog, car), and the model needs to identify all of 
+              them. Multiple class labels can be assigned to each instance.</p>
+          </div>
+          <li><strong>Imbalanced Classification:</strong> Dealing with datasets where one category is much more common than the others. 
+            Imbalanced classification refers to a scenario in machine learning where the distribution of class labels in the dataset is highly skewed, with one class significantly outnumbering the others. This can pose challenges for 
+            predictive modeling, as the model may become biased towards the majority class and perform poorly on the minority class(es).
+            Key characteristics of imbalanced classification include:
+            <ul>
+
+            </ul>
+          </li>
         </ol>
 
 
