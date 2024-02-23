@@ -167,12 +167,71 @@
 
       <section id="introdction">
         <h2>Introduction</h2>
-        Classification is a supervised machine learning task. Classification problems are an important category of problems 
+        Classification is a supervised machine learning task. Classification is defined as the process of recognition, understanding, and grouping of objects and ideas into categories. With the help of these pre-categories training datasets, classification in machine learning programs 
+        leverage a wide range of algorithms to classify future datasets into respective and relevant categories. Classification problems are an important category of problems 
         in analytics in which the outcome variable or response variable ('\(y\)') takes discrete values. Primary objective of a classification model is to predict 
         the probability of an observation belonging to a class, known as <strong>class probability</strong>.
         
+        <p>
+        </p>
+
         <p><strong>Example: </strong>For example, a spam filter can be used to classify emails as spam or not spam. A credit card fraud detection system can be used to classify transactions as legitimate or fraudulent.</p>
         
+        <!--------------------------->
+        <h3 id="learners">Learners in Classification Problems</h3>
+        There are two types of learners:
+        <ul>
+          <li><strong>Lazy Learners: </strong>In lazy learning, the algorithm initially stores the training dataset and then awaits the arrival of the test dataset. Classification is conducted using the most relevant data from the training dataset. While this approach reduces training time, it requires more time for predictions. Examples of lazy learning algorithms include case-based reasoning and the k-Nearest Neighbors (KNN) algorithm.</li>
+          <li><strong>Eager Learners: </strong>Eager learners construct a classification model using the training dataset before obtaining a test dataset. They invest more time in studying the data and less time in making predictions. Examples of eager learning algorithms include Artificial Neural Networks (ANN), naive Bayes, and Decision Trees.</li>
+        </ul>
+
+        <table>
+          <tr>
+              <th><strong>Differences</strong></th>
+              <th><strong>Eager learners</strong></th>
+              <th><strong>Lazy learners</strong></th>
+          </tr>
+          <tr>
+            <td>Training Approach:</td>
+            <td>Build the classification model using the entire training dataset upfront.</td>
+            <td>Delay building the model until a test instance needs to be classified, using only local or on-demand learning.</td>
+          </tr>
+          <tr>
+            <td>Time Allocation:</td>
+            <td>Spend more time upfront during the training phase, analyzing and processing the entire dataset.</td>
+            <td>Spend less time on initial training, as they postpone processing until specific instances require classification.</td>
+          </tr>
+          <tr>
+            <td>Prediction Time:</td>
+            <td>Typically faster at prediction time since the model is already built and ready to use.</td>
+            <td>Can be slower at prediction time because they need to perform computations or comparisons on-demand.</td>
+          </tr>
+          <tr>
+            <td>Resource Consumption:</td>
+            <td>Require more memory and computational resources upfront due to processing the entire dataset during training.</td>
+            <td>May consume fewer resources initially but may require more resources at prediction time for local processing.</td>
+          </tr>
+          <tr>
+            <td>Examples:</td>
+            <td>Examples include algorithms like Artificial Neural Networks (ANN), naive Bayes, and Decision Trees.</td>
+            <td>Examples include case-based reasoning and the k-nearest neighbors (KNN) algorithm.</td>
+          </tr>
+        </table>
+
+
+        <h3 id="classification">Classification Predictive Modeling</h3>
+        In machine learning, classification problems involve predicting a category for a given input. These problems are everywhere:
+        <ul>
+          <li>Think of sorting emails as either spam or not spam.</li>
+          <li>Imagine recognizing handwritten characters, like letters or digits.</li>
+          <li>Consider deciding if a user's behavior indicates they might stop using a service (churn).</li>
+        </ul>
+        
+
+
+
+      
+
         <!----------------->
         <h3 id="Common-algorithms">Common classification algorithms</h3>
         Classification problems may have binary or multiple outcomes or classes. Binary outcomes are called 
