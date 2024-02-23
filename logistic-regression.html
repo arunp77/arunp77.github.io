@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Classification models</title>
+  <title>Logistic Regression</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -93,7 +93,7 @@
           <div class="container">
     
             <div class="d-flex justify-content-between align-items-center">
-              <h2></h2>
+              <h2>Machine Learning</h2>
               <ol>
                 <li><a href="portfolio-details-1.html" class="clickable-box">Content section</a></li>
                 <li><a href="index.html#portfolio" class="clickable-box">Portfolio section</a></li>
@@ -133,7 +133,7 @@
     <section id="portfolio-details" class="portfolio-details">
       <div class="container">
         <div class="row gy-4">
-          <h1>Classification in Machine Learning: An Introduction</h1>
+          <h1>Logistic Regression: Classification methods</h1>
           <div class="col-lg-8">
             <div class="portfolio-details-slider swiper">
               <div class="swiper-wrapper align-items-center">
@@ -153,6 +153,12 @@
             <h3>Content</h3>
             <ol>
               <li><a href="#introduction">Introduction</a></li>
+              <ul>
+                <li><a href="#importance">Importance of Logistic Regression</a></li>
+                <li><a href="#need-of-LR">Need of Logistic Regression</a></li>
+                <li><a href="#importance"></a></li>
+                <li><a href="#importance"></a></li>
+              </ul>
               <li><a href="#Relationship-of-regression-lines">Relationship of regression lines</a></li>
               <li><a href="#Types-of-Linear-Regression">Types of Linear Regression</a></li>
               <li><a href="#Mathematical-1">Mathematical Explanation</a></li>
@@ -165,164 +171,36 @@
         </div>
       </div>
 
-      <section id="introdction">
-        <h2>Introduction</h2>
-        Classification is a supervised machine learning task. Classification is defined as the process of recognition, understanding, and grouping of objects and ideas into categories. With the help of these pre-categories training datasets, classification in machine learning programs 
-        leverage a wide range of algorithms to classify future datasets into respective and relevant categories. Classification problems are an important category of problems 
-        in analytics in which the outcome variable or response variable ('\(y\)') takes discrete values. Primary objective of a classification model is to predict 
-        the probability of an observation belonging to a class, known as <strong>class probability</strong>.
+      <section>
+        <h2 id="introdction">Introduction</h2>
+        In the realm of machine learning, classification problems involve the task of categorizing input data into distinct classes or categories based on certain features or attributes. This fundamental problem finds widespread applications across various domains, ranging from medical diagnosis and sentiment analysis to image recognition and spam detection.
+        <p>Among the plethora of algorithms available for classification tasks, logistic regression stands out as a versatile and widely-used method. Despite its name, logistic regression is not used for regression problems but rather for binary classification, where the goal is to predict the probability of an observation belonging to a particular class.</p>
         
-        <p>
-        </p>
+        <!-------------------------->
+        <h4 id="importance">Importance of Logistic Regression</h4>
+        <p>Logistic regression holds significant importance in the field of machine learning for several reasons. Firstly, it provides a simple yet powerful framework for modeling the relationship between input features and the likelihood of belonging to a particular class. This makes it particularly suitable for scenarios where interpretability and explanatory power are crucial.</p>
+        <p>Secondly, logistic regression offers robustness and efficiency, making it well-suited for both small and large-scale classification tasks. Its computational simplicity and ability to handle high-dimensional data make it a popular choice for real-world applications.</p>
 
-        <p><strong>Example: </strong>For example, a spam filter can be used to classify emails as spam or not spam. A credit card fraud detection system can be used to classify transactions as legitimate or fraudulent.</p>
-        
-        <!--------------------------->
-        <h3 id="learners">Learners in Classification Problems</h3>
-        There are two types of learners:
+        <!-------------------->
+        <h4 id="need-of-LR">Need of Logistic Regression</h4>
+        <p>Linear regression and logistic regression are both widely used techniques in machine learning, but they serve different purposes and are suited for different types of problems. </p>
         <ul>
-          <li><strong>Lazy Learners: </strong>In lazy learning, the algorithm initially stores the training dataset and then awaits the arrival of the test dataset. Classification is conducted using the most relevant data from the training dataset. While this approach reduces training time, it requires more time for predictions. Examples of lazy learning algorithms include case-based reasoning and the k-Nearest Neighbors (KNN) algorithm.</li>
-          <li><strong>Eager Learners: </strong>Eager learners construct a classification model using the training dataset before obtaining a test dataset. They invest more time in studying the data and less time in making predictions. Examples of eager learning algorithms include Artificial Neural Networks (ANN), naive Bayes, and Decision Trees.</li>
+            <li><strong>Linear Regression:</strong> Linear regression is used for predicting continuous outcomes. It models the relationship between a dependent variable and one or more independent variables by fitting a linear equation to the observed data points. The output of linear regression is a continuous value, making it suitable for regression tasks where the target variable is numeric.</li>
+            <li><strong>Logistic Regression:</strong> Logistic regression, on the other hand, is specifically designed for binary classification tasks, where the outcome variable is categorical and has two possible classes (e.g., yes/no, spam/not spam). Unlike linear regression, logistic regression models the probability that a given input belongs to a particular class. It uses the logistic function (also known as the sigmoid function) to map input features to a probability value between 0 and 1, making it suitable for classification problems.</li>
         </ul>
 
-        <table>
-          <tr>
-              <th><strong>Differences</strong></th>
-              <th><strong>Eager learners</strong></th>
-              <th><strong>Lazy learners</strong></th>
-          </tr>
-          <tr>
-            <td>Training Approach:</td>
-            <td>Build the classification model using the entire training dataset upfront.</td>
-            <td>Delay building the model until a test instance needs to be classified, using only local or on-demand learning.</td>
-          </tr>
-          <tr>
-            <td>Time Allocation:</td>
-            <td>Spend more time upfront during the training phase, analyzing and processing the entire dataset.</td>
-            <td>Spend less time on initial training, as they postpone processing until specific instances require classification.</td>
-          </tr>
-          <tr>
-            <td>Prediction Time:</td>
-            <td>Typically faster at prediction time since the model is already built and ready to use.</td>
-            <td>Can be slower at prediction time because they need to perform computations or comparisons on-demand.</td>
-          </tr>
-          <tr>
-            <td>Resource Consumption:</td>
-            <td>Require more memory and computational resources upfront due to processing the entire dataset during training.</td>
-            <td>May consume fewer resources initially but may require more resources at prediction time for local processing.</td>
-          </tr>
-          <tr>
-            <td>Examples:</td>
-            <td>Examples include algorithms like Artificial Neural Networks (ANN), naive Bayes, and Decision Trees.</td>
-            <td>Examples include case-based reasoning and the k-nearest neighbors (KNN) algorithm.</td>
-          </tr>
-        </table>
-
-
-        <br>
-        <h3 id="classification">Classification Predictive Modeling</h3>
-        In machine learning, classification problems involve predicting a category for a given input. These problems are everywhere:
+        <!------------------------>
+        <h4 id="advantages">Advantages of Logistic Regression</h4>
+        Logistic regression offers several advantages that make it a popular choice for binary classification tasks:
         <ul>
-          <li>Think of sorting emails as either spam or not spam.</li>
-          <li>Imagine recognizing handwritten characters, like letters or digits.</li>
-          <li>Consider deciding if a user's behavior indicates they might stop using a service (churn).</li>
+            <li><strong>Simple and Interpretable: </strong>Logistic regression models are relatively simple and easy to interpret compared to more complex algorithms like neural networks. The coefficients of logistic regression can be directly interpreted in terms of the impact of each feature on the predicted probability of the target class.</li>
+            <li><strong>Efficient Training and Inference: </strong>Logistic regression models are computationally efficient to train and make predictions with, especially for large datasets. They require less computational resources compared to more complex models, making them suitable for real-time applications.</li>
+            <li><strong>Probabilistic Interpretation: </strong>Logistic regression provides probabilistic outputs, allowing users to understand the uncertainty associated with each prediction. This probabilistic interpretation is useful for decision-making and risk assessment in various domains.</li>
         </ul>
-        A training dataset with numerous examples of inputs and outputs is necessary for classification from a modeling standpoint. 
-        A model will determine the optimal way to map samples of input data to certain class labels using the training dataset. The training dataset 
-        must therefore contain a large number of samples of each class label and be suitably representative of the problem.
-        There are numerous varieties of algorithms for classification in modeling problems, including predictive modeling and classification.
-        We can classify the classification algorithms in following 4 categories:
-        <ol>
-          <li><strong>Binary Classification:</strong> Sorting into two categories, like spam or not spam. Binary classification problems often require two classes, one representing the normal state and the other representing the 
-            aberrant state. For instance, the normal condition is "not spam," while the abnormal state is "spam." Class label 0 is given to the class in the normal state, whereas class label 1 is given to the class in the abnormal condition.
-            A model that forecasts a <strong><em>Bernoulli probability distribution</strong></em> for each case is frequently used to represent a binary classification task. 
-            <div class="grey-box">Let \(X\) be a normal variable representing the input features, and \(y\) be a binary random variable representing the class label (0 or 1).
-              The  Bernoulli distribution models the probability of success (or the positive outcome, often denoted as \(p\))
-              in a single Bernoulli trial. The probability mass function (PMF) of the Bernoulli distribution is given by:
-              $$P(y=1|X) = p$$
-              $$P(y=0|X) = 1-p$$
-              Here \(p\) represents the probability of the positive outcome given the input features \(X\).
-            </div>
-            The following are well-known binary classification algorithms:
-            <ul>
-              <li>Logistic Regression</li>
-              <li>Support Vector Machines</li>
-              <li>Simple Bayes</li>
-              <li>Decision Trees</li>
-            </ul>
-          </li>
-          <li><strong>Multi-Class Classification:</strong> Sorting into several categories, like different types of animals.
-            The multi-class classification does not have the idea of normal and abnormal outcomes, in contrast to binary classification. Instead, instances are grouped into one of several well-known classes.
-            In some cases, the number of class labels could be rather high. In a facial recognition system, for instance, a model might predict that a shot belongs to one of thousands or tens of thousands of faces.
-            Text translation models and other problems involving word prediction could be categorized as a particular case of multi-class classification.
-            Multiclass classification tasks are frequently modeled using a model that forecasts a <strong><em>Multinoulli probability distribution</em></strong> for each example.
-            <div class="grey-box">
-              A Multinoulli probability distribution, also known as a categorical distribution, is a generalization of the Bernoulli distribution to more than two categories. Instead of having just two possible outcomes (e.g., 0 and 1), a Multinoulli distribution accommodates multiple discrete outcomes, each with its own probability.
-              Mathematically, let \(X\) be a random variable representing the input features, and \(y\) be a categorical random variable representing the class label among \(K\) possible categories (where \(K\) is greater than 2).
-              The Multinoulli distribution models the probability of each category \(k\) in a single trial. The probability mass function (PMF) of the Multinoulli distribution is given by:
-              $$P(y=k|X) = p_k$$
-              where \(p_k\) represents the probability of category \(k\) given the input features \(X\), and \(\sum_{k=1}^K p_k = 1\) (since the probabilities must sum up to 1 for all possible categories).
-            </div>
-            For multi-class classification, many binary classification techniques are applicable. The following well-known algorithms can be used for multi-class classification:
-              <ul>
-                <li>Progressive Boosting</li>
-                <li>Choice trees</li>
-                <li>Nearest K Neighbors</li>
-                <li>Rough Forest</li>
-                <li>Simple Bayes</li>
-              </ul>
-              In multi-class classification tasks, the "one-vs-rest" (OvR) and "one-vs-one" (OvO) methods are commonly used.
-              <ul>
-                <li><strong>One-vs-Rest (OvR): </strong> Also known as "one model for each class," this method involves training multiple binary classification models, each classifying one class against all other classes.</li>
-                <li><strong>One-vs-One (OvO): </strong> In this approach, a binary classifier is trained for each pair of classes. This results in \(\frac{N\times (N-1)}{2}\) classifiers for \(N\) classes.</li>
-              </ul>
-          </li>
-          <li><strong>Multi-Label Classification:</strong> Multi-label classification involves predicting two or more class labels for each example, unlike multi-class or binary classification, where only one label is predicted.
-            For example: tagging a post with multiple topics, or  in photo classification, a model might predict the presence of multiple objects like "person," "apple," and "bicycle" in a single image, as opposed to just one label.
-            <p>Multi-label classification problems are often addressed using models that predict multiple outcomes, treating each prediction as a binary classification. This means each label is predicted independently, similar to a 
-              Bernoulli probability distribution.</p>
-            Specialized versions of conventional classification algorithms, such as 
-            <ul>
-              <li>Multi-label Gradient Boosting,</li> 
-              <li>Multi-label Random Forests, and</li> 
-              <li>Multi-label Decision Trees</li>
-            </ul>
-            are used for multi-label classification tasks. 
-          </li>
-          <div class="grey-box">
-            <p><strong>Difference between the Multi-class and Multi-Label classification models:</strong></p>
-            <p>In multi-class classification, each example is assigned to one and only one class label from a set of two or more mutually exclusive classes. The goal is to predict the single most appropriate class label for each instance. 
-              Examples include predicting the species of a flower from among several categories (e.g., iris, daisy, rose) or classifying emails into different folders (e.g., work, personal, promotions). Only one class label is assigned to 
-              each instance.</p>
-            <p>In multi-label classification, each example can be assigned to multiple class labels simultaneously. The model predicts the presence or absence of each label independently for every instance. This approach is suitable for 
-              problems where instances may belong to multiple classes at the same time. For example, in image classification, a single image may contain multiple objects (e.g., person, dog, car), and the model needs to identify all of 
-              them. Multiple class labels can be assigned to each instance.</p>
-          </div>
-          <li><strong>Imbalanced Classification:</strong> Dealing with datasets where one category is much more common than the others. 
-            Imbalanced classification refers to a scenario in machine learning where the distribution of class labels in the dataset is highly skewed, with one class significantly outnumbering the others. This can pose challenges for 
-            predictive modeling, as the model may become biased towards the majority class and perform poorly on the minority class(es).
-            Addressing imbalanced classification typically involves techniques such as:
-            <ul>
-              <li><strong>Resampling:</strong> This involves either oversampling the minority class, undersampling the majority class, or a combination of both to rebalance the dataset.</li>
-              <li><strong>Algorithmic Approaches:</strong> Some algorithms are specifically designed to handle imbalanced datasets better, such as ensemble methods like Random Forests and Gradient Boosting, as well as various techniques like cost-sensitive learning and anomaly detection.</li>
-              <li><strong>Evaluation Strategies:</strong> Choosing appropriate evaluation metrics that are sensitive to the imbalance, such as precision, recall, and F1-score, can provide a more nuanced understanding of the model's performance.</li>
-            </ul>
-          </li>
-        </ol>
 
-        <!----------------->
-        <h3 id="Common-algorithms">Types of Classification Algorithms</h3>
-        Classification problems may have binary or multiple outcomes or classes. Binary outcomes are called 
-        binary classification and multiple outcomes are called multinomial classification.
-        There are several techniques used for solving classification problems such as:        
-        <ol>
-          <li><strong>Logistic regression: </strong>A linear model used for binary classification. It estimates the probability that an instance belongs to a particular class based on its features. Despite its name, logistic regression is a classification algorithm rather than a regression algorithm.</li>
-          <li><strong>Decision trees: </strong>A tree-like model where each internal node represents a feature, each branch represents a decision based on that feature, and each leaf node represents a class label. Decision trees are easy to interpret and can handle both numerical and categorical data.</li>
-          <li><strong>K-nearest neighbors (KNN): </strong>A non-parametric, instance-based learning algorithm used for both classification and regression tasks. KNN classifies instances based on their similarity to nearby instances in the feature space. It is simple but computationally expensive for large datasets.</li>
-          <li><strong>Support vector machines (SVMs): </strong>A supervised learning algorithm that separates instances into different classes by finding the hyperplane that maximizes the margin between classes. SVMs are effective in high-dimensional spaces and are versatile due to their kernel trick, which allows them to handle nonlinear data.</li>
-          <li><strong>Random Forest Algorithm: </strong>An ensemble learning method that constructs a multitude of decision trees during training and outputs the mode of the classes (classification) or the mean prediction (regression) of the individual trees. Random forests are robust against overfitting and can handle high-dimensional data.</li>
-          <li><strong>Naive Byes: </strong>A probabilistic classifier based on Bayes' theorem with the "naive" assumption of independence between features. It is simple and efficient, making it suitable for large datasets. Naive Bayes classifiers are often used for text classification tasks.</li>
-        </ol>
+
+
+        
 
         <!----------------------->
         <h3 id="Binary">Binary Logistic Regression</h3>
