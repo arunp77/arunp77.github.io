@@ -139,7 +139,7 @@
             <div class="swiper-slide">
                 <figure>
                     <img src="assets/img/data-engineering/classification.png" alt="" style="max-width: 50%; max-height: 50%;">
-                    <figcaption></figcaption>
+                    <figcaption style="text-align: center;"></figcaption>
                 </figure>
             </div>
             </div>
@@ -227,10 +227,10 @@
 
     <p>Logistic regression is statistical method used to model the probability of a outcome (i.e., outcome that can take on one of two values, such as 0 or 1, yes or no, etc.) based on one or more predictor variables. Mathematically, 
         logistic regression uses the logistic function, also known as the sigmoid function, to model the probability of the outcome.</p>
-
+        
     <p>The logistic function is defined as:</p>
 
-    $$P(Y=1 | X) = \frac{1}{1+e^{-z}}$$
+    $$P(Y=1 | X) =  \sigma(z) = \frac{1}{1+e^{-z}}$$
 
     Here \(z\) is defined as:
 
@@ -248,7 +248,7 @@
     
     <figure>
         <img src="assets/img/machine-ln/logistic-fun.png" alt="" style="max-width: 70%; max-height: auto;">
-        <figcaption></figcaption>
+        <figcaption style="text-align: center;"></figcaption>
     </figure>
     
         
@@ -284,7 +284,35 @@
 
     The right hand side of the equation is a linear function. Such models are called <strong>generalized linear models (GLM)</strong>. In GLM, the errors may not follow normal distribution and there exists a transformation function of the outcome variable that takes a linear 
     functional form.
-    <p></p>
+
+    <br><br>
+    <p><strong>Example: </strong></p>
+    <figure>
+        <img src="assets/img/machine-ln/classification-binary.png" alt="" style="max-width: 90%; max-height: auto;">
+        <figcaption style="text-align: center;">Here \(x\) represents out input image. \(y\) denotes the output and it can have two values, 1 or 0.if \(y=1 \), there is a mango in an image; else, if \(y=0 \), there is no mango in the image. (<strong>Image credit:</strong> Left image is credited to @ <a href="index.html">arunp77</a> and the
+            right image is taken from <a href="https://datahacker.rs/004-machine-learning-logistic-regression-model/" target="_blank">datahacker.rs</a> (a nice description))</figcaption>
+    </figure>
+    <p>In this image, it is clear that we first calculate the output of a linear function \(z\). This output \(z\) will be the input to the Sigmoid Function. </p>
+    <p>Next, for calculated \(z \) we will produce prediction \(\hat{y} \) which will be determined by the \(z \). Then, if \(z \) is large positive value, the \(\hat{y} \) will be close to 1. On the other hand, if \(z \) is a large negative value, the \(\hat{y} \) will be close to 0. Therefore, the \(\hat{y} \) will always be in the range between 0 to 1.</p>
+    <p>One simple way to classify the prediction \(\hat{y} \) is to use a threshold value of 0.5. So, if our prediction is greater than 0.5, we assume that \(y \) is 1. Otherwise, we will assume that \(y \) is 0. As the \(\hat{y} \) gets closer to 1, the probability that there is a cat in the image becomes higher. On the other hand, as the \(\hat{y} \) comes closer to 0, the probability that there is a cat in the image also becomes lower.</p>
+    <p>To calculate the \(\hat{y} \), we will use the following equations. It is a very simple calculation wherein we will just plug in the Sigmoid Function formula into the linear model.</p>
+    <ul>
+        <li><strong>Linear Model:</strong></li>
+        $$\hat{y}=w^{T}x+b $$
+        <li><strong>Sigmoid Function: </strong></li>
+        $$ \sigma(z)=\frac{1}{1+e^{-z}} $$
+        <ul>
+            <li>If \(z \) is a large positive number, then:
+                $$\sigma (z)=\frac{1}{1+0}\approx 1 $$
+            </li>
+            <li>If \(z \) is a large negative number, then:</li>
+            $$ \sigma (z)=\frac{1}{1+\infty }\approx 0 $$
+        </ul>
+        <li><strong>Logistic Regression Model: </strong></li>
+        $$ \hat{y}=\sigma(w^{T}x+b) $$
+    </ul>
+    <p>So, when we implement Logistic Regression, our primary goal is to attempt computing the parameters \(w \) and \(b \), such that \(\hat{y} \) becomes a good estimate of the chance of \(y=1 \). To do this, cost functions are used.</p>
+    
 
     <!----------------->
     <h4 id="cost-func1">Cost function for Logistic Regression</h4>
@@ -292,6 +320,7 @@
     The objective is to minimize this cost. The cost function is defined as:
     $$J(\theta) = -\frac{1}{m} \sum_{i=1}^{m} \left[ y^{(i)} \log(h_\theta(x^{(i)})) + (1 - y^{(i)}) \log(1 - h_\theta(x^{(i)})) \right] $$
     Here,
+    $$ J(\hat{y},y) = \frac{1}{2}(\hat{y} – y)^{2} $$
     <ul>
         <li>\(m\) is the number of training examples.</li>
         <li>\(y^{(i)}\) is the actual output for the i-th training example.</li>
