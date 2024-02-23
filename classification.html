@@ -231,10 +231,48 @@
         A model will determine the optimal way to map samples of input data to certain class labels using the training dataset. The training dataset 
         must therefore contain a large number of samples of each class label and be suitably representative of the problem.
         There are numerous varieties of algorithms for classification in modeling problems, including predictive modeling and classification.
-        Overall, there are four main types of classification tasks:
+        We can classify the classification algorithms in following 4 categories:
         <ol>
-          <li><strong>Binary Classification:</strong> Sorting into two categories, like spam or not spam.</li>
-          <li><strong>Multi-Class Classification:</strong> Sorting into several categories, like different types of animals.</li>
+          <li><strong>Binary Classification:</strong> Sorting into two categories, like spam or not spam. Binary classification problems often require two classes, one representing the normal state and the other representing the 
+            aberrant state. For instance, the normal condition is "not spam," while the abnormal state is "spam." Class label 0 is given to the class in the normal state, whereas class label 1 is given to the class in the abnormal condition.
+            A model that forecasts a <strong><em>Bernoulli probability distribution</strong></em> for each case is frequently used to represent a binary classification task. 
+            <div class="grey-box">Let \(X\) be a normal variable representing the input features, and \(y\) be a binary random variable representing the class label (0 or 1).
+              The  Bernoulli distribution models the probability of success (or the positive outcome, often denoted as \(p\))
+              in a single Bernoulli trial. The probability mass function (PMF) of the Bernoulli distribution is given by:
+              $$P(y=1|X) = p$$
+              $$P(y=0|X) = 1-p$$
+              Here \(p\) represents the probability of the positive outcome given the input features \(X\).
+            </div>
+            The following are well-known binary classification algorithms:
+            <ul>
+              <li>Logistic Regression</li>
+              <li>Support Vector Machines</li>
+              <li>Simple Bayes</li>
+              <li>Decision Trees</li>
+            </ul>
+          </li>
+          <li><strong>Multi-Class Classification:</strong> Sorting into several categories, like different types of animals.
+            The multi-class classification does not have the idea of normal and abnormal outcomes, in contrast to binary classification. Instead, instances are grouped into one of several well-known classes.
+            In some cases, the number of class labels could be rather high. In a facial recognition system, for instance, a model might predict that a shot belongs to one of thousands or tens of thousands of faces.
+            Text translation models and other problems involving word prediction could be categorized as a particular case of multi-class classification.
+            Multiclass classification tasks are frequently modeled using a model that forecasts a <strong><em>Multinoulli probability distribution</em></strong> for each example.
+            <div class="grey-box">
+              A Multinoulli probability distribution, also known as a categorical distribution, is a generalization of the Bernoulli distribution to more than two categories. Instead of having just two possible outcomes (e.g., 0 and 1), a Multinoulli distribution accommodates multiple discrete outcomes, each with its own probability.
+              Mathematically, let \(X\) be a random variable representing the input features, and \(y\) be a categorical random variable representing the class label among \(K\) possible categories (where \(K\) is greater than 2).
+              The Multinoulli distribution models the probability of each category \(k\) in a single trial. The probability mass function (PMF) of the Multinoulli distribution is given by:
+              $$P(y=k|X) = p_k$$
+              where \(p_k\) represents the probability of category \(k\) given the input features \(X\), and \(\sum_{k=1}^K p_k = 1\) (since the probabilities must sum up to 1 for all possible categories).
+            </div>
+            For multi-class classification, many binary classification techniques are applicable. The following well-known algorithms can be used for multi-class classification:
+              <ul>
+                <li>Progressive Boosting</li>
+                <li>Choice trees</li>
+                <li>Nearest K Neighbors</li>
+                <li>Rough Forest</li>
+                <li>Simple Bayes</li>
+              </ul>
+          
+          </li>
           <li><strong>Multi-Label Classification:</strong> Assigning multiple labels to each example, like tagging a post with multiple topics.</li>
           <li><strong>Imbalanced Classification:</strong> Dealing with datasets where one category is much more common than the others.</li>
         </ol>
