@@ -284,10 +284,11 @@
 
     The right hand side of the equation is a linear function. Such models are called <strong>generalized linear models (GLM)</strong>. In GLM, the errors may not follow normal distribution and there exists a transformation function of the outcome variable that takes a linear 
     functional form.
+    <p></p>
 
     <!----------------->
-    <h3>Cost function for Logistic Regression</h3>
-    The cost function for the logistic regression is used to quantify the error between preducted and actua; values.
+    <h4 id="cost-func1">Cost function for Logistic Regression</h4>
+    The cost function for the logistic regression is used to quantify the error between predicted and actual values.
     The objective is to minimize this cost. The cost function is defined as:
     $$J(\theta) = -\frac{1}{m} \sum_{i=1}^{m} \left[ y^{(i)} \log(h_\theta(x^{(i)})) + (1 - y^{(i)}) \log(1 - h_\theta(x^{(i)})) \right] $$
     Here,
@@ -301,7 +302,7 @@
     In training, the goal is to find the parameter vector \(\theta\) that minimizes the cost function. This is often done using optimization algorithms like gradient descent.
 
     <!----------------->
-    <h4>Gradient Descent Rule:</h4> 
+    <h4 id="gdr">Gradient Descent Rule:</h4> 
     The gradient descent algorithm for the logistic regression aims to find the optimal parameters \(\theta\)
     that minimize the cost function. The update rule is derived from the partial derivatives of the cost function with respect to each parameter. 
 
@@ -315,7 +316,8 @@
         <li>\(\frac{\partial J(\theta)}{\partial \theta_j}\) is the partial derivative of the cost function \(J(\theta)\) with respect to \(\theta_j\).</li>
     </ul>
 
-    <h5>Algorith steps:</h5>
+    <!----------------------------->
+    <h5 id="algorithm">Algorithm steps:</h5>
     <ol>
         <li>Initialize parameters: \(\theta_0, \theta_1, ..., \theta_n\).</li>
         <li>Repeat until convergence:
@@ -328,7 +330,7 @@
     </ol>
 
     <!----------------->
-    <h4>Model Interpretation</h4>
+    <h4 id="model-inter">Model Interpretation</h4>
     <ul>
         <li>The logistic function outputs values between 0 and 1, representing probabilities.</li>
         <li>The decision boundary is where \(P(Y=1 | X) =0.5\). If \(P(Y=1 | X) > 0.5\), the instance is predicted to belong to class 1; otherwise, it belongs to class 0.</li>
@@ -337,7 +339,7 @@
 
     <!----------------->
     <div class="box">
-        <h5><strong><a href="https://arunp77.github.io/Arun-Kumar-Pandey/Linear-reg.html#Maximum-likelihood-estimation" target="_blank">Maximum Likelihood Estimation (MLE)</a></strong></h5>
+        <h5 id="mle"><strong><a href="https://arunp77.github.io/Arun-Kumar-Pandey/Linear-reg.html#Maximum-likelihood-estimation" target="_blank">Maximum Likelihood Estimation (MLE)</a></strong></h5>
         Maximum Likelihood Estimation (MLE) is a statistical method used in the context of logistic regression (and more broadly in statistical modeling) to estimate the parameters of a model. In the case of logistic regression, MLE aims to find the set of parameters that maximizes the likelihood function, which measures how well the model explains the observed data.
         <p><strong>Mathematical Description:</strong>
         For logistic regression, let's denote the likelihood function as \(L(\theta)\), where \(\theta\) represents the parameters of the logistic regression model. The likelihood function is given by the product of the 
@@ -374,9 +376,45 @@
         $$J(\theta) = -\frac{1}{m} l(\theta).$$
 
         So, in logistic regression, the optimization process, whether using gradient descent or another optimization algorithm, is essentially performing Maximum Likelihood Estimation to find the parameters that maximize the likelihood of observing the given set of training examples.
-
-
     </div>
+
+
+    <p></p>
+    <!-------------------------->
+    <h4 id="multi-class">Multi-Class Logistic Cost function</h4>
+    <p>Let's delve into the mathematical formulations of both the One-vs-Rest (OvR) and Multinomial Logistic Regression approaches:</p>
+    <ol>
+        <li><strong>One-vs-Rest (OvR) Logistic Regression:</strong>
+        Let us assume a scenario for each class \(k\) in a multi-class classification problem with \(K\) classes. 
+        <ul>
+            <li>Assume that we have a set of features \(x\) and parameters \(\theta^{(k)}\) for each class \(k\).</li> 
+            <li>The hypothesis function \(h_\theta^{(k)}(x)\) represents the probability that example \(x\) belongs to class \(k\).</li>
+            <li>The hypothesis function is given by the sigmoid (logistic) function:
+                $$h_{\theta}^{(k)}(x) = \frac{1}{1+e^{-\theta^{(k)T}x}}.$$
+            </li>
+            <li>We train \(K\) separate logistic regression models, each predicting the probability of one class vs. all other classes.</li>
+            <li>For class \(k\), the cost function is the binary cross-entropy loss:</li>
+            $$J(\theta^{(k)})= -\frac{1}{m}\sum_{i=1}^{m} \left[ y^{(i)} \text{log}(h_{\theta}^{(k)}(x^{(i)}))+(1-y^{(i)})\text{log}(1-h_\theta^{(k)}(x^{(i)}))\right]$$
+            where, \(y^{(i)}\) is the binary indicator (0 or 1) if example \(i\) belongs to class \(k\).
+            <li>To predict the class for a new example \(x\), we compute the probabilities \(h_\theta^{(k)}(x)\) for each class \(k\), and select the class with the highest probability.</li>
+        </ul>
+        </li>
+        <li><strong>Multinomial Logistic Regression (Softmax Regression): </strong>
+        Consider a multi-class classification problem with \(K\) classes. 
+        <ul>
+            <li>We have a set of feature \(x\) and parameters \(\Theta\), where \(\Theta\) is a matrix of size \((n\times K)\) for \(n\) features and \(K\) classes.</li>
+            <li>The hypothesis function \(h_\Theta(x)\) outputs a probability distribution over all \(K\) classes.</li>
+            <li>The softmax function computes the probability of each class:</li>
+            $$h_{\Theta}(x)_k = \frac{e^{\Theta^T_k x}}{\sum_{j=1}^K e^{\Theta^T_j x}}.$$
+            <li>Here, \(h_\Theta(x)_k\) is the probability that example \(x\) belongs to class \(k\).</li>
+            <li>The cost function is the categorical cross-entropy loss, also known as the softmax loss:</li>
+            $$J(\Theta) = -\frac{1}{m} \sum_{i=1}^m \sum_{k=1}^K y_k^{(i)} \text{log}(h_\Theta(x^{(i)})_k)$$
+            where, \(y_k^{(i)}\) is the binary indicator (0 or 1) if example \(i\) belongs to class \(k\).
+            <li>To predict the class for a new example \(x\), we compute the probabilities \(h_\Theta(x)\) for all \(K\) classes, and select the class with the highest probability. </li>
+        </ul>
+        </li>
+    </ol>
+
 
 
 
@@ -394,49 +432,49 @@
 
     </section>
 
-  
-      <section id="Example">
-        <ul>
-            <li>You can go to <a href="https://github.com/arunp77/Machine-Learning/tree/main/Projects-ML" target="_blank">following project</a> for a reference for linear regression analysis. </li>
-        </ul>
-      </section>
-     
+
+    <section id="Example">
+    <ul>
+        <li>You can go to <a href="https://github.com/arunp77/Machine-Learning/tree/main/Projects-ML" target="_blank">following project</a> for a reference for linear regression analysis. </li>
+    </ul>
+    </section>
+    
 
 
-      <!-------Reference ------->
-      <section id="reference">
-        <h2>References</h2>
-        <ul>
-          <li>My github Repositories on Remote sensing <a href="https://github.com/arunp77/Machine-Learning/" target="_blank">Machine learning</a></li>
-          <li><a href="https://mlu-explain.github.io/linear-regression/" target="_blank">A Visual Introduction To Linear regression</a> (Best reference for theory and visualization).</li>
-          <li>Book on Regression model: <a href="https://avehtari.github.io/ROS-Examples/" target="_blank">Regression and Other Stories</a></li>
-          <li>Book on Statistics: <a href="https://hastie.su.domains/Papers/ESLII.pdf" target="_blank">The Elements of Statistical Learning</a></li>
-          <li><a href="https://www.colorado.edu/amath/sites/default/files/attached-files/ch12_0.pdf">https://www.colorado.edu/amath/sites/default/files/attached-files/ch12_0.pdf</a></li>
-        </ul>
-      </section>
+    <!-------Reference ------->
+    <section id="reference">
+    <h2>References</h2>
+    <ul>
+        <li>My github Repositories on Remote sensing <a href="https://github.com/arunp77/Machine-Learning/" target="_blank">Machine learning</a></li>
+        <li><a href="https://mlu-explain.github.io/linear-regression/" target="_blank">A Visual Introduction To Linear regression</a> (Best reference for theory and visualization).</li>
+        <li>Book on Regression model: <a href="https://avehtari.github.io/ROS-Examples/" target="_blank">Regression and Other Stories</a></li>
+        <li>Book on Statistics: <a href="https://hastie.su.domains/Papers/ESLII.pdf" target="_blank">The Elements of Statistical Learning</a></li>
+        <li><a href="https://www.colorado.edu/amath/sites/default/files/attached-files/ch12_0.pdf">https://www.colorado.edu/amath/sites/default/files/attached-files/ch12_0.pdf</a></li>
+    </ul>
+    </section>
 
-      <hr>
-      
-      <div style="background-color: #f0f0f0; padding: 15px; border-radius: 5px;">
+    <hr>
+    
+    <div style="background-color: #f0f0f0; padding: 15px; border-radius: 5px;">
 
-        <h3>Some other interesting things to know:</h3>
-        <ul style="list-style-type: disc; margin-left: 30px;">
-            <li>Visit my website on <a href="sql-project.html">For Data, Big Data, Data-modeling, Datawarehouse, SQL, cloud-compute.</a></li>
-            <li>Visit my website on <a href="Data-engineering.html">Data engineering</a></li>
-        </ul>
-      </div>
-      <p></p>
+    <h3>Some other interesting things to know:</h3>
+    <ul style="list-style-type: disc; margin-left: 30px;">
+        <li>Visit my website on <a href="sql-project.html">For Data, Big Data, Data-modeling, Datawarehouse, SQL, cloud-compute.</a></li>
+        <li>Visit my website on <a href="Data-engineering.html">Data engineering</a></li>
+    </ul>
+    </div>
+    <p></p>
 
-      <div class="navigation">
-          <a href="index.html#portfolio" class="clickable-box">
-              <span class="arrow-left">Portfolio section</span>
-          </a>
-          
-          <a href="portfolio-details-1.html" class="clickable-box">
-              <span class="arrow-right">Content</span>
-          </a>
-      </div>
-  </div>
+    <div class="navigation">
+        <a href="index.html#portfolio" class="clickable-box">
+            <span class="arrow-left">Portfolio section</span>
+        </a>
+        
+        <a href="portfolio-details-1.html" class="clickable-box">
+            <span class="arrow-right">Content</span>
+        </a>
+    </div>
+</div>
 </div>
 </section><!-- End Portfolio Details Section -->
 </main><!-- End #main --
