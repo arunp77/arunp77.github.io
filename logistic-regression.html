@@ -153,15 +153,12 @@
             <h3>Content</h3>
             <ol>
               <li><a href="#introduction">Introduction</a></li>
-              <li><a href="#learners">Learners in Classification Problems</a></li>
-              <li><a href="#classification">Classification Predictive Modeling</a></li>
-                <ul>
-                  <li><a href="#binary">Binary Classification</a></li>
-                  <li><a href="#multi-class">Multi-Class Classification</a></li>
-                  <li><a href="#multi-label">Multi-Label Classification</a></li>
-                  <li><a href="#Imbalanced">Imbalanced Classification</a></li>
-                </ul>
-              <li><a href="#Common-algorithms">Types of Classification Algorithms</a></li>
+              <li><a href="#Relationship-of-regression-lines">Relationship of regression lines</a></li>
+              <li><a href="#Types-of-Linear-Regression">Types of Linear Regression</a></li>
+              <li><a href="#Mathematical-1">Mathematical Explanation</a></li>
+              <li><a href="#Assumption-of-LR">Assumptions of Linear Regression</a></li>
+              <li><a href="#evaluation-metrics-for-LR">Evaluation Metrics for Linear Regression</a></li>
+              <li><a href="#overfit-goodfit-underfit">Overfitting, Good Fit, and Underfitting in Machine Learning</a></li>
               <li><a href="#reference">Reference</a></li>
           </ol>
           </div>
@@ -236,7 +233,7 @@
         There are numerous varieties of algorithms for classification in modeling problems, including predictive modeling and classification.
         We can classify the classification algorithms in following 4 categories:
         <ol>
-          <li id="binary"><strong>Binary Classification:</strong> Sorting into two categories, like spam or not spam. Binary classification problems often require two classes, one representing the normal state and the other representing the 
+          <li><strong>Binary Classification:</strong> Sorting into two categories, like spam or not spam. Binary classification problems often require two classes, one representing the normal state and the other representing the 
             aberrant state. For instance, the normal condition is "not spam," while the abnormal state is "spam." Class label 0 is given to the class in the normal state, whereas class label 1 is given to the class in the abnormal condition.
             A model that forecasts a <strong><em>Bernoulli probability distribution</strong></em> for each case is frequently used to represent a binary classification task. 
             <div class="grey-box">Let \(X\) be a normal variable representing the input features, and \(y\) be a binary random variable representing the class label (0 or 1).
@@ -254,7 +251,7 @@
               <li>Decision Trees</li>
             </ul>
           </li>
-          <li id="multi-class"><strong>Multi-Class Classification:</strong> Sorting into several categories, like different types of animals.
+          <li><strong>Multi-Class Classification:</strong> Sorting into several categories, like different types of animals.
             The multi-class classification does not have the idea of normal and abnormal outcomes, in contrast to binary classification. Instead, instances are grouped into one of several well-known classes.
             In some cases, the number of class labels could be rather high. In a facial recognition system, for instance, a model might predict that a shot belongs to one of thousands or tens of thousands of faces.
             Text translation models and other problems involving word prediction could be categorized as a particular case of multi-class classification.
@@ -280,7 +277,7 @@
                 <li><strong>One-vs-One (OvO): </strong> In this approach, a binary classifier is trained for each pair of classes. This results in \(\frac{N\times (N-1)}{2}\) classifiers for \(N\) classes.</li>
               </ul>
           </li>
-          <li id="multi-label"><strong>Multi-Label Classification:</strong> Multi-label classification involves predicting two or more class labels for each example, unlike multi-class or binary classification, where only one label is predicted.
+          <li><strong>Multi-Label Classification:</strong> Multi-label classification involves predicting two or more class labels for each example, unlike multi-class or binary classification, where only one label is predicted.
             For example: tagging a post with multiple topics, or  in photo classification, a model might predict the presence of multiple objects like "person," "apple," and "bicycle" in a single image, as opposed to just one label.
             <p>Multi-label classification problems are often addressed using models that predict multiple outcomes, treating each prediction as a binary classification. This means each label is predicted independently, similar to a 
               Bernoulli probability distribution.</p>
@@ -301,7 +298,7 @@
               problems where instances may belong to multiple classes at the same time. For example, in image classification, a single image may contain multiple objects (e.g., person, dog, car), and the model needs to identify all of 
               them. Multiple class labels can be assigned to each instance.</p>
           </div>
-          <li id="Imbalanced"><strong>Imbalanced Classification:</strong> Dealing with datasets where one category is much more common than the others. 
+          <li><strong>Imbalanced Classification:</strong> Dealing with datasets where one category is much more common than the others. 
             Imbalanced classification refers to a scenario in machine learning where the distribution of class labels in the dataset is highly skewed, with one class significantly outnumbering the others. This can pose challenges for 
             predictive modeling, as the model may become biased towards the majority class and perform poorly on the minority class(es).
             Addressing imbalanced classification typically involves techniques such as:
@@ -327,15 +324,187 @@
           <li><strong>Naive Byes: </strong>A probabilistic classifier based on Bayes' theorem with the "naive" assumption of independence between features. It is simple and efficient, making it suitable for large datasets. Naive Bayes classifiers are often used for text classification tasks.</li>
         </ol>
 
+        <!----------------------->
+        <h3 id="Binary">Binary Logistic Regression</h3>
+        Logistic regression is a statistical model in which the response variable takes a discrete value and the 
+        explanatory variables can either be continuous or discrete. If the outcome variable takes only two values, 
+        then the model is called binary logistic regression model. 
+
+        <p>Logistic regression is statistical method used to model the probability of a outcome (i.e., outcome that can take on one of two values, such as 0 or 1, yes or no, etc.) based on one or more predictor variables. Mathematically, 
+          logistic regression uses the logistic function, also known as the sigmoid function, to model the probability of the outcome.</p>
+
+        <p>The logistic function is defined as:</p>
+
+        $$P(Y=1 | X) = \frac{1}{1+e^{-z}}$$
+
+        Here \(z\) is defined as:
+
+        $$z = \theta_0 + \theta_1 x_1 + \theta_2 x_2+ ... \theta_n x_n = \theta^T x$$
+
+        and
+        <ul>
+          <li>\(P(Y=1 | X)\) is the probability of the outcome,</li>
+          <li>\(X = (x_1, x_2, ..., x_n)\) represents the input features variables.</li>
+          <li>\(\theta_0\) is the intercept, \(\theta_1, \theta_2, ..., \theta_n\) are the coefficients for the  input features variables.</li>
+          <li>\(z\) is the linear combination of the input features.</li>
+          <li>\(\theta^T\) represents the transpose of the parameter vector.</li>
+          <li>'\(e\)' is the base of the natural logarithm (approximately equal to 2.71828).</li>
+        </ul>
+        
+        <figure>
+          <img src="assets/img/machine-ln/logistic-fun.png" alt="" style="max-width: 70%; max-height: auto;">
+          <figcaption></figcaption>
+        </figure>
+        
+         
+
+        <div class="box">
+          Sometimes the logistic function is also represemnted in more compact form as:
+          $$h_\theta(x) = \frac{1}{1+e^{-\theta^T x}}$$
+          where:
+          <ul>
+            <li>\(h_\theta(x)\) is the predicted probability that \(y = 1\).</li>
+            <li>\(\theta\) is the parameter vector</li>
+            <li>\(x\) is the input feature vector</li>
+          </ul>
+        </div>
+
+        The logistic function has an S-shaped curve (thus also known as Sigmoid function).
+        The logistic function maps any real-valued number to a value between 0 and 1, which can be interpreted as a probability. The goal of logistic regression is to find the values of the coefficients that maximize the likelihood of 
+        observing the data, given the model. This is typically done using maximum likelihood estimation. Once the coefficients have been estimated, the logistic regression model can be used to predict the probability of the outcome 
+        for new observations. For example, if we have a new observation with predictor variables \(x_1=1, x_2=3\) and \(x_3=4\), and the estimated coefficients are \(\theta_0 = -1, \theta_1 =0.5, \theta_2 = 1\) and \(\theta_3 = 0.2\), 
+        we can calculate the probability of the outcome as follows:
+        
+        $$z = -1 +0.52 +13 +0.2 \times 4 = 3.3$$
+
+        and hence,
+
+        $$P(Y = 1 | X) = \frac{1}{1+e^{-3.3}} = 0.96$$
+
+        Therefore, the probability of the outcome for this new observation is 0.96. It's important to note that logistic regression assumes a linear relationship between the predictor variables and the log odds of the outcome. This means that the logistic 
+        regression model assumes that the relationship between the predictor variables and the probability of the outcome can be modeled using a linear equation.
+        
+        <p>From above equation, we can re write following equations:</p>
+        $$\text{ln}\left(\frac{P(Y=1 | X)}{1- P(Y=1 | X)}\right) = z = \theta_0 + \theta_1 x_1 + ... + \theta_n x_n . $$
+ 
+        The right hand side of the equation is a linear function. Such models are called <strong>generalized linear models (GLM)</strong>. In GLM, the errors may not follow normal distribution and there exists a transformation function of the outcome variable that takes a linear 
+        functional form.
+
+        <!----------------->
+        <h3>Cost function for Logistic Regression</h3>
+        The cost function for the logistic regression is used to quantify the error between preducted and actua; values.
+        The objective is to minimize this cost. The cost function is defined as:
+        $$J(\theta) = -\frac{1}{m} \sum_{i=1}^{m} \left[ y^{(i)} \log(h_\theta(x^{(i)})) + (1 - y^{(i)}) \log(1 - h_\theta(x^{(i)})) \right] $$
+        Here,
+        <ul>
+          <li>\(m\) is the number of training examples.</li>
+          <li>\(y^{(i)}\) is the actual output for the i-th training example.</li>
+          <li>\(h_\theta (x^{(i)})\) is the predicted output for the i-th training example using the logisict function.</li>
+        </ul>
+        The cost function penalizes large errors, and the logarithmic terms ensure that the cost is higher when the prediction is far from the actual value.
+
+        In training, the goal is to find the parameter vector \(\theta\) that minimizes the cost function. This is often done using optimization algorithms like gradient descent.
+
+        <!----------------->
+        <h4>Gradient Descent Rule:</h4> 
+        The gradient descent algorithm for the logistic regression aims to find the optimal parameters \(\theta\)
+        that minimize the cost function. The update rule is derived from the partial derivatives of the cost function with respect to each parameter. 
+
+        <p>The update rule for the gradient descent algorithm is as follows:</p>
+        $$\theta_j := \theta_j - \alpha \frac{\partial J(\theta)}{\partial \theta_j}$$
+
+        where:
+        <ul>
+          <li>\(\theta_j\) is the j-th parameter (weight or coefficient).</li>
+          <li>\(\alpha\) is the learning rate, a positive scalar determining the size of each step in the parameter  space.</li>
+          <li>\(\frac{\partial J(\theta)}{\partial \theta_j}\) is the partial derivative of the cost function \(J(\theta)\) with respect to \(\theta_j\).</li>
+        </ul>
+
+        <h5>Algorith steps:</h5>
+        <ol>
+          <li>Initialize parameters: \(\theta_0, \theta_1, ..., \theta_n\).</li>
+          <li>Repeat until convergence:
+            <ul>
+              <li>Update each parameter simultaneously using the update rule.</li>
+              <li>Simultaneous update means calculating the new values of all parameters before applying them to the model.</li>
+              <li>Repeat the update until the change in the cost function becomes small or a fixed number of iterations are reached.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <!----------------->
+        <h4>Model Interpretation</h4>
+        <ul>
+          <li>The logistic function outputs values between 0 and 1, representing probabilities.</li>
+          <li>The decision boundary is where \(P(Y=1 | X) =0.5\). If \(P(Y=1 | X) > 0.5\), the instance is predicted to belong to class 1; otherwise, it belongs to class 0.</li>
+        </ul>
+
+
+        <!----------------->
+        <div class="box">
+          <h5><strong><a href="https://arunp77.github.io/Arun-Kumar-Pandey/Linear-reg.html#Maximum-likelihood-estimation" target="_blank">Maximum Likelihood Estimation (MLE)</a></strong></h5>
+          Maximum Likelihood Estimation (MLE) is a statistical method used in the context of logistic regression (and more broadly in statistical modeling) to estimate the parameters of a model. In the case of logistic regression, MLE aims to find the set of parameters that maximizes the likelihood function, which measures how well the model explains the observed data.
+          <p><strong>Mathematical Description:</strong>
+          For logistic regression, let's denote the likelihood function as \(L(\theta)\), where \(\theta\) represents the parameters of the logistic regression model. The likelihood function is given by the product of the 
+          probabilities of the observed outcomes under the current parameter values.</p>
+
+          <p>For a binary classification problem (0 or 1), the likelihood function is often expressed as:</p>
+
+          $$L(\theta) = \Pi_{i=1}^m P(y^{(i)}|x^{(i)}; \theta)^{y^{(i)}}\cdot \left(1-P(y^{(i)}|x^{(i)}; \theta)\right)^{1-y^{(i)}}.$$
+
+          Here:
+
+          <ul>
+            <li>\(m\) is the number of training examples.</li>
+            <li>\(y^{(i)}\) is the actual output for the i-th training example (0 or 1).</li>
+            <li>\(x^{(i)}\) is the input feature vector for the i-th training example.</li>
+            <li>\(P(y^{(i)|x^{(i); \theta}})\) is the predicted probabolity if the i-th example belonging to class 1.</li>
+          </ul>
+
+          In logistic regression, the predicted probability is given by the logistic function:
+
+          $$P(y^{(i)} =1| x^{(i)}; \theta) = h_\theta(x^{(i)})$$
+
+          $$P(y^{(i)} =0| x^{(i)}; \theta) = 1- h_\theta(x^{(i)})$$
+          
+          The goal of MLE is to find the values of \(\theta\) that maximize the likelihood function \(L(\theta)\). In practice, it 
+          is often more convenient to maximize the log-likelihood function (logarithm of the likelihood function), denoted as \(l(\theta)\):
+
+          $$l(\theta) = \sum_{i=1}^m \left[y^{(i)} \text{log}(h_\theta(x^{(i)}))- (1-y^{(i)})\text{log}(1-h_\theta(x^{(i)}))\right].$$
+
+          Maximizing \(l(\theta)\) is equivalent to maximizing \(L(\theta)\), as the logrithm is a monotonically increasing function.
+
+          <p>The logistic regression cost function \(J(\theta)\) that we discussed earlier is essentially the negative log-likelihood, with some scaling for convenience in optimization:</p>
+
+          $$J(\theta) = -\frac{1}{m} l(\theta).$$
+
+          So, in logistic regression, the optimization process, whether using gradient descent or another optimization algorithm, is essentially performing Maximum Likelihood Estimation to find the parameters that maximize the likelihood of observing the given set of training examples.
+
+
+        </div>
+
+
+
+
+
+        <!----------------->
+        <h4>Training Objective</h4>
+        The model is trained by finding the optimal values for \(\theta\) that minimize the prediction error. This is typically done using techniques like Maximum Likelihood Estimation (MLE).
+
+
+
+
+
+
+
       </section>
 
   
-      <div class="grey-box">
+      <section id="Example">
         <ul>
-          <li>For more details on Logistic regression, go to <a href="logistic-regression.html">page</a>.</li>
-          <li>You can go to <a href="https://github.com/arunp77/Machine-Learning/tree/main/Projects-ML" target="_blank">following project</a> for a reference for linear regression analysis. </li>
+            <li>You can go to <a href="https://github.com/arunp77/Machine-Learning/tree/main/Projects-ML" target="_blank">following project</a> for a reference for linear regression analysis. </li>
         </ul>
-      </div>
+      </section>
      
 
 
