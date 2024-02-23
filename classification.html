@@ -271,7 +271,11 @@
                 <li>Rough Forest</li>
                 <li>Simple Bayes</li>
               </ul>
-          
+              In multi-class classification tasks, the "one-vs-rest" (OvR) and "one-vs-one" (OvO) methods are commonly used.
+              <ul>
+                <li><strong>One-vs-Rest (OvR): </strong> Also known as "one model for each class," this method involves training multiple binary classification models, each classifying one class against all other classes.</li>
+                <li><strong>One-vs-One (OvO): </strong> In this approach, a binary classifier is trained for each pair of classes. This results in \(\frac{N\times (N-1)}{2}\) classifiers for \(N\) classes.</li>
+              </ul>
           </li>
           <li><strong>Multi-Label Classification:</strong> Assigning multiple labels to each example, like tagging a post with multiple topics.</li>
           <li><strong>Imbalanced Classification:</strong> Dealing with datasets where one category is much more common than the others.</li>
