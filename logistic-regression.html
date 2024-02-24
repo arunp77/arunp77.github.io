@@ -138,7 +138,7 @@
             <div class="swiper-wrapper align-items-center">
             <div class="swiper-slide">
                 <figure>
-                    <img src="assets/img/machine-ln/logistic-fun-3d.jpg" alt="" style="max-width: 70%; max-height: auto;">
+                    <img src="assets/img/machine-ln/logistic-fun-3d.jpg" alt="" style="max-width: 90%; max-height: auto;">
                     <figcaption style="text-align: center;"></figcaption>
                 </figure>
             </div>
@@ -513,20 +513,28 @@
         Both precision and recall are important metrics, and there is often a trade-off between them. For example, increasing precision may lead to a decrease in recall and vice versa. The F1 score, which is the harmonic mean of precision and recall, is often used to balance these two metrics.
         <li><strong>F-score:</strong> The F-score, also known as the F1 score, is a single metric that combines precision and recall into a single value. It provides a balance between precision and recall, considering both false positives and false negatives.
             Mathematically, the F1 score is the harmonic mean of precision and recall and is calculated as:
-            $$F_1 = 2\times \frac{\text{Precision} \times \text{Recall}}{\text{Precision}+\text{Recall}}.$$
-            The F1 score reaches its best value at 1 (perfect precision and recall) and worst at 0. It provides a single value that summarizes the performance of a classification model, especially in scenarios where class imbalance exists or when both precision and recall are equally important.
+            $$F_\beta = (1+\beta^2)\times \frac{\text{Precision} \times \text{Recall}}{(\beta^2\times \text{Precision})+\text{Recall}}.$$
+            where 
+            <ul>
+                <li>\(\beta =1\), then \(F_1 = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision}+\text{Recall}}\). It is known as harmonic mean.  It equally weights precision and recall, making it suitable when both false positives and false negatives have similar costs or when there is no significant preference between precision and recall. 
+                    The F1 score reaches its best value at 1 (perfect precision and recall) and worst at 0. It provides a single value that summarizes the performance of a classification model, especially in scenarios where class imbalance exists or when both precision and recall are equally important.
+                </li>
+                <li>\(\beta =2\), then \(F_2 = 5 \times \frac{\text{Precision} \times \text{Recall}}{4\times \text{Precision}+\text{Recall}}\). It gives more weight to recall than precision, making it suitable for tasks where recall is more critical than precision. For example, in medical diagnostics, where missing a positive case (low recall) might have more severe consequences than a false alarm (low precision).</li>
+                <li>\(\beta =0.5\), then \(F_{0.5} =  \frac{1.25 \times \text{Precision} \times \text{Recall}}{0.25\times \text{Precision}+\text{Recall}}\). It gives more weight to precision than recall, making it suitable for tasks where precision is more critical than recall. For example, in spam detection, where it's crucial to minimize false positives (high precision) even if it means missing some spam emails (low recall).</li>
+                <li>\(\beta =1\), then \(F_1 = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision}+\text{Recall}}\).</li>
+            </ul>
         </li>
     </ul>
 
-
-
-
-
-
     <!----------------->
-    <h4>Training Objective</h4>
-    The model is trained by finding the optimal values for \(\theta\) that minimize the prediction error. This is typically done using techniques like Maximum Likelihood Estimation (MLE).
+    <h2>Example project</h4>
+        We will take sklearn's housing dataset available. This dataset contains information about housing values in suburban areas, such as the median value of owner-occupied homes, along with various other attributes like crime rate, proximity to highways, and socioeconomic factors. This dataset is commonly used for regression tasks to predict housing prices based on these features.
+        <pre><code class="language-python">
+            # importing some libraries
+            from sklearn.datasets import load_boston
 
+        </code></pre>
+    
 
 
 
