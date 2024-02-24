@@ -245,13 +245,6 @@
         <li>\(\theta^T\) represents the transpose of the parameter vector.</li>
         <li>'\(e\)' is the base of the natural logarithm (approximately equal to 2.71828).</li>
     </ul>
-    
-    <figure>
-        <img src="assets/img/machine-ln/logistic-fun.png" alt="" style="max-width: 60%; max-height: auto;">
-        <figcaption style="text-align: center;"></figcaption>
-    </figure>
-    
-        
 
     <div class="box">
         Sometimes the logistic function is also represented in more compact form as \(h_\theta(x)\) and \(\sigma(z)\) and known as sigmoid function:
@@ -263,12 +256,20 @@
         <li>\(x\) is the input feature vector</li>
         </ul>
     </div>
-
-    The logistic function has an S-shaped curve (thus also known as Sigmoid function).
+    
+    <figure>
+        <img src="assets/img/machine-ln/logistic-fun.png" alt="" style="max-width: 60%; max-height: auto;">
+        <figcaption style="text-align: center;"></figcaption>
+    </figure>
+    
+    <p>The logistic function has an S-shaped curve (thus also known as Sigmoid function).
     The logistic function maps any real-valued number to a value between 0 and 1, which can be interpreted as a probability. The goal of logistic regression is to find the values of the coefficients that maximize the likelihood of 
     observing the data, given the model. This is typically done using maximum likelihood estimation. Once the coefficients have been estimated, the logistic regression model can be used to predict the probability of the outcome 
-    for new observations. For example, if we have a new observation with predictor variables \(x_1=1, x_2=3\) and \(x_3=4\), and the estimated coefficients are \(\theta_0 = -1, \theta_1 =0.5, \theta_2 = 1\) and \(\theta_3 = 0.2\), 
-    we can calculate the probability of the outcome as follows:
+    for new observations.</p>
+    
+    <div class="grey-box">
+    <p><strong>Example: </strong>For example, if we have a new observation with predictor variables \(x_1=1, x_2=3\) and \(x_3=4\), and the estimated coefficients are \(\theta_0 = -1, \theta_1 =0.5, \theta_2 = 1\) and \(\theta_3 = 0.2\), 
+        we can calculate the probability of the outcome as follows:</p>
     
     $$z = -1 +0.52 +13 +0.2 \times 4 = 3.3$$
 
@@ -278,7 +279,7 @@
 
     Therefore, the probability of the outcome for this new observation is 0.96. It's important to note that logistic regression assumes a linear relationship between the predictor variables and the log odds of the outcome. This means that the logistic 
     regression model assumes that the relationship between the predictor variables and the probability of the outcome can be modeled using a linear equation.
-    
+    </div>
     <p>From above equation, we can re write following equations:</p>
     $$\text{ln}\left(\frac{P(Y=1 | X)}{1- P(Y=1 | X)}\right) = z = \theta_0 + \theta_1 x_1 + ... + \theta_n x_n . $$
 
@@ -286,7 +287,10 @@
     functional form.
 
     <br><br>
-    <p><strong>Example: </strong></p>
+    <h4 id="how-sigma">How Sigmoid function works?</h4> 
+    Let's understand, how the sigmoid function, also famously known as '<strong><em>activation function</em></strong>' (for more details, see <a href="optimization.html">Optimization functions</a>).
+    Let's say we provide an image of a fruit to our model. The model analyzes the image's features and computes a raw output score. 
+    This raw score is then passed through the sigmoid function, which converts it into a probability score. Based on the probability outcomes generated for a given image, we determine whether the fruit in the image is a mango or not.
     <figure>
         <img src="assets/img/machine-ln/classification-binary.png" alt="" style="max-width: 90%; max-height: auto;">
         <figcaption style="text-align: center;">Here \(x\) represents out input image. \(y\) denotes the output and it can have two values, 1 or 0.if \(y=1 \), there is a mango in an image; else, if \(y=0 \), there is no mango in the image. (<strong>Image credit:</strong> Left image is credited to @ <a href="index.html">arunp77</a> and the
@@ -323,7 +327,6 @@
 
     $$J(\theta) = -\frac{1}{m} \sum_{i=1}^{m} \left[ y^{(i)} \log(h_\theta(x^{(i)})) + (1 - y^{(i)}) \log(1 - h_\theta(x^{(i)})) \right] $$
     Here,
-    $$ J(\hat{y},y) = \frac{1}{2}(\hat{y} – y)^{2} $$
     <ul>
         <li>\(m\) is the number of training examples.</li>
         <li>\(y^{(i)}\) is the actual output for the i-th training example.</li>
