@@ -355,52 +355,7 @@
         <figcaption style="text-align: center;">For code to plot these, see <a href="https://colab.research.google.com/drive/1uHyINYEHJtEA-ootSQ6MarzXB3rR1KKY#scrollTo=kkE1kG6Oz0h_" target="_blank">code</a> (<strong>Image credit:</strong> @ <a href="index.html">arunp77</a>)</figcaption>
     </figure>
 
-    In training, the goal is to find the parameter vector \(\theta\) that minimizes the cost function. This is often done using optimization algorithms like gradient descent.
-    <br><br>
-
-
-
-    <!----------------->
-    <div class="box">
-        <h5 id="mle"><strong><a href="https://arunp77.github.io/Arun-Kumar-Pandey/Linear-reg.html#Maximum-likelihood-estimation" target="_blank">Maximum Likelihood Estimation (MLE)</a></strong></h5>
-        Maximum Likelihood Estimation (MLE) is a statistical method used to calculate the parameters. In the case of logistic regression, MLE aims to find the set of parameters that maximizes the likelihood function, which measures how well the model explains the observed data.
-        <p><strong>Mathematical Description:</strong>
-        For logistic regression, let's denote the likelihood function as \(L(\theta)\), where \(\theta\) represents the parameters of the logistic regression model. The likelihood function is given by the product of the 
-        probabilities of the observed outcomes under the current parameter values.</p>
-
-        <p>For a binary classification problem (0 or 1), the likelihood function is often expressed as:</p>
-
-        $$L(\theta) = \Pi_{i=1}^m P(y^{(i)}|x^{(i)}; \theta)^{y^{(i)}}\cdot \left(1-P(y^{(i)}|x^{(i)}; \theta)\right)^{1-y^{(i)}}.$$
-
-        Here:
-
-        <ul>
-        <li>\(m\) is the number of training examples.</li>
-        <li>\(y^{(i)}\) is the actual output for the i-th training example (0 or 1).</li>
-        <li>\(x^{(i)}\) is the input feature vector for the i-th training example.</li>
-        <li>\(P(y^{(i)|x^{(i); \theta}})\) is the predicted probabolity if the i-th example belonging to class 1.</li>
-        </ul>
-
-        In logistic regression, the predicted probability is given by the logistic function:
-
-        $$P(y^{(i)} =1| x^{(i)}; \theta) = h_\theta(x^{(i)})$$
-
-        $$P(y^{(i)} =0| x^{(i)}; \theta) = 1- h_\theta(x^{(i)})$$
-        
-        The goal of MLE is to find the values of \(\theta\) that maximize the likelihood function \(L(\theta)\). In practice, it 
-        is often more convenient to maximize the log-likelihood function (logarithm of the likelihood function), denoted as \(l(\theta)\):
-
-        $$l(\theta) = \sum_{i=1}^m \left[y^{(i)} \text{log}(h_\theta(x^{(i)}))- (1-y^{(i)})\text{log}(1-h_\theta(x^{(i)}))\right].$$
-
-        Maximizing \(l(\theta)\) is equivalent to maximizing \(L(\theta)\), as the logrithm is a monotonically increasing function.
-
-        <p>The logistic regression cost function \(J(\theta)\) that we discussed earlier is essentially the negative log-likelihood, with some scaling for convenience in optimization:</p>
-
-        $$J(\theta) = -\frac{1}{m} l(\theta).$$
-
-        So, in logistic regression, the optimization process, whether using gradient descent or another optimization algorithm, is essentially performing Maximum Likelihood Estimation to find the parameters that maximize the likelihood of observing the given set of training examples.
-    </div>
-
+    In training, the goal is to find the parameter vector \(\theta\) that minimizes the cost function. This is often done using optimization algorithms like gradient descent or Maximum Likelihood Estimation (MLE) method.
 
     <p></p>
     <!-------------------------->
@@ -438,6 +393,10 @@
         </li>
     </ol>
 
+    
+
+    <!----------------->
+    <div class="grey-box">
     <!---------------------------->
     <h4 id="gdr">Gradient Descent Rule:</h4> 
     The gradient descent algorithm for the logistic regression aims to find the optimal parameters \(\theta\) and \(w\)
@@ -454,9 +413,8 @@
     <ul>
         <li>\(\theta_j\) is the j-th parameter (weight or coefficient).</li>
         <li>\(\alpha\) is the learning rate, a positive scalar determining the size of each step in the parameter  space.</li>
-        <li>\(\frac{\partial J(\theta)}{\partial \theta_j}\) is the partial derivative of the cost function \(J(\theta)\) with respect to \(\theta_j\).</li>
+        <li>\(\frac{\partial J(\theta)}{\partial \theta_j}\) is the partial derivative of the cost function \(J(\theta)\) with respect to \(\theta_j\).</li> 
     </ul>
-
     <!----------------------------->
     <h5 id="algorithm">Algorithm steps:</h5>
     <ol>
@@ -469,6 +427,46 @@
         </ul>
         </li>
     </ol>
+    <h4 id="mle"><strong><a href="https://arunp77.github.io/Arun-Kumar-Pandey/Linear-reg.html#Maximum-likelihood-estimation" target="_blank">Maximum Likelihood Estimation (MLE)</a></strong></h4>
+    Maximum Likelihood Estimation (MLE) is a statistical method used to calculate the parameters. In the case of logistic regression, MLE aims to find the set of parameters that maximizes the likelihood function, which measures how well the model explains the observed data.
+    <p><strong>Mathematical Description:</strong>
+    For logistic regression, let's denote the likelihood function as \(L(\theta)\), where \(\theta\) represents the parameters of the logistic regression model. The likelihood function is given by the product of the 
+    probabilities of the observed outcomes under the current parameter values.</p>
+
+    <p>For a binary classification problem (0 or 1), the likelihood function is often expressed as:</p>
+
+    $$L(\theta) = \Pi_{i=1}^m P(y^{(i)}|x^{(i)}; \theta)^{y^{(i)}}\cdot \left(1-P(y^{(i)}|x^{(i)}; \theta)\right)^{1-y^{(i)}}.$$
+
+    Here:
+
+    <ul>
+    <li>\(m\) is the number of training examples.</li>
+    <li>\(y^{(i)}\) is the actual output for the i-th training example (0 or 1).</li>
+    <li>\(x^{(i)}\) is the input feature vector for the i-th training example.</li>
+    <li>\(P(y^{(i)|x^{(i); \theta}})\) is the predicted probabolity if the i-th example belonging to class 1.</li>
+    </ul>
+
+    In logistic regression, the predicted probability is given by the logistic function:
+
+    $$P(y^{(i)} =1| x^{(i)}; \theta) = h_\theta(x^{(i)})$$
+
+    $$P(y^{(i)} =0| x^{(i)}; \theta) = 1- h_\theta(x^{(i)})$$
+    
+    The goal of MLE is to find the values of \(\theta\) that maximize the likelihood function \(L(\theta)\). In practice, it 
+    is often more convenient to maximize the log-likelihood function (logarithm of the likelihood function), denoted as \(l(\theta)\):
+
+    $$l(\theta) = \sum_{i=1}^m \left[y^{(i)} \text{log}(h_\theta(x^{(i)}))- (1-y^{(i)})\text{log}(1-h_\theta(x^{(i)}))\right].$$
+
+    Maximizing \(l(\theta)\) is equivalent to maximizing \(L(\theta)\), as the logrithm is a monotonically increasing function.
+
+    <p>The logistic regression cost function \(J(\theta)\) that we discussed earlier is essentially the negative log-likelihood, with some scaling for convenience in optimization:</p>
+
+    $$J(\theta) = -\frac{1}{m} l(\theta).$$
+
+    So, in logistic regression, the optimization process, whether using gradient descent or another optimization algorithm, is essentially performing Maximum Likelihood Estimation to find the parameters that maximize the likelihood of observing the given set of training examples.
+    </div>
+
+    
 
 
 
