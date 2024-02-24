@@ -138,7 +138,7 @@
             <div class="swiper-wrapper align-items-center">
             <div class="swiper-slide">
                 <figure>
-                    <img src="assets/img/data-engineering/classification.png" alt="" style="max-width: 50%; max-height: 50%;">
+                    <img src="assets/img/machine-ln/logistic-fun-3d.jpg" alt="" style="max-width: 70%; max-height: auto;">
                     <figcaption style="text-align: center;"></figcaption>
                 </figure>
             </div>
@@ -320,10 +320,25 @@
 
     <!----------------->
     <h4 id="cost-func1">Cost function for binary Logistic Regression</h4> 
-    <p>Now, to train the parameters \(w \) and \(b \) of our Logistic Regression model, we need to define a Cost Function.</p>
+    <p>Now, to train the parameters \(w \) and \(b \) of our Logistic Regression model, we need to define a Cost Function. For each data point \(x \), we start computing a series of operations to produce a predicted output. 
+        Then, we compare this predicted output to the actual output and calculate a prediction error. This error is what we minimize during the learning process using an optimization strategy.
+        The way we’re computing that error value is by using a Loss Function. Our ultimate goal is to minimize the Loss Function in order to identify the values of \(w \) and \(b \). For this, we use an algorithm called the Gradient Descent.
+        The loss (error) function, to measure how well our algorithm is doing is defined as: \(\mathcal{L}(\hat{y}, y) = \frac{1}{2} (\hat{y} - y)^2\), (it is to be noted is that loss function is applied only to a single training sample). 
+        In the case of Linear regression models, a loss function is a convex function. However in the case of Logistic regression, it is a non-convex function.
+    </p>
+    <figure>
+        <img src="assets/img/machine-ln/lin-log.png" alt="" style="max-width: 90%; max-height: auto;">
+        <figcaption style="text-align: center;">(<strong>Image credit:</strong> @ <a href="index.html">arunp77</a>)</figcaption>
+    </figure>
+    <p>So in the case of Liear regression, GD will take steps until it converges at the global minima. However in the case of non-convex functions, there are so many local minima and hence squared error cost function is not a good choice. 
+        Instead, there will be different cost function which makes the cost function convex again and the GD method guaranteed to converge to the global minimum. A great pictorization of the non-convex in the 3D format can be seen at the top of this page.</p>
 
-    <p>The cost function for the logistic regression is used to quantify the error between predicted and actual values.
-    The objective is to minimize this cost. The cost function is defined as:</p>
+    <p>To ensure convergence to the global optimum, we utilize the Cross-Entropy Loss function. This metric evaluates the effectiveness of a classification model that produces probability values ranging from 0 to 1. We can write it as: 
+        \(\mathcal{L}(\hat{y}, y) =-(y \text{log}\hat{y}+(1-y)\text{log}(1-\hat{y}))\) and hence, when \(y =1\), loss function becomes \(\mathcal{L}( \hat{y}, y) = – y \text{log}\hat{y} \) should be large, so, we want \(\hat{y} \) large (as close as possible to 1 ).
+        However, when \(y=0\), the loss function is given by \(\mathcal{L}(\hat{y}, y) =-\text{log}(1-\hat{y})\)  should be large, so, we want \(\hat{y} \) small (as close as possible to 0 ). Remember, \(\hat{y}\) is a Sigmoid Function such that it cannot be less than 0 and bigger than 1.
+    </p>
+
+    <p>Now, we can define our Cost Function which measures how well our parameters \(w \) and \(b \) are doing on the entire training set. Here, we will use \((i) \) superscript to index different training examples.</p>
 
     $$J(\theta) = -\frac{1}{m} \sum_{i=1}^{m} \left[ y^{(i)} \log(h_\theta(x^{(i)})) + (1 - y^{(i)}) \log(1 - h_\theta(x^{(i)})) \right] $$
     Here,
@@ -332,6 +347,7 @@
         <li>\(y^{(i)}\) is the actual output for the i-th training example.</li>
         <li>\(h_\theta (x^{(i)})\) is the predicted output for the i-th training example using the logistic function.</li>
     </ul>
+    <p>It is to be noted here that the Cost function \(J(\theta)\) is defined as the average of the sum of Loss functions and is a function of both weights \(\theta\) and indirectly on bias \(b\).</p>
     The cost function penalizes large errors, and the logarithmic terms ensure that the cost is higher when the prediction is far from the actual value.
 
     In training, the goal is to find the parameter vector \(\theta\) that minimizes the cost function. This is often done using optimization algorithms like gradient descent.
