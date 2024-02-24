@@ -487,7 +487,7 @@
 
     The confusion matrix is typically represented as:
 
-    \[
+    \[\text{Confusion matrix} =
     \begin{bmatrix}
     TN & FP \\
     FN & TP \\
@@ -516,7 +516,20 @@
     $$\text{Accuracy} = \frac{\text{Number of Correct Predictions}}{\text{Total number of predictions}} = \frac{\text{TP+TN}}{\text{TP+TN+FP+FN}}.$$
     A higher accuracy value indicates better performance of the model in making correct predictions across all classes. However, accuracy alone might not provide a complete picture of the model's performance, especially in scenarios where classes are imbalanced or have different costs associated with misclassification. Therefore, it's essential to consider other evaluation metrics along with accuracy.
     
-
+    <p><strong>Precision and recall: </strong>Precision and recall are two important metrics used to evaluate the performance of a classification model, especially in scenarios where class imbalance exists.</p>
+    <ul>
+        <li><strong>Precision: </strong>Precision measures the accuracy of positive predictions made by the model. It is the ratio of true positive predictions to the total number of positive predictions made by the model.
+        Mathematically, it is defined as:
+        $$\text{Precision} = \frac{\text{TP}}{\text{TP+FP}}$$
+        Precision answers the question: "Of all the instances predicted as positive, how many are actually positive?" A high precision indicates that the model is making fewer false positive predictions.
+        </li>
+        <li><strong>Recall (Sensitivity):</strong>Recall, also known as sensitivity or true positive rate, measures the model's ability to correctly identify positive instances. It is the ratio of true positive predictions to the total number of actual positive instances in the dataset.
+            Mathematically, recall is calculated as:
+            $$\text{Recall} = \frac{\text{TP}}{\text{TP+FN}}.$$
+            Recall answers the question: "Of all the actual positive instances, how many did the model correctly predict as positive?" A high recall indicates that the model is effectively capturing most of the positive instances.
+        </li>
+        Both precision and recall are important metrics, and there is often a trade-off between them. For example, increasing precision may lead to a decrease in recall and vice versa. The F1 score, which is the harmonic mean of precision and recall, is often used to balance these two metrics.
+    </ul>
 
 
 
