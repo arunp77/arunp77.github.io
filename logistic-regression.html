@@ -170,6 +170,7 @@
             </ul>
             <li><a href="#gdr">Gradient Descent Rule</a></li>
             <li><a href="#mle">Maximum Likelihood Estimation (MLE)</a></li>
+            <li><a href="#con-mat">Confusion matrix </a></li>
             <li><a href="#reference">Reference</a></li>
         </ol>
         </div>
@@ -472,7 +473,44 @@
     So, in logistic regression, the optimization process, whether using gradient descent or another optimization algorithm, is essentially performing Maximum Likelihood Estimation to find the parameters that maximize the likelihood of observing the given set of training examples.
     </div>
 
-    
+
+    <!----------------->
+    <h3 id="con-mat">Confusion matrix</h3>
+    <p>The confusion matrix is a tool used in classification to evaluate the performance of a machine learning model. It is a matrix of actual classes vs. predicted classes. Here's the formula to compute it:</p>
+    <p>Let's assume we have a binary classification problem with two classes: Positive (P) and Negative (N).</p>
+    <ul>
+        <li><strong>True Positive (TP):</strong> The model correctly predicts positive instances.</li>
+        <li><strong>True Negative (TN):</strong> The model correctly predicts negative instances.</li>
+        <li><strong>False Positive (FP):</strong> The model incorrectly predicts positive instances as negative.</li>
+        <li><strong>False Negative (FN):</strong> The model incorrectly predicts negative instances as positive.</li>
+    </ul>
+
+    The confusion matrix is typically represented as:
+
+    \[
+    \begin{bmatrix}
+    TN & FP \\
+    FN & TP \\
+    \end{bmatrix}
+    \]
+
+    <p>The formulas for these are:</p>
+
+    <ul>
+        <li><strong>True Positive Rate (Sensitivity or Recall):</strong>
+        $$\text{TPR} = \frac{\text{TP}}{\text{TP}+\text{FN}}$$
+        </li>
+        <li><strong>True Negative Rate (Specificity):</strong>
+            $$\text{TPR} = \frac{\text{TN}}{\text{TN}+\text{FP}}$$
+        </li>
+        <li><strong>False Positive Rate: </strong>
+            $$\text{TPR} = \frac{\text{FP}}{\text{TN}+\text{FP}}$$
+        </li>
+        <li><strong>False Negative Rate: </strong>
+            $$\text{TPR} = \frac{\text{FN}}{\text{FN}+\text{TP}}$$
+        </li>
+    </ul>
+    These metrics help in understanding how well the model is performing in terms of correctly and incorrectly classifying instances.
 
 
 
