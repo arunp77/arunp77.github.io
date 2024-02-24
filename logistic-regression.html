@@ -159,11 +159,17 @@
             <li><a href="#applications">Scope of Applications</a></li>
             </ul>
             <li><a href="#Binary">Binary Logistic Regression</a></li>
-            <li><a href="#Types-of-Linear-Regression">Types of Linear Regression</a></li>
-            <li><a href="#Mathematical-1">Mathematical Explanation</a></li>
-            <li><a href="#Assumption-of-LR">Assumptions of Linear Regression</a></li>
-            <li><a href="#evaluation-metrics-for-LR">Evaluation Metrics for Linear Regression</a></li>
-            <li><a href="#overfit-goodfit-underfit">Overfitting, Good Fit, and Underfitting in Machine Learning</a></li>
+            <ul>
+                <li><a href="#how-sigma">How Sigmoid function works?</a></li>
+                <li><a href="#cost-func1">Cost function for binary Logistic Regression</a></li>
+            </ul>
+            <li><a href="#multi-class">Multi-Class Logistic Cost function</a></li>
+            <ul>
+                <li><a href="#one-vs-rest">One-vs-Rest (OvR) Logistic Regression</a></li>
+                <li><a href="#multi-lr">Multinomial Logistic Regression (Softmax Regression)</a></li>
+            </ul>
+            <li><a href="#gdr">Gradient Descent Rule</a></li>
+            <li><a href="#mle">Maximum Likelihood Estimation (MLE)</a></li>
             <li><a href="#reference">Reference</a></li>
         </ol>
         </div>
@@ -362,7 +368,7 @@
     <h4 id="multi-class">Multi-Class Logistic Cost function</h4>
     <p>Let's delve into the mathematical formulations of both the One-vs-Rest (OvR) and Multinomial Logistic Regression approaches:</p>
     <ol>
-        <li><strong>One-vs-Rest (OvR) Logistic Regression:</strong>
+        <li id="one-vs-rest"><strong>One-vs-Rest (OvR) Logistic Regression:</strong>
         Let us assume a scenario for each class \(k\) in a multi-class classification problem with \(K\) classes. 
         <ul>
             <li>Assume that we have a set of features \(x\) and parameters \(\theta^{(k)}\) for each class \(k\).</li> 
@@ -377,7 +383,7 @@
             <li>To predict the class for a new example \(x\), we compute the probabilities \(h_\theta^{(k)}(x)\) for each class \(k\), and select the class with the highest probability.</li>
         </ul>
         </li>
-        <li><strong>Multinomial Logistic Regression (Softmax Regression): </strong>
+        <li id="multi-lr"><strong>Multinomial Logistic Regression (Softmax Regression): </strong>
         Consider a multi-class classification problem with \(K\) classes. 
         <ul>
             <li>We have a set of feature \(x\) and parameters \(\Theta\), where \(\Theta\) is a matrix of size \((n\times K)\) for \(n\) features and \(K\) classes.</li>
