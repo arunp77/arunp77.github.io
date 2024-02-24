@@ -334,7 +334,7 @@
         Instead, there will be different cost function which makes the cost function convex again and the GD method guaranteed to converge to the global minimum. A great pictorization of the non-convex in the 3D format can be seen at the top of this page.</p>
 
     <p>To ensure convergence to the global optimum, we utilize the Cross-Entropy Loss function. This metric evaluates the effectiveness of a classification model that produces probability values ranging from 0 to 1. We can write it as: 
-        \(\mathcal{L}(\hat{y}, y) =-(y \text{log}\hat{y}+(1-y)\text{log}(1-\hat{y}))\) and hence, when \(y =1\), loss function becomes \(\mathcal{L}( \hat{y}, y) = – y \text{log}\hat{y} \) should be large, so, we want \(\hat{y} \) large (as close as possible to 1 ).
+        \(\mathcal{L}(\hat{y}, y) =-(y \text{log}\hat{y}+(1-y)\text{log}(1-\hat{y}))\) and hence, when \(y =1\), loss function becomes \(\mathcal{L}( \hat{y}, y) = – \text{log}\hat{y} \) should be large, so, we want \(\hat{y} \) large (as close as possible to 1 ).
         However, when \(y=0\), the loss function is given by \(\mathcal{L}(\hat{y}, y) =-\text{log}(1-\hat{y})\)  should be large, so, we want \(\hat{y} \) small (as close as possible to 0 ). Remember, \(\hat{y}\) is a Sigmoid Function such that it cannot be less than 0 and bigger than 1.
     </p>
 
