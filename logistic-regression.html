@@ -530,17 +530,69 @@
     <h2>Example project</h4>
         We will take sklearn's housing dataset available. This dataset contains information about housing values in suburban areas, such as the median value of owner-occupied homes, along with various other attributes like crime rate, proximity to highways, and socioeconomic factors. This dataset is commonly used for regression tasks to predict housing prices based on these features.
         <pre><code class="language-python">
-            # importing some libraries
-            from sklearn.datasets import load_boston
-
+            from sklearn.linear_model import LogisticRegression 
+            from sklearn.datasets import load_breast_cancer
+            
+            df = load_breast_cancer()
+            
+            # Independent features
+            X = pd.DataFrame(df['data'], columns=df['feature_names'])
+            # Depednent feature 
+            y = pd.DataFrame(df['target'], columns=["Target"])
         </code></pre>
-    
+        <figure>
+            <img src="assets/img/machine-ln/Logistic-data.png" alt="" style="max-width: 90%; max-height: auto;">
+            <figcaption style="text-align: center;">X data (<strong>Image credit:</strong> @ <a href="https://github.com/arunp77/Machine-Learning/blob/main/Projects-ML/Reg-models/Project-2.1-Logistic-project.ipynb">Look at the Jupyter notebook in mY github repo</a>.)</figcaption>
+        </figure>
+        Checking if the data is balanced.
+        <pre><code class="language-python">
+            # lets check the dataset is imbalanced 
+            y['Target'].value_counts()
+        </code></pre>
+        Now creating the train, and test dataset:
+        <pre><code class="language-python">
+            from sklearn.model_selection import train_test_split
 
+            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
+        </code></pre>
+        and setting the parameters for the Logistic regression (for more details, we can look at <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html" target="_blank">Official scikit-learn documentation on Logistic Regression</a>):
+        <pre><code class="language-python">params = [{'C': [1,5,10]}, {'max_iter': [100,150]}]</code></pre>
+        Now the logistic Regression function is 
+        <pre><code class="language-python">model1 = LogisticRegression(C=100, max_iter=100)</code></pre>
+        and hence the fitted model is given by (here we use hyperparameter tunning):
+        <pre><code class="language-python">
+        from sklearn.model_selection import GridSearchCV
+        model = GridSearchCV(model1, param_grid=params, scoring='f1', cv = 5)
+        model.fit(X_train, y_train)
+        </code></pre>
+        <figure>
+            <img src="assets/img/machine-ln/Logistic-GridSearch.png" alt="" style="max-width: 50%; max-height: auto;">
+            <figcaption style="text-align: center;">Model(<strong>Image credit:</strong> @ <a href="https://github.com/arunp77/Machine-Learning/blob/main/Projects-ML/Reg-models/Project-2.1-Logistic-project.ipynb">Look at the Jupyter notebook in mY github repo</a>.)</figcaption>
+        </figure>
+        Now we can calculate the confusion matrix:
+        <pre><code class="language-python"></code>
+            y_pred = model.predict(X_test)
+            from sklearn.metrics import confusion_matrix, classification_report, accuracy_score
 
-
-
-
-
+            confusion_matrix(y_test, y_pred)
+            accuracy_score(y_test, y_pred)
+            print(classification_report(y_test, y_pred))
+        </code></pre>
+        <pre>The accuracy score = 0.9680851063829787</pre>
+        and the report is:
+        <figure>
+            <img src="assets/img/machine-ln/Logistic-report.png" alt="" style="max-width: 50%; max-height: auto;">
+            <figcaption style="text-align: center;">(<strong>Image credit:</strong> @ <a href="https://github.com/arunp77/Machine-Learning/blob/main/Projects-ML/Reg-models/Project-2.1-Logistic-project.ipynb">Look at the Jupyter notebook in mY github repo</a>.)</figcaption>
+        </figure>
+        <ul>
+            <li><strong>Precision:</strong> Precision is the ratio of correctly predicted positive observations to the total predicted positives. In other words, it measures the accuracy of positive predictions. For class 0, precision is 0.96, and for class 1, precision is 0.98. This indicates that the model performs well in predicting both classes, with slightly higher precision for class 1.</li>
+            <li><strong>Recall (Sensitivity):</strong> Recall is the ratio of correctly predicted positive observations to the all observations in the actual class. It measures the ability of the classifier to find all the positive samples. For class 0, recall is 0.96, and for class 1, recall is 0.98. This indicates that the model effectively identifies both classes, with slightly higher recall for class 1.</li>
+            <li><strong>F1-score:</strong> The F1-score is the harmonic mean of precision and recall. It provides a balance between precision and recall. For class 0, the F1-score is 0.96, and for class 1, the F1-score is 0.98. This indicates a good balance between precision and recall for both classes.</li>
+            <li><strong>Support:</strong> Support is the number of actual occurrences of the class in the specified dataset. For class 0, the support is 67, and for class 1, the support is 121.</li>
+            <li><strong>Accuracy:</strong> Accuracy is the ratio of correctly predicted observations to the total observations. It measures the overall correctness of the model. In this case, the accuracy is 0.97, indicating that the model correctly predicts 97% of the observations in the dataset.</li>
+            <li><strong>Macro Avg:</strong> The macro average calculates the average metric (precision, recall, F1-score) across all classes. In this case, the macro average precision, recall, and F1-score are all 0.97, indicating good overall performance across classes.</li>
+            <li><strong>Weighted Avg:</strong> The weighted average calculates the average metric (precision, recall, F1-score) across all classes, weighted by the number of true instances for each class. In this case, the weighted average precision, recall, and F1-score are all 0.97, indicating good overall performance considering the class imbalance.</li>
+        </ul>
     </section>
 
 
