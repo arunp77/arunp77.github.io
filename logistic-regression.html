@@ -528,7 +528,13 @@
 
     <!----------------->
     <h2>Example project</h4>
-        We will take sklearn's housing dataset available. This dataset contains information about housing values in suburban areas, such as the median value of owner-occupied homes, along with various other attributes like crime rate, proximity to highways, and socioeconomic factors. This dataset is commonly used for regression tasks to predict housing prices based on these features.
+        The <code>load_breast_cancer</code> dataset is a built-in dataset in scikit-learn that contains features computed from a digitized image of a fine needle aspirate (FNA) of a breast mass. The dataset is used for binary classification tasks, particularly for distinguishing between malignant and benign tumors. Here are some details about the dataset:
+        <ul>
+            <li><strong>Features:</strong> The dataset consists of 30 features computed from images of FNA of breast masses. These features represent various characteristics of the cell nuclei present in the images, such as radius, texture, smoothness, compactness, concavity, symmetry, fractal dimension, etc.</li>
+            <li><strong>Target:</strong> The target variable represents the diagnosis of the tumor. It is binary, with 0 indicating a malignant (cancerous) tumor and 1 indicating a benign (non-cancerous) tumor.</li>
+            <li><strong>Size:</strong> The dataset contains a total of 569 instances (samples), with each instance having 30 features and a corresponding target label.</li>
+        </ul>
+        
         <pre><code class="language-python">
             from sklearn.linear_model import LogisticRegression 
             from sklearn.datasets import load_breast_cancer
