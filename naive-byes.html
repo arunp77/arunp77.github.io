@@ -154,23 +154,18 @@
             <li><a href="#introduction">Introduction</a></li>
             <ul>
                 <li><a href="#principle-bayes">Principle of Naive Bayes</a></li>
-                <li><a href="#need-of-LR">Need of Logistic Regression</a></li>
-                <li><a href="#advantages">Advantages of Logistic Regression</a></li>
-                <li><a href="#applications">Scope of Applications</a></li>
+                <li><a href="#working">Working of Naive Bayes</a></li>
+                <li><a href="#types">Types of Naive Bayes Classifiers</a></li>
+                <li><a href="#advantages">Advantages of Naive Bayes</a></li>
+                <li><a href="#limitations">Limitations of Naive Bayes</a></li>
+                <li><a href="#applications-bayes">Applications of Naive Bayes</a></li>
             </ul>
-            <li><a href="#Binary">Binary Logistic Regression</a></li>
+            <li><a href="#example">Example</a></li>
             <ul>
-                <li><a href="#how-sigma">How Sigmoid function works?</a></li>
-                <li><a href="#cost-func1">Cost function for binary Logistic Regression</a></li>
+                <li><a href="#example-weather">Example on weather outlook</a></li>
+                <li><a href="#example-iris">Irdis dataset</a></li>
+                <li><a href="#example-userdata">User_Data.csv</a></li>
             </ul>
-            <li><a href="#multi-class">Multi-Class Logistic Cost function</a></li>
-            <ul>
-                <li><a href="#one-vs-rest">One-vs-Rest (OvR) Logistic Regression</a></li>
-                <li><a href="#multi-lr">Multinomial Logistic Regression (Softmax Regression)</a></li>
-            </ul>
-            <li><a href="#gdr">Gradient Descent Rule</a></li>
-            <li><a href="#mle">Maximum Likelihood Estimation (MLE)</a></li>
-            <li><a href="#con-mat">Confusion matrix </a></li>
             <li><a href="#reference">Reference</a></li>
         </ol>
         </div>
@@ -182,7 +177,7 @@
     <p>Naive Bayes algorithms are a family of probabilistic classifiers based on Bayes' theorem with the "naive" assumption of independence between features. Despite their simplicity, they are powerful and widely used for classification tasks in various fields, including text classification, spam filtering, and medical diagnosis. They work by calculating the probability of a given data point belonging to each class and selecting the class with the highest probability. </p>
     <p>Naive Bayes algorithms are efficient, particularly for large datasets, and they perform well even with limited training data. Popular variants include Gaussian Naive Bayes, Multinomial Naive Bayes, and Bernoulli Naive Bayes. </p>
 
-    <h5 id="principle-bayes">Principle of Naive Bayes</h5> 
+    <h4 id="principle-bayes">Principle of Naive Bayes</h4> 
     <p>At the core of Naive Bayes is Bayes' theorem, which calculates the probability of a hypothesis (class label) given the observed evidence (features). The "naive" assumption in Naive Bayes is that the features are conditionally independent given the class label, which simplifies the calculation of probabilities.</p>
     
     <div class="grey-box">
@@ -206,7 +201,7 @@
         </p>
     </div><br><br>
 
-    <h5 id="working">Working of Naive Bayes</h5>
+    <h4 id="working">Working of Naive Bayes</h4>
     <ol>
         <li><strong>Training Phase: </strong>During the training phase, Naive Bayes learns the probabilities of each feature given each class label from the training data.</li>
         $$P(C_j) = \frac{\text{Number of instances with class} ~ C_j}{\text{Total number of instances}}$$
@@ -234,14 +229,14 @@
         </li>
     </ol>
 
-    <h5 id="types">Types of Naive Bayes Classifiers</h5>
+    <h4 id="types">Types of Naive Bayes Classifiers</h4>
     <ol>
         <li><strong>Gaussian Naive Bayes: </strong>Assumes that the features follow a Gaussian (normal) distribution.</li>
         <li><strong>Multinomial Naive Bayes: </strong>Suitable for features that represent counts or frequencies (e.g., word counts in text classification).</li>
         <li><strong>Bernoulli Naive Bayes: </strong>Designed for binary features, where each feature is either present or absent.</li>
     </ol>
 
-    <h5 id="Advantages">Advantages of Naive Bayes:</h5>
+    <h4 id="advantages">Advantages of Naive Bayes:</h4>
     <ol>
         <li><strong>Simplicity: </strong>Naive Bayes is straightforward to implement and understand, making it suitable for quick prototyping and baseline models.</li>
         <li><strong>Efficiency: </strong>Naive Bayes is computationally efficient, especially for large datasets, as it requires only simple probability calculations.</li>
@@ -249,7 +244,7 @@
     </ol>
 
 
-    <h5 id="limitations">Limitations of Naive Bayes</h5>
+    <h4 id="limitations">Limitations of Naive Bayes</h4>
     <ol>
         <li><strong>Strong Independence Assumption: </strong>The assumption of feature independence may not hold true in many real-world datasets, leading to suboptimal performance.</li>
         <li><strong>Sensitive to Imbalanced Data: </strong>Naive Bayes can be sensitive to imbalanced class distributions, potentially biasing the model towards the majority class.</li>
@@ -257,7 +252,7 @@
     </ol>
 
 
-    <h5 id="applications-bayes">Applications of Naive Bayes:</h5>
+    <h4 id="applications-bayes">Applications of Naive Bayes:</h4>
     <ol>
         <li><strong>Text Classification: </strong>Naive Bayes is widely used for text classification tasks, such as spam detection, sentiment analysis, and document categorization.</li>
         <li><strong>Recommendation Systems: </strong>Naive Bayes can be employed in recommendation systems to predict user preferences based on historical interactions.</li>
@@ -268,7 +263,8 @@
 
 
     <!------------------------->
-    <h3 id="example-1">Example </h3>
+    <h3 id="example">Example</h3>
+    <h4 id="example-weather">Example on weather outlook</h4>
     Suppose we have a dataset of weather conditions and corresponding target variable "Play". So using this dataset we need to decide that whether we should play or not on a particular day according to the weather conditions. So to solve this problem, we need to follow the below steps:
     <table>
         <tr>
@@ -459,7 +455,9 @@
         <figcaption style="text-align: center;">Number of 'Yes' and 'No' instances for each Weather Outlook is shown on the right hand side.</figcaption>
     </figure>
 
-    <p><strong>Examples-2: </strong>Iris data</p> tLet's consider the 'Iris' dataset. This example demonstrates the process of training and evaluating a Gaussian Naive Bayes classifier on the Iris dataset using scikit-learn. It shows how to load the data, split it into training and testing sets, train the classifier, make predictions, and evaluate the classifier's performance using accuracy, classification report, and confusion matrix.
+    <!----------------------------------->
+    <h4 id="example-iris">Examples-2: Iris data</h4>
+    In this example. we consider the 'Iris' dataset. This example demonstrates the process of training and evaluating a Gaussian Naive Bayes classifier on the Iris dataset using scikit-learn. It shows how to load the data, split it into training and testing sets, train the classifier, make predictions, and evaluate the classifier's performance using accuracy, classification report, and confusion matrix.
 
     <pre><code class="language-python">
         from sklearn.datasets import load_iris
@@ -514,7 +512,7 @@
 
     <p></p>
     <!------------------------------->
-    <h5 id="example-3">Example-3</h5>
+    <h4 id="example-userdata">Example-3</h4>
     In this example, we use dataset 'User_Data.csv' for training, or testing algorithms like Naive Bayes for classification tasks. In this case, it provides a starting point for implementing a Naive Bayes algorithm using Python. Data is available in my <a href="" target="_blank">Github repo</a>
     <ul>
         <li><strong>Step-1: </strong>Generate a random dataset:</li>
@@ -623,35 +621,6 @@
         </li>
         <p>The final output above depicts the classifier's performance on the test set data. The classifier has effectively created a Gaussian curve to separate the "purchased" and "not purchased" variables, demonstrating its ability to classify the data. Despite some erroneous predictions, which are quantified in the confusion matrix, overall, the classifier demonstrates strong performance and can be considered a reliable predictor.</p>
     </ul>
-    
-
-
-    
-
-
-
-    
-
-
-
-    
-
-
-    
-
-
-
-
-
-
-
-
-    
-    
-
-
-
-
 
     
     </section>
