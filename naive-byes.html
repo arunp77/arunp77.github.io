@@ -420,6 +420,99 @@
 
     <p>So as we can see from the above calculation that \(P(\text{Yes}|\text{Sunny})>P(\text{No}|\text{Sunny})\). Hence on a Sunny day, Player can play the game.</p>
 
+    <p><strong>Example: Python implementation</strong>A Python implementation of this example with little bit changed outlooks:</p>
+    <pre><code class="language-python">
+        import pandas as pd
+        import random
+        
+        # Define the possible values for Outlook and Play
+        outlook_values = ['Sunny', 'Rainy', 'Overcast']
+        play_values = ['Yes', 'No']
+        
+        # Generate 20 random data points
+        data = {
+            'Outlook': [random.choice(outlook_values) for _ in range(20)],
+            'Play': [random.choice(play_values) for _ in range(20)]
+        }
+        df = pd.DataFrame(data)
+
+        # Calculate the total number of instances
+        total_instances = len(df)
+        
+        # Calculate the number of instances where the outlook is sunny
+        sunny_instances = len(df[df['Outlook'] == 'Sunny'])
+        
+        # Calculate the number of instances where the outlook is sunny and the player plays
+        sunny_play_instances = len(df[(df['Outlook'] == 'Sunny') & (df['Play'] == 'Yes')])
+        
+        # Calculate the prior probability of playing the game
+        prior_probability_play = df['Play'].value_counts(normalize=True)['Yes']
+        
+        # Calculate the probability of playing the game given that the outlook is sunny using Bayes' theorem
+        probability_play_given_sunny = (sunny_play_instances / sunny_instances) * prior_probability_play
+        
+        print("Probability of playing the game on a Sunny day using Bayes' theorem:", probability_play_given_sunny)
+    </code></pre>
+    <pre>Probability of playing the game on a Sunny day using Bayes' theorem: 0.09999999999999999</pre>
+    <figure>
+        <img src="assets/img/machine-ln/classification-naive-example1.png" alt="" style="max-width: 90%; max-height: auto;">
+        <figcaption style="text-align: center;">Number of 'Yes' and 'No' instances for each Weather Outlook is shown on the right hand side.</figcaption>
+    </figure>
+
+    <p><strong>Examples-2: </strong>Iris data</p> tLet's consider the 'Iris' dataset. This example demonstrates the process of training and evaluating a Gaussian Naive Bayes classifier on the Iris dataset using scikit-learn. It shows how to load the data, split it into training and testing sets, train the classifier, make predictions, and evaluate the classifier's performance using accuracy, classification report, and confusion matrix.
+
+    <pre><code class="language-python">
+        from sklearn.datasets import load_iris
+        from sklearn.model_selection import train_test_split
+        from sklearn.naive_bayes import GaussianNB
+        from sklearn.metrics import classification_report, confusion_matrix
+        
+        # Load the Iris dataset
+        iris = load_iris()
+        X = iris.data
+        y = iris.target
+        
+        # Split the dataset into training and testing sets
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+        
+        # Initialize the Gaussian Naive Bayes classifier
+        gnb = GaussianNB()
+        
+        # Train the classifier
+        gnb.fit(X_train, y_train)
+        
+        # Make predictions on the testing set
+        y_pred = gnb.predict(X_test)
+    </code></pre>
+    The accuracy is:
+    <pre><code class="language-python">
+        # Calculate the accuracy of the classifier
+        accuracy = gnb.score(X_test, y_test)
+        print("Accuracy:", accuracy)
+    </code></pre>
+    <pre>Accuracy: 0.9777777777777777</pre>
+    <pre><code class="language-python">
+        # Print classification report and confusion matrix
+        print("\nClassification Report:")
+        print(classification_report(y_test, y_pred))
+    </code></pre>
+    <figure>
+        <img src="assets/img/machine-ln/classification-naive-example2.png" alt="" style="max-width: 90%; max-height: auto;">
+        <figcaption style="text-align: center;"></figcaption>
+    </figure>
+    <p><strong>Confusion matrix: </strong></p>
+    <pre><code class="language-python">
+        print("\nConfusion Matrix:")
+        print(confusion_matrix(y_test, y_pred))        
+    </code></pre>
+    <figure>
+        <img src="assets/img/machine-ln/classification-naive-confusionmatrix.png" alt="" style="max-width: 90%; max-height: auto;">
+        <figcaption style="text-align: center;"></figcaption>
+    </figure>
+    <p>The classification report provides a concise summary of the performance of a classifier. In this report, precision measures the accuracy of positive predictions, recall assesses the proportion of actual positives correctly identified, and the F1-score balances precision and recall. For the given classes (0, 1, 2), the classifier achieves high precision, indicating accurate positive predictions. Similarly, recall scores show effective identification of actual positives, though class 1 has slightly lower recall. The F1-score reflects a good balance between precision and recall for each class, indicating overall strong performance. The support values represent the number of instances for each class in the testing set. The reported accuracy of 98% highlights the overall correctness of the classifier across all classes, with both macro and weighted averages reinforcing balanced performance.</p>
+
+    
+
 
 
 
