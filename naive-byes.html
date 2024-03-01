@@ -195,14 +195,40 @@
             <li>\(P(A)\) is the probability of event \(A\) occurring. This is called the prior probability. The prior probability represents our initial belief about the probability of event \(A\) occurring before considering any new evidence.</li>
             <li>\(P(B)\) is the probability of event \(B\) occurring. This is called the marginal probability. The marginal probability represents the total probability of observing event B, irrespective of whether event A is true or not. It serves as a normalization factor to ensure that the posterior probability is properly scaled.</li>
         </ul>
-    </div>
+        <p><strong>Example: </strong>Let's say we have a medical test to detect a disease, and:
+            <ul>
+                <li>\(P(A)\) is the prior probability of having the disease.</li>
+                <li>\(P(B|A)\) is the probability of testing positive given that the person has the disease.</li>
+                <li>\(P(B)\) is the probability of testing positive (with or without having the disease).</li>
+                <li>\(P(A|B)\) is the probability of having the disease given that the person tested positive</li>
+            </ul>
+            Using Bayes' theorem, we can update our belief about the probability of having the disease \(P(A|B)\) based on the test result \(P(B|A)\), the prior probability of having the disease \(P(A)\), and the probability of testing positive \(P(B)\).
+        </p>
+    </div><br><br>
 
     <h5 id="working">Working of Naive Bayes</h5>
     <ol>
         <li><strong>Training Phase: </strong>During the training phase, Naive Bayes learns the probabilities of each feature given each class label from the training data.</li>
+        $$P(C_j) = \frac{\text{Number of instances with class} ~ C_j}{\text{Total number of instances}}$$
+        where \(P(C_j)\) represents the the Prior probability of each class occuring in the dataset and is calculated as the frequency of each class divided by the total number of instances in the dataset.
         <li><strong>Probability Calculation: </strong> To classify a new data point: 
             <ul>
-                <li>Calculate the posterior probability of each class given the observed features using Bayes' theorem.</li>
+                <li>Calculate the posterior probability of each class given the observed features using Bayes' theorem i.e. \(P(X_i|C_j)\). Depending on the type of feature (e.g., continuous, categorical), different probability distributions (e.g., Gaussian, multinomial) can be used. <strong>For example</strong>, for continuous features, Gaussian Naive Bayes assumes a normal (Gaussian) distribution for each feature given each class. Thus, the likelihood \(P(X_i|C_j)\) can be calculated using the mean \(\mu_{ij}\) and standard deviation \(\sigma_{ij}\) of feature \(X_i\) in class \(C_j\).
+                $$P(X_i|C_j) = \frac{1}{\sqrt{2\pi \sigma^2_{ij}}} ~\text{exp}\left(-\frac{(x-\mu_{ij})^2}{2\sigma_{ij}^2}\right).$$
+                <p><strong>Probability Calculation for classification:</strong> To classify a new data point, Naive Bayes calculates the posterior probability of each class given the observed features using Bayes' theorem:</p>
+                $$P(C_j|X_1,X_2,...,X_n) = \frac{P(X_1,X_2,...,X_n |C_j) \times P(C_j)}{P(X_1,X_2,...,X_n)}$$
+                Given the "naive" assumption of feature independence, this equation simplifies to:
+                $$P(C_j|X_1,X_2,...,X_n) = P(C_j) \times \Pi_{i=1}^n P(X_i|C_j)$$
+                where:
+                <ul>
+                    <li>\(P(C_j|X_1,X_2,...,X_n)\) is the posterior probability of class \(C_j\) given the observed features.</li>
+                    <li>\(P(X_i|C_j)\) is the likelihood of feature \(X_i\) given class \(C_j\), which was calculated during the training phase.</li>
+                    <li>\(P(C_j)\) is the prior probability of class \(C_j\), also calculated during the training phase. </li>
+                </ul>
+                Finally, Naive Bayes selects the class with the highest posterior probability as the predicted class for the new data point: 
+                $$\text{Predicted Class} = \text{arg}\text{max}_{C_j} = P(C_j|X_1, X_2,...,X_n).$$
+                In summary, during the training phase, Naive Bayes learns the probabilities of each feature given each class from the training data. Then, during the prediction phase, it calculates the posterior probability of each class given the observed features using Bayes' theorem and selects the class with the highest posterior probability as the predicted class.
+                </li>
                 <li>Select the class with the highest posterior probability as the predicted class for the new data point.</li>
             </ul>
         </li>
@@ -239,6 +265,180 @@
     </ol>
 
     Naive Bayes is a simple yet effective classification algorithm that can deliver competitive performance in various machine learning tasks, especially when dealing with text data and relatively simple classification problems. However, its performance may degrade in more complex scenarios where the independence assumption is violated or when dealing with highly imbalanced datasets.
+
+
+    <!------------------------->
+    <h3 id="example-1">Example </h3>
+    Suppose we have a dataset of weather conditions and corresponding target variable "Play". So using this dataset we need to decide that whether we should play or not on a particular day according to the weather conditions. So to solve this problem, we need to follow the below steps:
+    <table>
+        <tr>
+            <th></th>
+            <th>Outlook</th>
+            <th>Play</th>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td>Rainy</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Sunny</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Overcast</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Overcast</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Sunny</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Rainy</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>Sunny</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>Overcast</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>Rainy</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>Sunny</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>Sunny</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td>Rainy</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td>12</td>
+            <td>Overcast</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>13</td>
+            <td>Overcast</td>
+            <td>Yes</td>
+        </tr>
+    </table><br>
+    <p>Total samples = 14</p>
+
+    <p><strong>Frequency table and the Likelihood for the Weather Conditions:</strong></p>
+    <table>
+        <tr>
+            <th><strong>Weather</strong></th>
+            <th>Yes</th>
+            <th>No</th>
+            <th>Likelihood P(Yes | Weather)</th>
+            <th>Likelihood P(No | Weather)</th>
+        </tr>
+        <tr>
+            <td>Overcast</td>
+            <td>5</td>
+            <td>0</td>
+            <td>5/14= 0.35</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>Rainy</td>
+            <td>2</td>
+            <td>2</td>
+            <td>2/14</td>
+            <td>2/14</td>
+        </tr>
+        <tr>
+            <td>Sunny</td>
+            <td>3</td>
+            <td>2</td>
+            <td>3/14</td>
+            <td>2/14</td>
+        </tr>
+        <tr>
+            <td>Total</td>
+            <td>10</td>
+            <td>5</td>
+            <td></td>
+            <td></td> 
+        </tr>
+    </table><br>
+
+
+    <p><strong>Likelihood table weather condition:</strong></p>
+    <table>
+        <tr>
+            <th><strong>Weather</strong></th>
+            <th>Yes</th>
+            <th>No</th>
+            <th>Probability</th>
+        </tr>
+        <tr>
+            <td>Overcast</td>
+            <td>5</td>
+            <td>0</td>
+            <td>5/14 = 0.35</td>
+        </tr>
+        <tr>
+            <td>Rainy</td>
+            <td>2</td>
+            <td>2</td>
+            <td>4/14=0.29</td>
+        </tr>
+        <tr>
+            <td>Sunny</td>
+            <td>3</td>
+            <td>2</td>
+            <td>5/14=0.35</td>
+        </tr>
+        <tr>
+            <td>All</td>
+            <td>10/14= 0.71</td>
+            <td>4/14 = 0.29   = 0.71</td>
+            <td></td>
+        </tr>
+    </table>
+
+    So apllying the Bayes' theorem, we have:
+    $$P(\text{Yes}|\text{Sunny}) = P(\text{Sunny}|\text{Yes}) \times \frac{P(\text{Yes})}{P(\text{Sunny})} =\frac{3}{10} \times \frac{0.71}{0.35} = 0.60$$
+
+    and 
+    $$P(\text{No}|\text{Sunny}) = P(\text{Sunny}|\text{No}) \times \frac{P(\text{No})}{P(\text{Sunny})} =\frac{2}{4} \times \frac{0.29}{0.35} = 0.41$$
+
+    <p>So as we can see from the above calculation that \(P(\text{Yes}|\text{Sunny})>P(\text{No}|\text{Sunny})\). Hence on a Sunny day, Player can play the game.</p>
+
+
+
+
+
+
+
+
+    
     
 
 
