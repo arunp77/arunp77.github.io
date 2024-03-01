@@ -184,6 +184,18 @@
 
     <h5 id="principle-bayes">Principle of Naive Bayes</h5> 
     <p>At the core of Naive Bayes is Bayes' theorem, which calculates the probability of a hypothesis (class label) given the observed evidence (features). The "naive" assumption in Naive Bayes is that the features are conditionally independent given the class label, which simplifies the calculation of probabilities.</p>
+    
+    <div class="grey-box">
+        Bayes' theorem is a fundamental concept in probability theory and statistics, used to update the probability of a hypothesis (or event) based on new evidence. It is expressed mathematically as:
+        $$P(A|B) = \frac{P(B|A) \times P(A)}{P(B)}$$
+        where:
+        <ul>
+            <li>\(P(A|B)\) is the probability of event \(A\) occurring given that event \(B\) has occurred. This is called the posterior probability. The posterior probability represents the updated belief about the probability of event A occurring after considering the new evidence (event B). It is what we are interested in calculating using Bayes' theorem.</li>
+            <li>\(P(B|A)\) is the probability of event \(B\) occurring given that event \(A\) has occurred. This is called the likelihood. The likelihood represents the probability of observing the new evidence (event B) given that the hypothesis (event A) is true. It quantifies how well the evidence supports the hypothesis.</li>
+            <li>\(P(A)\) is the probability of event \(A\) occurring. This is called the prior probability. The prior probability represents our initial belief about the probability of event \(A\) occurring before considering any new evidence.</li>
+            <li>\(P(B)\) is the probability of event \(B\) occurring. This is called the marginal probability. The marginal probability represents the total probability of observing event B, irrespective of whether event A is true or not. It serves as a normalization factor to ensure that the posterior probability is properly scaled.</li>
+        </ul>
+    </div>
 
     <h5 id="working">Working of Naive Bayes</h5>
     <ol>
