@@ -138,7 +138,7 @@
             <div class="swiper-wrapper align-items-center">
             <div class="swiper-slide">
                 <figure>
-                    <img src="assets/img/machine-ln/logistic-fun-3d.jpg" alt="" style="max-width: 90%; max-height: auto;">
+                    <img src="assets/img/machine-ln/classification-naive.png" alt="" style="max-width: 90%; max-height: auto;">
                     <figcaption style="text-align: center;"></figcaption>
                 </figure>
             </div>
@@ -153,10 +153,10 @@
         <ol>
             <li><a href="#introduction">Introduction</a></li>
             <ul>
-            <li><a href="#importance">Importance of Logistic Regression</a></li>
-            <li><a href="#need-of-LR">Need of Logistic Regression</a></li>
-            <li><a href="#advantages">Advantages of Logistic Regression</a></li>
-            <li><a href="#applications">Scope of Applications</a></li>
+                <li><a href="#principle-bayes">Principle of Naive Bayes</a></li>
+                <li><a href="#need-of-LR">Need of Logistic Regression</a></li>
+                <li><a href="#advantages">Advantages of Logistic Regression</a></li>
+                <li><a href="#applications">Scope of Applications</a></li>
             </ul>
             <li><a href="#Binary">Binary Logistic Regression</a></li>
             <ul>
@@ -179,6 +179,67 @@
 
     <section>
     <h2 id="introdction">Introduction</h2>
+    <p>Naive Bayes algorithms are a family of probabilistic classifiers based on Bayes' theorem with the "naive" assumption of independence between features. Despite their simplicity, they are powerful and widely used for classification tasks in various fields, including text classification, spam filtering, and medical diagnosis. They work by calculating the probability of a given data point belonging to each class and selecting the class with the highest probability. </p>
+    <p>Naive Bayes algorithms are efficient, particularly for large datasets, and they perform well even with limited training data. Popular variants include Gaussian Naive Bayes, Multinomial Naive Bayes, and Bernoulli Naive Bayes. </p>
+
+    <h5 id="principle-bayes">Principle of Naive Bayes</h5> 
+    <p>At the core of Naive Bayes is Bayes' theorem, which calculates the probability of a hypothesis (class label) given the observed evidence (features). The "naive" assumption in Naive Bayes is that the features are conditionally independent given the class label, which simplifies the calculation of probabilities.</p>
+    
+    <div class="grey-box">
+        Bayes' theorem is a fundamental concept in probability theory and statistics, used to update the probability of a hypothesis (or event) based on new evidence. It is expressed mathematically as:
+        $$P(A|B) = \frac{P(B|A) \times P(A)}{P(B)}$$
+        where:
+        <ul>
+            <li>\(P(A|B)\) is the probability of event \(A\) occurring given that event \(B\) has occurred. This is called the posterior probability. The posterior probability represents the updated belief about the probability of event A occurring after considering the new evidence (event B). It is what we are interested in calculating using Bayes' theorem.</li>
+            <li>\(P(B|A)\) is the probability of event \(B\) occurring given that event \(A\) has occurred. This is called the likelihood. The likelihood represents the probability of observing the new evidence (event B) given that the hypothesis (event A) is true. It quantifies how well the evidence supports the hypothesis.</li>
+            <li>\(P(A)\) is the probability of event \(A\) occurring. This is called the prior probability. The prior probability represents our initial belief about the probability of event \(A\) occurring before considering any new evidence.</li>
+            <li>\(P(B)\) is the probability of event \(B\) occurring. This is called the marginal probability. The marginal probability represents the total probability of observing event B, irrespective of whether event A is true or not. It serves as a normalization factor to ensure that the posterior probability is properly scaled.</li>
+        </ul>
+    </div>
+
+    <h5 id="working">Working of Naive Bayes</h5>
+    <ol>
+        <li><strong>Training Phase: </strong>During the training phase, Naive Bayes learns the probabilities of each feature given each class label from the training data.</li>
+        <li><strong>Probability Calculation: </strong> To classify a new data point: 
+            <ul>
+                <li>Calculate the posterior probability of each class given the observed features using Bayes' theorem.</li>
+                <li>Select the class with the highest posterior probability as the predicted class for the new data point.</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h5 id="types">Types of Naive Bayes Classifiers</h5>
+    <ol>
+        <li><strong>Gaussian Naive Bayes: </strong>Assumes that the features follow a Gaussian (normal) distribution.</li>
+        <li><strong>Multinomial Naive Bayes: </strong>Suitable for features that represent counts or frequencies (e.g., word counts in text classification).</li>
+        <li><strong>Bernoulli Naive Bayes: </strong>Designed for binary features, where each feature is either present or absent.</li>
+    </ol>
+
+    <h5 id="Advantages">Advantages of Naive Bayes:</h5>
+    <ol>
+        <li><strong>Simplicity: </strong>Naive Bayes is straightforward to implement and understand, making it suitable for quick prototyping and baseline models.</li>
+        <li><strong>Efficiency: </strong>Naive Bayes is computationally efficient, especially for large datasets, as it requires only simple probability calculations.</li>
+        <li><strong>Robustness to Irrelevant Features: </strong>Naive Bayes can perform well even in the presence of irrelevant features, thanks to its independence assumption.</li>
+    </ol>
+
+
+    <h5 id="limitations">Limitations of Naive Bayes</h5>
+    <ol>
+        <li><strong>Strong Independence Assumption: </strong>The assumption of feature independence may not hold true in many real-world datasets, leading to suboptimal performance.</li>
+        <li><strong>Sensitive to Imbalanced Data: </strong>Naive Bayes can be sensitive to imbalanced class distributions, potentially biasing the model towards the majority class.</li>
+        <li><strong>Limited Expressiveness: </strong>Naive Bayes may struggle with capturing complex relationships between features, especially in datasets with highly nonlinear decision boundaries.</li>
+    </ol>
+
+
+    <h5 id="applications-bayes">Applications of Naive Bayes:</h5>
+    <ol>
+        <li><strong>Text Classification: </strong>Naive Bayes is widely used for text classification tasks, such as spam detection, sentiment analysis, and document categorization.</li>
+        <li><strong>Recommendation Systems: </strong>Naive Bayes can be employed in recommendation systems to predict user preferences based on historical interactions.</li>
+        <li><strong>Medical Diagnosis: </strong>Naive Bayes has applications in medical diagnosis, where it can assist in predicting the likelihood of diseases based on symptoms and patient characteristics.</li>
+    </ol>
+
+    Naive Bayes is a simple yet effective classification algorithm that can deliver competitive performance in various machine learning tasks, especially when dealing with text data and relatively simple classification problems. However, its performance may degrade in more complex scenarios where the independence assumption is violated or when dealing with highly imbalanced datasets.
+    
 
 
 
