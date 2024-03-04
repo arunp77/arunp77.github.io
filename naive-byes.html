@@ -267,9 +267,10 @@
     <h4 id="example-weather">Example on weather outlook</h4>
     Suppose we have a dataset of weather conditions and corresponding target variable "Play". So using this dataset we need to decide that whether we should play or not on a particular day according to the weather conditions. So to solve this problem, we need to follow the below steps
     (for more details go to <a href="https://www.javatpoint.com/machine-learning-naive-bayes-classifier" target="_blank">link</a>):
+    <br> <br>
     <table>
         <tr>
-            <th></th>
+            <th>Day</th>
             <th>Outlook</th>
             <th>Play</th>
         </tr>
@@ -349,71 +350,82 @@
     <p><strong>Frequency table and the Likelihood for the Weather Conditions:</strong></p>
     <table>
         <tr>
-            <th><strong>Weather</strong></th>
+            <th><strong>Outlook</strong></th>
             <th>Yes</th>
             <th>No</th>
+            <th>P(Outlook | Yes)</th>
+            <th>P(Outlook | No)</th> 
+            <th>P(Outlook)</th>
         </tr>
         <tr>
             <td>Overcast</td>
             <td>5</td>
             <td>0</td>
+            <td>5/10 = 0.5</td>
+            <td>0</td>
+            <td>5/14 = 0.35</td>
         </tr>
         <tr>
             <td>Rainy</td>
             <td>2</td>
             <td>2</td>
+            <td>2/10 =0.2</td>
+            <td>2/5= 0.4</td>
+            <td>4/14 = 0.29</td>
         </tr>
         <tr>
             <td>Sunny</td>
             <td>3</td>
             <td>2</td>
+            <td>3/10 = 0.3</td>
+            <td>2/5 = 0.4</td>
+            <td>5/14=0.35</td>
         </tr>
         <tr>
             <td>Total</td>
             <td>10</td>
             <td>5</td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
     </table><br>
 
-    <p><strong>Likelihood table weather condition:</strong></p>
     <table>
         <tr>
-            <th><strong>Weather</strong></th>
-            <th>Yes</th>
-            <th>No</th>
-            <th>Probability</th>
+            <th>Play (yes or no)</th>
+            <th>Total number</th>
+            <th>P(Play)</th>
         </tr>
         <tr>
-            <td>Overcast</td>
-            <td>5</td>
-            <td>0</td>
-            <td>5/14 = 0.35</td>
-        </tr> 
-        <tr>
-            <td>Rainy</td>
-            <td>2</td>
-            <td>2</td>
-            <td>4/14=0.29</td>
+            <td>Yes</td>
+            <td>10</td>
+            <td>10/14 = 0.71</td>
         </tr>
         <tr>
-            <td>Sunny</td>
-            <td>3</td>
-            <td>2</td>
-            <td>5/14=0.35</td>
-        </tr>
-        <tr>
-            <td>All</td>
-            <td>10/14= 0.71</td>
-            <td>4/14 = 0.29   = 0.71</td>
-            <td></td>
+            <td>No</td>
+            <td>4</td>
+            <td>4/14 = 0.29</td>
         </tr>
     </table>
 
+    
+
     So apllying the Bayes' theorem, we have:
-    $$P(\text{Yes}|\text{Sunny}) = P(\text{Sunny}|\text{Yes}) \times \frac{P(\text{Yes})}{P(\text{Sunny})} =\frac{3}{10} \times \frac{0.71}{0.35} = 0.60$$
+    $$P(\text{Yes}|\text{Sunny}) = P(\text{Yes}) \times \frac{ P(\text{Sunny}|\text{Yes})}{P(\text{Sunny})} =\frac{10}{14} \times \frac{3/10}{5/10} =0.71$$
 
     and 
-    $$P(\text{No}|\text{Sunny}) = P(\text{Sunny}|\text{No}) \times \frac{P(\text{No})}{P(\text{Sunny})} =\frac{2}{4} \times \frac{0.29}{0.35} = 0.41$$
+    $$P(\text{No}|\text{Sunny}) = P(\text{No}) \times \frac{P(\text{Sunny}|\text{No}) }{P(\text{Sunny})} =\frac{4}{14} \times \frac{2/5}{5/10}=0.22$$
+
+    <p>We can normalize the two probabilities as follows:</p>
+
+    $$P(\text{Yes}|\text{Sunny}) = \frac{0.71}{0.71+0.22} = 0.76 \equiv 76\%$$
+
+    and 
+
+    $$P(\text{No}|\text{Sunny}) \frac{0.22}{0.71+0.22} = 0.24 \equiv 24\%$$
+
+
 
     <p>So as we can see from the above calculation that \(P(\text{Yes}|\text{Sunny})>P(\text{No}|\text{Sunny})\). Hence on a Sunny day, Player can play the game.</p>
 
@@ -583,7 +595,7 @@
             X1, X2 = np.meshgrid(np.arange(start=x_set[:, 0].min() - 1, stop=x_set[:, 0].max() + 1, step=0.01),
                                  np.arange(start=x_set[:, 1].min() - 1, stop=x_set[:, 1].max() + 1, step=0.01))
             plt.contourf(X1, X2, classifier.predict(np.array([X1.ravel(), X2.ravel()]).T).reshape(X1.shape),
-                         alpha=0.75, cmap=ListedColormap(('lightblue', 'lightgreen')))  # corrected color names
+                         alpha=0.75, cmap=ListedColormap(('lightblue', 'lightgreen')))  
             plt.xlim(X1.min(), X1.max())
             plt.ylim(X2.min(), X2.max())
             for i, j in enumerate(np.unique(y_set)):
@@ -600,7 +612,7 @@
             X1, X2 = np.meshgrid(np.arange(start=x_set[:, 0].min() - 1, stop=x_set[:, 0].max() + 1, step=0.01),
                                  np.arange(start=x_set[:, 1].min() - 1, stop=x_set[:, 1].max() + 1, step=0.01))
             plt.contourf(X1, X2, classifier.predict(np.array([X1.ravel(), X2.ravel()]).T).reshape(X1.shape),
-                         alpha=0.75, cmap=ListedColormap(('lightblue', 'lightgreen')))  # corrected color names
+                         alpha=0.75, cmap=ListedColormap(('lightblue', 'lightgreen')))  
             plt.xlim(X1.min(), X1.max())
             plt.ylim(X2.min(), X2.max())
             for i, j in enumerate(np.unique(y_set)):
