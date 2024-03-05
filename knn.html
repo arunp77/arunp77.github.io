@@ -241,9 +241,18 @@
             </ul>
             <p>The Cosine Similarity is widely used in text analysis, document clustering, recommendation systems, and many other applications where vector representations are used to measure similarity between entities.</p>
         </li>
-        <li><strong></strong>
-            <p><strong>Formula:</strong></p>
-            $$d(\vec{p},\vec{q}) =$$
+        <li><strong>Correlation Distance: </strong>Correlation distance is a measure of dissimilarity between two vectors that takes into account the correlation between their elements. It quantifies how much two vectors deviate from being perfectly positively correlated (correlation coefficient of 1) or perfectly negatively correlated (correlation coefficient of -1). The correlation distance ranges from 0 to 2, where:
+            <ul>
+                <li>If the correlation coefficient is 1 (perfect positive correlation), the correlation distance is 0.</li>
+                <li>If the correlation coefficient is -1 (perfect negative correlation), the correlation distance is 2.</li>
+            </ul>
+            <p><strong>Formula:</strong></p> The formula for calculating the correlation distance between two vectors \(\vec{x}\) and \(\vec{y}\) of length \(n\) is given by 
+            $$\text{Correlation Distance}(\vec{x}, \vec{y}) = 1- \text{Correlation Coefficient}(\vec{x}, \vec{y})$$
+            where:
+            <ul>
+                <li>The correlation coefficient Correlation Coefficient(\(x\),\(y\)) measures the strength and direction of the linear relationship between the elements of vectors \(x\) and \(y\).</li>
+                <li>The correlation distance is calculated as 1 minus the correlation coefficient to convert the correlation coefficient into a distance metric.</li>
+            </ul>
         </li>
     </ol>
 
@@ -256,7 +265,109 @@
         <li>Data is noise-free</li>
         <li>Dataset is small, as KNN is a lazy learner</li>
     </ul>
-    
+    <!--------------------------------->
+    <h4 id="steps-to-follow"> Steps to Effective K-Nearest Neighbors (KNN) Algorithm Implementation </h4>
+    The K-NN working can be explained on the basis of the below algorithm:
+    <ul>
+        <li><strong>Step-1: (Data processing): </strong> Clean and preprocess your dataset to handle missing values, outliers, and irrelevant features. Normalize or standardize the numerical features to ensure that all features contribute equally to the distance calculations.</li>
+        <pre><code class="language-python">
+            from sklearn.preprocessing import StandardScaler
+            from sklearn.impute import SimpleImputer
+            
+            # Assume X_train and X_test are your feature matrices
+            # Impute missing values
+            imputer = SimpleImputer(strategy='mean')
+            X_train_imputed = imputer.fit_transform(X_train)
+            X_test_imputed = imputer.transform(X_test)
+            
+            # Standardize features
+            scaler = StandardScaler()
+            X_train_scaled = scaler.fit_transform(X_train_imputed)
+            X_test_scaled = scaler.transform(X_test_imputed)            
+        </code></pre>
+        <li><strong>Step-2: (Split Data): </strong> Split your dataset into training and testing sets. The training set will be used to train the KNN model, while the testing set will be used to evaluate its performance</li>
+        <pre><code class="language-python">
+            from sklearn.model_selection import train_test_split
+
+            # Split the dataset into training and testing sets
+            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)            
+        </code></pre>
+        <li><strong>Step-3: (Choose \(K\)): </strong>Decide on the value of \(K\)  based on cross-validation or experimentation to find the optimal value that minimizes error on the validation set.</li>
+        <pre><code class="language-python">
+            from sklearn.neighbors import KNeighborsClassifier
+            from sklearn.model_selection import GridSearchCV
+            
+            # Define KNN classifier
+            knn = KNeighborsClassifier()
+            
+            # Define parameter grid
+            param_grid = {'n_neighbors': [3, 5, 7, 9, 11]}
+            
+            # Perform grid search
+            grid_search = GridSearchCV(knn, param_grid, cv=5)
+            grid_search.fit(X_train, y_train)
+            
+            # Get the best value of K
+            best_k = grid_search.best_params_['n_neighbors']            
+        </code></pre>
+        <li><strong>Step-4 (Select Distance Metric): </strong> Choose an appropriate distance metric (e.g., Euclidean, Manhattan, Cosine) based on the nature of your data and problem domain. Different distance metrics may perform differently on different types of data.</li>
+        <pre><code class="language-python">
+            # By default, KNeighborsClassifier uses Euclidean distance
+            # You can specify different distance metrics using the 'metric' parameter
+            knn = KNeighborsClassifier(metric='manhattan')
+        </code></pre>
+        <li><strong>Step-5 (Train Model): </strong> Train the KNN model using the training dataset. The model memorizes the training data and does not require an explicit training step.</li>
+        <pre><code class="language-python">
+            # Using the best value of K obtained from grid search
+            knn = KNeighborsClassifier(n_neighbors=best_k)
+            knn.fit(X_train_scaled, y_train)
+        </code></pre>
+        <li><strong>Step-6 (Evaluate the Model): </strong> Use the testing dataset to evaluate the performance of the trained KNN model. Calculate evaluation metrics such as accuracy, precision, recall, F1-score, or others depending on the specific problem.</li>
+        <pre><code class="language-python">
+            from sklearn.metrics import accuracy_score
+
+            # Make predictions on the testing set
+            y_pred = knn.predict(X_test_scaled)
+            
+            # Calculate accuracy
+            accuracy = accuracy_score(y_test, y_pred)            
+        </code></pre>
+        <li><strong>Step-7 (Tune Hyperparameters): </strong> Fine-tune the hyperparameters of the KNN algorithm, such as the value of \(K\) and the choice of distance metric, based on the evaluation results. Perform grid search or randomized search to find the best hyperparameters.</li>
+        <pre>
+            # Use grid search or randomized search to tune hyperparameters
+            # Example using grid search is shown in step 3
+        </pre>
+        <li><strong>Step-8 (Cross-Validation): </strong> Implement cross-validation techniques such as k-fold cross-validation to ensure the robustness of the model and to assess its generalization performance on unseen data.</li>
+        <pre><code class="language-python">
+            from sklearn.model_selection import cross_val_score
+
+            # Perform k-fold cross-validation
+            cv_scores = cross_val_score(knn, X_train_scaled, y_train, cv=5)
+        </code></pre>
+        <li><strong>Step-9 (Feature Selection): </strong> Conduct feature selection or dimensionality reduction techniques if necessary to improve the model's performance and reduce computational complexity.</li>
+        <pre><code class="language-python">
+            # Use feature selection techniques such as SelectKBest or PCA
+            from sklearn.feature_selection import SelectKBest
+            from sklearn.decomposition import PCA
+            
+            # Example using SelectKBest
+            selector = SelectKBest(k=5)
+            X_train_selected = selector.fit_transform(X_train_scaled, y_train)
+            X_test_selected = selector.transform(X_test_scaled)
+            
+            # Example using PCA
+            pca = PCA(n_components=2)
+            X_train_pca = pca.fit_transform(X_train_scaled)
+            X_test_pca = pca.transform(X_test_scaled)
+        </code></pre>
+        <li><strong>Step-10 (Optimize Performance): </strong> Optimize the performance of the algorithm by using efficient data structures such as KD-trees or Ball trees for fast nearest neighbor search, especially for large datasets.</li>
+        <pre><code class="language-python">
+            # Use efficient data structures for nearest neighbor search
+            # By default, KNeighborsClassifier uses a brute-force algorithm
+            # For large datasets, you can use KD-trees or Ball trees for faster search
+            knn = KNeighborsClassifier(algorithm='kd_tree')
+        </code></pre>
+    </ul>
 
     <!---------------------------------->
     <h4 id="why">Why Do We Need the KNN Algorithm?</h4>
