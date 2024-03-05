@@ -138,7 +138,7 @@
             <div class="swiper-wrapper align-items-center">
             <div class="swiper-slide">
                 <figure>
-                    <img src="assets/img/machine-ln/classification-knn.png" alt="" style="max-width: 60%; max-height: auto;">
+                    <img src="assets/img/machine-ln/classfication-knn1.png" alt="" style="max-width: 90%; max-height: auto;">
                     <figcaption style="text-align: center;"></figcaption>
                 </figure>
             </div>
@@ -188,12 +188,64 @@
     <p></p>
     
     <!-------------------- Principle ---------------------->
-    <h4 id="principle">Principle of KNN</h4>
+    <h2 id="principle">Principle of KNN</h2>
     <p>The principle behind KNN is straightforward: objects are classified based on the majority class among their K nearest neighbors. In other words, the class label of an unseen data point is determined by the class labels of its K nearest neighbors in the feature space.</p>
     <ul>
         <li>The central idea behind KNN is to classify a new data point based on the majority class of its nearest neighbors.</li>
         <li>It assumes that similar things are close to each other. Hence, if most of the nearest neighbors of a data point belong to a certain class, the new data point is likely to belong to that class as well</li>
+        <li>Let use suppose that we have a set of training observations \((x,y)\) and they capture the relationship between \(x\) and \(y\). Now our goal is to make a model and then predict the values on the basis of new datasets.</li>
+        <li>In the context of \(K\)-Nearest Neighbors (KNN), our goal is to learn a function \(h : X \rightarrow Y\) that can predict the output \(y\) for an unseen observation \(x\) based on the relationships between the input features \(X\) and the corresponding output labels \(Y\) in a labeled dataset.</li>
+        <li>In the K-Nearest Neighbors (KNN) algorithm, \(K\) represents the number of nearest neighbors to consider when making predictions for a new data point.</li>
+        <li>When a new data point is to be classified, KNN calculate the distances between the point and all other points in the dataset. It then selects the \(K\) nearest neighbors based on these distances. The class label or value assigned to the new data point is typically determined by the majority class or avergae value among these \(K\) nearest neighbors.</li>
+        <li>The choice of \(K\) is crucial in KNN, as it significantly impacts the performance of the algorithm. A smaller \(K\) value may lead to more flexible decision boundaries, potentially capturing noise in the data but being more sensitive to outliers. On the other hand, a larger \(K\) value may provide smoother decision boundaries but might not capture local patterns effectively.</li>
+        <li>Selecting an appropriate \(K\) value often involves experimentation and validation using techniques such as cross-validation to ensure optimal performance for the specific dataset and problem at hand.</li>
     </ul>
+
+    <!---------------------------------->
+    <h4 id="distance">Distance metrics for k-nearest neighbours</h4>
+    <p>Distance metrics are crucial in the k-Nearest Neighbours (KNN) algorithm, as they determine how similarity or dissimilarity between data points is measured. The choice of distance metric can significantly impact the performance of the KNN algorithm. Here are some standard distance metrics used in KNN:</p>
+    <ol>
+        <li><strong>Euclidean Distance: </strong>The most commonly used distance metric in KNN. Calculates the straight-line distance between two points in the feature space. Suitable for continuous numerical features.
+        <p><strong>Formula: </strong></p>
+        $$d(\vec{p},\vec{q}) = \sqrt{\sum_{i=1}^n (p_i - q_i)^2}$$
+        <p>The Euclidean distance measures the straight-line distance between two points in a Euclidean space and the formula calculates the square root of the sum of squared differences between corresponding coordinates of two points.</p>
+        </li>
+        <li><strong> Manhattan Distance (Taxicab or City Block Distance): </strong>Calculates the distance between two points by summing the absolute differences between their coordinates along each dimension. Practical when dealing with features measured in different units.
+        <p><strong>Formula: </strong></p>
+        $$d(\vec{p},\vec{q}) = \sum_{i=1}^n |p_i - q_i|$$
+        <p>Manhattan distance calculates the distance between two points by summing the absolute differences of their coordinates. It represents the distance a taxicab would travel to reach the destination by moving along the grid-like city blocks.</p>
+        </li>
+        <li><strong>Minkowski Distance: </strong>Minkowski distance is a generalization of both Euclidean and Manhattan distances.
+            <p><strong>Formula: </strong></p>
+            $$d(\vec{p},\vec{q}) = \left(\sum_{i=1}^n |p_i - q_i|^{r}\right)^{1/r}$$
+            <p>where The parameter 'r' controls the degree of the distance metric. When \(r=1\), it reduces to the Manhattan distance, and when \(r=2\), it becomes the Euclidean distance.</p>
+        </li>
+        <li><strong>Chebyshev Distance (Maximum Metric): </strong>
+            Chebyshev distance calculates the maximum absolute difference between the coordinates of two points.
+            <p><strong>Formula:</strong></p>
+            $$d(\vec{p},\vec{q}) = \max_{i}(|p_i - q_i|)$$
+            <p>It represents the distance a king would travel on a chessboard to move between two squares.</p>
+        </li>
+        <li><strong>Hamming Distance (for categorical data):</strong> Hamming distance measures the number of positions at which the corresponding symbols are different between two strings of equal length.
+            <p><strong>Formula:</strong></p>
+            $$d(\vec{p},\vec{q}) = \sum_{i=1}^n \delta(p_i \neq q_i)$$
+            It's commonly used for categorical variables or binary data.
+        </li>
+        <li><strong>Cosine Similarity: </strong> The Cosine Similarity is a metric used to measure the similarity between two vectors in a multidimensional space. It calculates the cosine of the angle between the two vectors, providing a measure of how closely the vectors align in direction, irrespective of their magnitude. The Cosine Similarity ranges from -1 to 1.
+            <p><strong>Formula:</strong></p>
+            $$\cos(\theta) =  \frac{\mathbf{a} \cdot \mathbf{b}}{\|\mathbf{a}\| \cdot \|\mathbf{b}\|}$$
+            where:
+            <ul>
+                <li>\(\mathbf{a} \cdot \mathbf{b}\) represents the dot product of the two vectors.</li>
+                <li>\(\|\mathbf{a}\|\) and \(\cdot \|\mathbf{b}\|\)  represent the magnitudes (or norms) of the vectors \(a\) and \(b\), respectively.</li>
+            </ul>
+            <p>The Cosine Similarity is widely used in text analysis, document clustering, recommendation systems, and many other applications where vector representations are used to measure similarity between entities.</p>
+        </li>
+        <li><strong></strong>
+            <p><strong>Formula:</strong></p>
+            $$d(\vec{p},\vec{q}) =$$
+        </li>
+    </ol>
 
 
     <!---------------------------------->
@@ -220,20 +272,46 @@
     </ul>
 
     <!---------------------------------->
-    <h4 id="disadvantages">Disadvantages</h4>
-    <p>While the K-Nearest Neighbors (KNN) algorithm has several advantages, it also comes with its own set of disadvantages:</p>
-    <ol>
-        <li><strong>Computational Complexity:</strong> As the size of the training dataset grows, the computational cost of KNN increases significantly. This is because KNN requires calculating distances between the new data point and all existing data points in the training set, which can be time-consuming for large datasets.</li>
-        <li><strong>Memory Usage:</strong> Since KNN memorizes the entire training dataset during the testing phase, it requires storing all training instances in memory. This can become problematic for datasets with a large number of features or a high-dimensional feature space, leading to high memory usage.</li>
-        <li><strong>Prediction Time:</strong> In addition to the computational cost during training, KNN also incurs a high prediction time during inference. For each new data point, KNN needs to calculate distances to all training instances and determine the nearest neighbors, which can be slow for real-time or latency-sensitive applications.</li>
-        <li><strong>Sensitivity to Irrelevant Features:</strong> KNN considers all features equally when calculating distances between data points. As a result, irrelevant or noisy features can negatively impact the algorithm's performance and lead to suboptimal results. Feature selection or dimensionality reduction techniques may be necessary to mitigate this issue.</li>
-        <li><strong>Imbalanced Data:</strong> KNN is sensitive to imbalanced datasets, where one class significantly outnumbers the others. In such cases, the majority class may dominate the classification of new data points, leading to biased predictions. Techniques like resampling or adjusting class weights may be required to address class imbalance.</li>
-        <li><strong>Curse of Dimensionality:</strong> KNN's performance can degrade in high-dimensional feature spaces due to the curse of dimensionality. As the number of dimensions increases, the Euclidean distance between data points becomes less meaningful, making it challenging to define nearest neighbors accurately. </li>
-        <li><strong>Need for Optimal K Value:</strong> The choice of the hyperparameter K significantly influences the performance of KNN. Selecting an inappropriate value of K can lead to overfitting or underfitting of the model. Determining the optimal value of K often requires experimentation and validation using cross-validation techniques.</li>
-        <li><strong>Noisy Data and Outliers:</strong> KNN can be sensitive to noisy data and outliers, as they can significantly affect the calculation of distances between data points. Outliers may be incorrectly classified or influence the decision boundaries, leading to reduced accuracy.</li>
-    </ol>
-    <p>Overall, while KNN is a simple and intuitive algorithm, it's important to be aware of its limitations and consider them when applying it to real-world problems.</p>
+    <h4 id="pros">Pros of using KNN</h4>
+    <ul>
+        <li><strong>Simplicity:</strong> KNN is easy to understand and implement, making it accessible to beginners in machine learning and data science.</li>
+        <li><strong>No Training Phase:</strong> KNN is a lazy learning algorithm, meaning it doesn't require a training phase. Instead, it memorizes the entire training dataset, making it efficient for online learning scenarios where new data points need to be incorporated without retraining.</li>
+        <li><strong>Versatility:</strong> KNN can be applied to both classification and regression tasks. It can handle complex relationships between features and target variables, making it suitable for a wide range of datasets.</li>
+        <li><strong>Non-parametric:</strong> KNN makes no assumptions about the underlying data distribution, making it robust to different types of data. It can capture complex patterns in the data without relying on predefined models.</li>
+        <li><strong>Interpretability:</strong> Predictions made by KNN are intuitive and easy to interpret. The class label or regression value assigned to a new data point is based on the majority class or average value of its nearest neighbors.</li>
+    </ul>
 
+    <!-------------------------------------->
+    <h4 id="cons">Cons of Using KNN</h4>
+    <ol>
+        <li><strong>Computational Complexity:</strong> As the size of the training dataset grows, the computational cost of KNN increases significantly. Calculating distances between the new data point and all existing data points in the training set can be time-consuming for large datasets.</li>
+
+        <li><strong>Memory Usage:</strong> Since KNN memorizes the entire training dataset, it requires storing all training instances in memory. This can be problematic for datasets with a large number of features or a high-dimensional feature space, leading to high memory usage.</li>
+        
+        <li><strong>Prediction Time:</strong> KNN incurs a high prediction time during inference. For each new data point, KNN needs to calculate distances to all training instances and determine the nearest neighbors, which can be slow for real-time or latency-sensitive applications.</li>
+        
+        <li><strong>Sensitivity to Irrelevant Features:</strong> KNN considers all features equally when calculating distances between data points. Irrelevant or noisy features can negatively impact the algorithm's performance and lead to suboptimal results.</li>
+        
+        <li><strong>Need for Optimal K Value:</strong> The choice of the hyperparameter K significantly influences the performance of KNN. Selecting an inappropriate value of K can lead to overfitting or underfitting of the model, requiring careful tuning and validation.</li>
+        
+        <li><strong>Curse of Dimensionality:</strong> KNN's performance can degrade in high-dimensional feature spaces due to the curse of dimensionality. As the number of dimensions increases, the Euclidean distance between data points becomes less meaningful, making it challenging to define nearest neighbors accurately.</li>
+    </ol>
+
+
+    <!--------------------------------->
+    <h4 id="math">How Does a KNN Algorithm Work?</h4>
+    <p>The K-NN working can be explained on the basis of the below algorithm:</p>
+    <ul>
+        <li><strong>Step-1:</strong> Select the number K of the neighbors</li>
+        <li><strong>Step-2:</strong> Calculate the Euclidean distance of K number of neighbors</li>
+        <li><strong>Step-3:</strong> Take the K nearest neighbors as per the calculated Euclidean distance.</li>
+        <li><strong>Step-4:</strong> Among these k neighbors, count the number of the data points in each category.</li>
+        <li><strong>Step-5:</strong> Assign the new data points to that category for which the number of the neighbor is maximum.</li>
+        <li><strong>Step-6:</strong> Our model is ready.</li>
+    </ul>
+
+    
+    
 
 
 
