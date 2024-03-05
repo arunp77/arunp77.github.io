@@ -138,7 +138,7 @@
             <div class="swiper-wrapper align-items-center">
             <div class="swiper-slide">
                 <figure>
-                    <img src="assets/img/machine-ln/classification-knn.png" alt="" style="max-width: 90%; max-height: auto;">
+                    <img src="assets/img/machine-ln/classification-knn.png" alt="" style="max-width: 60%; max-height: auto;">
                     <figcaption style="text-align: center;"></figcaption>
                 </figure>
             </div>
@@ -181,14 +181,32 @@
     <!-------------------- Introduction ---------------------->
     <h2 id="introdction">Introduction</h2>
     <ul>
-        <li>K-Nearest Neighbors (KNN) is a simple yet powerful classification algorithm used in machine learning and data mining tasks. It is a non-parametric and instance-based learning algorithm, meaning it doesn't make any underlying assumptions about the distribution of data and learns directly from the training instances.</li>
+        <li>K-Nearest Neighbors (KNN) is a simple yet powerful supervised machine learning algorithm used for classification and regression tasks.</li>
+        <li>It is a non-parametric and instance-based learning algorithm, meaning it doesn't make any underlying assumptions about the distribution of data and learns directly from the training instances.</li>
+        <li>The main objective of the KNN algorithm is to predict the classification of a new sample point based on data points that are separated into several individual classes. It is used in text mining, agriculture, finance, and healthcare.</li>
     </ul>
     <p></p>
     
     <!-------------------- Principle ---------------------->
     <h4 id="principle">Principle of KNN</h4>
     <p>The principle behind KNN is straightforward: objects are classified based on the majority class among their K nearest neighbors. In other words, the class label of an unseen data point is determined by the class labels of its K nearest neighbors in the feature space.</p>
+    <ul>
+        <li>The central idea behind KNN is to classify a new data point based on the majority class of its nearest neighbors.</li>
+        <li>It assumes that similar things are close to each other. Hence, if most of the nearest neighbors of a data point belong to a certain class, the new data point is likely to belong to that class as well</li>
+    </ul>
     <p>&rArr; </p>
+
+    <h4 id="why">Why Do We Need the KNN Algorithm?</h4>
+    The K-Nearest Neighbors (KNN) algorithm is valuable in data science and analytics for several reasons:
+    <ul>
+        <li><strong>Flexibility in Data Patterns:</strong> KNN is effective in recognizing patterns in data that might not follow a linear or parametric model. It can handle complex relationships between features and target classes, making it suitable for a wide range of datasets.</li>
+        <li><strong>Non-parametric Approach:</strong> Unlike some other algorithms that make assumptions about the underlying data distribution, KNN is non-parametric. It doesn't require the data to be normally distributed or have a specific shape, making it versatile and applicable in various domains.</li>
+        <li><strong>Handling Multi-Class Classification:</strong> KNN can handle multi-class classification problems with ease. By considering the majority class among the nearest neighbors, it can assign a class label to a new data point based on the distribution of classes in its vicinity.</li>
+        <li><strong>Adaptability to New Data:</strong> KNN is well-suited for online learning scenarios where new data points need to be incorporated into the existing model without retraining. Since KNN doesn't have a training phase and simply memorizes the training data, it can quickly adapt to changes in the dataset.</li>
+        <li><strong>Interpretability:</strong> KNN predictions are intuitive and easy to interpret. The class assigned to a new data point is based on the classes of its nearest neighbors, providing insights into why a particular prediction was made.</li>
+        <li><strong>Robustness to Noisy Data:</strong> KNN can handle noisy data and outliers reasonably well. Since it relies on the majority class among the nearest neighbors, outliers are less likely to significantly impact the classification results compared to some other algorithms.</li>
+        <li><strong>Simple Implementation:</strong> KNN is relatively easy to implement and understand, making it accessible to beginners in machine learning and pattern recognition. Its simplicity also allows for quick experimentation and prototyping.</li>
+    </ul>
 
 
 
