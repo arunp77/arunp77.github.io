@@ -194,8 +194,19 @@
         <li>The central idea behind KNN is to classify a new data point based on the majority class of its nearest neighbors.</li>
         <li>It assumes that similar things are close to each other. Hence, if most of the nearest neighbors of a data point belong to a certain class, the new data point is likely to belong to that class as well</li>
     </ul>
-    <p>&rArr; </p>
 
+
+    <!---------------------------------->
+    <h4 id="when">When Do We Use the KNN Algorithm?</h4>
+    <p>The K-Nearest Neighbors (KNN) algorithm is used in various scenarios where its characteristics align well with the requirements of the problem. Here are some common situations where KNN is often used:</p>
+    <ul>
+        <li>Data is labeled</li>
+        <li>Data is noise-free</li>
+        <li>Dataset is small, as KNN is a lazy learner</li>
+    </ul>
+    
+
+    <!---------------------------------->
     <h4 id="why">Why Do We Need the KNN Algorithm?</h4>
     The K-Nearest Neighbors (KNN) algorithm is valuable in data science and analytics for several reasons:
     <ul>
@@ -207,6 +218,21 @@
         <li><strong>Robustness to Noisy Data:</strong> KNN can handle noisy data and outliers reasonably well. Since it relies on the majority class among the nearest neighbors, outliers are less likely to significantly impact the classification results compared to some other algorithms.</li>
         <li><strong>Simple Implementation:</strong> KNN is relatively easy to implement and understand, making it accessible to beginners in machine learning and pattern recognition. Its simplicity also allows for quick experimentation and prototyping.</li>
     </ul>
+
+    <!---------------------------------->
+    <h4 id="disadvantages">Disadvantages</h4>
+    <p>While the K-Nearest Neighbors (KNN) algorithm has several advantages, it also comes with its own set of disadvantages:</p>
+    <ol>
+        <li><strong>Computational Complexity:</strong> As the size of the training dataset grows, the computational cost of KNN increases significantly. This is because KNN requires calculating distances between the new data point and all existing data points in the training set, which can be time-consuming for large datasets.</li>
+        <li><strong>Memory Usage:</strong> Since KNN memorizes the entire training dataset during the testing phase, it requires storing all training instances in memory. This can become problematic for datasets with a large number of features or a high-dimensional feature space, leading to high memory usage.</li>
+        <li><strong>Prediction Time:</strong> In addition to the computational cost during training, KNN also incurs a high prediction time during inference. For each new data point, KNN needs to calculate distances to all training instances and determine the nearest neighbors, which can be slow for real-time or latency-sensitive applications.</li>
+        <li><strong>Sensitivity to Irrelevant Features:</strong> KNN considers all features equally when calculating distances between data points. As a result, irrelevant or noisy features can negatively impact the algorithm's performance and lead to suboptimal results. Feature selection or dimensionality reduction techniques may be necessary to mitigate this issue.</li>
+        <li><strong>Imbalanced Data:</strong> KNN is sensitive to imbalanced datasets, where one class significantly outnumbers the others. In such cases, the majority class may dominate the classification of new data points, leading to biased predictions. Techniques like resampling or adjusting class weights may be required to address class imbalance.</li>
+        <li><strong>Curse of Dimensionality:</strong> KNN's performance can degrade in high-dimensional feature spaces due to the curse of dimensionality. As the number of dimensions increases, the Euclidean distance between data points becomes less meaningful, making it challenging to define nearest neighbors accurately. </li>
+        <li><strong>Need for Optimal K Value:</strong> The choice of the hyperparameter K significantly influences the performance of KNN. Selecting an inappropriate value of K can lead to overfitting or underfitting of the model. Determining the optimal value of K often requires experimentation and validation using cross-validation techniques.</li>
+        <li><strong>Noisy Data and Outliers:</strong> KNN can be sensitive to noisy data and outliers, as they can significantly affect the calculation of distances between data points. Outliers may be incorrectly classified or influence the decision boundaries, leading to reduced accuracy.</li>
+    </ol>
+    <p>Overall, while KNN is a simple and intuitive algorithm, it's important to be aware of its limitations and consider them when applying it to real-world problems.</p>
 
 
 
