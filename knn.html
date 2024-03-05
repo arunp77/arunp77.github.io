@@ -202,7 +202,7 @@
     </ul>
 
     <!---------------------------------->
-    <h4 id="distance">Distance metrics for k-nearest neighbours</h4>
+    <h3 id="distance">Distance metrics for k-nearest neighbours</h3>
     <p>Distance metrics are crucial in the k-Nearest Neighbours (KNN) algorithm, as they determine how similarity or dissimilarity between data points is measured. The choice of distance metric can significantly impact the performance of the KNN algorithm. Here are some standard distance metrics used in KNN:</p>
     <ol>
         <li><strong>Euclidean Distance: </strong>The most commonly used distance metric in KNN. Calculates the straight-line distance between two points in the feature space. Suitable for continuous numerical features.
@@ -258,7 +258,7 @@
 
 
     <!---------------------------------->
-    <h4 id="when">When Do We Use the KNN Algorithm?</h4>
+    <h3 id="when">When Do We Use the KNN Algorithm?</h3>
     <p>The K-Nearest Neighbors (KNN) algorithm is used in various scenarios where its characteristics align well with the requirements of the problem. Here are some common situations where KNN is often used:</p>
     <ul>
         <li>Data is labeled</li>
@@ -266,7 +266,7 @@
         <li>Dataset is small, as KNN is a lazy learner</li>
     </ul>
     <!--------------------------------->
-    <h4 id="steps-to-follow"> Steps to Effective K-Nearest Neighbors (KNN) Algorithm Implementation </h4>
+    <h3 id="steps-to-follow"> Steps to Effective K-Nearest Neighbors (KNN) Algorithm Implementation </h3>
     The K-NN working can be explained on the basis of the below algorithm:
     <ul>
         <li><strong>Step-1: (Data processing): </strong> Clean and preprocess your dataset to handle missing values, outliers, and irrelevant features. Normalize or standardize the numerical features to ensure that all features contribute equally to the distance calculations.</li>
@@ -369,8 +369,21 @@
         </code></pre>
     </ul>
 
+
+    <!--------------------------------->
+    <h3>What value should you choose for k in k-nearest neighbours?</h3>
+    <p>Choosing the correct value for k in the k-Nearest Neighbours (KNN) algorithm is a critical step, as it can significantly impact the model’s performance. Selecting an appropriate k value involves finding a balance between bias and variance. Here are a few approaches you can use to choose the optimal k value:</p>
+    <ul>
+        <li><strong>Cross-Validation: </strong>Split your dataset into multiple folds (e.g., using k-fold cross-validation). For each fold, train the KNN model with different k values and evaluate its performance on the validation set. Calculate the average performance metric (e.g., accuracy) for each k value across all folds. Choose the k value that results in the best average performance.</li>
+        <li><strong>Odd vs. Even \(K\) values:</strong> Choose odd \(K\) values to avoid ties when classifying data points with an equal number of nearest neighbours from different classes. Using an odd k value prevents indecisiveness in classification.</li>
+        <li><strong>Elbow Method: </strong>Plot the performance metric (e.g., accuracy) as a function of different k values. Look for the point on the plot where the performance stabilizes or starts to decrease. This point resembles an “elbow.” This method helps you identify a value k that offers a good trade-off between bias and variance.</li>
+        <li><strong>Grid Search: </strong>Perform a grid search over a predefined range of k values. Train and evaluate the model for each k value in the range. Choose the k value that gives the best performance on a validation set.</li>
+        <li><strong>Domain Knowledge: </strong> Sometimes, domain knowledge can help you make an informed decision about the k value. For example, if you know that the problem is expected to have specific characteristics, you can choose a k value accordingly.</li>
+        <li><strong>Use Case-Specific Testing: </strong>Experiment with different k values and assess the model’s performance on a separate test dataset that wasn’t used during training. This approach helps you directly observe how different k values affect real-world predictions.</li>
+    </ul>
+
     <!---------------------------------->
-    <h4 id="why">Why Do We Need the KNN Algorithm?</h4>
+    <h3 id="why">Why Do We Need the KNN Algorithm?</h3>
     The K-Nearest Neighbors (KNN) algorithm is valuable in data science and analytics for several reasons:
     <ul>
         <li><strong>Flexibility in Data Patterns:</strong> KNN is effective in recognizing patterns in data that might not follow a linear or parametric model. It can handle complex relationships between features and target classes, making it suitable for a wide range of datasets.</li>
