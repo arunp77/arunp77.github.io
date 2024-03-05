@@ -152,25 +152,16 @@
         <h3>Content</h3>
         <ol>
             <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#principle">Principle of KNN</a></li>
             <ul>
-            <li><a href="#importance">Importance of Logistic Regression</a></li>
-            <li><a href="#need-of-LR">Need of Logistic Regression</a></li>
-            <li><a href="#advantages">Advantages of Logistic Regression</a></li>
-            <li><a href="#applications">Scope of Applications</a></li>
+                <li><a href="#distance">Distance metrics for k-nearest neighbours</a></li>
+                <li><a href="#when">When Do We Use the KNN Algorithm?</a></li>
+                <li><a href="#steps-to-follow">Steps to Effective K-Nearest Neighbors (KNN) Algorithm Implementation</a></li>
+                <li><a href="#what-k">What value should you choose for k in k-nearest neighbours</a></li>
+                <li><a href="why-knn">Why Do We Need the KNN Algorithm?</a></li>
+                <li><a href="#pros">Pros of using KNN</a></li>
+                <li><a href="#cons">Cons of Using KNN</a></li>
             </ul>
-            <li><a href="#Binary">Binary Logistic Regression</a></li>
-            <ul>
-                <li><a href="#how-sigma">How Sigmoid function works?</a></li>
-                <li><a href="#cost-func1">Cost function for binary Logistic Regression</a></li>
-            </ul>
-            <li><a href="#multi-class">Multi-Class Logistic Cost function</a></li>
-            <ul>
-                <li><a href="#one-vs-rest">One-vs-Rest (OvR) Logistic Regression</a></li>
-                <li><a href="#multi-lr">Multinomial Logistic Regression (Softmax Regression)</a></li>
-            </ul>
-            <li><a href="#gdr">Gradient Descent Rule</a></li>
-            <li><a href="#mle">Maximum Likelihood Estimation (MLE)</a></li>
-            <li><a href="#con-mat">Confusion matrix </a></li>
             <li><a href="#reference">Reference</a></li>  
         </ol>
         </div>
@@ -266,7 +257,7 @@
         <li>Dataset is small, as KNN is a lazy learner</li>
     </ul>
     <!--------------------------------->
-    <h3 id="steps-to-follow"> Steps to Effective K-Nearest Neighbors (KNN) Algorithm Implementation </h3>
+    <h3 id="steps-to-follow">Steps to Effective K-Nearest Neighbors (KNN) Algorithm Implementation</h3>
     The K-NN working can be explained on the basis of the below algorithm:
     <ul>
         <li><strong>Step-1: (Data processing): </strong> Clean and preprocess your dataset to handle missing values, outliers, and irrelevant features. Normalize or standardize the numerical features to ensure that all features contribute equally to the distance calculations.</li>
@@ -371,7 +362,7 @@
 
 
     <!--------------------------------->
-    <h3>What value should you choose for k in k-nearest neighbours?</h3>
+    <h3 id="what-k">What value should you choose for k in k-nearest neighbours?</h3>
     <p>Choosing the correct value for k in the k-Nearest Neighbours (KNN) algorithm is a critical step, as it can significantly impact the model’s performance. Selecting an appropriate k value involves finding a balance between bias and variance. Here are a few approaches you can use to choose the optimal k value:</p>
     <ul>
         <li><strong>Cross-Validation: </strong>Split your dataset into multiple folds (e.g., using k-fold cross-validation). For each fold, train the KNN model with different k values and evaluate its performance on the validation set. Calculate the average performance metric (e.g., accuracy) for each k value across all folds. Choose the k value that results in the best average performance.</li>
@@ -383,7 +374,7 @@
     </ul>
 
     <!---------------------------------->
-    <h3 id="why">Why Do We Need the KNN Algorithm?</h3>
+    <h3 id="why-knn">Why Do We Need the KNN Algorithm?</h3>
     The K-Nearest Neighbors (KNN) algorithm is valuable in data science and analytics for several reasons:
     <ul>
         <li><strong>Flexibility in Data Patterns:</strong> KNN is effective in recognizing patterns in data that might not follow a linear or parametric model. It can handle complex relationships between features and target classes, making it suitable for a wide range of datasets.</li>
@@ -396,7 +387,7 @@
     </ul>
 
     <!---------------------------------->
-    <h4 id="pros">Pros of using KNN</h4>
+    <h3 id="pros">Pros of using KNN</h3>
     <ul>
         <li><strong>Simplicity:</strong> KNN is easy to understand and implement, making it accessible to beginners in machine learning and data science.</li>
         <li><strong>No Training Phase:</strong> KNN is a lazy learning algorithm, meaning it doesn't require a training phase. Instead, it memorizes the entire training dataset, making it efficient for online learning scenarios where new data points need to be incorporated without retraining.</li>
@@ -406,7 +397,7 @@
     </ul>
 
     <!-------------------------------------->
-    <h4 id="cons">Cons of Using KNN</h4>
+    <h3 id="cons">Cons of Using KNN</h3>
     <ol>
         <li><strong>Computational Complexity:</strong> As the size of the training dataset grows, the computational cost of KNN increases significantly. Calculating distances between the new data point and all existing data points in the training set can be time-consuming for large datasets.</li>
 
@@ -421,26 +412,6 @@
         <li><strong>Curse of Dimensionality:</strong> KNN's performance can degrade in high-dimensional feature spaces due to the curse of dimensionality. As the number of dimensions increases, the Euclidean distance between data points becomes less meaningful, making it challenging to define nearest neighbors accurately.</li>
     </ol>
 
-
-    <!--------------------------------->
-    <h4 id="math">How Does a KNN Algorithm Work?</h4>
-    <p>The K-NN working can be explained on the basis of the below algorithm:</p>
-    <ul>
-        <li><strong>Step-1:</strong> Select the number K of the neighbors</li>
-        <li><strong>Step-2:</strong> Calculate the Euclidean distance of K number of neighbors</li>
-        <li><strong>Step-3:</strong> Take the K nearest neighbors as per the calculated Euclidean distance.</li>
-        <li><strong>Step-4:</strong> Among these k neighbors, count the number of the data points in each category.</li>
-        <li><strong>Step-5:</strong> Assign the new data points to that category for which the number of the neighbor is maximum.</li>
-        <li><strong>Step-6:</strong> Our model is ready.</li>
-    </ul>
-
-    
-    
-
-
-
-
-    
     </section>
 
     <!----------- Reference ----------->
