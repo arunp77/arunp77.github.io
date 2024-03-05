@@ -162,6 +162,7 @@
                 <li><a href="#pros">Pros of using KNN</a></li>
                 <li><a href="#cons">Cons of Using KNN</a></li>
             </ul>
+            <li><a href="#example">Example</a></li>
             <li><a href="#reference">Reference</a></li>  
         </ol>
         </div>
@@ -411,6 +412,163 @@
         
         <li><strong>Curse of Dimensionality:</strong> KNN's performance can degrade in high-dimensional feature spaces due to the curse of dimensionality. As the number of dimensions increases, the Euclidean distance between data points becomes less meaningful, making it challenging to define nearest neighbors accurately.</li>
     </ol>
+
+
+    <!-------------------------------->
+    <h2 id="example">Example with the dataset on 'user_data.csv'</h2>
+    <p>Again we consider the 'user_data.csv' used in <a href="naive-byes.html" target="_blank">Naive-Bayes algorithm</a> (for the code, please see the github repository <a href="https://github.com/arunp77/Machine-Learning/tree/main/Projects-ML/Reg-models" target="_blank">check the 'Project-2.3-KNN-classification.ipynb' file in the Github repo</a>).</p>
+
+    <ul>
+        <li><strong>Data loading: </strong></li>
+        <pre><code class="language-python">
+            # loading the important libraries
+            import pandas as pd
+            import numpy as np
+            import random 
+            import matplotlib.pyplot as plt 
+            
+            # loading the datset and creating a dataframe
+            df_user =  pd.read_csv('User_Data.csv')
+            
+            # Display the DataFrame
+            print(df_user.head())
+        </code></pre>
+        <figure>
+            <img src="assets/img/machine-ln/classfication-user-table.png" alt="" style="max-width: 90%; max-height: auto;">
+            <figcaption style="text-align: center;"></figcaption>
+        </figure>
+        <li><strong>Data cleaning, preprocessing and then splitting and scalling: </strong>
+            <pre><code class="language-python">
+                # Importing the dataset  
+                X = df_user.iloc[:, [2, 3]].values  # features
+                y = df_user.iloc[:, 4].values  # target
+                
+                # Splitting the dataset into the Training set and Test set  
+                from sklearn.model_selection import train_test_split  
+                X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state = 0)
+
+                # Feature Scaling  
+                from sklearn.preprocessing import StandardScaler  
+                sc = StandardScaler()  
+                X_train = sc.fit_transform(X_train)  
+                X_test = sc.transform(X_test) 
+            </code></pre>
+        </li>
+        <li><strong>Fitting K-NN classifier to the Training data: </strong>
+            <p>In next step, we fit the K-NN classifier to the training data. To do this we will import the <code>KNeighborsClassifier</code> class of the <code>sklearn</code>. The object <code>Classifier</code> from the <code>KNeighborsClassifier</code> which needs various parameters such as (formmore details, see the official documentation <a href="https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html" target="_blank">Sklearn.neighbors.KNeighborsClassifier</a>):</p>
+            <ul>
+                <li><code>n_neighbors</code>: defines the required neighbors of the algorithm.</li>
+                <li><code>metric='minkowski'</code>: This is the default parameter and it decides the distance between the points.</li>
+                <li><code>p=2</code>: It is equivalent to the standard Euclidean metric.</li>
+            </ul>
+            <pre><code class="language-python">
+                #Fitting K-NN classifier to the training set  
+                from sklearn.neighbors import KNeighborsClassifier  
+                classifier= KNeighborsClassifier(n_neighbors=5, metric='minkowski', p=2)
+                
+                classifier.fit(X_train, y_train)  
+            </code></pre>
+        </li>
+        <li><strong>Predicting the Test Result: </strong>
+            <pre><code class="language-python">
+                #Predicting the test set result  
+                y_pred= classifier.predict(x_test)  
+            </code></pre>
+        </li>
+        <li><strong>Creating the Confusion Matrix:</strong> Now we will create the Confusion Matrix for our K-NN model to see the accuracy of the classifier. Below is the code for it:
+            <pre><code class="language-python">
+                #Creating the Confusion matrix  
+                from sklearn.metrics import confusion_matrix  
+                cm= confusion_matrix(y_test, y_pred)  
+                cm
+            </code></pre>
+            which created a numpy array:
+            <pre>
+                array(
+                    [[64   4]
+                    [  3  29]], dtype=int64
+                )
+            </pre>
+        </li>
+        <li><strong>Visualizing the Training set result: </strong>
+            Now, we will visualize the training and the test dataset result for K-NN model. 
+            <pre><code class="language-python">
+                # Importing libraries
+                import matplotlib.pyplot as plt
+                from matplotlib.colors import ListedColormap
+                
+                # Set up the figure with two subplots in one row and two columns
+                fig, axes = plt.subplots(1, 2, figsize=(12, 6))
+                
+                # Visulaizing the training set result
+                x_set, y_set = X_train, y_train
+                X1, X2 = np.meshgrid(np.arange(start=x_set[:, 0].min() - 1, stop=x_set[:, 0].max() + 1, step=0.01),
+                                    np.arange(start=x_set[:, 1].min() - 1, stop=x_set[:, 1].max() + 1, step=0.01))
+                axes[0].contourf(X1, X2, classifier.predict(np.array([X1.ravel(), X2.ravel()]).T).reshape(X1.shape),
+                                alpha=0.75, cmap=ListedColormap(['#87CEEB', '#90EE90']))
+                axes[0].set_xlim(X1.min(), X1.max())
+                axes[0].set_ylim(X2.min(), X2.max())
+                
+                for i, j in enumerate(np.unique(y_set)):
+                    axes[0].scatter(x_set[y_set == j, 0], x_set[y_set == j, 1],
+                                    c=ListedColormap(['#0000FF', '#2ca02c'])(i), label=j)
+                
+                axes[0].set_title('K-NN Algorithm (Training set)')
+                axes[0].set_xlabel('Age')
+                axes[0].set_ylabel('Estimated Salary')
+                axes[0].legend()
+                
+                # Visulaizing the test set result
+                x_set, y_set = X_test, y_test
+                X1, X2 = np.meshgrid(np.arange(start=x_set[:, 0].min() - 1, stop=x_set[:, 0].max() + 1, step=0.01),
+                                    np.arange(start=x_set[:, 1].min() - 1, stop=x_set[:, 1].max() + 1, step=0.01))
+                axes[1].contourf(X1, X2, classifier.predict(np.array([X1.ravel(), X2.ravel()]).T).reshape(X1.shape),
+                                alpha=0.75, cmap=ListedColormap(['#87CEEB', '#90EE90']))
+                axes[1].set_xlim(X1.min(), X1.max())
+                axes[1].set_ylim(X2.min(), X2.max())
+                
+                for i, j in enumerate(np.unique(y_set)):
+                    axes[1].scatter(x_set[y_set == j, 0], x_set[y_set == j, 1],
+                                    c=ListedColormap(['#0000FF', '#2ca02c'])(i), label=j)
+                
+                axes[1].set_title('K-NN Algorithm (Test set)')
+                axes[1].set_xlabel('Age')
+                axes[1].set_ylabel('Estimated Salary')
+                axes[1].legend()
+                
+                plt.tight_layout()
+                plt.show()
+                
+            </code></pre>
+            <figure>
+                <img src="assets/img/machine-ln/classfication-knn-plot.png" alt="" style="max-width: 90%; max-height: auto;">
+                <figcaption style="text-align: center;"></figcaption>
+            </figure>
+            <p>The output graph is different from the graph which we have occurred in Logistic Regression (For details, you can see <a href="naive-byes.html">Naive-Bayes classification</a>.</p>
+        </li>
+        <p><strong>Explanation for training dataset:</strong></p>
+        <ul>
+            <li>As we can see the graph is showing the blue point and green points. The green points are for Purchased(1) and blue Points for not Purchased(0) variable.</li>
+            <li>The graph is showing an irregular boundary instead of showing any straight line or any curve because it is a K-NN algorithm, i.e., finding the nearest neighbor.</li>
+            <li>The graph has classified users in the correct categories as most of the users who didn't buy the SUV are in the blue region and users who bought the SUV are in the green region.</li>
+            <li>The graph is showing good result but still, there are some green points in the blue region and blue points in the green region. But this is no big issue as by doing this model is prevented from overfitting issues.</li>
+            <li>Hence our model is well trained.</li>
+        </ul>
+        <p><strong>Explanation for the test dataset:</strong></p>
+        <ul>
+            <li>On the right side of the plot, plot for test datset is shown.</li>
+            <li>As we can see in the graph, the predicted output is well good as most of the b;ue points are in the lightblue region and most of the green points are in the lightgreen region.</li>
+            <li>However, there are few green points in the lightblue region and a few blue points in the lightgreen region. So these are the incorrect observations that we have observed in the confusion matrix(7 Incorrect output).</li>
+        </ul>
+    </ul>
+    
+    
+
+
+
+
+
+
 
     </section>
 
