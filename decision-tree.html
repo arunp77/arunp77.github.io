@@ -132,7 +132,7 @@
                             <div class="swiper-wrapper align-items-center">
                                 <div class="swiper-slide">
                                     <figure>
-                                        <img src="assets/img/machine-ln/classification-svm.png" alt="" style="max-width: 90%; max-height: auto;">
+                                        <img src="assets/img/machine-ln/classfication-decision-tree.png" alt="" style="max-width: 90%; max-height: auto;">
                                         <figcaption style="text-align: center;"></figcaption>
                                     </figure>
                                 </div>
@@ -165,6 +165,145 @@
                 <section>
                 <!-------------------- Introduction ---------------------->
                 <h2 id="introdction">Introduction</h2>
+                <p>Decision Tree is a Supervised learning technique that can be used for both classification and Regression problems, but mostly it is preferred for solving Classification problems. It is a tree-structured classifier consisting of a root node, branches, internal nodes, and leaf nodes, where internal nodes represent the features of a dataset, branches represent the decision rules and each leaf node represents the outcome.</p>
+                <P>The decision rules are generally in form of if-then-else statements. The deeper the tree, the more complex the rules and fitter the model.</P>
+                <div class="grey-box">
+                    <ul>
+                        <li><strong>Root Node:</strong> This is the starting point of the tree. It represents the entire dataset and is where the first decision is made. The root node corresponds to the feature that best splits the data into distinct groups, maximizing the homogeneity of the target variable within each group.</li>
+
+                        <li><strong>Internal Nodes/Decision Nodes:</strong> These nodes represent features or attributes that are used to partition the data further. Each internal node corresponds to a decision based on a specific feature, leading to one or more branches.</li>
+                        
+                        <li><strong>Branches:</strong> Branches emanate from internal nodes and represent the possible outcomes of the decision based on the feature at that node. Each branch corresponds to a specific value or range of values of the feature being evaluated.</li>
+                        
+                        <li><strong>Leaf Nodes:</strong> These are the terminal nodes of the tree, where no further splitting occurs. Each leaf node represents a class label (in classification) or a predicted value (in regression). The decision tree algorithm aims to make the predictions at the leaf nodes as accurate as possible based on the features and their values.</li>
+                    </ul>
+                </div>
+
+                <!--------------------------------->
+                <!---------------Example----------->
+                <!--------------------------------->
+                <h4 id="example">Example</h4>
+                <p>Let’s understand decision trees with the help of an dataset of last 10 days:</p>
+                <table>
+                    <tr>
+                        <th>Day</th>
+                        <th>Weather</th>
+                        <th>Teperature</th>
+                        <th>Humidity</th>
+                        <th>Wind</th>
+                        <th>Play?</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Sunny</td>
+                        <td>Hot</td>
+                        <td>High</td>
+                        <td>Weak</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Cloudy</td>
+                        <td>Hot</td>
+                        <td>High</td>
+                        <td>Weak</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Sunny</td>
+                        <td>Mild</td>
+                        <td>Normal</td>
+                        <td>Strong</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Cloudy</td>
+                        <td>Mild</td>
+                        <td>High</td>
+                        <td>Strong</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Rainy</td>
+                        <td>Mild</td>
+                        <td>High</td>
+                        <td>Strong</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Rainy</td>
+                        <td>Cool</td>
+                        <td>Normal</td>
+                        <td>Strong</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Rainy</td>
+                        <td>Mild</td>
+                        <td>High</td>
+                        <td>Weak</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Sunny</td>
+                        <td>Hot</td>
+                        <td>High</td>
+                        <td>Strong</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Cloudy</td>
+                        <td>Hot</td>
+                        <td>Normal</td>
+                        <td>Weak</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Rainy</td>
+                        <td>Mild</td>
+                        <td>High</td>
+                        <td>Strong</td>
+                        <td>No</td>
+                    </tr>
+                </table>
+                <p>Decision trees are nothing but a bunch of if-else statements in layman terms. It checks if the condition is true and if it is then it goes to the next node attached to that decision.</p>
+
+                <p>In the diagram below, the tree will first ask what is the weather? Is it sunny, cloudy, or rainy? If yes then it will go to the next feature which is humidity and wind. It will again check if there is a strong wind or weak, if it’s a weak wind and it’s rainy then the person may go and play.</p>
+
+                <figure>
+                    <img src="assets/img/machine-ln/classfication-decision-tree-example.png" alt="" style="max-width: 90%; max-height: auto;">
+                    <figcaption style="text-align: center;"></figcaption>
+                </figure>
+                <p></p>
+
+
+
+
+                <!--------------------------------->
+                <!--          Principle          -->
+                <!--------------------------------->
+                <h2 id="Principle">Working Principle</h2>
+                <p>The algorithm works by recursively partitioning the data into subsets based on the most significant attribute at each node. This process continues until the subsets at a node have the same target variable or reach a specified maximum depth.</p>
+                <p>The working principle of a decision tree involves the following steps:</p>
+                <ul>
+                    <li><strong>Feature Selection:</strong> The algorithm evaluates different features in the dataset to determine the best feature that splits the data into distinct groups. It selects the feature that maximizes the homogeneity (or purity) of the target variable within each group.</li>
+
+                    <li><strong>Splitting:</strong> After selecting the best feature, the algorithm splits the dataset into subsets based on the values of that feature. Each subset corresponds to a different branch of the tree.</li>
+                    
+                    <li><strong>Recursive Partitioning:</strong> This process of feature selection and splitting continues recursively for each subset until a stopping criterion is met. Common stopping criteria include reaching a maximum tree depth, having a minimum number of samples in a node, or no further improvement in purity.</li>
+                    
+                    <li><strong>Leaf Node Assignment:</strong> Once the recursive partitioning process reaches a stopping point, the algorithm assigns a class label (in classification) or a predicted value (in regression) to each leaf node based on the majority class or average target variable value of the samples in that node.</li>
+                    
+                    <li><strong>Prediction:</strong> To make predictions for new data points, the algorithm traverses the decision tree from the root node down to a leaf node, following the decision rules at each internal node based on the features of the data point. The prediction at the leaf node reached by the traversal is then assigned to the data point.</li>
+                </ul>
                 
 
 
