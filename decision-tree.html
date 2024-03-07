@@ -132,7 +132,7 @@
                             <div class="swiper-wrapper align-items-center">
                                 <div class="swiper-slide">
                                     <figure>
-                                        <img src="assets/img/machine-ln/classfication-decision-tree.png" alt="" style="max-width: 90%; max-height: auto;">
+                                        <img src="assets/img/machine-ln/classification-decision-diagram.png" alt="" style="max-width: 90%; max-height: auto;">
                                         <figcaption style="text-align: center;"></figcaption>
                                     </figure>
                                 </div>
@@ -182,7 +182,74 @@
                 <!--------------------------------->
                 <!---------------Example----------->
                 <!--------------------------------->
-                <h4 id="example">Example</h4>
+                <h4 id="example-1">Example-1</h4>
+                <p>Suppose there are different animals, and you want to identify each animal and classify them based on their features. We can easily accomplish this by using a decision tree.</p>
+                <figure>
+                    <img src="assets/img/machine-ln/classification-example-1.png" alt="" style="max-width: 90%; max-height: auto;">
+                    <figcaption style="text-align: center;"></figcaption>
+                </figure><br>
+                <p>The following is a cluttered sample data set with high entropy:</p>
+                <table>
+                    <tr>
+                        <th>Color</th>
+                        <th>Height</th>
+                        <th>Label</th>
+                    </tr>
+                    <tr>
+                        <td>Grey</td>
+                        <td>10</td>
+                        <td>Elephant</td>
+                    </tr>
+                    <tr>
+                        <td>Yellow</td>
+                        <td>10</td>
+                        <td>Giraffe</td>
+                    </tr>
+                    <tr>
+                        <td>Brown</td>
+                        <td>3</td>
+                        <td>Monkey</td>
+                    </tr>
+                    <tr>
+                        <td>Grey</td>
+                        <td>10</td>
+                        <td>Elephant</td>
+                    </tr>
+                    <tr>
+                        <td>Yellow</td>
+                        <td>4</td>
+                        <td>Tiger</td>
+                    </tr>
+                </table><br>
+                <p>We have to determine which features split the data so that the information gain is the highest. We can do that by splitting the data using each feature and checking the information gain that we obtain from them. The feature that returns the highest gain will be used for the first split. Let's consider following features into consideration:</p>
+                <table>
+                    <tr>
+                        <th>Condition</th>
+                    </tr>
+                    <tr><td>Color == Yellow</td></tr>
+                    <tr><td>Height >= 10</td></tr>
+                    <tr><td>Color == Brown</td></tr>
+                    <tr><td>Color == Grey</td></tr>
+                    <tr><td>Diameter <10</td></tr>
+                </table><br>
+                <p>We’ll use the <strong>information gain</strong> method to determine which variable yields the maximum gain, which can also be used as the root node.</p>
+                <ul>
+                    <li>Suppose <code>Color == Yellow</code> results in the maximum information gain, so that is what we will use for our first split at the root node</li>
+                    <li>The entropy after splitting should decrease considerably. However, we still need to split the child nodes at both the branches to attain an entropy value equal to zero.</li>
+                    <li>We will split both the nodes using <code>height</code> variable and <code>height > 10</code> and <code>height < 10</code> as our conditions.</li>
+                    <li>The decision tree below can now predict all the classes of animals present in the data set</li>
+                </ul>
+                
+                <figure>
+                    <img src="assets/img/machine-ln/classification-example-2.png" alt="" style="max-width: 70%; max-height: auto;">
+                    <figcaption style="text-align: center;"></figcaption>
+                </figure><br>
+
+
+
+
+
+                <h4 id="example-2">Example-2</h4>
                 <p>Let’s understand decision trees with the help of an dataset of last 10 days:</p>
                 <table>
                     <tr>
@@ -342,28 +409,28 @@
                     <p><strong>Example:</strong> Suppose we have a dataset with the following target variable (class labels) and one attribute:</p>
                     <table>
                         <tr>
-                            <th>Example</th>
-                            <th>Attribute (Feature)</th>
-                            <th>Target (Class)</th>
+                            <th>Day</th>
+                            <th>Attribute (feature)</th>
+                            <th>Play?</th>
                         </tr>
                         <tr>
                             <td>1</td>
                             <td>Sunny</td>
-                            <td>Yes</td>
+                            <td>No</td>
                         </tr>
                         <tr>
                             <td>2</td>
-                            <td>Sunny</td>
+                            <td>Cloudy</td>
                             <td>Yes</td>
                         </tr>
                         <tr>
                             <td>3</td>
-                            <td>Overcast</td>
+                            <td>Sunny</td>
                             <td>Yes</td>
                         </tr>
                         <tr>
                             <td>4</td>
-                            <td>Rainy</td>
+                            <td>Cloudy</td>
                             <td>Yes</td>
                         </tr>
                         <tr>
@@ -373,30 +440,67 @@
                         </tr>
                         <tr>
                             <td>6</td>
-                            <td>Overcast</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>Sunny</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
                             <td>Rainy</td>
                             <td>No</td>
                         </tr>
                         <tr>
-                            <td>9</td>
+                            <td>7</td>
+                            <td>Rainy</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
                             <td>Sunny</td>
                             <td>No</td>
                         </tr>
                         <tr>
-                            <td>10</td>
-                            <td>Sunny</td>
+                            <td>9</td>
+                            <td>Cloudy</td>
                             <td>Yes</td>
                         </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>Rainy</td>=
+                            <td>No</td>
+                        </tr>
                     </table>
+                    <p>We can cluttered the dataset as follows:</p>
+                    <table>
+                        <tr>
+                            <th><Attribute/th>
+                            <th>Counts(Yes)</th>
+                            <th>Counts(No)</th>
+                        </tr>
+                        <tr>
+                            <td>Sunny</td>
+                            <td>1</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>Cloudy</td>
+                            <td>3</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>Rainy</td>
+                            <td>1</td>
+                            <td>3</td>
+                        </tr>
+                    </table>
+                    <p>Now, let's calculate the entropy of the target variable "Play?" and then compute the Information Gain for each attribute (feature).</p>
+                    <ul>
+                        <li><strong>Step-1: Calculate the entropy of the target variable "Play?":</strong>
+                        <p>Total instances (sample): \(n =10\)</p>
+                        <p>Number of "Yes" instances (positive): \(p_{\text{Yes}} = 5\)</p>
+                        <p>Number of "No" instances (negative): \(p_{\text{No}} = 5\)</p>
+                        <p><strong>Entropy (H(play?)):</strong></p>
+                        $$H(Play?) = - \left(\frac{5}{10} \log_2\frac{5}{10}+\frac{5}{10} \log_2\frac{5}{10}\right) = -(-0.5 -0.5) =1$$
+                        </li>
+                        <li><strong>Step 2: Calculate Information Gain for each feature: </strong></li>
+                    </ul>
+
+
+
                     <p>We want to determine which attribute (feature) to split the data on to create the most informative decision tree. Information Gain (IG) is calculated using the formula:</p>
                     $$ IG(T,A) = H(T) - \sum_{v \in \text{Values(A)}} \frac{|T_v|}{|T|}H(T_v)$$
                     where:
@@ -410,6 +514,12 @@
                     </ul>
                     <p><strong>Calculation:</strong></p>
                     $$H(T) = -\left(\frac{6}{10}\log_2 \frac{6}{10}+\frac{4}{10}\log_2 \frac{4}{10}\right) = -(0.6\times (-0.746)+0.4 \times (-1.322)) = - (-0.4416 -0.5288) =0.9704$$
+                    <div class="grey-box">
+                        <p>Let's calculate the entropy of each subset after splitting based on the attribute:</p>
+                        <ul>
+                            <li></li>
+                        </ul>
+                    </div>
                     </li>
                     <li><strong>Gini Index (Impurity):</strong> Gini impurity measures the probability of misclassifying a randomly chosen sample if it were labeled according to the class distribution in the dataset. The goal is to select the feature that minimizes Gini impurity, thereby improving the homogeneity of the resulting subsets. Lower Gini impurity implies purer subsets with fewer mixed-class samples.
                     <p><strong>Working Principle:</strong> Similar to information gain, the decision tree algorithm evaluates each feature and calculates the Gini impurity of the dataset before and after splitting based on that feature. The feature with the lowest Gini impurity (or highest purity) is selected for splitting. Mathematically, Gini impurity is calculated as:</p>
