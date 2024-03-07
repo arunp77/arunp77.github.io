@@ -496,31 +496,18 @@
                         <p><strong>Entropy (H(play?)):</strong></p>
                         $$H(Play?) = - \left(\frac{5}{10} \log_2\frac{5}{10}+\frac{5}{10} \log_2\frac{5}{10}\right) = -(-0.5 -0.5) =1$$
                         </li>
-                        <li><strong>Step 2: Calculate Information Gain for each feature: </strong></li>
+                        <li><strong>Step 2: Calculate Information Gain for each feature: </strong>
+                        <p>Total instances with "Sunny": \(n =3\)</p>
+                        <p>Number of "Yes" instances (positive) with "Sunny": \(p_{\text{Yes,Sunny}}=1\)</p>
+                        <p>Number of "No" instances (negative) with "Sunny": \(p_{\text{No,SUnny}}=2\)</p>
+                        <p>Entropy for "Sunny" i.e. \(H(Sunny) = -\left(\frac{1}{3} \log_2\frac{1}{3}+\frac{2}{3} \log_2\frac{2}{3}\right) =0.918\)</p>
+                        <p>Information Gain i.e. \(IG(\text{Play?, Sunny}) = 1-\frac{3}{10}\times 0.918 =0.7246\).</p>
+                        Similalry, we can calculate entropy and information Gain for "Cloudy" and "Rainy".
+                        </li>
                     </ul>
-
-
-
-                    <p>We want to determine which attribute (feature) to split the data on to create the most informative decision tree. Information Gain (IG) is calculated using the formula:</p>
-                    $$ IG(T,A) = H(T) - \sum_{v \in \text{Values(A)}} \frac{|T_v|}{|T|}H(T_v)$$
-                    where:
-                    <ul>
-                        <li><strong>\(IG(T, A)\)</strong> is the Information Gain of attribute <strong>A</strong> on dataset <strong>T</strong>.</li>
-                        <li><strong>\(H(T)\)</strong> is the entropy of dataset <strong>T</strong>.</li>
-                        <li><strong>Values(A)</strong> are the distinct values of attribute <strong>A</strong>.</li>
-                        <li><strong>\(|T\)<sub>v</sub>|</strong> is the number of examples in dataset <strong>T</strong> with attribute <strong>A</strong> having value <strong>v</strong>.</li>
-                        <li><strong>\(|T|\)</strong> is the total number of examples in dataset <strong>T</strong>.</li>
-                        <li><strong>\(H(T_v)\)</strong> is the entropy of the subset of dataset <strong>T</strong> with attribute <strong>A</strong> having value <strong>v</strong>.</li>
-                    </ul>
-                    <p><strong>Calculation:</strong></p>
-                    $$H(T) = -\left(\frac{6}{10}\log_2 \frac{6}{10}+\frac{4}{10}\log_2 \frac{4}{10}\right) = -(0.6\times (-0.746)+0.4 \times (-1.322)) = - (-0.4416 -0.5288) =0.9704$$
-                    <div class="grey-box">
-                        <p>Let's calculate the entropy of each subset after splitting based on the attribute:</p>
-                        <ul>
-                            <li></li>
-                        </ul>
-                    </div>
+                    <p>This process will help us determine which feature provides the most Information Gain, indicating its importance for splitting the dataset in the decision tree.</p>
                     </li>
+                    <!-----------  end of IG and entropy -------------->
                     <li><strong>Gini Index (Impurity):</strong> Gini impurity measures the probability of misclassifying a randomly chosen sample if it were labeled according to the class distribution in the dataset. The goal is to select the feature that minimizes Gini impurity, thereby improving the homogeneity of the resulting subsets. Lower Gini impurity implies purer subsets with fewer mixed-class samples.
                     <p><strong>Working Principle:</strong> Similar to information gain, the decision tree algorithm evaluates each feature and calculates the Gini impurity of the dataset before and after splitting based on that feature. The feature with the lowest Gini impurity (or highest purity) is selected for splitting. Mathematically, Gini impurity is calculated as:</p>
                     $$G(X) = 1- \sum_{i=1}^n p_i^2$$
