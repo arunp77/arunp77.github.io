@@ -245,12 +245,66 @@
                     <figcaption style="text-align: center;"></figcaption>
                 </figure><br>
 
+                
+
+                <!--------------------------------->
+                <!--          Principle          -->
+                <!--------------------------------->
+                <h2 id="Principle">Working Principle</h2>
+                <p>In a decision tree, for predicting the class of the given dataset, the algorithm starts from the root node of the tree. This algorithm compares the values of root attribute with the record (real dataset) attribute and, based on the comparison, follows the branch and jumps to the next node. For the next node, the algorithm again compares the attribute value with the other sub-nodes and move further. It continues the process until it reaches the leaf node of the tree.</p>
+                <p>The algorithm works by recursively partitioning the data into subsets based on the most significant attribute at each node using the <strong>Attribute Selection Measure (ASM)</strong>. This process continues until the subsets at a node have the same target variable or reach a specified maximum depth.</p>
+                <p>The working principle of a decision tree involves the following steps:</p>
+                <ul>
+                    <li><strong>Feature Selection:</strong> The algorithm evaluates different features in the dataset to determine the best feature that splits the data into distinct groups. It selects the feature that maximizes the homogeneity (or purity) of the target variable within each group.</li>
+
+                    <li><strong>Splitting:</strong> After selecting the best feature, the algorithm splits the dataset into subsets based on the values of that feature. Each subset corresponds to a different branch of the tree.</li>
+                    
+                    <li><strong>Recursive Partitioning:</strong> This process of feature selection and splitting continues recursively for each subset until a stopping criterion is met. Common stopping criteria include reaching a maximum tree depth, having a minimum number of samples in a node, or no further improvement in purity.</li>
+                    
+                    <li><strong>Leaf Node Assignment:</strong> Once the recursive partitioning process reaches a stopping point, the algorithm assigns a class label (in classification) or a predicted value (in regression) to each leaf node based on the majority class or average target variable value of the samples in that node.</li>
+                    
+                    <li><strong>Prediction:</strong> To make predictions for new data points, the algorithm traverses the decision tree from the root node down to a leaf node, following the decision rules at each internal node based on the features of the data point. The prediction at the leaf node reached by the traversal is then assigned to the data point.</li>
+                </ul>
 
 
-
-
-                <h4 id="example-2">Example-2</h4>
-                <p>Let’s understand decision trees with the help of an dataset of last 10 days:</p>
+                <!--------------------------------->
+                <!--     splitting area          -->
+                <!--------------------------------->
+                <h3 id="splitting-criteria">Splitting criteria in Decision trees: Attribute Selection Measure (ASM)</h3>
+                <p>The splitting criteria in decision trees are used to determine how the data should be partitioned at each node of the tree. Attribute Selection Measure (ASM) is a term often used in the context of decision trees, specifically regarding the selection of the best attribute to split the data at each node. ASM refers to the criterion or metric used to evaluate and rank the attributes based on their effectiveness in partitioning the data and improving the homogeneity of the resulting subsets.</p>
+                <h5 id="asm">What is Attribute Selection Measure (ASM)?</h5>
+                <p>ASM is a criterion or metric used in decision tree algorithms to assess the importance of different attributes in making splitting decisions. It helps determine which attribute should be chosen as the splitting criterion at each node of the decision tree. The attribute with the highest ASM score is typically selected for splitting, as it leads to more informative and discriminative splits.</p>
+                <h5 id="why-asm">Why is ASM important?</h5>
+                <p>ASM plays a crucial role in the construction of decision trees by guiding the algorithm in selecting the most relevant attributes for partitioning the data. By choosing attributes with high ASM scores, decision trees can effectively divide the dataset into subsets that are more homogeneous with respect to the target variable. This, in turn, leads to the creation of accurate and interpretable decision tree models.</p>
+                <h5 id="common-asm">Common ASM Methods:</h5>
+                <p>Several methods exist for calculating ASM, each with its own strengths and considerations. Some common ASM methods include:</p>
+                <ol>
+                    <li><strong>Information Gain (Entropy):</strong> Information gain measures the reduction in entropy (or uncertainty) achieved by splitting the data based on a particular feature. The goal is to select the feature that maximizes information gain, thereby improving the purity of the resulting subsets. Higher information gain implies better separation of classes or reduced randomness in the subsets.
+                    <p><strong>Working principle:</strong>The decision tree algorithm evaluates each feature and calculates the entropy of the dataset before and after splitting based on that feature. Information gain is then computed as the difference between the initial entropy and the weighted sum of entropies of the resulting subsets.</p>
+                    <p><strong>Formulation:</strong>Entropy is a measure of randomness or uncertainty in a dataset. Mathematically, it is defined as:</p>
+                    $$H(X) = - \sum_{i=1}^n p_i \log_2(p_i)$$
+                    where:
+                    <ul>
+                        <li>\(H(X)\) is the entropy of the dataset \(X\).</li>
+                        <li>\(p_i\) is the probability of class \(i\) in the dataset.</li>
+                        <li>\(n\) is the total number of classes.</li>
+                    </ul>
+                    <p>Information gain is used to select the best feature for splitting the data in decision trees. It measures the reduction in entropy (or increase in purity) achieved by splitting the data based on a particular feature. Mathematically, information gain is calculated as:</p>
+                    $$\text{Information Gain} = H(X) - \sum_{j=1}^m \frac{N_j}{N} H(X_j).$$
+                    <p>which can also be written as: <strong>Information Gain= Entropy(S)- [(Weighted Avg) \(\times\) Entropy(each feature)]</strong></p>
+                    where:
+                    <ul>
+                        <li>\(H(X)\) is the entropy of the original ataset \(X\).</li>
+                        <li>\(m\) is the number of subsets after splitting based on the feature.</li>
+                        <li>\(N_j\) is the number of samples in subset \(i\).</li>
+                        <li>\(N\) is the total number of samples in the original dataset.</li>
+                        <li>\(H(X_j)\) is the entropy of subset \(j\).</li>
+                    </ul>
+                    <p><strong>Interpreation:</strong>Higher information gain indicates that splitting based on a certain feature leads to more homogeneous subsets with respect to the target variable. In other words, it signifies that the feature provides more discriminatory power for classification.</p>
+                    <p><strong>Application:</strong>  Information gain is commonly used in decision tree algorithms such as ID3 (Iterative Dichotomiser 3) and C4.5 (successor to ID3) for building classification trees.</p>
+                    
+                    <h5 id="example-2"><strong>Example</strong></h5>
+                    <p>Let’s understand decision trees with the help of an dataset of last 10 days:</p>
                 <table>
                     <tr>
                         <th>Day</th>
@@ -345,168 +399,135 @@
 
                 <p>In the diagram below, the tree will first ask what is the weather? Is it sunny, cloudy, or rainy? If yes then it will go to the next feature which is humidity and wind. It will again check if there is a strong wind or weak, if it’s a weak wind and it’s rainy then the person may go and play.</p>
 
+                <p>Suppose we have a dataset with the following target variable (class labels) and one attribute:</p>
+                <table>
+                    <tr>
+                        <th>Day</th>
+                        <th>Attribute (feature)</th>
+                        <th>Play?</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Sunny</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Cloudy</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Sunny</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Cloudy</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Rainy</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Rainy</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Rainy</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Sunny</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Cloudy</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Rainy</td>=
+                        <td>No</td>
+                    </tr>
+                </table>
+                <p>We can cluttered the dataset as follows:</p>
+                <table>
+                    <tr>
+                        <th><Attribute/th>
+                        <th>Counts(Yes)</th>
+                        <th>Counts(No)</th>
+                    </tr>
+                    <tr>
+                        <td>Sunny</td>
+                        <td>1</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>Cloudy</td>
+                        <td>3</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Rainy</td>
+                        <td>1</td>
+                        <td>3</td>
+                    </tr>
+                </table>
+                <p>Similalry we can create a table for the Temperature, Humidity, and Wind,features.</p>
+                <p>Now, let's calculate the entropy of the target variable "Play?" and then compute the Information Gain for each attribute (feature).</p>
+                <ul>
+                    <li><strong>Step-1: Calculate the entropy of the target variable "Play?":</strong>
+                    <p>Total instances (sample): \(n =10\)</p>
+                    <p>Number of "Yes" instances (positive): \(p_{\text{Yes}} = 5\)</p>
+                    <p>Number of "No" instances (negative): \(p_{\text{No}} = 5\)</p>
+                    <p><strong>Entropy (H(play?)):</strong></p>
+                    $$H(Play?) = - \left(\frac{5}{10} \log_2\frac{5}{10}+\frac{5}{10} \log_2\frac{5}{10}\right) = -(-0.5 -0.5) =1$$
+                    </li>
+                    <li><strong>Step 2: Calculate Information Gain for each feature: </strong>
+                        <p><strong>Sunny:</strong></p>
+                        <ul>
+                            <li>Total instances with "Cloudy": \(n =3\)</li>
+                            <li>Number of "Yes" instances (positive) with "Sunny": \(p_{\text{Yes,Sunny}}=1\)</li>
+                            <li>Number of "No" instances (negative) with "Sunny": \(p_{\text{No,SUnny}}=2\)</li>
+                            <li>Entropy for "Sunny" i.e. \(H(Sunny) = -\left(\frac{1}{3} \log_2\frac{1}{3}+\frac{2}{3} \log_2\frac{2}{3}\right) =0.918\)</li>
+                            <li>Information Gain i.e. \(IG(\text{Play?, Sunny}) = 1-\frac{3}{10}\times 0.918 =0.7246\).</li>
+                            Similalry, we can calculate entropy and information Gain for "Cloudy" and "Rainy".
+                        </ul>
+                        <p><strong>Cloudy:</strong></p>
+                        <ul>
+                            <li>Total instances with "Cloudy": \(n =3\)</li>
+                            <li>Number of "Yes" instances (positive) with "Cloudy": \(p_{\text{Yes,Cloudy}}=3\)</li>
+                            <li>Number of "No" instances (negative) with "Cloudy": \(p_{\text{No,Cloudy}}=0\)</li>
+                            <li>Entropy for "Cloudy" i.e. \(H(Cloudy) = -\left(\frac{3}{3} \log_2\frac{3}{3}+\frac{0}{3} \log_2\frac{0}{3}\right) =0\)</li>
+                            <li>Information Gain i.e. \(IG(\text{Play?, Cloudy}) = 1-\frac{3}{10}\times 0 =1\).</li>
+                        </ul>
+                        <p><strong>Rainy:</strong></p>
+                        <ul>
+                            <li>Total instances with "Rainy": \(n =4\)</li>
+                            <li>Number of "Yes" instances (positive) with "Rainy": \(p_{\text{Yes,Rainy}}=1\)</li>
+                            <li>Number of "No" instances (negative) with "Rainy": \(p_{\text{No,Rainy}}=3\)</li>
+                            <li>Entropy for "Rainy" i.e. \(H(Rainy) = -\left(\frac{1}{4} \log_2\frac{1}{4}+\frac{3}{4} \log_2\frac{3}{4}\right) =0.8113\)</li>
+                            <li>Information Gain i.e. \(IG(\text{Play?, Rainy}) = 1-\frac{4}{10}\times 0.8113 =0.6755\).</li>
+                        </ul>
+                        <p>Now we can calculate the weighted entropy for weather feature:</p>
+                        $$H_{\text{Weather}} = \frac{3}{10} \times H_{\text{Sunny}} + \frac{3}{10} \times H_{\text{Cloudy}} + \frac{4}{10} \times H_{\text{Rainy}} =  \frac{3}{10} \times 0.918 + \frac{3}{10} \times 0 + \frac{4}{10} \times 0.8113 =0.5999$$
+                        <p>Similalry, Information gain:</p>
+                        $$IG_{\text{Weather}} = H- H_{\text{Weather}} = 1-0.5999=0.4001$$
+                    </li>
+                </ul>
+                <p>This process will help us determine which feature provides the most Information Gain, indicating its importance for splitting the dataset in the decision tree.</p>
+                </li>
                 <figure>
                     <img src="assets/img/machine-ln/classfication-decision-tree-example.png" alt="" style="max-width: 90%; max-height: auto;">
                     <figcaption style="text-align: center;"></figcaption>
                 </figure>
-                <p></p>
-
-                <!--------------------------------->
-                <!--          Principle          -->
-                <!--------------------------------->
-                <h2 id="Principle">Working Principle</h2>
-                <p>In a decision tree, for predicting the class of the given dataset, the algorithm starts from the root node of the tree. This algorithm compares the values of root attribute with the record (real dataset) attribute and, based on the comparison, follows the branch and jumps to the next node. For the next node, the algorithm again compares the attribute value with the other sub-nodes and move further. It continues the process until it reaches the leaf node of the tree.</p>
-                <p>The algorithm works by recursively partitioning the data into subsets based on the most significant attribute at each node using the <strong>Attribute Selection Measure (ASM)</strong>. This process continues until the subsets at a node have the same target variable or reach a specified maximum depth.</p>
-                <p>The working principle of a decision tree involves the following steps:</p>
-                <ul>
-                    <li><strong>Feature Selection:</strong> The algorithm evaluates different features in the dataset to determine the best feature that splits the data into distinct groups. It selects the feature that maximizes the homogeneity (or purity) of the target variable within each group.</li>
-
-                    <li><strong>Splitting:</strong> After selecting the best feature, the algorithm splits the dataset into subsets based on the values of that feature. Each subset corresponds to a different branch of the tree.</li>
-                    
-                    <li><strong>Recursive Partitioning:</strong> This process of feature selection and splitting continues recursively for each subset until a stopping criterion is met. Common stopping criteria include reaching a maximum tree depth, having a minimum number of samples in a node, or no further improvement in purity.</li>
-                    
-                    <li><strong>Leaf Node Assignment:</strong> Once the recursive partitioning process reaches a stopping point, the algorithm assigns a class label (in classification) or a predicted value (in regression) to each leaf node based on the majority class or average target variable value of the samples in that node.</li>
-                    
-                    <li><strong>Prediction:</strong> To make predictions for new data points, the algorithm traverses the decision tree from the root node down to a leaf node, following the decision rules at each internal node based on the features of the data point. The prediction at the leaf node reached by the traversal is then assigned to the data point.</li>
-                </ul>
-
-
-                <!--------------------------------->
-                <!--     splitting area          -->
-                <!--------------------------------->
-                <h3 id="splitting-criteria">Splitting criteria in Decision trees: Attribute Selection Measure (ASM)</h3>
-                <p>The splitting criteria in decision trees are used to determine how the data should be partitioned at each node of the tree. Attribute Selection Measure (ASM) is a term often used in the context of decision trees, specifically regarding the selection of the best attribute to split the data at each node. ASM refers to the criterion or metric used to evaluate and rank the attributes based on their effectiveness in partitioning the data and improving the homogeneity of the resulting subsets.</p>
-                <h5 id="asm">What is Attribute Selection Measure (ASM)?</h5>
-                <p>ASM is a criterion or metric used in decision tree algorithms to assess the importance of different attributes in making splitting decisions. It helps determine which attribute should be chosen as the splitting criterion at each node of the decision tree. The attribute with the highest ASM score is typically selected for splitting, as it leads to more informative and discriminative splits.</p>
-                <h5 id="why-asm">Why is ASM important?</h5>
-                <p>ASM plays a crucial role in the construction of decision trees by guiding the algorithm in selecting the most relevant attributes for partitioning the data. By choosing attributes with high ASM scores, decision trees can effectively divide the dataset into subsets that are more homogeneous with respect to the target variable. This, in turn, leads to the creation of accurate and interpretable decision tree models.</p>
-                <h5 id="common-asm">Common ASM Methods:</h5>
-                <p>Several methods exist for calculating ASM, each with its own strengths and considerations. Some common ASM methods include:</p>
-                <ol>
-                    <li><strong>Information Gain (Entropy):</strong> Information gain measures the reduction in entropy (or uncertainty) achieved by splitting the data based on a particular feature. The goal is to select the feature that maximizes information gain, thereby improving the purity of the resulting subsets. Higher information gain implies better separation of classes or reduced randomness in the subsets.
-                    <p><strong>Working principle:</strong>The decision tree algorithm evaluates each feature and calculates the entropy of the dataset before and after splitting based on that feature. Information gain is then computed as the difference between the initial entropy and the weighted sum of entropies of the resulting subsets.</p>
-                    <p><strong>Formulation:</strong>Entropy is a measure of randomness or uncertainty in a dataset. Mathematically, it is defined as:</p>
-                    $$H(X) = - \sum_{i=1}^n p_i \log_2(p_i)$$
-                    where:
-                    <ul>
-                        <li>\(H(X)\) is the entropy of the dataset \(X\).</li>
-                        <li>\(p_i\) is the probability of class \(i\) in the dataset.</li>
-                        <li>\(n\) is the total number of classes.</li>
-                    </ul>
-                    <p>Information gain is used to select the best feature for splitting the data in decision trees. It measures the reduction in entropy (or increase in purity) achieved by splitting the data based on a particular feature. Mathematically, information gain is calculated as:</p>
-                    $$\text{Information Gain} = H(X) - \sum_{j=1}^m \frac{N_j}{N} H(X_j).$$
-                    <p>which can also be written as: <strong>Information Gain= Entropy(S)- [(Weighted Avg) \(\times\) Entropy(each feature)]</strong></p>
-                    where:
-                    <ul>
-                        <li>\(H(X)\) is the entropy of the original ataset \(X\).</li>
-                        <li>\(m\) is the number of subsets after splitting based on the feature.</li>
-                        <li>\(N_j\) is the number of samples in subset \(i\).</li>
-                        <li>\(N\) is the total number of samples in the original dataset.</li>
-                        <li>\(H(X_j)\) is the entropy of subset \(j\).</li>
-                    </ul>
-                    <p><strong>Interpreation:</strong>Higher information gain indicates that splitting based on a certain feature leads to more homogeneous subsets with respect to the target variable. In other words, it signifies that the feature provides more discriminatory power for classification.</p>
-                    <p><strong>Application:</strong>  Information gain is commonly used in decision tree algorithms such as ID3 (Iterative Dichotomiser 3) and C4.5 (successor to ID3) for building classification trees.</p>
-                    <p><strong>Example:</strong> Suppose we have a dataset with the following target variable (class labels) and one attribute:</p>
-                    <table>
-                        <tr>
-                            <th>Day</th>
-                            <th>Attribute (feature)</th>
-                            <th>Play?</th>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Sunny</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Cloudy</td>
-                            <td>Yes</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Sunny</td>
-                            <td>Yes</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Cloudy</td>
-                            <td>Yes</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Rainy</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Rainy</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>Rainy</td>
-                            <td>Yes</td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>Sunny</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td>9</td>
-                            <td>Cloudy</td>
-                            <td>Yes</td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>Rainy</td>=
-                            <td>No</td>
-                        </tr>
-                    </table>
-                    <p>We can cluttered the dataset as follows:</p>
-                    <table>
-                        <tr>
-                            <th><Attribute/th>
-                            <th>Counts(Yes)</th>
-                            <th>Counts(No)</th>
-                        </tr>
-                        <tr>
-                            <td>Sunny</td>
-                            <td>1</td>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <td>Cloudy</td>
-                            <td>3</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>Rainy</td>
-                            <td>1</td>
-                            <td>3</td>
-                        </tr>
-                    </table>
-                    <p>Now, let's calculate the entropy of the target variable "Play?" and then compute the Information Gain for each attribute (feature).</p>
-                    <ul>
-                        <li><strong>Step-1: Calculate the entropy of the target variable "Play?":</strong>
-                        <p>Total instances (sample): \(n =10\)</p>
-                        <p>Number of "Yes" instances (positive): \(p_{\text{Yes}} = 5\)</p>
-                        <p>Number of "No" instances (negative): \(p_{\text{No}} = 5\)</p>
-                        <p><strong>Entropy (H(play?)):</strong></p>
-                        $$H(Play?) = - \left(\frac{5}{10} \log_2\frac{5}{10}+\frac{5}{10} \log_2\frac{5}{10}\right) = -(-0.5 -0.5) =1$$
-                        </li>
-                        <li><strong>Step 2: Calculate Information Gain for each feature: </strong>
-                        <p>Total instances with "Sunny": \(n =3\)</p>
-                        <p>Number of "Yes" instances (positive) with "Sunny": \(p_{\text{Yes,Sunny}}=1\)</p>
-                        <p>Number of "No" instances (negative) with "Sunny": \(p_{\text{No,SUnny}}=2\)</p>
-                        <p>Entropy for "Sunny" i.e. \(H(Sunny) = -\left(\frac{1}{3} \log_2\frac{1}{3}+\frac{2}{3} \log_2\frac{2}{3}\right) =0.918\)</p>
-                        <p>Information Gain i.e. \(IG(\text{Play?, Sunny}) = 1-\frac{3}{10}\times 0.918 =0.7246\).</p>
-                        Similalry, we can calculate entropy and information Gain for "Cloudy" and "Rainy".
-                        </li>
-                    </ul>
-                    <p>This process will help us determine which feature provides the most Information Gain, indicating its importance for splitting the dataset in the decision tree.</p>
-                    </li>
                     <!-----------  end of IG and entropy -------------->
                     <li><strong>Gini Index (Impurity):</strong> Gini impurity measures the probability of misclassifying a randomly chosen sample if it were labeled according to the class distribution in the dataset. The goal is to select the feature that minimizes Gini impurity, thereby improving the homogeneity of the resulting subsets. Lower Gini impurity implies purer subsets with fewer mixed-class samples.
                     <p><strong>Working Principle:</strong> Similar to information gain, the decision tree algorithm evaluates each feature and calculates the Gini impurity of the dataset before and after splitting based on that feature. The feature with the lowest Gini impurity (or highest purity) is selected for splitting. Mathematically, Gini impurity is calculated as:</p>
