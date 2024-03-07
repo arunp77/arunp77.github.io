@@ -316,10 +316,57 @@
                 <h5 id="common-asm">Common ASM Methods:</h5>
                 <p>Several methods exist for calculating ASM, each with its own strengths and considerations. Some common ASM methods include:</p>
                 <ul>
-                    <li><strong>Information Gain (Entropy):</strong> Information gain measures the reduction in entropy (or uncertainty) achieved by splitting the data based on a particular feature. The goal is to select the feature that maximizes information gain, thereby improving the purity of the resulting subsets. Higher information gain implies better separation of classes or reduced randomness in the subsets.</li>
-                    <li><strong>Gini Index (Impurity):</strong> Gini impurity measures the probability of misclassifying a randomly chosen sample if it were labeled according to the class distribution in the dataset. The goal is to select the feature that minimizes Gini impurity, thereby improving the homogeneity of the resulting subsets. Lower Gini impurity implies purer subsets with fewer mixed-class samples.</li>
-                    <li><strong>Gain Ratio:</strong></li>
-                    <li><strong>Chi-Square Test:</strong></li>
+                    <li><strong>Information Gain (Entropy):</strong> Information gain measures the reduction in entropy (or uncertainty) achieved by splitting the data based on a particular feature. The goal is to select the feature that maximizes information gain, thereby improving the purity of the resulting subsets. Higher information gain implies better separation of classes or reduced randomness in the subsets.
+                    <p><strong>Working principle:</strong>The decision tree algorithm evaluates each feature and calculates the entropy of the dataset before and after splitting based on that feature. Information gain is then computed as the difference between the initial entropy and the weighted sum of entropies of the resulting subsets.</p>
+                    <p><strong>Formulation:</strong>Entropy is a measure of randomness or uncertainty in a dataset. Mathematically, it is defined as:</p>
+                    $$H(X) = - \sum_{i=1}^n p_i \log_2(p_i)$$
+                    where:
+                    <ul>
+                        <li>\(H(X)\) is the entropy of the dataset \(X\).</li>
+                        <li>\(p_i\) is the probability of class \(i\) in the dataset.</li>
+                        <li>\(n\) is the total number of classes.</li>
+                    </ul>
+                    <p>Information gain is used to select the best feature for splitting the data in decision trees. It measures the reduction in entropy (or increase in purity) achieved by splitting the data based on a particular feature. Mathematically, information gain is calculated as:</p>
+                    $$\text{Information Gain} = H(X) - \sum_{j=1}^m \frac{N_j}{N} H(X_j).$$
+                    where:
+                    <ul>
+                        <li>\(H(X)\) is the entropy of the original ataset \(X\).</li>
+                        <li>\(m\) is the number of subsets after splitting based on the feature.</li>
+                        <li>\(N_j\) is the number of samples in subset \(i\).</li>
+                        <li>\(N\) is the total number of samples in the original dataset.</li>
+                        <li>\(H(X_j)\) is the entropy of subset \(j\).</li>
+                    </ul>
+                    <p><strong>Interpreation:</strong>Higher information gain indicates that splitting based on a certain feature leads to more homogeneous subsets with respect to the target variable. In other words, it signifies that the feature provides more discriminatory power for classification.</p>
+                    <p><strong>Application:</strong>  Information gain is commonly used in decision tree algorithms such as ID3 (Iterative Dichotomiser 3) and C4.5 (successor to ID3) for building classification trees.</p>
+                    </li>
+                    <li><strong>Gini Index (Impurity):</strong> Gini impurity measures the probability of misclassifying a randomly chosen sample if it were labeled according to the class distribution in the dataset. The goal is to select the feature that minimizes Gini impurity, thereby improving the homogeneity of the resulting subsets. Lower Gini impurity implies purer subsets with fewer mixed-class samples.
+                    <p><strong>Working Principle:</strong> Similar to information gain, the decision tree algorithm evaluates each feature and calculates the Gini impurity of the dataset before and after splitting based on that feature. The feature with the lowest Gini impurity (or highest purity) is selected for splitting. Mathematically, Gini impurity is calculated as:</p>
+                    $$G(X) = 1- \sum_{i=1}^n p_i^2$$
+                    where:
+                    <ul>
+                        <li>\(G(X)\) is the Gini impurity of the dataset \(X\).</li>
+                        <li>\(p_i\) is the probability of class \(i\) in the dataset.</li>
+                        <li>\(n\) is the total number of classes.</li>
+                    </ul>
+                    <p><strong>Interpretation:</strong>Lower Gini impurity indicates that splitting based on a certain feature leads to more homogeneous subsets with respect to the target variable. It signifies that the feature effectively separates the classes in the dataset.</p>
+                    <p><strong>Application:</strong>Gini impurity is commonly used in decision tree algorithms such as CART (Classification and Regression Trees) for building both classification and regression trees.</p>
+                    </li>
+                    <li><strong>Gain Ratio:</strong> Gain Ratio is a modification of Information Gain that aims to overcome its bias towards attributes with a large number of distinct values. It penalizes attributes with many distinct values, thereby helping to prevent overfitting.
+                    <p><strong>Formula:</strong></p>
+                    $$\text{Gain Ratio} = \frac{\text{Information Gain}}{\text{Split Information}}$$
+                    <p><strong>Explanation:</strong>Gain Ratio adjusts Information Gain by considering the intrinsic information of each attribute. It divides the Information Gain by the Split Information to normalize the gain by the attribute's intrinsic information. This normalization helps in avoiding the bias towards attributes with many distinct values.</p>
+                    </li>
+                    <li><strong>Chi-Square Test:</strong>Chi-Square Test evaluates the independence between attributes and the target variable by comparing the observed distribution of class labels in each subset to the expected distribution. It helps determine whether the splits based on a particular attribute are statistically significant.
+                    <p><strong>Formula:</strong>The Chi-Square Test statistic is calculated as follows:</p>
+                    $$\chi^2 = \sum_{i=1}^k \frac{(O_i - E_i)^2}{E_i}$$
+                    where:
+                    <ul>
+                        <li>\(\chi^2\) is the Chi-Square test statistic.</li>
+                        <li>\(O_i\) is the observed frequency of class \(i\) in the subset.</li>
+                        <li>\(E_i\) is the expected frequency of class \(i\) based on the overall distribution.</li>
+                    </ul>
+                    <p><strong>Explanation:</strong> Chi-Square Test compares the observed frequencies of class labels in each subset to the expected frequencies based on the overall distribution. A higher Chi-Square Test statistic indicates a greater difference between the observed and expected frequencies, suggesting that the splits based on the attribute are more informative and significant.</p>
+                    </li>
                 </ul>
                 <p>Each of these methods evaluates attributes based on different criteria, such as the reduction in entropy, impurity, or independence between attributes and the target variable. The choice of ASM method depends on the specific characteristics of the dataset and the problem being addressed.</p>
                 <h5 id="application-asm">Application of ASM</h5>
