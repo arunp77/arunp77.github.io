@@ -1224,24 +1224,26 @@ section {
 --------------------------------------------------------------*/
 table {
   border-collapse: collapse;
-  width: 90%;
+  width: auto; /* Set width to auto */
+  margin-left: auto; /* Center the table horizontally */
+  margin-right: auto; /* Center the table horizontally */
 }
 
 th, td {
-  border: 1px solid #3b80c5;
+  border: 1px solid #ec2b3b;
   padding: 8px;
   text-align: left;
 }
 
 th {
-  background-color: rgb(127, 223, 230);
+  background-color: rgba(113, 119, 119, 0.466);
 }
 
 tr:nth-child(even) {
   background-color: #f9f9f9; /* light grey background for even rows */
 }
 tr:hover {
-  background-color: #d3d3d3; /* hover effect */
+  background-color: #fcfbcf; /* hover effect */
 }
 
 th.colored-header {
@@ -1254,6 +1256,7 @@ th.colored-header {
     width: 100%;
   }
 }
+
 
 /*--------------------------------------------------------------
 # Creating a image box

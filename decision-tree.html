@@ -284,14 +284,12 @@
                 </figure>
                 <p></p>
 
-
-
-
                 <!--------------------------------->
                 <!--          Principle          -->
                 <!--------------------------------->
                 <h2 id="Principle">Working Principle</h2>
-                <p>The algorithm works by recursively partitioning the data into subsets based on the most significant attribute at each node. This process continues until the subsets at a node have the same target variable or reach a specified maximum depth.</p>
+                <p>In a decision tree, for predicting the class of the given dataset, the algorithm starts from the root node of the tree. This algorithm compares the values of root attribute with the record (real dataset) attribute and, based on the comparison, follows the branch and jumps to the next node. For the next node, the algorithm again compares the attribute value with the other sub-nodes and move further. It continues the process until it reaches the leaf node of the tree.</p>
+                <p>The algorithm works by recursively partitioning the data into subsets based on the most significant attribute at each node using the <strong>Attribute Selection Measure (ASM)</strong>. This process continues until the subsets at a node have the same target variable or reach a specified maximum depth.</p>
                 <p>The working principle of a decision tree involves the following steps:</p>
                 <ul>
                     <li><strong>Feature Selection:</strong> The algorithm evaluates different features in the dataset to determine the best feature that splits the data into distinct groups. It selects the feature that maximizes the homogeneity (or purity) of the target variable within each group.</li>
@@ -304,6 +302,13 @@
                     
                     <li><strong>Prediction:</strong> To make predictions for new data points, the algorithm traverses the decision tree from the root node down to a leaf node, following the decision rules at each internal node based on the features of the data point. The prediction at the leaf node reached by the traversal is then assigned to the data point.</li>
                 </ul>
+
+
+                <!--------------------------------->
+                <!--     splitting area          -->
+                <!--------------------------------->
+                <h3 id="splitting-criteria">Splitting criteria in Decision trees: Attribute Selection Measure (ASM)</h3>
+                <p>The splitting criteria in decision trees are used to determine how the data should be partitioned at each node of the tree. Attribute Selection Measure (ASM) is a term often used in the context of decision trees, specifically regarding the selection of the best attribute to split the data at each node. ASM refers to the criterion or metric used to evaluate and rank the attributes based on their effectiveness in partitioning the data and improving the homogeneity of the resulting subsets.</p>
                 
 
 
