@@ -245,8 +245,6 @@
                     <figcaption style="text-align: center;"></figcaption>
                 </figure><br>
 
-                
-
                 <!--------------------------------->
                 <!--          Principle          -->
                 <!--------------------------------->
@@ -565,20 +563,208 @@
                 <p>In conclusion, Attribute Selection Measure (ASM) is a fundamental concept in decision tree algorithms, guiding the selection of attributes for splitting the data at each node. By evaluating and ranking attributes based on their effectiveness in partitioning the data, ASM helps construct decision trees that are accurate, interpretable, and well-suited for a variety of machine learning tasks.</p>
                 
 
+                <!---------------- Example Probelm --------------------------->
+                <h3 id="example-decision-tree">Example-1: User dataset</h3>
+                <p>In this example, we again consider the user dataset similar to what we used in the case of <a href="naive-byes.html">Navive-Bayes</a> and the <a href="knn.html">KNN-algorithm</a>. We first use the feature and target, then use the <code>train_test_split</code> to create the train and test datasets. In the final step, we instantiate the classifer using <code>ecisionTreeClassifier</code> and build our model using the train datset. In the end, we visualize how our model performs on the train and test datsets. The detailed notebook is available at my <a href="https://github.com/arunp77/Machine-Learning/tree/main/Supervised-learning" target="_blank">Github repo</a> and the code is available in the <a href="https://github.com/arunp77/Machine-Learning/blob/main/Supervised-learning/Project-2.4-Decision-tree.ipynb" target="_blank">Jupyter notebook at my repo</a>.</p>
+                <pre><code class="language-python">
+                    import pandas as pd
+                    import numpy as np
+                    import matplotlib.pyplot as plt 
+                    
+                    df_user =  pd.read_csv('User_Data.csv')
+
+
+                    # Importing the dataset  
+                    X = df_user.iloc[:, [2, 3]].values  
+                    y = df_user.iloc[:, 4].values  
+
+                    # Splitting the dataset into the Training set and Test set  
+                    from sklearn.model_selection import train_test_split  
+                    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state = 0)
+
+                    # Feature Scaling  
+                    from sklearn.preprocessing import StandardScaler  
+                    sc = StandardScaler()  
+                    X_train = sc.fit_transform(X_train)  
+                    X_test = sc.transform(X_test) 
+
+                    #Fitting Decision Tree classifier to the training set  
+
+                    from sklearn.tree import DecisionTreeClassifier
+                    classifier = DecisionTreeClassifier(criterion='entropy', random_state=0)
+                    classifier.fit(X_train, y_train)
+
+                    # Importing libraries
+                    import matplotlib.pyplot as plt
+                    from matplotlib.colors import ListedColormap
+                    
+                    # Set up the figure with two subplots in one row and two columns
+                    fig, axes = plt.subplots(1, 2, figsize=(12, 6))
+                    
+                    # Visulaizing the training set result
+                    x_set, y_set = X_train, y_train
+                    X1, X2 = np.meshgrid(np.arange(start=x_set[:, 0].min() - 1, stop=x_set[:, 0].max() + 1, step=0.01),
+                                        np.arange(start=x_set[:, 1].min() - 1, stop=x_set[:, 1].max() + 1, step=0.01))
+                    axes[0].contourf(X1, X2, classifier.predict(np.array([X1.ravel(), X2.ravel()]).T).reshape(X1.shape),
+                                    alpha=0.75, cmap=ListedColormap(['#87CEEB', '#90EE90']))
+                    axes[0].set_xlim(X1.min(), X1.max())
+                    axes[0].set_ylim(X2.min(), X2.max())
+                    
+                    for i, j in enumerate(np.unique(y_set)):
+                        axes[0].scatter(x_set[y_set == j, 0], x_set[y_set == j, 1],
+                                        c=ListedColormap(['#0000FF', '#2ca02c'])(i), label=j)
+                    
+                    axes[0].set_title('K-NN Algorithm (Training set)')
+                    axes[0].set_xlabel('Age')
+                    axes[0].set_ylabel('Estimated Salary')
+                    axes[0].legend()
+                    
+                    # Visulaizing the test set result
+                    x_set, y_set = X_test, y_test
+                    X1, X2 = np.meshgrid(np.arange(start=x_set[:, 0].min() - 1, stop=x_set[:, 0].max() + 1, step=0.01),
+                                        np.arange(start=x_set[:, 1].min() - 1, stop=x_set[:, 1].max() + 1, step=0.01))
+                    axes[1].contourf(X1, X2, classifier.predict(np.array([X1.ravel(), X2.ravel()]).T).reshape(X1.shape),
+                                    alpha=0.75, cmap=ListedColormap(['#87CEEB', '#90EE90']))
+                    axes[1].set_xlim(X1.min(), X1.max())
+                    axes[1].set_ylim(X2.min(), X2.max())
+                    
+                    for i, j in enumerate(np.unique(y_set)):
+                        axes[1].scatter(x_set[y_set == j, 0], x_set[y_set == j, 1],
+                                        c=ListedColormap(['#0000FF', '#2ca02c'])(i), label=j)
+                    
+                    axes[1].set_title('K-NN Algorithm (Test set)')
+                    axes[1].set_xlabel('Age')
+                    axes[1].set_ylabel('Estimated Salary')
+                    axes[1].legend()
+                    
+                    plt.tight_layout()
+                    plt.show()
+                </code></pre>
+                <figure>
+                    <img src="assets/img/machine-ln/classification-decision-tree-example.png" alt="" style="max-width: 90%; max-height: auto;">
+                    <figcaption style="text-align: center;">As we can see in the above image that there are some green data points within the purple region and vice versa. So, these are the incorrect predictions which we can see through the confusion matrix.</figcaption>
+                </figure>
 
 
 
+                <!----------------------------------->
+                <h3 id="example-decision-tree-2">Example-2: Titanic dataset</h3>
+                <p>In this example, we will use Titanic dataset. This dataset is available at <a href="https://www.kaggle.com/c/titanic/data" tagret>Kaggle</a>. Lets do this example step by step:</p>
+                <ul>
+                    <li><strong>Step-1: Load the dataset and selecting the feature and taget vairable:</strong>
+                    <pre><code class="language-python">
+                        import pandas as pd
+                        import matplotlib.pyplot as plt
+                        %matplotlib inline
+                        
+                        df = pd.read_csv('titanic.csv')
+                    </code></pre>
+                    Since Column 'Sex' contains either 'Male' or 'Female', we are going to change them to numerical values. Similary droping the not needed columns in our analysis and ignorning the NaN values:
+                    </li>
+                    <li><strong></strong>
+                        <pre><code class="language-python">
+                            # checnging the categorical values for Sex to 0 or 1.
+                            df['Sex'] = df['Sex'].map({'male': 0, 'female': 1})
 
+                            # we dont need the Cabin column  in our case
+                            df.drop(['Cabin', 'Name', 'Ticket'], axis=1, inplace=True)
 
+                            # droping the NaN values
+                            df.dropna(inplace=True)
+                        </code></pre>
+                        In the next step, we need to create the dummy columns for our target variable. The dummy/indicator variables are used for converting the categoriecal variables. For this prupose, we use <code>get_dummies</code> class, which creates new columns for each unique value in the categorical column, with binary values indicating the presence or absence of each value in the original column.
+                        <pre><code class="language-python">df = pd.get_dummies(df, columns=['Embarked'])</code></pre>
+                        Now the X and y variables can be found as:
+                        <pre><code class="language-python">
+                            X = df.drop('Survived', axis=1)
 
+                            y = df['Survived']
+                        </code></pre>
+                    </li>
+                    <li><strong>Train-test and model building</strong>
+                        <pre><code class="language-python">
+                            from sklearn.model_selection import train_test_split
+                            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
+                        </code></pre>
+                        Again us instantiate our classifier <code>DecisionCLassifier</code> from the sub-module <code>sklearn.tree</code>. Here we choose the depth of the tree.
+                        <pre><code class="language-python">
+                            from sklearn.tree import DecisionTreeClassifier
+                            model = DecisionTreeClassifier(max_depth = 3, random_state=42)
+                            model.fit(X_train, y_train)
+                        </code></pre>
+                        The socre from the train and test datasets can be found by <code>model.score(X_train, y_train)</code> and <code>model.score(X_test, y_test)</code> which gives the socre for the two datsets 0.8370786516853933 and 0.7528089887640449. The analysis of the score on the training set and on the test set allows to identify the overfitting. Indeed, the score on the training test is higher than the test score. To overcome this problem we will add another parameter: <code>min_samples_leaf</code>. This parameter indicates the minimum number of samples required for a node separation. So, if there are not enough samples, the node will be a leaf (a final node). The parameters <code>max_depth</code> and <code>min_samples_leaf</code> are two essential parameters to avoid overfitting.
+                        <pre><code class="language-python">
+                            from sklearn.tree import DecisionTreeClassifier
+                            
+                            model_min_samples = DecisionTreeClassifier(max_depth = 3, min_samples_leaf = 25, random_state=42)
+                            
+                            model_min_samples.fit(X_train, y_train)
+                        </code></pre>
+                        <p>Now in this case, we found that accuracies for the train and test datsets are reduced and are <code>0.8258426966292135</code> and <code>0.7471910112359551</code> respectively.</p>
+                        <p>Although the score on the training set has slightly decreased, we notice that the gap between the score on the training set and the score on the test set is reduced. We therefore decide to continue with this model which generalizes better on the data it does not know.</p>
+                        <p></p>
+                    </li>
+                    <li><strong>The interpretation of the model:</strong>
+                        <p>One of the strong points of decision trees is the simplicity of interpreting how they work. In the same way that we analyzed our regression tree, we can analyze our classification tree. With this study, we want to know which variables are the most important for the model and which thresholds it uses to make its predictions.</p>
+                        <pre><code class="language-python">
+                            
+                            from sklearn.tree import plot_tree
+                            
+                            fig, ax = plt.subplots(figsize=(40, 20))
+                            
+                            plot_tree(model_min_samples,
+                                    feature_names=[
+                                        'Pclass', 'Sex', 'Age', 'SibSp', 'Parch', 'Fare', 'Embarked_C',
+                                        'Embarked_Q', 'Embarked_S'
+                                    ],
+                                    class_names=['Died', 'Survived'],
+                                    filled=True,
+                                    rounded=True)
+                            
+                            plt.show()
+                        </code></pre>
+                        <figure>
+                            <img src="assets/img/machine-ln/classfication-decision-tree-titanic.png" alt="" style="max-width: 90%; max-height: auto;">
+                            <figcaption style="text-align: center;"></figcaption>
+                        </figure>
+                        <ul>
+                            <li>The root node, the node at the top of the tree, contains all the samples of the training set, there are 534 samples: samples=534.
+                            <p>The first test that will be performed corresponds to Sex < = 0.5. As a reminder, Sex is a binary variable, it is equal to 0 when the individual is a man, 1 when it is a woman. We then look at the value for each sample. All the samples for which the variable Sex is 0, go in the left child node, if not in the right child node. More simply, all men go in the left child node, all women in the right child node.</p>   
+                            <p>The parameter value indicates the distribution of classes in y_train before any separation. We have initially 325 individuals who are dead and 209 who are alive. The class parameter indicates which is the majority class. Here it is the class 0 "Died": class = Died.</p>
+                            <p>Finally, for a classification problem, the error is calculated using the Gini criterion. This criterion is between 0 and 0.5. The higher this criterion is, the more heterogeneous the node is and the lower the criterion is, the more homogeneous it is. A node is homogeneous when it contains only samples of one class, the Gini criterion is equal in this case to 0.</p>
+                            <p>The objective of our model is to separate our classes as well as possible, so we want to end up with nodes as homogeneous as possible. Finally, the more homogeneous a leaf will be, with a low Gini criterion, the better the model will perform.</p>
+                            </li>
+                            <li>We remind that the child nodes are the intermediate nodes of the tree. In the first left child node, we retrieve all the male individuals. There are 343 males in the training set (samples=343). The application of the condition described in the root node, allows us to reduce the Gini score by almost 0.169, we go from 0.476 to 0.307. The application of this condition has increased the homogeneity of the node. In this child node, there are more people who died than survived (278 > 65). The majority class is Died.</li>
+                            <li>The separations follow until the leaves, the terminal nodes, are obtained. The predicted class for the samples belonging to the leaf is the majority class. The color code is as follows: Orange when the majority class is class 0, Blue when it is class 1. The intensity of the color depends on the value of the Gini criterion, the lower it is the more intense the colors are. For the leftmost leaf, we have a Gini criterion equal to 0.5. There are 50 samples and the distribution is 25 samples belonging to class 0 and 25 samples to class 1. The node is therefore perfectly heterogeneous. This means that the model is wrong for 25 individuals, i.e. 50% of the samples of this sheet.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <p>Finally, the variables that enabled the classification of the samples, ranked in order, are "Sex", "Pclass", "Age" and "Fare". The higher a variable is placed in the tree, the more important it played a role in the classification.</p>
 
+                <p>But how to quantify the role of each variable?</p>
+                    
+                <p>Instead of displaying the tree, or in addition to this analysis, it is possible to study the "feature importances" of the model. This attribute of the model class, called <code>feature_importances_</code>, allows to classify the variables according to the role they played in the prediction choices of the model. The sum of these values is 1.</p>
+                    
+                <p>The importance of a variable is calculated from the decrease in node impurity weighted by the probability of reaching the node. And the probability of reaching the node is obtained by dividing the number of samples reaching the node by the total number of samples.</p>
+                    
+                <p>Finally, the higher the importance value, the more important the variable.</p>
+                <pre><code class="language-python">
+                    X_importances = pd.DataFrame({ 
+                        "Variables": X.columns, 
+                        "Importance": model_min_samples.feature_importances_ 
+                        }).sort_values(by='Importance', ascending=False)
+                    
 
-
-
-
-
-
-
+                    X_importances.nlargest(4, "Importance").plot.bar(x="Variables",
+                        y="Importance",
+                        figsize=(15, 5),
+                        color="#4529de");
+                </code></pre>
+                <figure>
+                    <img src="assets/img/machine-ln/classification-decision-tree-example-2-importance.png" alt="" style="max-width: 90%; max-height: auto;">
+                    <figcaption style="text-align: center;"></figcaption>
+                </figure>
+                <p>From these elements, we are able to decide on the accuracy of the expression "women and children first" (within the context of the data we have at our disposal). The women are indeed among the people who survived most after the disaster. The Sex variable is the most important one in the model. Nevertheless, even if age is among the three most important variables in the tree, a more precise analysis of the tree does not allow us to validate this assertion.</p>
                 </section>
 
                 <!----------- Reference ----------->
