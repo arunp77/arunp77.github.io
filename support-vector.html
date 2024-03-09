@@ -247,19 +247,150 @@
     </div>
 
     <!--------------------------------->
-    <h4 id="explanation">support-vector-machine explanation</h4>
-    Let us consider the two set of datasets and want to classify them into two classes. In the below figure, we have two set of datasets, one in green and one orange.
+    <h5 id="explanation">Support-vector-machine explanation: 2D</h5>
+    <p>Imagine you have a scatter plot where the green points represent one class and the orange points represent another class. To separate these two classes, an SVM seeks to find the best-fitting line or plane (hyperplane) that maximizes the margin between the two classes.</p>
     <figure>
-        <img src="assets/img/machine-ln/support-vector-machine.png" alt="" style="max-width: 90%; max-height: auto;">
-        <figcaption style="text-align: center;"></figcaption>
+        <img src="assets/img/machine-ln/support-vector-machine.png" alt="" style="max-width: 40%; max-height: auto;">
+        <figcaption style="text-align: center;">Support vectors in circle (<strong>Image credit:</strong> &#169; <a href="index.html">@arunp77</a>)</figcaption>
     </figure>
-    <p>The next step is to draw a decision boundary, or a line separating the two classes to help classify the new data points. We  can actually draw several boundaries, as shown above. Then, we need to find the line of best fit that clearly separates those two groups. The correct line will help us classify the new data point. We can find the best line by computing the maximum margin from equidistant support vectors. Support vectors in this context simply mean the two points — one from each class that are closest together, but that maximize the distance between them or the margin.</p>
+    <p>The next step is to draw a decision boundary, or a line separating the two classes to help classify the new data points. We  can actually draw several boundaries, as shown above. Then, we need to find the line of best fit that clearly separates those two groups. The correct line will help us classify the new data point. <strong><em>We can find the best line by computing the maximum margin from equidistant support vectors</em></strong>. The support vectors are the data points closest to this separating hyperplane. These points play a critical role because they help determine the position and orientation of the hyperplane. By choosing support vectors strategically, the SVM ensures that the margin between the two classes is maximized. Now, let's talk about the margin. The margin is the distance between the support vectors and the hyperplane. Maximizing this margin is essential because it provides a buffer zone, making the classification more robust to noise and outliers. Essentially, the larger the margin, the more confident we can be in the classification. However, not all data points are equal in determining the hyperplane and margin. The SVM assigns different weights to each data point based on their proximity to the hyperplane. The farther a data point is from the hyperplane, the less influence it has on determining the hyperplane's position.</p>
+    <p>So in summary when using an SVM to classify data points into different classes:</p>
+    <ul>
+        <li>Support vectors are chosen as the data points closest to the separating hyperplane.</li>
+        <li>The margin, or the distance between the support vectors and the hyperplane, is maximized to ensure robust classification.</li>
+        <li>Each data point's influence on determining the hyperplane's position is weighted based on its proximity to the hyperplane.</li>
+    </ul>
+
+    <h5 id="explanantion-2">Example 2: Classification problem with higher dimension data</h5>
+    <p>The data set shown below in Image-(a) has no clear linear separation between the two classes. In machine learning parlance, we would say that these are not linearly separable. How can we get the support vector machine to work on such data? </p>
+    <figure>
+        <img src="assets/img/machine-ln/support-vector-machine-3D.png" alt="" style="max-width: 80%; max-height: auto;">
+        <figcaption style="text-align: center;">Support vectors in circle (<strong>Image credit:</strong> &#169; <a href="index.html">@arunp77</a> )</figcaption>
+    </figure>
+    <p>Since we can't separate it into two classes using a line, we need to transform it into a higher dimension by employing a kernel function to the data set. A higher dimension enables us to clearly separate the two groups with a plane. Here, we can draw some planes between the green dots and the orange dots — with the end goal of maximizing the margin. If we let R=the number of dimensions, the kernel function will convert a two-dimensional space (R2) to a three-dimensional space (R3). Once the data is separated into three dimensions, we can apply SVM and separate the two groups using a two-dimensional plane. For a higher dimension, we would have to use higher diemntsional curve. </p>
+    
+    <!--------------------->
+    <h3 id="kernel-fun">Kernel Functions:</h3> 
+    <p>Kernel functions play a fundamental role in Support Vector Machines (SVMs), enabling them to handle non-linear relationships between features and find complex decision boundaries. Let's delve into a detailed explanation of kernel functions: </p>
+
+    <!------------------->
+    <h5 id="purpose-kernel">Purpose of Kernel Functions</h5>
+    <p>Kernel functions are mathematical transformations applied to input data in SVMs. Their primary purpose is to map the original input space into a higher-dimensional feature space, where the classes may be more easily separable by a hyperplane. By transforming the data into a higher-dimensional space, kernel functions enable SVMs to capture non-linear relationships and complex patterns in the data. A kernel function, denoted as \(K(\textbf{x}, \textbf{x}')\), takes two input vectors \(\textbf{x}\) and \(\textbf{x}'\) and computes a measure of similarity or distance between them. This measure is often represented as the dot product of the transformed feature vectors in the higher-dimensional space.</p>
+
+    <h5 id="types=kernel">Types of Kernel Functions</h5>
+    <p>There are several types of kernel functions commonly used in SVMs. For the input vectors \(\textbf{x}\) and \(\textbf{x}'\):</p>
+    <ul>
+        <li><strong>Linear Kernel \(K_{\text{linear}}(\textbf{x},\textbf{x}')\):</strong> This is the simplest kernel function, where the dot product of the input vectors is computed directly in the original feature space. It is suitable for linearly separable data.
+        $$K_{\text{linear}}(\textbf{x}, \textbf{x}') = \textbf{x}^T \textbf{x}'$$
+        here \(\textbf{x}^T\) represents the transpose of vector \(\textbf{x}\), and \(\textbf{x}'\) is another vector.
+        <ul>
+            <li><strong>Interpretation:</strong> The linear kernel measures the similarity between two vectors by taking into account the alignment of their features. It computes the weighted sum of the products of corresponding features in the input vectors.</li>
+            <li><strong>Features:</strong> In the original feature space, each input vector \(\textbf{x}\) is represented by a set of features. The dot product \(\textbf{x}^T \textbf{x}'\) calculates the sum of the products of corresponding features in vector \(\textbf{x}\) and \(\textbf{x}'\), effectively measuring their similalrity.</li>
+            <li><strong>Linear Separation:</strong> The linear kernel is suitable for linearly separable data, where a straight line (or hyperplane in higher dimensions) can effectively separate the classes. It works well when the decision boundary between classes can be represented by a linear equation.</li>
+            <li><strong>Advantages: </strong>
+            <ul>
+                <li><strong>Simplicity:</strong> The linear kernel is straightforward and computationally efficient.</li>
+                <li><strong>Interpretability:</strong> The decision boundary learned by SVM with a linear kernel can be easily interpreted as a linear combination of input features.</li>
+            </ul>
+            </li>
+            <li><strong>Limitations: </strong>
+            <ul>
+                <li><strong>Limited Complexity:</strong> The linear kernel may not capture complex relationships between features and classes, making it less suitable for datasets with non-linear separability.</li>
+                <li><strong>Performance on Non-linear Data:</strong> In cases where the data is not linearly separable, the linear kernel may lead to suboptimal classification performance.</li>
+            </ul>
+            </li>
+            <li><strong>Applications:</strong>
+            <ul>
+                <li><strong>Text Classification:</strong> Linear kernels are commonly used in text classification tasks where the feature space is often high-dimensional.</li>
+                <li><strong>Linear Regression:</strong> Linear kernels can be applied in linear regression problems to model relationships between input features and target variables.</li>
+            </ul>
+            </li>
+            <li><strong>Example:</strong>Let's consider a simple example with two input vectors \(\textbf{x}\) and \(\textbf{x}'\) represented by two-dimensional feature vectors. The linear kernel computes the dot product of these vectors directly in the original feature space. Suppose we have two input vectors
+            $$x = \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}$$
+            and 
+            $$x' = \begin{pmatrix} x'_1 \\ x'_2 \end{pmatrix}$$
+            <p>The linear Kernel between the two vectors is computed as:</p>
+            $$K_{\text{linear}}(\textbf{x}, \textbf{x}') = \textbf{x}^T \textbf{x} =\begin{pmatrix} x_1 & x_2 \end{pmatrix} \begin{pmatrix} x'_1 \\ x'_2 \end{pmatrix} = x_1 x_1'+x_2 x_2'$$
+            This equation represents the similarity between the two input vectors \(\textbf{x}\) and \(\textbf{x}'\) based on the alignment of their features. The larger the value of the Kernel \(K_{\text{linear}}(\textbf{x}, \textbf{x}')\), the more similar the vectors \(\textbf{x}\) and \(\textbf{x}'\) are considered to be. For example two vectors:
+            $$x = \begin{pmatrix} 2 \\ 3 \end{pmatrix}$$
+            and 
+            $$x' = \begin{pmatrix} 4 \\ 1 \end{pmatrix}$$
+            Kernel \(K_{\text{linear}}(\textbf{x}, \textbf{x}') = 11\) indicating a relatively high similalrity between the two inputs vectors. 
+            </li>
+        </ul>
+        </li>
+        <li><strong>Polynomial Kernel \(K_{\text{poly}}(\textbf{x},\textbf{x}')\):</strong>
+            The Polynomial Kernel is a type of kernel function used in Support Vector Machines (SVMs) to handle non-linear relationships between features. It transforms the input data into a higher-dimensional space, where it may be easier to find a separating hyperplane. The polynomial kernel raises the dot product of the input vectors to a certain power \(d\), allowing SVMs to capture polynomial decision boundaries. It is defined as
+        $$K_{\text{poly}}(\textbf{x},\textbf{x}') = \left(\textbf{x}\cdot \textbf{x}'+c\right)^d,$$
+        where \(c\) is a constant and \(d\) is the degree of the polynomial.
+        <ul>
+            <li><strong>Role of Parameters: </strong>
+                <ul>
+                    <li><strong>Degree \((d)\):</strong> The degree parameter determines the degree of the polynomial transformation applied to the input data. Higher values of \(d\) result in more complex decision boundaries.</li> 
+                    <li><strong>Constant \((c)\):</strong>The constant term acts as a bias and helps control the influence of lower-degree polynomials. It shifts the decision boundary away from the origin in the feature space.</li>         
+                </ul>
+            </li> 
+            <li><strong>Kernel Properties:</strong>
+                <ul>
+                    <li><strong>Linearity: </strong>Despite its name, the Polynomial Kernel is capable of capturing non-linear relationships between features. By raising the dot product of the input vectors to a higher power, the kernel can represent complex decision boundaries.</li> 
+                    <li><strong>Computational Complexity: </strong>The computational complexity of the Polynomial Kernel depends on the degree parameter \(d\). Higher values of \(d\) increase the computational cost, as they require computing higher-order polynomials. </li>         
+                </ul>
+            </li> 
+            <li><strong>Choice of Parameters: </strong>
+                <ul>
+                    <li><strong>Degree \((d)\): </strong>The degree parameter should be chosen based on the complexity of the data and the desired level of model flexibility. Higher values of \(d\) may lead to overfitting if the data is not complex enough to warrant such a high-degree polynomial.</li> 
+                    <li><strong>Constant Term \((c)\): </strong> The constant term \(c\) can be set empirically or through cross-validation. It helps adjust the bias of the model and fine-tune the decision boundary.</li>
+                </ul>
+            </li> 
+            <li><strong>Example Application:</strong> The Polynomial Kernel is commonly used in SVMs for tasks such as image classification, text classification, and pattern recognition. It is effective in capturing non-linear relationships between features and constructing complex decision boundaries in high-dimensional feature spaces. </li>
+        </ul>
+        <p>In summary, the Polynomial Kernel is a versatile kernel function that allows SVMs to handle non-linear relationships between features by transforming the input data into a higher-dimensional space. It offers flexibility in capturing complex patterns and can be customized through parameters like degree and constant term to suit the characteristics of the data.</p>
+        </li>
+        <li><strong>Radial Basis Function (RBF) Kernel \(K_{\text{RBF}}(\textbf{x}, \textbf{x}')\):</strong> The Radial Basis Function (RBF) kernel, also known as the Gaussian kernel, is a popular choice in Support Vector Machines (SVMs) for its ability to capture complex non-linear relationships between data points. The RBF kernel computes the similarity between two input vectors \(\textbf{x}\) and \(\textbf{x}'\) based on the Euclidean distance between them in the input space. Mathematically, the RBF kernel is defined as:
+            $$K_{\text{RBF}}(\textbf{x}, \textbf{x}') = \exp\left(-\gamma \|\textbf{x} - \textbf{x}'\|^2\right)$$
+            <p>Here, \(\gamma>0\) is a parameter controlling the kernel's width, and \(\|\textbf{x}-\textbf{x}'\|\) represents the Euclidean distance between vectors \(\textbf{x}\) and \(\textbf{x}'\).</p>
+            <ul>
+                <li><strong>Interpretation: </strong>
+                    <ul>
+                        <li>The RBF kernel measures the similarity or closeness between two data points based on their distance in the input space.</li>
+                        <li>When \(\textbf{x}\) and \(\textbf{x}'\) are close to each other, their Euclidean distance  \(\|\textbf{x}-\textbf{x}'\|\) is small, resulting in a high similalrity value.</li>
+                        <li>Conversely, when \(\textbf{x}\) and \(\textbf{x}'\) are far apart, their distance increases, leading to a lower similalrity value. </li>
+                        <li>The paramter \(\gamma\) controls the kernel's width, determing how quickly the similalrity decays as the distance between points increases. A smaller \(\gamma\) results in a broder kernel, capturing more global relationships. while a larger \(\gamma\) focuses on local relationships.</li>
+                    </ul>
+                </li>
+                <li><strong>Effect on SVM Decision Boundary:</strong>
+                    <ul>
+                        <li>In SVMs, the RBF kernel allows for the construction of non-linear decision boundaries that can adapt to complex data distributions.</li>
+                        <li>By mapping the input data into a higher-dimensional feature space implicitly, the RBF kernel transforms the data in a way that enables SVMs to find optimal separating hyperplanes even for non-linearly separable data.</li>
+                    </ul>
+                </li>
+                <li><strong>Choice of \(\gamma\):</strong>
+                    <ul>
+                        <li>The choice of the \(\gamma\) parameter is critical in determining the behavior of the RBF kernel.</li>
+                        <li>A smaller \(\gamma\) value results in a smoother decision boundary, capturing broader patterns in the data but potentially leading to underfitting.</li>
+                        <li>Conversely, a larger \(\gamma\) value creates a more complex decision boundary, capturing finer details in the data but increasing the risk of overfitting.</li>
+                    </ul>
+                </li>
+                <li><strong>Application: </strong>
+                    <ul>
+                        <li>The RBF kernel is widely used in SVMs for various classification tasks, including image recognition, text classification, and bioinformatics.</li>
+                        <li>Its flexibility in capturing non-linear relationships makes it suitable for datasets with complex structures and intricate patterns.</li>
+                    </ul>
+                </li>
+            </ul>
+            <p>In summary, the Radial Basis Function (RBF) kernel is a powerful tool in SVMs for capturing non-linear relationships between data points. Its ability to adapt to complex data distributions and construct flexible decision boundaries makes it a popular choice for a wide range of classification tasks.</p>
+        </li>
+        <li><strong>Sigmoid Kernel:</strong> The sigmoid kernel computes the similarity between two vectors using the hyperbolic tangent function:
+        $$K_{\text{sigmoid}}(\textbf{x}, \textbf{x}') = \text{tanh}\left(\alpha x^T x' +\beta\right)$$
+        In this equation, \(\alpha\) and \(\beta\) are parameters.
+        </li>
+        <li><strong>Kernel Trick:</strong> The kernel trick is a computational shortcut that allows SVMs to implicitly compute the dot product between feature vectors in the higher-dimensional space without explicitly calculating the transformation. This is achieved by expressing the optimization problem in terms of kernel functions, avoiding the need to compute the transformation explicitly.</li>
+    </ul>
 
 
 
 
-
-
+    
 
     <!--------------------------------->
     <h3 id="types-svm">Types of Support Vector Machine (SVM) Algorithms</h3>
