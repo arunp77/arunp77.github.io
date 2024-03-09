@@ -245,6 +245,43 @@
             
         </table>
     </div>
+
+    <!--------------------------------->
+    <h3 id="types-svm">Types of Support Vector Machine (SVM) Algorithms</h3>
+    <p>Support Vector Machines (SVMs) offer various algorithms for classification and regression tasks, primarily distinguished by the types of decision boundaries they create and the techniques they employ for optimization. Here are some common types of SVM algorithms:</p>
+    <ol>
+        <li><strong>Linear SVM:</strong> This algorithm is used when the data is linearly separable. Perfectly linearly separable means that the data points can be classified into 2 classes by using a single straight line(if 2D). It aims to find the optimal hyperplane that separates the classes with the maximum margin.</li>
+
+        <li><strong>Non-linear SVM:</strong> When the data is not linearly separable then we can use Non-Linear SVM, which means when the data points cannot be separated into 2 classes by using a straight line (if 2D) then we use some advanced techniques like kernel tricks to classify them. In most real-world applications we do not find linearly separable datapoints hence we use kernel trick to solve them.</li>
+        
+        <li><strong>Support Vector Regression (SVR):</strong> Unlike classification tasks, SVR is used for regression tasks. It aims to find the optimal hyperplane that best fits the data while minimizing the margin violations.</li>
+        
+        <li><strong>Nu-SVM:</strong> This algorithm is an extension of the traditional SVM, introducing a parameter "nu" that replaces the regularization parameter "C." It offers a more intuitive control over the number of support vectors and margin errors.</li>
+        
+        <li><strong>One-Class SVM:</strong> Primarily used for anomaly detection, this algorithm learns a decision boundary that encompasses the majority of the data points while treating the rest as outliers.</li>
+        
+        <li><strong>Sequential Minimal Optimization (SMO):</strong> SMO is an algorithm for training SVMs, particularly useful for solving large-scale optimization problems by decomposing them into smaller sub-problems.</li>
+        
+        <li><strong>Least Squares SVM (LS-SVM):</strong> This variant of SVM reformulates the optimization problem as a set of linear equations, making it computationally efficient for large-scale datasets.</li>
+        
+        <li><strong>Budgeted SVM:</strong> Designed for scenarios with limited computational resources, this algorithm dynamically selects a subset of support vectors to reduce computational complexity while maintaining classification accuracy.</li>
+    </ol>
+
+    <!---------------------------------------->
+    <h3 id="terminology">Important terminologies</h3>
+    <p>Here are some important terms in the context of Support Vector Machines (SVM):</p>
+    <ul>
+        <li><strong>Hyperplane:</strong> In SVM, a hyperplane is a decision boundary that separates classes in a feature space. For a binary classification problem, it's a line in 2D space, a plane in 3D space, and a higher-dimensional surface in higher dimensions.</li>
+        <li><strong>Margin:</strong> The margin is the distance between the hyperplane and the nearest data points of each class. SVM aims to maximize this margin, as it represents the separation between classes. Maximizing the margin helps improve generalization and reduces the risk of overfitting.</li>
+        <li><strong>Support Vectors:</strong> These are the data points that lie closest to the decision boundary (hyperplane). They determine the position and orientation of the hyperplane and are crucial in defining the margin. Only these points influence the construction of the hyperplane; hence, they are called support vectors.</li>
+        <li><strong>Kernel Trick:</strong> SVMs can efficiently handle non-linear decision boundaries by using kernel functions. The kernel trick involves implicitly mapping the input features into a higher-dimensional space, where the classes are more likely to be separable. Common kernel functions include linear, polynomial, radial basis function (RBF), and sigmoid.</li>
+        <li><strong>Regularization Parameter (C):</strong> The regularization parameter (C) controls the trade-off between maximizing the margin and minimizing the classification error. A smaller C value leads to a larger margin but may result in misclassification of some training examples (soft margin). Conversely, a larger C value allows more training examples to be correctly classified but may lead to a smaller margin (hard margin). Proper tuning of C is crucial to prevent overfitting.</li>
+        <li><strong>Kernel Parameters:</strong> For kernelized SVMs, there are additional parameters to tune, such as gamma (\(\gamma\)) for RBF kernel and degree for polynomial kernel. These parameters control the flexibility of the decision boundary. Proper selection of kernel parameters is essential for achieving good performance and avoiding overfitting.</li>
+        <li><strong>Dual Problem:</strong> The optimization problem in SVM can be reformulated into its dual form, which involves maximizing a function subject to constraints. Solving the dual problem is often more computationally efficient, especially when using kernel functions.</li>
+        <li><strong>Nu Parameter:</strong> In Nu-SVM, the nu parameter replaces the C parameter and controls the upper bound on the fraction of margin errors and support vectors. It offers a more intuitive way to adjust the model complexity.</li>
+    </ul>
+
+
     
     
 
