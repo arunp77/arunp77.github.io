@@ -143,17 +143,19 @@
                             <h3>Content</h3>
                             <ol>
                                 <li><a href="#introduction">Introduction</a></li>
-                                <li><a href="#principle">Principle of KNN</a></li>
+                                
                                 <ul>
-                                    <li><a href="#distance">Distance metrics for k-nearest neighbours</a></li>
-                                    <li><a href="#when">When Do We Use the KNN Algorithm?</a></li>
-                                    <li><a href="#steps-to-follow">Steps to Effective K-Nearest Neighbors (KNN) Algorithm Implementation</a></li>
-                                    <li><a href="#what-k">What value should you choose for k in k-nearest neighbours</a></li>
-                                    <li><a href="why-knn">Why Do We Need the KNN Algorithm?</a></li>
-                                    <li><a href="#pros">Pros of using KNN</a></li>
-                                    <li><a href="#cons">Cons of Using KNN</a></li>
+                                    <li><a href="#example-1">Example</a></li>
                                 </ul>
-                                <li><a href="#example">Example</a></li>
+                                <li><a href="#Principle">Working Principle</a></li>
+                                <ul>
+                                    <li><a href="#splitting-criteria">Splitting criteria in Decision trees: Attribute Selection Measure (ASM)</a></li>
+                                    <li><a href="#asm">What is Attribute Selection Measure (ASM)?</a></li>
+                                    <li><a href="#why-asm">Why is ASM important?</a></li>
+                                    <li><a href="#common-asm">Common ASM Methods</a></li>
+                                </ul>
+                                <li><a href="#example-2">Example-1: User dataset</a></li>
+                                <li><a href="#example-decision-tree-2">Example-2: Titanic dataset</a></li>
                                 <li><a href="#reference">Reference</a></li>  
                             </ol>
                         </div>
@@ -266,8 +268,9 @@
                 <!--------------------------------->
                 <!--     splitting area          -->
                 <!--------------------------------->
-                <h3 id="splitting-criteria">Splitting criteria in Decision trees: Attribute Selection Measure (ASM)</h3>
+                <h4 id="splitting-criteria">Splitting criteria in Decision trees: Attribute Selection Measure (ASM)</h4>
                 <p>The splitting criteria in decision trees are used to determine how the data should be partitioned at each node of the tree. Attribute Selection Measure (ASM) is a term often used in the context of decision trees, specifically regarding the selection of the best attribute to split the data at each node. ASM refers to the criterion or metric used to evaluate and rank the attributes based on their effectiveness in partitioning the data and improving the homogeneity of the resulting subsets.</p>
+
                 <h5 id="asm">What is Attribute Selection Measure (ASM)?</h5>
                 <p>ASM is a criterion or metric used in decision tree algorithms to assess the importance of different attributes in making splitting decisions. It helps determine which attribute should be chosen as the splitting criterion at each node of the decision tree. The attribute with the highest ASM score is typically selected for splitting, as it leads to more informative and discriminative splits.</p>
                 <h5 id="why-asm">Why is ASM important?</h5>
@@ -298,9 +301,10 @@
                     </ul>
                     <p><strong>Interpreation:</strong>Higher information gain indicates that splitting based on a certain feature leads to more homogeneous subsets with respect to the target variable. In other words, it signifies that the feature provides more discriminatory power for classification.</p>
                     <p><strong>Application:</strong>  Information gain is commonly used in decision tree algorithms such as ID3 (Iterative Dichotomiser 3) and C4.5 (successor to ID3) for building classification trees.</p>
-                    
-                    <h5 id="example-2"><strong>Example</strong></h5>
-                    <p>Let’s understand decision trees with the help of an dataset of last 10 days:</p>
+                
+                <!------------------------------------>
+                <h2 id="example-2"><strong>Example</strong></h2>
+                <p>Let’s understand decision trees with the help of an dataset of last 10 days:</p>
                 <table>
                     <tr>
                         <th>Day</th>
@@ -769,6 +773,7 @@
                 <section id="reference">
                 <h2>References</h2>
                 <ul>
+                    <li><a href="https://github.com/arunp77/Machine-Learning/tree/main/Supervised-learning" target="_blank">Github repo with codes.</a></li>
                     <li><a href="https://arunp77.github.io/logistic-regression.html#con-mat" target="_blank">Confusion matrix details</a>.</li>
                     <li>My github Repositories on Remote sensing <a href="https://github.com/arunp77/Machine-Learning/" target="_blank">Machine learning</a></li>
                     <li><a href="https://mlu-explain.github.io/linear-regression/" target="_blank">A Visual Introduction To Linear regression</a> (Best reference for theory and visualization).</li>
