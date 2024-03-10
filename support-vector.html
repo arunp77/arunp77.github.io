@@ -407,16 +407,29 @@
 
     <!------------------------------->
     <h2 id="math-svm">Mathematical intuition behind the Support Vector Machine</h2>
+    <p>The mathematical intuition behind Support Vector Machines (SVMs) revolves around finding the optimal hyperplane that separates different classes in a dataset. The detailed explanation of the mathematical principles underlying SVMs:</p>
+    <ol>
+        <li><strong>Linear Separability: </strong>SVMs are designed for binary classification tasks where the goal is to separate two classes of data points using a hyperplane in feature space. If the classes are linearly separable, meaning they can be separated by a straight line (or hyperplane in higher dimensions), SVM aims to find the hyperplane that maximizes the margin between the two classes. This hyperplane is called the "maximum-margin hyperplane."</li>
+        <li><strong>Margin Maximization:</strong> The margin is defined as the distance between the hyperplane and the nearest data points from each class, known as support vectors. SVM aims to maximize this margin, as it represents the region where the classifier is most confident in its predictions and is less likely to be influenced by noise or outliers.</li>
+        <li><strong>Optimization Problem:</strong> Mathematically, finding the maximum-margin hyperplane can be formulated as an optimization problem. SVM seeks to minimize the classification error while maximizing the margin. This is typically expressed as a convex optimization problem, where the objective function is subject to constraints that ensure the correct classification of training examples and the maximization of the margin.</li>
+        <li><strong>Decision Function:</strong> Once the optimal hyperplane is found, the decision function of SVM can be defined as \(f(x) = \text{sign}(w^T w +b)\), where \(w\) is the weight vector perpendicular to the hyperplane, \(x\) is the input vector, \(b\) is the bias term, and 'sign' function assigns the class label based on the sign of the dot product. </li>
+        <li><strong>Kernel Trick:</strong> In cases where the data is not linearly separable, SVMs can employ the kernel trick to map the input data into a higher-dimensional feature space where it becomes linearly separable. This allows SVMs to handle non-linear relationships between features without explicitly computing the transformation, making them more flexible and powerful.</li>
+        <li><strong>Support Vectors:</strong> In SVM, only a subset of training examples, known as support vectors, influences the position of the hyperplane. These support vectors are the data points closest to the decision boundary and determine the orientation of the hyperplane.</li>
+    </ol>
+    <p>In summary, the mathematical intuition behind SVMs involves finding the optimal hyperplane that maximizes the margin between different classes of data points. By maximizing the margin, SVMs create robust decision boundaries that generalize well to unseen data, making them effective tools for binary classification tasks.</p>
+
     <!--------------------->
-    <h3 id="kernel-fun">Kernel Functions:</h3> 
+    <h3 id="kernel-fun">Kernel Functions</h3> 
     <p>Kernel functions play a fundamental role in Support Vector Machines (SVMs), enabling them to handle non-linear relationships between features and find complex decision boundaries. Let's delve into a detailed explanation of kernel functions: </p>
 
     <!------------------->
-    <h5 id="purpose-kernel">Purpose of Kernel Functions</h5>
-    <p>Kernel functions are mathematical transformations applied to input data in SVMs. Their primary purpose is to map the original input space into a higher-dimensional feature space, where the classes may be more easily separable by a hyperplane. By transforming the data into a higher-dimensional space, kernel functions enable SVMs to capture non-linear relationships and complex patterns in the data. A kernel function, denoted as \(K(\textbf{x}, \textbf{x}')\), takes two input vectors \(\textbf{x}\) and \(\textbf{x}'\) and computes a measure of similarity or distance between them. This measure is often represented as the dot product of the transformed feature vectors in the higher-dimensional space.</p>    
-    <h5 id="types=kernel">Types of Kernel Functions</h5>
+    <h3 id="purpose-kernel">Purpose of Kernel Functions</h3>
+    <p>Kernel functions are mathematical transformations applied to input data in SVMs. Their primary purpose is to map the original input space into a higher-dimensional feature space, where the classes may be more easily separable by a hyperplane. By transforming the data into a higher-dimensional space, kernel functions enable SVMs to capture non-linear relationships and complex patterns in the data. A kernel function, denoted as \(K(\textbf{x}, \textbf{x}')\), takes two input vectors \(\textbf{x}\) and \(\textbf{x}'\) and computes a measure of similarity or distance between them. This measure is often represented as the dot product of the transformed feature vectors in the higher-dimensional space.</p>  
+    
+    
+    <h3 id="types=kernel">Types of Kernel Functions</h3>
     <p>There are several types of kernel functions commonly used in SVMs. For the input vectors \(\textbf{x}\) and \(\textbf{x}'\):</p>
-    <ul>
+    <ol>
         <li><strong>Linear Kernel \(K_{\text{linear}}(\textbf{x},\textbf{x}')\):</strong> This is the simplest kernel function, where the dot product of the input vectors is computed directly in the original feature space. It is suitable for linearly separable data.
         $$K_{\text{linear}}(\textbf{x}, \textbf{x}') = \textbf{x}^T \textbf{x}'$$
         here \(\textbf{x}^T\) represents the transpose of vector \(\textbf{x}\), and \(\textbf{x}'\) is another vector.
@@ -522,7 +535,7 @@
         In this equation, \(\alpha\) and \(\beta\) are parameters.
         </li>
         <li><strong>Kernel Trick:</strong> The kernel trick is a computational shortcut that allows SVMs to implicitly compute the dot product between feature vectors in the higher-dimensional space without explicitly calculating the transformation. This is achieved by expressing the optimization problem in terms of kernel functions, avoiding the need to compute the transformation explicitly.</li>
-    </ul>
+    </ol>
 
     
 
