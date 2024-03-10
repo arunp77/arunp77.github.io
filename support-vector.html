@@ -254,12 +254,20 @@
 
     <!--------------------------------->
     <h5 id="explanation-1">Example-1: Support-vector-machine explanation: 2D</h5>
-    <p>Imagine you have a scatter plot where the green points represent one class and the orange points represent another class. To separate these two classes, an SVM seeks to find the best-fitting line or plane (hyperplane) that maximizes the margin between the two classes.</p>
+    <p>Imagine you have a scatter plot where the green points represent one class and the orange points represent another class. To separate these two classes, an SVM seeks to find the best-fitting line or plane (hyperplane) that maximizes the margin between the two classes. <strong><em>We can find the best line by computing the maximum margin from equidistant support vectors</em></strong>.</p>
     <figure>
-        <img src="assets/img/machine-ln/support-vector-machine.png" alt="" style="max-width: 40%; max-height: auto;">
+        <img src="assets/img/machine-ln/support-vector-machine.png" alt="" style="max-width: 80%; max-height: auto;">
         <figcaption style="text-align: center;">Support vectors in circle (<strong>Image credit:</strong> &#169; <a href="index.html">@arunp77</a>)</figcaption>
     </figure>
-    <p>The next step is to draw a decision boundary, or a line separating the two classes to help classify the new data points. We  can actually draw several boundaries, as shown above. Then, we need to find the line of best fit that clearly separates those two groups. The correct line will help us classify the new data point. <strong><em>We can find the best line by computing the maximum margin from equidistant support vectors</em></strong>. The support vectors are the data points closest to this separating hyperplane. These points play a critical role because they help determine the position and orientation of the hyperplane. By choosing support vectors strategically, the SVM ensures that the margin between the two classes is maximized. Now, let's talk about the margin. The margin is the distance between the support vectors and the hyperplane. Maximizing this margin is essential because it provides a buffer zone, making the classification more robust to noise and outliers. Essentially, the larger the margin, the more confident we can be in the classification. However, not all data points are equal in determining the hyperplane and margin. The SVM assigns different weights to each data point based on their proximity to the hyperplane. The farther a data point is from the hyperplane, the less influence it has on determining the hyperplane's position.</p>
+    <p>Let's understand it in detail. We want to classify that the new data point as either green or orange. To classify these points, we can have many decision boundaries, but the question is which is the best and how do we find it? The best hyperplane is that plane that has the maximum distance from both the classes, and this is the main aim of SVM. This is done by finding different hyperplanes which classify the labels in the best way then it will choose the one which is farthest from the data points or the one which has a maximum margin.</p>
+
+
+
+
+
+
+
+    <p>The next step is to draw a decision boundary, or a line separating the two classes to help classify the new data points. We  can actually draw several boundaries, as shown above. Then, we need to find the line of best fit that clearly separates those two groups. The correct line will help us classify the new data point. . The support vectors are the data points closest to this separating hyperplane. These points play a critical role because they help determine the position and orientation of the hyperplane. By choosing support vectors strategically, the SVM ensures that the margin between the two classes is maximized. Now, let's talk about the margin. The margin is the distance between the support vectors and the hyperplane. Maximizing this margin is essential because it provides a buffer zone, making the classification more robust to noise and outliers. Essentially, the larger the margin, the more confident we can be in the classification. However, not all data points are equal in determining the hyperplane and margin. The SVM assigns different weights to each data point based on their proximity to the hyperplane. The farther a data point is from the hyperplane, the less influence it has on determining the hyperplane's position.</p>
     <p>So in summary when using an SVM to classify data points into different classes:</p>
     <ul>
         <li>Support vectors are chosen as the data points closest to the separating hyperplane.</li>
@@ -433,10 +441,11 @@
     <p>Kernel functions are mathematical transformations applied to input data in SVMs. Their primary purpose is to map the original input space into a higher-dimensional feature space, where the classes may be more easily separable by a hyperplane. By transforming the data into a higher-dimensional space, kernel functions enable SVMs to capture non-linear relationships and complex patterns in the data. A kernel function, denoted as \(K(\textbf{x}, \textbf{x}')\), takes two input vectors \(\textbf{x}\) and \(\textbf{x}'\) and computes a measure of similarity or distance between them. This measure is often represented as the dot product of the transformed feature vectors in the higher-dimensional space.</p>  
     
     
-    <h3 id="types-kernel">Types of Kernel Functions</h3>
+    <h3 id="types-kernel"><a href="https://www.cs.cornell.edu/courses/cs4780/2017sp/lectures/lecturenote13.html" target="_blank">Types of Kernel Functions</a></h3>
     <p>There are several types of kernel functions commonly used in SVMs. For the input vectors \(\textbf{x}\) and \(\textbf{x}'\):</p>
+    <div class="grey-box"> &#x270D; <strong>Book suggestion:</strong> The Elements of Statistical Learning: Data Mining, Inference, and Prediction, Trevor Hastie, Robert Tibshirani, Jerome H. Friedman </div>
     <ol>
-        <li><strong>Linear Kernel \(K_{\text{linear}}(\textbf{x},\textbf{x}')\):</strong> This is the simplest kernel function, where the dot product of the input vectors is computed directly in the original feature space. It is suitable for linearly separable data.
+        <li><strong><u><a href="https://www.cs.cornell.edu/courses/cs4780/2017sp/lectures/lecturenote09.html" target="_blank">Linear Kernel</a></u> \(K_{\text{linear}}(\textbf{x},\textbf{x}')\):</strong> This is the simplest kernel function, where the dot product of the input vectors is computed directly in the original feature space. It is suitable for linearly separable data.
         $$K_{\text{linear}}(\textbf{x}, \textbf{x}') = \textbf{x}^T \textbf{x}'$$
         here \(\textbf{x}^T\) represents the transpose of vector \(\textbf{x}\), and \(\textbf{x}'\) is another vector.
         <ul>
@@ -475,7 +484,7 @@
             </li>
         </ul>
         </li>
-        <li><strong>Polynomial Kernel \(K_{\text{poly}}(\textbf{x},\textbf{x}')\):</strong>
+        <li><strong><u><a href="https://www.cs.cornell.edu/courses/cs4780/2017sp/lectures/lecturenote14.html" target="_blank">Polynomial Kernel</a></u> \(K_{\text{poly}}(\textbf{x},\textbf{x}')\):</strong>
             The Polynomial Kernel is a type of kernel function used in Support Vector Machines (SVMs) to handle non-linear relationships between features. It transforms the input data into a higher-dimensional space, where it may be easier to find a separating hyperplane. The polynomial kernel raises the dot product of the input vectors to a certain power \(d\), allowing SVMs to capture polynomial decision boundaries. It is defined as
         $$K_{\text{poly}}(\textbf{x},\textbf{x}') = \left(\textbf{x}\cdot \textbf{x}'+c\right)^d,$$
         where \(c\) is a constant and \(d\) is the degree of the polynomial.
@@ -502,7 +511,7 @@
         </ul>
         <p>In summary, the Polynomial Kernel is a versatile kernel function that allows SVMs to handle non-linear relationships between features by transforming the input data into a higher-dimensional space. It offers flexibility in capturing complex patterns and can be customized through parameters like degree and constant term to suit the characteristics of the data.</p>
         </li>
-        <li><strong>Radial Basis Function (RBF) Kernel \(K_{\text{RBF}}(\textbf{x}, \textbf{x}')\):</strong> The Radial Basis Function (RBF) kernel, also known as the Gaussian kernel, is a popular choice in Support Vector Machines (SVMs) for its ability to capture complex non-linear relationships between data points. The RBF kernel computes the similarity between two input vectors \(\textbf{x}\) and \(\textbf{x}'\) based on the Euclidean distance between them in the input space. Mathematically, the RBF kernel is defined as:
+        <li><strong><u><a href="https://www.cs.cornell.edu/courses/cs4780/2017sp/lectures/lecturenote15.html" target="_blank">Radial Basis Function (RBF) Kernel</a></u> \(K_{\text{RBF}}(\textbf{x}, \textbf{x}')\):</strong> The Radial Basis Function (RBF) kernel, also known as the Gaussian kernel, is a popular choice in Support Vector Machines (SVMs) for its ability to capture complex non-linear relationships between data points. The RBF kernel computes the similarity between two input vectors \(\textbf{x}\) and \(\textbf{x}'\) based on the Euclidean distance between them in the input space. Mathematically, the RBF kernel is defined as:
             $$K_{\text{RBF}}(\textbf{x}, \textbf{x}') = \exp\left(-\gamma \|\textbf{x} - \textbf{x}'\|^2\right)$$
             <p>Here, \(\gamma>0\) is a parameter controlling the kernel's width, and \(\|\textbf{x}-\textbf{x}'\|\) represents the Euclidean distance between vectors \(\textbf{x}\) and \(\textbf{x}'\).</p>
             <ul>
@@ -536,11 +545,33 @@
             </ul>
             <p>In summary, the Radial Basis Function (RBF) kernel is a powerful tool in SVMs for capturing non-linear relationships between data points. Its ability to adapt to complex data distributions and construct flexible decision boundaries makes it a popular choice for a wide range of classification tasks.</p>
         </li>
-        <li><strong>Sigmoid Kernel:</strong> The sigmoid kernel computes the similarity between two vectors using the hyperbolic tangent function:
+        <li><strong><u>Sigmoid Kernel</u>:</strong> The sigmoid kernel computes the similarity between two vectors using the hyperbolic tangent function:
         $$K_{\text{sigmoid}}(\textbf{x}, \textbf{x}') = \text{tanh}\left(\alpha x^T x' +\beta\right)$$
         In this equation, \(\alpha\) and \(\beta\) are parameters.
         </li>
-        <li><strong>Kernel Trick:</strong> The kernel trick is a computational shortcut that allows SVMs to implicitly compute the dot product between feature vectors in the higher-dimensional space without explicitly calculating the transformation. This is achieved by expressing the optimization problem in terms of kernel functions, avoiding the need to compute the transformation explicitly.</li>
+        <li><strong><u>Kernel Trick</u>:</strong> The kernel trick is a computational shortcut that allows SVMs to implicitly compute the dot product between feature vectors in the higher-dimensional space without explicitly calculating the transformation. This is achieved by expressing the optimization problem in terms of kernel functions, avoiding the need to compute the transformation explicitly.</li>
+    </ol>
+
+    <!-------------------------->
+    <h4 id="steps-to-SVM">Step-by-step guide to performing Support Vector Machine (SVM)</h4>
+    <ol>
+        <li><strong>Define Problem:</strong> Clearly understand the task at hand.</li>
+
+        <li><strong>Data Prep:</strong> Collect and preprocess the dataset.</li>
+        
+        <li><strong>Select Kernel:</strong> Choose a kernel function (linear, polynomial, RBF).</li>
+        
+        <li><strong>Parameter Tuning:</strong> Optimize hyperparameters (C, gamma) via cross-validation.</li>
+        
+        <li><strong>Model Training:</strong> Train SVM on the prepared dataset.</li>
+        
+        <li><strong>Evaluate:</strong> Assess model performance using relevant metrics.</li>
+        
+        <li><strong>Refinement (Optional):</strong> Fine-tune hyperparameters or perform feature engineering.</li>
+        
+        <li><strong>Deployment:</strong> Deploy the model for predictions.</li>
+        
+        <li><strong>Maintenance:</strong> Monitor and update the model as needed.</li>
     </ol>
 
 
@@ -556,7 +587,8 @@
     <h2>References</h2>
     <ul>
         <li><a href="https://arunp77.github.io/logistic-regression.html#con-mat" target="_blank">Confusion matrix details</a>.</li>
-        <li>My github Repositories on Remote sensing <a href="https://github.com/arunp77/Machine-Learning/" target="_blank">Machine learning</a></li>
+        <li>My github Repositories on <a href="https://github.com/arunp77/Machine-Learning/" target="_blank">Machine learning</a></li>
+        <li><a href="https://courses.cis.cornell.edu/cs4780/2017sp/" target="_blank">Course notes on Machine learning algorithms</a>.</li>
         <li><a href="https://mlu-explain.github.io/linear-regression/" target="_blank">A Visual Introduction To Linear regression</a> (Best reference for theory and visualization).</li>
         <li>Book on Regression model: <a href="https://avehtari.github.io/ROS-Examples/" target="_blank">Regression and Other Stories</a></li>
         <li>Book on Statistics: <a href="https://hastie.su.domains/Papers/ESLII.pdf" target="_blank">The Elements of Statistical Learning</a></li>
