@@ -306,8 +306,9 @@
         </div>
     </div>
     <p>Hence the equation which we have to maximize  in the context of finding the maximum margin separating hyperplane is:</p>
-    $$\text{argmax}(\vec{w}*, b*) \frac{2}{\|\vec{w}\|} \Rightarrow \text{such that} ~~~ y_i \left( \vec{w}\cdot \vec{X}+b\right)\geq 1.$$
-    <p>This type of SVM is known as Hard Margin SVM. It is to be noted that, in reality there is hardly any case we get perfectly linearly separable data and hence we fail to use this condition we proved here. Soft Margin SVM are used instead and are very useful when  datasets that are either nearly linearly separable or entirely non-linearly separable. To tackle this problem what we do is modify that equation in such a way that it allows few misclassifications that means it allows few points to be wrongly classified.</p>
+    $$\text{argmax}(\vec{w}^*, b^*) \frac{2}{\|\vec{w}\|} \Rightarrow \text{such that} ~~~ y_i \left( \vec{w}\cdot \vec{X}+b\right)\geq 1.$$
+    <p>This type of SVM is known as <strong>Hard Margin SVM</strong>. It is to be noted that, in reality there is hardly any case we get perfectly linearly separable data and hence we fail to use this condition we proved here.</p>
+    <p><strong>Soft Margin SVM</strong> are used instead and are very useful when  datasets that are either nearly linearly separable or entirely non-linearly separable. To tackle this problem what we do is modify that equation in such a way that it allows few misclassifications that means it allows few points to be wrongly classified.</p>
     
 
     
