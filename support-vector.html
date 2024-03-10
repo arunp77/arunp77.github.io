@@ -151,18 +151,25 @@
         <div class="section-title">
         <h3>Content</h3>
         <ol>
-            <li><a href="#introduction">Introduction</a></li>
-            <li><a href="#principle">Principle of KNN</a></li>
+            <li><a href="#introduction">Introduction</a>
+                <ul>
+                    <li><a href="#explanation-1">Example 1: Support-vector-machine explanation: 2D</a></li>
+                    <li><a href="#explanantion-2">Example 2: Classification problem with higher dimension data</a></li>
+                    <li><a href="#types-svm">Types of Support Vector Machine (SVM) Algorithms</a></li>
+                    <li><a href="#terminology">Important terminologies</a></li>
+                    <li><a href="#application">Useful application of SVM</a></li>
+                    <li><a href="#intuition">Intuition: example</a></li>
+                    <li><a href="#pros">Pros</a></li>
+                <li><a href="#cons">Cons</a></li>
+                </ul>
+            </li>
+            <li><a href="#math-svm">Mathematical intuition behind the Support Vector Machine</a></li>
             <ul>
-                <li><a href="#distance">Distance metrics for k-nearest neighbours</a></li>
-                <li><a href="#when">When Do We Use the KNN Algorithm?</a></li>
-                <li><a href="#steps-to-follow">Steps to Effective K-Nearest Neighbors (KNN) Algorithm Implementation</a></li>
-                <li><a href="#what-k">What value should you choose for k in k-nearest neighbours</a></li>
-                <li><a href="why-knn">Why Do We Need the KNN Algorithm?</a></li>
-                <li><a href="#pros">Pros of using KNN</a></li>
-                <li><a href="#cons">Cons of Using KNN</a></li>
+                <li><a href="#kernel-fun">Kernel Functions</a></li>
+                <li><a href="#purpose-kernel">Purpose of Kernel Functions</a></li>
+                <li><a href="#types-kernel">Types of Kernel Functions</a></li>
             </ul>
-            <li><a href="#example">Example</a></li>
+            
             <li><a href="#reference">Reference</a></li>  
         </ol>
         </div>
@@ -247,7 +254,7 @@
     </div>
 
     <!--------------------------------->
-    <h5 id="explanation">Support-vector-machine explanation: 2D</h5>
+    <h5 id="explanation-1">Example-1: Support-vector-machine explanation: 2D</h5>
     <p>Imagine you have a scatter plot where the green points represent one class and the orange points represent another class. To separate these two classes, an SVM seeks to find the best-fitting line or plane (hyperplane) that maximizes the margin between the two classes.</p>
     <figure>
         <img src="assets/img/machine-ln/support-vector-machine.png" alt="" style="max-width: 40%; max-height: auto;">
@@ -427,7 +434,7 @@
     <p>Kernel functions are mathematical transformations applied to input data in SVMs. Their primary purpose is to map the original input space into a higher-dimensional feature space, where the classes may be more easily separable by a hyperplane. By transforming the data into a higher-dimensional space, kernel functions enable SVMs to capture non-linear relationships and complex patterns in the data. A kernel function, denoted as \(K(\textbf{x}, \textbf{x}')\), takes two input vectors \(\textbf{x}\) and \(\textbf{x}'\) and computes a measure of similarity or distance between them. This measure is often represented as the dot product of the transformed feature vectors in the higher-dimensional space.</p>  
     
     
-    <h3 id="types=kernel">Types of Kernel Functions</h3>
+    <h3 id="types-kernel">Types of Kernel Functions</h3>
     <p>There are several types of kernel functions commonly used in SVMs. For the input vectors \(\textbf{x}\) and \(\textbf{x}'\):</p>
     <ol>
         <li><strong>Linear Kernel \(K_{\text{linear}}(\textbf{x},\textbf{x}')\):</strong> This is the simplest kernel function, where the dot product of the input vectors is computed directly in the original feature space. It is suitable for linearly separable data.
