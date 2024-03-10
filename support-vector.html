@@ -253,7 +253,101 @@
     </div><br>
 
     <!--------------------------------->
-    <h5 id="explanation-1">Example-1: Support-vector-machine explanation: 2D</h5>
+    <h3 id="types-svm">Types of Support Vector Machine (SVM) Algorithms</h3>
+    <p>Support Vector Machines (SVMs) offer various algorithms for classification and regression tasks, primarily distinguished by the types of decision boundaries they create and the techniques they employ for optimization. Here are some common types of SVM algorithms:</p>
+    <ol>
+        <li><strong>Linear SVM:</strong> This algorithm is used when the data is linearly separable. Perfectly linearly separable means that the data points can be classified into 2 classes by using a single straight line(if 2D). It aims to find the optimal hyperplane that separates the classes with the maximum margin.</li>
+
+        <li><strong>Non-linear SVM:</strong> When the data is not linearly separable then we can use Non-Linear SVM, which means when the data points cannot be separated into 2 classes by using a straight line (if 2D) then we use some advanced techniques like kernel tricks to classify them. In most real-world applications we do not find linearly separable datapoints hence we use kernel trick to solve them.</li>
+        
+        <li><strong>Support Vector Regression (SVR):</strong> Unlike classification tasks, SVR is used for regression tasks. It aims to find the optimal hyperplane that best fits the data while minimizing the margin violations.</li>
+        
+        <li><strong>Nu-SVM:</strong> This algorithm is an extension of the traditional SVM, introducing a parameter "nu" that replaces the regularization parameter "C." It offers a more intuitive control over the number of support vectors and margin errors.</li>
+        
+        <li><strong>One-Class SVM:</strong> Primarily used for anomaly detection, this algorithm learns a decision boundary that encompasses the majority of the data points while treating the rest as outliers.</li>
+        
+        <li><strong>Sequential Minimal Optimization (SMO):</strong> SMO is an algorithm for training SVMs, particularly useful for solving large-scale optimization problems by decomposing them into smaller sub-problems.</li>
+        
+        <li><strong>Least Squares SVM (LS-SVM):</strong> This variant of SVM reformulates the optimization problem as a set of linear equations, making it computationally efficient for large-scale datasets.</li>
+        
+        <li><strong>Budgeted SVM:</strong> Designed for scenarios with limited computational resources, this algorithm dynamically selects a subset of support vectors to reduce computational complexity while maintaining classification accuracy.</li>
+    </ol>
+
+    <!---------------------------------------->
+    <h3 id="terminology">Important terminologies</h3>
+    <p>Here are some important terms in the context of Support Vector Machines (SVM):</p>
+    <ul>
+        <li><strong>Hyperplane:</strong> In SVM, a hyperplane is a decision boundary that separates classes in a feature space. For a binary classification problem, it's a line in 2D space, a plane in 3D space, and a higher-dimensional surface in higher dimensions.</li>
+        <li><strong>Margin:</strong> The margin is the distance between the hyperplane and the nearest data points of each class. SVM aims to maximize this margin, as it represents the separation between classes. Maximizing the margin helps improve generalization and reduces the risk of overfitting.</li>
+        <li><strong>Support Vectors:</strong> These are the data points that lie closest to the decision boundary (hyperplane). They determine the position and orientation of the hyperplane and are crucial in defining the margin. Only these points influence the construction of the hyperplane; hence, they are called support vectors.</li>
+        <li><strong>Kernel Trick:</strong> SVMs can efficiently handle non-linear decision boundaries by using kernel functions. The kernel trick involves implicitly mapping the input features into a higher-dimensional space, where the classes are more likely to be separable. Common kernel functions include linear, polynomial, radial basis function (RBF), and sigmoid.</li>
+        <li><strong>Regularization Parameter (C):</strong> The regularization parameter (C) controls the trade-off between maximizing the margin and minimizing the classification error. A smaller C value leads to a larger margin but may result in misclassification of some training examples (soft margin). Conversely, a larger C value allows more training examples to be correctly classified but may lead to a smaller margin (hard margin). Proper tuning of C is crucial to prevent overfitting.</li>
+        <li><strong>Kernel Parameters:</strong> For kernelized SVMs, there are additional parameters to tune, such as gamma (\(\gamma\)) for RBF kernel and degree for polynomial kernel. These parameters control the flexibility of the decision boundary. Proper selection of kernel parameters is essential for achieving good performance and avoiding overfitting.</li>
+        <li><strong>Dual Problem:</strong> The optimization problem in SVM can be reformulated into its dual form, which involves maximizing a function subject to constraints. Solving the dual problem is often more computationally efficient, especially when using kernel functions.</li>
+        <li><strong>Nu Parameter:</strong> In Nu-SVM, the nu parameter replaces the C parameter and controls the upper bound on the fraction of margin errors and support vectors. It offers a more intuitive way to adjust the model complexity.</li>
+    </ul>
+
+    <!--------------------------------------->
+    <h4 id="application">Useful application of SVM</h4>
+    <p>Support Vector Machines (SVMs) are versatile algorithms that find applications in various fields due to their ability to handle both linear and non-linear classification problems efficiently. Here are some common applications of SVM:</p>
+    <ul>
+        <li><strong>Image Classification:</strong> SVMs are widely used in image classification tasks, such as identifying objects or scenes within images. They can efficiently handle high-dimensional feature spaces and are robust to noise.</li>
+
+        <li><strong>Text Classification:</strong> SVMs are employed in text classification tasks, such as spam email detection, sentiment analysis, and document categorization. They can effectively classify text data represented as high-dimensional feature vectors.</li>
+        
+        <li><strong>Handwriting Recognition:</strong> SVMs are used in handwriting recognition systems, where they classify handwritten characters or digits into different classes. They can handle complex patterns and variations in handwriting styles.</li>
+        
+        <li><strong>Biomedical Applications:</strong> SVMs find applications in various biomedical tasks, including disease diagnosis, protein classification, and gene expression analysis. They can analyze high-dimensional biomedical data and identify patterns indicative of specific conditions.</li>
+        
+        <li><strong>Financial Forecasting:</strong> SVMs are utilized in financial forecasting tasks, such as stock price prediction, credit scoring, and fraud detection. They can analyze historical financial data and identify patterns to make predictions about future trends or events.</li>
+        
+        <li><strong>Bioinformatics:</strong> SVMs are applied in bioinformatics for tasks such as protein structure prediction, DNA sequence analysis, and protein-protein interaction prediction. They can handle large-scale biological data and extract meaningful patterns.</li>
+        
+        <li><strong>Remote Sensing:</strong> SVMs are used in remote sensing applications, such as land cover classification, crop classification, and environmental monitoring. They can analyze satellite imagery and classify different land cover types accurately.</li>
+        
+        <li><strong>Face Detection:</strong> SVMs are employed in face detection systems, where they classify image regions as containing faces or background. They can effectively distinguish between facial features and background clutter.</li>
+        
+        <li><strong>Medical Diagnosis:</strong> SVMs are used in medical diagnosis tasks, such as cancer detection, disease prognosis, and patient outcome prediction. They can analyze medical data from various sources and assist healthcare professionals in decision-making.</li>
+        
+        <li><strong>Anomaly Detection:</strong> SVMs are utilized in anomaly detection systems to identify unusual or unexpected patterns in data. They can detect outliers or anomalies that deviate significantly from normal behavior.</li>
+    </ul>
+
+    
+    <!--------------------------->
+    <h4 id="pros">Pros</h4>
+    <ol>
+        <li><strong>Effective in High-Dimensional Spaces:</strong> SVMs perform well in high-dimensional spaces, making them suitable for tasks involving a large number of features, such as image classification and text categorization.</li>
+
+        <li><strong>Robust to Overfitting:</strong> SVMs are less prone to overfitting compared to other algorithms like decision trees. By maximizing the margin between classes, SVMs generalize well to unseen data.</li>
+        
+        <li><strong>Versatile Kernel Functions:</strong> SVMs can handle non-linear decision boundaries using various kernel functions (e.g., polynomial, radial basis function), allowing them to capture complex relationships in the data.</li>
+        
+        <li><strong>Works Well with Small Datasets:</strong> SVMs can perform well even with relatively small datasets, as they focus on the points closest to the decision boundary (support vectors) rather than the entire dataset.</li>
+        
+        <li><strong>Global Optimization:</strong> SVMs use convex optimization techniques to find the optimal hyperplane, ensuring that the solution is globally optimal and not affected by local minima.</li>
+        
+        <li><strong>Regularization Parameter:</strong> SVMs offer a regularization parameter (C) that allows users to control the trade-off between maximizing the margin and minimizing classification errors, providing flexibility in model tuning.</li>
+    </ol>
+
+    <!--------------------------->
+    <h4 id="cons">Cons</h4>
+    <ol>
+        <li><strong>Sensitivity to Parameter Tuning:</strong> SVMs require careful selection of parameters, such as the choice of kernel function and regularization parameter. Improper parameter tuning can lead to suboptimal performance.</li>
+
+        <li><strong>Computationally Intensive:</strong> Training an SVM can be computationally intensive, especially for large datasets. The training time and memory requirements increase significantly with the number of data points.</li>
+        
+        <li><strong>Limited Interpretability:</strong> The decision boundary produced by SVMs may be difficult to interpret, particularly when using complex kernel functions or in high-dimensional spaces. This limits the insight into the underlying relationships in the data.</li>
+        
+        <li><strong>Memory Usage:</strong> SVMs require storing all support vectors in memory, which can become impractical for very large datasets with numerous support vectors, leading to high memory usage.</li>
+        
+        <li><strong>Binary Classification:</strong> SVMs are inherently binary classifiers and need additional techniques (e.g., one-vs-all) to handle multi-class classification problems, which can increase complexity.</li>
+        
+        <li><strong>Sensitive to Noise:</strong> SVMs can be sensitive to noise in the training data, as outliers or mislabeled points near the decision boundary may significantly affect the model's performance.</li>
+    </ol>
+
+    <!--------------------------------->
+    <h2 id="math-svm">Mathematical intuition behind the Support Vector Machine</h2>
+    <h4 id="explanation-1">Support-vector-machine explanation: 2D</h4>
     <p>Imagine you have a scatter plot where the green points represent one class and the orange points represent another class. To separate these two classes, an SVM seeks to find the best-fitting line or plane (hyperplane) that maximizes the margin between the two classes. <strong><em>We can find the best line by computing the maximum margin from equidistant support vectors</em></strong>.</p>
     <figure>
         <img src="assets/img/machine-ln/support-vector-machine.png" alt="" style="max-width: 80%; max-height: auto;">
@@ -320,7 +414,7 @@
 
 
 
-    <p>The next step is to draw a decision boundary, or a line separating the two classes to help classify the new data points. We  can actually draw several boundaries, as shown above. Then, we need to find the line of best fit that clearly separates those two groups. The correct line will help us classify the new data point. . The support vectors are the data points closest to this separating hyperplane. These points play a critical role because they help determine the position and orientation of the hyperplane. By choosing support vectors strategically, the SVM ensures that the margin between the two classes is maximized. Now, let's talk about the margin. The margin is the distance between the support vectors and the hyperplane. Maximizing this margin is essential because it provides a buffer zone, making the classification more robust to noise and outliers. Essentially, the larger the margin, the more confident we can be in the classification. However, not all data points are equal in determining the hyperplane and margin. The SVM assigns different weights to each data point based on their proximity to the hyperplane. The farther a data point is from the hyperplane, the less influence it has on determining the hyperplane's position.</p>
+    
     <p>So in summary when using an SVM to classify data points into different classes:</p>
     <ul>
         <li>Support vectors are chosen as the data points closest to the separating hyperplane.</li>
@@ -328,7 +422,8 @@
         <li>Each data point's influence on determining the hyperplane's position is weighted based on its proximity to the hyperplane.</li>
     </ul>
 
-    <h5 id="explanantion-2">Example 2: Classification problem with higher dimension data</h5>
+    <!--------------------------------------->
+    <h4 id="explanantion-2">Classification problem with higher dimension data</h4>
     <p>The data set shown below in Image-(a) has no clear linear separation between the two classes. In machine learning parlance, we would say that these are not linearly separable. How can we get the support vector machine to work on such data? </p>
     <figure>
         <img src="assets/img/machine-ln/support-vector-machine-3D.png" alt="" style="max-width: 80%; max-height: auto;">
@@ -336,154 +431,8 @@
     </figure>
     <p>Since we can't separate it into two classes using a line, we need to transform it into a higher dimension by employing a kernel function to the data set. A higher dimension enables us to clearly separate the two groups with a plane. Here, we can draw some planes between the green dots and the orange dots — with the end goal of maximizing the margin. If we let R=the number of dimensions, the kernel function will convert a two-dimensional space (R2) to a three-dimensional space (R3). Once the data is separated into three dimensions, we can apply SVM and separate the two groups using a two-dimensional plane. For a higher dimension, we would have to use higher diemntsional curve. </p>
 
-    <!--------------------------------->
-    <h3 id="types-svm">Types of Support Vector Machine (SVM) Algorithms</h3>
-    <p>Support Vector Machines (SVMs) offer various algorithms for classification and regression tasks, primarily distinguished by the types of decision boundaries they create and the techniques they employ for optimization. Here are some common types of SVM algorithms:</p>
-    <ol>
-        <li><strong>Linear SVM:</strong> This algorithm is used when the data is linearly separable. Perfectly linearly separable means that the data points can be classified into 2 classes by using a single straight line(if 2D). It aims to find the optimal hyperplane that separates the classes with the maximum margin.</li>
+    
 
-        <li><strong>Non-linear SVM:</strong> When the data is not linearly separable then we can use Non-Linear SVM, which means when the data points cannot be separated into 2 classes by using a straight line (if 2D) then we use some advanced techniques like kernel tricks to classify them. In most real-world applications we do not find linearly separable datapoints hence we use kernel trick to solve them.</li>
-        
-        <li><strong>Support Vector Regression (SVR):</strong> Unlike classification tasks, SVR is used for regression tasks. It aims to find the optimal hyperplane that best fits the data while minimizing the margin violations.</li>
-        
-        <li><strong>Nu-SVM:</strong> This algorithm is an extension of the traditional SVM, introducing a parameter "nu" that replaces the regularization parameter "C." It offers a more intuitive control over the number of support vectors and margin errors.</li>
-        
-        <li><strong>One-Class SVM:</strong> Primarily used for anomaly detection, this algorithm learns a decision boundary that encompasses the majority of the data points while treating the rest as outliers.</li>
-        
-        <li><strong>Sequential Minimal Optimization (SMO):</strong> SMO is an algorithm for training SVMs, particularly useful for solving large-scale optimization problems by decomposing them into smaller sub-problems.</li>
-        
-        <li><strong>Least Squares SVM (LS-SVM):</strong> This variant of SVM reformulates the optimization problem as a set of linear equations, making it computationally efficient for large-scale datasets.</li>
-        
-        <li><strong>Budgeted SVM:</strong> Designed for scenarios with limited computational resources, this algorithm dynamically selects a subset of support vectors to reduce computational complexity while maintaining classification accuracy.</li>
-    </ol>
-
-    <!---------------------------------------->
-    <h3 id="terminology">Important terminologies</h3>
-    <p>Here are some important terms in the context of Support Vector Machines (SVM):</p>
-    <ul>
-        <li><strong>Hyperplane:</strong> In SVM, a hyperplane is a decision boundary that separates classes in a feature space. For a binary classification problem, it's a line in 2D space, a plane in 3D space, and a higher-dimensional surface in higher dimensions.</li>
-        <li><strong>Margin:</strong> The margin is the distance between the hyperplane and the nearest data points of each class. SVM aims to maximize this margin, as it represents the separation between classes. Maximizing the margin helps improve generalization and reduces the risk of overfitting.</li>
-        <li><strong>Support Vectors:</strong> These are the data points that lie closest to the decision boundary (hyperplane). They determine the position and orientation of the hyperplane and are crucial in defining the margin. Only these points influence the construction of the hyperplane; hence, they are called support vectors.</li>
-        <li><strong>Kernel Trick:</strong> SVMs can efficiently handle non-linear decision boundaries by using kernel functions. The kernel trick involves implicitly mapping the input features into a higher-dimensional space, where the classes are more likely to be separable. Common kernel functions include linear, polynomial, radial basis function (RBF), and sigmoid.</li>
-        <li><strong>Regularization Parameter (C):</strong> The regularization parameter (C) controls the trade-off between maximizing the margin and minimizing the classification error. A smaller C value leads to a larger margin but may result in misclassification of some training examples (soft margin). Conversely, a larger C value allows more training examples to be correctly classified but may lead to a smaller margin (hard margin). Proper tuning of C is crucial to prevent overfitting.</li>
-        <li><strong>Kernel Parameters:</strong> For kernelized SVMs, there are additional parameters to tune, such as gamma (\(\gamma\)) for RBF kernel and degree for polynomial kernel. These parameters control the flexibility of the decision boundary. Proper selection of kernel parameters is essential for achieving good performance and avoiding overfitting.</li>
-        <li><strong>Dual Problem:</strong> The optimization problem in SVM can be reformulated into its dual form, which involves maximizing a function subject to constraints. Solving the dual problem is often more computationally efficient, especially when using kernel functions.</li>
-        <li><strong>Nu Parameter:</strong> In Nu-SVM, the nu parameter replaces the C parameter and controls the upper bound on the fraction of margin errors and support vectors. It offers a more intuitive way to adjust the model complexity.</li>
-    </ul>
-
-    <!--------------------------------------->
-    <h4 id="application">Useful application of SVM</h4>
-    <p>Support Vector Machines (SVMs) are versatile algorithms that find applications in various fields due to their ability to handle both linear and non-linear classification problems efficiently. Here are some common applications of SVM:</p>
-    <ul>
-        <li><strong>Image Classification:</strong> SVMs are widely used in image classification tasks, such as identifying objects or scenes within images. They can efficiently handle high-dimensional feature spaces and are robust to noise.</li>
-
-        <li><strong>Text Classification:</strong> SVMs are employed in text classification tasks, such as spam email detection, sentiment analysis, and document categorization. They can effectively classify text data represented as high-dimensional feature vectors.</li>
-        
-        <li><strong>Handwriting Recognition:</strong> SVMs are used in handwriting recognition systems, where they classify handwritten characters or digits into different classes. They can handle complex patterns and variations in handwriting styles.</li>
-        
-        <li><strong>Biomedical Applications:</strong> SVMs find applications in various biomedical tasks, including disease diagnosis, protein classification, and gene expression analysis. They can analyze high-dimensional biomedical data and identify patterns indicative of specific conditions.</li>
-        
-        <li><strong>Financial Forecasting:</strong> SVMs are utilized in financial forecasting tasks, such as stock price prediction, credit scoring, and fraud detection. They can analyze historical financial data and identify patterns to make predictions about future trends or events.</li>
-        
-        <li><strong>Bioinformatics:</strong> SVMs are applied in bioinformatics for tasks such as protein structure prediction, DNA sequence analysis, and protein-protein interaction prediction. They can handle large-scale biological data and extract meaningful patterns.</li>
-        
-        <li><strong>Remote Sensing:</strong> SVMs are used in remote sensing applications, such as land cover classification, crop classification, and environmental monitoring. They can analyze satellite imagery and classify different land cover types accurately.</li>
-        
-        <li><strong>Face Detection:</strong> SVMs are employed in face detection systems, where they classify image regions as containing faces or background. They can effectively distinguish between facial features and background clutter.</li>
-        
-        <li><strong>Medical Diagnosis:</strong> SVMs are used in medical diagnosis tasks, such as cancer detection, disease prognosis, and patient outcome prediction. They can analyze medical data from various sources and assist healthcare professionals in decision-making.</li>
-        
-        <li><strong>Anomaly Detection:</strong> SVMs are utilized in anomaly detection systems to identify unusual or unexpected patterns in data. They can detect outliers or anomalies that deviate significantly from normal behavior.</li>
-    </ul>
-
-    <!---------------------------------->
-    <h4 id="intuition">Intuition: example</h4>
-    (Apart from the given examples given below, some good examples can be found at: <a href="https://www.simplilearn.com/tutorials/data-science-tutorial/svm-in-r" target="_blank">Simplilearn SVM examples</a>)
-    <ul>
-        <li><strong>Intuition-1: Border classification</strong>
-            <p>Consider a scenario where countries A and B share a border and maintain a peaceful truce (This example is taken from <a href="https://www.newtechdojo.com/understanding-support-vector-machines-svm/" target="_blank">newtechdojo</a>). This border serves as a dividing line between the citizens of each country. Both nations deploy their armed forces to vigilantly patrol the border, ensuring strict adherence to the agreement and preventing any unauthorized crossings. Additionally, there exists a disputed piece of land, known as No Man’s Land, which falls outside the jurisdiction of either country. Visually, this arrangement can be depicted as shown in image-(a):</p>
-
-            <figure>
-                <img src="assets/img/machine-ln/classification-svm-example.png" alt="" style="max-width: 90%; max-height: auto;">
-                <figcaption style="text-align: center;">(<strong>Image credit:</strong> <a href="https://www.newtechdojo.com/understanding-support-vector-machines-svm/" target="_blank">newtechdojo</a>)</figcaption>
-            </figure>
-            <p>In this diagram, observe that the border's integrity is upheld solely by the presence of soldiers along the solid line. Essentially, these soldiers are responsible for maintaining the shape and security of the border. Meanwhile, citizens of each respective country are free to move within their territories without constraint. However, should even a single soldier withdraw from their post, there exists a risk of the enemy advancing and altering the border's position. This precarious situation is illustrated in figure-(b). It's important to emphasize that the border serves as a demarcation between the citizens of each country, with only the soldiers tasked with its protection. Surrounding the border is unclaimed land, devoid of ownership by either nation. Notably, soldiers are strategically positioned closest to the border, while civilians reside at a distance.</p>
-            <p>A few things to note here:</p>
-            <ul>
-                <li>The border separates citizens of one country from that of another.</li>
-                <li>Only the soldiers are required to keep the border.</li>
-                <li>There is an empty land around the border that no one claims.</li>
-                <li>Soldiers are closest to the border and other citizens are far away.</li>
-            </ul>
-        
-            <p>Now imagine the same situation as above but replace the scenario as follows:</p>
-            <ul>
-                <li>Country A as a set of loan defaulters & Country B as a set of usual customers.</li>
-                <li>Citizens as Data samples (customers)</li>
-                <li>Soldiers as supporting/necessary data samples</li>
-                <li>The border as Decision Boundary (Separator)</li>
-            </ul>
-            <p>If we imagine the above scenario, then we have reached a way to separate our data samples by using only a minimal subset (Soldiers) of the whole data. This idea is the fundamental essence of classification using the very Support Vector Machine. In SVM terminology, this border is a Separating Hyperplane; the citizens are data points; the soldiers are Support Vector; the distance between soldiers and the border is the Margin and, the whole setup is a Support Vector Machine Classifier. This idea is assimilated in the diagram-(c) of the above picture.</p>
-        </li>
-        <li><strong>Intuition-2: Image classification</strong>
-            <p>Imagine you are a customs officer at an airport tasked with identifying potentially dangerous items in passengers' luggage. You have training data consisting of examples of dangerous and non-dangerous items, each described by various features (e.g., shape, density, material). Using SVM, you aim to draw a decision boundary (hyperplane) in the feature space that separates the dangerous items from the non-dangerous ones. The SVM algorithm will help you find the optimal hyperplane that maximizes the margin between these two classes, ensuring a clear separation even for new items not seen during training. </p>
-        </li>
-        <li><strong>Intuition-3: Email classification</strong>
-        <p>Support Vector Machines (SVMs) play a crucial role in email classification, particularly in tasks such as spam detection. Their effectiveness lies in their ability to accurately separate spam emails from non-spam ones by identifying the optimal hyperplane that maximizes the margin between the two classes. SVMs are adept at handling high-dimensional feature vectors representing email content, ensuring precise classification even with complex datasets. Additionally, SVMs exhibit robustness to overfitting, leading to better generalization and reduced misclassification of new emails. One of their key advantages is their flexibility and tunability, offering parameters like kernel functions and regularization that allow developers to fine-tune models for optimal performance. SVMs also boast efficient training algorithms, making them suitable for large-scale email datasets and real-time email filtering applications. Furthermore, the decision boundary learned by SVMs can provide insights into distinguishing features of spam and non-spam emails, aiding in model interpretation. Overall, SVMs offer a powerful and versatile solution for email classification, providing robustness, efficiency, and flexibility in handling diverse email datasets.</p>
-        <figure>
-            <img src="assets/img/machine-ln/classfication-email-svm-example.png" alt="" style="max-width: 90%; max-height: auto;">
-            <figcaption style="text-align: center;">(<strong>Image credit:</strong> <a href="https://www.newtechdojo.com/understanding-support-vector-machines-svm/" target="_blank">newtechdojo</a>)</figcaption>
-        </figure>
-        </li>
-    </ul>
-
-
-    <!--------------------------->
-    <h4 id="pros">Pros</h4>
-    <ol>
-        <li><strong>Effective in High-Dimensional Spaces:</strong> SVMs perform well in high-dimensional spaces, making them suitable for tasks involving a large number of features, such as image classification and text categorization.</li>
-
-        <li><strong>Robust to Overfitting:</strong> SVMs are less prone to overfitting compared to other algorithms like decision trees. By maximizing the margin between classes, SVMs generalize well to unseen data.</li>
-        
-        <li><strong>Versatile Kernel Functions:</strong> SVMs can handle non-linear decision boundaries using various kernel functions (e.g., polynomial, radial basis function), allowing them to capture complex relationships in the data.</li>
-        
-        <li><strong>Works Well with Small Datasets:</strong> SVMs can perform well even with relatively small datasets, as they focus on the points closest to the decision boundary (support vectors) rather than the entire dataset.</li>
-        
-        <li><strong>Global Optimization:</strong> SVMs use convex optimization techniques to find the optimal hyperplane, ensuring that the solution is globally optimal and not affected by local minima.</li>
-        
-        <li><strong>Regularization Parameter:</strong> SVMs offer a regularization parameter (C) that allows users to control the trade-off between maximizing the margin and minimizing classification errors, providing flexibility in model tuning.</li>
-    </ol>
-
-    <!--------------------------->
-    <h4 id="cons">Cons</h4>
-    <ol>
-        <li><strong>Sensitivity to Parameter Tuning:</strong> SVMs require careful selection of parameters, such as the choice of kernel function and regularization parameter. Improper parameter tuning can lead to suboptimal performance.</li>
-
-        <li><strong>Computationally Intensive:</strong> Training an SVM can be computationally intensive, especially for large datasets. The training time and memory requirements increase significantly with the number of data points.</li>
-        
-        <li><strong>Limited Interpretability:</strong> The decision boundary produced by SVMs may be difficult to interpret, particularly when using complex kernel functions or in high-dimensional spaces. This limits the insight into the underlying relationships in the data.</li>
-        
-        <li><strong>Memory Usage:</strong> SVMs require storing all support vectors in memory, which can become impractical for very large datasets with numerous support vectors, leading to high memory usage.</li>
-        
-        <li><strong>Binary Classification:</strong> SVMs are inherently binary classifiers and need additional techniques (e.g., one-vs-all) to handle multi-class classification problems, which can increase complexity.</li>
-        
-        <li><strong>Sensitive to Noise:</strong> SVMs can be sensitive to noise in the training data, as outliers or mislabeled points near the decision boundary may significantly affect the model's performance.</li>
-    </ol>
-
-
-
-    <!------------------------------->
-    <h2 id="math-svm">Mathematical intuition behind the Support Vector Machine</h2>
-    <p>The mathematical intuition behind Support Vector Machines (SVMs) revolves around finding the optimal hyperplane that separates different classes in a dataset. The detailed explanation of the mathematical principles underlying SVMs:</p>
-    <ol>
-        <li><strong>Linear Separability: </strong>SVMs are designed for binary classification tasks where the goal is to separate two classes of data points using a hyperplane in feature space. If the classes are linearly separable, meaning they can be separated by a straight line (or hyperplane in higher dimensions), SVM aims to find the hyperplane that maximizes the margin between the two classes. This hyperplane is called the "maximum-margin hyperplane."</li>
-        <li><strong>Margin Maximization:</strong> The margin is defined as the distance between the hyperplane and the nearest data points from each class, known as support vectors. SVM aims to maximize this margin, as it represents the region where the classifier is most confident in its predictions and is less likely to be influenced by noise or outliers.</li>
-        <li><strong>Optimization Problem:</strong> Mathematically, finding the maximum-margin hyperplane can be formulated as an optimization problem. SVM seeks to minimize the classification error while maximizing the margin. This is typically expressed as a convex optimization problem, where the objective function is subject to constraints that ensure the correct classification of training examples and the maximization of the margin.</li>
-        <li><strong>Decision Function:</strong> Once the optimal hyperplane is found, the decision function of SVM can be defined as \(f(x) = \text{sign}(w^T w +b)\), where \(w\) is the weight vector perpendicular to the hyperplane, \(x\) is the input vector, \(b\) is the bias term, and 'sign' function assigns the class label based on the sign of the dot product. </li>
-        <li><strong>Kernel Trick:</strong> In cases where the data is not linearly separable, SVMs can employ the kernel trick to map the input data into a higher-dimensional feature space where it becomes linearly separable. This allows SVMs to handle non-linear relationships between features without explicitly computing the transformation, making them more flexible and powerful.</li>
-        <li><strong>Support Vectors:</strong> In SVM, only a subset of training examples, known as support vectors, influences the position of the hyperplane. These support vectors are the data points closest to the decision boundary and determine the orientation of the hyperplane.</li>
-    </ol>
-    <p>In summary, the mathematical intuition behind SVMs involves finding the optimal hyperplane that maximizes the margin between different classes of data points. By maximizing the margin, SVMs create robust decision boundaries that generalize well to unseen data, making them effective tools for binary classification tasks.</p>
 
     <!--------------------->
     <h3 id="kernel-fun">Kernel Functions</h3> 
