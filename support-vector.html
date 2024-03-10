@@ -250,7 +250,7 @@
             </tr>
             
         </table>
-    </div>
+    </div><br>
 
     <!--------------------------------->
     <h5 id="explanation-1">Example-1: Support-vector-machine explanation: 2D</h5>
@@ -260,6 +260,29 @@
         <figcaption style="text-align: center;">Support vectors in circle (<strong>Image credit:</strong> &#169; <a href="index.html">@arunp77</a>)</figcaption>
     </figure>
     <p>Let's understand it in detail. We want to classify that the new data point as either green or orange. To classify these points, we can have many decision boundaries, but the question is which is the best and how do we find it? The best hyperplane is that plane that has the maximum distance from both the classes, and this is the main aim of SVM. This is done by finding different hyperplanes which classify the labels in the best way then it will choose the one which is farthest from the data points or the one which has a maximum margin.</p>
+    <figure>
+        <img src="assets/img/machine-ln/support-vector-machine1.png" alt="" style="max-width: 80%; max-height: auto;">
+        <figcaption style="text-align: center;"> (<strong>Image credit:</strong> &#169; <a href="index.html">@arunp77</a>)</figcaption>
+    </figure>
+    <p>Let's understand first what is dot product of vectors. The dot product can be defined as the projection of one vector along with another, multiply by the product of another vector and is defined as \(\vec{A} \cdot \vec{B} = |A| \cos \theta |B| \), where \(|A| \cos \theta\) is the projection of \(\vec{A}\) on \(\vec{B}\). In SVM, we just need the projection of \(\vec{A}\) not the magnitude of \(\vec{B}\). Instead we take \(\vec{A} \cdot \vec{B} = |A| \cos \theta \times ~(\text{unit vector of } \vec{B})\) as to get the projection, we can just take the unit vector of \(\vec{B}\) because it will be in the direction of \(\vec{B}\) but its magnitude will be 1. Now let's consider image (b) in the above figure where we consider a random data point in black and corresponding vector \(\vec{X}\). We aim to determine if a point lies to the right (positive) or left (negative) side of the separating line (plane). This is done by computing the dot product of the vector onto the perpendicular line to the boundary separating the two sets of data points (green and orange). Here \(c\) is the distance of the light blue separing line from the origin. Now following three conditions may arise:</p>
+    \begin{align*}
+    & \vec{X} \cdot \vec{w} = c \quad && \text{(the point lies on the decision boundary)} \\
+    & \vec{X} \cdot \vec{w} > c \quad && \text{(positive samples)} \\
+    & \vec{X} \cdot \vec{w} < c \quad && \text{(negative samples)}
+    \end{align*}
+    <p>Here the dot product of the two vectors (where \(\vec{w}\) is a unit vector perpendicular to the decision boundary), gives the distance of vector X from the decision boundary and there may be infinte points on the boundary to measure the distance from. We simply take perpendicular and use it as a reference and then take projections of all the other data points on this perpendicular vector and then compare the distance. In SVM we also have a concept of margin. We can rewrite the equation \(\vec{X} \cdot \vec{w} -c \geq 0 \Rightarrow  \vec{X} \cdot \vec{w} +b \geq 0 \), where we just replaced \(-c\) with the \(b\). </p>
+    <p>In general equation of a plane can be written as \(\vec{n} \cdot \vec{r} = \vec{n} \cdot \vec{r}_0\), where we can write \(\vec{n}  = (A, B, C)\) which is the normal vector to the plane, \(\vec{r}\) is the  position vector of any point \((x,y,z)\) on the plane, and \(\vec{r}_0\) is the position vector of a known point \((x_0, y_0, z_0)\) on the plane.</p>
+    <p>Therefore, we have</p>
+
+    \begin{equation}
+        y =
+        \begin{cases}
+            +1 & \text{if}~ \vec{X}\cdot \vec{w} +b \geq 0  \\
+            -1 & \text{if } \vec{X}\cdot \vec{w} +b < 0
+        \end{cases}
+    \end{equation}
+    <p>If the value of \(\vec{X}\cdot \vec{w} +b>0\) then we can say it is a positive point otherwise it is a negative point. Now we need \((w,b)\) such that the margin has a maximum distance. Let’s say this distance is '\(d\)'. To calculate \(d\), we need the equation of the two lines L1, and L2. We want our plane to have equal distance from both the classes that means L should pass through the center of L1 and L2 that’s why we take magnitude equal. For mathematical convience, we consider the equations of the two lines \(\vec{X}\cdot \vec{w} +b =1\) and \(\vec{X}\cdot \vec{w} +b = -1\). Another reason, why choose 1, is if we multiply the equation of hyperplane with a factor greater than 1 then the parallel lines will shrink and if we multiply with a factor less than 1, they expand.</p>
+
 
 
 
