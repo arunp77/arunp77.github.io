@@ -271,7 +271,8 @@
     & \vec{X} \cdot \vec{w} < c \quad && \text{(negative samples)}
     \end{align*}
     <p>Here the dot product of the two vectors (where \(\vec{w}\) is a unit vector perpendicular to the decision boundary), gives the distance of vector X from the decision boundary and there may be infinte points on the boundary to measure the distance from. We simply take perpendicular and use it as a reference and then take projections of all the other data points on this perpendicular vector and then compare the distance. In SVM we also have a concept of margin. We can rewrite the equation \(\vec{X} \cdot \vec{w} -c \geq 0 \Rightarrow  \vec{X} \cdot \vec{w} +b \geq 0 \), where we just replaced \(-c\) with the \(b\). </p>
-    <p>In general equation of a plane can be written as \(\vec{n} \cdot \vec{r} = \vec{n} \cdot \vec{r}_0\), where we can write \(\vec{n}  = (A, B, C)\) which is the normal vector to the plane, \(\vec{r}\) is the  position vector of any point \((x,y,z)\) on the plane, and \(\vec{r}_0\) is the position vector of a known point \((x_0, y_0, z_0)\) on the plane.</p>
+    <div class="grey-box">
+    &#9889; In general equation of a plane can be written as \(\vec{n} \cdot \vec{r} = \vec{n} \cdot \vec{r}_0\), where we can write \(\vec{n}  = (A, B, C)\) which is the normal vector to the plane, \(\vec{r}\) is the  position vector of any point \((x,y,z)\) on the plane, and \(\vec{r}_0\) is the position vector of a known point \((x_0, y_0, z_0)\) on the plane.</div>
     <p>Therefore, we have</p>
 
     \begin{equation}
@@ -282,6 +283,34 @@
         \end{cases}
     \end{equation}
     <p>If the value of \(\vec{X}\cdot \vec{w} +b>0\) then we can say it is a positive point otherwise it is a negative point. Now we need \((w,b)\) such that the margin has a maximum distance. Let’s say this distance is '\(d\)'. To calculate \(d\), we need the equation of the two lines L1, and L2. We want our plane to have equal distance from both the classes that means L should pass through the center of L1 and L2 that’s why we take magnitude equal. For mathematical convience, we consider the equations of the two lines \(\vec{X}\cdot \vec{w} +b =1\) and \(\vec{X}\cdot \vec{w} +b = -1\). Another reason, why choose 1, is if we multiply the equation of hyperplane with a factor greater than 1 then the parallel lines will shrink and if we multiply with a factor less than 1, they expand. We can now say that these lines will move as we do changes in \((w,b)\) and this is how this gets optimized. But what is the optimization function? Let’s calculate it. We know that the aim of SVM is to maximize this margin that means distance \((d)\). But there are few constraints for this distance \((d)\). Let’s look at what these constraints are.</p>
+    <p><strong>Optimization function and its constrainsts:</strong> Since, for orange points \(\vec{w}\cdot \vec{X} +b \leq -1\) and for green points \(\vec{w}\cdot \vec{X} +b \geq 1\) i.e. negative classes have \(y = -1\) and positive classes have \(y = 1\). We can say that for everypoint to be correctly classfied, above two condition can be combined as:</p>
+    $$y_i(\vec{w}\cdot \vec{X}+b)\geq 1$$
+    <ul>
+        <li>Suppose a green point is correctly classfied that means it will follow \(\vec{X}\cdot \vec{w} +b >=1\), if we multiply this with \(y=1\) we get this same equation mentioned above.</li>
+        <li>Similarly, if we do this with a orange point with \(y=-1\) we will again get this equation. Hence, we can say that we need to maximize (d) such that this constraint holds true.</li>
+    </ul>
+    
+    <div style="display: flex; align-items: center;">
+        <div style="flex: 1;">
+            <figure>
+                <img src="assets/img/machine-ln/support-vector-machine2.png" alt="" style="max-width: 70%; max-height: auto;">
+                <figcaption style="text-align: center;">(<strong>Image credit:</strong> &#169; <a href="index.html">@arunp77</a>)</figcaption>
+            </figure>
+        </div>
+        <div style="flex: 1;">
+            <p style="padding-left: 20px;">Now we can consider two support vectors, one from negative class and second from the positive class. The distance between the two vectors \(\vec{X}_1\) and \(\vec{X}_2\) will be \(\vec{X}_2 - \vec{X}_1\). What we need is, the shortest distance between these two points which can be found using a trick we used in the dot product. We take a vector \(\vec{w}\) perpendicular to the hyperplane and then find the projection of \(\vec{X}_2\) will be \(\vec{X}_2 - \vec{X}_1\) vector on \(\vec{w}\), where \(\vec{w}\) is the unit vector.  Therefore the projection of avector on another vector is:
+            $$(\vec{X}_2 -\vec{X}_1)\cdot \frac{\vec{w}}{\|\vec{w}\|} \Rightarrow \frac{\vec{X}_2 \cdot \vec{w} -\vec{X}_1 \cdot \vec{w} }{\|\vec{w}\|}.$$
+            Since the two vectors \(X_2\) and \(X_1\) are support vectors and they lie on the hyperplane, we can write: \(y_i (\vec{w}\cdot \vec{X}+b) = 1\), i.e \(1\times (\vec{w}\cdot \vec{X}+b) = 1 \Rightarrow \vec{w}\cdot \vec{X}_1 =1- b\) for positive point (\(y=1\)) and \(-1 \times (\vec{w}\cdot \vec{X}+b) = 1 \Rightarrow \vec{w}\cdot \vec{X}_1 = - 1- b\). Yherefore, substituing the two value in above equations:
+            $$\frac{\vec{X}_2 \cdot \vec{w} -\vec{X}_1 \cdot \vec{w} }{\|\vec{w}\|} = \frac{(1-b) - (-1-b)}{\|\vec{w}\|} =\frac{2}{\|\vec{w}\|} = d.$$
+            </p>
+        </div>
+    </div>
+    <p>Hence the equation which we have to maximize  in the context of finding the maximum margin separating hyperplane is:</p>
+    $$\text{argmax}(\vec{w}*, b*) \frac{2}{\|\vec{w}\|} \Rightarrow \text{such that} ~~~ y_i \left( \vec{w}\cdot \vec{X}+b\right)\geq 1.$$
+    <p>This type of SVM is known as Hard Margin SVM. It is to be noted that, in reality there is hardly any case we get perfectly linearly separable data and hence we fail to use this condition we proved here. Soft Margin SVM are used instead and are very useful when  datasets that are either nearly linearly separable or entirely non-linearly separable. To tackle this problem what we do is modify that equation in such a way that it allows few misclassifications that means it allows few points to be wrongly classified.</p>
+    
+
+    
 
 
 
