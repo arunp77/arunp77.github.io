@@ -410,6 +410,10 @@
         </li>
         
         <li><strong>Soft Margin SVM:</strong> In a traditional SVM, we aim to find a hyperplane that separates the data into two classes with the largest margin possible. However, in real-world scenarios, the data might not be linearly separable, or there could be outliers that affect the decision boundary. The Soft Margin SVM addresses these issues by allowing for some misclassifications and incorporating a penalty term for them. Mathematically, let's start with the optimization problem for the Soft Margin SVM. Given training data \((x_1, y_1),(x_2, y_2), (x_n, y_n)\), where \(x_i \in \mathbb{R}^d\) is the input feature vector and \(y_i \in \{-1, 1\}\) is the corresponding class label, the Soft Margin SVM aims to find the hyperplane represented by \(\mathbf{w} \cdot \mathbf{x} + b = 0\) that maximizes the margin while allowing for some misclassifications.
+            <div class="grey-box">
+                <strong>&#128204; Note:</strong> Here it is to be noted here that we took argmin instead of argmax compared to the Hard Margin SVM. We know that \(\text{max}[f(x)]\) can also be written as \(\min[1/f(x)]\), it is common practice to minimize a cost function for optimization problems; therefore, we can invert the function <strong>argmax</strong> function to <strong>argmin</strong>.
+            </div>
+
             \[
             \text{argmin}_{\mathbf{w}, b, \boldsymbol{\xi}} \left( \frac{1}{2}||\mathbf{w}||^2 + C\sum_{i=1}^{n} \xi_i \right)
             \]
@@ -417,7 +421,7 @@
         $$y_i(\mathbf{w} \cdot \mathbf{x}_i + b) \geq 1 - \xi_i \quad \text{and} \quad \xi_i \geq 0, \quad \forall i.$$
 
         <ul>
-            <li>Here, \(C > 0\) is the regularization parameter that controls the trade-off between maximizing the margin and minimizing the classification errors. A larger \(C\) value penalizes misclassifications more heavily, leading to a narrower margin but potentially better classification accuracy.</li>
+            <li>Here, \(C > 0\) is the regularization parameter that controls the trade-off between maximizing the margin and minimizing the classification errors. A larger \(C\) value penalizes misclassifications more heavily, leading to a narrower margin but potentially better classification accuracy. It is a hyperparameter and we find the optimal value of \(C\) using <code>GridsearchCV</code> and cross-validation.</li>
 
             <li>The term \(\frac{1}{2}||\mathbf{w}||^2\) represents the margin maximization objective, aiming to maximize the margin between the support vectors (data points closest to the decision boundary) of different classes.</li>
     
@@ -425,22 +429,8 @@
         </ul>
 
         <p>In summary, the Soft Margin SVM introduces slack variables to handle misclassifications and incorporates a regularization parameter to control the trade-off between margin maximization and error minimization. This approach allows the SVM to generalize better to real-world datasets with noise or non-linearly separable classes.</p>
-        </li>
-            
+        </li>   
     </ul>
-    
-    
-    
-
-    
-
-
-
-
-
-
-
-
     
     <p>So in summary when using an SVM to classify data points into different classes:</p>
     <ul>
@@ -457,9 +447,6 @@
         <figcaption style="text-align: center;">Support vectors in circle (<strong>Image credit:</strong> &#169; <a href="index.html">@arunp77</a> )</figcaption>
     </figure>
     <p>Since we can't separate it into two classes using a line, we need to transform it into a higher dimension by employing a kernel function to the data set. A higher dimension enables us to clearly separate the two groups with a plane. Here, we can draw some planes between the green dots and the orange dots — with the end goal of maximizing the margin. If we let R=the number of dimensions, the kernel function will convert a two-dimensional space (R2) to a three-dimensional space (R3). Once the data is separated into three dimensions, we can apply SVM and separate the two groups using a two-dimensional plane. For a higher dimension, we would have to use higher diemntsional curve. </p>
-
-    
-
 
     <!--------------------->
     <h3 id="kernel-fun">Kernel Functions</h3> 
@@ -579,7 +566,34 @@
         In this equation, \(\alpha\) and \(\beta\) are parameters.
         </li>
         <li><strong><u>Kernel Trick</u>:</strong> The kernel trick is a computational shortcut that allows SVMs to implicitly compute the dot product between feature vectors in the higher-dimensional space without explicitly calculating the transformation. This is achieved by expressing the optimization problem in terms of kernel functions, avoiding the need to compute the transformation explicitly.</li>
+        <li><strong>Bessel Function Kernel:</strong> The Bessel function kernel is a type of radial basis function (RBF) kernel, similar to the Gaussian RBF kernel. It is defined using the Bessel function of the first kind. The Bessel function kernel can be defined as:
+        $$K(x, x') = J_v(\gamma \|x-x'\|)$$
+        where:
+        <ul>
+            <li>\(x\) and \(x'\) are the input data points,</li>
+            <li>\(J_v\) is the Bessel function of the first kind,</li>
+            <li>\(\gamma\) is a scaling parameter, and</li>
+            <li>\(v\) is the order of the Bessel function.</li>
+        </ul>
+        <p>The Bessel function kernel measures similarity between data points based on their distance in the input space. It is particularly useful when dealing with periodic or oscillating data patterns.</p>
+        </li>
+        <li><strong>ANOVA Kernel Function: </strong>The ANOVA kernel, short for analysis of variance kernel, is used for capturing interactions between multiple input dimensions. It is defined as the sum of all possible interactions between subsets of dimensions. The ANOVA kernel function can be defined as: 
+        $$K(x, x') = \sum_{d=1}^{D} \sum_{I \in \mathcal{P}(d)} \prod_{i \in I} k_i(x_i, x_i')$$
+        <ul>
+            <li>\(x\) and \(x'\) are the input data points,</li>
+            <li>\(D\) is the total number of dimensions (features) in the input space,</li>
+            <li>\(\mathcal{P}(d)\) denotes the power set of dimensions of size \(d\)</li>
+            <li>\(I\) represents a subset of dimensions of size \(d\)</li>
+            <li>\(k_i\) is a kernel function operating on the \(i-\)th dimesnion,</li>
+            <li>The outer sum ranges over all dimensions, and</li>
+            <li>The inner sum ranges over all subsets of dimensions of size \(d\).</li>
+        </ul>
+        The ANOVA kernel captures both additive and interaction effects between input dimensions. It is particularly useful when dealing with high-dimensional data where interactions between subsets of dimensions are important for prediction.
+        </li>
     </ol>
+
+
+    
 
     <!-------------------------->
     <h4 id="steps-to-SVM">Step-by-step guide to performing Support Vector Machine (SVM)</h4>
