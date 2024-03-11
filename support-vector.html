@@ -38,7 +38,6 @@
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
-
 <!-- =======================================================
   * Template Name: iPortfolio
   * Updated: Sep 18 2023 with Bootstrap v5.3.2
@@ -61,11 +60,11 @@
     <img src="assets/img/myphoto.jpeg" alt="" class="img-fluid rounded-circle">
     <h1 class="text-light"><a href="index.html">Arun</a></h1>
     <div class="social-links mt-3 text-center">
-        <a href="https://www.linkedin.com/in/arunp77/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-        <a href="https://github.com/arunp77" class="github"><i class="bx bxl-github"></i></a>
-        <a href="https://twitter.com/arunp77_" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="https://www.instagram.com/arunp77/" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="https://arunp77.medium.com/" class="medium"><i class="bx bxl-medium"></i></a>
+        <a href="https://www.linkedin.com/in/arunp77/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        <a href="https://github.com/arunp77" target="_blank" class="github"><i class="bx bxl-github"></i></a>
+        <a href="https://twitter.com/arunp77_" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="https://www.instagram.com/arunp77/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="https://arunp77.medium.com/" target="_blank" class="medium"><i class="bx bxl-medium"></i></a>
     </div>
     </div>
 
@@ -138,7 +137,7 @@
             <div class="swiper-wrapper align-items-center">
 
                 <figure>
-                    <img src="assets/img/machine-ln/classification-svm.png" alt="" style="max-width: 90%; max-height: auto;">
+                    <img src="assets/img/machine-ln/classification-svm.png" alt="" style="max-width: 100%; max-height: auto;">
                     <figcaption style="text-align: center;"></figcaption>
                 </figure>
 
@@ -381,7 +380,7 @@
     <p>If the value of \(\vec{X}\cdot \vec{w} +b>0\) then we can say it is a positive point otherwise it is a negative point. Now we need \((w,b)\) such that the margin has a maximum distance. Let’s say this distance is '\(d\)'. To calculate \(d\), we need the equation of the two lines L1, and L2. We want our plane to have equal distance from both the classes that means L should pass through the center of L1 and L2 that’s why we take magnitude equal. For mathematical convience, we consider the equations of the two lines \(\vec{X}\cdot \vec{w} +b =1\) and \(\vec{X}\cdot \vec{w} +b = -1\). Another reason, why choose 1, is if we multiply the equation of hyperplane with a factor greater than 1 then the parallel lines will shrink and if we multiply with a factor less than 1, they expand. We can now say that these lines will move as we do changes in \((w,b)\) and this is how this gets optimized. But what is the optimization function? Let’s calculate it. We know that the aim of SVM is to maximize this margin that means distance \((d)\). But there are few constraints for this distance \((d)\). Let’s look at what these constraints are.</p>
     
     <h5><strong>Optimization function and its constrainsts</strong></h5>
-    <ul>
+    <ol>
         <li><strong>Hard Margin SVM:</strong> Since, for orange points \(\vec{w}\cdot \vec{X} +b \leq -1\) and for green points \(\vec{w}\cdot \vec{X} +b \geq 1\) i.e. negative classes have \(y = -1\) and positive classes have \(y = 1\). We can say that for everypoint to be correctly classfied, above two condition can be combined as:
             $$y_i(\vec{w}\cdot \vec{X}+b)\geq 1$$
             <ul>
@@ -432,7 +431,7 @@
 
         <p>In summary, the Soft Margin SVM introduces slack variables to handle misclassifications and incorporates a regularization parameter to control the trade-off between margin maximization and error minimization. This approach allows the SVM to generalize better to real-world datasets with noise or non-linearly separable classes.</p>
         </li>   
-    </ul>
+    </ol>
     
     <p>So in summary when using an SVM to classify data points into different classes:</p>
     <ul>
@@ -594,9 +593,6 @@
         </li>
     </ol>
 
-
-    
-
     <!-------------------------->
     <h4 id="steps-to-SVM">Step-by-step guide to performing Support Vector Machine (SVM)</h4>
     <ol>
@@ -611,14 +607,131 @@
         <li><strong>Maintenance:</strong> Monitor and update the model as needed.</li>
     </ol>
 
-
-    
-
-
     <!-------------------------->
     <h3 id="example-python">Example project</h3>
-    
-
+    <p>For the current project, we choose iris datasets provided by <code>skelarn.datasets</code>.</p>
+    Let's follow following steps:
+    <ul>
+        <li><strong>Step-1:</strong> Load the datasets and create a dataframe with both the features and target variable
+            <pre><code class="language-python">
+                import pandas as pd
+                import numpy as np
+                import matplotlib.pyplot as plt
+                from sklearn import svm
+                from sklearn.datasets import load_iris
+                
+                # Load the Iris dataset
+                iris = load_iris()
+                
+                # Convert the dataset to a DataFrame
+                iris_df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
+                
+                # Add the target variable (species) to the DataFrame
+                iris_df['species'] = iris.target
+                
+                # Replace target values with actual species names
+                iris_df['species'] = iris_df['species'].map({0: 'setosa', 1: 'versicolor', 2: 'virginica'})
+                
+                # Display the DataFrame
+                iris_df
+            </code></pre>
+            <figure>
+                <img src="assets/img/machine-ln/support-vector-irisdata.png" alt="" style="max-width: 90%; max-height: auto;">
+                <figcaption style="text-align: center;"></figcaption>
+            </figure>
+        </li>
+        <li><strong>Step-2</strong> Creating the features and target data:
+            <pre><code class="language-python">
+                # creating the Features and target data
+                # Features (input data)
+                X = iris.data
+                
+                # Target variable (output labels)
+                y = iris.target
+            </code></pre>
+        </li>
+        <li><strong>Step-3:</strong> Now just slecting just first two columns and plotting them using scatter plot:
+            <pre><code class="language-python">
+            # Create features and target data
+            X = iris.data[:, :2]  # Considering only the first two features for visualization
+            y = iris.target
+            
+            # Plotting
+            x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1 # +/- are added for padding purpose. 
+            y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1 # +/- are added for padding purpose. 
+            
+            # step size (h) for the meshgrid
+            h = (x_max / x_min) / 100 # used to create a fine grid of points for visualization.
+            
+            # Creating a meshgrid of points
+            xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
+            # Flattening the meshgrid points into a single array
+            X_plot = np.c_[xx.ravel(), yy.ravel()]
+            
+            # Visualize the plot
+            plt.figure(figsize=(10, 8))
+            
+            # Plot the training points
+            plt.scatter(X[:, 0], X[:, 1], c=y, cmap='RdYlBu', edgecolor='k')
+            '''
+            Here 
+                - c = This parameter specifies the color of each point in the scatter plot 
+                based on the values of the target variable y
+            '''
+            
+            plt.xlim(xx.min(), xx.max())
+            plt.ylim(yy.min(), yy.max())
+            plt.title("Iris Dataset")
+            plt.xlabel("Sepal length")
+            plt.ylabel("Sepal width")
+            plt.show()
+            </code></pre>
+            <figure>
+                <img src="assets/img/machine-ln/support-vector-iris-scatter.png" alt="" style="max-width: 50%; max-height: auto;">
+                <figcaption style="text-align: center;"></figcaption>
+            </figure>
+        </li>
+        <li><strong>Step-4</strong> Using Kernels and classiying the data:
+            <pre><code class="language-python">
+                from sklearn.svm import SVC
+                from sklearn.model_selection import train_test_split
+                from sklearn.metrics import accuracy_score
+                
+                # Assuming X_train, X_test, y_train, y_test are already defined
+                
+                # Create an instance of the SVM classifier
+                svm_classifier = SVC(kernel='linear', C=1.0)
+                
+                # Train the SVM classifier
+                svm_classifier.fit(X_train, y_train)
+                
+                # Predict the labels for the test data
+                y_pred = svm_classifier.predict(X_test)
+                
+                # Evaluate the performance of the classifier
+                accuracy = accuracy_score(y_test, y_pred)
+                print("Accuracy:", accuracy)
+                # Plot decision boundaries
+                Z = svm_classifier.predict(np.c_[xx.ravel(), yy.ravel()])
+                Z = Z.reshape(xx.shape)
+                plt.contourf(xx, yy, Z, alpha=0.8)
+                
+                # Plot data points with different classes shaded or colored
+                plt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.Paired, edgecolors='k')
+                plt.xlabel('Sepal length')
+                plt.ylabel('Sepal width')
+                plt.title('SVM Decision Boundaries')
+                plt.show()
+            </code></pre>
+            <pre>Accuracy: 0.9</pre>
+            <figure>
+                <img src="assets/img/machine-ln/support-vector-decision-boundary.png" alt="" style="max-width: 50%; max-height: auto;">
+                <figcaption style="text-align: center;"></figcaption>
+            </figure>
+            For other kernels such as <strong>Sigmoid Kernel Implementation</strong>, <strong>RBF Kernel Implementation</strong>, and <strong>Polynomial Kernel Implementation</strong>, please visit <a href="https://github.com/arunp77/Machine-Learning/tree/main" target="_blank">my github repo</a> and <a href="https://github.com/arunp77/Machine-Learning/blob/main/Supervised-learning/Project-2.5-Support%20vector.ipynb" target>Juoyter notebook</a>.
+        </li>
+    </ul>
+    <p>On my repo, a detailed analysis of each kernel implememntation and how to choose a kernel is discussed.</p>
 
     </section>
 
