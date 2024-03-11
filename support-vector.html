@@ -416,11 +416,13 @@
         <p>subject to the constrainsts:</p>
         $$y_i(\mathbf{w} \cdot \mathbf{x}_i + b) \geq 1 - \xi_i \quad \text{and} \quad \xi_i \geq 0, \quad \forall i.$$
 
-        <p>Here, \(C > 0\) is the regularization parameter that controls the trade-off between maximizing the margin and minimizing the classification errors. A larger \(C\) value penalizes misclassifications more heavily, leading to a narrower margin but potentially better classification accuracy.</p>
+        <ul>
+            <li>Here, \(C > 0\) is the regularization parameter that controls the trade-off between maximizing the margin and minimizing the classification errors. A larger \(C\) value penalizes misclassifications more heavily, leading to a narrower margin but potentially better classification accuracy.</li>
 
-        <p>The term \(\frac{1}{2}||\mathbf{w}||^2\) represents the margin maximization objective, aiming to maximize the margin between the support vectors (data points closest to the decision boundary) of different classes.</p>
-
-        <p>The term \(C\sum_{i=1}^{n} \xi_i\) serves as the regularization term, penalizing misclassifications. By minimizing this term, we encourage the SVM to find a balance between maximizing the margin and minimizing classification errors.</p>
+            <li>The term \(\frac{1}{2}||\mathbf{w}||^2\) represents the margin maximization objective, aiming to maximize the margin between the support vectors (data points closest to the decision boundary) of different classes.</li>
+    
+            <li>The term \(C\sum_{i=1}^{n} \xi_i\) serves as the regularization term, penalizing misclassifications. By minimizing this term, we encourage the SVM to find a balance between maximizing the margin and minimizing classification errors.</li>
+        </ul>
 
         <p>In summary, the Soft Margin SVM introduces slack variables to handle misclassifications and incorporates a regularization parameter to control the trade-off between margin maximization and error minimization. This approach allows the SVM to generalize better to real-world datasets with noise or non-linearly separable classes.</p>
         </li>
