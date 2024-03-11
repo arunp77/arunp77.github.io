@@ -410,6 +410,10 @@
         </li>
         
         <li><strong>Soft Margin SVM:</strong> In a traditional SVM, we aim to find a hyperplane that separates the data into two classes with the largest margin possible. However, in real-world scenarios, the data might not be linearly separable, or there could be outliers that affect the decision boundary. The Soft Margin SVM addresses these issues by allowing for some misclassifications and incorporating a penalty term for them. Mathematically, let's start with the optimization problem for the Soft Margin SVM. Given training data \((x_1, y_1),(x_2, y_2), (x_n, y_n)\), where \(x_i \in \mathbb{R}^d\) is the input feature vector and \(y_i \in \{-1, 1\}\) is the corresponding class label, the Soft Margin SVM aims to find the hyperplane represented by \(\mathbf{w} \cdot \mathbf{x} + b = 0\) that maximizes the margin while allowing for some misclassifications.
+            <div class="grey-box">
+                <strong>&#128204; Note:</strong> Here it is to be noted here that we took argmin instead of argmax compared to the Hard Margin SVM. We know that \(\text{max}[f(x)]\) can also be written as \(\min[1/f(x)]\), it is common practice to minimize a cost function for optimization problems; therefore, we can invert the function <strong>argmax</strong> function to <strong>argmin</strong>.
+            </div>
+
             \[
             \text{argmin}_{\mathbf{w}, b, \boldsymbol{\xi}} \left( \frac{1}{2}||\mathbf{w}||^2 + C\sum_{i=1}^{n} \xi_i \right)
             \]
