@@ -1424,200 +1424,184 @@ ul.upper-alpha {
 /*---------------------------------------
 /* Glowing button
 /*----------------------------------------*/
-@import url("https://fonts.googleapis.com/css?family=Raleway");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
-.glowing-btn {
+.button {
+  border: 2px solid #d2bdff;
+  height: 80px;
+  width: 200px;
+  border-radius: 4px;
   position: relative;
-  color: var(--glow-color);
   cursor: pointer;
-  padding: 0.35em 1em;
-  border: 0.15em solid var(--glow-color);
-  border-radius: 0.45em;
-  background: none;
-  perspective: 2em;
-  font-family: "Raleway", sans-serif;
-  font-size: 2em;
-  font-weight: 900;
-  letter-spacing: 1em;
+  font-family: "Roboto", sans-serif;
+  margin: 25px;
 
-  -webkit-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
-    0px 0px 0.5em 0px var(--glow-color);
-  -moz-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
-    0px 0px 0.5em 0px var(--glow-color);
-  box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
-    0px 0px 0.5em 0px var(--glow-color);
-  animation: border-flicker 2s linear infinite;
-}
-
-.glowing-txt {
-  float: left;
-  margin-right: -0.8em;
-  -webkit-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
-    0 0 0.45em var(--glow-color);
-  -moz-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
-    0 0 0.45em var(--glow-color);
-  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em var(--glow-color);
-  animation: text-flicker 3s linear infinite;
-}
-
-.faulty-letter {
-  opacity: 0.5;
-  animation: faulty-flicker 2s linear infinite;
-}
-
-.glowing-btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  opacity: 0.7;
-  filter: blur(1em);
-  transform: translateY(120%) rotateX(95deg) scale(1, 0.35);
-  background: var(--glow-color);
-  pointer-events: none;
-}
-
-.glowing-btn::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  opacity: 0;
-  z-index: -1;
-  background-color: var(--glow-color);
-  box-shadow: 0 0 2em 0.2em var(--glow-color);
-  transition: opacity 100ms linear;
-}
-
-.glowing-btn:hover {
-  color: rgba(0, 0, 0, 0.8);
-  text-shadow: none;
-  animation: none;
-}
-
-.glowing-btn:hover .glowing-txt {
-  animation: none;
-}
-
-.glowing-btn:hover .faulty-letter {
-  animation: none;
-  text-shadow: none;
-  opacity: 1;
-}
-
-.glowing-btn:hover:before {
-  filter: blur(1.5em);
-  opacity: 1;
-}
-
-.glowing-btn:hover:after {
-  opacity: 1;
-}
-
-@keyframes faulty-flicker {
-  0% {
-    opacity: 0.1;
-  }
-  2% {
-    opacity: 0.1;
-  }
-  4% {
-    opacity: 0.5;
-  }
-  19% {
-    opacity: 0.5;
-  }
-  21% {
-    opacity: 0.1;
-  }
-  23% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 0.5;
-  }
-  83% {
-    opacity: 0.4;
+  &::after {
+    content: "HOVER ME";
+    position: absolute;
+    top: 41%;
+    left: 50%;
+    transform: translate(-50%);
+    color: #d2bdff;
+    transition: all 0.1s linear;
   }
 
-  87% {
-    opacity: 1;
+  &::before {
+    content: "";
+    position: relative;
+    display: block;
+    height: 15px;
+    width: 15px;
+    background: #d2bdff;
+    box-shadow: 0px 0px 10px 3px #0ff;
+    margin-left: -8px;
+    margin-top: -8px;
+    opacity: 0;
+    transition: all 0.1s linear;
+    border-radius: 100%;
+    animation: star 1.3s linear infinite;
+  }
+
+  @keyframes star {
+    0% {
+      margin-left: -8px;
+      margin-top: -8px;
+    }
+    25% {
+      margin-left: 194px;
+      margin-top: -8px;
+    }
+
+    50% {
+      margin-left: 194px;
+      margin-top: 75px;
+    }
+    75% {
+      margin-left: -8px;
+      margin-top: 75px;
+    }
+    100% {
+      margin-left: -8px;
+      margin-top: -8px;
+    }
+  }
+
+  &:hover {
+    &::before {
+      opacity: 1;
+      animation: star 1.3s linear infinite;
+    }
+
+    &::after {
+      content: "I'M GLOWING";
+      text-shadow: 0 0 10px #fff, 0 0 10px #fff, 0 0 20px #82bedc,
+        0 0 30px #82bedc, 0 0 40px #82bedc, 0 0 50px #82bedc, 0 0 60px #82bedc;
+    }
   }
 }
 
-@keyframes text-flicker {
-  0% {
-    opacity: 0.1;
-  }
+.button2 {
+  position: relative;
+  display: inline-block;
+  padding: 30px 61px;
+  border-radius: 4px;
+  color: #06052c;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  margin: 25px;
+  background-color: #14d2e060;
+  font-family: "Roboto", sans-serif;
+  filter: hue-rotate(0deg);
+  border: 2px solid #d40e60;
+  transition: all 0.1s linear;
 
-  2% {
-    opacity: 1;
-  }
+  &:hover {
+    border: 1px solid transparent;
+    span {
+      position: absolute;
+      display: block;
 
-  8% {
-    opacity: 0.1;
-  }
+      &:nth-child(1) {
+        filter: hue-rotate(0deg);
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, #3a86ff);
+        animation: animate1 1s linear infinite;
+      }
+      @keyframes animate1 {
+        0% {
+          left: -100%;
+        }
+        50%,
+        100% {
+          left: 100%;
+        }
+      }
 
-  9% {
-    opacity: 1;
-  }
+      &:nth-child(2) {
+        filter: hue-rotate(60deg);
+        top: -100%;
+        right: 0;
+        width: 3px;
+        height: 100%;
+        background: linear-gradient(180deg, transparent, #476ca8);
+        animation: animate2 1s linear infinite;
+        animation-delay: 0.25s;
+      }
 
-  12% {
-    opacity: 0.1;
-  }
-  20% {
-    opacity: 1;
-  }
-  25% {
-    opacity: 0.3;
-  }
-  30% {
-    opacity: 1;
-  }
+      @keyframes animate2 {
+        0% {
+          top: -100%;
+        }
+        50%,
+        100% {
+          top: 100%;
+        }
+      }
+      &:nth-child(3) {
+        filter: hue-rotate(120deg);
+        bottom: 0;
+        right: 0;
+        width: 100%;
 
-  70% {
-    opacity: 0.7;
-  }
-  72% {
-    opacity: 0.2;
-  }
+        background: linear-gradient(270deg, transparent, #3a86ff);
+        animation: animate3 1s linear infinite;
+        animation-delay: 0.5s;
+      }
+      @keyframes animate3 {
+        0% {
+          right: -100%;
+          height: 3px;
+        }
+        50%,
+        100% {
+          height: 2px;
+          right: 100%;
+        }
+      }
 
-  77% {
-    opacity: 0.9;
-  }
-  100% {
-    opacity: 0.9;
-  }
-}
-
-@keyframes border-flicker {
-  0% {
-    opacity: 0.1;
-  }
-  2% {
-    opacity: 1;
-  }
-  4% {
-    opacity: 0.1;
-  }
-
-  8% {
-    opacity: 1;
-  }
-  70% {
-    opacity: 0.7;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .glowing-btn{
-    font-size: 1em;
+      &:nth-child(4) {
+        filter: hue-rotate(300deg);
+        bottom: -100%;
+        left: 0;
+        width: 3px;
+        height: 100%;
+        background: linear-gradient(360deg, transparent, #3a86ff);
+        animation: animate4 1s linear infinite;
+        animation-delay: 0.75s;
+      }
+      @keyframes animate4 {
+        0% {
+          bottom: -100%;
+        }
+        50%,
+        100% {
+          bottom: 100%;
+        }
+      }
+    }
   }
 }
