@@ -228,6 +228,31 @@
                         </figure>
                     </ol>
 
+
+                    <h4 id="kafka-connect">Kafka Connect</h4>
+                    <p>Advantage of Kafka is its connector system <a href="https://kafka.apache.org/documentation.html#connect" target="_blank">Kafka Connect</a>. Connectors are reusable components which, as the name suggests, allow different systems to be connected to Kafka.</p>
+
+                    <p>Thus, many technologies provide connectors to transfer data to or from Kafka. For example, if you want to ingest data from a MongoDB database, you can simply install and configure the <a href="https://www.mongodb.com/docs/kafka-connector/current/" target="_blank">official MongoDB connector</a> for Kafka. You can see a list of <a href="https://docs.confluent.io/platform/current/connect/kafka_connectors.html" target="_blank">Kafka connectors</a> on the Confluent website (the main contributor of Kafka).</p>
+                    
+                    <p>So you can use Kafka Connect to transfer data between two databases through Kafka, for example to load data from an enterprise application using a relational database into a data lake, without having to code connectors for the source and target systems (sink).</p>
+                    <figure>
+                        <img src="assets/img/data-engineering/kafka-connect.png" alt="" style="max-width: 70%; max-height: 50%;">
+                        <figcaption style="text-align: center;"><strong>&#169; Image credit:</strong> <a href="https://datascientest.com/en/">Datascienitst.com</a></figcaption>
+                    </figure>
+                    <p>However, when transferring this type of data, it is often necessary to carry out an intermediate transformation step (filters, aggregations, etc.). This is called an ETL (Extract Transform Load). There are several tools for performing ETLs (for example Talend). But Kafka can also be used as such, especially by transforming data using the Kafka Streams API.</p>
+
+                    <!------------------------>
+                    <h4 id="kafka-stream">Kafka Streams</h4>
+                    <p>The  <a href="https://kafka.apache.org/documentation/streams/" target="_blank">Kafka Streams API</a> allows us to create derived topics from other topics, by performing transformations on them. This is known as stream processing.</p>
+
+                    <p>In concrete terms, Kafka Streams allows you to perform operations such as filters, aggregations (averages, sums, etc.), but also joins between different streams. The resulting stream is persisted in a new topic.</p>
+                    <p>Kafka Streams can be used in conjunction with Kafka Connect to perform ETL:</p>
+                    <figure>
+                        <img src="assets/img/data-engineering/kafka-stream.png" alt="" style="max-width: 70%; max-height: 50%;">
+                        <figcaption style="text-align: center;"><strong>&#169; Image credit:</strong> <a href="https://datascientest.com/en/">Datascienitst.com</a></figcaption>
+                    </figure>
+                    <p>However, it should be noted that Kafka Streams applications must be developed in Java or Scala programming languages, which can be complex to learn. However, there are alternative solutions for stream processing, such as <a href="https://spark.apache.org/docs/latest/streaming-programming-guide.html" target="_blank">Spark Streaming</a> which has an API in Python.</p>
+
                     <!------------------------>
                     <h3 id="instalation">Kafka installation: set in local machine</h3>
                     <p>Installing Apache Kafka involves several steps, including downloading the Kafka distribution, configuring the environment, starting the Kafka server, and verifying the installation. Below is a guide to help you with the installation process:</p>
