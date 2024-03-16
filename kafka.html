@@ -231,7 +231,7 @@
 
                     
                     <!------------------------>
-                    <h4 id="kafka-apis">Apache Kafka APIs</h4>
+                    <h3 id="kafka-apis">Apache Kafka APIs</h3>
                     <p>At the heart of Kafka are its APIs, which enable developers to interact with Kafka clusters programmatically. These APIs are used to build robust, real-time data processing applications. In the dynamic world of real-time data streaming, <strong>Application Programming Interfaces (APIs)</strong> serve as communication endpoints, facilitating seamless interactions between various software applications. Among these, Apache Kafka<sup>®</sup>’s API stands out, known for its exceptional capabilities in handling real-time data.</p>
                     <p>Here are list of Kafka APIs:</p>
                     <table>
@@ -260,15 +260,22 @@
                             <td>Supports administrative operations on a Kafka cluster, like creating or deleting topics.</td>
                         </tr>
                         <tr>
-                            <td>Kafka API use cases</td>
-                            <td>Real-time analytics, event sourcing, log aggregation, message queuing, and stream processing.</td>
-                        </tr>
-                        <tr>
                             <td>Kafka API compatible alternative</td>
                             <td>Redpanda streaming data platform.</td>
                         </tr>
                     </table>
                     <p>Apache Kafka provides a rich set of APIs for building real-time data processing applications. Whether you're publishing data to Kafka, consuming messages from Kafka topics, processing data in Kafka streams, managing Kafka clusters, or integrating Kafka with external systems, there's an API available to meet your needs. By understanding and leveraging these APIs effectively, developers can harness the full power of Apache Kafka for building scalable, fault-tolerant, and real-time data pipelines.</p>
+
+                    <!------------------------->
+                    <h5 id="use-case">Kafka API use cases</h5>
+                    <p>Some use cases for Kafka API include:</p>
+                    <ul>
+                        <li><strong>Real-time analytics: </strong>Kafka API is instrumental in powering real-time analytics in various fields. By consuming data streams through the Consumer API and producing result streams through the Producer API, real-time analytics engines provide insights as events occur, aiding in prompt decision-making.</li>
+                        <li><strong>Event sourcing: </strong>Event sourcing is a programming paradigm that saves all changes to the application state as a sequence of events. Kafka APIs enhance system traceability and debugging in event streaming. They handle, store, and process large event streams at scale.</li>
+                        <li><strong>Log aggregation: </strong>Log aggregation involves collecting and storing logs from various sources in a centralized location. The Producer API sends logs to Kafka, while the Consumer API consumes these logs. Kafka is a centralized, scalable, and reliable log management solution that aids in monitoring and debugging.</li>
+                        <li><strong>Message queuing: </strong>In a microservices architecture, services often need to communicate with each other. Kafka API facilitates such interactions by acting as a message broker. Messages produced by one service are consumed by another, allowing for effective inter-service communication.</li>
+                        <li><strong>Stream processing: </strong>The Kafka Streams API is used in applications that require continuous computation and manipulation of data streams, such as real-time data transformation, aggregation, or join operations. You can use them in applications like real-time fraud detection, finance, and live leaderboards in gaming.</li>
+                    </ul>
                     
                     
                     
