@@ -144,16 +144,12 @@
                         <div class="section-title">
                             <h3>Table of Contents</h3>
                             <ol>
-                                <li><a href="#introduction">Introduction</a></li>
-                                <li><a href="#objective">Objective</a></li>
+                                <li><a href="#introduction">Object-Oriented Programming (OOP): A Fundamental Concept</a></li>
                                 <ul>
-                                    <li><a href="#buildsparksession">Building the SparkSession and loading the datasets</a></li>
-                                    <li><a href="#select-categorical">Selecting the Categorical variables</a></li>
-                                    <li><a href="#pipelines">Pipelines</a></li>
-                                    <li><a href="#svmlib">Formatting the database in svmlib format</a></li>
-                                    <li><a href="#application">Application of a Spark ML classifier</a></li>
-                                    <li><a href="#model">Model prediction</a></li>
-                                    <li><a href="#model-evaluate">Model evaluation</a></li>
+                                    <li><a href="#instances-classes">Classes vs Instances</a></li>
+                                    <li><a href="#inheritance">Inheritance</a></li>
+                                    <li><a href="#pre-defined">Predefined classes</a></li>
+                                    <li><a href="#built-in">Built-in methods</a></li>
                                 </ul>
                                 <li><a href="#reference">Reference</a></li>
                             </ol>
@@ -164,7 +160,7 @@
                 <section>
                     <h3 id="introduction">Object-Oriented Programming (OOP): A Fundamental Concept</h3>
                     <p>Object-Oriented Programming (OOP) is a fundamental concept in programming where software is organized around objects rather than actions or functions. At its core, OOP revolves around the concept of objects, which are self-contained units consisting of both data (attributes) and behavior (methods). </p>
-                    <ul>
+                    <ol>
                         <li><strong>Classes: Blueprints for Objects: </strong>In OOP, classes serve as blueprints or templates for creating objects. They define the structure and behavior of objects, encapsulating both data and methods. All the tools we use for data science, such as DataFrames, scikit-learn models, and matplotlib, are built using classes. Understanding Python objects and how to use them is essential for exploiting the full features of these tools.
                         <p><strong>How Do You Define a Class in Python?:</strong> In Python, you define a class by using the class keyword followed by a name and a colon. Then you use <code>__init__()</code> to declare which attributes each instance of the class should have:</p>
                         <pre><code class="language-python">
@@ -187,11 +183,14 @@
                                     # Method body
                                     pass
                         </code></pre>
-                        <p>Here <code>class CLasssName</code> decalres the start of the class definition (where <code>ClassName</code> represents the name of the class). The 'Class Attribute' are the variables defined with the class scope. They are shared among all instances of the class. The <code>__init__</code> special method, also known as a Constructor, is used to initialize the class with its attributes. Here <code>self</code> parameter represents the instance of the class, allowing us to access its attributes and methods.</li>    
+                        <p>Here <code>class CLasssName</code> decalres the start of the class definition (where <code>ClassName</code> represents the name of the class). The 'Class Attribute' are the variables defined with the class scope. They are shared among all instances of the class. The <code>__init__</code> special method, also known as a Constructor, is used to initialize the class with its attributes. Here <code>self</code> parameter represents the instance of the class, allowing us to access its attributes and methods.</li> 
                         <li><strong>Objects: Self-Contained Units: </strong>An object is a self-contained unit that represents a specific instance of a class. It contains both data and behavior, similar to components in a system. Conceptually, objects can be likened to the components of a factory assembly line. At each step of the assembly line, a system component processes some material, ultimately transforming raw material into a finished product.</li>
                         <li><strong>Data and Behavior: Components of Objects:</strong> Each object contains data, representing the raw or preprocessed materials at each step of an assembly line. Additionally, objects contain behavior, which represents the actions that each assembly line component performs.</li>
-                    </ul>
-                    <p><strong>Example:</strong></p>
+                    </ol>
+                    <h4 id="instances-classes">Classes vs Instances</h4>
+                    <p>Classes allow you to create user-defined data structures. Classes define functions called methods, which identify the behaviors and actions that an object created from the class can perform with its data.</p>
+                    <p>While the class is the blueprint, an instance is an object that’s built from a class and contains real data. An instance of the Dog class is not a blueprint anymore. It’s an actual dog with a name, like Miles, who’s four years old.</p>
+                    <p><strong>Example: 1</strong></p>
                     Here's a simple example of a class definition in Python:</p>
                         <pre><code class="language-python">
                             class Car:
@@ -207,6 +206,16 @@
                                 def display_details(self):
                                     print(f"Color: {self.color}, Model: {self.model}, Wheels: {Car.num_wheels}")                    
                         </code></pre>
+                        <p>Here:</p>
+                        <ul>
+                            <li><strong>class attributes</strong>: are attribures that have the same value for all class instances. We can define a class attribute by assigning a value to a variable name outside of <code>.__init__()</code>.</li>
+                            <li><strong>instance attributes</strong>: Attributes created in <code>.__init__()</code> are called 'instance attributes'. An instance attribute’s value is specific to a particular instance of the class.</li>
+                            <ul>
+                                <li><code>self.color=color</code>: creates an attribute called <code>color</code> and assigns the value of the <code>color</code> parameter to it.</li>
+                                <li><code>self.model</code>: creates an attribute called <code>model</code> and assigns the value of the <code>model</code> parameter to it.</li>
+                            </ul>
+                        </ul>
+                        <p></p>
                         So creating an instane of the Car class:
                         <pre>> my_car = Car("Red", "Toyota")</pre>
                         So Accesing the attrinutes and calling methods of the object:
@@ -214,15 +223,341 @@
                         <pre><strong>Output:</strong> Red</pre>
                         <pre>> my_car.display_details()</pre>
                         <pre><strong>Output:</strong> Color: Red, Model: Toyota, Wheels: 4</pre>
+                        <div class="grey-box">
+                            We define the properties that all 'Car' objects must have in a method called <code>.__init__()</code>. Every time you create a new Car object, <code>.__init__()</code> sets the initial state of the object by assigning the values of the object’s properties. That is, <code>.__init__()</code> initializes each new instance of the class.
+
+                            We can give <code>.__init__()</code> any number of parameters, but the first parameter will always be a variable called <code>self</code>. When we create a new class instance, then Python automatically passes the instance to the <code>self</code> parameter in <code>.__init__()</code> so that Python can define the new attributes on the object.
+                        </div>   
                     
                     
 
+                    <p><strong>Example: 2</strong></p>
+                    <ul>
+                        <li>(a). Define a new Complex class with 2 attributes: <code>part_re</code> which contains the real part of a complex number, and <code>part_im</code> which contains the imaginary part of a complex number.</li>
+                        <li>(b). Define in the <code>Complex</code> class a <code>display</code> method which prints a Complex in its algebraic form a ± bi. This method should adapt to the sign of the imaginary part (The method should be able to display 4 - 2i,6 + 2i, 5, ...).</li>
+                        <li>(c). Instantiate two Complex objects corresponding to the complex numbers  4+5𝑖, and  3−2𝑖, then print them on the console.</li>
+                    </ul>
+                    <pre class="language-python"><code>
+                        class complex:
+                            def __init__(self, part_re, part_im):
+                                self.part_re = part_re
+                                self.part_im = part_im
+                            # (b) display method
+                            def display(self):
+                                if self.part_im >= 0:
+                                    print(f"{self.part_re} + {self.part_im}i")
+                                else:
+                                    print(f"{self.part_re} - {abs(self.part_im)}i")
+                    </code></pre>
+                    <pre class="language-python"><code>
+                        # (c) printing 4+5i, 3-2i
+                            
+                        c1 = complex(4, 5)
+                        c1.display() # display the c1
+                        
+                        c2 = complex(3, -2)
+                        c2.display() # display the c2
+                    </code></pre>
+                    <pre><strong>Output:</strong>
+                        4 + 5i
+                        3 - 2i
+                    </pre>
+
+                    <p><strong>Example: 3</strong> The flexibility of classes in object-oriented programming allows the developer to broaden a class by adding new attributes and methods to it. All instances of this class will then be able to call these methods.</p>
+                    <p>For example, we can define in the <code>Vehicle</code> class a new <code>add</code> method which will add an individual to the passenger list:</p>
+                    <pre class="language-python"><code>
+                        class Vehicle:
+                            def __init__(self, a, b=[]):
+                                self.seats = a
+                                self.passengers = b
+                            
+                            def print_passengers(self):
+                                for i in range(len(self.passengers)):
+                                    print(self.passengers[i])
+                            
+                            def add(self,name): #New methd
+                                self.passengers.append(name)
+                            
+                        car1 = Vehicle(4, ['Charles', 'Paul'])  # Instantiation  of car1
+                        car1.add('Raphaël')                     # 'Raphaël' is added to the list of passengers
+                        
+                        car1.print_passengers()             # Display of the list of passengers
+                    </code></pre>
+                    <pre><strong>Output:</strong>
+                        Charles
+                        Paul
+                        Raphaël
+                    </pre>
 
 
+                    <!--------------------------->
+                    <h3 id="inheritance">Inheritance</h3>
+                    <p>Inheritance is used to create a subclass from an existing class. We say that this new class inherits from the first one because it will automatically have the same attributes and methods. Furthermore, it is possible to add attributes or methods that will be specific to this subclass.</p>
+                    <p><strong>Example: 1</strong> Let's consider the <code>Vehicle</code> class again:</p>
+                    <pre class="language-python"><code>
+                        class Vehicle:
+                            def __init__(self, a, b = []):
+                                self.seats = a
+                                self.passengers = b
+                            def print_passengers(self):
+                                for i in range (len (self.passengers)):
+                                    print (self.passengers [i])
+                            def add(self, name):
+                                    self.passengers.append (name)
+                    </code></pre>
+                    <p>We can define a <code>Motorcycle</code> class which inherits from theVehicle class as follows:</p>
+                    <pre class="language-python"><code>
+                        class Motorcycle(Vehicle):
+                            def__init__(self, b, c):
+                                self.seats = 2
+                                self.passengers = b
+                                self.brand = c
+                        Motorcycle = Motorcycle(['Pierre', 'Dimitri'], 'Yamaha')
+                    </code></pre>
+                    <p>By rewriting the __init__ method, any Motorcycle object will automatically have 2 seats and a new brand attribute. So following code gives the list of passengers:</p>
+                    <pre class="language-python"><code>
+                        moto1 = Motorcycle(['Pierre','Dimitri'], 'Yamaha')
+                        moto1.add('Yohann')
+                        moto1.print_passengers()
+                    </code></pre>
+                    <pre><strong>Output:</strong>
+                        Pierre
+                        Dimitri
+                        Yohann
+                    </pre>
+                    <p>We see that even with the number of seats 2, we can add more number of passngers to the moto class. We need to modify the <code>Motorcycle</code> class.</p> 
+                    <pre class="language-python"><code>
+                        class Motorcycle(Vehicle):
+                            def__init__(self, b, c):
+                                self.seats = 2
+                                self.passengers = b
+                                self.brand = c
+
+                            def add(self, name):
+                                if len(self.passengers) < self.seats:
+                                    super().add(name)
+                                    remaining_seats = self.seats - len(self.passengers)
+                                    print(f"{name} added to the list. {remaining_seats} seat(s) remaining.")
+                                else:
+                                    print("The vehicle is full.")
+                    </code></pre>
+                    <pre class="language-python"><code>
+                        # Test the Motorcycle class
+                        moto1 = Motorcycle(['Pierre', 'Dimitri'], 'Yamaha')
+                        moto1.add('Yohann')
+                        moto1.print_passengers()
+                        moto1.add('Sophie')
+                    </code></pre>
+                    <pre><strong>Output:</strong>
+                        The vehicle is full.
+                        Pierre
+                        Dimitri
+                        The vehicle is full.
+                    </pre>
 
 
+                    <!------------------------>
+                    <h4 id="pre-defined">Predefined classes</h4>
+                    In Python, many predefined classes such as the list,tuple or str classes are regularly used to facilitate the developer's tasks. Like all other classes, they have their own attributes and methods that are available to the user. One of the great interests of object oriented programming is to be able to create classes and share them with other developers. This is done through packages such as numpy, pandas or scikit-learn. All of these packages are actually classes created by other developers in the Python community to give us tools that will make easier to develop our own algorithms. To know all the available attributes in a given class, we just need <code>dir(className)</code>. For example, <code>dir(list)</code> will give all available attributes in the list class.
 
+                    <!--------------------------->
+                    <h4 id="built-in">Built-in methods</h4>
+                    All classes defined in Python have methods whose name is already defined. The first example of such a method we have seen is the <code>__init__</code> method which allows us to initialize an object, but it is not the only one. Built-in methods give the class the ability to interact with predefined Python functions such as <code>print</code>, <code>len</code>, <code>help</code> and basic operators. These methods usually have the affixes <code>__</code> at the beginning and end of their names, which allows us to easily identify them. The <code>dir(object)</code> lists all available predefined methods common to all python objects:
+                <table>
+                    <tr>
+                        <th>Attribute/Method</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td>__class__</td>
+                        <td>Returns the class of the object</td>
+                        <td>df.__class__</td>
+                    </tr>
+                    <tr>
+                        <td>__delattr__</td>
+                        <td>Deletes an attribute</td>
+                        <td>del df.attribute_name</td>
+                    </tr>
+                    <tr>
+                        <td>__dir__</td>
+                        <td>Returns the list of attributes and methods of an object</td>
+                        <td>dir(df)</td>
+                    </tr>
+                    <tr>
+                        <td>__doc__</td>
+                        <td>Returns the docstring (documentation) of the object</td>
+                        <td>df.__doc__</td>
+                    </tr>
+                    <tr>
+                        <td>__eq__</td>
+                        <td>Compares two objects for equality</td>
+                        <td>df1 == df2</td>
+                    </tr>
+                    <tr>
+                        <td>__format__</td>
+                        <td>Returns a formatted string representation of the object</td>
+                        <td>formatted_str = df.__format__("csv")</td>
+                    </tr>
+                    <tr>
+                        <td>__ge__</td>
+                        <td>Compares greater than or equal to</td>
+                        <td>df1 >= df2</td>
+                    </tr>
+                    <tr>
+                        <td>__getattribute__</td>
+                        <td>Returns the value of an attribute of an object</td>
+                        <td>value = df.__getattribute__("column_name")</td>
+                    </tr>
+                    <tr>
+                        <td>__gt__</td>
+                        <td>Compares greater than</td>
+                        <td>df1 > df2</td>
+                    </tr>
+                    <tr>
+                        <td>__hash__</td>
+                        <td>Returns a hash value for the object</td>
+                        <td>hash_value = hash(df)</td>
+                    </tr>
+                    <tr>
+                        <td>__init__</td>
+                        <td>Initializes an object</td>
+                        <td>df = pd.DataFrame(data)</td>
+                    </tr>
+                    <tr>
+                        <td>__init_subclass__</td>
+                        <td>Called when a subclass is initialized</td>
+                        <td>class CustomDataFrame(pd.DataFrame):<br>    def __init_subclass__(cls):<br>        print("CustomDataFrame subclass created")</td>
+                    </tr>
+                    <tr>
+                        <td>__le__</td>
+                        <td>Compares less than or equal to</td>
+                        <td>df1 <= df2</td>
+                    </tr>
+                    <tr>
+                        <td>__lt__</td>
+                        <td>Compares less than</td>
+                        <td>df1 < df2</td>
+                    </tr>
+                    <tr>
+                        <td>__ne__</td>
+                        <td>Compares not equal to</td>
+                        <td>df1 != df2</td>
+                    </tr>
+                    <tr>
+                        <td>__new__</td>
+                        <td>Creates a new instance of a class</td>
+                        <td>df = pd.DataFrame()</td>
+                    </tr>
+                    <tr>
+                        <td>__reduce__</td>
+                        <td>Used for pickling</td>
+                        <td>reduced_obj = df.__reduce__()</td>
+                    </tr>
+                    <tr>
+                        <td>__reduce_ex__</td>
+                        <td>Used for pickling</td>
+                        <td>reduced_obj = df.__reduce_ex__(protocol)</td>
+                    </tr>
+                    <tr>
+                        <td>__repr__</td>
+                        <td>Returns a string representation of the object</td>
+                        <td>repr_str = df.__repr__()</td>
+                    </tr>
+                    <tr>
+                        <td>__setattr__</td>
+                        <td>Sets the value of an attribute of an object</td>
+                        <td>df.__setattr__("attribute_name", value)</td>
+                    </tr>
+                    <tr>
+                        <td>__sizeof__</td>
+                        <td>Returns the size of the object in memory</td>
+                        <td>size = df.__sizeof__()</td>
+                    </tr>
+                    <tr>
+                        <td>__str__</td>
+                        <td>Returns a string representation of the object</td>
+                        <td>str_rep = df.__str__()</td>
+                    </tr>
+                    <tr>
+                        <td>__subclasshook__</td>
+                        <td>Used to customize subclass checks</td>
+                        <td>is_subclass = DataFrame.__subclasshook__(subclass)</td>
+                    </tr>
+                    </table>
+                    <p>This table provides a brief description of each attribute and method associated with the DataFrame class in pandas, along with examples demonstrating their usage.</p>
 
+                    <p><strong>Example:</strong>  Instantiate a Complex object corresponding to the number  6−3𝑖 then display it on the console using the print function.</p>
+                    <pre><code>
+                        class Complex:
+                            def __init__(self, a = 0, b = 0):
+                                self.part_re = a
+                                self.part_im = b
+                            
+                            def __str__(self):
+                                if(self.part_im < 0):
+                                    return self.part_re.__str__() + self.part_im.__str__() + 'i'  # returns 'a' '-b' 'i'
+                                
+                                if(self.part_im == 0):
+                                    return self.part_re.__str__()    # returns 'a'
+                                
+                                if(self.part_im > 0):
+                                    return self.part_re.__str__() + '+' + self.part_im.__str__() + 'i' # returns 'a' '+' 'b' + 'i'
+                        
+                        complex_number = Complex(6, -3)
+                        print(complex_number)  
+                    </code></pre>
+                    It preints:
+                    <pre>6-3 i</pre>
+
+                    <p><strong>Example:</strong></p>
+                    <ul>
+                        <li>(a) Define in the Complex class a mod method which returns the modulus of the Complex calling the method. You can use the sqrt function of the numpy package to calculate a square root.</li>
+                        <li>(b) Define in the Complex class the methods __lt__ and __gt__ (strictly lower and strictly higher). These methods must return a boolean.</li>
+                        <li>(c) Perform the two comparisons defined above on the complex numbers  3+4𝑖 and  2−5𝑖 .</li>
+                    </ul>
+                    <pre><code>
+                        import numpy as np
+                        class Complex:
+                            def __init__(self, a = 0, b = 0):
+                                self.part_re = a
+                                self.part_im = b
+                            
+                            def __str__(self):
+                                if(self.part_im < 0):
+                                    return self.part_re.__str__() + self.part_im.__str__() + 'i'  # returns 'a' '-b' 'i'
+                                
+                                if(self.part_im == 0):
+                                    return self.part_re.__str__()    # returns 'a'
+                                
+                                if(self.part_im > 0):
+                                    return self.part_re.__str__() + '+' + self.part_im.__str__() + 'i' # returns 'a' '+' 'b' + 'i'
+                                
+                            def mod(self):
+                                return np.sqrt( self.part_re ** 2 + self.part_im ** 2)  # returns (sqrt(a² + b²))
+                            
+                            def __lt__(self, other):    
+                                if(self.mod() < other.mod()):   # returns True if |self| < |other|
+                                    return True
+                                else:
+                                    return False
+                                
+                            def __gt__(self, other):
+                                if(self.mod() > other.mod()):   # returns True if |self| > |other|
+                                    return True
+                                else:
+                                    return False
+                                
+                                
+                        z1 = Complex(3, 4)
+                        z2 = Complex(2, 5)
+                        print(z1 > z2)
+                        print(z1 < z2)
+                    </code></pre>
+                    <pre>
+                        False
+                        True
+                    </pre>
 
                 </section>
 
