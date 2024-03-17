@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Scala Spark</title>
+    <title>OOP</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
     <!-- Favicons -->
@@ -88,9 +88,9 @@
         <div class="container">
     
             <div class="d-flex justify-content-between align-items-center">
-            <h2>Data Engineering</h2>
+            <h2>Python</h2>
             <ol>
-                <li><a href="Data-engineering.html" class="clickable-box">Content section</a></li>
+                <li><a href="portfolio-details.html" class="clickable-box">Content section</a></li>
                 <li><a href="index.html#portfolio" class="clickable-box">Portfolio section</a></li>
             </ol>
             </div>
@@ -132,7 +132,7 @@
                         <div class="portfolio-details-slider swiper">
                             <div class="swiper-wrapper align-items-center"> 
                                 <figure>
-                                    <img src="assets/img/data-engineering/Kafka-wall.png" alt="" style="max-width: 90%; max-height: auto;">
+                                    <img src="assets/img/machine-ln/oop-python.png" alt="" style="max-width: 90%; max-height: auto;">
                                     <figcaption></figcaption>
                                 </figure>
                             </div>
@@ -162,7 +162,58 @@
                 </div>
 
                 <section>
-                    <h3 id="introduction">Introduction to Kafka</h3>
+                    <h3 id="introduction">Object-Oriented Programming (OOP): A Fundamental Concept</h3>
+                    <p>Object-Oriented Programming (OOP) is a fundamental concept in programming where software is organized around objects rather than actions or functions. At its core, OOP revolves around the concept of objects, which are self-contained units consisting of both data (attributes) and behavior (methods). </p>
+                    <ul>
+                        <li><strong>Classes: Blueprints for Objects: </strong>In OOP, classes serve as blueprints or templates for creating objects. They define the structure and behavior of objects, encapsulating both data and methods. All the tools we use for data science, such as DataFrames, scikit-learn models, and matplotlib, are built using classes. Understanding Python objects and how to use them is essential for exploiting the full features of these tools.
+                        <p><strong>How Do You Define a Class in Python?:</strong> In Python, you define a class by using the class keyword followed by a name and a colon. Then you use <code>__init__()</code> to declare which attributes each instance of the class should have:</p>
+                        <pre><code class="language-python">
+                            class ClassName:
+                                # Class attributes (optional)
+                                attribute1 = value1
+                                attribute2 = value2
+                            
+                                # Constructor method (optional)
+                                def __init__(self, parameter1, parameter2):
+                                    self.parameter1 = parameter1
+                                    self.parameter2 = parameter2
+                                
+                                # Other methods (optional)
+                                def method1(self):
+                                    # Method body
+                                    pass
+                                
+                                def method2(self, parameter):
+                                    # Method body
+                                    pass
+                        </code></pre>
+                        <p>Here <code>class CLasssName</code> decalres the start of the class definition (where <code>ClassName</code> represents the name of the class). The 'Class Attribute' are the variables defined with the class scope. They are shared among all instances of the class. The <code>__init__</code> special method, also known as a Constructor, is used to initialize the class with its attributes. Here <code>self</code> parameter represents the instance of the class, allowing us to access its attributes and methods.</li>    
+                        <li><strong>Objects: Self-Contained Units: </strong>An object is a self-contained unit that represents a specific instance of a class. It contains both data and behavior, similar to components in a system. Conceptually, objects can be likened to the components of a factory assembly line. At each step of the assembly line, a system component processes some material, ultimately transforming raw material into a finished product.</li>
+                        <li><strong>Data and Behavior: Components of Objects:</strong> Each object contains data, representing the raw or preprocessed materials at each step of an assembly line. Additionally, objects contain behavior, which represents the actions that each assembly line component performs.</li>
+                    </ul>
+                    <p><strong>Example:</strong></p>
+                    Here's a simple example of a class definition in Python:</p>
+                        <pre><code class="language-python">
+                            class Car:
+                                # Class attribute
+                                num_wheels = 4
+                            
+                                # Constructor method
+                                def __init__(self, color, model):
+                                    self.color = color
+                                    self.model = model
+                                
+                                # Method to display car details
+                                def display_details(self):
+                                    print(f"Color: {self.color}, Model: {self.model}, Wheels: {Car.num_wheels}")                    
+                        </code></pre>
+                        So creating an instane of the Car class:
+                        <pre>> my_car = Car("Red", "Toyota")</pre>
+                        So Accesing the attrinutes and calling methods of the object:
+                        <pre>> print(my_car.color)</pre>
+                        <pre><strong>Output:</strong> Red</pre>
+                        <pre>> my_car.display_details()</pre>
+                        <pre><strong>Output:</strong> Color: Red, Model: Toyota, Wheels: 4</pre>
                     
                     
 
@@ -205,15 +256,13 @@
                 <p></p>
 
                 <div class="navigation">
-                    
+                    <a href="portfolio-details.html" class="clickable-box">
+                        <span class="arrow-right">Content</span>
+                    </a>
+                    <!---------->
                     <a href="index.html#portfolio" class="clickable-box">
                         <span class="arrow-left">Portfolio section</span>
                     </a>
-                    
-                    <a href="Data-engineering.html" class="clickable-box">
-                        <span class="arrow-right">Content</span>
-                    </a>
-
                 </div>
             </div>
         </section><!-- End Portfolio Details Section -->
