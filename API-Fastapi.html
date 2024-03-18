@@ -158,37 +158,33 @@
       <!---------sections start here ------------>
       <section id="introduction">
         <h3>Introduction</h3>
-        API stands for Application Programming Interface. An API is a set of rules and tools that allows different software applications to communicate with each other. 
+        API stands for <strong>Application Programming Interface</strong>. An API is a set of subroutine definitions, communication protocols and tools that allows different software applications to communicate with each other. 
         It defines the methods and data formats that applications can use to request and exchange information.
         <figure>
             <img src="assets/img/data-engineering/api-1.png" alt="" style="max-width: 90%; max-height: auto;">
             <figcaption style="text-align: center;"><strong>Image credit: </strong>@ Arun Kumar Pandey</figcaption>
         </figure>
 
-          APIs play a crucial role in modern software development by enabling the integration of different services, systems, or applications. They allow developers to access the functionality of a service or application 
-          without needing to understand its internal workings. APIs are used for various purposes, including accessing web services, databases, operating system services, or hardware components.
-          <h5>Key components</h5>
-          Key components icnclude:
+          APIs play a crucial role in modern software development by enabling the integration of different services, systems, or applications. They allow developers to access the functionality of a service or application without needing to understand its internal workings. APIs are used for various purposes, including accessing web services, databases, operating system services, or hardware components.
+
+          <p><strong>Some examples:</strong> There are many types of APIs possible. Some of them are:</p>
           <ul>
-            <li><strong>Endpoints: </strong>URLs or URIs that define where the API can be accessed.</li>
-            <li><strong>Methods: </strong>Specify the actions that can be performed, such as GET (retrieve data), POST (submit data), PUT (update data), DELETE (remove data), etc.</li>
-            <li><strong>Request and Response Formats: </strong>Define how data is structured when making requests to the API and how it is formatted in the response. 
-                Data formats define the structure of the data exchanged between the API and the application. </li>
-            <li><strong>Authentication: </strong>Authentication methods ensure that only authorized users can access the API's functionality.</li>
+            <li>the <a href="https://pandas.pydata.org/docs/reference/index.html#api" target="_blank">pandas</a> library can actually be seen as an API. There is a set of rules that allow to use complex functions from a simplified documentation.</li>
+            <li>the <a href="https://openweathermap.org/current" target="_blank">OpenWeatherMap API</a> is a data API. From an HTTP request, we receive weather data in the requested location, at the requested date.</li>
+            <li>the API <a href="https://cloud.google.com/translate?hl=en" target="_blank">Google Cloud Translate</a> allows to use the translation function of Google to easily translate the texts we use.</li>
           </ul>
 
-          <h5>Types of APIs:</h5>
+          <h4 id="types-api">Types of APIs:</h4>
           <ul>
             <li><strong>Web APIs (HTTP/RESTful APIs): </strong>APIs that use the HTTP protocol and follow REST (Representational State Transfer) principles for communication. </li>
             <li><strong>Library APIs: </strong>APIs provided by programming libraries to enable developers to use pre-built functions and classes.</li>
             <li><strong>Operating System APIs: </strong>APIs provided by operating systems to allow applications to interact with the underlying system resources.</li>
             <li><strong>Database APIs: </strong>APIs that provide access to databases, allowing applications to retrieve or manipulate data.</li>
           </ul>
-      </section>
+
 
       <!------ API concept ------------->
-      <section id="concept">
-        <h4>Concepts</h4> 
+        <h4 id="concept">Concepts</h4> 
         Securing an API is crucial to protect sensitive data, maintain the integrity of your system, and prevent unauthorized access. 
         Securing an API rely on three important levels:
         <ol type="i">
@@ -219,11 +215,145 @@
         </figure>
         Getting information on the source of the request can help add security to your API. For example, you could restrict IP addresses to given countries: if you are a U.S. company with servers, employees and clients in the U.S., a query from somewhere else could be suspicious. 
         Another approach is to validate a few IP addresses that corresponds to the machines using your service and reject any other IP.
+
+
+        <h4 id="components">Key components</h4>
+          Key components icnclude:
+          <ul>
+            <li><strong>Endpoints: </strong>URLs or URIs that define where the API can be accessed.</li>
+            <li><strong>Methods: </strong>Specify the actions that can be performed, such as GET (retrieve data), POST (submit data), PUT (update data), DELETE (remove data), etc.</li>
+            <li><strong>Request and Response Formats: </strong>Define how data is structured when making requests to the API and how it is formatted in the response. 
+                Data formats define the structure of the data exchanged between the API and the application. </li>
+            <li><strong>Authentication: </strong>Authentication methods ensure that only authorized users can access the API's functionality.</li>
+          </ul>
+          <p><strong>For example:</strong> the following URI <span style="color: blue;">http://example.org/resource</span> can be read as follows:</p>
+          <ul>
+            <li><span style="color: blue;">http://</span> is the protocol used</li>
+            <li><span style="color: blue;">example.org</span> is the domain name of the server, which is a simplification of the server's IP address.</li>
+            <li><span style="color: blue;">/resource</span> is the endpoint you wish to request</li>
+          </ul>
+          <p>Note that a URI can also have parameters. For example, the URI <span style="color: blue;">http://example.org/resource?key1=value1&key2=value2</span> allows to pass the keys <code>key1</code> and <code>key2</code> which have respectively the values <code>value1</code> and <code>value2</code> to the server. This is called a query string or query parameters.</p>
+
+        <!---------------------->
+        <h4 id="https">HTTP responses</h4>
+        When an HTTP request is sent, the server sends a response to the client. This response is also composed of different elements:
+        <ul>
+          <li>Headers with the response metadata</li>
+          <li>A body with the content of the response</li>
+          <li>A status code</li>
+        </ul>
+        The content of an HTTP response is very often HTML for websites but it is more likely to be JSON or XML for APIs. The status code makes it easy to understand if the request was successful. By convention, the error codes should correspond to the following states:
+        <ul>
+          <li><code>10X</code>: Information</li>  
+          <li><code>20X</code>: Means that the request was successful</li>  
+          <li><code>30X</code>: Redirection</li>  
+          <li><code>40X</code>: Means a client-side error / Client error</li>  
+          <li><code>50X</code>: Means server side error / Server error</li>  
+        </ul>
+        Thus, a 404 code is an error from the client that did not enter the right address to access the resource while a 503 error will be an error from the server that cannot run the requested service.
+
+        <h5 id="links-web">Links with the web</h5>
+        Websites work on the same principle of server-client architecture that we request via HTTP using a Web browser. Thus, by clicking on a link, the browser sends a request of type <code>GET</code> to the server of the  website. If the address is correct, the server returns a response containing an HTML file that will be interpreted by the browser. Similalry, when a form is filled in on a website, it is generally a request of type POST. The request then contains the data filled in the form.
+
+        <h5 id="protocol">HTTPS protocol</h5>
+        The HTTPS protocol is a more secure version of the HTTP protocol. It is in fact the HTTP protocol to which an SSL (Secure Socket Layer) encryption layer is added. It protects the authentication of a server, the confidentiality and integrity of the data exchanged, and sometimes the authentication of the client: a public key is given to the client so that the data sent back to the server is encrypted; this data is then decoded thanks to a private key available on the server. It tends to become the standard, pushed by search engines that better reference sites using an HTTPS protocol.
+
+        <h5 id="clients">HTTP clients</h5>
+        As we have seen in the previous examples, the browser is a client that allows to make HTTP requests to servers that are able to return data according to the request. However, there are other simpler tools to use when you want to interact with an API.
+
+
+        <h5 id="curl">CURL</h5>
+        We will query an API from the terminal using the command line interface cURL (client URL Request Library). To make an HTTP request from the terminal with cURL, the syntax for making a request is as follows :
+        <pre class="language-python"><code>curl -X GET http://example.com </code></pre>
+        The -X argument introduces the method, in this case, GET. Then we can write the URI.
+        <ul>
+          <li>For example: 
+          <pre class="language-python"><code>curl -X GET https://jsonplaceholder.typicode.com/posts/1</code></pre>
+          With this request, we receive a "stringified" JSON object containing information about a post. Here, we have requested the post with ID 1. We can get all posts with a GET request to the <code>/posts</code> endpoint. This is a case we commonly encounter: the endpoint with an ID returns an individual observation while without any ID it returns all observations.
+          <p>The HTTP response to this request contains only the body. To see the headers, we can add the <code>-i</code> argument to the :</p>
+          <pre class="language-python"><code>curl -X GET -i https://jsonplaceholder.typicode.com/posts/1</code></pre>
+          In the header, you can see information about the content of the response, such as the status code, which in this case is 200.
+          </li>
+          <li>We have seen how to make a request with the GET method. Now, if you want to use the PUT method to add data to the API, you will probably want to specify a body and headers. To do this, you need to precede your headers with the -H argument and the body with the -d argument.
+            <pre class="language-python"><code>
+              curl -X PUT -i\
+              -H "Content-Type: application/json"\
+              -d '{"id": 1, "content": "hello world"}'\
+              https://jsonplaceholder.typicode.com/posts/1
+            </code></pre>
+            Here, we indicate in the header the type of data sent (JSON), and in the body the data in question. cURL is undoubtedly the simplest tool to use.
+          </li>
+        </ul>
+        <h5 id="postman"><a href="https://www.postman.com/" target="_blank">Postman</a></h5>
+        Postman is a collaborative platform for API development. It allows to build and execute HTTP requests, to store them in a history so that they can be replayed, and to organize them in collections. Among other things, Postman allows us to:
+        <ul>
+          <li>Quickly and easily send REST, SOAP and GraphQL requests</li>
+          <li>Automate manual tests and integrate them into a CI/CD pipeline to ensure that no code changes interrupt the API in production.</li>
+          <li>Communicate the expected behavior of an API by simulating endpoints and their responses without having to configure a backend server</li>
+          <li>Generate and publish nice machine-readable documentation to make the API easier to use.</li>
+          <li>Stay up-to-date on the health of your API by checking performance and response times at scheduled intervals.</li>
+          <li>Collaborate in real time with built-in version control.</li>
+        </ul>
+        Postman offers a very simple interface to make complex HTTP requests. It is a very useful tool for testing/exploring an API. Moreover, Postman's features allow us to easily export a request made with Postman in the language of our choice.
+        
+        <h4 id="python-libraries">Python HTTP libraries</h4>
+        The simplest library to make requests with Python is probably the <a href="https://docs.python-requests.org/en/latest/" target="_blank">Requests</a> library and it can be installed using:
+        <pre class="language-python"><code>
+          pip3 install requests
+          # or conda install requests
+        </code></pre>
+        and then we can access the content as:
+        <pre class="language-python"><code>
+          import requests
+          # creating a GET request
+          r = requests.get('https://jsonplaceholder.typicode.com/posts/1')
+          # getting the response elements
+          response_dict = r.json
+          response_header = r.headers
+          status_code = r.status_code
+        </code></pre>
+        We can of course pass a body, headers with this library.
+        <pre class="language-python"><code>
+          r = requests.put(
+            url='https://jsonplaceholder.typicode.com/posts/1',
+            data={"id": 1, "content": "hello world"},
+            headers={"Content-Type": "application/json"}
+            )
+        </code></pre>
+        Another popular library is the <a href="https://docs.python.org/3/library/urllib.html" target="_blank">Urllib library</a> installed natively with Python but more difficult to use.
       </section>
 
+
       <!------ FastApi ------------->
-      <section id="fastapi">
-        <h3>FastAPI</h3>
+      <section>
+        <h3 id="rest-api">The REST standard</h3>
+        Each API has a specific architecture, as well as rules to respect that determine the data formats and commands accepted to communicate with. In order to promote accessibility and standardization of APIs for developers, there are now classic API architectures that are very often used. For example, <strong>REST (Representational State Transfer)</strong> is an architecture that is very often used in the creation of WEB services. It allows applications to communicate with each other regardless of the operating system via the HTTP protocol. A REST API uses HTTP requests to communicate and must respect the following principles:
+        <ul>
+          <li><strong>Client-server architecture :</strong> the client must make HTTP requests to request resources. There is independence between the client side and the server application so that changes to one endpoint do not affect the others.</li>
+          <li><strong>Uniform interface :</strong> simplified architecture that allows each part to evolve independently. To speak of a uniform interface, 4 constraints must be respected</li>
+          <li><strong>Resource identification in requests :</strong> resources are identified in requests and are separated from the representations returned to the client.</li>
+          <li><strong>Resource manipulation by representations :</strong> clients receive files that represent resources. These representations must contain enough information to be modified or deleted.</li>
+          <li><strong>Self-describing messages :</strong> all messages returned to the client contain enough information to describe how the client should handle the information.
+          <li><strong>Hypermedia as an engine for application state change (HATEOAS) :</strong> after accessing a resource, the REST client must be able to discover all other available actions through hyperlinks.</li>
+          <li><strong>Cached :</strong> the client must be able to cache the data that the API provides in response, you can check this link for further informations.</li>
+          <li><strong>Layered system :</strong> communication can take place through intermediate servers (proxy servers or load balancing devices).</li>
+          <li><strong>Stateless :</strong> no information is stored between two requests and the API treats each request as a first request.</li>
+        </ul>
+        Note that in the REST standard, the endpoint must designate an object that we wish to manipulate and the methods must correspond to the following effects
+        <ul>
+          <li><code>GET</code> to retrieve information</li>
+          <li><code>POST</code> to add new data to the server</li>
+          <li><code>PUT</code> to modify data already on the server</li>
+          <li><code>DELETE</code> to delete data</li>
+        </ul>
+        This standard is not the only one and is not mandatory to implement to get an efficient API but it is probably the most known.
+
+
+
+
+
+
+        <h3 id="fastapi">FastAPI</h3>
         <a href="https://fastapi.tiangolo.com/" target="_blank">FastApi</a> is a modern, fast (high-performance), web framework for building APIs with Python 3.7+ based on standard Python type hints. It is designed to be easy to use, fast to develop with, and provide high performance, making it an excellent choice for building RESTful APIs. Here's a brief overview and key features of FastAPI:
         <ol>
             <li><strong>Fast: </strong>As the name suggests, FastAPI is designed to be high-performance. It is built on top of <a href="https://www.starlette.io/" target="_blank">Starlette</a> and <a href="https://docs.pydantic.dev/latest/" target="_blank">Pydantic</a>, which contribute to its speed.</li>
