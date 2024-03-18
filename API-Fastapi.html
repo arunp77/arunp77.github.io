@@ -369,7 +369,10 @@
             <li><strong>Dependency Injection System: </strong>FastAPI has a sophisticated dependency injection system that simplifies handling dependencies in your API, making your code clean and modular.</li>
         </ol>
         <h5>Gettign started:</h5>
-        To get started with FastAPI, you need to install it first:
+        In this section we will look at the basics of FastAPI. The first step is to install the fastapi and uvicorn libraries. uvicorn is a library that allows you to launch the server created by FastAPI.
+        <div class="grey-box">
+          The Python libraries for creating APIs generally use another server to launch the API. For example, you can launch a Flask API without uvicorn but it is generally not recommended (see the launch message).
+        </div>
         <pre class="language-python"><code>pip install fastapi uvicorn</code></pre>
         Here's a simple example of a FastAPI application (create <code>main.py</code> file):
         <pre class="language-python"><code>
@@ -387,7 +390,15 @@
         </code></pre>
         We can run the app with Uvicorn:
         <pre class="language-bash"><code>uvicorn main:app --reload</code></pre>
-        Visit <a href="https://127.0.0.1:8000" target="_blank">https://127.0.0.1:8000</a> in your browser, and you should see the automatically generated Swagger documentation.
+        Visit <a href="https://127.0.0.1:8000" target="_blank">https://127.0.0.1:8000</a> in your browser, and you should see the automatically generated Swagger documentation. In the conolse, the folloing line should be observed:
+        <pre>INFO: Uvicorn running on http://127.0.0.1:8000(Press CTRL+C to quit)</pre>
+        This line gives us the address at which the API works.
+        <p>In another console, issue the following command to query the endpoint <code>/</code>:</p>
+        <pre class="language-bash"><code>curl -X GET http://127.0.0.1:8000/   </code></pre>
+
+
+
+
 
         <h5>Conclusion</h5>
         FastAPI is a powerful and easy-to-use framework for building APIs with Python. Its combination of type hinting, automatic documentation, and high performance makes it a strong choice for a wide range of API development projects. Whether you're building a small RESTful API or a complex real-time application, FastAPI provides the tools and features to make development efficient and enjoyable.
