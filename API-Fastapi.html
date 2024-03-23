@@ -232,6 +232,10 @@
             <li><span style="color: blue;">example.org</span> is the domain name of the server, which is a simplification of the server's IP address.</li>
             <li><span style="color: blue;">/resource</span> is the endpoint you wish to request</li>
           </ul>
+          <figure>
+            <img src="assets/img/data-engineering/endpoint-https.png" alt="" style="max-width: 90%; max-height: auto;">
+            <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="index.html" target="_blank">Arun Kumar Pandey</a></figcaption>
+        </figure>
           <p>Note that a URI can also have parameters. For example, the URI <span style="color: blue;">http://example.org/resource?key1=value1&key2=value2</span> allows to pass the keys <code>key1</code> and <code>key2</code> which have respectively the values <code>value1</code> and <code>value2</code> to the server. This is called a query string or query parameters.</p>
 
         <!---------------------->
@@ -269,7 +273,13 @@
         <ul>
           <li>For example: 
           <pre class="language-python"><code>curl -X GET https://jsonplaceholder.typicode.com/posts/1</code></pre>
-          With this request, we receive a "stringified" JSON object containing information about a post. Here, we have requested the post with ID 1. We can get all posts with a GET request to the <code>/posts</code> endpoint. This is a case we commonly encounter: the endpoint with an ID returns an individual observation while without any ID it returns all observations.
+          <p>With this request, we receive a "stringified" JSON object containing information about a post.</p>
+          <figure>
+            <img src="assets/img/data-engineering/curl-get1.png" alt="" style="max-width: 90%; max-height: auto;">
+            <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="index.html" target="_blank">Arun Kumar Pandey</a></figcaption>
+          </figure>
+          <p>Here, we have requested the post with ID 1. We can get all posts with a GET request to the <code>/posts</code> endpoint. This is a case we commonly encounter: the endpoint with an ID returns an individual observation while without any ID it returns all observations.</p>
+          
           <p>The HTTP response to this request contains only the body. To see the headers, we can add the <code>-i</code> argument to the :</p>
           <pre class="language-python"><code>curl -X GET -i https://jsonplaceholder.typicode.com/posts/1</code></pre>
           In the header, you can see information about the content of the response, such as the status code, which in this case is 200.
