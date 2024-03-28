@@ -190,14 +190,52 @@
         <li><strong>Navigate to the project directory: </strong>Change your current directory to Job-Market-project:</li>
         <pre><code class="language-bash">cd Job-Market-Project</code></pre>
         <li><strong>Set Up Virtual Environment (Optional):</strong>It's a good practice to work within a virtual environment to manage dependencies. In our case, we have created a Python virtual environment using <code>virtualenv</code> (which can be installed through <code>pip install virtualenv</code>) or <code>conda</code>:</li>
-        <pre><code class="language-bash"></code></pre>
-        <li><strong>Install Dependencies: </strong></li>
-        <pre><code class="language-bash"></code></pre>
-        <li><strong>Access the databases on Elasticsearch:</strong></li>
-        <pre><code class="language-bash"></code></pre>
-        <li><strong>Deployment: FastAPI: </strong></li>
-        <pre><code class="language-bash"></code></pre>
+        <pre><code class="language-bash">
+            # Using virtualenv
+            python -m venv env
+            # activate the enviornment
+            source env/bin/activate     # in mac
+            env\Scripts\activate        # in windows using Command Prompt
+            .\env\Scripts\Activate.ps1  # in windows using powershell
+            
+            # Using conda
+            conda create --name myenv
+            conda activate myenv
+        </code></pre>
+        <strong>Deactivate the Virtual Environment:</strong> When you're done working on your project, you can deactivate the virtual environment to return to the global Python environment.
+        <pre><code class="language-bash">deactivate</code></pre>
+        <li><strong>Install Dependencies: </strong>Install the required Python packages specified in the requirements.txt file:</li>
+        <pre><code class="language-bash">pip install -r requirements.txt</code></pre>
+        <li><strong>Access the databases on Elasticsearch:</strong> Please see below for more details (<a href="https://github.com/arunp77/Job-Market-project/blob/main/README.md#elasticsearch-integration" target="_blank">Go to Elasticsearch Integration</a>). To run the <code>elasticsearch</code>, we must have elasticsearch python clinet installed. Next run the docker-compose.yml first using (detached mode)</li>
+        <pre><code class="language-bash">docker-compose buld</code></pre>
+        and then
+        <pre><code class="language-bash">docker-compose up -d</code></pre>
+        and then run the <code>db_connection.py</code> file to integration the elasticsearch using <code>python db_connection.py</code>.
+            <ul>
+                <li>So the Elasticsearch runs at port: <span style="color: blue;">http://localhost:9200/</span></li>
+                <li>So the Kibana runs at port: <span style="color: blue;">http://localhost:5601/</span></li>
+            </ul>
+            Here it should be noted that <code>db_connection.py</code> script is responsible for establishing a connection to Elasticsearch and loading data into it.
+        <li><strong>Deployment: FastAPI: </strong>  Our FastAPI is created using the api.py script available in the repository. In our case the FASTApi server runs at <span style="color: blue;">http://localhost:8000/</span>. To start the FastAPI server, we can use the following command:</li>
+        <pre><code class="language-bash">uvicorn api:api --host 0.0.0.0 --port 8000</code></pre>
+        or 
+        <pre><code class="language-bash">uvicorn api:api --reload</code></pre>
+        enables automatic reloading of the server whenever the source code changes. For more details on each endpoint and how to interact with the API:
+        <ul>
+            <li><strong>docs_url:</strong> Specifies the URL path where the OpenAPI (Swagger UI) documentation will be available. By default, it's set to /docs and can be accessed at <span style="color: blue;">http://localhost:8000/api/docs</span>.</li>
+            <li><strong>redoc_url:</strong> Specifies the URL path where the ReDoc documentation will be available. By default, it's set to /redoc and can be accessed to <span style="color: blue;">http://localhost:8000/api/redoc</span>.</li>
+        </ul>
     </ul>
+
+    <div class="grey-box">
+        <strong>For more details on the project: </strong> please check the <a href="https://github.com/arunp77/Job-Market-project" target="_blank">github repo</a>. A demo video of the project is available at:
+
+        <div style="border: 1px solid white; padding: 10px;">
+            <a href="https://www.youtube.com/watch?v=j9cjxD2FiCI&t=2s">
+                <img src="https://img.youtube.com/vi/j9cjxD2FiCI/0.jpg" alt="Click to Watch the Video" style="width: 80%; border: 1px solid #000;">
+            </a>
+            </div>
+    </div>
     
     
     
