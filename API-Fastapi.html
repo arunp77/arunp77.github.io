@@ -357,11 +357,6 @@
         </ul>
         This standard is not the only one and is not mandatory to implement to get an efficient API but it is probably the most known.
 
-
-
-
-
-
         <h3 id="fastapi">FastAPI</h3>
         <a href="https://fastapi.tiangolo.com/" target="_blank">FastApi</a> is a modern, fast (high-performance), web framework for building APIs with Python 3.7+ based on standard Python type hints. It is designed to be easy to use, fast to develop with, and provide high performance, making it an excellent choice for building RESTful APIs. Here's a brief overview and key features of FastAPI:
         <ol>
@@ -406,6 +401,72 @@
         <pre class="language-bash"><code>curl -X GET http://127.0.0.1:8000/   </code></pre>
 
 
+        <p>In this section we will see how to use dynamic routing and then how to pass arguments directly into a request. Finally, we will see how FastAPI generates documentation for arguments.</p>
+        <ul>
+          <li><strong>Dynamic Routing: </strong>Dynamic routing allows you to generate endpoints automatically. Modify the main.py file by pasting the following lines :</li>
+          <pre class="language-bash"><code>
+            from fastapi import FastAPI
+            users_db = [
+                {
+                    'user_id': 1,
+                    'name': 'Alice',
+                    'subscription': 'free tier'
+                },
+                {
+                    'user_id': 2,
+                    'name': 'Bob',
+                    'subscription': 'premium tier'
+                },
+                {
+                    'user_id': 3,
+                    'name': 'Clementine',
+                    'subscription': 'free tier'
+                }
+            ]
+            app = FastAPI()
+            @app.get('/')
+            def get_index():
+                return {
+                    'greetings': 'welcome'
+                }
+            @app.get('/users')
+            def get_users():
+                return users_db
+            @app.get('/users/{userid:int}')
+            def get_user(userid):
+                try:
+                    user = list(filter(lambda x: x.get('user_id') == userid, users_db))[0]
+                    return user
+                except IndexError:
+                    return {}
+            @app.get('/users/{userid:int}/name')
+            def get_user_name(userid):
+                try:
+                    user = list(filter(lambda x: x.get('user_id') == userid, users_db))[0]
+                    return {'name': user['name']}
+                except IndexError:
+                    return {}
+            @app.get('/users/{userid:int}/subscription')
+            def get_user_suscription(userid):
+                try:
+                    user = list(filter(lambda x: x.get('user_id') == userid, users_db))[0]
+                    return {'subscription': user['subscription']}
+                except IndexError:
+                    return {}
+          </code></pre>
+          <figure>
+            <img src="assets/img/data-engineering/fastapi-doc.png" alt="" style="max-width: 90%; max-height: auto;">
+            <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a></figcaption>
+          </figure>
+          <li><strong></strong></li>
+          <pre class="language-bash"><code></code></pre>
+          <li><strong></strong></li>
+          <pre class="language-bash"><code></code></pre>
+          <li><strong></strong></li>
+          <pre class="language-bash"><code></code></pre>
+        </ul>
+
+
 
 
 
@@ -415,8 +476,8 @@
 
       <hr>
       <!------------------->
-      <section id="json">
-        <h3>JSON: JavaScript Object Notation</h3>
+      <div class="box">
+        <h3 id="json">JSON: JavaScript Object Notation</h3>
         JSON, or JavaScript Object Notation, is a lightweight data-interchange format. It is easy for humans to read and write and easy for machines to parse and generate.
         It is widely used for data exchange between a server and a web application (i.e. is used extensively in web applications and APIs), as well as for configuration files and data storage.
         <p></p>
@@ -573,7 +634,7 @@
         <h5>Conclusion: </h5>
         JSON is a versatile and widely adopted format for data interchange. Its simplicity, human-readability, 
         and ease of integration make it a popular choice for APIs, configuration files, and data storage. Understanding JSON is essential for anyone working with web development, APIs, or data exchange between different systems.
-      </section>
+      </div>
         
       <hr>
 
