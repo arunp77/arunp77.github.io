@@ -402,7 +402,7 @@
 
 
         <p>In this section we will see how to use dynamic routing and then how to pass arguments directly into a request. Finally, we will see how FastAPI generates documentation for arguments.</p>
-        <ul>
+        <ol>
           <li><strong>Dynamic Routing: </strong>Dynamic routing allows you to generate endpoints automatically. Modify the main.py file by pasting the following lines :</li>
           <pre class="language-bash"><code>
             from fastapi import FastAPI
@@ -454,17 +454,24 @@
                 except IndexError:
                     return {}
           </code></pre>
+          <p>We notice that the interface to use these requests allows to pass arguments for dynamic routing :</p>
           <figure>
             <img src="assets/img/data-engineering/fastapi-doc.png" alt="" style="max-width: 90%; max-height: auto;">
             <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a></figcaption>
           </figure>
-          <li><strong></strong></li>
+          <p>We can see below, how dynamic routing works here:</p>
+          <figure>
+            <img src="assets/img/data-engineering/fastapi-doc1.png" alt="" style="max-width: 90%; max-height: auto;">
+            <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a> We need to provide the entries to get the output.</figcaption>
+          </figure>
+          
+          <li><strong>Request string:</strong> We have seen how to pass data to the API using dynamic routing. In this part, we will see how to do it using the query string. FastAPI makes it easy to specify which arguments can be passed via the query string. In the following example, we will define a function that can take an argument argument1. This argument must be passed in the query string.</li>
           <pre class="language-bash"><code></code></pre>
           <li><strong></strong></li>
           <pre class="language-bash"><code></code></pre>
           <li><strong></strong></li>
           <pre class="language-bash"><code></code></pre>
-        </ul>
+        </ol>
 
 
 
