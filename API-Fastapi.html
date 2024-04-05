@@ -466,7 +466,20 @@
           </figure>
           
           <li><strong>Request string:</strong> We have seen how to pass data to the API using dynamic routing. In this part, we will see how to do it using the query string. FastAPI makes it easy to specify which arguments can be passed via the query string. In the following example, we will define a function that can take an argument argument1. This argument must be passed in the query string.</li>
-          <pre class="language-bash"><code></code></pre>
+          <pre class="language-bash"><code>
+            from fastapi import FastAPI
+            api = FastAPI()
+            @api.get('/')
+            def get_index(argument1):
+                return {
+                    'data': argument1
+                }
+          </code></pre>
+          We need to provide the argument otherwise, when executed it will produce an error.  
+          <figure>
+            <img src="assets/img/data-engineering/fastapi-doc1.png" alt="" style="max-width: 90%; max-height: auto;">
+            <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a> We need to provide the entries to get the output.</figcaption>
+          </figure>
           <li><strong></strong></li>
           <pre class="language-bash"><code></code></pre>
           <li><strong></strong></li>
