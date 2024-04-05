@@ -465,7 +465,7 @@
             <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a> We need to provide the entries to get the output.</figcaption>
           </figure>
           
-          <li><strong>Request string:</strong> We have seen how to pass data to the API using dynamic routing. In this part, we will see how to do it using the query string. FastAPI makes it easy to specify which arguments can be passed via the query string. In the following example, we will define a function that can take an argument argument1. This argument must be passed in the query string.</li>
+          <li><strong>Request string:</strong> We have seen how to pass data to the API using dynamic routing. In this part, we will see how to do it using the query string. FastAPI makes it easy to specify which arguments can be passed via the query string. In the following example, we will define a function that can take an argument <code>argument1</code>. This argument must be passed in the query string.</li>
           <pre class="language-bash"><code>
             from fastapi import FastAPI
             api = FastAPI()
@@ -475,13 +475,26 @@
                     'data': argument1
                 }
           </code></pre>
-          We need to provide the argument otherwise, when executed it will produce an error.  
+          <p>When using the curl command in the command prompt, we can interact with web servers by sending HTTP requests. Let's break down two scenarios:</p>
           <figure>
-            <img src="assets/img/data-engineering/fastapi-doc1.png" alt="" style="max-width: 90%; max-height: auto;">
+            <img src="assets/img/data-engineering/fastapi-doc2.png" alt="" style="max-width: 90%; max-height: auto;">
             <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a> We need to provide the entries to get the output.</figcaption>
           </figure>
-          <li><strong></strong></li>
-          <pre class="language-bash"><code></code></pre>
+          <p>In the first case, with the command, we're sending a GET request (<code>-X GET</code>) to <span style="color: blue;">http://127.0.0.1:8000/</span> with an additional query parameter <code>argument1</code> set to <code>hello world</code>. The server processes this request and returns the value of the <code>argument1</code> parameter, which in this case is "hello world" (in first case). Whereas in second case, we're sending a GET request to the same server but without any query parameters. However, the server expects the <code>argument1</code> parameter to be present. Since it's missing, the server responds with a <code>422 Unprocessable Entity</code> error. This error indicates that the request couldn't be processed because the required field (<code>argument1</code>) is missing.</p>
+          <p>We can see this beahviour through the <code>docs/</code> documentation. We need to provide the argument otherwise, when executed it will produce an error. We see in the interface that the <code>argument1</code> field is required. Going down the interface, we can also see the codes that this route can return: 200 if the request succeeds and 422 if the request does not have the required field.</p>
+          <p><strong>Another example:</strong></p>
+          <pre class="language-bash"><code>
+            @app.get('/typed')
+            def get_typed(argument1: int):
+                return {
+                    'data': argument1 + 1
+                }
+          </code></pre>
+          This basically gives error, if provide not an integer as argument. However, when provided a strong, it gives our output as <code>{"data" : 123}</code> when <code>argument1 = 123</code>
+          <figure>
+            <img src="assets/img/data-engineering/fastapi-doc3.png" alt="" style="max-width: 90%; max-height: auto;">
+            <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a> We need to provide an integer entry to get the output.</figcaption>
+          </figure>
           <li><strong></strong></li>
           <pre class="language-bash"><code></code></pre>
         </ol>
