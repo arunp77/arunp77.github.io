@@ -386,12 +386,13 @@
             
             @app.get("/")
             def read_root():
-                return {"Hello": "World"}
+              return {"Hello": "World"}
             
             @app.get("/items/{item_id}")
             def read_item(item_id: int, query_param: str = None):
                 return {"item_id": item_id, "query_param": query_param}            
         </code></pre>
+        
         We can run the app with Uvicorn:
         <pre class="language-bash"><code>uvicorn main:app --reload</code></pre>
         Visit <a href="https://127.0.0.1:8000" target="_blank">https://127.0.0.1:8000</a> in your browser, and you should see the automatically generated Swagger documentation. In the conolse, the folloing line should be observed:
@@ -592,7 +593,7 @@
           <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a> We need to provide an integer entry to get the output.</figcaption>
         </figure>
         The correspodning main.py file is:
-        <pre class="language-bash"><code>
+        <pre><code class="language-bash">
           from fastapi import FastAPI
           from typing import Optional
           from pydantic import BaseModel
@@ -657,15 +658,195 @@
                   return {}
         </code></pre>
 
-
-
-
-
-
         <h5>Conclusion</h5>
-        FastAPI is a powerful and easy-to-use framework for building APIs with Python. Its combination of type hinting, automatic documentation, and high performance makes it a strong choice for a wide range of API development projects. Whether you're building a small RESTful API or a complex real-time application, FastAPI provides the tools and features to make development efficient and enjoyable.
-      </section>
+        <p>FastAPI is a powerful and easy-to-use framework for building APIs with Python. Its combination of type hinting, automatic documentation, and high performance makes it a strong choice for a wide range of API development projects. Whether you're building a small RESTful API or a complex real-time application, FastAPI provides the tools and features to make development efficient and enjoyable.</p>
 
+        
+        <!----------------------------------------->
+        <h4 id="documentaion">FastApi documentation</h4>
+          <ul>
+            <li><strong>Customize the documentation of functions: </strong>To add comments to the use of an endpoint, we can use the docstring of the function. We can also give a name to our API via the FastAPI class.
+              <pre><code class="language-python">
+                from fastapi import FastAPI
+    
+                app = FastAPI(
+                  title="My API",
+                  description="My own API powered by FastAPI. Created by <strong>Arun Kumar Pandey.</strong>",
+                  version="1.0.1")
+                
+                @app.get("/")
+                def read_root():
+                  """Returns greetings
+                  """
+                  return {"Hello": "World"}         
+            </code></pre>
+            <figure>
+              <img src="assets/img/data-engineering/fastapi-doc0.png" alt="" style="max-width: 90%; max-height: auto;">
+              <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a></figcaption>
+            </figure>
+            </li>
+              <ul>
+                <li>If we provide description of the function as a docstring, the interface automatically shows the description straight from the docstring of the function. We can also add the name argument to the decorator to name the route in OpenAPI: by default, route names are created from the titles of the functions used: <code>Get Index</code> for <code>read_root</code>. For example, we can set decorator name 
+                  <pre><code class="language-python">
+                    @api.get('/', name="Hello World")
+                    def get_index():
+                        """Returns greetings
+                        """
+                        return {'greetings': 'welcome'}
+                  </code></pre>
+                  <figure>
+                    <img src="assets/img/data-engineering/fastapi-doc-docstring.png" alt="" style="max-width: 90%; max-height: auto;">
+                    <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a></figcaption>
+                  </figure>
+                </li>
+              </ul>
+            <li><strong>Documentation of the function body: </strong> We will now see how FastAPI handles the definition of models from the BaseModel class:
+              <pre><code class="language-python">
+                from pydantic import BaseModel
+                from typing import Optional
+                class Computer(BaseModel):
+                    computerid: int
+                    cpu: Optional[str]
+                    gpu: Optional[str]
+                    price: float
+                
+                @app.put('/computer', name='Create a new computer')
+                def get_computer(computer: Computer):
+                    """Creates a new computer within the database
+                    """
+                    return computer
+              </code></pre>
+              <figure>
+                <img src="assets/img/data-engineering/fastapi-doc7.png" alt="" style="max-width: 90%; max-height: auto;">
+                <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a></figcaption>
+              </figure>
+              In the Schemas tab, the description of the Computer class is now available. Here we have also added description on the headers. You can see in the function description that the header is documented.
+            </li>
+            <li><strong>Organizing the documentation: </strong>By default, all functions are documented in a default tab. However, you can choose to organize these functions in different parts. To do this, one must specify the tags argument in the decorator.
+              <pre><code class="language-python">
+                app = FastAPI(
+                  title="My FastApi",
+                  description="My own API powered by FastAPI. Created by <strong>Arun Kumar Pandey</strong>.",
+                  version="1.0.1",  
+                  openapi_tags=[
+                      {
+                          'name': 'home',
+                          'description': 'default functions'
+                      },
+                      {
+                          'name': 'items',
+                          'description': 'functions that are used to deal with items'
+                      }
+                  ]
+              )
+              
+              @app.get('/', tags=['home'])
+              def get_index():
+                  """returns greetings
+                  """
+                  return {
+                      'greetings': 'hello world'
+                  }
+              
+              @app.get('/items', tags=['home', 'items'])
+              def get_items():
+                  """returns an item
+                  """
+                  return {
+                      'item': "some item"
+                  }              
+              </code></pre>
+              Now note down the various parts added here. 
+              <figure>
+                <img src="assets/img/data-engineering/fastapi-doc8.png" alt="" style="max-width: 90%; max-height: auto;">
+                <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a></figcaption>
+              </figure>
+              The functions are now divided into different parts. The same function can be put in several parts. We could add a description for the different parts using the openapi_tags argument of the FastAPI class constructor. We can also change the address of the OpenAPI and Redoc documentations using the <code>docs_url</code> or <code>redoc_url</code> arguments. If these arguments are set to None, these endpoints are disabled. Finally, one can choose to change the address of the OpenAPI manifest with the <code>openapi_url</code> argument.
+              <pre><code class="language-python">
+                app = FastAPI(
+                  # Change the address of the OpenAPI documentation
+                  docs_url="/custom-docs",  # Set to the desired URL path, e.g., "/custom-docs"
+                  
+                  # Change the address of the ReDoc documentation
+                  redoc_url=None,  # Set to None to disable the ReDoc endpoint or specify a custom URL
+                  
+                  # Change the address of the OpenAPI manifest
+                  openapi_url="/custom-openapi"  # Set to the desired URL path, e.g., "/custom-openapi"
+              )
+              </code></pre>
+            </li>
+            <li><strong>Using errors: </strong>Errors are an important tool when developing applications: they allow to easily give indications about a bad handling of the application. In particular, we can give information by using the status code of the response but also by giving information in the body of the response. Up to now, we have been able to obtain errors of types 500, 404 and 422. In this part we will see how to create more custom errors. </li>
+            <pre><code class="language-python">
+              app = FastAPI()
+              data = [1, 2, 3, 4, 5]
+              @app.get('/data')
+              def get_data(index):
+                  return {
+                      'data': data[int(index)]
+                  }
+            </code></pre>
+            <p>If we open the OpenAPI documentation, we can see that two errors are proposed. In this case, we can see that if the value of index is greater than 4 or less than 0, we may get an IndexError. Also, if index is not an integer, we should get a ValueError.</p> 
+            <p>We have also seen that FastAPI generates its own errors for routes not found (404: you can make a GET /nowhere request to see for yourself) or for data formats that do not correspond to the defined expectations (422: in particular via the use of annotations or classes inherited from BaseModel). We will use try-except blocks to catch Python errors and return HTTPException with the associated HTTP codes.</p>
+            <pre><code class="language-python">
+              from fastapi import HTTPException
+              app =FastAPI()
+              @app.get('/data')
+              def get_data(index):
+                  try:
+                      return {
+                          'data': data[int(index)]
+                      }
+                  except IndexError:
+                      raise HTTPException(
+                          status_code=404,
+                          detail='Unknown Index')
+                  except ValueError:
+                      raise HTTPException(
+                          status_code=400,
+                          detail='Bad Type'
+                      )
+            </code></pre>
+            <p>So we can easily change the error codes and the data returned on error. For the detail argument, we can give a dictionary or any other structure that can be interpreted as a JSON.</p>
+            <p>Finally, if we want to change the form of the data returned on error, we can create our own exceptions and pass them to the <code>@api.exception_handler</code> decorator.</p>
+            <pre><code class="language-python">
+              from fastapi import FastAPI
+              from fastapi import Request
+              from fastapi.responses import JSONResponse
+              import datetime
+              
+              app = FastAPI()
+              class MyException(Exception):
+                  def __init__(self,                 
+                               name : str,
+                               date: str):
+                      self.name = name
+                      self.date = date
+              @app.exception_handler(MyException)
+              def MyExceptionHandler(
+                  request: Request,
+                  exception: MyException
+                  ):
+                  return JSONResponse(
+                      status_code=418,
+                      content={
+                          'url': str(request.url),
+                          'name': exception.name,
+                          'message': 'This error is my own', 
+                          'date': exception.date
+                      }
+                  )
+              @app.get('/my_custom_exception')
+              def get_my_custom_exception():
+                  raise MyException(
+                    name='my error',
+                    date=str(datetime.datetime.now())
+                    )
+            </code></pre>
+            <p>Let's take some time to describe this code. In the first block, we define a new Exception. We give it the attributes <code>name</code> and <code>date</code>. In the second block, we tell FastAPI how to react when the exception is raised. We give a response of type JSON to return, giving it a <code>status_code</code> and a status. We can then access the attributes of the request or the exception to return them in a JSON. Finally the last block allows us to define a route that generates this error.</p>
+          </ul>
+
+
+      </section>
       <hr>
       <!------------------->
       <div class="box">
