@@ -160,6 +160,8 @@
         <h3>Introduction</h3>
         API stands for <strong>Application Programming Interface</strong>. An API is a set of subroutine definitions, communication protocols and tools that allows different software applications to communicate with each other. 
         It defines the methods and data formats that applications can use to request and exchange information.
+        <div class="alert alert-info"> <i class="bi bi-pen-fill"></i> We can think of a API as a power outlet. A socket defines a protocol for its use: the device you want to connect must have two pins, spaced a certain distance apart. If this distance is respected, then the socket will deliver a 220V current at a frequency of 50Hz. From the customer's point of view, i.e. the electrical appliance, it doesn't matter how the electricity is generated. It can be any kind of power plant. From the other side, i.e. from the point of view of the plug, there is no need to adapt to the electrical device: if the protocol is respected, the necessary energy is supplied. 
+        </div>
         <figure>
             <img src="assets/img/data-engineering/api-1.png" alt="" style="max-width: 90%; max-height: auto;">
             <figcaption style="text-align: center;"><strong>Image credit: </strong>@ Arun Kumar Pandey</figcaption>
@@ -267,11 +269,11 @@
 
         <h5 id="curl">CURL</h5>
         We will query an API from the terminal using the command line interface cURL (client URL Request Library). To make an HTTP request from the terminal with cURL, the syntax for making a request is as follows :
-        <pre class="language-python"><code>curl -X GET http://example.com </code></pre>
+        <pre><code class="language-python">curl -X GET http://example.com </code></pre>
         The -X argument introduces the method, in this case, GET. Then we can write the URI.
         <ul>
           <li>For example: 
-          <pre class="language-python"><code>curl -X GET https://jsonplaceholder.typicode.com/posts/1</code></pre>
+          <pre><code class="language-python">curl -X GET https://jsonplaceholder.typicode.com/posts/1</code></pre>
           <p>With this request, we receive a "stringified" JSON object containing information about a post.</p>
           <figure>
             <img src="assets/img/data-engineering/curl-get1.png" alt="" style="max-width: 90%; max-height: auto;">
