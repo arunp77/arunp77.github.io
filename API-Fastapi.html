@@ -403,7 +403,7 @@
 
         <p>In this section we will see how to use dynamic routing and then how to pass arguments directly into a request. Finally, we will see how FastAPI generates documentation for arguments.</p>
         <ol>
-          <li><strong>Dynamic Routing: </strong>Dynamic routing allows you to generate endpoints automatically. Modify the main.py file by pasting the following lines :</li>
+          <li><strong>Dynamic Routing: </strong>Dynamic routing allows you to generate endpoints automatically. Modify the main.py file by pasting the following lines :
           <pre class="language-bash"><code>
             from fastapi import FastAPI
             users_db = [
@@ -454,6 +454,14 @@
                 except IndexError:
                     return {}
           </code></pre>
+          <p>Here <code>users_db</code> is the database and with this code, we want to:</p>
+          <ul>
+            <li><code>GET /</code> returns a welcome message</li>
+            <li><code>GET /users</code> returns the entire database</li>
+            <li><code>GET /users/userid</code> returns all the data for a user based on its id. userid should be an integer. If the userid provided does not match an existing user, an empty dictionary will be returned.</li>
+            <li><code>GET /users/userid/name</code> returns the name of a user based on its id. userid should be an integer. If the userid provided does not match an existing user, an empty dictionary will be returned.</li>
+            <li><code>GET /users/userid/subscription</code> returns the subscription type of a user based on their id. userid should be an integer</li>
+          </ul>
           <p>We notice that the interface to use these requests allows to pass arguments for dynamic routing :</p>
           <figure>
             <img src="assets/img/data-engineering/fastapi-doc.png" alt="" style="max-width: 90%; max-height: auto;">
@@ -464,8 +472,8 @@
             <img src="assets/img/data-engineering/fastapi-doc1.png" alt="" style="max-width: 90%; max-height: auto;">
             <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a> We need to provide the entries to get the output.</figcaption>
           </figure>
-          
-          <li><strong>Request string:</strong> We have seen how to pass data to the API using dynamic routing. In this part, we will see how to do it using the query string. FastAPI makes it easy to specify which arguments can be passed via the query string. In the following example, we will define a function that can take an argument <code>argument1</code>. This argument must be passed in the query string.</li>
+          </li>
+          <li><strong>Request string:</strong> We have seen how to pass data to the API using dynamic routing. In this part, we will see how to do it using the query string. FastAPI makes it easy to specify which arguments can be passed via the query string. In the following example, we will define a function that can take an argument <code>argument1</code>. This argument must be passed in the query string.
           <pre class="language-bash"><code>
             from fastapi import FastAPI
             api = FastAPI()
@@ -482,22 +490,173 @@
           </figure>
           <p>In the first case, with the command, we're sending a GET request (<code>-X GET</code>) to <span style="color: blue;">http://127.0.0.1:8000/</span> with an additional query parameter <code>argument1</code> set to <code>hello world</code>. The server processes this request and returns the value of the <code>argument1</code> parameter, which in this case is "hello world" (in first case). Whereas in second case, we're sending a GET request to the same server but without any query parameters. However, the server expects the <code>argument1</code> parameter to be present. Since it's missing, the server responds with a <code>422 Unprocessable Entity</code> error. This error indicates that the request couldn't be processed because the required field (<code>argument1</code>) is missing.</p>
           <p>We can see this beahviour through the <code>docs/</code> documentation. We need to provide the argument otherwise, when executed it will produce an error. We see in the interface that the <code>argument1</code> field is required. Going down the interface, we can also see the codes that this route can return: 200 if the request succeeds and 422 if the request does not have the required field.</p>
-          <p><strong>Another example:</strong></p>
-          <pre class="language-bash"><code>
-            @app.get('/typed')
-            def get_typed(argument1: int):
-                return {
-                    'data': argument1 + 1
-                }
-          </code></pre>
-          This basically gives error, if provide not an integer as argument. However, when provided a strong, it gives our output as <code>{"data" : 123}</code> when <code>argument1 = 123</code>
-          <figure>
-            <img src="assets/img/data-engineering/fastapi-doc3.png" alt="" style="max-width: 90%; max-height: auto;">
-            <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a> We need to provide an integer entry to get the output.</figcaption>
-          </figure>
-          <li><strong></strong></li>
-          <pre class="language-bash"><code></code></pre>
+          <ul>
+            <li><strong>Another example:</strong>
+              <pre class="language-bash"><code>
+                @app.get('/typed')
+                def get_typed(argument1: int):
+                    return {
+                        'data': argument1 + 1
+                    }
+              </code></pre>
+              This basically gives error, if provide not an integer as argument. However, when provided a strong, it gives our output as <code>{"data" : 123}</code> when <code>argument1 = 123</code>
+              <figure>
+                <img src="assets/img/data-engineering/fastapi-doc3.png" alt="" style="max-width: 90%; max-height: auto;">
+                <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a> We need to provide an integer entry to get the output.</figcaption>
+              </figure>
+              </li>
+              <li><strong>Example on Optional class:</strong> Finally, we can choose to have an optional argument. For this we can use the Optional class of the typing library. However, a default value must be provided.
+              <pre class="language-bash"><code>
+                from typing import Optional
+                @api.get('/addition')
+                def get_addition(a: int, b: Optional[int]=None):
+                    if b:
+                        result = a + b
+                    else:
+                        result = a + 1
+                    return {
+                        'addition_result': result
+                    }
+              </code></pre>
+              where the function takes two parameters: 'a' (an integer) and 'b' (an optional integer), with a default value of 'None'. If 'b' has a value (i.e., it's not 'None'), 'a' and 'b' are added together, and the result is assigned to the variable result. If 'b' is None, 'a' is incremented by '1', and the result is assigned to result.
+              </li>
+          </ul>
+          </li>
+          <li><strong>Request body: </strong>To pass data to the API, the FastAPI library relies on the use of the <code>BaseModel</code> class from <code>pydantic</code> to specify the form of the query body. We will first create an Item class inherited from the BaseModel class.
+            <pre class="language-bash"><code>
+              from fastapi import FastAPI
+              from typing import Optional
+              from pydantic import BaseModel
+              
+              class Item(BaseModel):
+                  itemid: int
+                  description: str
+                  owner: Optional[str] = None
+              
+              app = FastAPI()
+              
+              @app.post('/item')
+              def post_item(item: Item):
+                  return {
+                      'itemid': item.itemid
+                  }
+            </code></pre>
+            <p>Here the Item class has the attributes itemid which must be an integer, description which must be a string and owner which is an optional string. We are going to create a route for which we will have to associate a query body containing these attributes. We can open the OpenAPI and inspect the route description <code>POST /item</code>:</p>
+            <figure>
+              <img src="assets/img/data-engineering/fastapi-doc4.png" alt="" style="max-width: 90%; max-height: auto;">
+              <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a> We need to provide an 'Request body' to get the output.</figcaption>
+            </figure>
+            We can see that the annotations given here are no longer counted as parameters (arguments to be specified in the query string). On the other hand, we must now specify the request body ("Request body required"). Thanks to the inheritance of the BaseModel class, we could change the interpretation of the annotation by FastAPI. The use of this BaseModel class as a parent class thus allows a route to accept a body. We force the body of the request to respect a certain schema with certain values that can be optional. Moreover, the use of this class allows to ignore fields which are not predefined. Finally, the BaseModel class allows to easily return all the attributes of the body of a query that have been created in JSON format without having to specify this definition. Note that we can use the <code>typing</code> and <code>pydantic</code> libraries to give more complex types to our data. The following example shows a use of these libraries:
+            <pre class="language-bash"><code>
+              from pydantic import BaseModel
+              from typing import Optional, List
+              class Owner(BaseModel):
+                  name: str
+                  address: str
+              class Item(BaseModel):
+                  itemid: int
+                  description: str
+                  owner: Optional[Owner] = None
+                  ratings: List[float]
+                  available: bool
+            </code></pre>
+            Pydantic also allows to use "exotic" types like http URLs, IP addresses, ... If you want to explore these data types, you can go to this <a href="https://docs.pydantic.dev/latest/concepts/types/" target="_blank">https://docs.pydantic.dev/latest/concepts/types/</a>.
+          </li>
+          <li><strong>Headers: </strong>In this part, we will see how to pass data to the server via the request headers. This command can be very useful to pass authentication tokens or to check the content type, the origin of the request, ... For this, we can use the <code>Header</code> class of <code>fastapi</code>. For example, the following function checks the value of <code>User-Agent</code>. This header is used to determine the source of a request :
+            <pre class="language-bash"><code>
+              from fastapi import Header
+              @api.get('/headers')
+              def get_headers(user_agent=Header(None)):
+                  return {
+                      'User-Agent': user_agent
+                  }
+            </code></pre>
+            <figure>
+              <img src="assets/img/data-engineering/fastapi-doc5.png" alt="" style="max-width: 90%; max-height: auto;">
+              <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a> We see in this case that the returned user-agent is the browser user-agent.</figcaption>
+            </figure>
+          </li>
         </ol>
+
+        <!----------------------------->
+        <h4 id="example">Example Fastapi</h4>
+        In the above case-1 (Dynamic Routing), we have seen the <code>users_db</code>. Now we want to add folloing routes:
+        <ul>
+          <code>PUT /users</code> creates a new user in the database and returns the data for the created user. The data about the new user must be provided in the body of the query.
+          <code>POST /users/userid</code> modifies the data for the user identified by userid and returns the data for the modified user. The data about the user to be modified must be supplied in the body of the request
+          <code>DELETE /users/userid</code> deletes the user identified by userid and returns a confirmation of the deletion.
+        </ul>
+        We will choose to return an empty dictionary in the case of an internal error and we will use a User class inherited from BaseModel.
+        <figure>
+          <img src="assets/img/data-engineering/fastapi-doc6.png" alt="" style="max-width: 90%; max-height: auto;">
+          <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a> We need to provide an integer entry to get the output.</figcaption>
+        </figure>
+        The correspodning main.py file is:
+        <pre class="language-bash"><code>
+          from fastapi import FastAPI
+          from typing import Optional
+          from pydantic import BaseModel
+          
+          users_db = [
+              {
+                  'user_id': 1,
+                  'name': 'Alice',
+                  'subscription': 'free tier'
+              },
+              {
+                  'user_id': 2,
+                  'name': 'Bob',
+                  'subscription': 'premium tier'
+              },
+              {
+                  'user_id': 3,
+                  'name': 'Clementine',
+                  'subscription': 'free tier'
+              }
+          ]
+          app = FastAPI()
+          class User(BaseModel):
+              userid: Optional[int]
+              name: str
+              subscription: str
+          @app.put('/users')
+          def put_users(user: User):
+              new_id = max(users_db, key=lambda u: u.get('user_id'))['user_id']
+              new_user = {
+                  'user_id': new_id + 1,
+                  'name': user.name,
+                  'subscription': user.subscription
+              }
+              users_db.append(new_user)
+              return new_user
+          @app.post('/users/{userid:int}')
+          def post_users(user: User, userid):
+              try:
+                  old_user = list(
+                      filter(lambda x: x.get('user_id') == userid, users_db)
+                      )[0]
+                  users_db.remove(old_user)
+                  old_user['name'] = user.name
+                  old_user['subscription'] = user.subscription
+                  users_db.append(old_user)
+                  return old_user
+              except IndexError:
+                  return {}
+          @app.delete('/users/{userid:int}')
+          def delete_users(userid):
+              try:
+                  old_user = list(
+                      filter(lambda x: x.get('user_id') == userid, users_db)
+                      )[0]
+                  users_db.remove(old_user)
+                  return {
+                      'userid': userid,
+                      'deleted': True
+                      }
+              except IndexError:
+                  return {}
+        </code></pre>
+
 
 
 
