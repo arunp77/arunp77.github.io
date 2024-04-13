@@ -1,9 +1,7 @@
 # My-Portfolio
-🚀 Hi friends! 🚀
+🚀 Hi frinds🚀
 
-I'm thrilled to announce the launch of my brand-new portfolio website! 🌐
-
-After spending some time, I've created a space where you can explore my journey, skills, and the projects I'm passionate about. 🌟
+This is Arun Kumar Pandey and here you can explor my journey, skills, and the projects I'm passionate about. 🌟
 
 📌 Here's what you'll find on my website:
 
