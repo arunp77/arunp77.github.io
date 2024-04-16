@@ -441,6 +441,26 @@
                     <span class="token keyword">return</span> <span class="token string">"The user {} is absent from the database"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token builtin">id</span><span class="token punctuation">)</span> 
                 
                 <span aria-hidden="true" class="line-numbers-rows"></code></pre>
+
+                <p>This Flask application defines routes to perform CRUD (Create, Read, Update, Delete) operations on a user database. Here are the commands you can use to interact with each route and see the output:</p>
+                <ul>
+                    <li><strong>/users/<id> Route (Retrieve a User):</strong>
+                        <pre class="language-python"><code>curl localhost:5000/users/1</code></pre>
+                        Replace 1 with the ID of the user you want to retrieve.
+                    </li>
+                    <li><strong>/add Route (Add a User):</strong>
+                        <pre class="language-python"><code>curl -X PUT "http://localhost:5000/add" -d '{"name": "John", "age": 30}' -H 'Content-Type: application/json'</code></pre>
+                        This command adds a new user with the provided data. Replace {"name": "John", "age": 30} with the user data you want to add.
+                    </li>
+                    <li><strong>/update/<id> Route (Update a User):</strong>
+                        <pre class="language-python"><code>curl -X POST "http://localhost:5000/update/1" -d '{"name": "Updated User", "age": 40}' -H 'Content-Type: application/json'</code></pre>
+                        This command updates the user with the specified ID. Replace 1 with the ID of the user you want to update, and {"name": "Updated User", "age": 40} with the new data for the user.
+                    </li>
+                    <li><strong>/delete/<id> Route (Delete a User):</strong>
+                        <pre class="language-python"><code>curl -X DELETE "http://localhost:5000/delete/1"</code></pre>
+                        This command deletes the user with the specified ID. Replace 1 with the ID of the user you want to delete.
+                    </li>
+                </ul>
             
 
 
