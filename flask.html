@@ -165,13 +165,57 @@
             <h3 id="introduction">Getting started with Flask</h3>
             <a href="https://flask.palletsprojects.com/en/2.0.x/" target="_blank">Flask</a> is a famous Python framework for building web applications. Released in 2011, Flask has established itself as a reference for creating an API on Python. It stands out from <a href="https://www.djangoproject.com/" target="_blank">Django</a>, another famous framework used in Python, because of its lightness. Indeed, Flask is considered as a micro framework, you do not have to define the databases to use or the formatting. However with Flask, you create the core of your web application, then according to your need you add different services. That's why, in a few lines, we can easily display a Hello World on a web page without using an HTML file.
 
-            <h4 id="installation">Installation of Flask and first API</h4>
-            To install Flask, you just have to go through pip.
-            <pre><code class="language-bash">pip install Flask</code></pre>
+            <!--------------->
+            <h4 id="steps">Flask application</h4>
+            <ol>
+                <li><strong>Installation of Flask:</strong> To install Flask, you just have to go through pip.
+                    <pre><code class="language-bash">pip install Flask</code></pre>
+                </li>
+                <li><strong>Creating first flask application:</strong> Copy the following lines into a file <code>first_app.py</code>:
+                    <pre><code class="language-python">
+                        from flask import Flask
+
+                        app = Flask(__name__)
+                        
+                        @app.route("/")
+                        def hello():
+                            return "Hello World !"
+                    </code></pre>
+                    where the directory structure of the project is:
+                    <pre class="language-python">
+                        Flask_app/
+                        │
+                        ├── first_app.py
+                        └── .env
+                    </pre>
+                    <p>Let's see in detail what we have done here. First, we instantiated an object of the Flask class. Then, with this object named app, we use it in the decorator <code>@app.route("/")</code>, to create a route (endpoint). Going to <code>/</code>, we get the result of the <code>hello</code> function, which simply returns a <code>Hello World !</code>>. Thus, we can create several routes using the `<code>app</code>' variable.</p>
+                    <p>Then set the environment variable FLASK_APP with the name of your python file : <code>export FLASK_APP=first_app.py </code> or you can also save the environment variables in <code>.env</code> file and Load the environment variables from <code>.env</code> file using: <code>load_dotenv()</code> (For better understanding, you can see my <a href="https://github.com/arunp77/Data-engineering-tools/tree/main/FLask" target="_blank">github repo</a>). To run the application, use following command in your terminal:</p>
+                    <pre><code class="language-bash">flask run --host=0.0.0.0</code></pre>
+                    On a web browser go to the address <code>ip_address:5000</code> (localhost:5000 if you are using your home machine), you should see a <code>"Hello World !"</code> message. Port <code>5000</code> is used by default on Flask, you can change the port via the <code>--port</code> flag when using <code>flask run</code>.
+                </li>
+                <li><strong>The DEBUG mode and the sent data format: </strong>It is to be noted here that upto this point, whenever, we change something in our <code>first_app.py</code>, the changes will not be refelcted even though we refresh the browser. So to see the changes, we need to stop the process everytime and restart the API everytime you modify the python file. To overcome the issue, we use <code>DEBUG</code> mode. Once, you have modified and saved your python script, by refreshing the web page, you get the desired change. To enable this mode, you need to set the <code>FLASK_ENV</code> environment variable to development. Also, once this mode is enabled, if your API encounters an error, the thrown Python exception will be displayed on the web page. Below, a quotation mark was missing in the string returned by the function and Flask informs us of this.
+                    <figure>
+                        <img src="assets/img/data-engineering/flask-error.png" alt="" style="max-width: 70%; max-height: auto;">
+                        <figcaption></figcaption>
+                    </figure>
+                    To do this, we can again add following script to <code>.env</code> file:
+                    <pre><code class="language-bash">FLASK_ENV=development</code></pre>
+                    <figure>
+                        <img src="assets/img/data-engineering/flask-env.png" alt="" style="max-width: 70%; max-height: auto;">
+                        <figcaption></figcaption>
+                    </figure>
+                    Now we can run the following command to run the fast app script:
+                    <pre><code class="language-bash">python first_app.py</code></pre>
+                    You can now find your web application as before. After that it is recommended to use flask run for the deployment of your application but also because the DEBUG mode is optimized there.
+                </li>
+                <li><strong>Types of </strong>
+                    <pre><code class="language-bash">pip install Flask</code></pre>
+                </li>
+            </ol>
 
 
 
-
+            
 
             
 
