@@ -199,7 +199,7 @@
                         <figcaption></figcaption>
                     </figure>
                     To do this, we can again add following script to <code>.env</code> file:
-                    <pre><code class="language-bash">FLASK_ENV=development</code></pre>
+                    <code>FLASK_ENV=development</code>
                     <figure>
                         <img src="assets/img/data-engineering/flask-env.png" alt="" style="max-width: 70%; max-height: auto;">
                         <figcaption></figcaption>
@@ -208,8 +208,113 @@
                     <pre><code class="language-bash">python first_app.py</code></pre>
                     You can now find your web application as before. After that it is recommended to use flask run for the deployment of your application but also because the DEBUG mode is optimized there.
                 </li>
-                <li><strong>Types of </strong>
-                    <pre><code class="language-bash">pip install Flask</code></pre>
+                <li><strong>Types of the Flask functions:</strong> Flask is a lightweight and flexible web framework for Python, designed to make building web applications quick and easy. It follows the <a href="https://wsgi.tutorial.codepoint.net/intro" target="_blank">WSGI toolkit</a> and <a href="https://jinja.palletsprojects.com/en/3.1.x/" target="_blank">Jinja2</a> templating engine, providing developers with the tools needed to create web applications in a simple and elegant manner.
+                    <ul>
+                        <li><strong>Route Functions:</strong> These are the heart of a Flask application, handling incoming HTTP requests and returning appropriate responses. Route functions are decorated with <code>@app.route()</code> and are responsible for defining the behavior of specific URLs in the application.</li>
+                            <pre><code class="language-python">
+                                from flask import Flask
+                                app = Flask(__name__)
+
+                                @app.route('/')
+                                def index():
+                                    return 'Hello, World!'
+                                
+                                @app.route('/about')
+                                def about():
+                                    return 'About page'
+                                
+                                if __name__ == '__main__':
+                                    app.run()
+                            </code></pre>
+
+                        <li><strong>View Functions:</strong> View functions are similar to route functions but are not tied to specific URLs. They encapsulate the logic for generating a particular piece of content or performing a specific action within the application. View functions are often called by route functions to generate responses.</li>
+                            <pre><code class="language-python">
+                                from flask import Flask, render_template
+
+                                app = Flask(__name__)
+                                
+                                def generate_content():
+                                    # Logic to generate content
+                                    return 'Dynamic content generated here.'
+                                
+                                @app.route('/')
+                                def index():
+                                    content = generate_content()
+                                    return render_template('index.html', content=content)
+                                
+                                if __name__ == '__main__':
+                                    app.run()
+                            </code></pre>
+                        
+                        
+                        <li><strong>Error Handler Functions:</strong> Error handler functions handle exceptions or errors that occur during the processing of a request. Flask provides decorators such as <code>@app.errorhandler()</code> to define error handlers for specific HTTP status codes or exception types. These functions return customized error responses to the client.</li>
+                            <pre><code class="language-python">
+                                from flask import Flask, jsonify
+
+                                app = Flask(__name__)
+                                
+                                @app.errorhandler(404)
+                                def page_not_found(error):
+                                    return jsonify({'error': 'Page not found'}), 404
+                                
+                                if __name__ == '__main__':
+                                    app.run()
+                            </code></pre>
+                        
+                        <li><strong>Before and After Request Functions:</strong> Flask allows developers to execute code before and after each request. Functions decorated with <code>@app.before_request</code> are executed before any request is processed, while functions decorated with <code>@app.after_request</code> are executed after a response has been generated. These functions are commonly used for tasks such as setting up database connections or cleaning up resources.</li>
+                            <pre class="language-python"><code>
+                                from flask import Flask, g
+
+                                app = Flask(__name__)
+                                
+                                @app.before_request
+                                def before_request():
+                                    g.user = 'John'  # Example: set up user authentication or database connection
+                                
+                                @app.route('/')
+                                def index():
+                                    user = g.user  # Access user variable set in before_request
+                                    return f'Hello, {user}!'
+                                
+                                if __name__ == '__main__':
+                                    app.run()
+                            </code></pre>
+                        
+                        <li><strong>Context Processor Functions:</strong> Context processor functions allow developers to inject additional variables into the context of template rendering. These functions are decorated with <code>@app.context_processor</code> and can provide dynamic data that is accessible to all templates rendered during a request.</li>
+                            <pre class="language-python"><code> 
+                                from flask import Flask, render_template, g
+
+                                app = Flask(__name__)
+                                
+                                @app.context_processor
+                                def inject_user():
+                                    user = g.user if 'user' in g else None
+                                    return dict(user=user)
+                                
+                                @app.route('/')
+                                def index():
+                                    return render_template('index.html')
+                                
+                                if __name__ == '__main__':
+                                    app.run()
+                            </code></pre>
+                        
+                        <li><strong>CLI Commands:</strong> Flask supports writing custom command-line interface (CLI) commands using the Flask-Script or Flask-CLI extensions. CLI commands are defined as functions decorated with <code>@app.cli.command()</code> and can be used to perform administrative tasks, database migrations, or other operations from the command line.</li>
+                            <pre class="language-python"><code>
+                                from flask import Flask
+                                import click
+                                
+                                app = Flask(__name__)
+                                
+                                @app.cli.command()
+                                def hello():
+                                    click.echo('Hello, CLI!')
+                                
+                                if __name__ == '__main__':
+                                    app.run()
+                            </code></pre>
+                    </ul>
+                    <pre><code class="language-python">pip install Flask</code></pre>
                 </li>
             </ol>
 
