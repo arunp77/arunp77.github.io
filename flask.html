@@ -471,11 +471,85 @@
             <h3 id="passing-data">Passing data to an API</h3>
             We saw how to create access points to our Flask API with the many HTTP methods. All we had to do was use the <code>route</code> decorator, and then define what the API does when it gets to the endpoint.
             <ul>
-                <li><strong>Dynamic Route: </strong>We saw this first way of sending data:</li>
-                <li><strong></strong></li>
-                <li><strong></strong></li>
-                <li><strong></strong></li>
-                <li><strong></strong></li>
+                <li><strong>Dynamic Route: </strong>We saw this first way of sending data:
+                    <pre class="language-python"><code>
+                        from flask import Flask 
+
+                        app = Flask(__name__)
+                        
+                        @app.route("/hello/<name>")
+                        def hello(name):
+                            return "Hello {}".format(name)
+                        # Do not consider this line </name> 
+                    </code></pre>
+                    To run this <code>curl -X GET http://localhost:5000/hello/Arun</code>. However, it has not been named, this is what we call, a dynamic route. Indeed, unlike our first route where we always displayed Hello World, here we display Hello name with name the first name we indicate from the URI.
+                </li>
+                <li><strong>Data types:</strong> Moreover, we can specify the type of data we want.
+                    <pre class="language-python"><code>
+                        @app.route("/age/<int:age>")
+                            def hello_age(age):
+                                return "Hello, I am {} years old".format(age)
+                    </code></pre>
+                    <code>curl -X GET http://localhost:5000/age/12</code> can be used to see the port output on the endpoint.
+                    <p>The types to characterize a data are the following:</p>
+                    <table border="1">
+                        <tr>
+                          <th>Type</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr>
+                          <td>string</td>
+                          <td>Type by default, accepts any text without /</td>
+                        </tr>
+                        <tr>
+                          <td>int</td>
+                          <td>Accepts natural numbers</td>
+                        </tr>
+                        <tr>
+                          <td>float</td>
+                          <td>Accepts positive numbers</td>
+                        </tr>
+                        <tr>
+                          <td>path</td>
+                          <td>Like the type string but accepts the /</td>
+                        </tr>
+                        <tr>
+                          <td>uuid</td>
+                          <td>Accepts strings UUID</td>
+                        </tr>
+                      </table>
+                      
+                </li>
+                <li><strong>Query string: </strong>As you know, the <code>GET</code> method has a specificity to send data, it is a query string (query parameters). Indeed, at the end of the URI and using a <code>?</code>, you can characterize a set of <strong>value keys</strong>. To execute this type of query, you need to use <code>Flask-Pydantic</code>, downloadable from <code>pip</code>:
+                    <pre class="language-bash"><code>pip install Flask-Pydantic</code></pre>
+                </li>
+                <li><strong></strong>
+                    <pre class="language-python"><code>
+                        from flask import Flask
+                        from pydantic import BaseModel
+                        from flask_pydantic import validate
+                        
+                        class Query(BaseModel):
+                            name:str
+                            age:int
+                        
+                        app = Flask(__name__)
+                        
+                        @app.route("/intro")
+                        @validate()
+                        def intro(query:Query):
+                            return f"Hello, my name is {query.name} and I am {query.age} years old"
+                        
+                        if __name__ == "__main__":
+                            app.run(host="0.0.0.0",debug=True)
+                    </code></pre>
+                    When you go to <code>http://localhost:5000/intro?name=Arun&age=30</code>, you should see the sentence "Hello, my name is Arun and I am 30 years old". As in the previous section, this is a page that is modified according to the data transmitted in the URI.
+                </li>
+                <li><strong></strong>
+                    <pre class="language-python"><code>
+
+                    </code></pre>
+                </li>
             </ul>
 
 
