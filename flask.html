@@ -523,7 +523,7 @@
                 <li><strong>Query string: </strong>As you know, the <code>GET</code> method has a specificity to send data, it is a query string (query parameters). Indeed, at the end of the URI and using a <code>?</code>, you can characterize a set of <strong>value keys</strong>. To execute this type of query, you need to use <code>Flask-Pydantic</code>, downloadable from <code>pip</code>:
                     <pre class="language-bash"><code>pip install Flask-Pydantic</code></pre>
                 </li>
-                <li><strong></strong>
+                <li><strong>Create the Class, and then validate the function:</strong>
                     <pre class="language-python"><code>
                         from flask import Flask
                         from pydantic import BaseModel
@@ -544,15 +544,121 @@
                             app.run(host="0.0.0.0",debug=True)
                     </code></pre>
                     When you go to <code>http://localhost:5000/intro?name=Arun&age=30</code>, you should see the sentence "Hello, my name is Arun and I am 30 years old". As in the previous section, this is a page that is modified according to the data transmitted in the URI.
-                </li>
-                <li><strong></strong>
+                    <ul>
+                        <li>To achieve this result, we can identify the new features. The first is the creation of a class inheriting from <code>BaseModel</code>. We have called it <code>Query</code> here, but you can name it anything you like. The attributes of the class correspond to what we want to send by query string. Flask does a type check, because if you put a string in <code>age</code>, you would get a <code>400</code> code error.</li>
+                        <li>After defining your class, you need to add the <code>@validate</code> decorator after the route decorator. Without this decorator, you will get a Python error.</li>
+                        <li>Finally, the function you linked with the decorators must take as argument an object of the class inherited by <code>BaseModel</code>, called <code>query</code> (a name other than query is problematic). From this <code>query</code> variable, you get the query parameters.</li>
+                    </ul>
+                    <strong>Example:</strong> Create a route that displays, in JSON format, that Damian Lillard is a point guard from Portland, born in 1990 using a query string
                     <pre class="language-python"><code>
-
+                        from flask import Flask
+                        from pydantic import BaseModel
+                        from flask_pydantic import validate
+                        
+                        class Player(BaseModel):
+                            name:str
+                            position:str
+                            team:str
+                            birth_year:int
+                        
+                        app = Flask(__name__)
+                        
+                        @app.route("/info")
+                        @validate()
+                        def info(query:Player):
+                            return query.dict()
                     </code></pre>
+                    Query following: <code>curl -X GET -i "localhost:5000/info?name=Damian%20Lillard&position=PG&team=Portland&birth_year=1990" </code> gives:
+                    <figure>
+                        <img src="assets/img/data-engineering/flask-query-basemodel.png" alt="" style="max-width: 70%; max-height: auto;">
+                        <figcaption></figcaption>
+                    </figure>
+                </li>
+                <li><strong>Request body:</strong> The idea is the same as before, make a new class inheriting from BaseModel, add the @validate decorator and get the information from the object. The only difference is that we do not use the GET method and we have to name the variable body instead of query.
+
+                You'll have to configure the class according to what you want to send via the POST method and specify in the route decorator that we send a POST method.
+                    <pre class="language-python"><code>
+                        from flask import Flask
+                        from pydantic import BaseModel
+                        from flask_pydantic import validate
+                        
+                        class Player(BaseModel):
+                            name:str
+                            position:str
+                            team:str
+                            birth_year:int
+                        
+                        app = Flask(__name__)
+                        
+                        @app.route("/info",methods=["POST"])
+                        @validate()
+                        def info(body:Player):
+                            return body.dict()
+                    </code></pre>
+                    Now if we use the: <code>curl -X 'POST' -i 'http://127.0.0.1:5000/info_post' -H 'Content-Type: application/json' -d '{  "birth_year": 1990,  "name": "Damian Lillard",  "position": "PG",  "team":"Portland"}'</code>
+                    <figure>
+                        <img src="assets/img/data-engineering/flask-query-basemodel1.png" alt="" style="max-width: 70%; max-height: auto;">
+                        <figcaption></figcaption>
+                    </figure>
+                </li>
+                <li><strong>Header: </strong>
+                    Data is present on the response header. Sometimes you need to retrieve this information. To do this, you need to go through the <code>request</code> object which has many attributes related to this header, such as <code>User_agent</code> accessible by the <code>user_agent</code> attribute. The list of attributes is available <a href="https://tedboy.github.io/flask/generated/generated/flask.Request.html#attributes" target="_blank">here</a>.
+                    <p>If you do not want to go through the attributes of <code>request</code>, you can simply use the <code>headers</code> attribute of <code>request</code>, which will tell you the <code>User-Agent</code> as follows <code>request.headers["User-Agent"]</code>.</p>
+                    <p>Even though the <code>headers</code> attribute behaves like a dictionary, its type is not, it is <code>werkzeug.datastructures.EnvironHeaders</code>. You can see this by creating a route that displays the type of <code>request.headers</code> and using curl.</p>
+                    <pre class="language-python"><code>
+                        from flask import request
+
+                        @app.route("/head")
+                        def head():
+                            if request.headers.get("username"):
+                                return "Hello {}".format(request.headers.get("username"))
+                            elif request.headers.get("enterprise"):
+                                return "Hello {}".format(request.headers.get("enterprise"))
+                            else:
+                                return "Hello World !"
+                    </code></pre>
+                    With the 
+                    <ul>
+                        <li><code>curl -i localhost:5000/head -H 'enterprise: VisionAnalytica'</code> statement, you will get a <code>Hello VisionAnalytica</code>,</li>
+                        <li>while with <code>curl -i localhost:5000/head -H 'username: Arun'</code>, we will get a <code>Hello Arun</code></li>
+                    </ul>
                 </li>
             </ul>
 
 
+
+            <!---------------------->
+            <h3 id="erros">Error and response handling</h3>
+            <ul>
+                <li>We have seen that the <code>DEBUG</code> mode displays the error encountered in the Python script, but this does not help the lambda user. You have to adapt the error message so that the user uses your API correctly. For example, let's say you have implemented an API for a Machine Learning model. A variable in your model expects a value between 0 and 10, but the user enters a value of 1000, your Machine Learning model will not work. You have to send a response adapted to the user so that the user puts a value between 0 and 10.</li>
+                <li>Similarly, we encountered an error code 404 when we wrote in a GET method that expected a natural integer instead of a string. However, we had to send a BadRequest error message of code 400.</li>
+                <li>That's why, when you create an API, you have to do some error handling too.</li>
+                <li>There are two ways to act when an error occurs. The first way is to use the decorator <code>@app.errorhandler()</code>. You put it in front of your function as with the <code>@app.route()</code> decorator. All you have to do is specify the error code or the name of the error class imported from <code>werkzeug.exceptions</code> as an argument to the <code>errorhandler</code> decorator.
+                    <pre class="language-python"><code>
+                        from flask import request
+        
+                        @app.route("/head")
+                        from flask import Flask 
+                        from werkzeug.exceptions import NotFound
+                        
+                        app = Flask(__name__)
+                        
+                        @app.route("/hello")
+                        def hello():
+                            return "Hello World"
+                        
+                        @app.errorhandler(NotFound)
+                        def handler_error404(err):
+                            return "You have encountered an error of 404",404
+                    </code></pre>
+                </li>
+                <li>Now go to an address that returns a <code>404</code> error, for example the address <code>localhost:5000/helloname</code>. You will get the message from the <code>errorhandler</code> decorator function, and in the terminal's request history, you will get a 404 error (if you do not specify this code, the request will be coded 200). You can make a better page to indicate the error.</li>
+                <li>The <code>err</code> variable comes from the <code>NotFound</code> class, so you can make a better response through this variable.</li>
+                <li>The second way is to use the <code>register_error_handler()</code> method which takes two arguments. The first argument takes the error code or class name while the second argument takes the function that should be called on the error. The method must be called on the <code>app</code> variable.</li>
+                <li></li>
+            </ul>
+            
+            
 
 
 
