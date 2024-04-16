@@ -208,120 +208,239 @@
                     <pre><code class="language-bash">python first_app.py</code></pre>
                     You can now find your web application as before. After that it is recommended to use flask run for the deployment of your application but also because the DEBUG mode is optimized there.
                 </li>
-                <li><strong>Types of the Flask functions:</strong> Flask is a lightweight and flexible web framework for Python, designed to make building web applications quick and easy. It follows the <a href="https://wsgi.tutorial.codepoint.net/intro" target="_blank">WSGI toolkit</a> and <a href="https://jinja.palletsprojects.com/en/3.1.x/" target="_blank">Jinja2</a> templating engine, providing developers with the tools needed to create web applications in a simple and elegant manner.
-                    <ul>
-                        <li><strong>Route Functions:</strong> These are the heart of a Flask application, handling incoming HTTP requests and returning appropriate responses. Route functions are decorated with <code>@app.route()</code> and are responsible for defining the behavior of specific URLs in the application.</li>
-                            <pre><code class="language-python">
-                                from flask import Flask
-                                app = Flask(__name__)
-
-                                @app.route('/')
-                                def index():
-                                    return 'Hello, World!'
-                                
-                                @app.route('/about')
-                                def about():
-                                    return 'About page'
-                                
-                                if __name__ == '__main__':
-                                    app.run()
-                            </code></pre>
-
-                        <li><strong>View Functions:</strong> View functions are similar to route functions but are not tied to specific URLs. They encapsulate the logic for generating a particular piece of content or performing a specific action within the application. View functions are often called by route functions to generate responses.</li>
-                            <pre><code class="language-python">
-                                from flask import Flask, render_template
-
-                                app = Flask(__name__)
-                                
-                                def generate_content():
-                                    # Logic to generate content
-                                    return 'Dynamic content generated here.'
-                                
-                                @app.route('/')
-                                def index():
-                                    content = generate_content()
-                                    return render_template('index.html', content=content)
-                                
-                                if __name__ == '__main__':
-                                    app.run()
-                            </code></pre>
-                        
-                        
-                        <li><strong>Error Handler Functions:</strong> Error handler functions handle exceptions or errors that occur during the processing of a request. Flask provides decorators such as <code>@app.errorhandler()</code> to define error handlers for specific HTTP status codes or exception types. These functions return customized error responses to the client.</li>
-                            <pre><code class="language-python">
-                                from flask import Flask, jsonify
-
-                                app = Flask(__name__)
-                                
-                                @app.errorhandler(404)
-                                def page_not_found(error):
-                                    return jsonify({'error': 'Page not found'}), 404
-                                
-                                if __name__ == '__main__':
-                                    app.run()
-                            </code></pre>
-                        
-                        <li><strong>Before and After Request Functions:</strong> Flask allows developers to execute code before and after each request. Functions decorated with <code>@app.before_request</code> are executed before any request is processed, while functions decorated with <code>@app.after_request</code> are executed after a response has been generated. These functions are commonly used for tasks such as setting up database connections or cleaning up resources.</li>
-                            <pre class="language-python"><code>
-                                from flask import Flask, g
-
-                                app = Flask(__name__)
-                                
-                                @app.before_request
-                                def before_request():
-                                    g.user = 'John'  # Example: set up user authentication or database connection
-                                
-                                @app.route('/')
-                                def index():
-                                    user = g.user  # Access user variable set in before_request
-                                    return f'Hello, {user}!'
-                                
-                                if __name__ == '__main__':
-                                    app.run()
-                            </code></pre>
-                        
-                        <li><strong>Context Processor Functions:</strong> Context processor functions allow developers to inject additional variables into the context of template rendering. These functions are decorated with <code>@app.context_processor</code> and can provide dynamic data that is accessible to all templates rendered during a request.</li>
-                            <pre class="language-python"><code> 
-                                from flask import Flask, render_template, g
-
-                                app = Flask(__name__)
-                                
-                                @app.context_processor
-                                def inject_user():
-                                    user = g.user if 'user' in g else None
-                                    return dict(user=user)
-                                
-                                @app.route('/')
-                                def index():
-                                    return render_template('index.html')
-                                
-                                if __name__ == '__main__':
-                                    app.run()
-                            </code></pre>
-                        
-                        <li><strong>CLI Commands:</strong> Flask supports writing custom command-line interface (CLI) commands using the Flask-Script or Flask-CLI extensions. CLI commands are defined as functions decorated with <code>@app.cli.command()</code> and can be used to perform administrative tasks, database migrations, or other operations from the command line.</li>
-                            <pre class="language-python"><code>
-                                from flask import Flask
-                                import click
-                                
-                                app = Flask(__name__)
-                                
-                                @app.cli.command()
-                                def hello():
-                                    click.echo('Hello, CLI!')
-                                
-                                if __name__ == '__main__':
-                                    app.run()
-                            </code></pre>
-                    </ul>
-                    <pre><code class="language-python">pip install Flask</code></pre>
-                </li>
             </ol>
 
 
+            <h4 id="types-functions">Types of the Flask functions</h4> 
+            Flask is a lightweight and flexible web framework for Python, designed to make building web applications quick and easy. It follows the <a href="https://wsgi.tutorial.codepoint.net/intro" target="_blank">WSGI toolkit</a> and <a href="https://jinja.palletsprojects.com/en/3.1.x/" target="_blank">Jinja2</a> templating engine, providing developers with the tools needed to create web applications in a simple and elegant manner.
+            <ul>
+                <li><strong>Route Functions:</strong> These are the heart of a Flask application, handling incoming HTTP requests and returning appropriate responses. Route functions are decorated with <code>@app.route()</code> and are responsible for defining the behavior of specific URLs in the application.</li>
+                    <pre><code class="language-python">
+                        from flask import Flask
+                        app = Flask(__name__)
 
+                        @app.route('/')
+                        def index():
+                            return 'Hello, World!'
+                        
+                        @app.route('/about')
+                        def about():
+                            return 'About page'
+                        
+                        if __name__ == '__main__':
+                            app.run()
+                    </code></pre>
+
+                <li><strong>View Functions:</strong> View functions are similar to route functions but are not tied to specific URLs. They encapsulate the logic for generating a particular piece of content or performing a specific action within the application. View functions are often called by route functions to generate responses.</li>
+                    <pre><code class="language-python">
+                        from flask import Flask, render_template
+
+                        app = Flask(__name__)
+                        
+                        def generate_content():
+                            # Logic to generate content
+                            return 'Dynamic content generated here.'
+                        
+                        @app.route('/')
+                        def index():
+                            content = generate_content()
+                            return render_template('index.html', content=content)
+                        
+                        if __name__ == '__main__':
+                            app.run()
+                    </code></pre>
+                
+                <li><strong>Error Handler Functions:</strong> Error handler functions handle exceptions or errors that occur during the processing of a request. Flask provides decorators such as <code>@app.errorhandler()</code> to define error handlers for specific HTTP status codes or exception types. These functions return customized error responses to the client.</li>
+                    <pre><code class="language-python">
+                        from flask import Flask, jsonify
+
+                        app = Flask(__name__)
+                        
+                        @app.errorhandler(404)
+                        def page_not_found(error):
+                            return jsonify({'error': 'Page not found'}), 404
+                        
+                        if __name__ == '__main__':
+                            app.run()
+                    </code></pre>
+                
+                <li><strong>Before and After Request Functions:</strong> Flask allows developers to execute code before and after each request. Functions decorated with <code>@app.before_request</code> are executed before any request is processed, while functions decorated with <code>@app.after_request</code> are executed after a response has been generated. These functions are commonly used for tasks such as setting up database connections or cleaning up resources.</li>
+                    <pre class="language-python"><code>
+                        from flask import Flask, g
+
+                        app = Flask(__name__)
+                        
+                        @app.before_request
+                        def before_request():
+                            g.user = 'John'  # Example: set up user authentication or database connection
+                        
+                        @app.route('/')
+                        def index():
+                            user = g.user  # Access user variable set in before_request
+                            return f'Hello, {user}!'
+                        
+                        if __name__ == '__main__':
+                            app.run()
+                    </code></pre>
+                
+                <li><strong>Context Processor Functions:</strong> Context processor functions allow developers to inject additional variables into the context of template rendering. These functions are decorated with <code>@app.context_processor</code> and can provide dynamic data that is accessible to all templates rendered during a request.</li>
+                    <pre class="language-python"><code> 
+                        from flask import Flask, render_template, g
+
+                        app = Flask(__name__)
+                        
+                        @app.context_processor
+                        def inject_user():
+                            user = g.user if 'user' in g else None
+                            return dict(user=user)
+                        
+                        @app.route('/')
+                        def index():
+                            return render_template('index.html')
+                        
+                        if __name__ == '__main__':
+                            app.run()
+                    </code></pre>
+                
+                <li><strong>CLI Commands:</strong> Flask supports writing custom command-line interface (CLI) commands using the Flask-Script or Flask-CLI extensions. CLI commands are defined as functions decorated with <code>@app.cli.command()</code> and can be used to perform administrative tasks, database migrations, or other operations from the command line.</li>
+                    <pre class="language-python"><code>
+                        from flask import Flask
+                        import click
+                        
+                        app = Flask(__name__)
+                        
+                        @app.cli.command()
+                        def hello():
+                            click.echo('Hello, CLI!')
+                        
+                        if __name__ == '__main__':
+                            app.run()
+                    </code></pre>
+                </ul>
             
 
+            <!---------------------->
+            <h4 id="http-requests">How to send the different HTTP requests with Flask?</h4>
+            HTTP (Hypertext Transfer Protocol) requests are used to communicate between a client and a server. In Python, Flask provides various methods to handle different types of HTTP requests. Here are the main methods related to HTTP requests in Flask:
+            <ol>
+                <li><strong>GET:</strong>The GET method is used to request data from a specified resource. It is the default method used by browsers when you click a link or type a URL into the browser's address bar. <strong>Example in Flask:</strong></li>
+                <pre class="language-python"><code>
+                    from flask import Flask, request
+
+                    app = Flask(__name__)
+                    
+                    @app.route('/hello', methods=['GET'])
+                    def hello():
+                        name = request.args.get('name')
+                        return f'Hello, {name}!'
+                    
+                    if __name__ == '__main__':
+                        app.run()
+                </code></pre>
+                So to get the output: <code>Hello Arun!</code>, you need to provide the 'name' in the request url: <code>http://localhost:5000/hello?name=Arun</code>. Similarly with the cURL tool, <code>curl -X GET "http://localhost:5000/hello?name=Arun"</code>
+                <li><strong>POST:</strong>The POST method is used to submit data to be processed to a specified resource. It is often used when submitting forms on web pages.<strong>Example in Flask:</strong></li>
+                <pre class="language-python"><code>
+                    from flask import Flask, request
+
+                    app = Flask(__name__)
+                    
+                    @app.route("/hello_post", methods=["POST"])
+                    def hello_post():
+                        data = request.get_json()
+                        return f"Hello {data['name']}!"
+                    
+                    if __name__ == '__main__':
+                        app.run()
+                </code></pre>
+                Unlike the GET method, the other methods do not offer the ability to send information from the provided address to your web browser. You are forced to use the curl command. So to send the dictionary <code>{"name" : "Daniel"}</code> to the <code>/hello_post</code> endpoint via <code>curl</code>:
+                <pre class="language-bash"><code>curl localhost:5000/hello_post -d '{"name": "Daniel"}' -H 'Content-Type: application/json' -X POST</code></pre> 
+                It is common that the same route is accessible from several methods, so we can give an array of methods and define the route according to the chosen method. To do this, we use request again.
+                <pre class="language-python"><code>
+                    from flask import Flask, request
+
+                    app = Flask(__name__)
+                    
+                    @app.route("/hello_post", methods=["POST", "GET"])
+                    def hello_post_get():
+                        if request.method == "POST":
+                            data = request.get_json()
+                        return f"Hello {data['name']}!"
+                    
+                    if __name__ == '__main__':
+                        app.run()
+                </code></pre>
+                
+                <li><strong>PUT:</strong>The PUT method is used to update an existing resource or create a new resource if it does not exist. <strong>Example in Flask:</strong></li>
+                <pre class="language-python"><code>
+                    from flask import Flask, request
+
+                    app = Flask(__name__)
+                    
+                    @app.route('/update', methods=['PUT'])
+                    def update():
+                        # Process update logic
+                        return 'Resource updated successfully!'
+                    
+                    if __name__ == '__main__':
+                        app.run()
+                </code></pre>
+                <li><strong>DELETE</strong> The DELETE method is used to delete a specified resource. <strong>Example in Flask:</strong></li>
+                <pre class="language-python"><code>
+                    from flask import Flask
+
+                    app = Flask(__name__)
+                    
+                    @app.route('/delete', methods=['DELETE'])
+                    def delete():
+                        # Process delete logic
+                        return 'Resource deleted successfully!'
+                    
+                    if __name__ == '__main__':
+                        app.run()
+                </code></pre>
+            </ol>
+
+
+            <h5 id="example">Example:</h5>
+            Lets consider a example, where we want to show how to:
+            <ul>
+                <li>PUT <code>/add/users</code> will add the user with its data to the database.</li>
+                <li>POST <code>/update/users</code> will modify the data of an already existing user, otherwise the user will be added to the database.</li>
+                <li>GET <code>/users/&lt;id&gt;</code> will give the information associated with the id user.</li>
+                <li>DELETE <code>/delete/&lt;id&gt;</code> will delete the information associated with the id user</li>
+            </ul>
+            <pre class="line-numbers language-python" id="code-45" tabindex="0"><code class="language-python">
+                <span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask
+                <span class="token keyword">from</span> flask <span class="token keyword">import</span> request
+                
+                app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>
+                user <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+                
+                <span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/users/&lt;id&gt;"</span><span class="token punctuation">)</span>
+                <span class="token keyword">def</span> <span class="token function">get_user</span><span class="token punctuation">(</span><span class="token builtin">id</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                    <span class="token keyword">return</span> user<span class="token punctuation">[</span><span class="token builtin">id</span><span class="token punctuation">]</span>
+                
+                <span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/add"</span><span class="token punctuation">,</span>methods<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"PUT"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+                <span class="token keyword">def</span> <span class="token function">add_user</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                    data <span class="token operator">=</span> request<span class="token punctuation">.</span>get_json<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                    user<span class="token punctuation">[</span><span class="token builtin">str</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">=</span>data
+                    <span class="token keyword">return</span> <span class="token string">"User {} has been added to the database."</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+                
+                <span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/update/&lt;id&gt;"</span><span class="token punctuation">,</span>methods<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"POST"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+                <span class="token keyword">def</span> <span class="token function">update_user</span><span class="token punctuation">(</span><span class="token builtin">id</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                    <span class="token keyword">if</span> <span class="token builtin">id</span> <span class="token keyword">in</span> user<span class="token punctuation">:</span>
+                        user<span class="token punctuation">[</span><span class="token builtin">id</span><span class="token punctuation">]</span> <span class="token operator">=</span> request<span class="token punctuation">.</span>get_json<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                        <span class="token keyword">return</span> <span class="token string">"User {} has been modified"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token builtin">id</span><span class="token punctuation">)</span>
+                    <span class="token keyword">return</span> <span class="token string">"User {} is missing from the database"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token builtin">id</span><span class="token punctuation">)</span> 
+                
+                <span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/delete/&lt;id&gt;"</span><span class="token punctuation">,</span>methods<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"DELETE"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+                <span class="token keyword">def</span> <span class="token function">delete_user</span><span class="token punctuation">(</span><span class="token builtin">id</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                    <span class="token keyword">if</span> <span class="token builtin">id</span> <span class="token keyword">in</span> user<span class="token punctuation">:</span>
+                        <span class="token keyword">del</span> user<span class="token punctuation">[</span><span class="token builtin">id</span><span class="token punctuation">]</span>
+                        <span class="token keyword">return</span> <span class="token string">"User {} has been deleted"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token builtin">id</span><span class="token punctuation">)</span>
+                    <span class="token keyword">return</span> <span class="token string">"The user {} is absent from the database"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token builtin">id</span><span class="token punctuation">)</span> 
+                
+                <span aria-hidden="true" class="line-numbers-rows"></code></pre>
             
 
 
