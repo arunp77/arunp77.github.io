@@ -282,24 +282,6 @@
                         if __name__ == '__main__':
                             app.run()
                     </code></pre>
-                    
-                    <script type="text/python">
-                        from flask import Flask, g
-                        
-                        app = Flask(__name__)
-                        
-                        @app.before_request
-                        def before_request():
-                            g.user = 'John'  # Example: set up user authentication or database connection
-                        
-                        @app.route('/')
-                        def index():
-                            user = g.user  # Access user variable set in before_request
-                            return f'Hello, {user}!'
-                        
-                        if __name__ == '__main__':
-                            app.run()
-                        </script>
                 </li>
                 <li><strong>Context Processor Functions:</strong> Context processor functions allow developers to inject additional variables into the context of template rendering. These functions are decorated with <code>@app.context_processor</code> and can provide dynamic data that is accessible to all templates rendered during a request.
                     <pre class="language-python"><code> 
@@ -488,6 +470,13 @@
             <!----------------------->
             <h3 id="passing-data">Passing data to an API</h3>
             We saw how to create access points to our Flask API with the many HTTP methods. All we had to do was use the <code>route</code> decorator, and then define what the API does when it gets to the endpoint.
+            <ul>
+                <li><strong>Dynamic Route: </strong>We saw this first way of sending data:</li>
+                <li><strong></strong></li>
+                <li><strong></strong></li>
+                <li><strong></strong></li>
+                <li><strong></strong></li>
+            </ul>
 
 
 
