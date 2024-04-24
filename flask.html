@@ -625,40 +625,137 @@
                 </li>
             </ul>
 
-            Updated soon..... 
-
-
-
             <!---------------------->
             <h3 id="erros">Error and response handling</h3>
             <ul>
                 <li>We have seen that the <code>DEBUG</code> mode displays the error encountered in the Python script, but this does not help the lambda user. You have to adapt the error message so that the user uses your API correctly. For example, let's say you have implemented an API for a Machine Learning model. A variable in your model expects a value between 0 and 10, but the user enters a value of 1000, your Machine Learning model will not work. You have to send a response adapted to the user so that the user puts a value between 0 and 10.</li>
                 <li>Similarly, we encountered an error code 404 when we wrote in a GET method that expected a natural integer instead of a string. However, we had to send a BadRequest error message of code 400.</li>
                 <li>That's why, when you create an API, you have to do some error handling too.</li>
-                <li>There are two ways to act when an error occurs. The first way is to use the decorator <code>@app.errorhandler()</code>. You put it in front of your function as with the <code>@app.route()</code> decorator. All you have to do is specify the error code or the name of the error class imported from <code>werkzeug.exceptions</code> as an argument to the <code>errorhandler</code> decorator.
-                    <pre class="language-python"><code>
-                        from flask import request
-        
-                        @app.route("/head")
-                        from flask import Flask 
-                        from werkzeug.exceptions import NotFound
-                        
-                        app = Flask(__name__)
-                        
-                        @app.route("/hello")
-                        def hello():
-                            return "Hello World"
-                        
-                        @app.errorhandler(NotFound)
-                        def handler_error404(err):
-                            return "You have encountered an error of 404",404
-                    </code></pre>
+                <li>There are two ways to act when an error occurs: 
+                    <ol>
+                        <li><strong>First method: </strong>The first way is to use the decorator <code>@app.errorhandler()</code>. You put it in front of your function as with the <code>@app.route()</code> decorator. All you have to do is specify the error code or the name of the error class imported from <code>werkzeug.exceptions</code> as an argument to the <code>errorhandler</code> decorator.
+                            <pre class="language-python"><code>
+                                from flask import request
+                
+                                @app.route("/head")
+                                from flask import Flask 
+                                from werkzeug.exceptions import NotFound
+                                
+                                app = Flask(__name__)
+                                
+                                @app.route("/hello")
+                                def hello():
+                                    return "Hello World"
+                                
+                                @app.errorhandler(NotFound)
+                                def handler_error404(err):
+                                    return "You have encountered an error of 404",404
+                            </code></pre>
+                            <ul>
+                                <li>Now go to an address that returns a <code>404</code> error, for example the address <code>localhost:5000/helloname</code>. You will get the message from the <code>errorhandler</code> decorator function, and in the terminal's request history, you will get a 404 error (if you do not specify this code, the request will be coded 200). You can make a better page to indicate the error.</li>
+                                <li>The <code>err</code> variable comes from the <code>NotFound</code> class, so you can make a better response through this variable.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Second method: </strong>The second way is to use the <code>register_error_handler()</code> method which takes two arguments. The first argument takes the error code or class name while the second argument takes the function that should be called on the error. The method must be called on the <code>app</code> variable.
+                            <div class="grey-box">Remove the <code>errorhandler</code> decorator and use the <code>register_error_handler()</code> function instead.
+                                <pre class="language-python"><code>
+                                def handler_error404(err):
+                                    return "You have encountered an error of 404",404
+                                app.register_error_handler(404,handler_error404)
+                                </code></pre>
+                                Here we removed the decorator and added this snippet to the original python file.
+                            </div>
+                            Now let's take a example:
+                            <pre class="language-python"><code>
+                                @app.route("/age/<int: val>")
+                                    def age(val):
+                                        return f"Hello, I am {val} years old."
+                                    # Do not consider this line </int:>    
+                            </code></pre>
+                            When we write a string after <code>/age/</code>, we get a <code>404</code> error instead of a Bad Request error representing that the user got the syntax wrong. There are several ways to return this error, the first is to send a tuple consisting of an error message and the code associated with our HTTP error. In this case, it is 400. With the route below, you can :
+                            <pre class="language-python"><code>
+                                @app.route("/age/<val>")
+                                    def age(val):
+                                        try:
+                                            return "Hello, I am {} years old".format(int(val))
+                                        except ValueError:
+                                            return "You did not enter an integer",400
+                                    # Do not consider this line </val>
+                            </code></pre>
+                            We can also import exceptions corresponding to HTTP errors from <code>werkzeug.exceptions</code>. Here we need to get the <code>BadRequest</code> exception and throw it using <code>raise</code>.
+                            <pre class="language-python"><code>
+                                from werkzeug.exceptions import BadRequest
+
+                                @app.route("/age/<val>")
+                                def age(val):
+                                    try:
+                                        return "Hello, I am {} years old".format(int(val))
+                                    except ValueError:
+                                        raise BadRequest("You did not enter an integer")
+                                # Do not consider this line </val>      
+                            </code></pre>
+                            Finally, we can simply use the <code>abort</code> function of flask and fill in the error message via the <code>description</code> argument of <code>abort</code>.
+                            <pre class="language-python"><code>
+                                from flask import abort 
+
+                                @app.route("/age/<val>")
+                                def hello(val):        
+                                    try:
+                                        return f"Hello, I am {int(val)} years old."
+                                    except ValueError:
+                                        abort(400,description="You did not enter an integer")
+                                # Do not consider this line </val>    
+                            </code></pre>
+                        </li>
+                    </ol>
                 </li>
-                <li>Now go to an address that returns a <code>404</code> error, for example the address <code>localhost:5000/helloname</code>. You will get the message from the <code>errorhandler</code> decorator function, and in the terminal's request history, you will get a 404 error (if you do not specify this code, the request will be coded 200). You can make a better page to indicate the error.</li>
-                <li>The <code>err</code> variable comes from the <code>NotFound</code> class, so you can make a better response through this variable.</li>
-                <li>The second way is to use the <code>register_error_handler()</code> method which takes two arguments. The first argument takes the error code or class name while the second argument takes the function that should be called on the error. The method must be called on the <code>app</code> variable.</li>
-                <li></li>
+                <li>Now let's take a example. Create a route "/random" that will return a random number between 0 and an integer end, but access is restricted to the user who will send by POST "name": "Daniel", but also the value of end. So you have to send the HTTP exception for bad authentication but also the exception for an incorrect value for end.</li>
+                <pre class="language-python"><code>
+                    from flask import Flask, request
+                    import random as ran
+                    from werkzeug.exceptions import BadRequest, Unauthorized
+                    
+                    app = Flask(__name__)
+                    
+                    @app.route("/random", methods=["POST"])
+                    def random():
+                        data = request.get_json()
+                        if data["name"] == "Daniel":
+                            try: 
+                                return f"Your lucky number is {ran.randint(0, int(data['end']) + 1)}.\n"
+                            except ValueError:
+                                raise BadRequest("You did not enter an integer")
+                        else:
+                            raise Unauthorized("The user is not Daniel")
+                    
+                    if __name__ == "__main__":
+                        app.run(debug=True)
+                </code></pre>
+                To run the script, save this to a file <code>app.py</code> and then run in the command prompt using <code>python app.py</code>. Go to the Postman application to see the output.Follow the steps as follows:
+                <ol>
+                    <li><strong>Create a POST Request: </strong>
+                        <ul>
+                            <li>In Postman, select the HTTP method as POST.</li>
+                            <li>Enter the URL where your Flask application is running. By default, it should be <span style="color: blue;">http://localhost:5000/random</span>.</li>
+                            <li>Click on the "Body" tab.</li>
+                            <li>Select the "raw" option and set the format to JSON (application/json).</li>
+                            <li>Enter the JSON payload in the request body. For example:</li>
+                            <pre class="language-json"><code>
+                                {
+                                    "name": "Daniel",
+                                    "end": 10
+                                }
+                            </code></pre>   
+                        </ul>
+                    </li>
+                    <li><strong>Send the Request:</strong> Click on the "Send" button to send the POST request to your Flask application.</li>
+                    <li><strong>View the Response: </strong>You should receive a response from the Flask application in the Postman interface. If the conditions in the endpoint are met, you will see a response containing the lucky number. If not, you will receive an appropriate error message.</li>
+                    <li><strong>Verify Output: </strong>Check the response body in Postman to see the output returned by the Flask application.</li>
+                </ol>
             </ul>
+
+            <h3 id="response">Creating your responses</h3>
+            We have seen that the accepted formats of a function associated with a route are dictionaries, strings and tuples, but in fact Flask converts its types into a Flask specific format which is the Response class. To use this class, it is common to use the make_response function.
             
             
 
