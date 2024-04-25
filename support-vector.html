@@ -185,7 +185,7 @@
         <li>In this algorithm, we try to find a hyperplane that best separates the two classes. It is to be noted that, it may seems that the SVM and logisitc regression are similar. Both the algorithms try to find the best hyperplane, but the main difference is logistic regression is a probabilistic approach whereas support vector machine is based on statistical approaches.</li>
         <li>Now the question is which hyperplane does it select? There can be an infinite number of hyperplanes passing through a point and classifying the two classes perfectly. So, which one is the best? Well, SVM does this by finding the maximum margin between the hyperplanes that means maximum distances between the two classes.</li>
     </ul>
-    <div class="grey-box">
+    <div class="important-box">
         <p><strong>Logistic Regression vs Support Vector Machine (SVM): </strong>
         Depending on the number of features you have you can either choose Logistic Regression or SVM. SVM works best when the dataset is small and complex. It is usually advisable to first use logistic regression and see how does it performs, if it fails to give a good accuracy you can go for SVM without any kernel. Logistic regression and SVM without any kernel have similar performance but depending on your features, one may be more efficient than the other.</p>
         <table>
@@ -366,7 +366,7 @@
     & \vec{X} \cdot \vec{w} < c \quad && \text{(negative samples)}
     \end{align*}
     <p>Here the dot product of the two vectors (where \(\vec{w}\) is a unit vector perpendicular to the decision boundary), gives the distance of vector X from the decision boundary and there may be infinte points on the boundary to measure the distance from. We simply take perpendicular and use it as a reference and then take projections of all the other data points on this perpendicular vector and then compare the distance. In SVM we also have a concept of margin. We can rewrite the equation \(\vec{X} \cdot \vec{w} -c \geq 0 \Rightarrow  \vec{X} \cdot \vec{w} +b \geq 0 \), where we just replaced \(-c\) with the \(b\). </p>
-    <div class="grey-box">
+    <div class="important-box">
         &#128073; In general equation of a plane can be written as \(\vec{n} \cdot \vec{r} = \vec{n} \cdot \vec{r}_0\), where we can write \(\vec{n}  = (A, B, C)\) which is the normal vector to the plane, \(\vec{r}\) is the  position vector of any point \((x,y,z)\) on the plane, and \(\vec{r}_0\) is the position vector of a known point \((x_0, y_0, z_0)\) on the plane.</div>
     <p>Therefore, we have</p>
 
@@ -411,7 +411,7 @@
         </li>
         
         <li><strong>Soft Margin SVM:</strong> In a traditional SVM, we aim to find a hyperplane that separates the data into two classes with the largest margin possible. However, in real-world scenarios, the data might not be linearly separable, or there could be outliers that affect the decision boundary. The Soft Margin SVM addresses these issues by allowing for some misclassifications and incorporating a penalty term for them. Mathematically, let's start with the optimization problem for the Soft Margin SVM. Given training data \((x_1, y_1),(x_2, y_2), (x_n, y_n)\), where \(x_i \in \mathbb{R}^d\) is the input feature vector and \(y_i \in \{-1, 1\}\) is the corresponding class label, the Soft Margin SVM aims to find the hyperplane represented by \(\mathbf{w} \cdot \mathbf{x} + b = 0\) that maximizes the margin while allowing for some misclassifications.
-            <div class="grey-box">
+            <div class="important-box">
                 <strong>&#128204; Note:</strong> Here it is to be noted here that we took argmin instead of argmax compared to the Hard Margin SVM. We know that \(\text{max}[f(x)]\) can also be written as \(\min[1/f(x)]\), it is common practice to minimize a cost function for optimization problems; therefore, we can invert the function <strong>argmax</strong> function to <strong>argmin</strong>.
             </div>
 
@@ -460,7 +460,7 @@
     
     <h4 id="types-kernel"><a href="https://www.cs.cornell.edu/courses/cs4780/2017sp/lectures/lecturenote13.html" target="_blank">Types of Kernel Functions</a></h4>
     <p>There are several types of kernel functions commonly used in SVMs. For the input vectors \(\textbf{x}\) and \(\textbf{x}'\):</p>
-    <div class="grey-box"> &#x270D; <strong>Book suggestion:</strong> The Elements of Statistical Learning: Data Mining, Inference, and Prediction, Trevor Hastie, Robert Tibshirani, Jerome H. Friedman </div>
+    <div class="important-box"> &#x270D; <strong>Book suggestion:</strong> The Elements of Statistical Learning: Data Mining, Inference, and Prediction, Trevor Hastie, Robert Tibshirani, Jerome H. Friedman </div>
     <ol>
         <li><strong><u><a href="https://www.cs.cornell.edu/courses/cs4780/2017sp/lectures/lecturenote09.html" target="_blank">Linear Kernel</a></u> \(K_{\text{linear}}(\textbf{x},\textbf{x}')\):</strong> This is the simplest kernel function, where the dot product of the input vectors is computed directly in the original feature space. It is suitable for linearly separable data.
         $$K_{\text{linear}}(\textbf{x}, \textbf{x}') = \textbf{x}^T \textbf{x}'$$

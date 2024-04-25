@@ -161,7 +161,7 @@
                 <section>
                     <h3 id="rdd">RDD's - Resilient Distributed Datasets</h3>
                     The RDD structure is the elementary structure of Spark. It is flexible and optimal in performance for any linear operation. However, this structure has limited performance when it comes to non-linear operations, which is why we will introduce the DataFrame structure in the following exercise.
-                    <div class="grey-box">
+                    <div class="important-box">
                         A good reference for the pyspark can be found at <a href="https://www.tutorialspoint.com/pyspark/index.htm">Link</a>. Another link with some 
                         good examples can be found at <a href="https://sparkbyexamples.com/" target="_blank">Link</a>.
                     </div>
@@ -341,7 +341,7 @@
                             <img src="assets/img/data-engineering/pyspark-ml.png" alt="" style="max-width: 90%; max-height: auto;">
                             <figcaption></figcaption>
                         </figure>
-                        <div class="grey-box">
+                        <div class="important-box">
                             Displaying a database with the method <code>show()</code> is faster. However, the result can sometimes be incomprehensible when there are too many variables.
                             We can then select a few variables and truncate the display to make them clean or privilege the succession of methods <code>sample()</code> and <code>toPandas()</code> 
                             taking care to choose a reasonable number of lines to display. It should be kept in mind that even if the sample method is relatively fast, it necessarily involves a 
@@ -383,7 +383,7 @@
                                 <li><code>features</code>: containing the explanatory variables.</li>
                             </ul>
                             The <code>DenseVector()</code> function, from the package <code>pyspark.ml.linalg</code>, allows you to group several variables into one.
-                            <div class="grey-box"><strong>Note: </strong>To be able to use the function <code>DenseVector</code>, we have to use the method <code>map</code> after transforming the <code>DataFrame</code> to <code>rdd</code>.
+                            <div class="important-box"><strong>Note: </strong>To be able to use the function <code>DenseVector</code>, we have to use the method <code>map</code> after transforming the <code>DataFrame</code> to <code>rdd</code>.
                             <pre><code>
                             rdd_ml = df.rdd.map(lambda x: (x[0], 
                                 DenseVector(x[1:])))
@@ -421,7 +421,7 @@
                                 <li>Create the function with context-specific parameters,</li>
                                 <li>Use the <code>fit</code> method to apply it to the data.</li>
                             </ul>
-                            <div class="grey-box">For more details on this method, we can go to following <a href="https://spark.apache.org/docs/latest/ml-classification-regression.html" target="_blank">link</a>.</div>
+                            <div class="important-box">For more details on this method, we can go to following <a href="https://spark.apache.org/docs/latest/ml-classification-regression.html" target="_blank">link</a>.</div>
                             We now import the <code>LinearRegression</code>, create a distributed linear regression function <code>lr</code> to be applied to the set <code>train</code>. We then create <code>linearModel</code>,
                             the model from <code>lr</code> applied to <code>train</code>.
                         </li> 
