@@ -1201,32 +1201,6 @@ section {
   }
 }
 
-/*--------------------------------------------------------------
-# Creating a box of text
---------------------------------------------------------------*/
-.box {
-  width: 98%; /* Set your desired width here */
-  border: 1px solid #d6d6d6;
-  background-color: #e2e2e221;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 20px;
-  box-shadow: 5px 5px 5px;
-}
-
-.grey-box {
-  border:#000000  solid 1px;
-  background-color: #F7F7F7;
-  background-color: #d3d3d342; /* Grey color */
-  padding: 20px;
-  border-radius: 8px;
-}
-
-.important-box {
-  background-color: #d3d3d342; /* Grey color */
-  padding: 20px;
-  border-radius: 8px;
-}
 
 /*--------------------------------------------------------------
 # Creating a table with header
@@ -1430,86 +1404,42 @@ ul.upper-alpha {
   border-radius: 4px;
 }
 
+
+
+/*--------------------------------------------------------------
+# Creating a box of text
+--------------------------------------------------------------*/
+.box {
+  width: 98%; /* Set your desired width here */
+  border: 1px solid #d6d6d6;
+  background-color: #e2e2e221;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px;
+}
+
+.grey-box {
+  border:#000000  solid 1px;
+  background-color: #F7F7F7;
+  background-color: #d3d3d342; /* Grey color */
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.important-box {
+  background-color: #d3d3d342; /* Grey color */
+  padding: 20px;
+  border-radius: 8px;
+}
+
+
 /*---------------------------------------
 /* Glowing button
 /*----------------------------------------*/
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 .button {
-  border: 2px solid #d2bdff;
-  height: 80px;
-  width: 200px;
-  border-radius: 4px;
-  position: relative;
-  cursor: pointer;
-  font-family: "Roboto", sans-serif;
-  margin: 25px;
-
-  &::after {
-    content: "HOVER ME";
-    position: absolute;
-    top: 41%;
-    left: 50%;
-    transform: translate(-50%);
-    color: #d2bdff;
-    transition: all 0.1s linear;
-  }
-
-  &::before {
-    content: "";
-    position: relative;
-    display: block;
-    height: 15px;
-    width: 15px;
-    background: #d2bdff;
-    box-shadow: 0px 0px 10px 3px #0ff;
-    margin-left: -8px;
-    margin-top: -8px;
-    opacity: 0;
-    transition: all 0.1s linear;
-    border-radius: 100%;
-    animation: star 1.3s linear infinite;
-  }
-
-  @keyframes star {
-    0% {
-      margin-left: -8px;
-      margin-top: -8px;
-    }
-    25% {
-      margin-left: 194px;
-      margin-top: -8px;
-    }
-
-    50% {
-      margin-left: 194px;
-      margin-top: 75px;
-    }
-    75% {
-      margin-left: -8px;
-      margin-top: 75px;
-    }
-    100% {
-      margin-left: -8px;
-      margin-top: -8px;
-    }
-  }
-
-  &:hover {
-    &::before {
-      opacity: 1;
-      animation: star 1.3s linear infinite;
-    }
-
-    &::after {
-      content: "I'M GLOWING";
-      text-shadow: 0 0 10px #fff, 0 0 10px #fff, 0 0 20px #82bedc,
-        0 0 30px #82bedc, 0 0 40px #82bedc, 0 0 50px #82bedc, 0 0 60px #82bedc;
-    }
-  }
-}
-
-.button2 {
   position: relative;
   display: inline-block;
   padding: 30px 61px;
@@ -1613,4 +1543,71 @@ ul.upper-alpha {
       }
     }
   }
+}
+
+
+/*---------------------------------------------*/
+/*                     Text box                */
+/*---------------------------------------------*/
+
+.box2 {
+  width: 900px;
+  height: 200px;
+  border-radius: 5px;
+  color: #06052c;
+  box-shadow: 0 2px 15px rgba(black, .2);
+  background: lighten(#f4c3e5, 10%);
+  position: relative;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.box2 a {
+  text-align: center;
+  color: black; /* Set text color to black */
+}
+
+.wave {
+  opacity: .4;
+  position: absolute;
+  top: 3%;
+  left: 50%;
+  background: rgb(0, 255, 255);
+  width: 400px;
+  height: 300px;
+  margin-left: -250px;
+  margin-top: -250px;
+  transform-origin: 50% 48%;
+  border-radius: 43%;
+  animation: drift 3000ms infinite linear;
+}
+
+.wave.-three {
+  animation: drift 5000ms infinite linear;
+  background: rgb(252, 12, 212);
+}
+
+.wave.-two {
+  animation: drift 7000ms infinite linear;
+  opacity: .5;
+  background: rgb(215, 248, 96);
+}
+
+.box2:after {
+  content: '';
+  display: block;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(#e8a, 1), rgba(#def, 0) 80%, rgba(white, .5));
+  z-index: 11;
+  transform: translate3d(0, 0, 0);
+}
+
+@keyframes drift {
+  from { transform: rotate(0deg); }
+  from { transform: rotate(360deg); }
 }
