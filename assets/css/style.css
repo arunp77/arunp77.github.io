@@ -1551,17 +1551,14 @@ ul.upper-alpha {
 /*---------------------------------------------*/
 
 .box2 {
-  width: 900px;
-  height: 200px;
+  width: 800px;
+  height: 150px;
   border-radius: 5px;
-  color: #06052c;
-  box-shadow: 0 2px 15px rgba(black, .2);
-  background: lighten(#f4c3e5, 10%);
+  background: rgba(230, 236, 236, 0);
+  box-shadow: 0 2px 30px rgba(black, .2);
   position: relative;
   overflow: hidden;
   transform: translate3d(0, 0, 0);
-  padding: 5px;
-  margin-bottom: 5px;
 }
 
 .box2 a {
@@ -1575,7 +1572,7 @@ ul.upper-alpha {
   top: 3%;
   left: 50%;
   background: rgb(0, 255, 255);
-  width: 400px;
+  width: 500px;
   height: 300px;
   margin-left: -250px;
   margin-top: -250px;
