@@ -23,10 +23,16 @@
   <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <!-- Creating a python code section-->
+  <link rel="stylesheet" href="assets/css/prism.css">
+  <script src="assets/js/prism.js"></script>
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
+  <!-- To set the icon, visit https://fontawesome.com/account-->
+  <script src="https://kit.fontawesome.com/5d25c1efd3.js" crossorigin="anonymous"></script>
+  <!-- end of icon-->
 
   <script type="text/javascript" async
         src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
@@ -46,356 +52,395 @@
   <!-- ======= Mobile nav toggle button ======= -->
   <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
 
-  <!-- ======= Header ======= -->
-  <header id="header">
+    <!-- ======= Header ======= -->
+    <header id="header">
     <div class="d-flex flex-column">
-
-      <div class="profile">
-        <img src="assets/img/myphoto.jpeg" alt="" class="img-fluid rounded-circle">
-        <h1 class="text-light"><a href="index.html">Arun</a></h1>
-        <div class="social-links mt-3 text-center">
-          <a href="https://www.linkedin.com/in/arunp77/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-          <a href="https://github.com/arunp77" target="_blank" class="github"><i class="bx bxl-github"></i></a>
-          <a href="https://twitter.com/arunp77_" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
-          <a href="https://www.instagram.com/arunp77/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
-          <a href="https://arunp77.medium.com/" target="_blank" class="medium"><i class="bx bxl-medium"></i></a>
+        <div class="profile">
+            <img src="assets/img/myphoto.jpeg" alt="" class="img-fluid rounded-circle">
+            <h1 class="text-light"><a href="index.html">Arun</a></h1>
+            <div class="social-links mt-3 text-center">
+                <a href="https://www.linkedin.com/in/arunp77/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                <a href="https://github.com/arunp77" target="_blank" class="github"><i class="bx bxl-github"></i></a>
+                <a href="https://twitter.com/arunp77_" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="https://www.instagram.com/arunp77/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="https://arunp77.medium.com/" target="_blank" class="medium"><i class="bx bxl-medium"></i></a>
+            </div>
         </div>
-      </div>
 
-      <nav id="navbar" class="nav-menu navbar">
-        <ul>
-          <li><a href="index.html#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
-          <li><a href="index.html#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
-          <li><a href="index.html#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
-          <li><a href="index.html#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
-          <li><a href="index.html#skills-and-tools" class="nav-link scrollto"><i class="bx bx-wrench"></i> <span>Skills and Tools</span></a></li>
-          <li><a href="index.html#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li>
-          <li><a href="index.html#professionalcourses" class="nav-link scrollto"><i class="bx bx-book-alt"></i> <span>Professional Certification</span></a></li>
-          <li><a href="index.html#publications" class="nav-link scrollto"><i class="bx bx-news"></i> <span>Publications</span></a></li>
-          <li><a href="index.html#extra-curricular" class="nav-link scrollto"><i class="bx bx-rocket"></i> <span>Extra-Curricular Activities</span></a></li>
-          <li><a href="index.html#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
-        </ul>
-      </nav><!-- .nav-menu -->
+        <nav id="navbar" class="nav-menu navbar">
+            <ul>
+                <li><a href="index.html#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+                <li><a href="index.html#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
+                <li><a href="index.html#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+                <li><a href="index.html#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+                <li><a href="index.html#skills-and-tools" class="nav-link scrollto"><i class="bx bx-wrench"></i> <span>Skills and Tools</span></a></li>
+                <li><a href="index.html#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li>
+                <li><a href="index.html#professionalcourses" class="nav-link scrollto"><i class="bx bx-book-alt"></i> <span>Professional Certification</span></a></li>
+                <li><a href="index.html#publications" class="nav-link scrollto"><i class="bx bx-news"></i> <span>Publications</span></a></li>
+                <li><a href="index.html#extra-curricular" class="nav-link scrollto"><i class="bx bx-rocket"></i> <span>Extra-Curricular Activities</span></a></li>
+                <li><a href="index.html#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+            </ul>
+        </nav><!-- .nav-menu -->
     </div>
-  </header><!-- End Header -->
-  
+    </header><!-- End Header -->
 
-  <main id="main">
-
-    <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-      <div class="container">
-
-        <div class="d-flex justify-content-between align-items-center">
-          <h2>Gravitational collapse</h2>
-          <ol>
-            <li><a href="index.html#portfolio" class="clickable-box">Go to portfolio</a></li>
-          </ol>
-        </div>
-
-      </div>
-    </section><!-- End Breadcrumbs -->
-
-    <!------  right dropdown menue ------->
-    <div class="right-side-list">
-      <div class="dropdown">
-          <button class="dropbtn"><strong>Shortcuts:</strong></button>
-          <div class="dropdown-content">
-              <ul>
-                  <li><a href="cloud-compute.html"><i class="fas fa-cloud"></i> Cloud</a></li>
-                  <li><a href="AWS-GCP.html"><i class="fas fa-cloud"></i> AWS-GCP</a></li>
-                  <li><a href="amazon-s3.html"><i class="fas fa-cloud"></i> AWS S3</a></li>
-                  <li><a href="ec2-confi.html"><i class="fas fa-server"></i> EC2</a></li>
-                  <li><a href="Docker-Container.html"><i class="fab fa-docker" style="color: rgb(3, 3, 3);"></i> Docker</a></li>
-                  <li><a href="Jupyter-nifi.html"><i class="fab fa-python" style="color: rgb(14, 14, 14);"></i> Jupyter-nifi</a></li>
-                  <li><a href="snowflake-task-stream.html"><i class="fas fa-snowflake"></i> Snowflake</a></li>
-                  <li><a href="data-model.html"><i class="fas fa-database"></i> Data modeling</a></li>
-                  <li><a href="sql-basics.html"><i class="fas fa-table"></i> QL</a></li>
-                  <li><a href="sql-basic-details.html"><i class="fas fa-database"></i> SQL</a></li>
-                  <li><a href="Bigquerry-sql.html"><i class="fas fa-database"></i> Bigquerry</a></li>
-                  <li><a href="scd.html"><i class="fas fa-archive"></i> SCD</a></li>
-                  <li><a href="sql-project.html"><i class="fas fa-database"></i> SQL project</a></li>
-                    <!-- Add more subsections as needed -->
-                </ul>
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs"> 
+          <div class="container">
+    
+            <div class="d-flex justify-content-between align-items-center">
+              <h2>Research</h2>
+              <ol>
+                <li><a href="Data-engineering.html" class="clickable-box">Content section</a></li>
+                <li><a href="index.html#portfolio" class="clickable-box">Portfolio section</a></li>
+              </ol>
+            </div>
+    
           </div>
-        </div>
-    </div>
+        </section><!-- End Breadcrumbs -->
 
-    <!-- ======= Portfolio Details Section ======= -->
-    <section id="portfolio-details" class="portfolio-details">
-      <div class="container">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-8">
-            <div class="portfolio-details-slider swiper">
-              <div class="swiper-wrapper align-items-center">
-
-                <div class="swiper-slide">
-                  <img src="assets/img/portfolio/code-1.png" alt="">
+        <!------  right dropdown menue ------->
+        <div class="right-side-list">
+            <div class="dropdown">
+                <button class="dropbtn"><strong>Shortcuts:</strong></button>
+                <div class="dropdown-content">
+                    <ul>
+                        <li><a href="cloud-compute.html"><i class="fas fa-cloud"></i> Cloud</a></li>
+                        <li><a href="AWS-GCP.html"><i class="fas fa-cloud"></i> AWS-GCP</a></li>
+                        <li><a href="amazon-s3.html"><i class="fas fa-cloud"></i> AWS S3</a></li>
+                        <li><a href="ec2-confi.html"><i class="fas fa-server"></i> EC2</a></li>
+                        <li><a href="Docker-Container.html"><i class="fab fa-docker" style="color: rgb(29, 27, 27);"></i> Docker</a></li>
+                        <li><a href="Jupyter-nifi.html"><i class="fab fa-python" style="color: rgb(34, 32, 32);"></i> Jupyter-nifi</a></li>
+                        <li><a href="snowflake-task-stream.html"><i class="fas fa-snowflake"></i> Snowflake</a></li>
+                        <li><a href="data-model.html"><i class="fas fa-database"></i> Data modeling</a></li>
+                        <li><a href="sql-basics.html"><i class="fas fa-table"></i> QL</a></li>
+                        <li><a href="sql-basic-details.html"><i class="fas fa-database"></i> SQL</a></li>
+                        <li><a href="Bigquerry-sql.html"><i class="fas fa-database"></i> Bigquerry</a></li>
+                        <li><a href="scd.html"><i class="fas fa-archive"></i> SCD</a></li>
+                        <li><a href="sql-project.html"><i class="fas fa-database"></i> SQL project</a></li>
+                            <!-- Add more subsections as needed -->
+                    </ul>
                 </div>
-              </div>
-            <div class="swiper-pagination"></div>
-          </div>
+            </div>
         </div>
 
-        <div class="col-lg-4">
-          <div class="portfolio-info">
-            <h3>Project information</h3>
-            <ul>
-              <li><strong>Category</strong>: About </li>
-              <li><strong>Resources</strong>: at GitHub</li>
-              <!--
-              <li><strong>Project date</strong>: 01 March, 2020</li>
-              -->
-              <li><strong>Project URL</strong>: <a href="https://github.com/arunp77/Gravitational-collapse" target="_blank">Go to the repository</a></li>
-            </ul>
-          </div>
-        </div>
+        <!-- ======= Portfolio Details Section ======= -->
+        <section id="portfolio-details" class="portfolio-details">
+        <div class="container">
+            <div class="row gy-4">
+                <h1>Short descriptions on research topics</h1>
+                <div class="col-lg-8">
+                    <div class="portfolio-details-slider swiper">
+                        <div class="swiper-wrapper align-items-center"> 
+                            <figure>
+                            <img src="assets/img/portfolio/code-1.png" alt="" style="max-width: 50%; max-height: auto;">
+                            <figcaption></figcaption>
+                            </figure>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
 
-        <section id="sec-1">
-        <h2>Gravitational-collapse</h2>
+                <div class="col-lg-4 grey-box">
+                    <div class="section-title">
+                        <h3>Table of Contents</h3>
+                        <ol>
+                            <li><strong>Category</strong>: About </li>
+                            <li><strong>Resources</strong>: at GitHub</li>
+                            <li><strong>Project URL</strong>: <a href="https://github.com/arunp77/Gravitational-collapse" target="_blank">Go to the repository</a></li>                     
+                            <li><a href="#reference">Reference</a></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="sec-1">Gravitational-collapse</h2>
             <p>Gravitational collapse is a fascinating and complex phenomenon in astrophysics that occurs when a massive object, such as a star, 
-              reaches the end of its life cycle. It involves the force of gravity overpowering other forces, leading to the object's collapse under 
-              its own gravitational pull. </p>
-        <ol>
-          <li><strong>Equilibrium and Stability: </strong>Stars achieve equilibrium through a balance between the gravitational force pulling inwards and the pressure (thermal or radiation pressure) pushing outwards. This equilibrium is crucial for the star to maintain a stable size and shape throughout most of its life.</li>
-          <li><strong>Conditions for Gravitational Collapse: </strong>When a massive star exhausts its nuclear fuel, it can no longer produce the energy necessary to maintain the pressure that counteracts gravity. Depending on the mass of the star, various outcomes can occur, such as supernovae, neutron stars, or black holes.</li>
-          <li><strong>Hydrostatic Equilibrium Equation: </strong>The equilibrium of a star is governed by the hydrostatic equilibrium equation, which relates the pressure gradient to the mass density and gravitational force:
-            $$ \frac{dP}{dr} = - \frac{G M(r) \rho(r)}{r^2} $$
-
-            where, 
+                reaches the end of its life cycle. It involves the force of gravity overpowering other forces, leading to the object's collapse under 
+                its own gravitational pull. </p>
+            <ol>
+              <li><strong>Equilibrium and Stability: </strong>Stars achieve equilibrium through a balance between the gravitational force pulling inwards and the pressure (thermal or radiation pressure) pushing outwards. This equilibrium is crucial for the star to maintain a stable size and shape throughout most of its life.</li>
+              <li><strong>Conditions for Gravitational Collapse: </strong>When a massive star exhausts its nuclear fuel, it can no longer produce the energy necessary to maintain the pressure that counteracts gravity. Depending on the mass of the star, various outcomes can occur, such as supernovae, neutron stars, or black holes.</li>
+              <li><strong>Hydrostatic Equilibrium Equation: </strong>The equilibrium of a star is governed by the hydrostatic equilibrium equation, which relates the pressure gradient to the mass density and gravitational force:
+                $$ \frac{dP}{dr} = - \frac{G M(r) \rho(r)}{r^2} $$
+    
+                where, 
+                <ul>
+                  <li>P = Pressure inside the star,</li>
+                  <li>r = Radial distance from the center of the star</li>
+                  <li>G = Gravitationa; constant</li>
+                  <li>M(r) = Mass enclosed within the radius r</li>
+                  <li>ρ(r) Mass desnity at the radial distance</li>
+                </ul>
+              
+              </li>
+              <li><strong>Equation of State:  </strong>The equation of state describes the relationship between the pressure, density, and temperature within the star. Different equations of state apply to different stages of a star's life, and they play a significant role in determining its fate during collapse.</li>
+              <li><strong>Chandrasekhar Limit: </strong>For stars supported by electron degeneracy pressure (white dwarfs), there is a maximum mass known as the Chandrasekhar limit. If a white dwarf exceeds this limit (approximately 1.4 times the mass of the Sun), it can no longer maintain electron degeneracy pressure and may undergo a type Ia supernova.</li>
+              <li><strong>Schwarzschild Radius</strong>If the core of a massive star has a mass greater than the Tolman-Oppenheimer-Volkoff (TOV) limit, it will undergo a catastrophic gravitational collapse. The critical size at which a body becomes a black hole is given by the Schwarzschild radius:
+                $$R_s = \frac{2 G M}{c^2}$$
+                where,
+                <ul>
+                  <li>R<sub>s</sub> = Schwarschild radius</li>
+                  <li>M = mass of the objects</li>
+                  <li>c = speed of light in a vacuum.</li>
+                </ul>
+              </li>
+              <li><strong>General Relativit: </strong>In the final stages of a massive star's collapse, General Relativity becomes essential to describe the extreme curvature of spacetime near the core, especially when a black hole forms.</li>
+              <li><strong>Numerical Simulations: </strong>Due to the complexity of gravitational collapse, numerical simulations using computational methods like hydrodynamics and numerical relativity are crucial for studying the detailed behavior of collapsing stars and the formation of black holes.</li>
+            </ol>
+            <p>Studying gravitational collapse is a deeply intricate and mathematically demanding field. Astrophysicists use sophisticated mathematical models, equations, and simulations to gain a deeper understanding of this phenomenon and its consequences in the universe.</p>
+    
+            <h3>Monte Carlo simulation</h3>
+    
+            <p>Monte Carlo simulation is a powerful numerical method used in various scientific and engineering fields, including astrophysics. It's particularly useful for tackling complex problems involving random or probabilistic processes, such as gravitational collapse. 
+              Let's outline the steps you can follow to learn and implement Monte Carlo simulations for studying gravitational collapse:
+            </p>
+    
             <ul>
-              <li>P = Pressure inside the star,</li>
-              <li>r = Radial distance from the center of the star</li>
-              <li>G = Gravitationa; constant</li>
-              <li>M(r) = Mass enclosed within the radius r</li>
-              <li>ρ(r) Mass desnity at the radial distance</li>
+              <li><strong>Step 1: Understand the Basics of Monte Carlo Simulation: </strong> Familiarize yourself with the fundamental concepts of Monte Carlo simulation, including random sampling, probability distributions, and the Law of Large Numbers. Understanding these principles is crucial for effectively applying the method.</li>
+              <li><strong>Step 2: Choose a Gravitational Collapse Model: </strong>Decide on the type of gravitational collapse you want to study. It could be the final stages of a massive star's collapse leading to a black hole formation or other specific scenarios relevant to your research interest.</li>
+              <li><strong>Step 3: Define the Physical Model: </strong>Formulate the physical model of the gravitational collapse you want to simulate. This includes specifying the equations of state, hydrostatic equilibrium equations, and other relevant physics involved in the process.</li>
+              <li><strong>Step 4: Discretize the System: </strong>Transform the continuous physical model into a discrete representation suitable for Monte Carlo simulations. This involves dividing the physical space into cells or grid points and approximating the continuous equations on these discrete points.</li>
+              <li><strong>Step 5: Implement the Monte Carlo Simulation: </strong>Write code to perform the Monte Carlo simulation. You'll need to randomly sample initial conditions (mass, density, temperature, etc.) from probability distributions that represent the uncertainty and randomness in the system. Then, evolve the system over time using random walks or other probabilistic methods.</li>
+              <li><strong>Step 6: Handle the Gravitational Interaction: </strong>In gravitational collapse, the force of gravity plays a central role. You'll need to incorporate the gravitational interaction between particles (representing mass elements) in your simulation. One common approach is to use Newton's law of gravity to calculate the forces between particles.</li>
+              <li><strong>Step 7: Consider Stellar Evolution: </strong>If your study involves stellar collapse, you'll need to consider the evolution of the star leading up to the collapse. This can include accounting for nuclear burning stages, mass loss, and changes in the equation of state as the star evolves.</li>
+              <li><strong>Step 8: Analyze Simulation Results: </strong>Run the Monte Carlo simulation for a sufficient number of iterations to obtain statistically meaningful results. Analyze the data to understand the behavior of the collapsing system, identify interesting features, and draw conclusions about the gravitational collapse process. </li>
+              <li><strong>Step 9: Validate and Refine the Model: </strong>Validate your Monte Carlo model against known analytical solutions or observational data, where possible. If discrepancies arise, refine your model or numerical methods accordingly.</li>
             </ul>
-          
-          </li>
-          <li><strong>Equation of State:  </strong>The equation of state describes the relationship between the pressure, density, and temperature within the star. Different equations of state apply to different stages of a star's life, and they play a significant role in determining its fate during collapse.</li>
-          <li><strong>Chandrasekhar Limit: </strong>For stars supported by electron degeneracy pressure (white dwarfs), there is a maximum mass known as the Chandrasekhar limit. If a white dwarf exceeds this limit (approximately 1.4 times the mass of the Sun), it can no longer maintain electron degeneracy pressure and may undergo a type Ia supernova.</li>
-          <li><strong>Schwarzschild Radius</strong>If the core of a massive star has a mass greater than the Tolman-Oppenheimer-Volkoff (TOV) limit, it will undergo a catastrophic gravitational collapse. The critical size at which a body becomes a black hole is given by the Schwarzschild radius:
-            $$R_s = \frac{2 G M}{c^2}$$
-            where,
-            <ul>
-              <li>R<sub>s</sub> = Schwarschild radius</li>
-              <li>M = mass of the objects</li>
-              <li>c = speed of light in a vacuum.</li>
-            </ul>
-          </li>
-          <li><strong>General Relativit: </strong>In the final stages of a massive star's collapse, General Relativity becomes essential to describe the extreme curvature of spacetime near the core, especially when a black hole forms.</li>
-          <li><strong>Numerical Simulations: </strong>Due to the complexity of gravitational collapse, numerical simulations using computational methods like hydrodynamics and numerical relativity are crucial for studying the detailed behavior of collapsing stars and the formation of black holes.</li>
-        </ol>
-        <p>Studying gravitational collapse is a deeply intricate and mathematically demanding field. Astrophysicists use sophisticated mathematical models, equations, and simulations to gain a deeper understanding of this phenomenon and its consequences in the universe.</p>
-
-        <h3>Monte Carlo simulation</h3>
-
-        <p>Monte Carlo simulation is a powerful numerical method used in various scientific and engineering fields, including astrophysics. It's particularly useful for tackling complex problems involving random or probabilistic processes, such as gravitational collapse. 
-          Let's outline the steps you can follow to learn and implement Monte Carlo simulations for studying gravitational collapse:
-        </p>
-
-        <ul>
-          <li><strong>Step 1: Understand the Basics of Monte Carlo Simulation: </strong> Familiarize yourself with the fundamental concepts of Monte Carlo simulation, including random sampling, probability distributions, and the Law of Large Numbers. Understanding these principles is crucial for effectively applying the method.</li>
-          <li><strong>Step 2: Choose a Gravitational Collapse Model: </strong>Decide on the type of gravitational collapse you want to study. It could be the final stages of a massive star's collapse leading to a black hole formation or other specific scenarios relevant to your research interest.</li>
-          <li><strong>Step 3: Define the Physical Model: </strong>Formulate the physical model of the gravitational collapse you want to simulate. This includes specifying the equations of state, hydrostatic equilibrium equations, and other relevant physics involved in the process.</li>
-          <li><strong>Step 4: Discretize the System: </strong>Transform the continuous physical model into a discrete representation suitable for Monte Carlo simulations. This involves dividing the physical space into cells or grid points and approximating the continuous equations on these discrete points.</li>
-          <li><strong>Step 5: Implement the Monte Carlo Simulation: </strong>Write code to perform the Monte Carlo simulation. You'll need to randomly sample initial conditions (mass, density, temperature, etc.) from probability distributions that represent the uncertainty and randomness in the system. Then, evolve the system over time using random walks or other probabilistic methods.</li>
-          <li><strong>Step 6: Handle the Gravitational Interaction: </strong>In gravitational collapse, the force of gravity plays a central role. You'll need to incorporate the gravitational interaction between particles (representing mass elements) in your simulation. One common approach is to use Newton's law of gravity to calculate the forces between particles.</li>
-          <li><strong>Step 7: Consider Stellar Evolution: </strong>If your study involves stellar collapse, you'll need to consider the evolution of the star leading up to the collapse. This can include accounting for nuclear burning stages, mass loss, and changes in the equation of state as the star evolves.</li>
-          <li><strong>Step 8: Analyze Simulation Results: </strong>Run the Monte Carlo simulation for a sufficient number of iterations to obtain statistically meaningful results. Analyze the data to understand the behavior of the collapsing system, identify interesting features, and draw conclusions about the gravitational collapse process. </li>
-          <li><strong>Step 9: Validate and Refine the Model: </strong>Validate your Monte Carlo model against known analytical solutions or observational data, where possible. If discrepancies arise, refine your model or numerical methods accordingly.</li>
-        </ul>
-        <p>Gravitational collapse is a complex topic, and Monte Carlo simulations are just one approach to study it. Continue learning about other numerical techniques, such as hydrodynamics and numerical relativity, to expand your knowledge and improve your understanding of the phenomenon.</p>
-
-
-        <h3>1D Monte Carlo simulation of particles undergoing gravitational collapse</h3>
-
-<pre><code>
-import numpy as np
-import matplotlib.pyplot as plt
-
-# Constants
-G = 6.67430e-11    # Gravitational constant (m^3 kg^(-1) s^(-2))
-M_sun = 1.989e30    # Mass of the Sun (kg)
-R_sun = 6.957e8     # Radius of the Sun (m)
-
-# Parameters
-num_particles = 1000
-mass_range = (0.5 * M_sun, 100 * M_sun)  # Mass range of particles
-initial_density_range = (100, 500)       # Initial density range of particles (kg/m^3)
-initial_velocity_range = (0, 100)        # Initial velocity range of particles (m/s)
-total_time = 1.0e3                      # Total simulation time (s)
-time_step = 1.0e2                      # Time step (s)
-
-def initialize_particles():
-    masses = np.random.uniform(mass_range[0], mass_range[1], num_particles)
-    densities = np.random.uniform(initial_density_range[0], initial_density_range[1], num_particles)
-    velocities = np.random.uniform(initial_velocity_range[0], initial_velocity_range[1], num_particles)
-    return masses, densities, velocities
-
-def calculate_gravitational_force(mass1, mass2, distance):
-    return G * mass1 * mass2 / distance**2
-
-def update_particle_positions(positions, velocities, time_step):
-    return positions + velocities * time_step
-
-def main():
-    masses, densities, velocities = initialize_particles()
-    positions = np.zeros(num_particles)
-    time = 0
-
-    while time < total_time:
-        for i in range(num_particles):
-            # Update positions
-            positions[i] = update_particle_positions(positions[i], velocities[i], time_step)
+            <p>Gravitational collapse is a complex topic, and Monte Carlo simulations are just one approach to study it. Continue learning about other numerical techniques, such as hydrodynamics and numerical relativity, to expand your knowledge and improve your understanding of the phenomenon.</p>
+    
+    
+            <h3>1D Monte Carlo simulation of particles undergoing gravitational collapse</h3>
+    
+            <pre><code>
+            import numpy as np
+            import matplotlib.pyplot as plt
             
-            # Calculate net force on the particle due to gravitational interaction with others
-            net_force = 0.0
-            for j in range(num_particles):
-                if i != j:
-                    distance = np.abs(positions[i] - positions[j])
-                    force = calculate_gravitational_force(masses[i], masses[j], distance)
-                    net_force += force
+            # Constants
+            G = 6.67430e-11    # Gravitational constant (m^3 kg^(-1) s^(-2))
+            M_sun = 1.989e30    # Mass of the Sun (kg)
+            R_sun = 6.957e8     # Radius of the Sun (m)
             
-            # Update velocities based on the net force
-            acceleration = net_force / masses[i]
-            velocities[i] += acceleration * time_step
+            # Parameters
+            num_particles = 1000
+            mass_range = (0.5 * M_sun, 100 * M_sun)  # Mass range of particles
+            initial_density_range = (100, 500)       # Initial density range of particles (kg/m^3)
+            initial_velocity_range = (0, 100)        # Initial velocity range of particles (m/s)
+            total_time = 1.0e3                      # Total simulation time (s)
+            time_step = 1.0e2                      # Time step (s)
             
-        time += time_step
-
-    # Plot the final positions of the particles
-    plt.scatter(positions / R_sun, np.ones(num_particles), marker='o', s=5)
-    plt.xlabel('Position (in Solar radii)')
-    plt.title('Gravitational Collapse - Final Particle Positions')
-    plt.show()
-
-if __name__ == "__main__":
-    main()
-</code></pre>
-
-        <figure style="text-align: center;">
-          <img src="assets/img/Scietific/1D-collapse.png" alt="" style="max-width: 90%; max-height: 90%;">
-          <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://github.com/arunp77/Gravitational-collapse/blob/main/Graviti-collapse.ipynb" target="_blank"> Arun Kumar Pandey.</a></figcaption>
-        </figure>
-
-        <h3>2D Monte Carlo simulation of gravitational collapse:</h3>
-        <p>In this case, we will consider particles moving in a two-dimensional plane under the influence of gravitational forces. The rest of the code structure will remain similar, but we'll update the functions to handle two-dimensional positions and velocities. </p>
-
-<pre><code>
-  import numpy as np
-import matplotlib.pyplot as plt
-
-# Constants
-G = 6.67430e-11    # Gravitational constant (m^3 kg^(-1) s^(-2))
-M_sun = 1.989e30    # Mass of the Sun (kg)
-R_sun = 6.957e8     # Radius of the Sun (m)
-
-# Parameters
-num_particles = 1000  # Reducing the number of particles for lighter simulation
-mass_range = (0.5 * M_sun, 100 * M_sun)
-initial_density_range = (100, 500)
-initial_velocity_range = (0, 100)
-total_time = 1.0e4    # Reducing the total simulation time
-time_step = 1.0e1     # Reducing the time step
-
-def initialize_particles():
-    masses = np.random.uniform(mass_range[0], mass_range[1], num_particles)
-    densities = np.random.uniform(initial_density_range[0], initial_density_range[1], num_particles)
-    velocities = np.random.uniform(initial_velocity_range[0], initial_velocity_range[1], size=(num_particles, 2))
-    return masses, densities, velocities
-
-def calculate_gravitational_force(mass1, mass2, distance):
-    return G * mass1 * mass2 / distance**2
-
-def update_particle_positions(positions, velocities, time_step):
-    return positions + velocities * time_step
-
-def main():
-    masses, densities, velocities = initialize_particles()
-    positions = np.zeros((num_particles, 2))
-    time = 0
-
-    while time < total_time:
-        for i in range(num_particles):
-            # Update positions
-            positions[i] = update_particle_positions(positions[i], velocities[i], time_step)
+            def initialize_particles():
+                masses = np.random.uniform(mass_range[0], mass_range[1], num_particles)
+                densities = np.random.uniform(initial_density_range[0], initial_density_range[1], num_particles)
+                velocities = np.random.uniform(initial_velocity_range[0], initial_velocity_range[1], num_particles)
+                return masses, densities, velocities
             
-            # Calculate net force on the particle due to gravitational interaction with others
-            differences = positions - positions[i]
-            distances = np.linalg.norm(differences, axis=1)
-            distances[i] = 1.0  # Set distance to self to avoid division by zero
-            forces = calculate_gravitational_force(masses[i], masses, distances)
-            net_force = np.sum((forces / distances)[:, np.newaxis] * differences, axis=0)
+            def calculate_gravitational_force(mass1, mass2, distance):
+                return G * mass1 * mass2 / distance**2
             
-            # Update velocities based on the net force
-            acceleration = net_force / masses[i]
-            velocities[i] += acceleration * time_step
+            def update_particle_positions(positions, velocities, time_step):
+                return positions + velocities * time_step
             
-        time += time_step
+            def main():
+                masses, densities, velocities = initialize_particles()
+                positions = np.zeros(num_particles)
+                time = 0
+            
+                while time < total_time:
+                    for i in range(num_particles):
+                        # Update positions
+                        positions[i] = update_particle_positions(positions[i], velocities[i], time_step)
+                        
+                        # Calculate net force on the particle due to gravitational interaction with others
+                        net_force = 0.0
+                        for j in range(num_particles):
+                            if i != j:
+                                distance = np.abs(positions[i] - positions[j])
+                                force = calculate_gravitational_force(masses[i], masses[j], distance)
+                                net_force += force
+                        
+                        # Update velocities based on the net force
+                        acceleration = net_force / masses[i]
+                        velocities[i] += acceleration * time_step
+                        
+                    time += time_step
+            
+                # Plot the final positions of the particles
+                plt.scatter(positions / R_sun, np.ones(num_particles), marker='o', s=5)
+                plt.xlabel('Position (in Solar radii)')
+                plt.title('Gravitational Collapse - Final Particle Positions')
+                plt.show()
+            
+            if __name__ == "__main__":
+                main()
+            </code></pre>
+    
+            <figure style="text-align: center;">
+              <img src="assets/img/Scietific/1D-collapse.png" alt="" style="max-width: 90%; max-height: 90%;">
+              <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://github.com/arunp77/Gravitational-collapse/blob/main/Graviti-collapse.ipynb" target="_blank"> Arun Kumar Pandey.</a></figcaption>
+            </figure>
+    
+            <h3>2D Monte Carlo simulation of gravitational collapse:</h3>
+            <p>In this case, we will consider particles moving in a two-dimensional plane under the influence of gravitational forces. The rest of the code structure will remain similar, but we'll update the functions to handle two-dimensional positions and velocities. </p>
+    
+            <pre><code>
+              import numpy as np
+            import matplotlib.pyplot as plt
+            
+            # Constants
+            G = 6.67430e-11    # Gravitational constant (m^3 kg^(-1) s^(-2))
+            M_sun = 1.989e30    # Mass of the Sun (kg)
+            R_sun = 6.957e8     # Radius of the Sun (m)
+            
+            # Parameters
+            num_particles = 1000  # Reducing the number of particles for lighter simulation
+            mass_range = (0.5 * M_sun, 100 * M_sun)
+            initial_density_range = (100, 500)
+            initial_velocity_range = (0, 100)
+            total_time = 1.0e4    # Reducing the total simulation time
+            time_step = 1.0e1     # Reducing the time step
+            
+            def initialize_particles():
+                masses = np.random.uniform(mass_range[0], mass_range[1], num_particles)
+                densities = np.random.uniform(initial_density_range[0], initial_density_range[1], num_particles)
+                velocities = np.random.uniform(initial_velocity_range[0], initial_velocity_range[1], size=(num_particles, 2))
+                return masses, densities, velocities
+            
+            def calculate_gravitational_force(mass1, mass2, distance):
+                return G * mass1 * mass2 / distance**2
+            
+            def update_particle_positions(positions, velocities, time_step):
+                return positions + velocities * time_step
+            
+            def main():
+                masses, densities, velocities = initialize_particles()
+                positions = np.zeros((num_particles, 2))
+                time = 0
+            
+                while time < total_time:
+                    for i in range(num_particles):
+                        # Update positions
+                        positions[i] = update_particle_positions(positions[i], velocities[i], time_step)
+                        
+                        # Calculate net force on the particle due to gravitational interaction with others
+                        differences = positions - positions[i]
+                        distances = np.linalg.norm(differences, axis=1)
+                        distances[i] = 1.0  # Set distance to self to avoid division by zero
+                        forces = calculate_gravitational_force(masses[i], masses, distances)
+                        net_force = np.sum((forces / distances)[:, np.newaxis] * differences, axis=0)
+                        
+                        # Update velocities based on the net force
+                        acceleration = net_force / masses[i]
+                        velocities[i] += acceleration * time_step
+                        
+                    time += time_step
+            
+                # Plot the final positions of the particles
+                plt.scatter(positions[:, 0] / R_sun, positions[:, 1] / R_sun, marker='o', s=5)
+                plt.xlabel('X Position (in Solar radii)')
+                plt.ylabel('Y Position (in Solar radii)')
+                plt.title('Lighter Gravitational Collapse - Final Particle Positions (2D)')
+                plt.show()
+            
+            if __name__ == "__main__":
+                main()
+            </code></pre>
 
-    # Plot the final positions of the particles
-    plt.scatter(positions[:, 0] / R_sun, positions[:, 1] / R_sun, marker='o', s=5)
-    plt.xlabel('X Position (in Solar radii)')
-    plt.ylabel('Y Position (in Solar radii)')
-    plt.title('Lighter Gravitational Collapse - Final Particle Positions (2D)')
-    plt.show()
 
-if __name__ == "__main__":
-    main()
-</code></pre>
+            <figure style="text-align: center;">
+                <img src="assets/img/Scietific/2D-coolapse.png" alt="" style="max-width: 90%; max-height: 90%;">
+                <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://github.com/arunp77/Gravitational-collapse/blob/main/Graviti-collapse.ipynb" target="_blank"> Arun Kumar Pandey.</a></figcaption>
+              </figure>
 
-        <figure style="text-align: center;">
-          <img src="assets/img/Scietific/2D-coolapse.png" alt="" style="max-width: 90%; max-height: 90%;">
-          <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://github.com/arunp77/Gravitational-collapse/blob/main/Graviti-collapse.ipynb" target="_blank"> Arun Kumar Pandey.</a></figcaption>
-        </figure>
+              <h2 id="em-algo">Machine learning Algorithm in Electromagnetic algorithms</h2>
+              <p>
+                  The EM algorithm is used for obtaining maximum likelihood estimates of parameters when some of the data is missing.
+                  The details on the Maximum likelihood can be found in <a href="https://arunp77.github.io/mle.html">Maximum Likelihood Estimation (MLE) in python.</a>
+              </p>
+              
+              <div class="pdf-container">
+                <embed src="forms/EMAlgorithm.pdf" width="800" height="600" type="application/pdf">
+              </div>
+              
+              <p>
+                  This note is provided by <strong>Martin Haugh</strong> and link is: <a href="https://www.columbia.edu/~mh2078/MachineLearningORFE/EM_Algorithm.pdf" target="_blank">The EM algorithms</a>.
+              </p>
+              
 
-        <h2 id="em-algo">Machine learning Algorithm in Electromagnetic algorithms</h2>
-        The EM algorithm is used for obtaining maximum likelihood estimates of parameters when some of the data is missing. The details on the Maximum likelihood can be found in <a href="https://arunp77.github.io/mle.html">Maximum Likelihood Estimation (MLE) in python.</a>
 
-        <embed src="forms\EMAlgorithm.pdf" type="application/pdf" width="100%" height="610px">
 
-          This note is provided by <strong>Martin Haugh</strong> and link is: <a href="https://www.columbia.edu/~mh2078/MachineLearningORFE/EM_Algorithm.pdf" target="_blank">The EM algorithms</a>.
 
-          <h4 id="GC-reference">Reference</h4>
-          <ul>
-            <li><a href="https://github.com/arunp77/MonteCarlo-simulation" target="_blank">Monte carlo simulation fundamentals on github repository.</a></li>
-            <li><a href="https://arunp77.github.io/MonteCarlo-simulation/" target="_blank">My notes on Monte Carlo simulation on my lecture note website.  </a></li>
-            <li><a href="https://link.springer.com/chapter/10.1007/978-1-4615-1339-1_15" target="_blank">Gravitational Collapse A. Beesham & S. G. Ghosh</a></li>
-            <li><a href="https://www.nature.com/articles/204868a0" target="_blank">Gravitational-collapse, W. B. BONNOR</a></li>
-            <li><a href="https://github.com/arunp77/Gravitational-collapse" target="_blank">GitHub repo on gravitational collapse.</a></li>
-            <li><a href="https://journals.aps.org/pr/abstract/10.1103/PhysRev.173.1258" target="_blank">Gravitational Collapse of Rotating Bodies Jeffrey M. Cohen</a></li>
-          </ul>
-        </section>
-      </div>
-    </section><!-- End Portfolio Details Section -->
-  </main><!-- End #main -->
+            <!-------Reference ------->
+            <section id="reference">
+                <h2>References</h2>
+                <ol>
+                    <li><a href="https://github.com/arunp77/MonteCarlo-simulation" target="_blank">Monte carlo simulation fundamentals on github repository.</a></li>
+                    <li><a href="https://arunp77.github.io/MonteCarlo-simulation/" target="_blank">My notes on Monte Carlo simulation on my lecture note website.  </a></li>
+                    <li><a href="https://link.springer.com/chapter/10.1007/978-1-4615-1339-1_15" target="_blank">Gravitational Collapse A. Beesham & S. G. Ghosh</a></li>
+                    <li><a href="https://www.nature.com/articles/204868a0" target="_blank">Gravitational-collapse, W. B. BONNOR</a></li>
+                    <li><a href="https://github.com/arunp77/Gravitational-collapse" target="_blank">GitHub repo on gravitational collapse.</a></li>
+                    <li><a href="https://journals.aps.org/pr/abstract/10.1103/PhysRev.173.1258" target="_blank">Gravitational Collapse of Rotating Bodies Jeffrey M. Cohen</a></li>
+                </ol> 
+            </section>
 
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
+            <hr>
+        
+            <div style="background-color: #f0f0f0; padding: 15px; border-radius: 5px;">
+
+                <h3>Some other interesting things to know:</h3>
+                <ul style="list-style-type: disc; margin-left: 30px;">
+                    <li>Visit my website on <a href="sql-project.html">For Data, Big Data, Data-modeling, Datawarehouse, SQL, cloud-compute.</a></li>
+                    <li>Visit my website on <a href="Data-engineering.html">Data engineering</a></li>
+                </ul>
+            </div>
+            <p></p>
+
+            <div class="navigation">
+                
+                <a href="index.html#portfolio" class="clickable-box">
+                    <span class="arrow-left">Portfolio section</span>
+                </a>
+                
+                <a href="Data-engineering.html" class="clickable-box">
+                    <span class="arrow-right">Content</span>
+                </a>
+
+            </div>
+        </div>
+        </section><!-- End Portfolio Details Section -->
+    </main><!-- End #main --
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
     <div class="container">
-      <div class="copyright">
+        <div class="copyright">
         &copy; Copyright <strong><span>Arun</span></strong>
-      </div>
+        </div>
     </div>
-  </footer><!-- End  Footer -->
+    </footer><!-- End  Footer -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/typed.js/typed.umd.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/typed.js/typed.umd.js"></script>
+    <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        hljs.initHighlightingOnLoad();
+    });
+    </script>
 
 </body>
 
