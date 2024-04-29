@@ -755,7 +755,24 @@
             </ul>
 
             <h3 id="response">Creating your responses</h3>
-            We have seen that the accepted formats of a function associated with a route are dictionaries, strings and tuples, but in fact Flask converts its types into a Flask specific format which is the Response class. To use this class, it is common to use the make_response function.
+            We have seen that the accepted formats of a function associated with a route are dictionaries, strings and tuples, but in fact Flask converts its types into a Flask specific format which is the <code>Response</code> class. To use this class, it is common to use the <code>make_response</code> function.
+            <pre class="language-python"><code>
+                from flask import make_response 
+                from flask import Flask, render_template, request, abort 
+                import os
+                
+                # Get the current directory
+                current_directory = os.path.dirname(os.path.abspath(__file__))
+                app = Flask(__name__, template_folder=os.path.join(current_directory))
+                
+                @app.route("/test")
+                def test():
+                    return make_response("I use the function 'make_response'.")    
+                
+                if __name__ == "__main__":
+                    app.run(host="0.0.0.0",debug=True)
+            </code></pre>
+            When compiled, this gave following message: <strong>I use the function 'make_response'.</strong> at route: <span style="color: blue;">http://127.0.0.1:5000/test</span>.
             
             
 
