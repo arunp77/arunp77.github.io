@@ -144,9 +144,71 @@
             </div>
 
             <section>
-            <h3 id="introduction"><strong>Introduction</strong></h5>
-            Maximum Likelihood Estimation (MLE) is a statistical method used to estimate the parameters of a statistical model. The fundamental idea behind MLE is to find the values of the model parameters that maximize the likelihood of observing the given data. 
-            In other words, MLE seeks the parameter values that make the observed data most probable under the assumed statistical model.
+            <h3 id="introduction"><strong>Introduction</strong></h3>
+            <p>In our study of random variables, we've encountered various distributions, each characterized by parameters—numbers that define the distribution's behavior. Typically, we either have these parameter values explicitly provided or can infer them from our understanding of the data-generating process.</p>
+
+            <p>However, what if we lack knowledge of these parameters and can't deduce them from our expertise? What if, instead of knowing the random variables themselves, we possess numerous instances of data generated from the same underlying distribution?</p>
+
+            <p>Here, we delve into formal methodologies for estimating parameters based on data. These techniques are pivotal in artificial intelligence, as they underpin the workings of modern machine learning algorithms.</p>
+
+            <p><strong>Parameters</strong></p>
+            <p>Before delving into parameter estimation, let's refresh our understanding of parameters. In a given model, parameters are the numerical values that define the actual distribution. For instance, in a Bernoulli random variable, the parameter is a single value denoted as \( p \). In the case of a Uniform random variable, parameters are represented as \( a \) and \( b \), defining the minimum and maximum values. Here's a summary of various random variables and their corresponding parameters. Going forward, we'll denote the parameters collectively as \( \theta \).</p>
+
+            <table>
+                <thead>
+                  <tr>
+                    <th>Distribution</th>
+                    <th>Parameters</th>
+                    <th>Forumla</th>
+                    <th>Explanation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Bernoulli (\(p\))</td>
+                    <td>\(\theta = p\)</td>
+                    <td>\(P(X= k) = p^k (1-p)^{1-k}\)</td>
+                    <td>This function gives the probability of getting a particular outcome \( k \) (0 or 1) in a single Bernoulli trial with parameter \( p \).</td>
+                  </tr>
+                  <tr>
+                    <td>Poisson (\(\lambda\))</td>
+                    <td>\(\theta = \lambda \)</td>
+                    <td>\(P(X=k) = \frac{e^{-\lambda } \lambda^k}{k!}\)</td>
+                    <td>This function calculates the probability of observing \( k \) events in a fixed interval of time or space, given the average rate of occurrence \( \lambda \).</td>
+                  </tr>
+                  <tr>
+                    <td>Uniform (\(a, b\))</td>
+                    <td>\(\theta = a, b\)</td>
+                    <td>\(f(x) = \frac{1}{b-a}\)</td>
+                    <td>This function represents a uniform distribution between the values \( a \) and \( b \), where all values within this range are equally likely.</td>
+                  </tr>
+                  <tr>
+                    <td>Normal (\(\mu, \sigma^2\))</td>
+                    <td>\(\theta = (\mu, \sigma^2)\)</td>
+                    <td>\(f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}\)</td>
+                    <td>This function describes the probability density of a continuous random variable following a normal distribution with mean \( \mu \) and variance \( \sigma^2 \).</td>
+                  </tr>
+                  <tr>
+                    <td>\(Y = mX +b\)</td>
+                    <td>\(\theta = (m, b)\)</td>
+                    <td>\(\)</td>
+                    <td>Not a probability distribution function, but a linear equation representing a straight line with slope \( m \) and y-intercept \( b \).</td>
+                  </tr>
+                </tbody>
+            </table>
+
+            <p>In real-world scenarios, the true parameters of a model are often unknown, but we have the opportunity to observe data. In the following sections, we'll delve into methodologies for utilizing data to estimate these model parameters.</p>
+            <p>It turns out there isn't just one way to estimate the value of parameters. There are two main approaches: </p>
+            <ol>
+                <li>Maximum Likelihood Estimation (MLE) and </li>
+                <li>Maximum A Posteriori (MAP)</li>
+            </ol>
+            <p>Both MLE and MAP approaches rely on the assumption that your data consist of IID (independently and identically distributed) samples, denoted as \( X_1, X_2, \ldots, X_n \), where each \( X_i \) is independent and drawn from the same distribution.</p>
+
+            
+            <h3 id="mle-fundamentals">Maximum Likelihood Estimation (MLE)</h3>
+            <p>Maximum Likelihood Estimation (MLE) is a statistical method used to estimate the parameters of a statistical model. The fundamental idea behind MLE is to find the values of the model parameters that maximize the likelihood of observing the given data. </p>
+            <p>In other words, MLE seeks the parameter values that make the observed data most probable under the assumed statistical model.</p>
 
             <p><strong>Key concepts of MLE:</strong></p>
             <ol>

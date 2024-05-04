@@ -49,5 +49,6 @@
         "uncentered",
         "Uncentered",
         "Underfitting"
-    ]
+    ],
+    "circleci.persistedProjectSelection": []
 }
