@@ -232,19 +232,28 @@
                     <p>We assume that our data are identically distributed, meaning they must adhere to either the same probability mass function (if discrete data) or the same probability density function (if continuous data). To simplify discussions on parameter estimation, we'll use the notation \( f(X|\theta) \) to denote this shared PMF or PDF. This notation is notable in two aspects: firstly, it includes a conditional on \( \theta \), indicating that the likelihood of different values of \( X \) depends on the parameter values; secondly, we'll use the same symbol \( f \) for both discrete and continuous distributions.</p>
                     
                     <div class="grey-box">
-                        <p><strong>Likelihood</strong> refers to the probability of observing the given data under a specific set of parameter values in a statistical model. It's distinct from "probability" in that probability typically refers to the chance of future events occurring based on known parameters, while likelihood focuses on assessing how well the observed data fit with different parameter values.</p>
+                        <p><strong>Likelihood: </strong> It is refered as the probability of observing the given data under a specific set of parameter values in a statistical model. It's distinct from "probability" in that probability typically refers to the chance of future events occurring based on known parameters, while likelihood focuses on assessing how well the observed data fit with different parameter values.</p>
 
                         <p>In the context of discrete distributions, likelihood is synonymous with the joint probability of the observed data. This means it represents the probability of observing the entire dataset given specific parameter values.</p>
                             
-                        For continuous distributions, likelihood pertains to the joint probability density of the observed data. This signifies the probability density of observing the entire dataset under certain parameter values.
+                        <p>For continuous distributions, likelihood pertains to the joint probability density of the observed data. This signifies the probability density of observing the entire dataset under certain parameter values.</p>
+                        <p><strong>What is the difference between likelihood and probability?: </strong></p>
+                        <figure>
+                            <img src="assets/img/machine-ln/mle-likelihood-probability.png" alt="" style="max-width: 100%; max-height: auto;">
+                            <figcaption style="text-align: center;"></figcaption>
+                        </figure>
+                        Using the term probability, we calculate how probable (or likely) it is to draw a sample from a given distribution with certain parameters. For example, considering a continuous distribution like the normal distribution, we compute the probability as the area under the curve for a given range of values for the data \(x\). We do this by integrating the probability density function with fixed parameters: for the normal distribution, these parameters are the mean and standard deviation. So the probability of drawing a sample \(x\) with a value between 0 and 0.5 for a standard normal distribution (mean 0 and standard deviation 1), that is,
+                        \(Pr(0 < x< 0.5|\theta) = \int_0^{0.5} p(x|\theta) dx\), where \(p(x|\theta)\) is the probability density. On the other hand, the likelihood \(L(X|\theta)\), computes how likely the parameters are given the observed data – in a practical context, we change the parameters of the distribution and see how it affects the likelihood. The figure on the second (middle) hand side of the above image, illustrates how we can obtain the likelihood of a fixed data point \(x=0.5\). Notice the relationship between likelihood and probability density:  \(L(\theta | X) = p(X|\theta)\). While the values are the same, the concepts are different. With probabilities (or probability densities), we assume given parameters and compute the probabilities in the context of sampling from a distribution. On the other hand, when we consider likelihoods, we regard the data as fixed and vary the parameters of the distribution. In many contexts, we are interested in finding the parameters that maximize the likelihood. In the last figure (last one) in the above image, the likelihood of a fixed data point \(x=0.5\) for two different normal distributions are compared. 
                     </div>
 
-                    The likelihood function is defined as the product of the probability density functions for each observation.    
+                    <p>Since we assumed each data point is independent, the likelihood of all our data is the product of the likelihood of each data point. The likelihood function is defined as the product of the probability density functions for each observation.</p>    
                     <ul>
                         <li>The likelihood function, denoted as \(L(\theta)\), is a measure of how well t21he model explains the observed data for a given set of parameter \(\theta\).</li>
                         <li>It is defined as the joint probability (or probability density) of the observed data given the parameters:
-                        $$L(\theta) = f(X | \theta),$$
-                        where \(X\) is the observed data.
+
+                        $$L(\theta) = \underset{i=1}{\overset{n}{\Pi}} f(X | \theta), $$
+
+                        where \(X\) is the observed data. The likelihood of our data varies for different parameter values. When the parameters are correct, the likelihood of observing the data is higher compared to when they are incorrect. Therefore, we express likelihood as a function of our parameters (\( \theta \)).
                         </li>
                     </ul>
                 </li>
@@ -254,15 +263,12 @@
                     <li>Maximizing the log-likekihood is equivalent to Maximizing the likelihood, and it simplifies computations.</li>
                 </ul>
                 </li>
-                <li><strong>Parameter Estimation: </strong>
-                <ul>
-                    <li>The goal of MLE is to find the values of the model parameters that maximize the likelihood (for log-likelihood) function.</li>
-                    <li>Mathematically, this is expressed as 
-                    $$\hat{\theta}_{\text{MLE}} = \text{arg max}_\theta ~~L(\theta),$$ 
+                <li><strong>Parameter Estimation: </strong> In maximum likelihood estimation (MLE) our goal is to chose values of our parameters \(\theta\) that maximizes the likelihood function from the previous section. Normally \(\hat{\theta}\) reprsents the best values for our parameters. FOrmally, MLE assume that 
+                    $$\hat{\theta}_{\text{MLE}}  = \underset{\theta}{{\text{arg}~\text{max}}} ~L(\theta), $$
                     or 
-                    $$\hat{\theta}_{\text{MLE}} = \text{arg max}_\theta ~~l(\theta).$$
-                    </li>
-                </ul>
+                    $$\hat{\theta}_{\text{MLE}}  = \underset{\theta}{{\text{arg}~\text{max}}} ~l(\theta).$$ 
+                    Here "Arg max" is short for argument of the maximum. The arg max of a function is the value of the domain at which the function is maximized. It applies for domains of any dimension. A cool property of arg max is that since log is a monotonic function, the arg max of a function is
+                    the same as the arg max of the log of the function! That’s nice because logs make the math simpler.
                 </li>
                 <li><strong>Optimization: </strong>
                 <ul>
