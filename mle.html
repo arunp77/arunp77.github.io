@@ -90,7 +90,7 @@
           <div class="container">
     
             <div class="d-flex justify-content-between align-items-center">
-              <h2>Machine learning</h2>
+              <h2>Machine learning </h2><iframe src="https://github.com/sponsors/arunp77/button" title="Sponsor arunp77" height="32" width="114" style="border: 0; border-radius: 6px;"></iframe>
               <ol>
                 <li><a href="machine-learning.html" class="clickable-box">Content section</a></li>
                 <li><a href="index.html#portfolio" class="clickable-box">Portfolio section</a></li>
@@ -134,11 +134,27 @@
                     <div class="portfolio-details-slider swiper">
                         <div class="swiper-wrapper align-items-center"> 
                             <figure>
-                            <img src="assets/img/machine-ln/mle-logo.png" alt="" style="max-width: 50%; max-height: auto;">
+                            <img src="assets/img/machine-ln/mle-logo.png" alt="" style="max-width: 70%; max-height: auto;">
                             <figcaption></figcaption>
                             </figure>
                         </div>
-                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+                <div class="col-lg-4 grey-box">
+                    <div class="section-title">
+                        <h3>Table of Contents</h3>
+                        <ol>
+                            <li><a href="#introduction">Introduction</a></li>
+                            <li><a href="#mle-fundamentals">Maximum Likelihood Estimation (MLE)</a></li>
+                            <ul>
+                                <li><a href="#difference">Difference between Hadoop and Apache Spark</a></li>
+                                <li><a href="#key-concept">Some key concepts of Apache Spark</a></li>
+                                <li><a href="#key-features">Key Features</a></li>
+                            </ul>
+                            <li><a href="#Components">Components of Apache Spark</a></li>
+                            
+                            <li><a href="#reference">Reference</a></li>
+                        </ol>
                     </div>
                 </div>
             </div>
@@ -213,12 +229,22 @@
             <p><strong>Key concepts of MLE:</strong></p>
             <ol>
                 <li><strong>Likelihood Function:</strong>
-                    The likelihood function is defined as the product of the probability density functions for each observation.
+                    <p>We assume that our data are identically distributed, meaning they must adhere to either the same probability mass function (if discrete data) or the same probability density function (if continuous data). To simplify discussions on parameter estimation, we'll use the notation \( f(X|\theta) \) to denote this shared PMF or PDF. This notation is notable in two aspects: firstly, it includes a conditional on \( \theta \), indicating that the likelihood of different values of \( X \) depends on the parameter values; secondly, we'll use the same symbol \( f \) for both discrete and continuous distributions.</p>
+                    
+                    <div class="grey-box">
+                        <p><strong>Likelihood</strong> refers to the probability of observing the given data under a specific set of parameter values in a statistical model. It's distinct from "probability" in that probability typically refers to the chance of future events occurring based on known parameters, while likelihood focuses on assessing how well the observed data fit with different parameter values.</p>
+
+                        <p>In the context of discrete distributions, likelihood is synonymous with the joint probability of the observed data. This means it represents the probability of observing the entire dataset given specific parameter values.</p>
+                            
+                        For continuous distributions, likelihood pertains to the joint probability density of the observed data. This signifies the probability density of observing the entire dataset under certain parameter values.
+                    </div>
+
+                    The likelihood function is defined as the product of the probability density functions for each observation.    
                     <ul>
                         <li>The likelihood function, denoted as \(L(\theta)\), is a measure of how well t21he model explains the observed data for a given set of parameter \(\theta\).</li>
                         <li>It is defined as the joint probability (or probability density) of the observed data given the parameters:
-                        $$L(\theta) = P(D | \theta),$$
-                        where \(D\) is the observed data.
+                        $$L(\theta) = f(X | \theta),$$
+                        where \(X\) is the observed data.
                         </li>
                     </ul>
                 </li>
