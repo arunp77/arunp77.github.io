@@ -206,13 +206,14 @@
             <p>Both MLE and MAP approaches rely on the assumption that your data consist of IID (independently and identically distributed) samples, denoted as \( X_1, X_2, \ldots, X_n \), where each \( X_i \) is independent and drawn from the same distribution.</p>
 
             
+            <!---------------------------->
             <h3 id="mle-fundamentals">Maximum Likelihood Estimation (MLE)</h3>
-            <p>Maximum Likelihood Estimation (MLE) is a statistical method used to estimate the parameters of a statistical model. The fundamental idea behind MLE is to find the values of the model parameters that maximize the likelihood of observing the given data. </p>
-            <p>In other words, MLE seeks the parameter values that make the observed data most probable under the assumed statistical model.</p>
+            <p>Maximum Likelihood Estimation (MLE) is a statistical method used to estimate the parameters of a statistical model. The fundamental idea behind MLE is to find the values of the model parameters \(\theta\) that maximize the likelihood of observing the given data. In other words, MLE seeks the parameter values that make the observed data most probable under the assumed statistical model.</p>
 
             <p><strong>Key concepts of MLE:</strong></p>
             <ol>
                 <li><strong>Likelihood Function:</strong>
+                    The likelihood function is defined as the product of the probability density functions for each observation.
                 <ul>
                     <li>The likelihood function, denoted as \(L(\theta)\), is a measure of how well the model explains the observed data for a given set of parameter \(\theta\).</li>
                     <li>It is defined as the joint probability (or probability density) of the observed data given the parameters:
