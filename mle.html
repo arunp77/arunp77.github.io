@@ -147,12 +147,13 @@
                             <li><a href="#introduction">Introduction</a></li>
                             <li><a href="#mle-fundamentals">Maximum Likelihood Estimation (MLE)</a></li>
                             <ul>
-                                <li><a href="#difference">Difference between Hadoop and Apache Spark</a></li>
-                                <li><a href="#key-concept">Some key concepts of Apache Spark</a></li>
-                                <li><a href="#key-features">Key Features</a></li>
+                                <li><a href="#key-concepts">Key concepts of MLE</a></li>
+                                <li><a href="#bernoulli-mle">Bernoulli MLE Estimation</a></li>
+                                <li><a href="#normal-mle">Normal MLE Estimation</a></li>
+                                <li><a href="#example-1">Example</a></li>
                             </ul>
-                            <li><a href="#Components">Components of Apache Spark</a></li>
-                            
+                            <li><a href="#map">Maximum A Posteriori (MAP)</a></li>
+                            <li><a href="#mle-python">Maximum Likelihood Estimation (MLE) in Python</a></li>
                             <li><a href="#reference">Reference</a></li>
                         </ol>
                     </div>
@@ -226,7 +227,7 @@
             <h3 id="mle-fundamentals">Maximum Likelihood Estimation (MLE)</h3>
             <p>Maximum Likelihood Estimation (MLE) is a statistical method used to estimate the parameters of a statistical model. The fundamental idea behind MLE is to find the values of the model parameters \(\theta\) that maximize the likelihood of observing the given data. In other words, MLE seeks the parameter values that make the observed data most probable under the assumed statistical model.</p>
 
-            <p><strong>Key concepts of MLE:</strong></p>
+            <h5 id="key-concepts"><strong>Key concepts of MLE:</strong></h5>  
             <ol>
                 <li><strong>Likelihood Function:</strong>
                     <p>We assume that our data are identically distributed, meaning they must adhere to either the same probability mass function (if discrete data) or the same probability density function (if continuous data). To simplify discussions on parameter estimation, we'll use the notation \( f(X|\theta) \) to denote this shared PMF or PDF. This notation is notable in two aspects: firstly, it includes a conditional on \( \theta \), indicating that the likelihood of different values of \( X \) depends on the parameter values; secondly, we'll use the same symbol \( f \) for both discrete and continuous distributions.</p>
@@ -284,7 +285,7 @@
 
             <br>
             <!------------------------>
-            <h4>Bernoulli MLE Estimation</h4>
+            <h5 id="bernoulli-mle">1. Bernoulli MLE Estimation</h5> 
             In Bernoulli Maximum Likelihood Estimation (MLE), we aim to estimate the parameter \( p \), which represents the probability of success in a single Bernoulli trial. 
 
             Given a set of \( n \) independent Bernoulli trials with outcomes \( x_1, x_2, \ldots, x_n \), where \( X_i \) is either 0 (failure) or 1 (success), the likelihood function is expressed as:
@@ -345,7 +346,7 @@
             
             where \( Y \) is the number of successes observed in the data and \( n \) is the total number of observations.   
             
-            <h4>Normal MLE Estimation</h4>
+            <h5 id="normal-mle">2. Normal MLE Estimation</h5>
             In Normal Maximum Likelihood Estimation (MLE), we aim to estimate the parameters \( \mu \) and \( \sigma^2 \) of a normal distribution.
 
             Given a set of \( n \) independent observations \( x_1, x_2, \ldots, x_n \) from a normal distribution with unknown mean \( \mu \) and variance \( \sigma^2 \), the likelihood function is expressed as:
@@ -389,42 +390,14 @@
 
             <!------------------------>
             <br>
-            <h3>Example:</h3> 
+            <h4 id="example-1">Example:</h4> 
             Consider a simple example of coin flipping, where we want to estimate the probability of getting heads. If we observe a sequence of coin flips (data), the likelihood function would be the product of the probabilities of obtaining the observed outcomes (head or tails) under the assumed probability parameter \(\theta\) that maximizes this likelihood.
             <br>
             <strong>Mathematical Notation:</strong>
-            <p>Likelihood FUnction: \(L(\theta) = P(D | \theta)\)</p>
-            <p>Log-Likelihood FUnction: \(l(\theta) = \text{log}L(\theta)\).</p>
-            
-            In summary, Maximum Likelihood Estimation is a powerful method for estimating the parameters of a statistical model by maximizing the likelihood (or log-likelihood) of the observed data. It is widely used in various fields, including statistics, machine learning, and econometrics.
+            <p>Likelihood Function: \(L(\theta) = P(D | \theta)\)</p>
+            <p>Log-Likelihood Function: \(l(\theta) = \text{log}L(\theta)\).</p>
 
-            <p><strong>Likelihood function for linear regression</strong></p>
-            The likelihood function for linear regression is based on the assumption that the errors (\(\epsilon\)) are normally distributed. Therefore, the likelihood funstion is expressed as the product of the probabilities 
-            of observing the actual data points given the parameters \(\theta_0, \theta_1,..., \theta_n\). 
-            $$L(\theta) = \Pi_{i=1}^n \frac{1}{\sqrt{\pi \sigma^2}} \text{exp}\left(-\frac{y^{(i)} - h_\theta(x^{(i)})}{2\sigma^2}\right)$$
-            
-            where:
-            <ul>
-                <li>n is the number of data points</li>
-                <li>\((X_i, y^{(i)})\) are the observed data pairs</li>
-                <li>\(\sigma^2\) is the variance of the error term.</li>
-            </ul>
-
-            <p><strong>Log-Likelihood Function:</strong></p>
-            It is defined as log of the likelihood function defined above. 
-
-            <p><strong>MLE Objectives:</strong> The objective of MLE is to find the values of the coefficients that maximize the log-likelihood function:</p>
-            $$\hat{\theta}_0, \hat{\theta}_1, ..., \hat{\theta}_n = \text{arg}~\text{max}_{\theta_0, \theta_1, ..., \theta_n} l(\theta_0, \theta_1, ..., \theta_n)$$
-            
-            <p><strong>Optimization:</strong> Optimization techniques, such as gradient descent or analytical solutions (set partial derivatives to zero), are used to find the values of the \(\hat{\theta}_0, \hat{\theta}_1, ..., \hat{\theta}_n\)
-            that mazimize the log-likelihood. 
-            </p>
-
-            <p>In practice, the MLE estimates for the \(\theta_0, \theta_1, ..., \theta_n\) are often equivalent to the least squares estimates obtained through the minimizing the sum of squaresd residuals.</p>        
-            <br>
-
-            <h3>Example:</h3>
-            Let's consider a simple example: flipping a coin. Assume you have a biased coin, and you want to estimate the probability of getting heads (H). Your model parameter is the probability of heads, denoted as "p."
+            <p>Assume you have a biased coin, and you want to estimate the probability of getting heads (H). Your model parameter is the probability of heads, denoted as "p."</p>
             <ul>
                 <li><strong>Define the Likelihood Function: </strong>The likelihood function is the probability of observing your data given the parameter. For a coin flip, it follows a Bernoulli distribution. The likelihood function is then: 
 
@@ -447,9 +420,66 @@
                     In this way, MLE helps find the parameter value (probability of heads in this case) that maximizes the likelihood of observing the given data (7 heads in 10 coin flips).
                 </li>
             </ul>
-            
+
             <!------------------------->
-            <h3> Maximum Likelihood Estimation (MLE) in Python</h3>
+            <section id="map-section">
+                <h3 id="map">Maximum A Posteriori (MAP)</h3>
+                In Maximum A Posteriori (MAP) estimation, we aim to estimate the parameters of a statistical model by maximizing the posterior probability of the parameters given the observed data. 
+    
+                Bayes' theorem states:
+                
+                \[ P(\theta | X) = \frac{P(X | \theta) \cdot P(\theta)}{P(X)} \]
+                
+                where:
+                <ul>
+                    <li>\( P(\theta | X) \) is the posterior probability of the parameters given the data \( X \),</li>
+                    <li>\( P(X | \theta) \) is the likelihood of the data given the parameters,</li>
+                    <li>\( P(\theta) \) is the prior probability distribution of the parameters, and</li>
+                    <li> \( P(X) \) is the marginal likelihood or evidence, which is the probability of observing the data.</li>
+                </ul>
+                
+                In MAP estimation, we choose the parameters \( \theta \) that maximize the posterior probability \( P(\theta | X) \). 
+                
+                Mathematically, this is expressed as:
+                
+                \[ \hat{\theta}_{\text{MAP}} = \arg \max_{\theta} P(\theta | X) \]
+                
+                In practice, we often work with the logarithm of the posterior probability to simplify calculations:
+                
+                \[ \hat{\theta}_{\text{MAP}} = \arg \max_{\theta} \log P(\theta | X) \]
+                
+                MAP estimation combines information from the observed data (likelihood) with prior knowledge or beliefs about the parameters (prior distribution). This approach is particularly useful when dealing with limited data or when incorporating domain expertise into the parameter estimation process.
+    
+                <br>
+                <h5 id="example-2">Example: 2</h5>
+                <p>Let's consider an example of estimating the bias of a coin using MAP estimation.</p>
+    
+                <p>Suppose we have a biased coin, and we want to estimate the probability \( p \) of it landing heads. We flip the coin \( n \) times and observe \( k \) heads and \( n - k \) tails.</p>
+                
+                <p>First, let's define our model:</p>
+                <ul>
+                    <li><strong>Likelihood</strong>: We model the outcomes of the coin flips using a binomial distribution, where the likelihood of observing \( k \) heads given \( n \) flips and probability \( p \) is given by \( P(k | n, p) = \binom{n}{k} p^k (1-p)^{n-k} \).</li>
+                    <li><strong>Prior</strong>: We assume a prior distribution for the bias \( p \). For simplicity, let's assume a Beta distribution, which is a conjugate prior to the binomial likelihood. We choose the Beta distribution with parameters \( \alpha \) and \( \beta \), which represent our initial beliefs about the bias of the coin.</li>
+                </ul>
+                
+                <p>The MAP estimate of \( p \) is then obtained by maximizing the posterior probability \( P(p | k, n, \alpha, \beta) \), which is proportional to the product of the likelihood and prior:</p>
+                
+                \[ P(p | k, n, \alpha, \beta) \propto P(k | n, p) \cdot P(p | \alpha, \beta) \]
+                
+                To maximize the posterior probability, we take the logarithm of the posterior probability and find its maximum:
+                
+                \[ \log P(p | k, n, \alpha, \beta) = \log P(k | n, p) + \log P(p | \alpha, \beta) \]
+                
+                <p>We can then use optimization techniques (e.g., gradient descent, Newton's method) to find the value of \( p \) that maximizes the logarithm of the posterior probability, giving us the MAP estimate of \( p \).</p>
+                
+                <p>In summary, MAP estimation allows us to combine our prior beliefs about the bias of the coin with the observed data to obtain an estimate of the bias that reflects both the data and our prior knowledge. This approach is particularly useful when we have limited data or when we want to incorporate domain expertise into the estimation process.</p>
+            </section>
+            
+            
+            <br>
+            <hr>
+            <!------------------------->
+            <h3 id="mle-python"> Maximum Likelihood Estimation (MLE) in Python</h3>
             <pre class="language-python"><code>
                 import numpy as np
                 import pandas as pd
@@ -518,6 +548,76 @@
             <figure>
                 <img src="assets/img/machine-ln/mle-plot.png" alt="" style="max-width: 90%; max-height: auto;">
                 <figcaption style="text-align: center;">Linear regression</figcaption>
+            </figure>
+
+            <h3 id="map-python">MAP in python</h3>
+            <p>Let's solve a simple example problem of estimating the bias of a coin using MAP estimation in Python.</p>
+
+            <p>Suppose we have flipped a coin 10 times and observed 6 heads and 4 tails. We want to estimate the bias \( p \) of the coin using MAP estimation, assuming a Beta prior distribution with parameters \( \alpha = 2 \) and \( \beta = 2 \).</p>
+            
+            <p>Here's how we can solve this problem using Python:</p>
+            
+            <pre class="language-python"><code>
+                import numpy as np
+                from scipy.stats import beta
+                import math
+                
+                # Observed data
+                n_flips = 10
+                n_heads = 6
+                n_tails = n_flips - n_heads
+                
+                # Prior parameters
+                alpha = 2
+                beta_param = 2
+                
+                # Likelihood function (binomial)
+                def likelihood(p):
+                    return math.comb(n_flips, n_heads) * p**n_heads * (1-p)**n_tails
+                
+                # Prior distribution (Beta)
+                def prior(p):
+                    return beta.pdf(p, alpha, beta_param)
+                
+                # Posterior distribution (proportional to likelihood * prior)
+                def posterior(p):
+                    return likelihood(p) * prior(p)
+                
+                # Find MAP estimate by maximizing the posterior
+                p_values = np.linspace(0, 1, 1000)
+                map_estimate = p_values[np.argmax(posterior(p_values))]
+                
+                print("MAP Estimate of Bias (p):", map_estimate)
+                
+            </code></pre>
+            
+            <p>This code defines the likelihood function, prior distribution, and posterior distribution. We then use numerical optimization to find the value of \( p \) that maximizes the posterior probability, giving us the MAP estimate of the bias \( p \).</p>
+            
+            <p>The MAP estimate of the bias \( p \) based on the observed data is approximately 0.5836. This estimate provides us with the most likely value of the bias \( p \) given the data and our prior beliefs about its distribution.</p>
+
+            <p>Now let's demonstrates how to plot the likelihood, prior, and posterior distributions for the coin bias estimation problem:</p>
+            
+            <pre class="language-python"><code>
+                # Plotting the likelihood, prior, and posterior distributions
+                p_values = np.linspace(0, 1, 1000)
+                likelihood_values = [likelihood(p) for p in p_values]
+                prior_values = [prior(p) for p in p_values]
+                posterior_values = [posterior(p) for p in p_values]
+                
+                plt.figure(figsize=(10, 6))
+                plt.plot(p_values, likelihood_values, label='Likelihood', color='blue')
+                plt.plot(p_values, prior_values, label='Prior', color='green')
+                plt.plot(p_values, posterior_values, label='Posterior', color='red')
+                plt.xlabel('Bias (p)')
+                plt.ylabel('Density')
+                plt.title('Likelihood, Prior, and Posterior Distributions')
+                plt.legend()
+                plt.grid(True)
+                plt.show()
+            </code></pre>
+            <figure>
+                <img src="assets/img/machine-ln/map-liklihood.png" alt="" style="max-width: 90%; max-height: auto;">
+                <figcaption style="text-align: center;"></figcaption>
             </figure>
 
 
