@@ -247,6 +247,7 @@
                         Using the term probability, we calculate how probable (or likely) it is to draw a sample from a given distribution with certain parameters. For example, considering a continuous distribution like the normal distribution, we compute the probability as the area under the curve for a given range of values for the data \(x\). We do this by integrating the probability density function with fixed parameters: for the normal distribution, these parameters are the mean and standard deviation. So the probability of drawing a sample \(x\) with a value between 0 and 0.5 for a standard normal distribution (mean 0 and standard deviation 1), that is,
                         \(Pr(0 < x< 0.5|\theta) = \int_0^{0.5} p(x|\theta) dx\), where \(p(x|\theta)\) is the probability density. On the other hand, the likelihood \(L(X|\theta)\), computes how likely the parameters are given the observed data – in a practical context, we change the parameters of the distribution and see how it affects the likelihood. The figure on the second (middle) hand side of the above image, illustrates how we can obtain the likelihood of a fixed data point \(x=0.5\). Notice the relationship between likelihood and probability density:  \(L(\theta | X) = p(X|\theta)\). While the values are the same, the concepts are different. With probabilities (or probability densities), we assume given parameters and compute the probabilities in the context of sampling from a distribution. On the other hand, when we consider likelihoods, we regard the data as fixed and vary the parameters of the distribution. In many contexts, we are interested in finding the parameters that maximize the likelihood. In the last figure (last one) in the above image, the likelihood of a fixed data point \(x=0.5\) for two different normal distributions are compared. 
                     </div>
+                    <br>
 
                     <p>Since we assumed each data point is independent, the likelihood of all our data is the product of the likelihood of each data point. The likelihood function is defined as the product of the probability density functions for each observation.</p>    
                     <ul>
@@ -619,7 +620,7 @@
                 plt.show()
             </code></pre>
             <figure>
-                <img src="assets/img/machine-ln/map-liklihood.png" alt="" style="max-width: 90%; max-height: auto;">
+                <img src="assets/img/machine-ln/map-liklihood.png" alt="" style="max-width: 50%; max-height: auto;">
                 <figcaption style="text-align: center;"></figcaption>
             </figure>
 
