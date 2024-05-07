@@ -697,6 +697,25 @@
             </figure>
             This becomes a vector: \([150, 152, · · · 151, 131, 133, · · · 72, · · · 144, 171, · · · 67]_{16K}\). It's evident that the number of variables in the image space exceeds what's necessary for the problem at hand. Many of these image pixels exhibit high levels of correlation. For instance, if the background pixels are uniform, adjacent background pixels are perfectly correlated. Therefore, it's imperative to explore methods for reducing the number of variables in order to address this issue.
 
+            <h5 id="dimension-reduction">Dimension Reduction</h5>
+            <p><i class="bi bi-images"></i> In the context of image recognition, dimension reduction refers to the process of reducing the number of variables (or features) used to represent an image while preserving the essential information required for the task at hand. This reduction in dimensionality helps alleviate the computational burden associated with processing high-dimensional data and can also mitigate issues such as overfitting.</p>
+
+            <p>In the abaove image recognization example, where each pixel in an image represents a variable, dimension reduction is necessary due to the high correlation among pixels. For instance, in images with uniform backgrounds, adjacent pixels exhibit high correlation, leading to redundant information. By reducing the dimensionality of the image space, we aim to retain the most significant features while discarding redundant or less informative ones.</p>
+
+            <p>There are following main <b>dimesnion reduction</b> methods used:</p>
+            <ul>
+                <li>Principal component analysis (PCA)</li>
+                <li>linear discriminant analysis (LDA),</li>
+                <li>t-distributed stochastic neighbor embedding (t-SNE), and</li>
+                <li>autoencoders.</li>
+            </ul>
+
+            <p>These techniques offer various approaches to reducing dimensionality and extracting meaningful features from image data, ultimately improving the efficiency and effectiveness of image recognition algorithms.</p>
+            
+            <p>Principal component analysis (PCA) is a commonly used technique for dimension reduction in image recognition. PCA identifies the principal components, which are orthogonal vectors that capture the maximum variance in the data. By projecting the data onto a lower-dimensional subspace defined by these principal components, PCA effectively reduces the dimensionality of the image space while preserving the most relevant information.</p>
+            
+            
+
 
 
 
