@@ -213,7 +213,7 @@
 
             <!----------------------->
             <h4 id="Practical-example">Practical example</h4>
-            Let's consider a secanrio, you have a datasets of dimention \(n = 1000\) (rows) x \(p = 40\) (columns). These 40 columns represents possible features. 
+            Let's consider a secanrio, you have a datasets of dimention \(\text{row} \times \text{columns} = \) \((n = 1000) \times (p = 40)\). These 40 columns represents possible features. 
             But not all columns can be considered to be a feature. There are total row \(p \times (p-1)/2 =780\) numbers of scattered plots one can generate to see the possible relationships between the features. 
             So it's almost impossible to find the relationships between the variables.  In this case, the correlation of all these can actually gives you the clear image of the important features for your model.
             <p></p>
@@ -656,8 +656,7 @@
                 <figcaption style="text-align: center;"></figcaption>
             </figure>
 
-            <p><strong>Description: </strong></p> We can see that around 80% of the variance is explained by the first 7 principal components.
-            The individual variance ratio for each component indicates its contribution to the overall variance.
+            <p><strong>Description: </strong></p> We can see that around 80% of the variance is explained by the first 7 principal components. The individual variance ratio for each component indicates its contribution to the overall variance.
 
 
             <br><br>
@@ -682,6 +681,27 @@
             <div class="box">
                 <strong>Example:</strong>  For example,  how PCA can be used in the context of multiple linear regression, check the <a href="https://colab.research.google.com/drive/1uHyINYEHJtEA-ootSQ6MarzXB3rR1KKY?usp=sharing" target="_blank">Google Colab Jupyter notebook</a>.
             </div>
+
+
+            <!------------------------------>
+            <h4 id="practical">Practical application: Face Recognition</h4>
+            <div class="important-box"><i class="bi bi-info-circle"></i>  For more details, please see the lecture notes by Henri P. Gavin and notes by him is available at <a href="https://people.duke.edu/~hpgavin/SystemID/References/Gillies-PCA-notes.pdf" target="_blank">PCA  basics and applications</a>.</div>
+            <p>Principal component analysis (PCA) finds wide application in face recognition, especially in reducing the dimensionality of the data. In the context of comparing a 2D input image with a database of images to identify the best match, PCA plays a crucial role. Here, we assume that all images in the database are of identical resolution and framing, ensuring that the faces appear consistently in terms of position and scale.</p>
+
+            <p>In this scenario, each pixel in the images constitutes a variable, resulting in a high-dimensional problem. PCA simplifies this by identifying the principal components that capture the maximum variance in the data. By projecting the images onto a lower-dimensional subspace defined by these principal components, PCA effectively reduces the complexity of the comparison process. This allows for more efficient and accurate face recognition algorithms, even in the presence of large datasets.</p>
+
+            <p>In the realm of image recognition, an input image comprising \( n \) pixels is conceptualized as a point within an \( n \)-dimensional space, known as the image space. Each coordinate of this point corresponds to the intensity value of a pixel in the image, forming a row vector denoted as \( \mathbf{p}_x = (i_1, i_2, i_3, \ldots, i_n) \). This vector is constructed by concatenating the pixel values of each row in the image, resulting in a high-dimensional representation. For instance, for a moderately sized image with a resolution of 128 by 128 pixels, the dimensionality would be 16,384.</p>
+            <figure>
+                <img src="assets/img/machine-ln/pca-image-reco.png" alt="" style="max-width: 50%; max-height: auto;">
+                <figcaption style="text-align: center;"></figcaption>
+            </figure>
+            This becomes a vector: \([150, 152, · · · 151, 131, 133, · · · 72, · · · 144, 171, · · · 67]_{16K}\). It's evident that the number of variables in the image space exceeds what's necessary for the problem at hand. Many of these image pixels exhibit high levels of correlation. For instance, if the background pixels are uniform, adjacent background pixels are perfectly correlated. Therefore, it's imperative to explore methods for reducing the number of variables in order to address this issue.
+
+
+
+
+
+
             </section>
 
             <!-------Reference ------->
