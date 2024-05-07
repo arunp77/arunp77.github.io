@@ -683,8 +683,9 @@
             </div>
 
 
+            <br> 
             <!------------------------------>
-            <h4 id="practical">Practical application: Face Recognition</h4>
+            <h3 id="practical">Practical application: Face Recognition</h3>
             <div class="important-box"><i class="bi bi-info-circle"></i>  For more details, please see the lecture notes by Henri P. Gavin and notes by him is available at <a href="https://people.duke.edu/~hpgavin/SystemID/References/Gillies-PCA-notes.pdf" target="_blank">PCA  basics and applications</a>.</div>
             <p>Principal component analysis (PCA) finds wide application in face recognition, especially in reducing the dimensionality of the data. In the context of comparing a 2D input image with a database of images to identify the best match, PCA plays a crucial role. Here, we assume that all images in the database are of identical resolution and framing, ensuring that the faces appear consistently in terms of position and scale.</p>
 
@@ -697,7 +698,7 @@
             </figure>
             This becomes a vector: \([150, 152, · · · 151, 131, 133, · · · 72, · · · 144, 171, · · · 67]_{16K}\). It's evident that the number of variables in the image space exceeds what's necessary for the problem at hand. Many of these image pixels exhibit high levels of correlation. For instance, if the background pixels are uniform, adjacent background pixels are perfectly correlated. Therefore, it's imperative to explore methods for reducing the number of variables in order to address this issue.
 
-            <h5 id="dimension-reduction">Dimension Reduction</h5>
+            <h4 id="dimension-reduction">Dimension Reduction</h4>
             <p><i class="bi bi-images"></i> In the context of image recognition, dimension reduction refers to the process of reducing the number of variables (or features) used to represent an image while preserving the essential information required for the task at hand. This reduction in dimensionality helps alleviate the computational burden associated with processing high-dimensional data and can also mitigate issues such as overfitting.</p>
 
             <p>In the abaove image recognization example, where each pixel in an image represents a variable, dimension reduction is necessary due to the high correlation among pixels. For instance, in images with uniform backgrounds, adjacent pixels exhibit high correlation, leading to redundant information. By reducing the dimensionality of the image space, we aim to retain the most significant features while discarding redundant or less informative ones.</p>
@@ -713,10 +714,77 @@
             <p>These techniques offer various approaches to reducing dimensionality and extracting meaningful features from image data, ultimately improving the efficiency and effectiveness of image recognition algorithms.</p>
             
             <p>Principal component analysis (PCA) is a commonly used technique for dimension reduction in image recognition. PCA identifies the principal components, which are orthogonal vectors that capture the maximum variance in the data. By projecting the data onto a lower-dimensional subspace defined by these principal components, PCA effectively reduces the dimensionality of the image space while preserving the most relevant information.</p>
-            
-            
 
+            <p>Let's consider an application where we have N images each with \(n\) pixels. We can write our entire data set as \(N\times n\) data matrix \(D\). Each row of \(D\) represents one image of our dataset. For example we may have:     </p>
 
+            \[
+            D =
+            \begin{bmatrix}
+            150 & 152 & \dots & 254 & 255 & \dots & 252 \\
+            131 & 133 & \dots & 221 & 223 & \dots & 241 \\
+            \vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+            \vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+            144 & 171 & \dots & 244 & 245 & \dots & 223 \\
+            \end{bmatrix}_{N\times n}
+            \]
+
+            <p>The initial stage of PCA involves shifting the origin to the mean of the data. In this context, we accomplish this by computing the mean image, denoted as \( \mu \), through the averaging of the columns of matrix \( D \). Subsequently, we subtract this mean image from every image in the dataset (i.e., each row of \( D \)) to generate the mean-centered data vector, denoted as \( U \). Suppose the mean-centered image is represented as:</p>
+
+            $$\left[120~~~~140~~~~   ...~~~~ 230 ~~~~  230 ~~ ...  ~~ 240 \right]$$
+            
+            Then we have that:
+
+            \[
+            U =
+            \begin{bmatrix}
+            30 & 12 & \dots & 24 & 25 & \dots & 12 \\
+            11 & -7 & \dots & -9 & -7 & \dots & 1 \\
+            \vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+            \vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+            24 & 31 & \dots & 14 & 15 & \dots & -17 \\
+            \end{bmatrix}_{N\times n}
+            \]
+
+            <p>It is very easy to compute the covariance matrix from the mean centered data matrix. It is just</p>
+
+            $$\sum = \frac{U^T U}{ N-1}$$
+
+            and has dimesnion \(n\times n\). We now calculate the eighenvectors and eigenvalues of \(\sum\) using the standard technique
+            outlined above. That is to say we solve for \(\Phi\) and \(\Lambda\) that satisfy:
+
+            $$\sum  = \Phi \Lambda \Phi^T.$$
+
+            If we normalize the eigenvectors, then the system of vectors \(\Phi\) forms an orthogonal basis, that is to say:
+
+            <p>For all \( \phi_i, \phi_j \in \Phi \), we have:</p>
+
+            \[
+            \phi_i \cdot \phi_j =
+            \begin{cases}
+            1 & \text{if } i = j \\
+            0 & \text{if } i \neq j
+            \end{cases}
+            \]
+            
+            <p>It is in effect an axis system in which we we can represent our data in a compact form. We can achieve size reduction by choosing to represent our data we fewer dimensions. Normally we choose to use the set of \(m (m\leq n)\) eigenvectors of \(\sum\) which have the \(m\) largest eigenvalues. Typically for face recognization system \(m\) will be quite small (around 20-50 in number). We can compose these in an \(n\times m\) matrix:</p>
+
+            $$\Phi_{\text{PCA}} = \left[\phi_1, \phi_2, ..., \phi_m \right]$$
+
+            which perfroms the PCA projection. FOr any given image \(p_x = (i_1, i_2, i_3, ... i_n)\) we can find a corresponding point in the PCA space by computing
+
+            $$p_\phi = (p_x - \mu_x) \cdot \Phi_{\text{PCA}}$$
+
+            The \(m\)-dimension vector \(p_\phi\) is all we need to represent the image. We have achieved a massive reduction in data size since typically \(n\) will be least 16K and \(m\) as small as 20. We can store all our data base images in the PCA space and can easily search the data base to find the closest match to a test image. We can also reconstruct any image with the inverse transform:
+
+            $$p_x =p_\phi \cdot \Phi_{\text{PCA}}^T +\mu_x$$
+
+            <p>It can be shown that choosing the m eigenvectors of \(\sum\) that have the largest eigenvalues minimises the mean square reconstruction error over all choices of m orthonormal bases.</p>
+
+            <p>Clearly we would like \(m\) to be as small as possible compatible with accurate recognition and reconstruction, but this problem is data dependent. We can make a decision on the basis of the amount of the total variance accounted for by the \(m\) principal components that we have chosen. This can be assessed by looking at the eigenvalues. Let the sum of all the \(n\) eigenvalues be written: \(\sum_{j=1}^n = \lambda_j\) (the \(\sum\) denoting summation in this case, not co-variance). We can express the percentage of the variance accounted for the \(i^{th}\) eigenvector as:</p>
+
+            $$r_i = 100 \frac{\lambda_i}{\sum_{j=1}^n \lambda_j}$$
+
+            <p>We can select the value of \( m \) based on a heuristic condition that depends on the specific application. For instance, one approach could involve ensuring that we capture a minimum percentage of the total variance, such as 95%, by satisfying the condition \( \sum_{j=1}^{m} r_j \geq 95 \). Alternatively, we might discard eigenvectors whose corresponding eigenvalues contribute less than 1% to the total variance. However, there isn't a universally agreed-upon rule for determining the appropriate number of eigenvectors to retain.</p>
 
 
 
@@ -754,7 +822,7 @@
                 
                 <a href="machine-learning.html" class="clickable-box">
                     <span class="arrow-right">Content</span>
-                </a>
+                </a>   
             </div>
         </div>
         </section><!-- End Portfolio Details Section -->
