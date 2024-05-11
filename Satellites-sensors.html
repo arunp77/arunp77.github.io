@@ -257,14 +257,34 @@
                 </tr>
               </table><br>
 
-              <h4>What is raster and vector data?</h4>
-              Raster data and vector data are two primary types of geospatial data representations used in <a href="https://www.esri.com/en-us/what-is-gis/overview" target="_blank">geographic information systems (GIS)</a> and related fields
+              <h3>What is raster and vector data?</h3> 
+              Raster data and vector data are two primary types of geospatial data representations used in <a href="https://www.esri.com/en-us/what-is-gis/overview" target="_blank">geographic information systems (GIS)</a> and related fields.
               <div class="box">
                 A raster is a matrix of cells (pixels) organized into rows and columns
               </div><br>
               Raster data is a type of geospatial data representation that is used to capture and store information about the characteristics of geographic phenomena. Unlike vector data, which represents spatial 
               information using points, lines, and polygons, raster data is structured as a grid of cells, where each cell or pixel holds a specific value. These cells collectively form a grid, 
               and each cell contains a value that represents a certain attribute or characteristic at that location. This attribute could be elevation, temperature, land cover, or any other measurable quantity.
+              <ol>
+                <li><strong>Raster Data:</strong> Raster data represents the Earth's surface as a grid of cells or pixels, with each cell containing a single value or multiple values representing a specific attribute. Examples of raster data include:
+                  <ul>
+                    <li><strong>Satellite imagery:</strong> Captures images of the Earth's surface, often divided into bands representing different wavelengths of light.</li>
+                    <li><strong>Digital elevation models (DEMs):</strong> Represent elevation data as a grid, commonly used for terrain analysis and visualization.</li>
+                    <li><strong>Land cover classification:</strong> Categorizes the Earth's surface into different land cover types (e.g., forests, water bodies) based on spectral characteristics.</li>
+                  </ul>
+                </li>
+                <li><strong>Vector data:</strong>
+                  <ul>
+                    <li><strong>Points:</strong> Represent specific locations on the Earth's surface, such as cities, landmarks, or GPS coordinates.</li>
+                    <li><strong>Lines:</strong> Represent linear features such as roads, rivers, boundaries, and transportation networks.</li> 
+                    <li><strong>Polygons:</strong> Represent areas such as land parcels, administrative boundaries, and land use zones.</li>
+                  </ul>
+                </li>
+              </ol>
+
+              <p>While raster and vector data are the two primary formats, it's important to note that some types of geospatial information may not fit neatly into these categories. For example, <a href="https://en.wikipedia.org/wiki/Lidar" target="_blank">LiDAR</a> (Light Detection and Ranging) data, which captures three-dimensional point clouds of the Earth's surface, is often stored and analyzed as raster data (e.g., DEMs derived from LiDAR), but it can also be represented as point clouds or vector features. Similarly, some types of geospatial data, such as satellite imagery with vector overlays or thematic layers, may combine elements of both raster and vector data formats.</p>
+
+
               <figure style="text-align: center;">
                 <img src="assets/img/remote-sensing/raster-data.png" alt="" style="max-width: 80%; max-height: 80%;">
                 <figcaption style="text-align: center;">Raster spatial image format (<strong>Image credit:</strong><a href="https://pages.cms.hu-berlin.de/EOL/geo_rs/S02_image-prop1.html" target="_blank"> Humbold University</a>). </figcaption>
