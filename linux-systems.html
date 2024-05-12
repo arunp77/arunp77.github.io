@@ -824,8 +824,9 @@
                     source_dir="source_folder"   # Defines the name of the source directory
                     
                     mkdir -p $backup_dir         # Creates the backup directory if it doesn't exist
+                    mkdir -p $source_dir
                     cp -r $source_dir/* $backup_dir/  # Copies all files from the source directory to the backup directory recursively
-                    echo "Backup completed successfully!"  # Prints a message indicating that the backup process is completed                    
+                    echo "Backup completed successfully!"  # Prints a message indicating that the backup process is completed                                       
                 </code></pre>
                 This script creates a backup folder if it doesn't exist and copies the contents of the source folder into it.
             </li>
