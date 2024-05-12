@@ -876,7 +876,7 @@
                     echo "Memory: $(free -h | grep Mem | awk '{print $2}')"
                     echo "Disk Space: $(df -h | grep '/dev/sda1' | awk '{print $4}') available"                    
                 </code></pre>
-                This script retrieves and displays information about the system, including hostname, CPU, memory, and disk space.
+                This script retrieves and displays information about the system, including hostname, CPU, memory, and disk space. The $(...) syntax is used to execute the command within the parenthesis and include its output in the string. The line <code>"CPU: $(grep "model name" /proc/cpuinfo | uniq)"</code> prints the CPU model information by searching the <code>/proc/cpuinfo</code> file for lines containing "model name" and then using <code>uniq</code> to remove duplicate lines if any. This ensures that only unique CPU model information is displayed. Next <code>"Memory: $(free -h | grep Mem | awk '{print $2}')"</code>  prints the total memory size of the system. It uses the <code>free -h</code> command to display memory information in a human-readable format (<code>-h</code> option), then <code>grep Mem</code> filters out the line containing "<code>Mem</code>", and <code>awk '{print $2}'</code> extracts the second column, which represents the total memory size.
             </li>
             <li><strong></strong>
             
