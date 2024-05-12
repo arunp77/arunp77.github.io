@@ -850,7 +850,7 @@
                     error_count=$(grep -c "ERROR" $log_file)
                     echo "Number of errors in the log file: $error_count"
                 </code></pre>
-                This script uses grep to count the occurrences of the word "ERROR" in a log file.
+                This script uses grep to count the occurrences of the word "ERROR" in a log file. Here <code>-c</code> counts the occurrences of 'ERROR' in the log file.
             </li>
             <li><strong>Automated Data Download Script: </strong>
                 Automate the download of data from a specified URL.
@@ -863,7 +863,7 @@
                     wget $download_url -P $output_dir
                     echo "Data downloaded to $output_dir."              
                 </code></pre>
-                This script uses wget to download data from a URL and saves it to the specified directory.
+                This script uses wget to download data from a URL and saves it to the specified directory. The <code>-p</code> option ensures that the command does not produce an error if the directory already exists. <code>wget</code> is a command-line utility used to download files from the internet. The option <code>-P $output_dir</code> tells <code>wget</code> to save the downloaded file to the directory specified by the <code>$output_dir</code> variable.
             </li>
             <li><strong>System Information Scrip: </strong>
                 Create a script that provides essential system information.
