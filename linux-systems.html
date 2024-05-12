@@ -878,7 +878,7 @@
                 </code></pre>
                 This script retrieves and displays information about the system, including hostname, CPU, memory, and disk space. The $(...) syntax is used to execute the command within the parenthesis and include its output in the string. The line <code>"CPU: $(grep "model name" /proc/cpuinfo | uniq)"</code> prints the CPU model information by searching the <code>/proc/cpuinfo</code> file for lines containing "model name" and then using <code>uniq</code> to remove duplicate lines if any. This ensures that only unique CPU model information is displayed. Next <code>"Memory: $(free -h | grep Mem | awk '{print $2}')"</code>  prints the total memory size of the system. It uses the <code>free -h</code> command to display memory information in a human-readable format (<code>-h</code> option), then <code>grep Mem</code> filters out the line containing "<code>Mem</code>", and <code>awk '{print $2}'</code> extracts the second column, which represents the total memory size.
             </li>
-            <li><strong></strong>
+            <li><strong>Extracting data from API and data analytics: </strong> This Bash script is designed to perform data analytics tasks on data retrieved from an API endpoint. 
             
                 <pre><code class="language-bash">
                     #!/bin/bash
@@ -927,6 +927,11 @@
                     
                     echo "Data analytics completed successfully. Plots saved as time_series_plot.png and others as needed."                    
                 </code></pre>
+                <ul>
+                    <li>The first three lines, define variables for the URL from which to download the data (data_url), as well as the names of the output files for the raw data (<code>raw_data_file</code>) and the transformed data (<code>transformed_data_file</code>).</li>
+                    <li>In the Step-1, the <code>wget</code> command to download data from the specified API endpoint (<code>$data_url</code>) and save it to the file specified by <code>$raw_data_file</code>.</li>
+                    <li>Step-2, transforms the raw data using <code>jq</code>, a command-line JSON processor. It reads the contents of the raw data file (<code>$raw_data_file</code>), applies a transformation using <code>jq</code> to select specific fields (<code>timestamp</code> and <code>data_field</code>), and saves the transformed data to the file specified by <code>$transformed_data_file</code>.</li>
+                </ul>
             </li>
         </ul>
         
