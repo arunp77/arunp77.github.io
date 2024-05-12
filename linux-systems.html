@@ -768,7 +768,7 @@
         <ul>
             <li><strong>Understanding Bash Scripting: </strong>Bash (Bourne Again SHell) is the default shell for Ubuntu, providing a command-line interface to interact with the operating system. Bash scripting allows you to automate sequences of commands, making it a valuable skill for streamlining tasks.</li>
             <li><strong>Writing Your First Script: </strong>Let's start by creating a simple "Hello World" script to get familiar with the basics. Open a text editor on Ubuntu, such as Nano or Vim, and create a new file, for example, hello.sh. Add the following lines:
-            <pre><code class="language-bash">
+            <pre><code class="language-python">
                 #!/bin/bash
                 echo "Hello, World!"
             </code></pre>
@@ -779,7 +779,7 @@
             Congratulations! You've just written and executed your first Bash script.
             </li>
             <li><strong>Variables and Input: </strong>Bash allows you to use variables to store and manipulate data. Let's enhance our script to take input from the user:
-            <pre><code class="language-bash">
+            <pre><code class="language-python">
                 #!/bin/bash
                 echo "Enter your name:"
                 read username
@@ -792,7 +792,7 @@
                 </figure>
             </li>
             <li><strong>Conditional Statements: </strong>Bash supports conditional statements for decision-making in scripts. For example, let's create a script that checks if a number is even or odd:
-            <pre><code class="language-bash">
+            <pre><code class="language-python">
                 #!/bin/bash
                 echo "Enter a number:"
                 read num
@@ -806,7 +806,7 @@
             Once you run the file 'hello.sh' using <code>./hello.sh</code>, it will ask a number (lets suppose it is 12). If number is even then it will give <code></code>12 is even</code>.
             </li>
             <li><strong>Looping Constructs: </strong>For automating repetitive tasks, loops are crucial. Consider a script that prints numbers from 1 to 5:
-                <pre><code class="language-bash">
+                <pre><code class="language-python">
                     #!/bin/bash
                     for i in {1..5}; do
                     echo $i
@@ -817,7 +817,7 @@
             
             <li><strong>File Backup Script: </strong>
                 Create a script that automatically backs up specified files or directories to a backup folder.
-                <pre><code class="language-bash">
+                <pre><code class="language-python">
                     #!/bin/bash
 
                     backup_dir="backup_folder"   # Defines the name of the backup directory
@@ -832,7 +832,7 @@
             </li>
             <li><strong>Data Processing Script: </strong>
                 Suppose you have a set of CSV files, and you want to concatenate them into a single file for analysis.
-                <pre><code class="language-bash">
+                <pre><code class="language-python">
                     #!/bin/bash
                     output_file="merged_data.csv"
 
@@ -843,7 +843,7 @@
             </li>
             <li><strong>Log Analysis Script: </strong>
                 Create a script to analyze and extract relevant information from log files.
-                <pre><code class="language-bash">
+                <pre><code class="language-python">
                     #!/bin/bash
                     log_file="application.log"
                     
@@ -854,7 +854,7 @@
             </li>
             <li><strong>Automated Data Download Script: </strong>
                 Automate the download of data from a specified URL.
-                <pre><code class="language-bash">
+                <pre><code class="language-python">
                     #!/bin/bash
                     download_url="https://example.com/data.zip"
                     output_dir="downloaded_data"
@@ -867,7 +867,7 @@
             </li>
             <li><strong>System Information Scrip: </strong>
                 Create a script that provides essential system information.
-                <pre><code class="language-bash">
+                <pre><code class="language-python">
                     #!/bin/bash
                     echo "System Information:"
                     echo "-------------------"
@@ -880,7 +880,7 @@
             </li>
             <li><strong>Extracting data from API and data analytics: </strong> This Bash script is designed to perform data analytics tasks on data retrieved from an API endpoint. 
             
-                <pre><code class="language-bash">
+                <pre><code class="language-python">
                     #!/bin/bash
 
                     # Set the URL for data download
