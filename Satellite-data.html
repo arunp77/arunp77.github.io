@@ -205,7 +205,26 @@
                 <li>Apply additional corrections or adjustments specific to the derived parameter (e.g., bidirectional reflectance distribution function (BRDF) correction for land surface products).</li>
               </ul>
               <p><strong><u>Example</u>:</strong> in the case of ocean colour, the core level 2 product is the water-leaving <b><em>reflectance</em></b>, whilst chlorophyll a is the commonly derived product. For OLCI these are available both at full resolution (300m pixel size) and reduced resolution (1km pixel size). </p></li>
-            <li><strong>Level 3 & 4 :</strong> Levels 3 and 4 refer to binned and or merged/filled versions of the level 2 data for a given spatial or temporal resolution. The level 2 data from the <a href="https://marine.copernicus.eu/" target="_blank">Copernicus Marine Data Stream (CMDS)</a> feeds in to a further component of Copernicus (the Copernicus Marine Environmental Monitoring Service - <a href="https://insitu.copernicus.eu/FactSheets/CMEMS/" target="_blank">CMEMS</a>). This data can be useful for those wanting better spatial coverage, and those looking at marine processes that happen over longer time periods. In particular merged data can be used to generate long time series from multiple sensors, which is essential for climate studies</li>
+            <li><strong>Level 3 & 4 :</strong> Levels 3 and 4 refer to binned and or merged/filled versions of the level 2 data for a given spatial or temporal resolution. The level 2 data from the <a href="https://marine.copernicus.eu/" target="_blank">Copernicus Marine Data Stream (CMDS)</a> feeds in to a further component of Copernicus (the Copernicus Marine Environmental Monitoring Service - <a href="https://insitu.copernicus.eu/FactSheets/CMEMS/" target="_blank">CMEMS</a>). This data can be useful for those wanting better spatial coverage, and those looking at marine processes that happen over longer time periods. In particular merged data can be used to generate long time series from multiple sensors, which is essential for climate studies
+              <ul>
+                <li><strong>Level 4 (Model Output or Results): </strong>
+                  <ul>
+                    <li>Spatially and temporally aggregate or grid the Level 2 products into regular grids or maps.</li>
+                    <li>Apply additional filtering, smoothing, or gap-filling techniques to enhance the data quality and continuity.</li>
+                    <li>Implement compositing or mosaicking algorithms to create multi-day, multi-sensor, or multi-resolution products.</li>
+                    <li>Perform additional quality control and flagging based on the aggregated data.</li>
+                  </ul>
+                </li>
+                <li><strong>Level 4 (Model Output or Results): </strong>
+                  <ul>
+                    <li>Assimilate the Level 2 or Level 3 products into numerical models or data assimilation systems.+</li>
+                    <li>Perform model simulations or forecasts using the satellite data as input or constraints.</li>
+                    <li>Derive higher-level products or analyses by combining satellite data with other data sources (e.g., in-situ measurements, model outputs).</li>
+                    <li>Implement validation and uncertainty quantification procedures for the model outputs or derived products.</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
           </ol>
           
           <p>It's important to note that not all satellite data goes through all these levels. The processing levels that data undergoes depend on the specific requirements of the remote sensing application 
