@@ -159,46 +159,27 @@
               spectral bands for the desired applications (example optical, infrared, radar).</li>
               <li><strong>Mission Planning and Scheduling: </strong>Next step would be to choose the orbits to cover the target area after 
                 considering the lighting conditions, weather and other mission constrains.</li>
-              <li><strong>Data Acquisition: </strong>Then the sensors onboards acquire remote sensing data through capturning the electromagnetic radiation in various wavelengths. 
-                When utilizing optical sensors, the collection of data is accomplished by depending on sunlight reflection and absorption. In contrast, with radar sensors, 
-                the sensors emit microwave signals, and the captured data comes from the signals that are backscattered. </li>
-              <li><strong>Telemetry and Data Transmission: </strong>In the next step, the acquired data is transmitted to ground stations using telemetry systems. 
-                Telemetry data includes details such as the satellite's health, its orientation in space, power levels, and sensor status.</li>
-              <li><strong> Data Preprocessing: </strong>In this step, various data corrections (radiometric and geometric distortions introduced during data acquisition) are done.
-              Atmospheric correction are also done in this step. The normalization and standardization of pixel values are also done for consistency.</li>
-              <li><strong>Image Registration:</strong>Next multiple images from different times or sensors are aligned to a common coordiante system. 
-                Also geometric distortions are corrected to enable accurate comparison and analysis.</li>
-              <li><strong>Image Enhancement: </strong>Image emhancement is done to improve the visual quality and highlight specific features using techniques like contrast adjustment
-              and histogram equalization. If required, specific spectral bands are enhanced to emphaseze certain infromation.</li>
-              <li><strong>Image Classification: </strong>Pixels or regions are assigned within the images to predefined classes or land cover types. These are done by using classification 
-              algorithms based on spectral, textural and contextual features. </li>
-              <li><strong>Feature Extraction:</strong>Finally relevant features are identified and extracted from the images, such as vegitation indices, water bodeis, or urban areas.
-              Texture analysis and spatially filtering are used for this purpose. </li>
-              <li><strong>Change Detection: </strong>After going through all the above steps, multiple images over times are compared to idnetify changes in land cover or other features. 
-              The algorithm is then trained using a training set which includes images from different geographical locations with similar characteristics. </li>
+              <li><strong>Data Acquisition: </strong>Then the sensors onboards acquire remote sensing data through capturning the electromagnetic radiation in various wavelengths. When utilizing optical sensors, the collection of data is accomplished by depending on sunlight reflection and absorption. In contrast, with radar sensors, the sensors emit microwave signals, and the captured data comes from the signals that are backscattered. </li>
+              <li><strong>Telemetry and Data Transmission: </strong>In the next step, the acquired data is transmitted to ground stations using telemetry systems. Telemetry data includes details such as the satellite's health, its orientation in space, power levels, and sensor status.</li>
+              <li><strong> Data Preprocessing: </strong> In this step, various data corrections (radiometric and geometric distortions introduced during data acquisition) are done. Atmospheric correction are also done in this step. The normalization and standardization of pixel values are also done for consistency.</li>
+              <li><strong>Image Registration:</strong> Next multiple images from different times or sensors are aligned to a common coordiante system. Also geometric distortions are corrected to enable accurate comparison and analysis.</li>
+              <li><strong>Image Enhancement: </strong>Image emhancement is done to improve the visual quality and highlight specific features using techniques like contrast adjustment and histogram equalization. If required, specific spectral bands are enhanced to emphaseze certain infromation.</li>
+              <li><strong>Image Classification: </strong>Pixels or regions are assigned within the images to predefined classes or land cover types. These are done by using classification algorithms based on spectral, textural and contextual features. </li>
+              <li><strong>Feature Extraction:</strong>Finally relevant features are identified and extracted from the images, such as vegitation indices, water bodeis, or urban areas. Texture analysis and spatially filtering are used for this purpose. </li>
+              <li><strong>Change Detection: </strong>After going through all the above steps, multiple images over times are compared to idnetify changes in land cover or other features. The algorithm is then trained using a training set which includes images from different geographical locations with similar characteristics. </li>
             </ol>
 
-          <h3>Satellite data collection levels</h3>
+          <!---------------------------->
+          <h3>Satellite Data levels</h3>
+          <p>Within remote sensing and its applications, there are a series of levels that are used to define the amount of processing that has been performed to provide a given dataset. Satellite data is collected at various levels, each representing a different stage of processing and refinement. Here are the common levels of satellite data (<a href="https://classroom.eumetsat.int/mod/book/tool/print/index.php?id=13919#ch621" target="_blank">reference</a> ):</p>
 
-          <p>Within remote sensing and its applications, there are a series of levels that are used to define the amount of processing that has been performed to provide a given dataset. 
-            Satellite data is collected at various levels, each representing a different stage of processing and refinement. Here are the common levels of satellite data:</p>
           <ol>
-            <li><strong>Level 0 (L0): Raw Data:</strong> This is the unprocessed, raw data directly from the satellite's sensors and refers to full resolution data. It includes unprocessed digital counts or voltage 
-              measurements. L0 data is transmitted to ground stations. It is unlikely that we will work with this level of data, especially for more modern sensors, as this data lacks information 
-              such as geo-referencing and time-referencing ancillary information.</li>
-
-            <li><strong>Level 1 (L1): Radiometric Calibration:</strong> In this level, the raw data undergoes radiometric calibration, which involves correcting for sensor-specific 
-              characteristics, such as sensor sensitivity and noise. This step aims to ensure that the data values are consistent and comparable over time.</li>
-
-            <li><strong>Level 2 (L2): Geometric Correction:</strong> Geometric correction is applied to correct distortions caused by the Earth's terrain and the satellite's position. This includes corrections for 
-              terrain relief, sensor viewing angle, and other geometric distortions, ensuring that the imagery accurately represents the Earth's surface.</li>
-
-            <li><strong>Level 3 (L3): Atmospheric Correction:</strong> Atmospheric correction involves removing or correcting the effects of the Earth's atmosphere on the satellite data. This is crucial for 
-              obtaining accurate surface reflectance values, especially in applications where the atmospheric conditions can affect the interpretation of features on the Earth's surface.</li>
-
-            <li><strong>Level 4 (L4): Data Processing and Analysis:</strong> At this level, the data is processed and analyzed to generate higher-level products, such as thematic maps, classifications, or indices. 
-              This level often involves the extraction of specific information from the satellite imagery, depending on the objectives of the remote sensing application.</li>
+            <li><strong>Level 0 (L0): Raw Data:</strong> This is the unprocessed, raw data directly from the satellite's sensors and refers to full resolution data. It includes unprocessed digital counts or voltage measurements. L0 data is transmitted to ground stations. It is unlikely that we will work with this level of data, especially for more modern sensors, as this data lacks information such as geo-referencing and time-referencing ancillary information. </li>
+            <li><strong>Level 1 (L1):</strong> Level 1 is further divided into A and B.  Level 1A is the full resolution sensor data with time-referencing, ancillary information including radiometric and geometric calibration coefficients and georeferencing parameters computed and added to the file.  Level 1B is the stage following the application of the parameters appended to the files at L1A (such as instrument calibration coefficients). This level also includes quality and classification flags. <p><strong>Example:</strong> for ocean colour this would be often referred to as the “<em><b>top of atmosphere (TOA)</b></em>” radiance [mW.m-2.sr-1.nm-1]. </p></li>
+            <li><strong>Level 2 :</strong> Level 2 refers to derived geophysical variables.  This will have required processing to remove the atmospheric component of the signal, as well as the application of algorithms to measurements to generate other products. This is the level at which many users will use the data, particularly if they are interested in event scale processes that require the highest time and space resolution available from the data stream. <p><strong>Example:</strong> in the case of ocean colour, the core level 2 product is the water-leaving reflectance, whilst chlorophyll a is the commonly derived product. For OLCI these are available both at full resolution (300m pixel size) and reduced resolution (1km pixel size). </p></li>
+            <li><strong>Level 3 & 4 :</strong> Levels 3 and 4 refer to binned and or merged/filled versions of the level 2 data for a given spatial or temporal resolution. The level 2 data from the CMDS feeds in to a further component of Copernicus (the Copernicus Marine Environmental Monitoring Service - CMEMS). This data can be useful for those wanting better spatial coverage, and those looking at marine processes that happen over longer time periods. In particular merged data can be used to generate long time series from multiple sensors, which is essential for climate studies</li>
           </ol>
+          
           <p>It's important to note that not all satellite data goes through all these levels. The processing levels that data undergoes depend on the specific requirements of the remote sensing application 
             and the type of data needed for analysis. Researchers and analysts choose the appropriate level of data based on the goals and objectives of their studies.</p>
 
