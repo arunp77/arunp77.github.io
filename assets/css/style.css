@@ -1530,7 +1530,7 @@ ul.upper-alpha {
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 20px;
-  box-shadow: 5px 5px 5px;
+  box-shadow: 5px 5px 3px;
 }
 
 .grey-box {
@@ -1542,7 +1542,8 @@ ul.upper-alpha {
 }
 
 .important-box {
-  background-color: #18dfe642; /* Grey color */
+  border:#000000  solid 1px;
+  background-color: #09f8e417; /* Grey color */
   padding: 20px;
   border-radius: 8px;
 }
