@@ -1406,32 +1406,7 @@ ul.upper-alpha {
 
 
 
-/*--------------------------------------------------------------
-# Creating a box of text
---------------------------------------------------------------*/
-.box {
-  width: 98%; /* Set your desired width here */
-  border: 1px solid #d6d6d6;
-  background-color: #e2e2e221;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 20px;
-  box-shadow: 5px 5px 5px;
-}
 
-.grey-box {
-  border:#000000  solid 1px;
-  background-color: #F7F7F7;
-  background-color: #d3d3d342; /* Grey color */
-  padding: 20px;
-  border-radius: 8px;
-}
-
-.important-box {
-  background-color: #d3d3d342; /* Grey color */
-  padding: 20px;
-  border-radius: 8px;
-}
 
 
 /*---------------------------------------
@@ -1545,6 +1520,32 @@ ul.upper-alpha {
   }
 }
 
+/*--------------------------------------------------------------
+# Creating a box of text
+--------------------------------------------------------------*/
+.box {
+  width: 98%; /* Set your desired width here */
+  border: 1px solid #d6d6d6;
+  background-color: #e2e2e221;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px;
+}
+
+.grey-box {
+  border:#000000  solid 1px;
+  background-color: #F7F7F7;
+  background-color: #d3d3d342; /* Grey color */
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.important-box {
+  background-color: #18dfe642; /* Grey color */
+  padding: 20px;
+  border-radius: 8px;
+}
 
 /*---------------------------------------------*/
 /*                     Text box                */

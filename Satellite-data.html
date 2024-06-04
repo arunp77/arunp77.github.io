@@ -188,12 +188,41 @@
             <img src="assets/img/remote-sensing/Level-0-4-stages.png" alt="" style="max-width: 90%; max-height: 90%;">
             <figcaption style="text-align: center;">Level-0 to Level-1 remote sensing data transformation. (<strong>Image credit: © </strong><a href="https://arunp77.github.io/Arun-Kumar-Pandey/" target="_blank"> Arun Kumar Pandey</a>)</figcaption>
           </figure>
+          <div class="important-box">
+            <h5>Note on Cal/Val (calibration/validation) activities:</h5>
+            <ol>
+              <li><b>Vicarious calibration:</b> Vicarious calibration is a technique used to calibrate satellite sensors by comparing their measurements with well-characterized ground-based or airborne measurements over specific calibration sites. These sites are carefully selected and characterized for their stable and well-known surface properties, such as reflectance or radiance. The process typically involves:
+                <ul>
+                  <li>Collecting simultaneous ground-based or airborne measurements over the calibration site at the time of satellite overpass.</li>
+                  <li>Using radiative transfer models to simulate the at-sensor radiance or reflectance based on the ground-based measurements and atmospheric conditions.</li>
+                  <li>Comparing the simulated and satellite-measured radiances/reflectances to derive calibration coefficients or adjustments for the satellite sensor.</li>
+                </ul>
+              </li>
+              <li><b>Cross-calibration with other satellites:</b> Cross-calibration involves comparing the measurements from one satellite sensor with those from another well-calibrated satellite sensor, typically operating in similar spectral bands. This helps ensure consistency between different satellite missions and maintains long-term data records. The process involves:
+                <ul>
+                  <li>Identifying simultaneous <a href="http://gsics.atmos.umd.edu/bin/view/Development/SimultaneousNadirOverpassMethod" target="_blank">nadir overpasses (SNOs)</a> or <a href="https://digitalenvironment.org/nerc-embedded-digital-researcher-highlighting-the-potential-of-coincident-satellite-data/" target="_blank">coincident observations</a> between the two satellites over common surfaces or targets.</li>
+                  <li>Applying appropriate corrections for spectral band differences, viewing geometry, and atmospheric conditions.</li>
+                  <li>Comparing the radiance or reflectance measurements from the two sensors over the common targets.</li>
+                  <li>Deriving cross-calibration coefficients or adjustments to harmonize the measurements between the two sensors.</li>
+                </ul>
+              </li> 
+              <li><b>Product validation using ground-truth data: </b>
+                This activity involves comparing satellite-derived geophysical products (e.g., atmospheric, land, or ocean products) with ground-based or in-situ measurements to assess their accuracy and validate the retrieval algorithms. The process typically includes:
+                <ul>
+                  <li>Collecting ground-truth measurements of the geophysical parameter of interest using various instruments and techniques (e.g., weather balloons, buoys, field campaigns).</li>
+                  <li>Co-locating and matching the ground-based measurements with the satellite observations in space and time.</li>
+                  <li>Applying appropriate corrections or adjustments to account for spatial and temporal differences between the satellite and ground-based measurements.</li>
+                  <li>Statistically analyzing the differences between the satellite products and ground-truth data to quantify uncertainties, biases, and other performance metrics.</li>
+                  <li>Using the validation results to refine and improve the satellite retrieval algorithms or flag potential issues with the satellite products.</li>
+                </ul>
+              </li> 
+            </ol>
+          </div>
         </section>
 
           <section id="Data-Transformation-required">
-          <h3 id="Data-Transformation-required">Data Processing<a class="anchor-link" href="#Data-Transformation-required">&#182;</a></h3><p>Level 0 (L0) data represents 
-            the raw, unprocessed data directly received from a satellite's sensors. Transforming Level 0 data into Level 1 and higher levels involves several essential steps to convert the raw 
-            sensor measurements into physically meaningful units. Here's a step-by-step process for this transformation:</p>
+          <h3 id="Data-Transformation-required">Data Processing</h3> 
+          <p>Level 0 (L0) data represents the raw, unprocessed data directly received from a satellite's sensors. Transforming Level 0 data into Level 1 and higher levels involves several essential steps to convert the raw sensor measurements into physically meaningful units. Here's a step-by-step process for this transformation:</p>
             <figure style="text-align: center;">
               <img src="assets/img/remote-sensing/Level-0-4.png" alt="" style="max-width: 90%; max-height: 90%;">
               <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://link.springer.com/referenceworkentry/10.1007/978-0-387-36699-9_36">Processing Levels, 
