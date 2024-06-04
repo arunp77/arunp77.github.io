@@ -281,13 +281,24 @@
               <li><strong>Level-0 to Level-1 Transformation: </strong>
                 <p>The transformation from level-0 to level-1 involves converting the raw sensor data into calibrated and corrected data. This process typically includes the following steps:</p>
                 <ol>
-                  <li><strong>Radiometric Calibration: </strong>This step converts the digital counts or voltages recorded by the sensor into physical units of radiance or reflectance. This is done by applying calibration coefficients that are determined during sensor calibration. The calibration coefficients account for the sensor's sensitivity and response to different wavelengths of radiation.
-                    The digital counts (DN) recorded by sensors are converted to radiance (L) using the following equation:
+                  <li><strong>Radiometric Calibration: </strong>This step converts the digital counts or voltages recorded by the sensor into physical units of radiance or reflectance. This is done by applying calibration coefficients that are determined during sensor calibration. The calibration coefficients account for the sensor's sensitivity and response to different wavelengths of radiation. The digital counts (DN), recorded by sensors are converted to radiance using the following equation:
 
                     $$L = (\text{DN}- \text{Offset})\times \text{Gain}$$
 
-                    where,<br>
-                    where <code>Offset</code> and <code>Gain</code> are calibration coefficients determined during sensor testing.
+                  <br>
+                    where 
+                    <ul>
+                      <li>\(L\) is radiance and is typically in units of \(W/(m^2 ~\text{sr}~ \mu \text{m})\),</li>
+                      <li><code>DN</code> is a dimensionless integer and known as digital counts or Digital Number or raw sensor count (DN). It has a value in the range of <code>0</code> to <code>65535</code> for a 16-bit sensor,</li>
+                      <li><code>Offset</code> (an additive calibration coefficient that accounts for the sensor's dark current or instrument offset) and,</li>
+                      <li>Gain = A multiplicative calibration coefficient that accounts for the sensor's gain or sensitivity and units depends on the calibrated quantity (radiance or reflectance).
+                        <ul>
+                          <li><b>For radiance: </b> \((W/(m^2 ~\text{sr}~ \mu \text{m})) / \text{count}\)</li>
+                          <li><b>For reflectance: </b>Unitless (reflectance values are inherently dimensionless)</li>
+                        </ul>
+                      </li>
+                    </ul>
+                    It's important to note that the exact form of the calibration equation and the units of the coefficients (offset and gain) may vary depending on the specific satellite sensor and calibration methodology used. The provided equation is a simplified example, and more complex calibration procedures may involve additional terms or different unit conventions.
                   </li>
                   <li><strong>Sensor Correction: </strong>This step corrects for sensor-specific errors and non-linearities. This may involve removing sensor bias, correcting for non-linear responses, and applying gain corrections. The goal is to ensure that the sensor data accurately represents the incoming radiation.</li>
                   <li><strong>Geometric Correction: </strong>This step corrects for distortions caused by the sensor's optics and the earth's curvature. This is done by applying a geometric transformation to the data to align it with a reference map or coordinate system. The transformation accounts for factors such as sensor orientation, lens distortion, and earth's projection.
