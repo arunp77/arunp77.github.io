@@ -171,7 +171,7 @@
 
           <!---------------------------->
           <h3>Satellite Data levels</h3>
-          <p>Within remote sensing and its applications, there are a series of levels that are used to define the amount of processing that has been performed to provide a given dataset. Satellite data is collected at various levels, each representing a different stage of processing and refinement. Here are the common levels of satellite data (<a href="https://classroom.eumetsat.int/mod/book/tool/print/index.php?id=13919#ch621" target="_blank">reference</a> ):</p>
+          <p>Within remote sensing and its applications, there are a series of levels that are used to define the amount of processing that has been performed to provide a given dataset. Satellite data is collected at various levels, each representing a different stage of processing and refinement. Here are the common levels of satellite data (<a href="https://classroom.eumetsat.int/mod/book/tool/print/index.php?id=13919#ch621" target="_blank">reference 1</a> and <a href="https://www.star.nesdis.noaa.gov/atmospheric-composition-training/satellite_data_processing_levels.php" target="_blank">reference 2</a>):</p>
 
           <ol>
             <li><strong>Level 0 (L0): Raw Data:</strong> This is the unprocessed, raw data directly from the satellite's sensors and refers to full resolution data. It is typically in a compressed or encoded format. The first step is to decompress or decode the raw data into a usable format for further processing. It includes unprocessed digital counts or voltage measurements. L0 data is transmitted to ground stations. It is unlikely that we will work with this level of data, especially for more modern sensors, as this data lacks information such as geo-referencing and time-referencing ancillary information. </li>
@@ -195,7 +195,11 @@
                 </ul>
                 </li>
               </ul>
-              <p><strong><u>Example</u>:</strong> for ocean colour this would be often referred to as the “<em><b>top of atmosphere (TOA)</b></em>” radiance [mW.m-2.sr-1.nm-1]. </p> 
+              <p><strong><u>Example</u>:</strong> for ocean colour this would be often referred to as the “<em><b>top of atmosphere (TOA)</b></em>” radiance [mW.m-2.sr-1.nm-1] or a meteorologist might use Level 1b visible wavelength imgery to monitor cloud formation associated with a tropical cyclone. </p> 
+              <figure style="text-align: center;">
+                <img src="assets/img/remote-sensing/goes-img.png" alt="" style="max-width: 50%; max-height: 50%;">
+                <figcaption style="text-align: center;">GOES-East ABI Band 2 (visible) Level 1b imagery of Hurricane Ida’s landfall on August 29, 2021. (<strong>Image credit: © </strong><a href="https://www.star.nesdis.noaa.gov/atmospheric-composition-training/satellite_data_processing_levels.php" target="_blank"> NOAA</a>)</figcaption>
+              </figure>
             </li>
             <li><strong>Level 2 (Environmental Data Record): </strong> Level 2 refers to derived geophysical variables.  This will have required processing to remove the atmospheric component of the signal, as well as the application of algorithms to measurements to generate other products. This is the level at which many users will use the data, particularly if they are interested in event scale processes that require the highest time and space resolution available from the data stream. 
               <ul>
@@ -204,16 +208,26 @@
                 <li>Implement quality control checks and flagging of retrieved parameters based on predefined thresholds and conditions.</li>
                 <li>Apply additional corrections or adjustments specific to the derived parameter (e.g., bidirectional reflectance distribution function (BRDF) correction for land surface products).</li>
               </ul>
-              <p><strong><u>Example</u>:</strong> in the case of ocean colour, the core level 2 product is the water-leaving <b><em>reflectance</em></b>, whilst chlorophyll a is the commonly derived product. For OLCI these are available both at full resolution (300m pixel size) and reduced resolution (1km pixel size). </p></li>
+              <p><strong><u>Example</u>:</strong> in the case of ocean colour, the core level 2 product is the water-leaving <b><em>reflectance</em></b>, whilst chlorophyll a is the commonly derived product. For OLCI these are available both at full resolution (300m pixel size) and reduced resolution (1km pixel size). </p>
+              <figure style="text-align: center;">
+                <img src="assets/img/remote-sensing/level2-img.png" alt="" style="max-width: 50%; max-height: 50%;">
+                <figcaption style="text-align: center;">Level 2 SNPP & NOAA-20 VIIRS AOD imagery of volcanic aerosols over eastern Australia and the Coral Sea, transported from the eruption of Hunga Tonga-Hunga Ha‘apai on January 15, 2022. (<strong>Image credit: © </strong><a href="https://www.star.nesdis.noaa.gov/atmospheric-composition-training/satellite_data_processing_levels.php" target="_blank"> NOAA</a>)</figcaption>
+              </figure>
+            </li>
             <li><strong>Level 3 & 4 :</strong> Levels 3 and 4 refer to binned and or merged/filled versions of the level 2 data for a given spatial or temporal resolution. 
               <ul>
-                <li><strong>Level 3 (Geophysical Data Record):: </strong>
+                <li><strong>Level 3 (Geophysical Data Record): </strong>Level 3 data are Level 2 data that have been mapped on a uniform space-time grid, and thus have been averaged over space and/or time.
                   <ul>
                     <li>Spatially and temporally aggregate or grid the Level 2 products into regular grids or maps.</li>
                     <li>Apply additional filtering, smoothing, or gap-filling techniques to enhance the data quality and continuity.</li>
                     <li>Implement compositing or mosaicking algorithms to create multi-day, multi-sensor, or multi-resolution products.</li>
                     <li>Perform additional quality control and flagging based on the aggregated data.</li>
                   </ul>
+                  <p><strong>Example: </strong> the VIIRS Level 3 AOD product is a gridded composite at 0.1° or 0.25° resolution, available daily or as a monthly average; it is derived from the daily 750 m resolution Level 2 AOD data.</p>
+                  <figure style="text-align: center;">
+                    <img src="assets/img/remote-sensing/level3.png" alt="" style="max-width: 50%; max-height: 50%;">
+                    <figcaption style="text-align: center;">Level 3 NOAA-20 VIIRS AOD imagery at 0.1° resolution for January 3, 2020. (<strong>Image credit: © </strong><a href="https://www.star.nesdis.noaa.gov/atmospheric-composition-training/satellite_data_processing_levels.php" target="_blank"> NOAA</a>)</figcaption>
+                  </figure>
                 </li>
                 <li><strong>Level 4 (Model Output or Results): </strong>
                   <ul>
