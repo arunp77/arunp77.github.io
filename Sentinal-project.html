@@ -88,268 +88,354 @@
 
 <main id="main">
 
-    <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-      <div class="container">
+  <!-- ======= Breadcrumbs ======= -->
+  <section id="breadcrumbs" class="breadcrumbs">
+    <div class="container">
 
-        <div class="d-flex justify-content-between align-items-center">
-          <h2>Copernicus Programme</h2>
-          <ol>
-            <li><a href="Remote-sensing-content.html" class="clickable-box"><i class="fas fa-arrow-left"></i> Content </a></li>
-            <li><a href="index.html" class="clickable-box"> Home <i class="fas fa-arrow-right"></i></a></li>
-          </ol>
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>Copernicus Programme</h2>
+        <ol>
+          <li><a href="Remote-sensing-content.html" class="clickable-box"><i class="fas fa-arrow-left"></i> Content </a></li>
+          <li><a href="index.html" class="clickable-box"> Home <i class="fas fa-arrow-right"></i></a></li>
+        </ol>
+      </div>
+
+    </div>
+  </section><!-- End Breadcrumbs -->
+
+  <div class="right-side-list">
+  <div class="dropdown">
+      <button class="dropbtn"><strong>Shortcuts:</strong></button>
+      <div class="dropdown-content">
+          <ul>
+              <li><a href="cloud-compute.html"><i class="fas fa-cloud"></i> Cloud</a></li>
+              <li><a href="AWS-GCP.html"><i class="fas fa-cloud"></i> AWS-GCP</a></li>
+              <li><a href="amazon-s3.html"><i class="fas fa-cloud"></i> AWS S3</a></li>
+              <li><a href="ec2-confi.html"><i class="fas fa-server"></i> EC2</a></li>
+              <li><a href="Docker-Container.html"><i class="fab fa-docker" style="color: rgb(5, 5, 5);"></i> Docker</a></li>
+              <li><a href="Jupyter-nifi.html"><i class="fab fa-python" style="color: rgb(8, 8, 8);"></i> Jupyter-nifi</a></li>
+              <li><a href="snowflake-task-stream.html"><i class="fas fa-snowflake"></i> Snowflake</a></li>
+              <li><a href="sql-basics.html"><i class="fas fa-table"></i> QL</a></li>
+              <li><a href="sql-basic-details.html"><i class="fas fa-database"></i> SQL</a></li>
+              <li><a href="Bigquerry-sql.html"><i class="fas fa-database"></i> Bigquerry</a></li>
+              <li><a href="scd.html"><i class="fas fa-archive"></i> SCD</a></li>
+              <li><a href="sql-project.html"><i class="fas fa-database"></i> SQL project</a></li>
+                <!-- Add more subsections as needed -->
+            </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= Portfolio Details Section ======= -->
+  <section id="portfolio-details" class="portfolio-details">
+    <div class="container">
+      <div class="row gy-4">
+        <h1>Europe’s eyes on Earth: the EU’s Copernicus Programme</h1>
+
+        <div class="col-lg-8">
+          <div class="portfolio-details-slider swiper">
+            <div class="swiper-wrapper align-items-center">
+              <div class="swiper-slide">
+                <img src="assets/img/portfolio/eumesat-sattelite.jpg" alt="" style="max-width: 800px; max-height: 600px;">
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
         </div>
 
-      </div>
-    </section><!-- End Breadcrumbs -->
+        <!-----------Main section starts here --------------->
+        <section id = "section-1">
+            <h3>Introduction</h3>
+            EUMETSAT operates fleets of satellites in various orbits to deliver crucial information for weather forecasters, climate scientists, and other data users. The continuous 24/7 data provision from these satellites is essential. Member states' meteorological services rely on the data from EUMETSAT's satellite instruments to produce timely and accurate weather forecasts and to monitor the climate effectively. Satellite systems are operated from Darmstadt, Germany headquarters, known as EUMESAT. A list of missions are as follows:
+            <table border="1">
+              <tr>
+                <th>Satellite Program</th>
+                <th>Number of Satellites</th>
+                <th>Orbit</th>
+                <th>Orbit Height</th>
+                <th>Mission</th>
+                <th>First Launch</th>
+                <th>End Date</th>
+              </tr>
+              <tr>
+                <td>Meteosat</td>
+                <td>12 (3 Generations)</td>
+                <td>Geostationary</td>
+                <td>36,000 km</td>
+                <td>Weather forecasting, severe weather detection, climate monitoring</td>
+                <td>November 1977</td>
+                <td>Third Generation ongoing</td>
+              </tr>
+              <tr>
+                <td>Metop</td>
+                <td>3 (First Generation)</td>
+                <td>Polar (LEO)</td>
+                <td>817 km</td>
+                <td>Detailed atmospheric, ocean, and land observations for weather forecasts (12 hours to 10 days), climate monitoring</td>
+                <td>2006</td>
+                <td>Second Generation planned for 2025</td>
+              </tr>
+              <tr>
+                <td>Sentinel-1, -2, -3, -6</td>
+                <td>Varies</td>
+                <td>Polar/Geostationary</td>
+                <td>Varies</td>
+                <td>Earth observation for Copernicus program; Sentinel-4 and -5 are instruments on Meteosat and Metop satellites</td>
+                <td>2014 (Sentinel-1)</td>
+                <td>Ongoing</td>
+              </tr>
+              <tr>
+                <td>Jason</td>
+                <td>3 (Jason-1, -2, -3)</td>
+                <td>Polar (LEO)</td>
+                <td>1,336 km</td>
+                <td>Precise measurements of global mean sea level, climate monitoring, seasonal weather forecasting</td>
+                <td>1992 (TOPEX-Poseidon)</td>
+                <td>April 2022 (Replaced by Sentinel-6)</td>
+              </tr>
+            </table>
 
-    <div class="right-side-list">
-    <div class="dropdown">
-        <button class="dropbtn"><strong>Shortcuts:</strong></button>
-        <div class="dropdown-content">
+            <h5>Additional Details</h5>
+            <ol>
+              <li><strong>Meteosat Program: </strong>
+                <ul>
+                  <li>First Generation: Launched 1977, ended 2005.</li>
+                  <li>Second Generation: Launched 2002, ongoing.</li>
+                  <li>Third Generation: Launched December 2022, ongoing.</li>
+                </ul>
+              </li>
+              <li><strong>Metop Program:</strong>
+                <ul>
+                  <li>First Generation: Metop-A (2006), Metop-B (2012), Metop-C (2018).</li>
+                  <li>Second Generation: Planned for launch in 2025.</li>
+                </ul>
+              </li>
+              <li><strong>Sentinel Series:</strong>
+                <ul>
+                  <li>Sentinel-1: Launched 2014, ongoing.</li>
+                  <li>Sentinel-2: Launched 2015, ongoing.</li>
+                  <li>Sentinel-3: Launched 2016, ongoing.</li>
+                  <li>Sentinel-4: Instruments on Meteosat Third Generation.</li>
+                  <li>Sentinel-5: Instruments on Metop Second Generation.</li>
+                  <li>Sentinel-6: Launched November 2020, ongoing.</li>
+                </ul>
+              </li>
+              <li><strong>Jason Program:</strong>
+                <ul>
+                  <li>TOPEX-Poseidon: Launched 1992, ended 2006.</li>
+                  <li>Jason-1: Launched 2001, ended 2013.</li>
+                  <li>Jason-2: Launched 2008, ended 2019.</li>
+                  <li>Jason-3: Launched 2016, replaced by Sentinel-6 in April 2022.</li>
+                  <li>Sentinel-6 Michael Freilich: Launched November 2020, ongoing.</li>
+                </ul>
+              </li>
+            </ol>
+
+            
+            <!------------------------------------>
+            <h3>Copernicus Missions</h3>
             <ul>
-                <li><a href="cloud-compute.html"><i class="fas fa-cloud"></i> Cloud</a></li>
-                <li><a href="AWS-GCP.html"><i class="fas fa-cloud"></i> AWS-GCP</a></li>
-                <li><a href="amazon-s3.html"><i class="fas fa-cloud"></i> AWS S3</a></li>
-                <li><a href="ec2-confi.html"><i class="fas fa-server"></i> EC2</a></li>
-                <li><a href="Docker-Container.html"><i class="fab fa-docker" style="color: rgb(5, 5, 5);"></i> Docker</a></li>
-                <li><a href="Jupyter-nifi.html"><i class="fab fa-python" style="color: rgb(8, 8, 8);"></i> Jupyter-nifi</a></li>
-                <li><a href="snowflake-task-stream.html"><i class="fas fa-snowflake"></i> Snowflake</a></li>
-                <li><a href="sql-basics.html"><i class="fas fa-table"></i> QL</a></li>
-                <li><a href="sql-basic-details.html"><i class="fas fa-database"></i> SQL</a></li>
-                <li><a href="Bigquerry-sql.html"><i class="fas fa-database"></i> Bigquerry</a></li>
-                <li><a href="scd.html"><i class="fas fa-archive"></i> SCD</a></li>
-                <li><a href="sql-project.html"><i class="fas fa-database"></i> SQL project</a></li>
-                  <!-- Add more subsections as needed -->
-              </ul>
+                <li>Copernicus is the most ambitious Earth observation programme to date. </li>
+                <li>To meet the operational needs of the Copernicus programme, ESA developed the family of Sentinel satellites.</li>
+                <li>At present, three complete two-satellite constellations are in orbit, along with two additional single satellites—Sentinel-5P.</li>
+                <li>Copernicus provides a unified system through which huge amounts of data are fed into a range of thematic 
+                    information services, designed to benefit the environment and humanitarian needs while supporting effective policy-making for a more sustainable future.
+            </ul>
+
+            <h4>Applications of Copernicus space missions</h4>
+            Copernicus covers wide number of applications. For use cases please check the Success Stories on Sentinel Online. 
+            <p>The main applications are in environmental science, climate change and disaster management.</p>
+            <ul style="column-count: 3;">
+                <li>Climate change</li>
+                <li>Land Overview</li>
+                <li>Marine monitoring overview</li>
+                <li>Atmospheric monitoring overview</li>
+                <li>Greenhouse gases</li>
+                <li>Reactive gases</li>
+                <li>Ozone and solar UV Radiation</li>
+                <li>Floods</li>
+                <li>Forest Fires</li>
+                <li>Landslides</li>
+                <li>Earthquakes and Volcanic eruption</li>
+                <li>Humanitarian crises</li>
+                <li>Oil spills</li>
+                <li>Border Surveillance</li>
+                <li>Maritime surveillance</li>
+            </ul>
+
+            <h3> Sentinel missions</h3>
+            The Copernicus program, led by the European Union and the European Space Agency (ESA), is a comprehensive Earth observation program 
+            that aims to provide accurate and timely environmental information to support a wide range of applications. The Sentinel missions are 
+            a key component of the Copernicus program, consisting of a constellation of Earth observation satellites designed to monitor different 
+            aspects of the Earth's environment. 
+            <table>
+                <thead>
+                  <tr>
+                    <th>Mission Name</th>
+                    <th>Objective</th>
+                    <th>Applications</th>
+                    <th>Onboard Sensors</th>
+                    <th>Year of Launch</th>
+                    <th>Orbit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Sentinel-1A</td>
+                    <td>To provide all-weather, day-and-night Earth observation data for land and ocean monitoring.</td>
+                    <td>Land use mapping, ice cover monitoring, maritime safety, flood mapping, and disaster response.</td>
+                    <td>
+                        <ul>
+                            <li>C-band synthetic aperture radar (SAR)</li>
+                        </ul>
+                    </td>
+                    <td>April 3, 2014</td>
+                    <td>Sun-synchronous, near-polar orbit</td>
+                  </tr>
+                  <tr>
+                    <td>Sentinel-1B</td>
+                    <td>To provide all-weather, day-and-night Earth observation data for land and ocean monitoring, complementing Sentinel-1A.</td>
+                    <td>Land use mapping, ice cover monitoring, maritime safety, flood mapping, and disaster response.</td>
+                    <td>
+                        <ul>
+                            <li>C-band synthetic aperture radar (SAR)</li>
+                        </ul>
+                    </td>
+                    <td>April 25, 2016</td>
+                    <td>Sun-synchronous, near-polar orbit</td>
+                  </tr>
+                  <tr>
+                    <td>Sentinel-2A</td>
+                    <td>To provide high-resolution multispectral imagery for land cover mapping, vegetation monitoring, and water resource management.</td>
+                    <td>Land cover mapping, vegetation monitoring, water resource management, agricultural monitoring, and forestry management.</td>
+                    <td>
+                        <ul>
+                            <li>Multispectral instrument (MSI)</li>
+                        </ul>
+                    </td>
+                    <td>June 23, 2015</td>
+                    <td>Sun-synchronous, near-polar orbit</td>
+                  </tr>
+                  <tr>
+                    <td>Sentinel-2B</td>
+                    <td>To provide high-resolution multispectral imagery for land cover mapping, vegetation monitoring, and water resource management, complementing Sentinel-2A.</td>
+                    <td>Land cover mapping, vegetation monitoring, water resource management, agricultural monitoring, and forestry management.</td>
+                    <td>
+                        <ul>
+                            <li>Multispectral instrument (MSI)</li>
+                        </ul>
+                    </td>
+                    <td>March 7, 2017</td>
+                    <td>Sun-synchronous, near-polar orbit</td>
+                  </tr>
+                  <tr>
+                    <td>Sentinel-3A</td>
+                    <td>To provide continuous and accurate measurements of sea surface temperature, ocean color, and land surface temperature.</td>
+                    <td>Ocean monitoring, climate change research, marine meteorology, and fisheries management.</td>
+                    <td>
+                        <ul>
+                            <li>Sea and Land Surface Temperature Radiometer (SLSTR),</li>
+                            <li>Ocean and Land Colour Instrument (OLCI),</li>
+                            <li>Synthetic Aperture Radar Altimeter (SRAL)</li>
+                        </ul>
+                    </td>
+                    <td>February 16, 2016</td>
+                    <td>Sun-synchronous, near-polar orbit</td>
+                  </tr>
+                  <tr>
+                    <td>Sentinel-3B</td>
+                    <td>To provide continuous and accurate measurements of sea surface temperature, ocean color, and land surface temperature, complementing Sentinel-3A.</td>
+                    <td>Ocean monitoring, climate change research, marine meteorology, and fisheries management.</td>
+                    <td>
+                        <ul>
+                            <li>Sea and Land Surface Temperature Radiometer (SLSTR),</li>
+                            <li>Ocean and Land Colour Instrument (OLCI),</li>
+                            <li>Synthetic Aperture Radar Altimeter (SRAL)</li>
+                        </ul>
+                    </td>
+                    <td>April 25, 2018</td>
+                    <td>Sun-synchronous, near-polar orbit</td>
+                  </tr>
+                  <tr>
+                    <td>Sentinel-4</td>
+                    <td>To provide continuous monitoring of atmospheric composition, including ozone, nitrogen dioxide, sulfur dioxide, and formaldehyde.</td>
+                    <td>Air quality monitoring, climate change research, and atmospheric modeling.</td>
+                    <td>
+                        <ul>
+                            <li>Total Ozone Parcel Instrument (TROPOMI)</li>
+                        </ul>
+                    </td>
+                    <td>October 21, 2017</td>
+                    <td>Geostationary orbit</td>
+                  </tr>
+                  <tr>
+                    <td>Sentinel-5P</td>
+                    <td>To provide atmospheric composition measurements, including greenhouse gases, aerosols, and trace gases.</td>
+                    <td>Air quality monitoring, climate change research, and atmospheric modeling.</td>
+                    <td>
+                        <ul>
+                            <li>Total Ozone Parcel Instrument (TROPOMI)</li>
+                        </ul>
+                    </td>
+                    <td>October 13, 2017</td>
+                    <td>Sun-synchronous, near-polar orbit</td>
+                  </tr>
+                  <td>Sentinel-5A</td>
+                    <td>To provide atmospheric composition measurements, including ozone, nitrogen dioxide, sulfur dioxide, and formaldehyde.</td>
+                    <td>Air quality monitoring, climate change research, and atmospheric modeling.</td>
+                    <td>
+                        <ul>
+                            <li>Total Ozone Parcel Instrument (TROPOMI)</li>
+                        </ul>
+                    </td>
+                    <td>August 22, 2020</td>
+                    <td>Sun-synchronous, near-polar orbit</td>
+                    </tr>
+                    <tr>
+                    <td>Sentinel-6</td>
+                    <td>To provide high-precision measurements of sea surface topography, significant wave height, and wind speed.</td>
+                    <td>Ocean monitoring, climate change research, maritime safety, and coastal zone management.</td>
+                    <td>
+                        <ul>
+                            <li>Poseidon-3 radar altimeter,</li>
+                            <li>microwave radiometer (MWR),</li>
+                            <li>synthetic aperture radar (SAR)</li>
+                        </ul>
+                    </td>
+                    <td>November 21, 2020</td>
+                    <td>Sun-synchronous, near-polar orbit</td>
+                    </tr>
+                </tbody>
+                </table><br><br><br>
+
+
+            <img src="assets/img/portfolio/Copernicus_Ground_Segment_article.png" alt="Image Description" style="width: 900px; height: 600px;">
+
+
+            <img src="assets/img/portfolio/ground-segment.png" alt="Image Description" style="width: 900px; height: 500px;">
+            
+            
+        </section>
+
+        <h3>Reference:</h3>
+        <ul style="margin-left: 30px;">
+            <li>Visit the <a href="https://training.eumetsat.int/">"EUMESAT training website".</a></li>
+            <li>Visit the <a href="https://sentinels.copernicus.eu/web/sentinel/missions">"Sentinel Overview website".</a></li>
+            <li>Visit my <a href="https://github.com/arunp77/EUMETSET-courses/tree/main">"Github repository"</a> to learn about basics on space missions.</li>
+        </ul>
+
+        <div class="navigation">
+            <a href="index.html" class="clickable-box">
+                <span class="arrow-left">Go home</span>
+            </a>
+            <a href="Remote-sensing-content.html" class="clickable-box">
+                <span class="arrow-right">Content</span>
+            </a>
         </div>
       </div>
     </div>
-
-
-
-    <!-- ======= Portfolio Details Section ======= -->
-    <section id="portfolio-details" class="portfolio-details">
-        <div class="container">
-            <div class="row gy-4">
-                <h1>Europe’s eyes on Earth: the EU’s Copernicus Programme</h1>
-
-                <div class="col-lg-8">
-                    <div class="portfolio-details-slider swiper">
-                      <div class="swiper-wrapper align-items-center">
-                        <div class="swiper-slide">
-                          <img src="assets/img/portfolio/eumesat-sattelite.jpg" alt="" style="max-width: 800px; max-height: 600px;">
-                        </div>
-                      </div>
-                      <div class="swiper-pagination"></div>
-                    </div>
-                  </div>
-
-            <!-----------Main section starts here --------------->
-            <section id = "section-1">
-                <h3>Introduction</h3>
-                <ul>
-                    <li>Copernicus is the most ambitious Earth observation programme to date. </li>
-                    <li>To meet the operational needs of the Copernicus programme, ESA developed the family of Sentinel satellites.</li>
-                    <li>At present, three complete two-satellite constellations are in orbit, along with two additional single satellites—Sentinel-5P.</li>
-                    <li>Copernicus provides a unified system through which huge amounts of data are fed into a range of thematic 
-                        information services, designed to benefit the environment and humanitarian needs while supporting effective policy-making for a more sustainable future.
-                </ul>
-
-                <h3>Applications of Copernicus space missions</h3>
-                Copernicus covers wide number of applications. For use cases please check the Success Stories on Sentinel Online. 
-                <p>The main applications are in environmental science, climate change and disaster management.</p>
-                <ul style="column-count: 3;">
-                    <li>Climate change</li>
-                    <li>Land Overview</li>
-                    <li>Marine monitoring overview</li>
-                    <li>Atmospheric monitoring overview</li>
-                    <li>Greenhouse gases</li>
-                    <li>Reactive gases</li>
-                    <li>Ozone and solar UV Radiation</li>
-                    <li>Floods</li>
-                    <li>Forest Fires</li>
-                    <li>Landslides</li>
-                    <li>Earthquakes and Volcanic eruption</li>
-                    <li>Humanitarian crises</li>
-                    <li>Oil spills</li>
-                    <li>Border Surveillance</li>
-                    <li>Maritime surveillance</li>
-                </ul>
-
-                <h3> Sentinel missions</h3>
-                The Copernicus program, led by the European Union and the European Space Agency (ESA), is a comprehensive Earth observation program 
-                that aims to provide accurate and timely environmental information to support a wide range of applications. The Sentinel missions are 
-                a key component of the Copernicus program, consisting of a constellation of Earth observation satellites designed to monitor different 
-                aspects of the Earth's environment. 
-                <table>
-                    <thead>
-                      <tr>
-                        <th>Mission Name</th>
-                        <th>Objective</th>
-                        <th>Applications</th>
-                        <th>Onboard Sensors</th>
-                        <th>Year of Launch</th>
-                        <th>Orbit</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Sentinel-1A</td>
-                        <td>To provide all-weather, day-and-night Earth observation data for land and ocean monitoring.</td>
-                        <td>Land use mapping, ice cover monitoring, maritime safety, flood mapping, and disaster response.</td>
-                        <td>
-                            <ul>
-                                <li>C-band synthetic aperture radar (SAR)</li>
-                            </ul>
-                        </td>
-                        <td>April 3, 2014</td>
-                        <td>Sun-synchronous, near-polar orbit</td>
-                      </tr>
-                      <tr>
-                        <td>Sentinel-1B</td>
-                        <td>To provide all-weather, day-and-night Earth observation data for land and ocean monitoring, complementing Sentinel-1A.</td>
-                        <td>Land use mapping, ice cover monitoring, maritime safety, flood mapping, and disaster response.</td>
-                        <td>
-                            <ul>
-                                <li>C-band synthetic aperture radar (SAR)</li>
-                            </ul>
-                        </td>
-                        <td>April 25, 2016</td>
-                        <td>Sun-synchronous, near-polar orbit</td>
-                      </tr>
-                      <tr>
-                        <td>Sentinel-2A</td>
-                        <td>To provide high-resolution multispectral imagery for land cover mapping, vegetation monitoring, and water resource management.</td>
-                        <td>Land cover mapping, vegetation monitoring, water resource management, agricultural monitoring, and forestry management.</td>
-                        <td>
-                            <ul>
-                                <li>Multispectral instrument (MSI)</li>
-                            </ul>
-                        </td>
-                        <td>June 23, 2015</td>
-                        <td>Sun-synchronous, near-polar orbit</td>
-                      </tr>
-                      <tr>
-                        <td>Sentinel-2B</td>
-                        <td>To provide high-resolution multispectral imagery for land cover mapping, vegetation monitoring, and water resource management, complementing Sentinel-2A.</td>
-                        <td>Land cover mapping, vegetation monitoring, water resource management, agricultural monitoring, and forestry management.</td>
-                        <td>
-                            <ul>
-                                <li>Multispectral instrument (MSI)</li>
-                            </ul>
-                        </td>
-                        <td>March 7, 2017</td>
-                        <td>Sun-synchronous, near-polar orbit</td>
-                      </tr>
-                      <tr>
-                        <td>Sentinel-3A</td>
-                        <td>To provide continuous and accurate measurements of sea surface temperature, ocean color, and land surface temperature.</td>
-                        <td>Ocean monitoring, climate change research, marine meteorology, and fisheries management.</td>
-                        <td>
-                            <ul>
-                                <li>Sea and Land Surface Temperature Radiometer (SLSTR),</li>
-                                <li>Ocean and Land Colour Instrument (OLCI),</li>
-                                <li>Synthetic Aperture Radar Altimeter (SRAL)</li>
-                            </ul>
-                        </td>
-                        <td>February 16, 2016</td>
-                        <td>Sun-synchronous, near-polar orbit</td>
-                      </tr>
-                      <tr>
-                        <td>Sentinel-3B</td>
-                        <td>To provide continuous and accurate measurements of sea surface temperature, ocean color, and land surface temperature, complementing Sentinel-3A.</td>
-                        <td>Ocean monitoring, climate change research, marine meteorology, and fisheries management.</td>
-                        <td>
-                            <ul>
-                                <li>Sea and Land Surface Temperature Radiometer (SLSTR),</li>
-                                <li>Ocean and Land Colour Instrument (OLCI),</li>
-                                <li>Synthetic Aperture Radar Altimeter (SRAL)</li>
-                            </ul>
-                        </td>
-                        <td>April 25, 2018</td>
-                        <td>Sun-synchronous, near-polar orbit</td>
-                      </tr>
-                      <tr>
-                        <td>Sentinel-4</td>
-                        <td>To provide continuous monitoring of atmospheric composition, including ozone, nitrogen dioxide, sulfur dioxide, and formaldehyde.</td>
-                        <td>Air quality monitoring, climate change research, and atmospheric modeling.</td>
-                        <td>
-                            <ul>
-                                <li>Total Ozone Parcel Instrument (TROPOMI)</li>
-                            </ul>
-                        </td>
-                        <td>October 21, 2017</td>
-                        <td>Geostationary orbit</td>
-                      </tr>
-                      <tr>
-                        <td>Sentinel-5P</td>
-                        <td>To provide atmospheric composition measurements, including greenhouse gases, aerosols, and trace gases.</td>
-                        <td>Air quality monitoring, climate change research, and atmospheric modeling.</td>
-                        <td>
-                            <ul>
-                                <li>Total Ozone Parcel Instrument (TROPOMI)</li>
-                            </ul>
-                        </td>
-                        <td>October 13, 2017</td>
-                        <td>Sun-synchronous, near-polar orbit</td>
-                      </tr>
-                      <td>Sentinel-5A</td>
-                        <td>To provide atmospheric composition measurements, including ozone, nitrogen dioxide, sulfur dioxide, and formaldehyde.</td>
-                        <td>Air quality monitoring, climate change research, and atmospheric modeling.</td>
-                        <td>
-                            <ul>
-                                <li>Total Ozone Parcel Instrument (TROPOMI)</li>
-                            </ul>
-                        </td>
-                        <td>August 22, 2020</td>
-                        <td>Sun-synchronous, near-polar orbit</td>
-                        </tr>
-                        <tr>
-                        <td>Sentinel-6</td>
-                        <td>To provide high-precision measurements of sea surface topography, significant wave height, and wind speed.</td>
-                        <td>Ocean monitoring, climate change research, maritime safety, and coastal zone management.</td>
-                        <td>
-                            <ul>
-                                <li>Poseidon-3 radar altimeter,</li>
-                                <li>microwave radiometer (MWR),</li>
-                                <li>synthetic aperture radar (SAR)</li>
-                            </ul>
-                        </td>
-                        <td>November 21, 2020</td>
-                        <td>Sun-synchronous, near-polar orbit</td>
-                        </tr>
-                    </tbody>
-                    </table><br><br><br>
-
-
-                <img src="assets/img/portfolio/Copernicus_Ground_Segment_article.png" alt="Image Description" style="width: 900px; height: 600px;">
-
-
-                <img src="assets/img/portfolio/ground-segment.png" alt="Image Description" style="width: 900px; height: 500px;">
-                
-                
-            </section>
-                <h3>Reference:</h3>
-                  <ul style="margin-left: 30px;">
-                      <li>Visit the <a href="https://training.eumetsat.int/">"EUMESAT training website".</a></li>
-                      <li>Visit the <a href="https://sentinels.copernicus.eu/web/sentinel/missions">"Sentinel Overview website".</a></li>
-                      <li>Visit my <a href="https://github.com/arunp77/EUMETSET-courses/tree/main">"Github repository"</a> to learn about basics on space missions.</li>
-                  </ul>
-  
-                  <div class="navigation">
-                      <a href="index.html" class="clickable-box">
-                          <span class="arrow-left">Go home</span>
-                      </a>
-                      <a href="Remote-sensing-content.html" class="clickable-box">
-                          <span class="arrow-right">Content</span>
-                      </a>
-                  </div>
-              </div>
-          </div>
-      </section><!-- End Portfolio Details Section -->
-  
-  </main><!-- End #main -->
+  </section><!-- End Portfolio Details Section -->
+</main><!-- End #main -->
   
   <!-- ======= Footer ======= -->
   <footer id="footer">
