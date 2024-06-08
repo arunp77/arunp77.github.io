@@ -169,12 +169,37 @@
               <li><strong>Change Detection: </strong>After going through all the above steps, multiple images over times are compared to idnetify changes in land cover or other features. The algorithm is then trained using a training set which includes images from different geographical locations with similar characteristics. </li>
             </ol>
 
+
+          <!--------------------------->
+          <h2 id="basic-principle">Satellite Data Processing: From Raw Measurements to Calibrated Insights</h2>
+          Let's delve into the details of how satellite data is processed, starting from the raw Level-0 data received by the sensors and then transforming it to Level-1 data.
           <!---------------------------->
           <h3>Satellite Data levels</h3>
           <p>Within remote sensing and its applications, there are a series of levels that are used to define the amount of processing that has been performed to provide a given dataset. Satellite data is collected at various levels, each representing a different stage of processing and refinement. Here are the common levels of satellite data (<a href="https://classroom.eumetsat.int/mod/book/tool/print/index.php?id=13919#ch621" target="_blank">reference 1</a> and <a href="https://www.star.nesdis.noaa.gov/atmospheric-composition-training/satellite_data_processing_levels.php" target="_blank">reference 2</a>):</p>
 
           <ol>
-            <li><strong>Level 0 (L0): Raw Data:</strong> This is the unprocessed, raw data directly from the satellite's sensors and refers to full resolution data. It is typically in a compressed or encoded format. The first step is to decompress or decode the raw data into a usable format for further processing. It includes unprocessed digital counts or voltage measurements. L0 data is transmitted to ground stations. It is unlikely that we will work with this level of data, especially for more modern sensors, as this data lacks information such as geo-referencing and time-referencing ancillary information. </li>
+            <li><strong>Level 0 (L0): Raw Data:</strong> Level-0 data refers to the raw data received directly from the satellite sensors. This data is essentially the raw measurements taken by the sensors and detectors onboard the satellite. It is typically in a compressed or encoded format. The first step is to decompress or decode the raw data into a usable format for further processing. It includes unprocessed digital counts or voltage measurements. L0 data is transmitted to ground stations. It is unlikely that we will work with this level of data, especially for more modern sensors, as this data lacks information such as geo-referencing and time-referencing ancillary information. Let's understand the basic concepts here:
+              <ul>
+                <li><b>Electromagnetic Signals: </b>
+                  <ul>
+                    <li>Satellite sensors detect electromagnetic signals reflected or emitted from the Earth's surface.</li>
+                    <li>These signals cover various wavelengths depending on the sensor's design (e.g., visible light, infrared, microwave).</li>
+                  </ul>
+                </li>
+                <li><b>Detection and Digitization: </b>
+                  <ul>
+                    <li>The sensors convert these electromagnetic signals into electrical signals. For example, photodetectors in optical sensors generate a voltage or current proportional to the intensity of the incoming light.</li>
+                    <li>These analog signals are then digitized by onboard analog-to-digital converters (ADCs). The digitization process samples the analog signal at discrete intervals and quantizes the signal into digital counts, which are integers representing the signal’s amplitude.</li>
+                  </ul>
+                </li>
+                <li><b>Pixel Format: </b>
+                  <ul>
+                    <li>The digitized signals are organized into a grid of pixels, where each pixel represents a specific geographical area on the Earth's surface.</li>
+                    <li>Each pixel contains a digital number (DN), which is a quantized value corresponding to the detected signal's intensity.</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
             <li><strong>Level 1 (L1):</strong> Level 1 is further divided into A and B. Level 1A is the full resolution sensor data with time-referencing, ancillary information including radiometric and geometric calibration coefficients and georeferencing parameters computed and added to the file.  Level 1B is the stage following the application of the parameters appended to the files at L1A (such as instrument calibration coefficients). This level also includes quality and classification flags.
               <ul>
                 <li><b>Level 1A (Reconstructed Unprocessed Instrument Data): </b>
