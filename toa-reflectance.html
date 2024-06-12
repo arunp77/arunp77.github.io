@@ -157,7 +157,19 @@
 
                 <!---------sections start here ------------>
                 <section id="introduction">
-                    <h1>Introduction</h1>
+                    <h1>Introduction : Scientific Theory of Measurements</h1>
+                    When a solar energy strikes any object, following type of intereactions are possible:
+                    <ol>
+                        <li><b>Transmitted: </b>The energy passes through the object, undergoing a change in velocity determined by the index of refraction of the two media involved.</li>
+                        <li><b>Absorbed: </b>The energy is absorbed by the object through electron or molecular reactions.</li>
+                        <li><b>Reflected: </b> The energy is returned unchanged, with the angle of incidence equal to the angle of reflection. Reflectance is the ratio of reflected energy to the incident energy on the object. The wavelengths that are reflected (and not absorbed) determine the color of the object.</li>
+                        <li><b>Scattered: </b>The direction of energy propagation is randomly altered. The two most significant types of scattering in the atmosphere are Rayleigh scattering and Mie scattering.</li>
+                        <li><b>Emitted: </b>The energy is first absorbed by the object and then re-emitted, typically at longer wavelengths. This process often results in the object heating up.</li>
+                    </ol>
+
+
+
+
                     <div class="grey-box">Complete content of this page is taken from <a href="https://ecampusontario.pressbooks.pub/remotesensing/chapter/chapter-3-calculations-of-toa-radiance-and-toa-reflectance/" target="_blank">reference page</a>. Will be updating it later. I am glad to find the page</div>
                     Satellite image processing involves converting raw sensor data into meaningful physical quantities. This process includes several steps: 
                     <ul>
@@ -179,7 +191,7 @@
                         <li><strong>Quantization : Conversion to Digital Numbers (DN): </strong> The raw voltages measured by satellite sensors are not stored directly due to memory constraints and precision requirements. Instead, these voltages are quantized into Digital Numbers (DNs). Quantization reduces the required memory while maintaining adequate precision.
                             <p><b>Example: </b>For example, consider measuring human height to the nearest centimeter, ranging from 54cm to 272cm. We need to store 219 distinct values, which can be done with 8 bits of memory (since \(2^8 = 256\)). Each height measurment is then encoded, e.g., 173cm becomes \(173-54 = 119\). THis encoded value (DN) can be stored as an integer, saving memory.</p>
                         </li>
-                        <li><strong>From Digital Numbers to TOA Radiance : Conversion Process: </strong>When you open a satellite image in a software package, the initial value you see in each pixel is called a Digital Number (DN), which is equivalent to the code (‘119’) in the example above. While the DNs are sufficient to produce a nice visualization of the image, if you want to treat the image as a series of radiometric measurements you need to convert it into a physical quantity (like the 173cm that was the height of the person measured in that example). In remote sensing, the translation of a Digital Number value into a radiance measurement is really a two-step process.
+                        <li><strong>From Digital Numbers to TOA Radiance: </strong>When you open a satellite image in a software package, the initial value you see in each pixel is called a Digital Number (DN), which is equivalent to the code ('119') in the example above. While the DNs are sufficient to produce a nice visualization of the image, if you want to treat the image as a series of radiometric measurements you need to convert it into a physical quantity (like the 173cm that was the height of the person measured in that example). In remote sensing, the translation of a Digital Number value into a radiance measurement is really a two-step process.
                             <ol>
                                 <li><b>Conversion to Voltage: </b>The DN is first converted back to the corresponding voltage</li>
                                 <li><b>Conversion to Radiance: </b>The voltage is then converted to radiance using the sensor's calibration parameters.</li>
@@ -202,6 +214,7 @@
                             <img src="assets/img/remote-sensing/landsat-data2.png" alt="" style="max-width: 50%; max-height: 50%;">
                             <figcaption style="text-align: center;"><b>Reference:</b> <a href="" target="_blank"></a>Calibration coefficients used to convert DN values to TOA reflectance values for Landsat 8. Note that values for bands 10 and 11 are not provided, because these bands do not measure reflected solar radiation (except to a negligible degree). Also note that coefficients are the same for all bands – for Landsat 8 the DN values have been specifically generated for each scene to ensure constant TOA reflectance calibration coefficients. By Anders Knudby, <a href="https://creativecommons.org/licenses/by/4.0/deed.en" target="_blank">CC BY 4.0</a>.</figcaption>
                         </figure>
+
                         </li>
                     </ol>
                 
