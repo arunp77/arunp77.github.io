@@ -213,7 +213,7 @@
 
                 <!--------------------------------->
                 <section>
-                    <h2 id="satellite-cal">Satellite image processing </h2>
+                    <h2 id="satellite-cal">TOA Radiance and Reflectance </h2>
                     <div class="grey-box">Complete content of this page is taken from <a href="https://ecampusontario.pressbooks.pub/remotesensing/chapter/chapter-3-calculations-of-toa-radiance-and-toa-reflectance/" target="_blank">reference page</a>. Will be updating it later. I am glad to find the page</div>
                     Satellite image processing involves converting raw sensor data into meaningful physical quantities. This process includes several steps: 
                     <ul>
@@ -255,19 +255,19 @@
                             <img src="assets/img/remote-sensing/landsat-data2.png" alt="" style="max-width: 50%; max-height: 50%;">
                             <figcaption style="text-align: center;"><b>Reference:</b> <a href="" target="_blank"></a>Calibration coefficients used to convert DN values to TOA reflectance values for Landsat 8. Note that values for bands 10 and 11 are not provided, because these bands do not measure reflected solar radiation (except to a negligible degree). Also note that coefficients are the same for all bands – for Landsat 8 the DN values have been specifically generated for each scene to ensure constant TOA reflectance calibration coefficients. By Anders Knudby, <a href="https://creativecommons.org/licenses/by/4.0/deed.en" target="_blank">CC BY 4.0</a>.</figcaption>
                         </figure>
+                        <p>For older Landsat data, as well as for several other types of sensors, it is necessary to explicitly calculate the amount of incoming solar radiation at the top of the atmosphere, and divide the radiance by this value while correcting for the difference between radiance and irradiance and the angle of incoming solar radiation. This is done generically with the following equation:</p>
+                        $$R_{\text{TOA}} = \frac{\pi \times L}{\frac{1}{d^2}\times I_{\text{sun}}\times \cos \theta_\text{sun}}$$
 
+                        <p>where \(R_\text{TOA}\) is the top-of-atmosphere reflectance, \(L\) is (upward) radiance, \(d\) is the Earth-Sun distance in astronomical units, \(I_{\text{Sun}}\)  is the mean extraterrestrial solar irradiance, and \(\theta_\text{Sun}\) is the solar zenith angle – the angle between the direction toward the Sun and the normal of the Earth’s surface. The equation is a division between the outgoing radiation in all upward directions (i.e. the exitance, in the numerator) and the incoming radiation in all downward directions (i.e. the irradiance, in the denominator).</p>
+
+                        <p>The numerator is relatively simple: the upward radiance, L, which is quantified as the radiation per exposed unit surface area moving in directions within a specified solid angle, is multiplied by π to convert it to a value that quantifies radiation moving in all upward directions instead, to make it comparable to the incoming solar irradiance in the denominator.</p>
+
+                        <p>In the denominator, we have \(I_{\text{Sun}}\), the average solar irradiance at the top of the atmosphere. Because the distance between the Sun and the Earth varies throughout the year and the amount of solar irradiance varies with it, we need to correct this by the factor \( 1/d^2\), where \(d\) is the acctual distance betweeen the Sun and the Earth when the image was acquired. If the Sun were at Zenith (directly overhead), this would quantify the incoming irradiance per unit surface area. In cases when the Sun is not at zenith, we must multiply this value by the cosine of the solar zenith angle to arrive at the irradiance per exposed unit surface area.</p>
                         </li>
                     </ol>
-                
+                <p>With these calculations, you are able to convert the DN values in each pixel to a measure of TOA reflectance, which is a physical property of the Earth-Atmosphere system. This fact, that TOA reflectance is not an arbitrary number dependent on sensor calibration and illumination, but rather a physical property of the parts of the Earth seen in the image, allows us to use images captured by different sensors, at different times, and for different areas, and directly compare the values in each pixel. The one remaining problem in this approach is that most researchers are more interested in the reflectance of the Earth’s surface than in the reflectance at the top of the atmosphere, but the state of the atmosphere and the state of the surface both influence TOA reflectance. The next step to further process the data from each pixel is thus to remove the influence that the atmosphere has on these values, to arrive at a measure of surface reflectance!</p>
                 </section>
 
-                <section id="fastapi">
-                <!-- FastAPI content here -->
-                </section>
-
-                <section id="json">
-                <!-- JSON content here -->
-                </section>
 
                 <!-------Reference ------->
                 <section id="reference">
