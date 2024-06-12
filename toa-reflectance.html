@@ -146,7 +146,12 @@
                     <div class="col-lg-4 grey-box">
                         <h3>Content</h3>
                         <ol>
-                            <li><a href="#introduction">Introduction</a></li>
+                            <li><a href="#introduction">Introduction</a>
+                                <ul>
+                                    <li><a href="#spatial-chr">Spatial Characteristics</a></li>
+                                    <li><a href="#temporal-chr">Temporal Characteristics</a></li>
+                                </ul>
+                            </li>
                             <li><a href="#Sensor-cal">Sensor calibration</a></li>
                             <li><a href="#fastapi">FastAPI</a></li>
                             <li><a href="#json">JSON: JavaScript Object Notation</a></li>
@@ -166,9 +171,28 @@
                         <li><b>Scattered: </b>The direction of energy propagation is randomly altered. The two most significant types of scattering in the atmosphere are Rayleigh scattering and Mie scattering.</li>
                         <li><b>Emitted: </b>The energy is first absorbed by the object and then re-emitted, typically at longer wavelengths. This process often results in the object heating up.</li>
                     </ol>
+                    
+                    <p>Radiance refers to the flux of energy (primarily irradiant or incident energy) per solid angle leaving a unit surface area in a given direction. Radiance corresponds to brightness in a given direction toward the sensor, and is often confused with reflectance, which is the ratio of reflected versus total power energy. Radiance is what is measured at the sensor and is somewhat dependent on reflectance.</p>
+
+                    <p>Satellites are designed to collect data across various bands or channels of reflected energy and one channel of emitted energy. A well-calibrated satellite converts the raw solar energy collected by the sensor into absolute units of radiance. Radiance, the flux of energy per solid angle leaving a unit surface area in a given direction, corresponds to brightness and is measured by the sensor. It is different from reflectance, which is the ratio of reflected to total incident energy.</p>
+
+                    <p>Different bands of data help discriminate between Earth surface materials by developing spectral signatures. For any material, emitted and reflected radiation varies by wavelength, creating a unique reflectance fingerprint. Similar objects or classes have similar interactive properties with electromagnetic radiation at given wavelengths, while different objects have distinct properties. A plot of these interactions—scattering, emittance, reflectance, and absorption—across wavelengths forms a spectral signature, diagnostic of the object or class. This signature is defined as reflectance as a function of wavelength. Four such signatures are illustrated in following figure:</p>
+                    <figure>
+                        <img src="assets/img/remote-sensing/spectral-indexes-2.png" alt="" style="max-width: 50%; max-height: 50%;"> 
+                        <figcaption style="text-align: center;">Spectral Reflectance Curves of Four Different Targets (<b>Reference:</b> <a href="https://landsat.gsfc.nasa.gov/wp-content/uploads/2016/08/Landsat7_Handbook.pdf" target="_blank">Landsat 7 Science Data Users Handbook,</a> page 47, Fig-6.1).</figcaption>
+                    </figure>
+
+                    
+                    <h4 id="spatial-chr">Spatial Characteristics</h4>
+                    Spatial resolution is the ability of a sensor to distinguish small details on the Earth's surface. It depends on the detector size, focal length, and sensor altitude. Two commonly used terms to describe spatial resolution are ground sample distance (GSD) and instantaneous field of view (IFOV).
+                        <ul>
+                            <li><b>Ground Sample Distance (GSD): </b>The distance between the centers of two adjacent ground pixels.</li>
+                            <li><b>Instantaneous Field of View (IFOV): </b>The area on the ground covered by the sensor's field of view for a single detector, often referred to as pixel size.</li>
+                        </ul>
+                    <p>A standard Worldwide Reference System (WRS) scene typically covers a land area of approximately X kilometers (across-track) by Y kilometers (along-track).</p>
 
 
-
+                    
 
                     <div class="grey-box">Complete content of this page is taken from <a href="https://ecampusontario.pressbooks.pub/remotesensing/chapter/chapter-3-calculations-of-toa-radiance-and-toa-reflectance/" target="_blank">reference page</a>. Will be updating it later. I am glad to find the page</div>
                     Satellite image processing involves converting raw sensor data into meaningful physical quantities. This process includes several steps: 
