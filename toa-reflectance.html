@@ -152,9 +152,14 @@
                                     <li><a href="#temporal-chr">Temporal Characteristics</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#Sensor-cal">Sensor calibration</a></li>
-                            <li><a href="#fastapi">FastAPI</a></li>
-                            <li><a href="#json">JSON: JavaScript Object Notation</a></li>
+                            <li><a href="#satellite-cal">Satellite image processing</a></li>
+                                <ul>
+                                    <li><a href="#cal-toa">Calculations of TOA Radiance and Reflectance</a></li>
+                                    <li><a href="#quantization">Quantization : Conversion to Digital Numbers (DN)</a></li>
+                                    <li><a href="#toa-radiance">From Digital Numbers to TOA Radiance</a></li>
+                                    <li><a href="#toa-reflectance">Digital Numbers to TOA Reflectance</a></li>
+                                </ul>
+                            
                             <li><a href="#reference">Reference</a></li>
                         </ol>
                     </div>
@@ -182,7 +187,7 @@
                         <figcaption style="text-align: center;">Spectral Reflectance Curves of Four Different Targets (<b>Reference:</b> <a href="https://landsat.gsfc.nasa.gov/wp-content/uploads/2016/08/Landsat7_Handbook.pdf" target="_blank">Landsat 7 Science Data Users Handbook,</a> page 47, Fig-6.1).</figcaption>
                     </figure>
 
-                    
+                    <!---------------->
                     <h4 id="spatial-chr">Spatial Characteristics</h4>
                     Spatial resolution is the ability of a sensor to distinguish small details on the Earth's surface. It depends on the detector size, focal length, and sensor altitude. Two commonly used terms to describe spatial resolution are ground sample distance (GSD) and instantaneous field of view (IFOV).
                         <ul>
@@ -192,8 +197,23 @@
                     <p>A standard Worldwide Reference System (WRS) scene typically covers a land area of approximately X kilometers (across-track) by Y kilometers (along-track).</p>
 
 
-                    
+                    <!---------------->
+                    <h4 id="#temporal-chr">Temporal Characteristics</h4>
+                    Temporal characteristics in remote sensing refer to the frequency and timing of data acquisition by satellites, which are crucial for monitoring changes on the Earth's surface over time. These characteristics are influenced by several factors including orbit times, sun elevation effects, and revisit opportunities.
+                    <ol>
+                        <li><b>Orbit Times: </b>Orbit time refers to the period it takes for a satellite to complete one full orbit around the Earth. This time varies depending on the satellite's altitude and orbital path. Satellites in low Earth orbit (LEO) typically have shorter orbit times, often completing an orbit in about 90-100 minutes. Geostationary satellites, on the other hand, have much longer orbit times as they are positioned much farther from the Earth. 
+                        <p>Satellites in sun-synchronous orbits maintain a nearly constant geometric relationship between their descending (southbound) tracks and the sun's mean projection onto the equatorial plane throughout their missions. This orbit type ensures that the mean solar time at each point along the satellite's orbit remains fixed, meaning all points at a given latitude on descending passes will have the same mean solar time.</p>
+                        <p>However, a fixed mean solar time does not imply that the local clock time remains constant at all points at a given latitude, as local time is determined by discrete time zones worldwide. The local time the satellite crosses a specific point at latitudes other than the Equator varies due to the time required for a complete orbit (approximately 99 minutes) and the different time zones crossed by the satellite relative to its equatorial crossing point.</p>
+                        </li>
+                        <li><b>Sun Elevation Effects: </b>Sun elevation, or the angle of the sun above the horizon, significantly affects the quality and characteristics of the data collected. When the sun is low in the sky, shadows are longer, which can enhance the visibility of certain features but may also introduce distortions. Conversely, a high sun elevation minimizes shadows, providing a more even illumination but potentially reducing the contrast of certain features. The time of day and the season affect the sun elevation, thus influencing the temporal characteristics of the data collected.</li>
+                        <li><b>Revisit Opportunities: </b>Revisit time is the frequency with which a satellite passes over the same location on Earth. This interval is crucial for applications that require regular monitoring, such as agriculture, forestry, and disaster management. Shorter revisit times allow for more frequent observations, making it easier to detect changes and trends. Satellites in polar or sun-synchronous orbits often have shorter revisit times, especially when multiple satellites in a constellation work together to cover the same area.</li>
+                    </ol>
 
+                </section>
+
+                <!--------------------------------->
+                <section>
+                    <h2 id="satellite-cal">Satellite image processing </h2>
                     <div class="grey-box">Complete content of this page is taken from <a href="https://ecampusontario.pressbooks.pub/remotesensing/chapter/chapter-3-calculations-of-toa-radiance-and-toa-reflectance/" target="_blank">reference page</a>. Will be updating it later. I am glad to find the page</div>
                     Satellite image processing involves converting raw sensor data into meaningful physical quantities. This process includes several steps: 
                     <ul>
@@ -207,19 +227,16 @@
                     <div class="box">
                         Top-of-atmosphere reflectance (or TOA reflectance) is the reflectance measured by a space-based sensor flying higher than the earth's atmosphere. These reflectance values will include contributions from clouds and atmospheric aerosols and gases.
                     </div>
-                </section>
-
-                <section>
-                    <h3>Calculations of TOA Radiance and Reflectance</h3>
+                    <h4 id="cal-toa">Calculations of TOA Radiance and Reflectance</h4>
                     <ol>
-                        <li><strong>Quantization : Conversion to Digital Numbers (DN): </strong> The raw voltages measured by satellite sensors are not stored directly due to memory constraints and precision requirements. Instead, these voltages are quantized into Digital Numbers (DNs). Quantization reduces the required memory while maintaining adequate precision.
+                        <li id="quantization"><strong>Quantization : Conversion to Digital Numbers (DN): </strong> The raw voltages measured by satellite sensors are not stored directly due to memory constraints and precision requirements. Instead, these voltages are quantized into Digital Numbers (DNs). Quantization reduces the required memory while maintaining adequate precision.
                             <p><b>Example: </b>For example, consider measuring human height to the nearest centimeter, ranging from 54cm to 272cm. We need to store 219 distinct values, which can be done with 8 bits of memory (since \(2^8 = 256\)). Each height measurment is then encoded, e.g., 173cm becomes \(173-54 = 119\). THis encoded value (DN) can be stored as an integer, saving memory.</p>
                         </li>
-                        <li><strong>From Digital Numbers to TOA Radiance: </strong>When you open a satellite image in a software package, the initial value you see in each pixel is called a Digital Number (DN), which is equivalent to the code ('119') in the example above. While the DNs are sufficient to produce a nice visualization of the image, if you want to treat the image as a series of radiometric measurements you need to convert it into a physical quantity (like the 173cm that was the height of the person measured in that example). In remote sensing, the translation of a Digital Number value into a radiance measurement is really a two-step process.
-                            <ol>
+                        <li id="toa-radiance"><strong>From Digital Numbers to TOA Radiance: </strong>When you open a satellite image in a software package, the initial value you see in each pixel is called a Digital Number (DN), which is equivalent to the code ('119') in the example above. While the DNs are sufficient to produce a nice visualization of the image, if you want to treat the image as a series of radiometric measurements you need to convert it into a physical quantity (like the 173cm that was the height of the person measured in that example). In remote sensing, the translation of a Digital Number value into a radiance measurement is really a two-step process.
+                            <ul>
                                 <li><b>Conversion to Voltage: </b>The DN is first converted back to the corresponding voltage</li>
                                 <li><b>Conversion to Radiance: </b>The voltage is then converted to radiance using the sensor's calibration parameters.</li>
-                            </ol>
+                            </ul>
                             <p>In passive optical remote sensing, the calibration of the sensor has resulted in a known relationship between the radiance that the sensor is exposed to, and the voltage generated by the radiation, and quantization has then been used to encode the measure voltage as a Digital Number. To convert this Digital Number (DN) to radiance thus in theory requires first a conversion to voltage and then a conversion to radiance. Luckily it is easy to do these two conversions at the same time. We will look at how this is done for Landsat data as an example, but the same principle is relevant to data from all other passive optical satellite sensors.</p>
                             
                             <p><b>Example: </b>For example, Landsat data involves converting DNs directly to radiance using a linear relationship derived from the sensor's calibration. Landsat metadata contain radiometric calibration coefficients (as shown below) that allow you to directly convert DN values to Top-of-Atmosphere (TOA) radiance. The coefficients contain a ‘multiplication’ term and an ‘addition’ term, each of which is unique to each band, and they are used like this: \(L_\lambda = \text{mul}_\lambda \times \text{DN}_\lambda +\text{add}_\lambda \), where \(L\) is the radiance and \(\lambda\), the common notation for wavelength, indicates a given band.</p>
@@ -229,7 +246,7 @@
                             </figure>
                             <p>In order to produce a raster data layer in which each cell value is a measure of TOA radiance, you can therefore use the 'Raster Calculator' available in all GIS / remote sensing software, and some software packages even have dedicated 'Landsat radiometric calibration' tools that find the relevant information in the metadata and apply it for you.</p>
                         </li>
-                        <li><b>Digital Numbers to TOA Reflectance: </b>Converting DN values to a measure of radiance is an important step toward using remote sensing data in a quantitative way – in which the values in each cell have an actual physical meaning. However, there is one principal problem with radiance measurements: The radiance coming from an area depends both on the physical characteristics of that area, such as what is on the surface, but it also depends on the amount of radiation incident on that area. It is easy to confirm this with a single experiment: Move to a light switch near you, make sure it is on, and focus your gaze on a wall. Note how bright it is (a rough human approximation of the amount of radiance coming from it). Now turn off the light, and note whether the wall got darker or lighter. It got darker, of course, which means that there is now less radiance coming from it. And this happens although the wall itself did not change at all! In the remote sensing context, radiance measurements are therefore rarely used directly, but are typically used as a step toward a radiometric quantity that is more closely linked to the surface it is coming from: reflectance. For isotropic radiation, the reflectance (R) of a given area is the ratio of outgoing vs. incoming radiance, also often expressed on the basis of exitance (E) and irradiance (I):
+                        <li id="toa-reflectance"><b>Digital Numbers to TOA Reflectance: </b>Converting DN values to a measure of radiance is an important step toward using remote sensing data in a quantitative way – in which the values in each cell have an actual physical meaning. However, there is one principal problem with radiance measurements: The radiance coming from an area depends both on the physical characteristics of that area, such as what is on the surface, but it also depends on the amount of radiation incident on that area. It is easy to confirm this with a single experiment: Move to a light switch near you, make sure it is on, and focus your gaze on a wall. Note how bright it is (a rough human approximation of the amount of radiance coming from it). Now turn off the light, and note whether the wall got darker or lighter. It got darker, of course, which means that there is now less radiance coming from it. And this happens although the wall itself did not change at all! In the remote sensing context, radiance measurements are therefore rarely used directly, but are typically used as a step toward a radiometric quantity that is more closely linked to the surface it is coming from: reflectance. For isotropic radiation, the reflectance (R) of a given area is the ratio of outgoing vs. incoming radiance, also often expressed on the basis of exitance (E) and irradiance (I):
                         $$R = \frac{L_\text{up}}{L_\text{down}} = \frac{E_\text{up}}{I_\text{down}}.$$
                         <p>In the wall example, when you turn off the light both the incoming and the outgoing radiance is reduced, and the reflectance of the wall is unchanged. That’s because the reflectance is a physical property of the wall that is independent of illumination. This makes it uniquely suitable for use in remote sensing, because multiple observations with varying illumination can be compared, for uses such as tracking change of an area through time, or for comparing different areas on Earth.</p>
                         <p>If we convert TOA radiance values to reflectance values, we get what’s called TOA reflectance, which is the reflectance of the entire Earth-Atmosphere system. To think about what that means, imagine that you are an astronaut and you put a hula-hoop ring horizontally right at the level of the top of the atmosphere (if the top of the atmosphere were possible to define and find!), and you then measure the amount of radiation passing through the ring in upward and downward directions. Dividing one by the other gives you TOA reflectance.</p>
