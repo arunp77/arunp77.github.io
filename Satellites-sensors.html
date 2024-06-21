@@ -444,29 +444,23 @@
             </figure>
 
             <h4>1. Spatial Resolution, Pixel Size, and Scale</h4>
+            The spatial resolution describes above all the pixel size and/or the pixel distance (in the picture or at the object) and thus the ability of the sensor for detail differentiation. It depends on the type of sensor, the size of the CCD array (charge-coupled device) and the viewing angle.
             <ul>
-                <li>For some remote sensing instruments, the distance between the target being imaged and the platform, plays a large role in determining the detail of information obtained and the total area
-                    imaged by the sensor. </li>
-                <li>Sensors onboard platforms far away from their targets, typically view a larger area, but cannot provide great detail. The detail discernible in an image is dependent 
-                    on the spatial resolution of the sensor and refers to the size of the smallest possible feature that can be detected. </li>
+                <li>For some remote sensing instruments, the distance between the target being imaged and the platform, plays a large role in determining the detail of information obtained and the total imaged by the sensor.</li>
+                <li>Sensors onboard platforms far away from their targets, typically view a larger area, but cannot provide great detail. The detail discernible in an image is dependent on the spatial resolution of the sensor and refers to the size of the smallest possible feature that can be detected. </li>
                 <li><strong>Instantaneous Field of View (IFOV):</strong> Spatial resolution of passive sensors depends primarily on their IFOV.</li>
-                    <ul>
-                        <li><strong>Angular Cone of Visibility:</strong> IFOV is essentially the angular measurement (A) that defines the cone-shaped area within which a sensor can detect or "see" objects on the 
-                            ground</li>
-                        <li><strong>Dependent on Sensor Design:</strong> The IFOV is influenced by the design and optics of the sensor. It varies based on factors such as the focal length of the lens and the 
-                            physical dimensions of the sensor.</li>
-                        <li><strong>Spatial Resolution:</strong> IFOV has a direct impact on the spatial resolution of the imagery. A smaller IFOV results in higher spatial resolution, allowing the sensor to 
-                            discern finer details in the captured scene.</li>
-                        <li><strong>Calculation:</strong> The size of the ground area corresponding to a single pixel is determined by multiplying the IFOV by the distance from the sensor to the ground.</li>
-                        <li><strong>Resolution Cell:</strong> The area on the ground corresponding to the IFOV is often referred to as a resolution cell. It represents the smallest unit of the scene that can 
-                            be individually detected and recorded by the sensor.</li>
-                        <li><strong>Application:</strong> Understanding IFOV is crucial for optimizing the design and performance of remote sensing systems. It influences decisions related to sensor 
-                            specifications, altitude, and the overall capability to capture detailed information in the imagery.</li>
-                    </ul>
-                    <img src="assets/img/remote-sensing/IFOV.png" alt="" style="max-width: 50%; max-height: 50%;">
+                  <ul>
+                    <li>FOV = field of view, defines the swath width.</li>
+                    <li>IFOV = instantaneous field of view, defines the angle of the individual sensors.</li>
+                    <li>GIFOV = ground instantaneous field of view, is the IFOV projected onto the ground.</li>
+                    <li>GSD = ground sample distance (from GIFOV, detector size), defines the resulting pixel size</li>
+                  </ul>
+                    <img src="assets/img/remote-sensing/IFOV.png" alt="" style="max-width: 60%; max-height: auto;">
             
-                <li>Images where only large features are visible are said to have coarse or low resolution. In fine or high resolution images, small objects can be detected.</li><br>
-                <img src="assets/img/remote-sensing/resolution.png" alt="" style="max-width: 50%; max-height: 50%;">
+                <li>Images where only large features are visible are said to have coarse or low resolution. In fine or high resolution images, small objects can be detected.</li>
+                <li>The pixel size of the final image product thus depends on the sensor and fluctuates strongly between 0.4 and 900 m. For common free satellites they are 5 m (RapidEye), 30 m (Landsat 8) or 250/500 m (MODIS). Sentinel-2 has spatial resolutions of 10, 20 and 60 m depending on the channel. In addition to contrast, spatial image resolution is primarily decisive for the recognition and differentiation of objects.</p></li>
+                  <img src="assets/img/remote-sensing/resolution.png" alt="" style="max-width: 50%; max-height: 50%;">
+                
             </ul>
               
             <h4>2. Temporal resolution</h4>
@@ -504,13 +498,23 @@
               </div>
           
           <h4>3. <a href="https://pages.cms.hu-berlin.de/EOL/geo_rs/S03_image-prop2.html" target="_blank">Radiometric resolution</a></h4>
-          Radiometric resolution is the ability of a sensor to differentiate between various levels of radiant energy or reflectance in the observed scene. 
-          <figure style="text-align: center;">
-            <img src="assets/img/remote-sensing/radiometric-resolution.png" alt="" style="max-width: 90%; max-height: 90%;">
-            <figcaption style="text-align: center;"><strong>Image credit:</strong>
-              <a href="http://www.morrisriedel.de/introduction-to-deep-learning-models" target="_blank"> 
-                © Deep learning: Introduction to Deep Learning Models (Dr. – Ing. Gabriele Cavallaro).</a></figcaption>
-          </figure>
+          The radiometric resolution indicates the ability of a sensor to distinguish between different intensities within the respective wavelength range of a channel. Simply speaking, it is the contrast of an image, indicating the number of grayscales - expressed in bits:
+            <ul>
+              <li>1 bit = \(2^1\) = 2 gray levels</li>
+              <li>2 bit = \(2^2\) = 4 grey levels</li>
+              <li>4 bit = \(2^4\) = 16 grey levels</li>
+              <li>8 bit = \(2^8\) = 256 greyscales.</li>
+            </ul>
+            <strong>Bit depths: </strong>Radiometric resolution is often described in terms of bit depth, representing the number of bits used to represent pixel values. For example, an 8-bit image has 2<sup>8</sup> (256) possible values, while a 16-bit image can represent 2<sup>16</sup> (65,536) values. 
+                An 8-bit sensor can distinguish between 256 levels of radiation, while a 16-bit sensor can distinguish between 65,536 levels of radiation. 
+                This means that a 16-bit image will have a wider range of colors and shades than an 8-bit image.
+            <figure style="text-align: center;">
+              <img src="assets/img/remote-sensing/radio-bit-resol.jpg" alt="" style="max-width: 90%; max-height: 90%;">
+              <figcaption style="text-align: center;"><strong>Image credit:</strong>
+                <a href="https://learn.opengeoedu.de/en/fernerkundung/vorlesung/Remote%20Sensing/aufloesungen#radiometric-resolution" target="_blank"> 
+                  © OpenGeoEdu.</a></figcaption>
+            </figure>
+
             <ul>
               <li><strong>Quantization Levels: </strong> It is often expressed in terms of the number of quantization levels or bits used to represent the intensity values. Higher radiometric 
                 resolution corresponds to a greater number of possible values.</li>
@@ -519,12 +523,16 @@
               <li><strong>Dynamic range: </strong>The dynamic range of a sensor is closely related to radiometric resolution. A broader dynamic range enables the sensor to capture a wide range of intensities, from very dark to very bright</li>
               <li><strong>Application: </strong>Radiometric resolution is crucial in applications where detecting small variations in reflectance or emitted radiation is essential. This includes tasks like land cover classification, mineral 
                 identification, and environmental monitoring.</li>
-              <li><strong>Bit depths: </strong>Radiometric resolution is often described in terms of bit depth, representing the number of bits used to represent pixel values. 
-                For example, an 8-bit image has 2<sup>8</sup> (256) possible values, while a 16-bit image can represent 2<sup>16</sup> (65,536) values. 
-                An 8-bit sensor can distinguish between 256 levels of radiation, while a 16-bit sensor can distinguish between 65,536 levels of radiation. 
-                This means that a 16-bit image will have a wider range of colors and shades than an 8-bit image.</li>
+              
               <li><strong>Trade offs: </strong>There can be trade-offs between radiometric and spatial resolution in remote sensing systems. Increasing radiometric resolution may require sacrificing spatial resolution and vice versa.</li>
             </ul>
+              <figure style="text-align: center;">
+                <img src="assets/img/remote-sensing/radiometric-resolution.png" alt="" style="max-width: 90%; max-height: 90%;">
+                <figcaption style="text-align: center;"><strong>Image credit:</strong>
+                  <a href="http://www.morrisriedel.de/introduction-to-deep-learning-models" target="_blank"> 
+                    © Deep learning: Introduction to Deep Learning Models (Dr. – Ing. Gabriele Cavallaro).</a></figcaption>
+              </figure>
+
             Radiometric resolution is important for a number of reasons, including:
             <ul>
               <li><strong>Image quality:</strong> Radiometric resolution directly affects the image quality of a sensor. A higher radiometric resolution will produce a more detailed and accurate image.</li>
