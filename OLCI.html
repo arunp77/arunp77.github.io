@@ -146,24 +146,22 @@
                             <li><a href="#introduction">Introduction</a>
                                 <ul>
                                     <li><a href="#fundamental">Fundamentals of Oceanography</a></li>
-                                    <li><a href="#remote-ocenography">Remote Sensing in Oceanography</a></li>
-                                    <li><a href="#remote-types">Types of Remote Sensing</a></li>
                                     <li><a href="#remote-key">Key Remote Sensing Instruments</a></li>
-                                    <li><a href="#data-source">Data Sources in Oceanography</a></li>
                                 </ul>
                             </li>
                             <li><a href="#Sentinel-3">Sentinel 3 : Satellite</a>
                                 <ul>
                                     <li><a href="#instruments">Sentinel-3 Instruments</a></li>
+                                    <li><a href="#OCLI-module">OCLI-module</a>
+                                        <ul>
+                                            <li><a href="#data-sentinel3">Accessing OLCI data via the EUMETSAT Data Store</a></li>
+                                            <li><a href=""></a></li>
+                                            <li><a href=""></a></li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </li>
-                            <li><a href="#OCLI-module">OCLI-module</a>
-                                <ul>
-                                    <li><a href=""></a></li>
-                                    <li><a href=""></a></li>
-                                    <li><a href=""></a></li>
-                                </ul>
-                            </li>
+                            
                             <li><a href="#reference">Reference</a></li>
                         </ol>
                     </div>
@@ -185,46 +183,12 @@
                         <li><b>Geological Oceanography: </b>Geological oceanography examines the structure and composition of the ocean floor. It includes the study of plate tectonics, underwater volcanism, and sediment processes.</li>
                     </ol>
 
-                    <h3 id="remote-ocenography">Remote Sensing in Oceanography</h3>
-                    Remote sensing is a powerful tool in oceanography, providing comprehensive data over large spatial and temporal scales. It involves collecting data from satellites, aircraft, and autonomous underwater vehicles (AUVs).
-
-                    <h3 id="remote-types">Types of Remote Sensing</h3>
-                    <ol>
-                        <li><b>Satellite Remote Sensing: </b>Satellites equipped with sensors collect data on sea surface temperature, sea level, ocean color, and ice cover. Examples include NASA's Aqua and Terra satellites, and ESA's Sentinel satellites.</li>
-                        <li><b>Aircraft Remote Sensing: </b>Aircraft Remote Sensing: Aircraft can be equipped with sensors to collect high-resolution data on smaller spatial scales. They are used for targeted studies and can provide detailed imagery of coastal and shelf areas.</li>
-                        <li><b>Autonomous Underwater Vehicles (AUVs): </b>AUVs collect data on the subsurface environment, including temperature, salinity, and ocean currents. They provide detailed vertical profiles and can operate in areas inaccessible to ships.</li>
-                    </ol>
-
                     <h3 id="remote-key">Key Remote Sensing Instruments</h3>
                     <ul>
                         <li><b>Radiometers: </b> Measure the intensity of radiation, providing data on sea surface temperature and ocean color.</li>
                         <li><b>Radar Altimeters: </b> Measure sea surface height, which is crucial for understanding ocean circulation and sea level rise.</li>
                         <li><b>LIDAR (Light Detection and Ranging): </b> Uses laser pulses to measure the depth and topography of the ocean floor.</li> 
                     </ul>
-
-                    <h3 id="data-source">Data Sources in Oceanography</h3>
-                    Oceanographic data come in various formats, commonly including: NetCDF (Network Common Data Form), HDF (Hierarchical Data Format), GRIB (GRIdded Binary).
-                    Oceanographic data are collected from a variety of sources, including:
-                    <ol>
-                        <li><b>In-Situ Measurements</b>
-                            <ul>
-                                <li><b>Buoys and Drifters:</b> Measure parameters like temperature, salinity, and current velocity.</li>
-                                <li><b>Research Vessels:</b> Conduct detailed surveys and collect samples from different ocean depths.</li>
-                            </ul>
-                        </li>
-                        <li><b>Satellite Data</b>
-                            <ul>
-                                <li><b>MODIS (Moderate Resolution Imaging Spectroradiometer):</b> Provides data on ocean color, sea surface temperature, and chlorophyll concentration.</li>
-                                <li><b>TOPEX/Poseidon and Jason-1, 2, 3:</b> Measure sea surface height and provide insights into ocean circulation.</li>
-                            </ul>
-                        </li>
-                        <li><b>Global Observing Systems</b>
-                            <ul>
-                                <li><b>ARGO:</b> A global array of profiling floats that measure temperature and salinity in the upper 2000 meters of the ocean.</li>
-                                <li><b>GOOS (Global Ocean Observing System):</b> Provides a framework for coordinating ocean observations worldwide.</li>
-                            </ul>
-                        </li>
-                    </ol>
 
                     <p>Oceanography is an interdisciplinary field that utilizes advanced technologies, including remote sensing, to study and understand the ocean. By integrating data from various sources and using sophisticated data formats, oceanographers can monitor, analyze, and predict changes in the marine environment. This knowledge is crucial for managing marine resources, mitigating the impacts of climate change, and protecting ocean health.</p>
                 </section>
@@ -250,63 +214,90 @@
                     </ul>
 
                     <h4 id="instruments">Sentinel-3 Instruments:</h4>
-                    <div class="box">
-                        Four instruments working in synergy. 
-                        <ul>
-                            <li><b>OLCI:</b> Ocean and Land Colour Instrument</li>
-                            <li><b>SLSTR:</b> Sea and Land Surface Temperature Instrument</li>
-                            <li><b>SRAL:</b> SAR Radar ALtimeter</li>
-                            <li><b>MWR:</b> Microwave Radiometer</li>
-                        </ul>
-
-                    These are complemented by three instruments for Precise Orbit Determination (POD):
-                    <ul>
-                        <li><b>DORIS:</b> a Doppler Orbit Radio positioning system</li>
-                        <li><b>A GNSS receiver</b>, providing precise orbit determination and tracking multiple satellites simultaneously</li>
-                        <li><b>A Laser Retro-Reflector</b> (LRR) system to accurately locate the satellite in orbit using</li>
-                    </ul>
-
-                    </div>
+                    The Sentinel-3 mission includes several key instruments, each serving distinct functions for Earth observation. Here's a list of the instruments along with a brief explanation of each:
                     
                     <ol>
                         <li><b>Sea and Land Surface Temperature Radiometer (SLSTR): </b>
                             <ul>
-                                <li>Measures global sea- and land-surface temperatures daily with an accuracy better than 0.3 K.</li>
-                                <li>Continues Envisat’s Advanced Along Track Scanning Radiometer legacy.</li>
-                                <li>Includes two thermal infrared channels for active fire detection and fire radiative power measurement.</li>
-                                <li>Supports Copernicus Emergency Response and Climate Services.</li>
-                                <li>covering 9 spectral bands (550–12 000 nm), dual-view scan with swath widths of 1420 km (nadir) and 750 km (backwards), and a spatial resolution of 500 m for visible and near-infrared, and 1 km for thermal infrared channels</li>
+                                <li><b>Function: </b>Measures global sea- and land-surface temperatures daily with an accuracy better than 0.3 K.</li>
+                                <li><b>Description: </b>This dual-view (near-nadir and inclined) conical imaging radiometer builds on the heritage of the ENVISAT AATSR instrument. It provides accurate temperature measurements essential for climate monitoring and weather forecasting.
+                                    <ul>
+                                        <li>Includes two thermal infrared channels for active fire detection and fire radiative power measurement.</li>
+                                        <li>Supports Copernicus Emergency Response and Climate Services.</li>
+                                        <li>covering 9 spectral bands (550–12 000 nm), dual-view scan with swath widths of 1420 km (nadir) and 750 km (backwards), and a spatial resolution of 500 m for visible and near-infrared, and 1 km for thermal infrared channels.
+                                            <ul>
+                                                <li><b>S1 (0.555 μm):</b> Cloud screening, vegetation monitoring, and aerosol detection.</li>
+                                                <li><b>S2 (0.659 μm):</b> Normalized Difference Vegetation Index (NDVI), vegetation monitoring, and aerosol detection.</li>
+                                                <li><b>S3 (0.865 μm):</b> NDVI, cloud flagging, and pixel co-registration.</li>
+                                                <li><b>S4 (1.375 μm):</b> Cirrus detection over land.</li>
+                                                <li><b>S5 (1.61 μm):</b> Cloud clearing, ice, and snow detection.</li>
+                                                <li><b>S6 (2.25 μm):</b> Cloud clearing.</li>
+                                                <li><b>S7 (3.74 μm):</b> Surface temperature and active fire monitoring.</li>
+                                                <li><b>S8 (10.85 μm):</b> Surface temperature.</li>
+                                                <li><b>S9 (12.0 μm):</b> Surface temperature and emissivity.</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
                         <li><b>Ocean and Land Colour Instrument (OLCI): </b>
                             <ul>
-                                <li>Based on Envisat’s Medium Resolution Imaging Spectrometer heritage.</li>
-                                <li>Features 21 distinct bands in the 0.4–1.02 μm spectral region (400 - 1020 nm).</li>
-                                <li>Spatial resolution of 300 m for all measurements.</li>
-                                <li>Swath width of 1270 km, overlapping with SLSTR swath.</li>
-                                <li> covering 21 spectral bands (400–1020 nm) with a swath width of 1270 km and a spatial resolution of 300 m. </li>
-                                <li>Monitors ocean ecosystems, supports crop management and agriculture, and provides estimates of atmospheric aerosol and clouds.</li>
-                                <li>Delivers significant societal benefits through informed decision-making.</li>
+                                <li><b>Function: </b>Captures detailed optical images to monitor ocean and land color, supporting studies of marine biology, water quality, and vegetation.</li>
+                                <li><b>Description: </b>This push-broom imaging spectrometer is based on the heritage of the ENVISAT MERIS instrument. It collects data in multiple spectral bands, allowing for comprehensive analysis of oceanic and terrestrial ecosystems.
+                                    <ul>
+                                        <li>Features 21 distinct bands in the spectral region of (400 - 1040 nm).
+                                            <ul>
+                                                <li><b>Oa01 (400-412 nm):</b> Used for atmospheric correction.</li>
+                                                <li><b>Oa03 (442-454 nm):</b> Used for chlorophyll absorption peak</li>
+                                                <li><b>Oa08 (665-677 nm):</b> Used for chlorophyll absorption.</li>
+                                                <li><b>Oa17 (709-712 nm):</b> Used for detecting fluorescence from chlorophyll.</li>
+                                                <li><b>Oa21 (1020-1040 nm):</b> Used for atmospheric correction and water vapor content</li>
+                                            </ul>
+                                        </li>
+                                        <li>Swath width of 1270 km, overlapping with SLSTR swath.</li>
+                                        <li> covering 21 spectral bands (400–1020 nm) with a swath width of 1270 km and a spatial resolution of 300 m. </li>
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
-                        <li><b>Dual-Channel Microwave Radiometer (MWR): </b>
+                        <li><b>Microwave Radiometer (MWR): </b>
                             <ul>
-                                <li>dual frequency at 23.8 & 36.5 GHz</li>
-                                <li>Supports the SAR altimeter.</li>
-                                <li>Derives atmospheric correction and atmospheric column water vapour measurements.</li>
-                                <li>Ensures the demanding performance requirements for Sentinel-3 are met.</li>
-                                <li>Helps achieve accurate measurements of sea surface height and other parameters.</li>
+                                <li><b>Function: </b>Provides wet atmosphere correction to enhance the accuracy of the altimeter's measurements.</li>
+                                <li><b>Description: </b>This instrument measures the brightness temperature at specific microwave frequencies, helping to correct the signal delays caused by water vapor in the atmosphere. It features independent thermal control and cold redundancy for all subsystems to ensure reliability</li>
+                                <ul>
+                                    <li>Operates in dual frequencies at 23.8 & 36.5 GHz
+                                        <ul>
+                                            <li><b>23.8 GHz:</b> Sensitive to water vapor in the atmosphere.</li>
+                                            <li><b>36.5 GHz:</b> Used for detecting liquid water content in the atmosphere, surface emissivity, and soil moisture.</li>
+                                        </ul>
+                                    </li>
+                                    <li>Supports the SAR altimeter.</li>
+                                    <li>Derives atmospheric correction and atmospheric column water vapour measurements.</li>
+                                </ul>
                             </ul>
                         </li>
-                        <li><b>Synthetic Aperture Radar Altimeter (SAR): </b>
+                        <li><b>Synthetic Aperture Radar (SAR) Radar Altimeter (SRAL): </b>
                             <ul>
-                                <li>Measures the height of the sea surface, waves, and surface wind speed over oceans.</li>
-                                <li>Provides accurate topography measurements over sea ice, ice sheets, rivers, and lakes.</li>
-                                <li>Utilizes dual-frequency (Ku and C band) technology.</li>
-                                <li>Ku-band (300 m after SAR processing) and C-band with a spatial resolution of approx 300 m</li>
-                                <li>Based on heritage from the CryoSat and Jason missions.</li>
-                                <li>Delivers measurements at approximately 300 m resolution in the along-track direction after SAR processing.</li>
-                                <li>First satellite altimeter to provide 100% coverage over all of Earth’s surfaces in SAR mode.</li>
+                                <li><b>Function:</b> Measures sea surface height, wave height, and wind speed over the oceans. Provides accurate topography measurements over sea ice, ice sheets, rivers, and lakes.</li>
+                                <li><b>Description: </b>SRAL operates in two frequency bands. This dual-frequency SAR altimeter builds on heritage from the ENVISAT RA-2, CryoSat SIRAL, and Jason-2/Poseidon-3 missions. It provides accurate and reliable altimetry measurements essential for ocean topography and sea state monitoring</li>
+                                <ul>
+                                    <li><b>Ku-band (13.575 GHz):</b> Used for high-resolution altimetry over the ocean, coastal zones, sea ice, and inland waters.</li>
+                                    <li><b>C-band (5.41 GHz):</b> Used for reducing ionospheric delay effects and improving accuracy over different surface types .</li>
+                                </ul>
+                            </ul>
+                        </li>
+                        <li><b>Precise Orbit Determination (POD) Package: </b>
+                            <ul>
+                                <li><b>Components: </b>
+                                    <ul>
+                                        <li>Global Navigation Satellite Systems (GNSS) instrument.</li>
+                                        <li>Doppler Orbitography and Radiopositioning Integrated by Satellite (DORIS) instrument.</li>
+                                        <li>Laser retro-reflector (LRR).</li>
+                                    </ul>
+                                </li>
+                                <li><b>Function: </b>Ensures high-accuracy radial orbit data, which is crucial for precise altimetry measurements.</li>
+                                <li><b>Description: </b>This package combines several technologies to provide precise orbital data, which is necessary for the accurate geolocation of the altimetry data.</li>
                             </ul>
                         </li>
                     </ol>
