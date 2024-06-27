@@ -346,8 +346,40 @@
                         </tr>
                     </table>
                     <p></p>
+                    <pre class="language-css"><code>
+                        EUMETSET-courses/
+                        │
+                        ├── env/
+                        ├── Sentinel-3_OLCI/
+                        │   ├── 1_OLCI_introductory/
+                        │   │   ├── products/
+                        │   │   │   ├── S3A_OL_1_EFR____20210717T101015_20210717T101315_20210718T145224_0179_074_122_1980_MAR_O_NT_002.SEN3/
+                        │   │   │   │   ├── geo_coordinates.nc
+                        │   │   │   │   ├── Oa01_radiance.nc
+                        │   │   │   └── S3A_OL_2_WFR____20210717T101015_20210717T101315_20210718T221347_0179_074_122_1980_MAR_O_NT_003.SEN3/
+                        │   │   │       ├── chl_nn.nc
+                        │   │   │       └── geo_coordinates.nc
+                        │   │   ├── 1_1a_OLCI_data_access_Data_Store.ipynb
+                        │   │   ├── 1_1b_OLCI_data_access_HDA.ipynb
+                        │   │   ├── 1_2_OLCI_file_structure.ipynb
+                        │   │   ├── 1_3_OLCI_coverage.ipynb
+                        │   │   ├── 1_4_OLCI_bands_imagery.ipynb
+                        │   │   ├── 1_5_OLCI_radiance_reflectance_spectra.ipynb
+                        │   │   ├── 1_6_OLCI_CHL_comparison.ipynb
+                        │   │   └── 1_7_OLCI_light_environment.ipynb
+                        │   │
+                        │   ├── 2_OLCI_advanced/
+                        │   ├── frameworks/
+                        │   │   └── config.ini
+                        │   └── environment.yml
+                        │── AUTHORS.txt
+                        ├── CHANGELOG
+                        ├── .gitignore
+                        ├── .gitmodules
+                        ├── README.md
+                        └── LICENSE.txt
+                    </code></pre>
                     
-
                     <ul>
                         <li><b>Step- 1: </b>Importing libraries
                             <pre class="language-python"><code>
@@ -360,10 +392,39 @@
                                 import eumdac       # a tool that helps us download via the eumetsat/data-store
                             </code></pre>
                         </li>
-                        <li><b>Step- 2: </b></li>
-                        <li><b>Step- 3: </b></li>
-                        <li><b>Step- 4: </b></li>
-                        <li><b>Step- 5: </b></li>
+                        <li><b>Step- 2: </b>Sometimes we use configuration files to help us set some notebook parameters. The box below reads a configuration file to help us decide how large to make the videos displayed below 
+                            <pre class="language-python"><code>
+                                # Define the path to the configuration file
+                                config_file_path = os.path.join(os.path.dirname(os.getcwd()), "frameworks", "config.ini")
+                                
+                                # Check if the configuration file exists and read it if it does
+                                if os.path.exists(config_file_path):
+                                    config.read(config_file_path)
+                            </code></pre>
+                            THis script check for configuration file and read if it exists in the current working directory.
+                            <ul>
+                                <li>os.getcwd(): Returns the current working directory.</li>
+                                <li>os.path.dirname: Returns the directory name of the pathname.</li>
+                                <li>os.path.join(path, *paths): Joins one or more path components intelligently.</li>
+                                <li>os.path.exists(path): Returns True if the specified path exists, False otherwise.</li>
+                            </ul>
+                        </li>
+                        <li><b>Step- 3: </b>Creating a download directory for the data files:
+                            <pre class="language-python"><code>
+                                download_dir = os.path.join(os.getcwd(), "products")
+                                os.makedirs(download_dir, exist_ok=True)
+                            </code></pre>
+                        </li>
+                        <li><b>Step- 4: Data access: </b>The <a href="https://data.eumetsat.int" target="_blank">Data Store</a> is EUMETSAT's primary pull service for delivering data, including the ocean data available from Sentinel-3 and OLCI. Access to it is possible through a WebUI, and through a series of application programming interfaces (APIs). The Data Store supports browsing, searching and downloading data as well as subscription services. It also provides a link to the online version of the <a href="https://tailor.eumetsat.int/" target="_blank">EUMETSAT Data Tailor</a> for customisation.</li>
+                        <li><b>Step- 5: The products we need: </b>We need a number of OLCI level-1b and level-2 products. These products are shown below in a python *list* called **product list**. We will retrieve these products from the Data Store.
+                            <pre><code>
+                                product_list = [
+                                'S3A_OL_1_EFR____20210717T101015_20210717T101315_20210718T145224_0179_074_122_1980_MAR_O_NT_002.SEN3',
+                                'S3A_OL_2_WRR____20210717T095732_20210717T104152_20210718T152419_2660_074_122______MAR_O_NT_003.SEN3',
+                                'S3A_OL_2_WFR____20210717T101015_20210717T101315_20210718T221347_0179_074_122_1980_MAR_O_NT_003.SEN3'
+                                ]
+                            </code></pre>
+                        </li>
                         <li><b>Step- 6: </b></li>
                     </ul>
 

@@ -446,6 +446,258 @@
                         </table>
                 </section>
 
+                <section>
+                    <h2 id="configparser-intro">Introduction to Configparser</h2>
+                    The <code>configparser</code> module in Python allows you to manage  configuration files in a format similar to Windows INI files. These files contain sections, each with a number of key-value pairs, making them an ideal way to store configuration settings.
+
+                    <h4 id="configuration-basic">Basic Usage</h4>
+                    Creating and Writing a Configuration File:
+                    <pre class="language-python"><code>
+                        import configparser
+
+                        # Create a ConfigParser object
+                        config = configparser.ConfigParser()
+                        
+                        # Add sections and settings
+                        config['DEFAULT'] = {'ServerAliveInterval': '45',
+                                            'Compression': 'yes',
+                                            'CompressionLevel': '9'}
+                        config['bitbucket.org'] = {'User': 'hg'}
+                        config['topsecret.server.com'] = {'Host Port': '50022', 'ForwardX11': 'no'}
+                        
+                        # Write to a configuration file
+                        with open('config.ini', 'w') as configfile:
+                            config.write(configfile)
+                    </code></pre>
+                    This will create a <code>config.ini</code> file:
+                    <pre class="language-bash"><code>
+                        # Create the config.ini content based on the given Python code
+                        config_content = """
+                        [DEFAULT]
+                        ServerAliveInterval = 45
+                        Compression = yes
+                        CompressionLevel = 9
+                        
+                        [bitbucket.org]
+                        User = hg
+                        
+                        [topsecret.server.com]
+                        Host Port = 50022
+                        ForwardX11 = no
+                        """
+                    </code></pre>
+
+                    <h4 id="configuration-reading">Reading a Configuration File</h4>
+                    <pre class="language-python"><code>
+                        import configparser
+
+                        # Create a ConfigParser object
+                        config = configparser.ConfigParser()
+                        
+                        # Read the configuration file
+                        config.read('config.ini')
+                        
+                        # Access data
+                        server_alive_interval = config['DEFAULT']['ServerAliveInterval']
+                        compression = config['DEFAULT']['Compression']
+                        user = config['bitbucket.org']['User']
+                        
+                        print(server_alive_interval, compression, user)                        
+                    </code></pre>
+
+                    <h4 id="configuration-functions">Functions and Methods</h4>
+                    Here are some key functions and methods provided by the <code>configparser</code> module:
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Method</th>
+                                <th>Description</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>read(filenames, encoding=None)</td>
+                                <td>Reads and parses a list of filenames. Returns a list of successfully read files.</td>
+                                <td><pre>import configparser
+                config = configparser.ConfigParser()
+                config.read(['example.ini', 'other_config.ini'])</pre></td>
+                            </tr>
+                            <tr>
+                                <td>read_string(string)</td>
+                                <td>Reads configuration from a given string.</td>
+                                <td><pre>import configparser
+                config = configparser.ConfigParser()
+                config.read_string(&quot;&quot;&quot;
+                [DEFAULT]
+                ServerAliveInterval = 45
+                Compression = yes
+                CompressionLevel = 9
+                &quot;&quot;&quot;)</pre></td>
+                            </tr>
+                            <tr>
+                                <td>read_dict(dictionary)</td>
+                                <td>Reads configuration from a dictionary.</td>
+                                <td><pre>import configparser
+                config = configparser.ConfigParser()
+                config.read_dict({
+                    'DEFAULT': {'ServerAliveInterval': '45', 'Compression': 'yes', 'CompressionLevel': '9'},
+                    'bitbucket.org': {'User': 'hg'},
+                    'topsecret.server.com': {'Host Port': '50022', 'ForwardX11': 'no'}
+                })</pre></td>
+                            </tr>
+                            <tr>
+                                <td>sections()</td>
+                                <td>Returns a list of section names, excluding [DEFAULT].</td>
+                                <td><pre>import configparser
+                config = configparser.ConfigParser()
+                config.read('example.ini')
+                sections = config.sections()
+                print(sections)  # ['bitbucket.org', 'topsecret.server.com']</pre></td>
+                            </tr>
+                            <tr>
+                                <td>options(section)</td>
+                                <td>Returns a list of option names for the given section.</td>
+                                <td><pre>import configparser
+                config = configparser.ConfigParser()
+                config.read('example.ini')
+                options = config.options('bitbucket.org')
+                print(options)  # ['user']</pre></td>
+                            </tr>
+                            <tr>
+                                <td>get(section, option, *, raw=False, vars=None, fallback=None)</td>
+                                <td>Gets an option value for the given section.</td>
+                                <td><pre>import configparser
+                config = configparser.ConfigParser()
+                config.read('example.ini')
+                user = config.get('bitbucket.org', 'User')
+                print(user)  # hg</pre></td>
+                            </tr>
+                            <tr>
+                                <td>getint(section, option, *, raw=False, vars=None, fallback=None)</td>
+                                <td>Gets an integer option value.</td>
+                                <td><pre>import configparser
+                config = configparser.ConfigParser()
+                config.read('example.ini')
+                port = config.getint('topsecret.server.com', 'Host Port')
+                print(port)  # 50022</pre></td>
+                            </tr>
+                            <tr>
+                                <td>getfloat(section, option, *, raw=False, vars=None, fallback=None)</td>
+                                <td>Gets a float option value.</td>
+                                <td><pre>import configparser
+                config = configparser.ConfigParser()
+                config.read('example.ini')
+                compression_level = config.getfloat('DEFAULT', 'CompressionLevel')
+                print(compression_level)  # 9.0</pre></td>
+                            </tr>
+                            <tr>
+                                <td>getboolean(section, option, *, raw=False, vars=None, fallback=None)</td>
+                                <td>Gets a boolean option value.</td>
+                                <td><pre>import configparser
+                config = configparser.ConfigParser()
+                config.read('example.ini')
+                compression = config.getboolean('DEFAULT', 'Compression')
+                print(compression)  # True</pre></td>
+                            </tr>
+                            <tr>
+                                <td>has_section(section)</td>
+                                <td>Checks if the configuration has the specified section.</td>
+                                <td><pre>import configparser
+                config = configparser.ConfigParser()
+                config.read('example.ini')
+                has_bitbucket = config.has_section('bitbucket.org')
+                print(has_bitbucket)  # True</pre></td>
+                            </tr>
+                            <tr>
+                                <td>add_section(section)</td>
+                                <td>Adds a new section.</td>
+                                <td><pre>import configparser
+                config = configparser.ConfigParser()
+                config.add_section('new_section')</pre></td>
+                            </tr>
+                            <tr>
+                                <td>set(section, option, value)</td>
+                                <td>Sets the value of an option.</td>
+                                <td><pre>import configparser
+                config = configparser.ConfigParser()
+                config.read('example.ini')
+                config.set('bitbucket.org', 'User', 'new_user')</pre></td>
+                            </tr>
+                            <tr>
+                                <td>remove_option(section, option)</td>
+                                <td>Removes an option from the specified section.</td>
+                                <td><pre>import configparser
+                config = configparser.ConfigParser()
+                config.read('example.ini')
+                config.remove_option('bitbucket.org', 'User')</pre></td>
+                            </tr>
+                            <tr>
+                                <td>remove_section(section)</td>
+                                <td>Removes a section.</td>
+                                <td><pre>import configparser
+                config = configparser.ConfigParser()
+                config.read('example.ini')
+                config.remove_section('bitbucket.org')</pre></td>
+                            </tr>
+                            <tr>
+                                <td>write(fileobject, space_around_delimiters=True)</td>
+                                <td>Writes the configuration to a file.</td>
+                                <td><pre>import configparser
+                config = configparser.ConfigParser()
+                config['DEFAULT'] = {'ServerAliveInterval': '45', 'Compression': 'yes', 'CompressionLevel': '9'}
+                with open('example.ini', 'w') as configfile:
+                    config.write(configfile)</pre></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h5 id="applications">Applications</h5>
+                    <ol>
+                        <li><b>Application Configuration: </b>Store settings for applications, such as database connection strings, API keys, and other parameters that might change over time.</li>
+                        <li><b>User Preferences: </b>Save user preferences for applications, like window size, theme, and other customizable settings.</li>
+                        <li><b>Environment Configuration: </b>Manage different configurations for different environments (e.g., development, testing, production) without changing the application code.</li>
+                        <li><b>Logging Configuration: </b>Store and manage logging configurations, including log levels, formats, and handlers.</li>
+                        <li><b>Test Configuration: </b>Use configuration files to set parameters for testing frameworks, allowing for easy adjustments without code changes.</li>
+                    </ol>
+
+                    <h5 id="example">Example : Application Configuration</h5>
+                    <p>Consider an application that connects to a database. </p>
+                    <pre class="language-python"><code>
+                        import configparser
+
+                        # Create a ConfigParser object
+                        config = configparser.ConfigParser()
+                        
+                        # Read the configuration file
+                        config.read('app_config.ini')
+                        
+                        # Access database settings
+                        db_host = config.get('database', 'host')
+                        db_port = config.getint('database', 'port')
+                        db_user = config.get('database', 'user')
+                        db_password = config.get('database', 'password')
+                        
+                        print(f"Connecting to database at {db_host}:{db_port} with user {db_user}")
+                    </code></pre>
+
+                    <p>The <code>app_config.ini:</code> file is:</p>
+                    <pre><code>
+                        [database]
+                        host = localhost
+                        port = 5432
+                        user = admin
+                        password = secret                        
+                    </code></pre>
+
+                    
+
+
+
+
+
+                </section>
+
                 <!-------Reference ------->
                 <section id="reference">
                     <h2>References</h2>
