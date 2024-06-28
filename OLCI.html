@@ -498,7 +498,32 @@
                                     # Create data store object
                                     datastore = eumdac.DataStore(token)
                                 </code></pre>
+                                <p><b>Option 2: provide credentials directly</b> You can provide your credentials directly as follows;
+                                    <pre class="language-css"><code>token = eumdac.AccessToken((consumer_key, consumer_secret))</code></pre>
+                                </p>
+                                <div class="alert alert-info"><b>Note:</b> this method is convenient in the short term, but is not really recommended as you have to put your key and secret in this notebook, and run the risk of accidentally sharing them. This method also requires you to authenticate on a notebook-by-notebook basis.</div>
                             </div>
+                            Now we have a token, we can see what OLCI specific collections we have in the Data Store.
+                            <pre class="language-python"><code>
+                                datastore = eumdac.DataStore(token)
+                                for collection_id in datastore.collections:
+                                    try:
+                                        if "OLCI" in collection_id.title and "EO:EUM:DAT:0" in str(collection_id):
+                                            print(f"Collection ID({collection_id}): {collection_id.title}")
+                                    except:
+                                        pass
+                            </code></pre>
+                            Since, I have used so many data products, I receive following output:
+                            <pre><code>
+                                Collection ID(EO:EUM:DAT:0410): OLCI Level 1B Reduced Resolution - Sentinel-3
+                                Collection ID(EO:EUM:DAT:0556): OLCI Level 2 Ocean Colour Full Resolution (version BC003) - Sentinel-3 - Reprocessed
+                                Collection ID(EO:EUM:DAT:0557): OLCI Level 2 Ocean Colour Reduced Resolution (version BC003) - Sentinel-3 - Reprocessed
+                                Collection ID(EO:EUM:DAT:0407): OLCI Level 2 Ocean Colour Full Resolution - Sentinel-3
+                                Collection ID(EO:EUM:DAT:0408): OLCI Level 2 Ocean Colour Reduced Resolution - Sentinel-3
+                                Collection ID(EO:EUM:DAT:0409): OLCI Level 1B Full Resolution - Sentinel-3
+                                Collection ID(EO:EUM:DAT:0577): OLCI Level 1B Full Resolution (version BC002) - Sentinel-3 - Reprocessed
+                                Collection ID(EO:EUM:DAT:0578): OLCI Level 1B Reduced Resolution (version BC002) - Sentinel-3 - Reprocessed
+                            </code></pre>
                         </li>
                         <li><b>Step- 5: The products we need: </b>We need a number of OLCI level-1b and level-2 products. These products are shown below in a python *list* called **product list**. We will retrieve these products from the Data Store.
                             <pre><code>
@@ -509,7 +534,48 @@
                                 ]
                             </code></pre>
                         </li>
-                        <li><b>Step- 6: </b></li>
+                        <li><b>Step- 6: Getting the data: </b>We can access the data using either collection id or product id:
+                        <pre class="language-python"><code>
+                            # With the level-1B `collection_id` to the `datastore` object to choose the correct collection.
+                            collection_id = 'EO:EUM:DAT:0409'
+                            selected_collection = datastore.get_collection(collection_id)
+                        </code></pre>
+                        <p>With the product name:</p>
+
+                        <pre class="language-python"><code>
+                            selected_product = datastore.get_product(product_id=product_list[0], collection_id=collection_id)
+                        </code></pre>
+                        <p>Once we have  collection id and product names, we can download the data from the EUMESAT data store:</p>
+                        <pre class="language-python"><code>
+                            with selected_product.open() as fsrc, open(os.path.join(download_dir, fsrc.name), mode='wb') as fdst:
+                                print(f'Downloading {fsrc.name}')
+                                shutil.copyfileobj(fsrc, fdst)
+                                print(f'Download of product {fsrc.name} finished.')
+                        </code></pre>
+                        <p> where:
+                            <ul>
+                                <li><code>os.path.join(download_dir, fsrc.name)</code>: Constructs the full path for the destination file by combining download_dir and the name of the source file (fsrc.name).</li>
+                                <li><code>mode='wb'</code>: Opens the destination file in write-binary mode, which is necessary for copying binary data.</li>
+                                <li><code>fdst</code>: A file-like object representing the destination file that is being written to.</li>
+                                <li><code>shutil.copyfileobj(fsrc, fdst)</code>: Copies the content from the source file (fsrc) to the destination file (fdst). This function reads from fsrc and writes to fdst until the end of the source file is reached.</li>
+                            </ul>
+                        </p>
+                        <p>Finally, we have downloaded the data in the <code>products/</code> folder. Output of the above code is:</p>
+                        <pre><code>
+                            Downloading S3A_OL_1_EFR____20210717T101015_20210717T101315_20210718T145224_0179_074_122_1980_MAR_O_NT_002.SEN3.zip
+                            Download of product S3A_OL_1_EFR____20210717T101015_20210717T101315_20210718T145224_0179_074_122_1980_MAR_O_NT_002.SEN3.zip finished.
+                        </code></pre>
+                        <p>The product is downloaded as a zip file, so lets unzip it and remove the zip.</p>
+                        <pre class="language-python"><code>
+                            with zipfile.ZipFile(fdst.name, 'r') as zip_ref:
+                            for file in zip_ref.namelist():
+                                if file.startswith(str(selected_product)):
+                                    zip_ref.extract(file, download_dir)
+                            print(f'Unzipping of product {selected_product} finished.')
+                        
+                            os.remove(fdst.name)
+                        </code></pre>
+                        </li>
                     </ul>
 
 
