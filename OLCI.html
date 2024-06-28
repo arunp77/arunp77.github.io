@@ -322,6 +322,8 @@
 
 
                     <h4 id="data-sentinel3">Accessing OLCI data via the EUMETSAT Data Store </h4>
+                    <div class="alert alert-info"> <i class="bi bi-arrow-right-circle"></i> The notebooks are provided by EUMESAT during <font color="#F33365">Copernicus Marine Training programm 2023</font> and Authors are "<strong>Ben Loveday (EUMETSAT/Innoflair UG), Hayley Evers-King (EUMETSAT), Ana Ruescas (Brockmann Consult GmbH / University of Valencia)</strong>".<br>
+                    </div>
                     In the next step, we will need data. We took three datasets from Sentinel-3 OLCI data (thanks to the data provided by EUMESAT). 
                     <table border="1">
                         <tr>
@@ -415,7 +417,89 @@
                                 os.makedirs(download_dir, exist_ok=True)
                             </code></pre>
                         </li>
-                        <li><b>Step- 4: Data access: </b>The <a href="https://data.eumetsat.int" target="_blank">Data Store</a> is EUMETSAT's primary pull service for delivering data, including the ocean data available from Sentinel-3 and OLCI. Access to it is possible through a WebUI, and through a series of application programming interfaces (APIs). The Data Store supports browsing, searching and downloading data as well as subscription services. It also provides a link to the online version of the <a href="https://tailor.eumetsat.int/" target="_blank">EUMETSAT Data Tailor</a> for customisation.</li>
+                        <li><b>Step- 4: Data access: </b>The <a href="https://data.eumetsat.int" target="_blank">Data Store</a> is EUMETSAT's primary pull service for delivering data, including the ocean data available from Sentinel-3 and OLCI. Access to it is possible through a WebUI, and through a series of application programming interfaces (APIs). The Data Store supports browsing, searching and downloading data as well as subscription services. It also provides a link to the online version of the <a href="https://tailor.eumetsat.int/" target="_blank">EUMETSAT Data Tailor</a> for customisation. To access Sentinel-3 data from the <a href="https://data.eumetsat.int">EUMETSAT Data Store</a>, there are following methods that can be used:
+                            <ul>
+                                <li><a href="https://tailor.eumetsat.int/" target="_blank">EUMETSAT Data WebUI</a></li>
+                                <li><a href="https://user.eumetsat.int/resources/user-guides/eumetsat-data-access-client-eumdac-guide" target="_blank"> EUMETSAT Data Access Client</a> (`<code>eumdac</code>`)</li>
+                            </ul>
+                            <div class="alert alert-info"> <i class="bi bi-arrow-right-circle"></i>  <font color="#F33365">Other way of accessig the data from the EUMESAT using the REST API</font> are as follows:<br>
+                                <ul>
+                                    <li><a href="https://user.eumetsat.int/api-definitions/data-store-opensearch-api" target="_blank">Data Store OpenSearch API</a></li>
+                                    <li><a href="https://user.eumetsat.int/api-definitions/data-store-rest-api" target="_blank">Data Store Browse API</a></li>
+                                    <li><a href="https://user.eumetsat.int/api-definitions/data-store-download-api" target="_blank">Data Store Download API</a></li>
+                                </ul>
+                            </div>
+                            In order to allow us to download data from the Data Store via API, we need to provide our credentials. We can do this in two ways
+                            <ul>
+                                <li><b>Option-1: </b>either by creating a file called `<code>.eumdac_credentials</code>` in our home directory (recommended)</li>
+                                <li><b>Option-2: </b>or by supplying our credentials directly in this script. </li>
+                            </ul>
+                            <div class="grey-box">
+                                <p><strong>Option-1: </strong>creating  `<code>.eumdac_credentials</code>` in our home directory. </p>
+                                For most computer systems the home directory can be found at the path \user\username, /users/username, or /home/username depending on your operating system.
+
+                                In this file we need to add the following information exactly as follows;
+                                
+                                <pre>
+                                    {
+                                        "consumer_key": "your_consumer_key",
+                                        "consumer_secret": "your_consumer_secret"
+                                    }
+                                </pre>
+                                                                
+                                You must replace `<code>your_consumer_key</code>` and `<code>your_consumer_secret</code>` with the information you extract from <a href="https://api.eumetsat.int/api-key/" target="_blank">https://api.eumetsat.int/api-key/</a> You will need a <a href="https://eoportal.eumetsat.int/">EUMETSAT Earth Observation Portal account</a> to access this link, and in order to see the information you must click the "Show hidden fields" button at the bottom of the page.
+
+                                <figure>
+                                    <img src="assets/img/remote-sensing/eumetsat-api.png" alt="" style="max-width: 60%; max-height: auto;">
+                                    <figcaption style="text-align: center;"><b></b> <a href="" target="_blank"></a>.</figcaption>
+                                </figure>
+
+                                <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+                                    <iframe width="800" height="450" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+
+
+                                <pre class="language-python"><code>
+                                    # Get the home directory of the current user
+                                    home_directory = os.path.expanduser("~")
+                                    
+                                    # Construct the full path to the '.eumdac_credentials' file
+                                    credentials_path = os.path.join(home_directory, '.eumdac_credentials')
+                                    
+                                    # Print the full path
+                                    print(f"The full path to the '.eumdac_credentials' file is: {credentials_path}")
+                                </code></pre>
+
+                                <p>This code will generate the <code>.eumdac_credentials</code> in the home directory of computer system.</p>
+                                
+                                <strong>Note:</strong> your key and secret are permanent, so you only need to do this once, but you should take care to never share them
+                                
+                                Make sure to save the file without any kind of extension.
+                                
+                                Once you have done this, you can read in your credentials using the commands in the following cell. These will be used to generate a time-limited token, which will refresh itself when it expires.
+
+                                <p>Instead of saving the credentials into the home directory of the computer systems, we can also save it to a <code>.env/</code> folder which should be kept secret by adding the file name to '<code>.gitignore</code>' file. To create <code>.env</code>, use <code>mkdir -p .env</code>, then move the <code>.eumdac_credentials</code> file into the <code>.env</code> from the home or create a new <code>.eumdac_credentials</code> into the <code>.env</code>. Follwoing python code can be used to create it into <code>.env</code>:</p>
+                                <pre class="language-python"><code>
+                                    import os
+                                    import json
+                                    import eumdac
+                                    
+                                    # Define the path to the '.eumdac_credentials' file in the '.env' directory
+                                    project_directory = os.path.dirname(os.path.abspath(__file__))  # Get the directory of the current script
+                                    env_directory = os.path.join(project_directory, '.env')
+                                    credentials_path = os.path.join(env_directory, '.eumdac_credentials')
+                                    
+                                    # Read the credentials from the file
+                                    with open(credentials_path) as json_file:
+                                        credentials = json.load(json_file)
+                                        token = eumdac.AccessToken((credentials['consumer_key'], credentials['consumer_secret']))
+                                        print(f"This token '{token}' expires {token.expiration}")
+                                    
+                                    # Create data store object
+                                    datastore = eumdac.DataStore(token)
+                                </code></pre>
+                            </div>
+                        </li>
                         <li><b>Step- 5: The products we need: </b>We need a number of OLCI level-1b and level-2 products. These products are shown below in a python *list* called **product list**. We will retrieve these products from the Data Store.
                             <pre><code>
                                 product_list = [
