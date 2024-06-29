@@ -2,170 +2,167 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>ETL-pipeline</title>
-  <meta content="" name="description"> 
-  <meta content="" name="keywords">
+    <title>ETL-pipeline</title>
+    <meta content="" name="description"> 
+    <meta content="" name="keywords">
 
-  <!-- Favicons -->
-  <link href="assets/img/Favicon-1.png" rel="icon">
-  <link href="assets/img/Favicon-1.png" rel="apple-touch-icon">
+    <!-- Favicons -->
+    <link href="assets/img/Favicon-1.png" rel="icon">
+    <link href="assets/img/Favicon-1.png" rel="apple-touch-icon">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <!-- Creating a python code section-->
-  <link rel="stylesheet" href="assets/css/prism.css">
-  <script src="assets/js/prism.js"></script>
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Creating a python code section-->
+    <link rel="stylesheet" href="assets/css/prism.css">
+    <script src="assets/js/prism.js"></script>
 
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
 
-  <!-- Include Prism styles -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
+    <!-- Include Prism styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
 
-  <!-- Include Prism scripts -->
-  <!----<script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>-->
+    <!-- To set the icon, visit https://fontawesome.com/account-->
+    <script src="https://kit.fontawesome.com/5d25c1efd3.js" crossorigin="anonymous"></script>
+    <!-- end of icon-->
 
-  <!-- Example for Prism.js -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" integrity="sha384-uEbBqWkE4LEVKVKJBii7Pb3pDi8svYlmL8jq5vHEewoYW6hDyyMuwQX+FRQ0PK5c" crossorigin="anonymous">
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js" integrity="sha384-uEbBqWkE4LEVKVKJBii7Pb3pDi8svYlmL8jq5vHEewoYW6hDyyMuwQX+FRQ0PK5c" crossorigin="anonymous"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js" integrity="sha384-uEbBqWkE4LEVKVKJBii7Pb3pDi8svYlmL8jq5vHEewoYW6hDyyMuwQX+FRQ0PK5c" crossorigin="anonymous"></script>
-  
-  <!-- =======================================================
-  * Template Name: iPortfolio
-  * Updated: Sep 18 2023 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <!-- Example for Prism.js -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" integrity="sha384-uEbBqWkE4LEVKVKJBii7Pb3pDi8svYlmL8jq5vHEewoYW6hDyyMuwQX+FRQ0PK5c" crossorigin="anonymous">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js" integrity="sha384-uEbBqWkE4LEVKVKJBii7Pb3pDi8svYlmL8jq5vHEewoYW6hDyyMuwQX+FRQ0PK5c" crossorigin="anonymous"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js" integrity="sha384-uEbBqWkE4LEVKVKJBii7Pb3pDi8svYlmL8jq5vHEewoYW6hDyyMuwQX+FRQ0PK5c" crossorigin="anonymous"></script> -->
+
+    <!-- =======================================================
+    * Template Name: iPortfolio
+    * Updated: Sep 18 2023 with Bootstrap v5.3.2
+    * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
 </head>
 
 <body>
 
-  <!-- ======= Mobile nav toggle button ======= -->
-  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+    <!-- ======= Mobile nav toggle button ======= -->
+    <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
 
-  <!-- ======= Header ======= -->
-  <header id="header">
-    <div class="d-flex flex-column">
-
-      <div class="profile">
-        <img src="assets/img/myphoto.jpeg" alt="" class="img-fluid rounded-circle">
-        <h1 class="text-light"><a href="index.html">Arun</a></h1>
-        <div class="social-links mt-3 text-center">
-            <a href="https://www.linkedin.com/in/arunp77/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-            <a href="https://github.com/arunp77" target="_blank" class="github"><i class="bx bxl-github"></i></a>
-            <a href="https://twitter.com/arunp77_" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
-            <a href="https://www.instagram.com/arunp77/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
-            <a href="https://arunp77.medium.com/" target="_blank" class="medium"><i class="bx bxl-medium"></i></a>
-        </div>
-      </div>
-
-      <nav id="navbar" class="nav-menu navbar">
-        <ul>
-            <li><a href="index.html#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
-            <li><a href="index.html#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
-            <li><a href="index.html#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
-            <li><a href="index.html#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
-            <li><a href="index.html#skills-and-tools" class="nav-link scrollto"><i class="bx bx-wrench"></i> <span>Skills and Tools</span></a></li>
-            <!-- <li><a href="index.html#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li>-->
-            <li><a href="index.html#professionalcourses" class="nav-link scrollto"><i class="bx bx-book-alt"></i> <span>Professional Certification</span></a></li>
-            <li><a href="index.html#publications" class="nav-link scrollto"><i class="bx bx-news"></i> <span>Publications</span></a></li>
-            <li><a href="index.html#extra-curricular" class="nav-link scrollto"><i class="bx bx-rocket"></i> <span>Extra-Curricular Activities</span></a></li>
-            <li><a href="index.html#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
-        </ul>
-      </nav><!-- .nav-menu -->
-    </div>
-  </header><!-- End Header -->
-
-  <main id="main">
-
-    <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-      <div class="container">
-
-        <div class="d-flex justify-content-between align-items-center">
-          <h2>Portfoio Details</h2>
-          <ol>
-            <li><a href="Data-engineering.html" class="clickable-box">Go to content</a></li>
-          </ol>
-        </div>
-
-      </div>
-    </section><!-- End Breadcrumbs -->
-
-    <!------  right dropdown menue ------->
-    <div class="right-side-list">
-        <div class="dropdown">
-            <button class="dropbtn"><strong>Shortcuts:</strong></button>
-            <div class="dropdown-content">
-                <ul>
-                    <li><a href="cloud-compute.html"><i class="fas fa-cloud"></i> Cloud</a></li>
-                    <li><a href="AWS-GCP.html"><i class="fas fa-cloud"></i> AWS-GCP</a></li>
-                    <li><a href="amazon-s3.html"><i class="fas fa-cloud"></i> AWS S3</a></li>
-                    <li><a href="ec2-confi.html"><i class="fas fa-server"></i> EC2</a></li>
-                    <li><a href="Docker-Container.html"><i class="fab fa-docker" style="color: rgb(14, 13, 13);"></i> Docker</a></li>
-                    <li><a href="Jupyter-nifi.html"><i class="fab fa-python" style="color: rgb(3, 3, 3);"></i> Jupyter-nifi</a></li>
-                    <li><a href="snowflake-task-stream.html"><i class="fas fa-snowflake"></i> Snowflake</a></li>
-                    <li><a href="data-model.html"><i class="fas fa-database"></i> Data modeling</a></li>
-                    <li><a href="sql-basics.html"><i class="fas fa-table"></i> QL</a></li>
-                    <li><a href="sql-basic-details.html"><i class="fas fa-database"></i> SQL</a></li>
-                    <li><a href="Bigquerry-sql.html"><i class="fas fa-database"></i> Bigquerry</a></li>
-                    <li><a href="scd.html"><i class="fas fa-archive"></i> SCD</a></li>
-                    <li><a href="sql-project.html"><i class="fas fa-database"></i> SQL project</a></li>
-                      <!-- Add more subsections as needed -->
-                  </ul>
+    <!-- ======= Header ======= -->
+    <header id="header">
+        <div class="d-flex flex-column">
+            <div class="profile">
+                <img src="assets/img/myphoto.jpeg" alt="" class="img-fluid rounded-circle">
+                <h1 class="text-light"><a href="index.html">Arun</a></h1>
+                <div class="social-links mt-3 text-center">
+                    <a href="https://www.linkedin.com/in/arunp77/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                    <a href="https://github.com/arunp77" target="_blank" class="github"><i class="bx bxl-github"></i></a>
+                    <a href="https://twitter.com/arunp77_" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
+                    <a href="https://www.instagram.com/arunp77/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+                    <a href="https://arunp77.medium.com/" target="_blank" class="medium"><i class="bx bxl-medium"></i></a>
+                </div>
             </div>
-          </div>
-      </div>
 
-    <!-- ======= Portfolio Details Section ======= -->
-    <section id="portfolio-details" class="portfolio-details">
-      <div class="container">
-        <div class="row gy-4">
-          <h1>Building an Automated Data Pipeline (ETL) for Spotify's Globally Famous Songs Dataset on AWS</h1>
-            <h3>Introduction</h3>
-            <p>Music is a universal language that transcends borders and cultures. <a href="https://open.spotify.com/" target="_blank">Spotify</a>
-                one of the world's leading music streaming platforms, offers a treasure trove of data on the most globally famous songs. 
-                Analyzing this data can provide valuable insights into music trends, artist popularity, and more. In this project, I'll walk 
-                you through building an automated data pipeline on <a href="https://aws.amazon.com/" target="_blank">Amazon Web Services (AWS)</a>
-                to <a href="https://aws.amazon.com/what-is/etl/#:~:text=Extract%2C%20transform%2C%20and%20load%20(,and%20machine%20learning%20(ML)." target="_blank">extract, transform, and load (ETL)</a>
-                data from Spotify, empowering you to explore and analyze globally famous songs.</p>
+            <nav id="navbar" class="nav-menu navbar">
+                <ul>
+                    <li><a href="index.html#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+                    <li><a href="index.html#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
+                    <li><a href="index.html#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+                    <li><a href="index.html#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+                    <li><a href="index.html#skills-and-tools" class="nav-link scrollto"><i class="bx bx-wrench"></i> <span>Skills and Tools</span></a></li>
+                    <!-- <li><a href="index.html#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li>-->
+                    <li><a href="index.html#professionalcourses" class="nav-link scrollto"><i class="bx bx-book-alt"></i> <span>Professional Certification</span></a></li>
+                    <li><a href="index.html#publications" class="nav-link scrollto"><i class="bx bx-news"></i> <span>Publications</span></a></li>
+                    <li><a href="index.html#extra-curricular" class="nav-link scrollto"><i class="bx bx-rocket"></i> <span>Extra-Curricular Activities</span></a></li>
+                    <li><a href="index.html#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+                </ul>
+            </nav><!-- .nav-menu -->
+        </div>
+    </header><!-- End Header -->
 
-            
-        <div class="flex-container">
-            <div class="text">
-            <h3>Prerequisites</h3>
+    <main id="main">
+
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>Portfoio Details</h2>
+                    <ol>
+                    <li><a href="Data-engineering.html" class="clickable-box">Go to content</a></li>
+                    </ol>
+                </div>
+            </div>
+        </section><!-- End Breadcrumbs -->
+
+        <!------  right dropdown menue ------->
+        <div class="right-side-list">
+            <div class="dropdown">
+                <button class="dropbtn"><strong>Shortcuts:</strong></button>
+                <div class="dropdown-content">
+                    <ul>
+                        <li><a href="cloud-compute.html"><i class="fas fa-cloud"></i> Cloud</a></li>
+                        <li><a href="AWS-GCP.html"><i class="fas fa-cloud"></i> AWS-GCP</a></li>
+                        <li><a href="amazon-s3.html"><i class="fas fa-cloud"></i> AWS S3</a></li>
+                        <li><a href="ec2-confi.html"><i class="fas fa-server"></i> EC2</a></li>
+                        <li><a href="Docker-Container.html"><i class="fab fa-docker" style="color: rgb(14, 13, 13);"></i> Docker</a></li>
+                        <li><a href="Jupyter-nifi.html"><i class="fab fa-python" style="color: rgb(3, 3, 3);"></i> Jupyter-nifi</a></li>
+                        <li><a href="snowflake-task-stream.html"><i class="fas fa-snowflake"></i> Snowflake</a></li>
+                        <li><a href="data-model.html"><i class="fas fa-database"></i> Data modeling</a></li>
+                        <li><a href="sql-basics.html"><i class="fas fa-table"></i> QL</a></li>
+                        <li><a href="sql-basic-details.html"><i class="fas fa-database"></i> SQL</a></li>
+                        <li><a href="Bigquerry-sql.html"><i class="fas fa-database"></i> Bigquerry</a></li>
+                        <li><a href="scd.html"><i class="fas fa-archive"></i> SCD</a></li>
+                        <li><a href="sql-project.html"><i class="fas fa-database"></i> SQL project</a></li>
+                        <!-- Add more subsections as needed -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======= Portfolio Details Section ======= -->
+        <section id="portfolio-details" class="portfolio-details">
+        <div class="container">
+            <div class="row gy-4">
+                <h1>Building an Automated Data Pipeline (ETL) for Spotify's Globally Famous Songs Dataset on AWS</h1>
+                <h3>Introduction</h3>
+                <p>Music is a universal language that transcends borders and cultures. <a href="https://open.spotify.com/" target="_blank">Spotify</a>
+                one of the world's leading music streaming platforms, offers a treasure trove of data on the most globally famous songs. Analyzing this data can provide valuable insights into music trends, artist popularity, and more. In this project, I'll walk you through building an automated data pipeline on <a href="https://aws.amazon.com/" target="_blank">Amazon Web Services (AWS)</a> to <a href="https://aws.amazon.com/what-is/etl/#:~:text=Extract%2C%20transform%2C%20and%20load%20(,and%20machine%20learning%20(ML)." target="_blank">extract, transform, and load (ETL)</a> data from Spotify, empowering you to explore and analyze globally famous songs.</p>
+
+            <div class="flex-container">
+                <div class="text">
+                    <h3>Prerequisites</h3>
+                    <p>Before diving into the project, you'll need the following prerequisites:</p>
+                    <ul style="list-style-type: disc; margin-left: 30px;">
+                        <li>An <a href="https://signin.aws.amazon.com/" target="_blank"> AWS account</a> with the necessary permissions to create and manage services.</li>
+                        <li>Basic knowledge of AWS services like S3, Lambda, Glue, and Athena.</li>
+                        <li><a href="https://github.com/arunp77/Python-programming" target="_blank">Python programming skills</a>.</li>
+                        <li><a href="https://developer.spotify.com/documentation/web-api" target="_blank">Spotify API access</a>.</li>
+                    </ul>
+                </div>
+                <div class="image">
+                    <img src="assets/img/portfolio/AWS-services.png" alt="Image Description">
+                </div>
+            </div>
+            <!--
             <p>Before diving into the project, you'll need the following prerequisites:</p>
             <ul style="list-style-type: disc; margin-left: 30px;">
                 <li>An <a href="https://signin.aws.amazon.com/" target="_blank"> AWS account</a> with the necessary permissions to create and manage services.</li>
                 <li>Basic knowledge of AWS services like S3, Lambda, Glue, and Athena.</li>
                 <li><a href="https://github.com/arunp77/Python-programming" target="_blank">Python programming skills</a>.</li>
-                <li><a href="https://developer.spotify.com/documentation/web-api" target="_blank">Spotify API access</a>.</li>
-            </ul>
-            </div>
-            <div class="image">
-                <img src="assets/img/portfolio/AWS-services.png" alt="Image Description">
-            </div>
-        </div>
-        <!--
-        <p>Before diving into the project, you'll need the following prerequisites:</p>
-        <ul style="list-style-type: disc; margin-left: 30px;">
-            <li>An <a href="https://signin.aws.amazon.com/" target="_blank"> AWS account</a> with the necessary permissions to create and manage services.</li>
-            <li>Basic knowledge of AWS services like S3, Lambda, Glue, and Athena.</li>
-            <li><a href="https://github.com/arunp77/Python-programming" target="_blank">Python programming skills</a>.</li>
-            <li><a href="https://developer.spotify.com/documentation/web-api" target="_blank">API access</a>.</li>
-        </ul>-->
+                <li><a href="https://developer.spotify.com/documentation/web-api" target="_blank">API access</a>.</li>
+            </ul>-->
                 
             <h3>Project overview</h3>
             <p>This project is an end-to-end ETL (Extract, Transform, Load) pipeline designed to automate the extraction of data from a Spotify playlist 
@@ -179,14 +176,9 @@
                     functions. This process included parsing JSON responses, creating structured data frames, and applying various data cleaning operations (such as finding duplicates,
                     infinities, missing values etc).</li>
                 <li><b>Data Loading:</b> The transformed data was loaded back into the S3 bucket, making it ready for analysis.</li>
-                <li><b>Automated Processing:</b> For keeping the music data current, I implemented automated processes that
-                     actively fetched new data from Spotify and dynamically updated the datasets (I kept daily batch processing). An AWS S3 trigger was configured to initiate the data transformation 
-                     process whenever a new dataset was added to the S3 bucket. Subsequently, the transformed data was loaded into a designated destination or folder.
-                </li>
-                <li><strong>Automation:</strong> AWS Crawler automates metadata discovery, cataloging schema and structure, and ensures up-to-date metadata in the AWS Glue Data Catalog.
-                    AWS Glue simplifies ETL processing, dynamically transforms data frames, and seamlessly integrates with the Data Catalog for automated, serverless data transformation.</li>
-                <li><b>Data Analysis:</b> With the data in its prepared formats, it's now possible to explore music trends, artist popularity, 
-                    genre distribution, and more. I used Athena to do the data analytics. </li>
+                <li><b>Automated Processing:</b> For keeping the music data current, I implemented automated processes that actively fetched new data from Spotify and dynamically updated the datasets (I kept daily batch processing). An AWS S3 trigger was configured to initiate the data transformation process whenever a new dataset was added to the S3 bucket. Subsequently, the transformed data was loaded into a designated destination or folder.</li>
+                <li><strong>Automation:</strong> AWS Crawler automates metadata discovery, cataloging schema and structure, and ensures up-to-date metadata in the AWS Glue Data Catalog. AWS Glue simplifies ETL processing, dynamically transforms data frames, and seamlessly integrates with the Data Catalog for automated, serverless data transformation.</li>
+                <li><b>Data Analysis:</b> With the data in its prepared formats, it's now possible to explore music trends, artist popularity, genre distribution, and more. I used Athena to do the data analytics.</li>
             </ul>
                 
             <h3>Project Architecture</h3>
@@ -243,35 +235,57 @@
 
                 <ul class="indented-list">
                     <li>Created an AWS Lambda function named "spotify_api_data_extract". Here is the lambda function:</li>
-                    <pre>
-                        <code class="language-python">
-                            import json, os, spotify, boto3
-                            from datetime import datetime
-                            from spotipy.oauth2 import SpotifyClientCredentials
-        
-                            def lambda_handler(event, context):    
-                                client_id = os.environ.get('client_id')
-                                client_secret = os.environ.get('client_secret')
-                                client_credentials_manager = SpotifyClientCredentials(client_id = client_id, client_secret = client_secret)
-                                sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
-                                playlists = sp.user_playlists('spotify')
-                                playlist_link = "https://open.spotify.com/playlist/37i9dQZEVXbNG2KDcFcKOF"
-                                playlist_URI = playlist_link.split("/")[-1].split("?")[0]
-                                spotify_data = sp.playlist_tracks(playlist_URI)                        
-                                client = boto3.client('s3')
-                                filename = "spotify_raw_" +str(datetime.now()) + ".json"
-                                client.put_object(
-                                    Bucket = "spotify-etl-project-arun",
-                                    Key = "raw_data/to_processed/" + filename,
-                                    Body = json.dumps(spotify_data)
-                                    )                    
+                    <pre><code class="language-python">
+            import json, os, spotify, boto3
+            from datetime import datetime
+            from spotipy.oauth2 import SpotifyClientCredentials
+
+            def lambda_handler(event, context):    
+                client_id = os.environ.get('client_id')
+                client_secret = os.environ.get('client_secret')
+                client_credentials_manager = SpotifyClientCredentials(client_id = client_id, client_secret = client_secret)
+                sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+                playlists = sp.user_playlists('spotify')
+                playlist_link = "https://open.spotify.com/playlist/37i9dQZEVXbNG2KDcFcKOF"
+                playlist_URI = playlist_link.split("/")[-1].split("?")[0]
+                spotify_data = sp.playlist_tracks(playlist_URI)                        
+                client = boto3.client('s3')
+                filename = "spotify_raw_" +str(datetime.now()) + ".json"
+                client.put_object(
+                    Bucket = "spotify-etl-project-arun",
+                    Key = "raw_data/to_processed/" + filename,
+                    Body = json.dumps(spotify_data)
+                    )                    
                         </code>
                     </pre>
-                    <li>This function extracts data from the Spotify playlist and saves it in the "raw_data/to_processed/"" folder within the S3 bucket.</li>
+                    <lI>The spotify API's can be saved in using environment variables. First one is using AWS CLI: 
+                        <ul>
+                            <li><b>Using the AWS 'update-function-configuration':</b>
+                            <pre><code>
+                                aws lambda update-function-configuration --function-name YourFunctionName \
+                                --environment "Variables={client_id=<your_client_id>,client_secret=<your_client_secret>}"
+                            </code></pre>
+                            Replace YourFunctionName, 'your_client_id', and 'your_client_secret' with your actual function name and credentials. After updating the environment variables, you can verify them by describing the function configuration:
+                            <pre><Code>
+                                aws lambda get-function-configuration --function-name YourFunctionName
+                            </Code></pre>
+                            </li>
+                            <li><b>Using AWS Management Console:</b>Navigate to the AWS Management Console and open the Lambda service., select the Lambda function for which you want to set environment variables. Scroll down to the "Environment variables" section under the function configuration. Click on "Edit" to add or update environment variables. Enter your sensitive credentials as key-value pairs. For example: 
+                                <pre><code>
+                                    Key: "client_id"
+                                    Value: "your_client_id"
+                                    Key: "client_secret"
+                                    Value: "your_client_secret"
+                                </code></pre>
+                            </li>
+                        </ul>
+                    </lI>
+                    <li><code>playlist_URI = playlist_link.split("/")[-1].split("?")[0]</code> This function basically split the <code>playlist_link </code> string into parts wherever a '/' character occurs, i.e. <code>["https:", "", "open.spotify.com", "playlist", "<code>37i9dQZEVXbNG2KDcFcKOF</code>"]</code>. The <code>[-1]</code> accesses the last element in this list, which is "37i9dQZEVXbNG2KDcFcKOF". This element corresponds to the unique identifier (ID) of the playlist after the last '<code>/</code>'. After extracting "<code>37i9dQZEVXbNG2KDcFcKOF</code>" (the playlist ID), the <code>.split("?")</code> method further splits this string wherever a '<code>?</code>' character occurs. This is useful for removing any query parameters that might be appended to the URL (like tracking parameters or source information). <code>[0]</code> accesses the first element from the resulting list after the split. If there were no query parameters in the URL, this step effectively returns the same string ("<code>37i9dQZEVXbNG2KDcFcKOF</code>"). If there were query parameters, they would have been removed.</li>
+                    <li>This function extracts data from the Spotify playlist and saves it in the "raw_data/to_processed/" folder within the S3 bucket.</li>
                     <li>The extraction process is performed using the Spotify API.</li>
                     <li>You may have to create event at <a href="https://docs.aws.amazon.com/lambda/latest/dg/services-cloudwatchevents.html" target="_blank">
                         AWS Cloudwatch</a> to trigger the functio to extract the data from the source (if any data file at the spotify is updated).</li>
-                    <li><b>Code explanation:</b></li>
+                    <li><b>Code explanation:</b>
                         <ul>
                             <li><p><span style="color: blue;">json</span>: Used for working with JSON data,</p> 
                                 <p><span style="color: blue;">os</span>: Used for accessing environment variables,  </p>
@@ -285,20 +299,21 @@
                             and 'SpotifyClientCredentials' is used an access token for the Spotify API.</p> </li>
                             <li><p><span style="color: blue;">sp</span>: This object is used to interact witth the Spotify API, and created with the 'client_credentials_manager'</p> </li>
                             <li><p><span style="color: blue;">boto3</span>: The 'boto3' is used to create to interact with AWS s3 bucket,</p> </li>
-                            <li>The 'client.put_object' function of the lambda function is used to dump extracted data from Spotify playlist to
-                                the 'raw_data/to_processed' directory of the AWS s3 bucket (in my case "spotify-etl-project-arun" bucket). 
-                                Here extracted data is first converted to JSON style (unstructured format) and then uploaded to the specified location </li>
+                            <li>The '<code>client.put_object</code>' function of the lambda function is used to dump extracted data from Spotify playlist to
+                                the '<code>raw_data/to_processed</code>' directory of the <code>AWS s3 bucket</code> (in my case "<code>spotify-etl-project-arun</code>" bucket). 
+                                Here extracted data is first converted to JSON style (unstructured format) and then uploaded to the specified location.</li>
                         </ul>
+                    </li>
                 </ul>
 
-                <h5>Data Transformation and Loading (AWS Lambda - "<span style="color: rgb(128, 20, 45);">spotify_transformation_load_function</span>")</h5>
+                <h5>Data Transformation and Loading (AWS Lambda - "<span style="color: rgb(124, 27, 50);">spotify_transformation_load_function</span>")</h5>
                 <p>This Lambda function is responsible for the transformation of raw data. It parses JSON responses, converts them into 
                     dataframes, and applies data cleaning operations such as removing duplicates and converting data types.</p>
                 
                     <img src="assets/img/portfolio/AWS-trasnform-load.png" alt="Project Architecture" style="width: 900px; height: auto;">
 
                 <ul class="indented-list">
-                    <li>Developed an AWS Lambda function named spotify_transformation_load_function". Here is the lambda function which:</li>
+                    <li>Developed an AWS Lambda function named "<span style="color: rgb(124, 27, 50);">spotify_transformation_load_function</span>". Here is the lambda function which:</li>
                     <pre class="language-python"><code>
 import json, boto3
 import pandas as pd
@@ -612,22 +627,20 @@ def lambda_handler(event, context):
                                 required careful attention. Any inconsistencies in the data could lead to inaccuracies in our analyses.</li>
                             <li><strong>Solution:</strong> I developed robust data cleaning procedures that addressed issues like duplicate records, missing values, 
                                 and data type discrepancies. This ensured that the data remained accurate and reliable throughout the ETL process.</li>
-                                <pre>
-                                    <code class="language-python">
-                                        album_df = pd.DataFrame.from_dict(album_list)
-                                        album_df = album_df.drop_duplicates(subset=['album_id'])
+                                <pre><code class="language-python">
+                        album_df = pd.DataFrame.from_dict(album_list)
+                        album_df = album_df.drop_duplicates(subset=['album_id'])
 
-                                        
-                                        artist_df = pd.DataFrame.from_dict(artist_list)
-                                        artist_df = artist_df.drop_duplicates(subset=['artist_id'])
+                        
+                        artist_df = pd.DataFrame.from_dict(artist_list)
+                        artist_df = artist_df.drop_duplicates(subset=['artist_id'])
 
-                                        
-                                        song_df = pd.DataFrame.from_dict(song_list)
-                                        
-                                        album_df['release_date'] = pd.to_datetime(album_df['release_date'])
-                                        song_df['song_added'] = pd.to_datetime(song_df['song_added'])
-                                    </code>
-                                    </pre>
+                        
+                        song_df = pd.DataFrame.from_dict(song_list)
+                        
+                        album_df['release_date'] = pd.to_datetime(album_df['release_date'])
+                        song_df['song_added'] = pd.to_datetime(song_df['song_added'])
+                                </code></pre>
                         </ul>
                     </ul>
                     <ul>
@@ -667,36 +680,49 @@ def lambda_handler(event, context):
                     <li><strong>Documentation and Tutorials:</strong> I am committed to providing comprehensive project documentation and tutorials, making it easier 
                         for others and contributors to understand and engage with my project.</li> 
                 </ul>
+                <div class="navigation">
+                    <a href="index.html#portfolio" class="clickable-box">
+                        <span class="arrow-left">Portfolio section</span>
+                    </a>
+
+                    <a href="Data-engineering.html" class="clickable-box">
+                        <span class="arrow-right">Content</span>
+                    </a>
+                </div>
+            </div>
+        </section><!-- End Portfolio Details Section -->
+    </main><!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+        <div class="copyright">
+            &copy; Copyright <strong><span>Arun</span></strong>
         </div>
-      </div>
-    </section><!-- End Portfolio Details Section -->
+        </div>
+    </footer><!-- End  Footer -->
 
-  </main><!-- End #main -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="container">
-      <div class="copyright">
-        &copy; Copyright <strong><span>Arun</span></strong>
-      </div>
-    </div>
-  </footer><!-- End  Footer -->
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/typed.js/typed.umd.js"></script>
+    <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/typed.js/typed.umd.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            hljs.initHighlightingOnLoad();
+        });
+    </script>
 
 </body>
 
