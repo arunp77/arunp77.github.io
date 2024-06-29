@@ -154,11 +154,13 @@
                                     <li><a href="#instruments">Sentinel-3 Instruments</a></li>
                                     <li><a href="#OCLI-module">OCLI-module</a>
                                         <ul>
+                                            <li><a href="#sentinel-3-naming">Sentinel-3 OLCI File Naming Convention</a></li>
                                             <li><a href="#data-sentinel3">Accessing OLCI data via the EUMETSAT Data Store</a></li>
-                                            <li><a href=""></a></li>
-                                            <li><a href=""></a></li>
+                                            <!-- <li><a href=""></a></li>
+                                            <li><a href=""></a></li> -->
                                         </ul>
                                     </li>
+                                    <li><a href="#olci-product">OLCI Product</a></li>
                                 </ul>
                             </li>
                             
@@ -313,14 +315,16 @@
                     </ul>
                     The global picture of ocean ecosystems provided by ocean colour data can guide sustainable marine resource management. Further information on the sensor and its data can be found at <a href="https://user.eumetsat.int/resources/user-guides/sentinel-3-olci-level-1-data-guide" target="_blank">http://olci.eumetsat.int</a> and in the <a href="https://eumetsatspace.atlassian.net/wiki/spaces/SEN3/overview" target="_blank">Sentinel-3 knowledge base</a>.
 
-                    <h4>Sentinel-3 OLCI File Naming Convention</h4>
+                    <h4 id="sentinel-3-naming">Sentinel-3 OLCI File Naming Convention</h4>
                     The file naming convention for Sentinel-3 OLCI data products is designed to encapsulate essential metadata about the file in a structured manner. The format is as follows: 
 
+
+                    <figure>
+                        <img src="assets/img/remote-sensing/sentinel-3-naming.png" alt="" style="max-width: 90%; max-height: auto;">
+                        <figcaption style="text-align: center;"><b></b> <a href="" target="_blank"></a></figcaption>
+                    </figure>
+
                     
-
-
-
-
                     <h4 id="data-sentinel3">Accessing OLCI data via the EUMETSAT Data Store </h4>
                     <div class="alert alert-info"> <i class="bi bi-arrow-right-circle"></i> The notebooks are provided by EUMESAT during <font color="#F33365">Copernicus Marine Training programm 2023</font> and Authors are "<strong>Ben Loveday (EUMETSAT/Innoflair UG), Hayley Evers-King (EUMETSAT), Ana Ruescas (Brockmann Consult GmbH / University of Valencia)</strong>".<br>
                     </div>
@@ -410,6 +414,7 @@
                                 <li>os.path.join(path, *paths): Joins one or more path components intelligently.</li>
                                 <li>os.path.exists(path): Returns True if the specified path exists, False otherwise.</li>
                             </ul>
+                            For more details on os module, please check the <a href="os-module.html" target="_blank">os-python module link</a>.
                         </li>
                         <li><b>Step- 3: </b>Creating a download directory for the data files:
                             <pre class="language-python"><code>
@@ -582,6 +587,7 @@
 
 
 
+                    <h3 id="olci-product">OLCI Product</h3>
 
 
 
