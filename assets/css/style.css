@@ -33,7 +33,7 @@ h6 {
 # Code section
 --------------------------------------------------------------*/
 pre {
-  background-color: rgb(7, 7, 7); /* Set the background color of <pre> elements */
+  
   padding: 10px; /* Optional: Add padding for better readability */
   border: 1px solid #6e6767; /* Optional: Add a border */
   border-radius: 5px; /* Optional: Round the corners */
