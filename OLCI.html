@@ -325,20 +325,6 @@
                     The global picture of ocean ecosystems provided by ocean colour data can guide sustainable marine resource management. Further information on the sensor and its data can be found at <a href="https://user.eumetsat.int/resources/user-guides/sentinel-3-olci-level-1-data-guide" target="_blank">http://olci.eumetsat.int</a> and in the <a href="https://eumetsatspace.atlassian.net/wiki/spaces/SEN3/overview" target="_blank">Sentinel-3 knowledge base</a>.
 
                     <br><br>
-
-                    <h5 id="sentinel-3-naming">Sentinel-3 OLCI File Naming Convention</h5>
-                    The file naming convention for Sentinel-3 OLCI data products is designed to encapsulate essential metadata about the file in a structured manner. The format is as follows: 
-
-
-                    <figure>
-                        <img src="assets/img/remote-sensing/sentinel-3-naming.png" alt="" style="max-width: 100%; max-height: auto;">
-                        <figcaption style="text-align: center;"><b></b> <a href="" target="_blank"></a></figcaption>
-                    </figure>
-                    <figure>
-                        <img src="assets/img/remote-sensing/sentinel-filename-structure.png" alt="" style="max-width: 90%; max-height: auto;">
-                        <figcaption style="text-align: center;"><b></b> <a href="" target="_blank"></a></figcaption>
-                    </figure>
-
                     
                     <h4 id="data-sentinel3">Accessing OLCI data via the EUMETSAT Data Store </h4>
                     <div class="alert alert-info"> <i class="bi bi-arrow-right-circle"></i> The notebooks are provided by EUMESAT during <font color="#F33365">Copernicus Marine Training programm 2023</font> and Authors are "<strong>Ben Loveday (EUMETSAT/Innoflair UG), Hayley Evers-King (EUMETSAT), Ana Ruescas (Brockmann Consult GmbH / University of Valencia)</strong>".<br>
@@ -548,8 +534,16 @@
         Collection ID(EO:EUM:DAT:0577): OLCI Level 1B Full Resolution (version BC002) - Sentinel-3 - Reprocessed
         Collection ID(EO:EUM:DAT:0578): OLCI Level 1B Reduced Resolution (version BC002) - Sentinel-3 - Reprocessed
                             </code></pre>
+                            So, for;
+                            <ul>
+                                <li><b>OLCI Level 1B Full Resolution: </b> we want <code>collection_id</code>: <em><b>EO:EUM:DAT:0409</b></em>.</li>
+                                <li><b>OLCI Level 2 Ocean Colour Reduced Resolution: </b> we want <code>collection_id</code>:  <em><b>EO:EUM:DAT:0408</b></em></li>
+                                <li><b>OLCI Level 2 Ocean Colour Full Resolution: </b> we want <code>collection_id</code>: <em><b>EO:EUM:DAT:0407</b></em></li>
+                            </ul>
+
                         </li>
-                        <li><b>Step- 5: The products we need: </b>We need a number of OLCI level-1b and level-2 products. These products are shown below in a python *list* called **product list**. We will retrieve these products from the Data Store.
+                        <li><b>Step- 5: The products we need for current OLCI data analytics: </b>
+                            We need a number of OLCI level-1b and level-2 products. These products are shown below in a python 'list' called 'product list'. We will retrieve these products from the Data Store.
                             <pre class="language-python">
                     product_list = [
                     'S3A_OL_1_EFR____20210717T101015_20210717T101315_20210718T145224_0179_074_122_1980_MAR_O_NT_002.SEN3',
@@ -558,7 +552,7 @@
                     ]
                             </pre>
                         </li>
-                        <li><b>Step- 6: Getting the data: </b>We can access the data using either collection id or product id:
+                        <li><b>Step- 6: Getting the data (Level 1B): </b>We can access the data using either collection id or product id:
                         <pre class="language-python"><code>
                     # With the level-1B `collection_id` to the `datastore` object to choose the correct collection.
                     collection_id = 'EO:EUM:DAT:0409'
@@ -590,7 +584,7 @@ Downloading S3A_OL_1_EFR____20210717T101015_20210717T101315_20210718T145224_0179
 Download of product S3A_OL_1_EFR____20210717T101015_20210717T101315_20210718T145224_0179_074_122_1980_MAR_O_NT_002.SEN3.zip 
 finished.
                         </code></pre>
-                        <p>The product is downloaded as a zip file, so lets unzip it and remove the zip.</p>
+                        <p>The L1B level product is downloaded as a zip file, so lets unzip it and remove the zip.</p>
                         <pre class="language-python"><code>
                             with zipfile.ZipFile(fdst.name, 'r') as zip_ref:
                             for file in zip_ref.namelist():
@@ -600,12 +594,49 @@ finished.
                         
                             os.remove(fdst.name)
                         </code></pre>
+                        <pre>>   Unzipping of product S3A_OL_1_EFR____20210717T101015_20210717T101315_20210718T145224_0179_074_122_1980_MAR_O_NT_002.SEN3 finished.</pre>
+                        </li>
+                        <li><strong>Step- 7: Level 2 data products: </strong> We can now check the <b>products</b> directory to see that we have the level 1B file. Now, lets pull all the parts together and download both level 2 files in a single loop.
+                            <pre class="language-python"><code>
+                collection_ids = ["EO:EUM:DAT:0408", "EO:EUM:DAT:0407"]
+
+                for product_id, collection_id in zip(product_list[1:],collection_ids):
+                    print(f"Retrieving: {product_id}")
+                
+                    selected_collection = datastore.get_collection(collection_id)
+                    selected_product = datastore.get_product(product_id=product_id, collection_id=collection_id)
+                    
+                    with selected_product.open() as fsrc, open(os.path.join(download_dir, fsrc.name), mode='wb') as fdst:
+                        print(f'Downloading {fsrc.name}.')
+                        shutil.copyfileobj(fsrc, fdst)
+                        print(f'Download of product {fsrc.name} finished.')
+                
+                    with zipfile.ZipFile(fdst.name, 'r') as zip_ref:
+                        for file in zip_ref.namelist():
+                            if file.startswith(str(selected_product)):
+                                zip_ref.extract(file, download_dir)
+                        print(f'Unzipping of product {fdst.name} finished.')
+                
+                    os.remove(fdst.name)
+                            </code></pre>
+                            This script downloads products from a datastore using specified collection IDs, extracts the relevant files from the downloaded zip archives, and then deletes the zip files. The steps ensure that only necessary files are extracted and stored in the download_dir.
                         </li>
                     </ul>
 
-
-
+                    <!------------------------------------>
                     <h3 id="olci-product">OLCI Product</h3>
+                    <p>Data from all the Sentinel satellites operated under the <a href="https://www.copernicus.eu/en" target="_blank">European Commissions Copernicus Programme</a> are delievered in "<a href="https://user.eumetsat.int/resources/user-guides/sentinel-safe-format-guide" target="_blank">SAFE format</a>". The Sentinel-SAFE format is a specific variation of the Standard Archive Format for Europe (SAFE) format specification designed for the Sentinel satellite products.  It is based on the XML Formatted Data Units (XFDU) standard under development by the Consultative Committee for Space Data Systems (CCSDS). Sentinel-SAFE is a profile of XFDU, and it restricts the XFDU specifications for specific utilisation in the Earth Observation domain, providing semantics in the same domain to improve interoperability between ground segment facilities.</p>
+
+                    <p>The Sentinel-SAFE product package file naming is based on a sequence of fields:</p>
+
+                    <figure>
+                        <img src="assets/img/remote-sensing/sentinel-3-naming.png" alt="" style="max-width: 100%; max-height: auto;">
+                        <figcaption style="text-align: center;"><b></b> <a href="" target="_blank"></a></figcaption>
+                    </figure>
+                    <figure>
+                        <img src="assets/img/remote-sensing/sentinel-filename-structure.png" alt="" style="max-width: 90%; max-height: auto;">
+                        <figcaption style="text-align: center;"><b></b> <a href="" target="_blank"></a></figcaption>
+                    </figure>
 
 
 
