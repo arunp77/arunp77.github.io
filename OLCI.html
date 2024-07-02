@@ -625,8 +625,16 @@ finished.
 
                     <!------------------------------------>
                     <h3 id="olci-product">OLCI Product</h3>
-                    <p>Data from all the Sentinel satellites operated under the <a href="https://www.copernicus.eu/en" target="_blank">European Commissions Copernicus Programme</a> are delievered in "<a href="https://user.eumetsat.int/resources/user-guides/sentinel-safe-format-guide" target="_blank">SAFE format</a>". The Sentinel-SAFE format is a specific variation of the Standard Archive Format for Europe (SAFE) format specification designed for the Sentinel satellite products.  It is based on the XML Formatted Data Units (XFDU) standard under development by the Consultative Committee for Space Data Systems (CCSDS). Sentinel-SAFE is a profile of XFDU, and it restricts the XFDU specifications for specific utilisation in the Earth Observation domain, providing semantics in the same domain to improve interoperability between ground segment facilities.</p>
+                    <p>Data from all the Sentinel satellites operated under the <a href="https://www.copernicus.eu/en" target="_blank">European Commissions Copernicus Programme</a> are delievered in "<a href="https://user.eumetsat.int/resources/user-guides/sentinel-safe-format-guide" target="_blank">SAFE format</a>". The Sentinel-SAFE format is a specific variation of the Standard Archive Format for Europe (SAFE) format specification designed for the Sentinel satellite products.  It is based on the XML Formatted Data Units (XFDU) standard under development by the <a href="https://public.ccsds.org/default.aspx" target="_blank">Consultative Committee for Space Data Systems (CCSDS)</a>. Sentinel-SAFE is a profile of XFDU, and it restricts the XFDU specifications for specific utilisation in the Earth Observation domain, providing semantics in the same domain to improve interoperability between ground segment facilities.</p>
 
+                    <p>Each product package includes:</p>
+                    <ul>
+                        <li>a manifest file containing a metadata section and a data object section (an xml file).</li>
+                        <li>measurement data files (NetCDF-4 format)</li>
+                        <li>annotation data files, if defined (NetCDF-4 format)</li>
+                    </ul>
+
+                    <p>The product package can exist as a directory in a filesystem, zipped folder or tarball. The containing unit has a set file name that describes the product.</p>
                     <p>The Sentinel-SAFE product package file naming is based on a sequence of fields:</p>
 
                     <figure>
@@ -639,7 +647,19 @@ finished.
                     </figure>
 
 
-
+                    <h4 id="OCLI-query">Querying OLCI file structure (Level-1B)</h4>
+                    To query the data, we will first need to provide the path to the data. 
+                    <pre class="language-python"><coce>
+            # selecting SAFE directory
+            SAFE_directory = os.path.join(os.getcwd(), 'products', 
+                'S3A_OL_1_EFR____20210717T101015_20210717T101315_20210718T145224_0179_074_122_1980_MAR_O_NT_002.SEN3')
+                    </coce></pre>
+                    <p>Next, we'll create another variable that takes this path, and finds and adds on the names of the manifest file within the SAFE folder. For Sentinel-3, this manifest is always called <code>xfdumanifest.xml</code> and contains very useful information about the nature of the contents of the SAFE format product.</p>
+                    <pre class="language-python"><code>
+                        # selecting SAFE manifest
+                        SAFE_manifest = glob.glob(os.path.join(SAFE_directory, 'xfd*.xml'))[0]
+                    </code></pre>
+                    Then, we'll read the manifest file in to a Python object format called a dictionary. This will make it easier for us to interact with the product in the next step.
                 </section>
 
                 <!-------Reference ------->
