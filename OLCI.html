@@ -14,7 +14,7 @@
     <link href="assets/img/Favicon-1.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/aos/aos.css" rel="stylesheet">
@@ -30,9 +30,6 @@
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
 
-    <!-- Include Prism styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
-
     <!-- To set the icon, visit https://fontawesome.com/account-->
     <script src="https://kit.fontawesome.com/5d25c1efd3.js" crossorigin="anonymous"></script>
     <!-- end of icon-->
@@ -44,7 +41,7 @@
 
     <!-- Include the highlight.js library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script> -->
 
     <!-- =======================================================
     * Template Name: iPortfolio
@@ -343,7 +340,7 @@
                     </figure>
 
                     
-                    <h5 id="data-sentinel3">Accessing OLCI data via the EUMETSAT Data Store </h5>
+                    <h4 id="data-sentinel3">Accessing OLCI data via the EUMETSAT Data Store </h4>
                     <div class="alert alert-info"> <i class="bi bi-arrow-right-circle"></i> The notebooks are provided by EUMESAT during <font color="#F33365">Copernicus Marine Training programm 2023</font> and Authors are "<strong>Ben Loveday (EUMETSAT/Innoflair UG), Hayley Evers-King (EUMETSAT), Ana Ruescas (Brockmann Consult GmbH / University of Valencia)</strong>".<br>
                     </div>
                     In the next step, we will need data. We took three datasets from Sentinel-3 OLCI data (thanks to the data provided by EUMESAT). 
@@ -371,49 +368,49 @@
                     </table>
                     <p></p>
                     <pre class="language-css"><code>
-                        EUMETSET-courses/
-                        │
-                        ├── env/
-                        ├── Sentinel-3_OLCI/
-                        │   ├── 1_OLCI_introductory/
-                        │   │   ├── products/
-                        │   │   │   ├── S3A_OL_1_EFR____20210717T101015_20210717T101315_20210718T145224_0179_074_122_1980_MAR_O_NT_002.SEN3/
-                        │   │   │   │   ├── geo_coordinates.nc
-                        │   │   │   │   ├── Oa01_radiance.nc
-                        │   │   │   └── S3A_OL_2_WFR____20210717T101015_20210717T101315_20210718T221347_0179_074_122_1980_MAR_O_NT_003.SEN3/
-                        │   │   │       ├── chl_nn.nc
-                        │   │   │       └── geo_coordinates.nc
-                        │   │   ├── 1_1a_OLCI_data_access_Data_Store.ipynb
-                        │   │   ├── 1_1b_OLCI_data_access_HDA.ipynb
-                        │   │   ├── 1_2_OLCI_file_structure.ipynb
-                        │   │   ├── 1_3_OLCI_coverage.ipynb
-                        │   │   ├── 1_4_OLCI_bands_imagery.ipynb
-                        │   │   ├── 1_5_OLCI_radiance_reflectance_spectra.ipynb
-                        │   │   ├── 1_6_OLCI_CHL_comparison.ipynb
-                        │   │   └── 1_7_OLCI_light_environment.ipynb
-                        │   │
-                        │   ├── 2_OLCI_advanced/
-                        │   ├── frameworks/
-                        │   │   └── config.ini
-                        │   └── environment.yml
-                        │── AUTHORS.txt
-                        ├── CHANGELOG
-                        ├── .gitignore
-                        ├── .gitmodules
-                        ├── README.md
-                        └── LICENSE.txt
+            EUMETSAT-courses/
+            │
+            ├── env/
+            ├── Sentinel-3_OLCI/
+            │   ├── 1_OLCI_introductory/
+            │   │   ├── products/
+            │   │   │   ├── S3A_OL_1_EFR____20210717T101015_20210717T101315_20210718T145224_0179_074_122_1980_MAR_O_NT_002.SEN3/
+            │   │   │   │   ├── geo_coordinates.nc
+            │   │   │   │   ├── Oa01_radiance.nc
+            │   │   │   └── S3A_OL_2_WFR____20210717T101015_20210717T101315_20210718T221347_0179_074_122_1980_MAR_O_NT_003.SEN3/
+            │   │   │       ├── chl_nn.nc
+            │   │   │       └── geo_coordinates.nc
+            │   │   ├── 1_1a_OLCI_data_access_Data_Store.ipynb
+            │   │   ├── 1_1b_OLCI_data_access_HDA.ipynb
+            │   │   ├── 1_2_OLCI_file_structure.ipynb
+            │   │   ├── 1_3_OLCI_coverage.ipynb
+            │   │   ├── 1_4_OLCI_bands_imagery.ipynb
+            │   │   ├── 1_5_OLCI_radiance_reflectance_spectra.ipynb
+            │   │   ├── 1_6_OLCI_CHL_comparison.ipynb
+            │   │   └── 1_7_OLCI_light_environment.ipynb
+            │   │
+            │   ├── 2_OLCI_advanced/
+            │   ├── frameworks/
+            │   │   └── config.ini
+            │   └── environment.yml
+            │── AUTHORS.txt
+            ├── CHANGELOG
+            ├── .gitignore
+            ├── .gitmodules
+            ├── README.md
+            └── LICENSE.txt
                     </code></pre>
                     
                     <ul>
                         <li><b>Step- 1: </b>Importing libraries
                             <pre><code class="language-python">
-                                import configparser # a library that allows us to parse standard configuration files
-                                import IPython      # a library that helps us display video and HTML content
-                                import os           # a library that allows us access to basic operating system commands like making directories
-                                import json         # a library that helps us make JSON format files
-                                import shutil       # a library that allows us access to basic operating system commands like copy
-                                import zipfile      # a library that allows us to unzip zip-files.
-                                import eumdac       # a tool that helps us download via the eumetsat/data-store
+            import configparser # a library that allows us to parse standard configuration files
+            import IPython      # a library that helps us display video and HTML content
+            import os           # a library that allows us access to basic operating system commands like making directories
+            import json         # a library that helps us make JSON format files
+            import shutil       # a library that allows us access to basic operating system commands like copy
+            import zipfile      # a library that allows us to unzip zip-files.
+            import eumdac       # a tool that helps us download via the eumetsat/data-store
                             </code></pre>
                         </li>
                         <li><b>Step- 2: </b>Sometimes we use configuration files to help us set some notebook parameters. The box below reads a configuration file to help us decide how large to make the videos displayed below 
@@ -464,11 +461,11 @@
 
                                 In this file we need to add the following information exactly as follows;
                                 
-                                <pre><code class="language-python">
-                                    {
-                                        "consumer_key": "your_consumer_key",
-                                        "consumer_secret": "your_consumer_secret"
-                                    }
+                                <pre class="language-python"><code>
+                                {
+                                    "consumer_key": "your_consumer_key",
+                                    "consumer_secret": "your_consumer_secret"
+                                }
                                 </code></pre>
                                 
 
@@ -507,23 +504,23 @@
 
                                 <p>Instead of saving the credentials into the home directory of the computer systems, we can also save it to a <code>.env/</code> folder which should be kept secret by adding the file name to '<code>.gitignore</code>' file. To create <code>.env</code>, use <code>mkdir -p .env</code>, then move the <code>.eumdac_credentials</code> file into the <code>.env</code> from the home or create a new <code>.eumdac_credentials</code> into the <code>.env</code>. Follwoing python code can be used to create it into <code>.env</code>:</p>
                                 <pre class="language-python"><code>
-                                    import os
-                                    import json
-                                    import eumdac
-                                    
-                                    # Define the path to the '.eumdac_credentials' file in the '.env' directory
-                                    project_directory = os.path.dirname(os.path.abspath(__file__))  # Get the directory of the current script
-                                    env_directory = os.path.join(project_directory, '.env')
-                                    credentials_path = os.path.join(env_directory, '.eumdac_credentials')
-                                    
-                                    # Read the credentials from the file
-                                    with open(credentials_path) as json_file:
-                                        credentials = json.load(json_file)
-                                        token = eumdac.AccessToken((credentials['consumer_key'], credentials['consumer_secret']))
-                                        print(f"This token '{token}' expires {token.expiration}")
-                                    
-                                    # Create data store object
-                                    datastore = eumdac.DataStore(token)
+                import os
+                import json
+                import eumdac
+                
+                # Define the path to the '.eumdac_credentials' file in the '.env' directory
+                project_directory = os.path.dirname(os.path.abspath(__file__))  # Get the directory of the current script
+                env_directory = os.path.join(project_directory, '.env')
+                credentials_path = os.path.join(env_directory, '.eumdac_credentials')
+                
+                # Read the credentials from the file
+                with open(credentials_path) as json_file:
+                    credentials = json.load(json_file)
+                    token = eumdac.AccessToken((credentials['consumer_key'], credentials['consumer_secret']))
+                    print(f"This token '{token}' expires {token.expiration}")
+                
+                # Create data store object
+                datastore = eumdac.DataStore(token)
                                 </code></pre>
                                 <p><b>Option 2: provide credentials directly</b> You can provide your credentials directly as follows;
                                     <pre class="language-css"><code>token = eumdac.AccessToken((consumer_key, consumer_secret))</code></pre>
@@ -542,42 +539,42 @@
                             </code></pre>
                             Since, I have used so many data products, I receive following output:
                             <pre class="language-python"><code>
-                                Collection ID(EO:EUM:DAT:0410): OLCI Level 1B Reduced Resolution - Sentinel-3
-                                Collection ID(EO:EUM:DAT:0556): OLCI Level 2 Ocean Colour Full Resolution (version BC003) - Sentinel-3 - Reprocessed
-                                Collection ID(EO:EUM:DAT:0557): OLCI Level 2 Ocean Colour Reduced Resolution (version BC003) - Sentinel-3 - Reprocessed
-                                Collection ID(EO:EUM:DAT:0407): OLCI Level 2 Ocean Colour Full Resolution - Sentinel-3
-                                Collection ID(EO:EUM:DAT:0408): OLCI Level 2 Ocean Colour Reduced Resolution - Sentinel-3
-                                Collection ID(EO:EUM:DAT:0409): OLCI Level 1B Full Resolution - Sentinel-3
-                                Collection ID(EO:EUM:DAT:0577): OLCI Level 1B Full Resolution (version BC002) - Sentinel-3 - Reprocessed
-                                Collection ID(EO:EUM:DAT:0578): OLCI Level 1B Reduced Resolution (version BC002) - Sentinel-3 - Reprocessed
+        Collection ID(EO:EUM:DAT:0410): OLCI Level 1B Reduced Resolution - Sentinel-3
+        Collection ID(EO:EUM:DAT:0556): OLCI Level 2 Ocean Colour Full Resolution (version BC003) - Sentinel-3 - Reprocessed
+        Collection ID(EO:EUM:DAT:0557): OLCI Level 2 Ocean Colour Reduced Resolution (version BC003) - Sentinel-3 - Reprocessed
+        Collection ID(EO:EUM:DAT:0407): OLCI Level 2 Ocean Colour Full Resolution - Sentinel-3
+        Collection ID(EO:EUM:DAT:0408): OLCI Level 2 Ocean Colour Reduced Resolution - Sentinel-3
+        Collection ID(EO:EUM:DAT:0409): OLCI Level 1B Full Resolution - Sentinel-3
+        Collection ID(EO:EUM:DAT:0577): OLCI Level 1B Full Resolution (version BC002) - Sentinel-3 - Reprocessed
+        Collection ID(EO:EUM:DAT:0578): OLCI Level 1B Reduced Resolution (version BC002) - Sentinel-3 - Reprocessed
                             </code></pre>
                         </li>
                         <li><b>Step- 5: The products we need: </b>We need a number of OLCI level-1b and level-2 products. These products are shown below in a python *list* called **product list**. We will retrieve these products from the Data Store.
                             <pre class="language-python">
-                                product_list = [
-                                'S3A_OL_1_EFR____20210717T101015_20210717T101315_20210718T145224_0179_074_122_1980_MAR_O_NT_002.SEN3',
-                                'S3A_OL_2_WRR____20210717T095732_20210717T104152_20210718T152419_2660_074_122______MAR_O_NT_003.SEN3',
-                                'S3A_OL_2_WFR____20210717T101015_20210717T101315_20210718T221347_0179_074_122_1980_MAR_O_NT_003.SEN3'
-                                ]
+                    product_list = [
+                    'S3A_OL_1_EFR____20210717T101015_20210717T101315_20210718T145224_0179_074_122_1980_MAR_O_NT_002.SEN3',
+                    'S3A_OL_2_WRR____20210717T095732_20210717T104152_20210718T152419_2660_074_122______MAR_O_NT_003.SEN3',
+                    'S3A_OL_2_WFR____20210717T101015_20210717T101315_20210718T221347_0179_074_122_1980_MAR_O_NT_003.SEN3'
+                    ]
                             </pre>
                         </li>
                         <li><b>Step- 6: Getting the data: </b>We can access the data using either collection id or product id:
                         <pre class="language-python"><code>
-                            # With the level-1B `collection_id` to the `datastore` object to choose the correct collection.
-                            collection_id = 'EO:EUM:DAT:0409'
-                            selected_collection = datastore.get_collection(collection_id)
+                    # With the level-1B `collection_id` to the `datastore` object to choose the correct collection.
+                    collection_id = 'EO:EUM:DAT:0409'
+                    selected_collection = datastore.get_collection(collection_id)
                         </code></pre>
                         <p>With the product name:</p>
 
                         <pre class="language-python"><code>
-                            selected_product = datastore.get_product(product_id=product_list[0], collection_id=collection_id)
+                    selected_product = datastore.get_product(product_id=product_list[0], collection_id=collection_id)
                         </code></pre>
                         <p>Once we have  collection id and product names, we can download the data from the EUMESAT data store:</p>
                         <pre class="language-python"><code>
-                            with selected_product.open() as fsrc, open(os.path.join(download_dir, fsrc.name), mode='wb') as fdst:
-                                print(f'Downloading {fsrc.name}')
-                                shutil.copyfileobj(fsrc, fdst)
-                                print(f'Download of product {fsrc.name} finished.')
+                    with selected_product.open() as fsrc, open(os.path.join(download_dir, fsrc.name), mode='wb') as fdst:
+                        print(f'Downloading {fsrc.name}')
+                        shutil.copyfileobj(fsrc, fdst)
+                        print(f'Download of product {fsrc.name} finished.')
                         </code></pre>
                         <p> where:
                             <ul>
@@ -588,9 +585,10 @@
                             </ul>
                         </p>
                         <p>Finally, we have downloaded the data in the <code>products/</code> folder. Output of the above code is:</p>
-                        <pre><code>
-                            Downloading S3A_OL_1_EFR____20210717T101015_20210717T101315_20210718T145224_0179_074_122_1980_MAR_O_NT_002.SEN3.zip
-                            Download of product S3A_OL_1_EFR____20210717T101015_20210717T101315_20210718T145224_0179_074_122_1980_MAR_O_NT_002.SEN3.zip finished.
+                        <pre class="language-python"><code>
+Downloading S3A_OL_1_EFR____20210717T101015_20210717T101315_20210718T145224_0179_074_122_1980_MAR_O_NT_002.SEN3.zip
+Download of product S3A_OL_1_EFR____20210717T101015_20210717T101315_20210718T145224_0179_074_122_1980_MAR_O_NT_002.SEN3.zip 
+finished.
                         </code></pre>
                         <p>The product is downloaded as a zip file, so lets unzip it and remove the zip.</p>
                         <pre class="language-python"><code>
