@@ -29,20 +29,23 @@ h6 {
   margin-left: 20px; /* Adjust the indentation as needed */
 }
 
-
-/* Add some basic styling for code */
+/*--------------------------------------------------------------
+# Code section
+--------------------------------------------------------------*/
 pre {
-  background-color: #ffffff;
-  padding: 5px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-family: monospace;
-  white-space: pre-wrap;
+  background-color: rgb(7, 7, 7); /* Set the background color of <pre> elements */
+  padding: 10px; /* Optional: Add padding for better readability */
+  border: 1px solid #6e6767; /* Optional: Add a border */
+  border-radius: 5px; /* Optional: Round the corners */
+  white-space: pre-wrap; /* Preserve formatting */
+  overflow-x: auto; /* Ensure code doesn't overflow horizontally */
 }
 
-code.python {
-  font-family: 'Courier New', monospace;
+code {
+  color: rgb(212, 52, 52); /* Set the text color of <code> elements */
+  font-family: 'Courier New', monospace; /* Optional: Set a monospace font */
 }
+
 
 /*--------------------------------------------------------------
 # Back to top button
@@ -1546,6 +1549,15 @@ ul.upper-alpha {
   background-color: #09f8e417; /* Grey color */
   padding: 20px;
   border-radius: 8px;
+}
+
+.custom-box {
+  background-color: #02ff9e25; /* Light grey background */
+  padding: 20px; /* Padding inside the box */
+  border: 1px solid #ccc; /* Grey border */
+  border-radius: 5px; /* Rounded corners */
+  margin-bottom: 20px; /* Bottom margin for spacing */
+  color: #333; /* Text color */
 }
 
 /*---------------------------------------------*/

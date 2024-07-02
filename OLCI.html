@@ -41,6 +41,11 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
     </script>
 
+
+    <!-- Include the highlight.js library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+
     <!-- =======================================================
     * Template Name: iPortfolio
     * Updated: Sep 18 2023 with Bootstrap v5.3.2
@@ -181,6 +186,7 @@
 
                     <!----------------->
                     <h1 id="introduction">Introduction</h1>
+                    
                     Oceanography, the study of the physical, chemical, biological, and geological aspects of the ocean, plays a crucial role in understanding Earth's complex marine environment. This field leverages a variety of methodologies and technologies, including remote sensing, to collect, analyze, and interpret oceanic data.
 
                     <h3 id="fundamental">Fundamentals of Oceanography</h3>
@@ -411,14 +417,15 @@
                             </code></pre>
                         </li>
                         <li><b>Step- 2: </b>Sometimes we use configuration files to help us set some notebook parameters. The box below reads a configuration file to help us decide how large to make the videos displayed below 
-                            <pre class="language-python"><code>
+                            <pre><code class="language-python">
                                 # Define the path to the configuration file
                                 config_file_path = os.path.join(os.path.dirname(os.getcwd()), "frameworks", "config.ini")
                                 
                                 # Check if the configuration file exists and read it if it does
                                 if os.path.exists(config_file_path):
                                     config.read(config_file_path)
-                            </code></pre>
+                                </code></pre>
+                                
                             THis script check for configuration file and read if it exists in the current working directory.
                             <ul>
                                 <li>os.getcwd(): Returns the current working directory.</li>
@@ -457,13 +464,14 @@
 
                                 In this file we need to add the following information exactly as follows;
                                 
-                                <pre>
+                                <pre><code class="language-python">
                                     {
                                         "consumer_key": "your_consumer_key",
                                         "consumer_secret": "your_consumer_secret"
                                     }
-                                </pre>
-                                                                
+                                </code></pre>
+                                
+
                                 You must replace '<code>your_consumer_key</code>' and '<code>your_consumer_secret</code>' with the information you extract from <a href="https://api.eumetsat.int/api-key/" target="_blank">https://api.eumetsat.int/api-key/</a> You will need a <a href="https://eoportal.eumetsat.int/">EUMETSAT Earth Observation Portal account</a> to access this link, and in order to see the information you must click the "Show hidden fields" button at the bottom of the page.
 
                                 <figure>
@@ -533,7 +541,7 @@
                                         pass
                             </code></pre>
                             Since, I have used so many data products, I receive following output:
-                            <pre><code>
+                            <pre class="language-python"><code>
                                 Collection ID(EO:EUM:DAT:0410): OLCI Level 1B Reduced Resolution - Sentinel-3
                                 Collection ID(EO:EUM:DAT:0556): OLCI Level 2 Ocean Colour Full Resolution (version BC003) - Sentinel-3 - Reprocessed
                                 Collection ID(EO:EUM:DAT:0557): OLCI Level 2 Ocean Colour Reduced Resolution (version BC003) - Sentinel-3 - Reprocessed
@@ -545,13 +553,13 @@
                             </code></pre>
                         </li>
                         <li><b>Step- 5: The products we need: </b>We need a number of OLCI level-1b and level-2 products. These products are shown below in a python *list* called **product list**. We will retrieve these products from the Data Store.
-                            <pre><code>
+                            <pre class="language-python">
                                 product_list = [
                                 'S3A_OL_1_EFR____20210717T101015_20210717T101315_20210718T145224_0179_074_122_1980_MAR_O_NT_002.SEN3',
                                 'S3A_OL_2_WRR____20210717T095732_20210717T104152_20210718T152419_2660_074_122______MAR_O_NT_003.SEN3',
                                 'S3A_OL_2_WFR____20210717T101015_20210717T101315_20210718T221347_0179_074_122_1980_MAR_O_NT_003.SEN3'
                                 ]
-                            </code></pre>
+                            </pre>
                         </li>
                         <li><b>Step- 6: Getting the data: </b>We can access the data using either collection id or product id:
                         <pre class="language-python"><code>
@@ -668,6 +676,15 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             hljs.initHighlightingOnLoad();
+        });
+    </script>
+
+    <!-- Initialize highlight.js -->
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightBlock(block);
+            });
         });
     </script>
 
