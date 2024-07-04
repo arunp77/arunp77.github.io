@@ -178,7 +178,7 @@
                 <hr>
                 <section>
                     <div class="alert alert-success"> <i class="bi bi-arrow-right-circle"></i>
-                        Currently developing this page. This is a part of a workshop organized by <a href="https://trainingevents.eumetsat.int/trui/events/2342g" target="_blank">Operational Satellite Oceanography Workshop (2023)</a>. Few contents are part of what I learnt during the workshop.
+                        Currently developing this page. This is a part of a workshop organized by <a href="https://umd.instructure.com/courses/1356565" target="_blank">Operational Satellite Oceanography Workshop (2023)</a>. Few contents are part of what I learnt during the workshop.
                     </div>
 
                     <!----------------->
@@ -352,7 +352,7 @@
                             <td><a href="https://navigator.eumetsat.int/product/EO:EUM:DAT:SENTINEL-3:OL_2_WRR___NTC?query=OLCI&filter=satellite__Sentinel-3&filter=instrument__OLCI&filter=processingLevel__Level%202%20Data&s=advanced" target="_blank">link</a></td>
                         </tr>
                     </table>
-                    <p></p>
+                    <p>The project directory is as follows:</p>
                     <pre class="language-css"><code>
             EUMETSAT-courses/
             │
@@ -378,7 +378,7 @@
             │   ├── 2_OLCI_advanced/
             │   ├── frameworks/
             │   │   └── config.ini
-            │   └── environment.yml
+            │   └── environment.yml (conda) or requirments.txt (with pip)
             │── AUTHORS.txt
             ├── CHANGELOG
             ├── .gitignore
@@ -386,7 +386,63 @@
             ├── README.md
             └── LICENSE.txt
                     </code></pre>
-                    
+
+
+                    <div class="box">
+                        <p> In the Python ecosystem, managing packages and environments efficiently is crucial for maintaining a clean and reproducible workflow. Two of the most popular tools for these tasks are <code>Conda</code> and <code>pip</code>. While they both serve to manage packages, they have different strengths and use cases.</p>
+                        <ol>
+                            <li><strong>Conda: </strong>Conda is an open-source package and environment management system that originally catered to Python but now supports multiple languages. Conda operates seamlessly on Windows, macOS, and Linux, making it a versatile tool for developers working across different operating systems. Conda installs precompiled binary packages, which reduces the need for compiling code during installation. This feature is particularly useful for scientific computing packages that have complex dependencies. Conda automatically resolves dependencies, ensuring that all installed packages are compatible with each other. This minimizes the risk of dependency conflicts.
+                                <ul>
+                                    <li><strong>Create a new environment: </strong>To construct the environment, in terminal/command prompt navigate to repository folder you want to create the environment, and use command to create the pytho environment using: <code>conda create -n myenv</code></li>
+                                    <li><strong>Activate an environment: </strong> <code>conda activate myenv</code></li>
+                                    <li><strong>Install a package: </strong> <code>conda install package_name</code></li>
+                                    <li><strong>Export an environment to a file: </strong> <code>conda env export > environment.yml</code></li>
+                                    <li><strong>Create an environment from a file: </strong> <code>conda env create -f environment.yml</code></li>
+                                    <li><strong></strong> <code></code></li>
+                                </ul>
+                            </li>
+                            <li><strong>Pip: </strong> pip is the package installer for Python, and it connects directly to the Python Package Index (PyPI), where the majority of Python packages are hosted. pip is widely used in the Python community and is supported by almost all Python projects and libraries, ensuring broad compatibility. pip's simplicity and straightforward command structure make it an easy-to-use tool for managing Python packages.
+                                <ul>
+                                    <li><strong>Set up virtual python environment: </strong>Similar to pip, following command can be used to create the python virtual enviroment:
+                                        <code>python -m venv env</code> and to activate it on:
+                                        <ul>
+                                            <li><strong>In Mac Os: </strong> <code>source env/bin/activate</code></li>
+                                            <li><strong>In windows using Command Prompt: </strong><code>env\Scripts\activate</code></li>
+                                            <li><strong>In windows using powershell: </strong><code>.\env\Scripts\Activate.ps1</code></li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>PyPI Integration: </strong> pip connects to PyPI, giving you access to a vast repository of Python packages. This makes it easy to find and install the libraries you need. <code>pip install requests</code></li>
+                                    <li><strong>Install a package: </strong> <code>pip install package_name</code></li>
+                                    <li><strong>List installed packages: </strong><code>pip list</code></li>
+                                    <li><strong>Create a requirements file: </strong> <code>pip freeze > requirements.txt</code></li>
+                                    <li><strong>Install packages from a requirements file: </strong>pip supports requirements files (requirements.txt), which allow you to list all your project dependencies. This makes it easy to share and replicate environments. <code>pip install -r requirements.txt</code></li>
+                                </ul>
+                            </li>
+                        </ol> 
+                        <p><strong>Conda vs. pip: Which Should You Use?</strong></p>
+                        While both Conda and pip are valuable tools, they serve slightly different purposes and can often be used together:
+                        <ul>
+                            <li>Conda is best for creating isolated environments and managing complex dependencies, especially for data science and scientific computing projects.</li>
+                            <li>pip is ideal for installing and managing Python packages from PyPI and is straightforward for general-purpose Python development.</li>
+                        </ul>
+                        <p><strong>Using Conda and pip Together:</strong> Many developers use Conda for environment management and pip for accessing the extensive range of packages on PyPI. Here’s a workflow combining both tools:</p>
+                        <ul>
+                            <li><strong>Create and activate a Conda environment: </strong>
+                                <pre><code class="language-python">
+                                    conda create -n myenv
+                                    conda activate myenv
+                                </code></pre>
+                            </li>
+                            <li><strong>Install packages using pip within the Conda environment: </strong>
+                                <pre><code class="language-python">
+                                    pip install requests
+                                </code></pre>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <p>In the present case, to create the environment, run: <code>conda env create -f environment.yml</code>. This will create a Python environment called cmts_learn_olci. The environment won't be activated by default. To activate it, run: <code>conda activate cmts_learn_olci</code>.</p>
+
                     <ul>
                         <li><b>Step- 1: </b>Importing libraries
                             <pre><code class="language-python">
