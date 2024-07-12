@@ -182,7 +182,7 @@
                     <div class="alert alert-success"> <i class="bi bi-arrow-right-circle"></i>
                         This is one of the most important concepts in python project development. I have taken few part of the page from <a href="https://hackersandslackers.com/simplify-your-python-projects-configuration/" target="_blank">reference</a>.
                     </div>
-
+                    
                     <!----------------->
                     <h1 id="introduction">Introduction</h1>
                     When building complex Python projects like ETL (Extract, Transform, Load) pipelines, managing configurations effectively becomes crucial. Configuration files are an essential tool in this process, providing a centralized way to manage settings, improve maintainability, and enhance flexibility. Let's dive into what configuration files are, how they are helpful, and how to use them in your ETL projects.
@@ -636,7 +636,33 @@
                             port<span class="token punctuation">:</span> port<span class="token punctuation">-</span>number
                             auth<span class="token punctuation">:</span> authentication
                             db<span class="token punctuation">:</span> databaseconfig.yaml
-                    </code></pre>    
+                    </code></pre>
+                    
+                    In this case, we can read the yaml file as:
+                    <pre class="language-python" tabindex="0"><code class="language-python">
+                        # yaml_config.py
+                        """Load configuration from .yaml file."""
+                        import confuse
+                        
+                        config = confuse.Configuration('MyApp', __name__)
+                        runtime = config['AWS']['Lambda']['Runtime'].get()
+                        print(runtime)
+                    </code></pre>
+
+                    Confuse also gets into the realm of building CLIs, allowing us to use our YAML file to inform arguments which can be passed to a CLI and their potential values:
+                    <pre class="language-python"><code>
+                        # cli_config.py
+                        config = confuse.Configuration('myapp')
+                        parser = argparse.ArgumentParser()
+                        
+                        parser.add_argument('--foo', help='a parameter')
+                        
+                        args = parser.parse_args()
+                        config.set_args(args)
+                        
+                        print(config['foo'].get())
+                    </code></pre>
+                    
                 </section>              
 
                 <!-------Reference ------->
