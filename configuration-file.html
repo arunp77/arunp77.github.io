@@ -569,211 +569,75 @@
                         </li>
                     </ol>
                     A example complex yaml configuration file is:
-                    <pre class="language-python"><code>
-                        appName: appName
-                        logLevel: WARN
+                    <pre class="language-yaml" tabindex="0"><code class="language-yaml">
+                        appName<span class="token punctuation">:</span> appName
+                        logLevel<span class="token punctuation">:</span> WARN
                         
-                        AWS:
-                            Region: us-east-1
-                            Resources:
-                              EC2:
-                                Type: "AWS::EC2::Instance"
-                                Properties:
-                                  ImageId: "ami-0ff8a91507f77f867"
-                                  InstanceType: t2.micro
-                                  KeyName: testkey
-                                  BlockDeviceMappings:
-                                    -
-                                      DeviceName: /dev/sdm
-                                      Ebs:
-                                        VolumeType: io1
-                                        Iops: 200
-                                        DeleteOnTermination: false
-                                        VolumeSize: 20
-                              Lambda:
-                                  Type: "AWS::Lambda::Function"
-                                  Properties:
-                                    Handler: "index.handler"
-                                    Role:
-                                      Fn::GetAtt:
-                                        - "LambdaExecutionRole"
-                                        - "Arn"
-                                    Runtime: "python3.7"
-                                    Timeout: 25
-                                    TracingConfig:
-                                      Mode: "Active"
+                        AWS<span class="token punctuation">:</span>
+                            Region<span class="token punctuation">:</span> us<span class="token punctuation">-</span>east<span class="token punctuation">-</span><span class="token number">1</span>
+                            Resources<span class="token punctuation">:</span>
+                              EC2</span><span class="token punctuation">:</span>
+                                Type<span class="token punctuation">:</span> <span class="token string">"AWS::EC2::Instance"</span>
+                                Properties<span class="token punctuation">:</span>
+                                  ImageId<span class="token punctuation">:</span> <span class="token string">"ami-0ff8a91507f77f867"</span>
+                                  InstanceType<span class="token punctuation">:</span> t2.micro
+                                  KeyName<span class="token punctuation">:</span> testkey
+                                  BlockDeviceMappings<span class="token punctuation">:</span>
+                                    <span class="token punctuation">-</span>
+                                      DeviceName<span class="token punctuation">:</span> /dev/sdm
+                                      Ebs<span class="token punctuation">:</span>
+                                        VolumeType<span class="token punctuation">:</span> io1
+                                        Iops<span class="token punctuation">:</span> <span class="token number">200</span>
+                                        DeleteOnTermination<span class="token punctuation">:</span> <span class="token boolean important">false</span>
+                                        VolumeSize<span class="token punctuation">:</span> <span class="token number">20</span>
+                              Lambda<span class="token punctuation">:</span>
+                                  Type<span class="token punctuation">:</span> <span class="token string">"AWS::Lambda::Function"</span>
+                                  Properties<span class="token punctuation">:</span>
+                                    Handler<span class="token punctuation">:</span> <span class="token string">"index.handler"</span>
+                                    Role<span class="token punctuation">:</span>
+                                      Fn::GetAtt<span class="token punctuation">:</span>
+                                        <span class="token punctuation">-</span> <span class="token string">"LambdaExecutionRole"</span>
+                                        <span class="token punctuation">-</span> <span class="token string">"Arn"</span>
+                                    Runtime<span class="token punctuation">:</span> <span class="token string">"python3.7"</span>
+                                    Timeout<span class="token punctuation">:</span> <span class="token number">25</span>
+                                    TracingConfig<span class="token punctuation">:</span>
+                                      Mode<span class="token punctuation">:</span> <span class="token string">"Active"</span>
                         
-                        routes:
-                          admin:
-                            url: /admin
-                            template: admin.html
-                            assets:
-                                templates: /templates
-                                static: /static
-                          dashboard:
-                            url: /dashboard
-                            template: dashboard.html
-                            assets:
-                                templates: /templates
-                                static: /static
-                          account:
-                            url: /account
-                            template: account.html
-                            assets:
-                                templates: /templates
-                                static: /static
+                        routes<span class="token punctuation">:</span>
+                          admin<span class="token punctuation">:</span>
+                            url<span class="token punctuation">:</span> /admin
+                            template<span class="token punctuation">:</span> admin.html
+                            assets<span class="token punctuation">:</span>
+                                templates<span class="token punctuation">:</span> /templates
+                                static<span class="token punctuation">:</span> /static
+                          dashboard<span class="token punctuation">:</span>
+                            url<span class="token punctuation">:</span> /dashboard
+                            template<span class="token punctuation">:</span> dashboard.html
+                            assets<span class="token punctuation">:</span>
+                                templates<span class="token punctuation">:</span> /templates
+                                static<span class="token punctuation">:</span> /static
+                          account<span class="token punctuation">:</span>
+                            url<span class="token punctuation">:</span> /account
+                            template<span class="token punctuation">:</span> account.html
+                            assets<span class="token punctuation">:</span>
+                                templates<span class="token punctuation">:</span> /templates
+                                static<span class="token punctuation">:</span> /static
                         
-                        databases:
-                          cassandra:
-                            host: example.cassandra.db
-                            username: user
-                            password: password
-                          redshift:
-                            jdbcURL: jdbc:redshift://<IP>:<PORT>/file?user=username&password=pass
-                            tempS3Dir: s3://path/to/redshift/temp/dir/
-                          redis:
-                            host: hostname
-                            port: port-number
-                            auth: authentication
-                            db: databaseconfig.yaml
-                    </code></pre>
-                </section>
-
-                <pre class="language-yaml" tabindex="0"><code class="language-yaml">
-                    appName<span class="token punctuation">:</span> appName
-                    logLevel<span class="token punctuation">:</span> WARN
-                    
-                    AWS<span class="token punctuation">:</span>
-                        Region<span class="token punctuation">:</span> us<span class="token punctuation">-</span>east<span class="token punctuation">-</span><span class="token number">1</span>
-                        Resources<span class="token punctuation">:</span>
-                          EC2</span><span class="token punctuation">:</span>
-                            Type<span class="token punctuation">:</span> <span class="token string">"AWS::EC2::Instance"</span>
-                            Properties<span class="token punctuation">:</span>
-                              ImageId<span class="token punctuation">:</span> <span class="token string">"ami-0ff8a91507f77f867"</span>
-                              InstanceType<span class="token punctuation">:</span> t2.micro
-                              KeyName<span class="token punctuation">:</span> testkey
-                              BlockDeviceMappings<span class="token punctuation">:</span>
-                                <span class="token punctuation">-</span>
-                                  DeviceName<span class="token punctuation">:</span> /dev/sdm
-                                  Ebs<span class="token punctuation">:</span>
-                                    VolumeType<span class="token punctuation">:</span> io1
-                                    Iops<span class="token punctuation">:</span> <span class="token number">200</span>
-                                    DeleteOnTermination<span class="token punctuation">:</span> <span class="token boolean important">false</span>
-                                    VolumeSize<span class="token punctuation">:</span> <span class="token number">20</span>
-                          Lambda<span class="token punctuation">:</span>
-                              Type<span class="token punctuation">:</span> <span class="token string">"AWS::Lambda::Function"</span>
-                              Properties<span class="token punctuation">:</span>
-                                Handler<span class="token punctuation">:</span> <span class="token string">"index.handler"</span>
-                                Role<span class="token punctuation">:</span>
-                                  Fn::GetAtt<span class="token punctuation">:</span>
-                                    <span class="token punctuation">-</span> <span class="token string">"LambdaExecutionRole"</span>
-                                    <span class="token punctuation">-</span> <span class="token string">"Arn"</span>
-                                Runtime<span class="token punctuation">:</span> <span class="token string">"python3.7"</span>
-                                Timeout<span class="token punctuation">:</span> <span class="token number">25</span>
-                                TracingConfig<span class="token punctuation">:</span>
-                                  Mode<span class="token punctuation">:</span> <span class="token string">"Active"</span>
-                    
-                    routes<span class="token punctuation">:</span>
-                      admin<span class="token punctuation">:</span>
-                        url<span class="token punctuation">:</span> /admin
-                        template<span class="token punctuation">:</span> admin.html
-                        assets<span class="token punctuation">:</span>
-                            templates<span class="token punctuation">:</span> /templates
-                            static<span class="token punctuation">:</span> /static
-                      dashboard<span class="token punctuation">:</span>
-                        url<span class="token punctuation">:</span> /dashboard
-                        template<span class="token punctuation">:</span> dashboard.html
-                        assets<span class="token punctuation">:</span>
-                            templates<span class="token punctuation">:</span> /templates
-                            static<span class="token punctuation">:</span> /static
-                      account<span class="token punctuation">:</span>
-                        url<span class="token punctuation">:</span> /account
-                        template<span class="token punctuation">:</span> account.html
-                        assets<span class="token punctuation">:</span>
-                            templates<span class="token punctuation">:</span> /templates
-                            static<span class="token punctuation">:</span> /static
-                    
-                    databases<span class="token punctuation">:</span>
-                      cassandra<span class="token punctuation">:</span>
-                        host<span class="token punctuation">:</span> example.cassandra.db
-                        username<span class="token punctuation">:</span> user
-                        password<span class="token punctuation">:</span> password
-                      redshift<span class="token punctuation">:</span>
-                        jdbcURL<span class="token punctuation">:</span> jdbc<span class="token punctuation">:</span>redshift<span class="token punctuation">:</span>//&lt;IP<span class="token punctuation">&gt;</span><span class="token punctuation">:</span>&lt;PORT<span class="token punctuation">&gt;</span>/file<span class="token punctuation">?</span>user=username<span class="token important">&amp;password=pass</span>
-                        tempS3Dir<span class="token punctuation">:</span> s3<span class="token punctuation">:</span>//path/to/redshift/temp/dir/
-                      redis<span class="token punctuation">:</span>
-                        host<span class="token punctuation">:</span> hostname
-                        port<span class="token punctuation">:</span> port<span class="token punctuation">-</span>number
-                        auth<span class="token punctuation">:</span> authentication
-                        db<span class="token punctuation">:</span> databaseconfig.yaml
-                </code></pre>
-
-                <pre class="language-yaml" tabindex="0"><code class="language-yaml"><span class="token key atrule">appName</span><span class="token punctuation">:</span> appName
-                    <span class="token key atrule">logLevel</span><span class="token punctuation">:</span> WARN
-                    
-                    <span class="token key atrule">AWS</span><span class="token punctuation">:</span>
-                        <span class="token key atrule">Region</span><span class="token punctuation">:</span> us<span class="token punctuation">-</span>east<span class="token punctuation">-</span><span class="token number">1</span>
-                        <span class="token key atrule">Resources</span><span class="token punctuation">:</span>
-                          <span class="token key atrule">EC2</span><span class="token punctuation">:</span>
-                            <span class="token key atrule">Type</span><span class="token punctuation">:</span> <span class="token string">"AWS::EC2::Instance"</span>
-                            <span class="token key atrule">Properties</span><span class="token punctuation">:</span>
-                              <span class="token key atrule">ImageId</span><span class="token punctuation">:</span> <span class="token string">"ami-0ff8a91507f77f867"</span>
-                              <span class="token key atrule">InstanceType</span><span class="token punctuation">:</span> t2.micro
-                              <span class="token key atrule">KeyName</span><span class="token punctuation">:</span> testkey
-                              <span class="token key atrule">BlockDeviceMappings</span><span class="token punctuation">:</span>
-                                <span class="token punctuation">-</span>
-                                  <span class="token key atrule">DeviceName</span><span class="token punctuation">:</span> /dev/sdm
-                                  <span class="token key atrule">Ebs</span><span class="token punctuation">:</span>
-                                    <span class="token key atrule">VolumeType</span><span class="token punctuation">:</span> io1
-                                    <span class="token key atrule">Iops</span><span class="token punctuation">:</span> <span class="token number">200</span>
-                                    <span class="token key atrule">DeleteOnTermination</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
-                                    <span class="token key atrule">VolumeSize</span><span class="token punctuation">:</span> <span class="token number">20</span>
-                          <span class="token key atrule">Lambda</span><span class="token punctuation">:</span>
-                              <span class="token key atrule">Type</span><span class="token punctuation">:</span> <span class="token string">"AWS::Lambda::Function"</span>
-                              <span class="token key atrule">Properties</span><span class="token punctuation">:</span>
-                                <span class="token key atrule">Handler</span><span class="token punctuation">:</span> <span class="token string">"index.handler"</span>
-                                <span class="token key atrule">Role</span><span class="token punctuation">:</span>
-                                  <span class="token key atrule">Fn::GetAtt</span><span class="token punctuation">:</span>
-                                    <span class="token punctuation">-</span> <span class="token string">"LambdaExecutionRole"</span>
-                                    <span class="token punctuation">-</span> <span class="token string">"Arn"</span>
-                                <span class="token key atrule">Runtime</span><span class="token punctuation">:</span> <span class="token string">"python3.7"</span>
-                                <span class="token key atrule">Timeout</span><span class="token punctuation">:</span> <span class="token number">25</span>
-                                <span class="token key atrule">TracingConfig</span><span class="token punctuation">:</span>
-                                  <span class="token key atrule">Mode</span><span class="token punctuation">:</span> <span class="token string">"Active"</span>
-                    
-                    <span class="token key atrule">routes</span><span class="token punctuation">:</span>
-                      <span class="token key atrule">admin</span><span class="token punctuation">:</span>
-                        <span class="token key atrule">url</span><span class="token punctuation">:</span> /admin
-                        <span class="token key atrule">template</span><span class="token punctuation">:</span> admin.html
-                        <span class="token key atrule">assets</span><span class="token punctuation">:</span>
-                            <span class="token key atrule">templates</span><span class="token punctuation">:</span> /templates
-                            <span class="token key atrule">static</span><span class="token punctuation">:</span> /static
-                      <span class="token key atrule">dashboard</span><span class="token punctuation">:</span>
-                        <span class="token key atrule">url</span><span class="token punctuation">:</span> /dashboard
-                        <span class="token key atrule">template</span><span class="token punctuation">:</span> dashboard.html
-                        <span class="token key atrule">assets</span><span class="token punctuation">:</span>
-                            <span class="token key atrule">templates</span><span class="token punctuation">:</span> /templates
-                            <span class="token key atrule">static</span><span class="token punctuation">:</span> /static
-                      <span class="token key atrule">account</span><span class="token punctuation">:</span>
-                        <span class="token key atrule">url</span><span class="token punctuation">:</span> /account
-                        <span class="token key atrule">template</span><span class="token punctuation">:</span> account.html
-                        <span class="token key atrule">assets</span><span class="token punctuation">:</span>
-                            <span class="token key atrule">templates</span><span class="token punctuation">:</span> /templates
-                            <span class="token key atrule">static</span><span class="token punctuation">:</span> /static
-                    
-                    <span class="token key atrule">databases</span><span class="token punctuation">:</span>
-                      <span class="token key atrule">cassandra</span><span class="token punctuation">:</span>
-                        <span class="token key atrule">host</span><span class="token punctuation">:</span> example.cassandra.db
-                        <span class="token key atrule">username</span><span class="token punctuation">:</span> user
-                        <span class="token key atrule">password</span><span class="token punctuation">:</span> password
-                      <span class="token key atrule">redshift</span><span class="token punctuation">:</span>
-                        <span class="token key atrule">jdbcURL</span><span class="token punctuation">:</span> jdbc<span class="token punctuation">:</span>redshift<span class="token punctuation">:</span>//&lt;IP<span class="token punctuation">&gt;</span><span class="token punctuation">:</span>&lt;PORT<span class="token punctuation">&gt;</span>/file<span class="token punctuation">?</span>user=username<span class="token important">&amp;password=pass</span>
-                        <span class="token key atrule">tempS3Dir</span><span class="token punctuation">:</span> s3<span class="token punctuation">:</span>//path/to/redshift/temp/dir/
-                      <span class="token key atrule">redis</span><span class="token punctuation">:</span>
-                        <span class="token key atrule">host</span><span class="token punctuation">:</span> hostname
-                        <span class="token key atrule">port</span><span class="token punctuation">:</span> port<span class="token punctuation">-</span>number
-                        <span class="token key atrule">auth</span><span class="token punctuation">:</span> authentication
-                        <span class="token key atrule">db</span><span class="token punctuation">:</span> databaseconfig.yaml</code></pre>
+                        databases<span class="token punctuation">:</span>
+                          cassandra<span class="token punctuation">:</span>
+                            host<span class="token punctuation">:</span> example.cassandra.db
+                            username<span class="token punctuation">:</span> user
+                            password<span class="token punctuation">:</span> password
+                          redshift<span class="token punctuation">:</span>
+                            jdbcURL<span class="token punctuation">:</span> jdbc<span class="token punctuation">:</span>redshift<span class="token punctuation">:</span>//&lt;IP<span class="token punctuation">&gt;</span><span class="token punctuation">:</span>&lt;PORT<span class="token punctuation">&gt;</span>/file<span class="token punctuation">?</span>user=username<span class="token important">&amp;password=pass</span>
+                            tempS3Dir<span class="token punctuation">:</span> s3<span class="token punctuation">:</span>//path/to/redshift/temp/dir/
+                          redis<span class="token punctuation">:</span>
+                            host<span class="token punctuation">:</span> hostname
+                            port<span class="token punctuation">:</span> port<span class="token punctuation">-</span>number
+                            auth<span class="token punctuation">:</span> authentication
+                            db<span class="token punctuation">:</span> databaseconfig.yaml
+                    </code></pre>    
+                </section>              
 
                 <!-------Reference ------->
                 <section id="reference">
