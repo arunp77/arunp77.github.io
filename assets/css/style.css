@@ -1621,3 +1621,18 @@ ul.upper-alpha {
   from { transform: rotate(0deg); }
   from { transform: rotate(360deg); }
 }
+
+
+
+pre[class*=language-]>code[class*=language-] {
+  z-index: 1;
+  position: relative;
+}
+.post-content>pre code, .kg-code-card>pre code, .kg-code-card>code[class*=language-] code {
+  white-space: pre-wrap !important;
+}
+
+code, kbd, pre, samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}

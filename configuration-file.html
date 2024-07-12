@@ -180,7 +180,7 @@
                 <hr>
                 <section>
                     <div class="alert alert-success"> <i class="bi bi-arrow-right-circle"></i>
-                        This is one of the most important concepts in python project development. 
+                        This is one of the most important concepts in python project development. I have taken few part of the page from <a href="https://hackersandslackers.com/simplify-your-python-projects-configuration/" target="_blank">reference</a>.
                     </div>
 
                     <!----------------->
@@ -191,8 +191,9 @@
                     Configuration files store settings and parameters that a program needs to run. Instead of hardcoding values into your code, which can lead to maintenance challenges and inflexibility, configuration files allow you to separate configuration from code. These files can be in various formats, including JSON, YAML, INI, and environment variables.
                     <ul>
                         <li><b>JSON:</b> Easy to read and widely used, especially in web applications.</li>
-                        <li><b>YAML:</b> More human-readable than JSON, often used in DevOps and configuration management.</li>
+                        <li><b>YAML (Yet Another Markup Language):</b> More human-readable than JSON, often used in DevOps and configuration management.</li>
                         <li><b>INI:</b> Simple format for key-value pairs, commonly used in older applications.</li>
+                        <li><b>TOML:</b> Configure from .toml. TOML files define variables via key/value pairs in a similar manner to that of ini files. Unlike ini files, however, TOML expects that the values of keys to be stored as the data type they're intended to be utilized as.</li>
                         <li><b>Environment Variables:</b> Managed by the operating system, suitable for sensitive information (for more details, check out my blog post on <a href="https://medium.com/@arunp77/best-python-programming-habits-for-complex-projects-9a46b73dcb38" target="_blank">best habits of Python programming</a> <a href="" target="_blank">enviroment variable</a> ).</li>
                     </ul>
 
@@ -358,7 +359,9 @@
 
 
                     <h3 id="how-confi-env">Setting configuration using the enviroment variables</h3>
-                    In the world of data engineering and machine learning, maintaining clean and secure code is paramount. One key practice that enhances both security and efficiency is the use of enviroment variables in a file `<code>.env</code>` in the project directory. The `<code>.env</code>` file is a simple text file used to store environment variables. These variables can include sensitive information like API keys, database credentials, and configuration settings. 
+                    In the world of data engineering and machine learning, maintaining clean and secure code is paramount. One key practice that enhances both security and efficiency is the use of enviroment
+                    variables in a file <code>.env</code> in the project directory. The <code>.env</code> file is a simple text file used to store environment variables. These variables can include sensitive
+                    information like API keys, database credentials, and configuration settings. 
                     <ul>
                         <li><strong>Security:</strong> Storing sensitive data in `.env` files keeps it out of your main codebase, reducing the risk of exposing secrets when sharing or uploading your code to platforms like GitHub.</li>
                         <li><strong>Configuration Management:</strong> `.env` files allow for easy management of different configurations for development, testing, and production environments. This makes your code more adaptable and easier to maintain.</li>
@@ -386,21 +389,397 @@
                         <li><code>load_dotenv()</code> loads the environment variables from the .env </li>
                         <li><code>os.getenv()</code> retrieves the value of the specified environment variable.</li>
                     </ul>
-                    
 
 
+                    <h3 id="conf-ini">Configure from .ini</h3>
+                    ini files are perhaps the most straight configuration files available to us. <code>ini</code> files are highly suitable for smaller projects, mostly because these files only support hierarchies 1-level deep. <code>ini</code> files are essentially flat files, with the exception that variables can belong to groups. The below example demonstrates how variables sharing a common theme may fall under a common title, such as <code>[DATABASE]</code> or <code>[LOGS]</code> (the config.ini is):
+                    <pre class="language-python"><code>
+                        [APP]
+                        ENVIRONMENT = development
+                        DEBUG = False
+                        
+                        [DATABASE]
+                        USERNAME = root
+                        PASSWORD = p@ssw0rd
+                        HOST = 127.0.0.1
+                        PORT = 5432
+                        DB = my_database
+                        
+                        [LOGS]
+                        ERRORS = logs/errors.log
+                        INFO = data/info.log
+                        
+                        [FILES]
+                        STATIC_FOLDER = static
+                        TEMPLATES_FOLDER = templates
+                    </code></pre>
+                    This structure surely makes things easier to understand by humans, but the practicality of this structure goes beyond aesthetics. Let's parse this file with Python's 
+                    <a href="os-module.html">configparser</a> library to see what's really happening. We get started by saving the contents of <code>config.ini</code> to a variable called config in a python script ():
+                    <pre class="language-python"><code>
+                        """Load configuration from .ini file."""
+                        import configparser
+                        
+                        # Read local file `config.ini`.
+                        config = configparser.ConfigParser()
+                        config.read('settings/config.ini')  # suppose our config.ini is in 'setting' folder of home directory.
+                    </code></pre>
+                    Calling <code>read()</code> on an <code>ini</code> file does much more than store plain data; our config variable is now a unique data structure, allowing us various methods for reading and writing values to our config. Try running print(config) to see for yourself: <code>< configparser.ConfigParser object at 0x10e58c390 ></code>. Now using <code>config</code> variable, we can get various values from the <code>config.ini</code> (here we use <code>get()</code> method, where it returns the value as a string) as:
+                    <pre class="language-python"><code>
+                        # Get values from our .ini file
+                        config.get('DATABASE', 'HOST')        # retrieves the value associated with the 'HOST' key from the 'DATABASE' 
+                        config['DATABASE']['HOST']            # alternative way to access the same value. 
+                        config.getboolean('APP', 'DEBUG')     # retrieves the value associated with the 'DEBUG' key from the 'APP' 
+                                                               # section and converts it to a boolean.
+                    </code></pre>
+
+                    The main difference is between the first and second is that if the key doesn't exist, this method will raise a <code>KeyError</code> instead of a <code>configparser.NoOptionError</code>. This method retrieves the value associated with the 'DEBUG' key from the 'APP' section and converts it to a boolean.
 
 
+                    <h3 id="yaml">Configuring Applications from .yaml Files</h3>
+                    YAML is a human-readable data serialization standard that can be used in conjunction with all programming languages and is often used to write configuration files. Its syntax is minimal and straightforward, which makes it easier for humans to read and write compared to JSON or XML.
+                    <ol>
+                        <li><strong>Why Use YAML for Configuration?</strong>
+                            <ul>
+                                <li><b>Readability:</b> YAML’s syntax is clean and easy to understand.</li>
+                                <li><b>Hierarchical Data:</b> It naturally represents hierarchical data, making it suitable for complex configurations.</li>
+                                <li><b>Language-agnostic:</b> YAML can be used with any programming language, making it versatile.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Basic Structure of a .yaml File: </strong></li>
+                            <pre class="language-python"><code>
+                                database:
+                                    host: localhost
+                                    port: 5432
+                                    user: admin
+                                    password: secret
+                              
+                                features:
+                                    enable_feature_x: true
+                                    max_connections: 100
+                            </code></pre>
+                        <li><strong>Configuring Applications with YAML: </strong>Let’s walk through configuring an application using a YAML file. We’ll use a Python application as an example. </li>
+                            <ul>
+                                <li><b>Step-1: Create a YAML Configuration File: </b>First, create a file named <code>config.yaml</code>:
+                                    <pre class="language-python"><code>
+                                        app:
+                                        name: MyApp
+                                        version: 1.0
+                                      
+                                      database:
+                                        host: localhost
+                                        port: 5432
+                                        user: admin
+                                        password: secret
+                                      
+                                      logging:
+                                        level: INFO
+                                        file: /var/log/myapp.log
+                                    </code></pre>
+                                
+                                <li><b>Step 2: Load the YAML Configuration in Your Application: </b>To read and use this configuration in your application, you’ll need a YAML parser. In Python, <code>PyYAML</code> is a popular library for this purpose. Next, load the configuration file in your Python application:</li>
+                                <pre class="language-python"><code>
+                                    import yaml
+
+                                    def load_config(file_path):
+                                        with open(file_path, 'r') as file:
+                                            config = yaml.safe_load(file)
+                                        return config
+                                    
+                                    config = load_config('config.yaml')
+                                    
+                                    # Accessing configuration values
+                                    app_name = config['app']['name']
+                                    db_host = config['database']['host']
+                                    log_level = config['logging']['level']
+                                    
+                                    print(f"App Name: {app_name}")
+                                    print(f"Database Host: {db_host}")
+                                    print(f"Log Level: {log_level}")                                        
+                                </code></pre>
+                                <li><b>Step 3: Using the Configuration: </b>With the configuration loaded, you can now use it to set up your application. For example, configuring a database connection and logging:
+                                    <pre class="language-python"><code>
+                                        import logging
+                                        import psycopg2
+                                        
+                                        # Configure logging
+                                        logging.basicConfig(level=config['logging']['level'],
+                                                            filename=config['logging']['file'],
+                                                            format='%(asctime)s %(levelname)s:%(message)s')
+                                        
+                                        # Connect to the database
+                                        conn = psycopg2.connect(
+                                            host=config['database']['host'],
+                                            port=config['database']['port'],
+                                            user=config['database']['user'],
+                                            password=config['database']['password']
+                                        )
+                                        
+                                        logging.info('Application started')
+                                        logging.info('Connected to the database')                                        
+                                    </code></pre>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><strong>Advanced Configurations: </strong>YAML supports more complex data structures, which can be very useful for advanced configurations.
+                            <ul>
+                                <li><strong>Nested Configurations: </strong>You can nest configurations to represent complex settings:</li>
+                                <pre class="language-python"><code>
+                                    server:
+                                        host: localhost
+                                        ports:
+                                            http: 80
+                                            https: 443
+                                </code></pre>
+                                <li><strong>Lists: </strong>YAML also supports lists, which can be useful for configurations like allowed hosts or user roles:</li>
+                                <pre class="language-python"><code>
+                                    allowed_hosts:
+                                        - localhost
+                                        - 127.0.0.1
+                                        - example.com
+                                    
+                                    user_roles:
+                                        - admin
+                                        - user
+                                        - guest
+                                </code></pre>
+                                <li><strong>Anchors and Aliases: </strong>YAML supports anchors and aliases to reuse parts of the configuration. This can help avoid redundancy:</li>
+                                <pre class="language-python"><code>
+                                    defaults: &defaults
+                                        adapter: postgres
+                                        host: localhost
+
+                                    development:
+                                        <<: *defaults
+                                        database: dev_db
+                                    
+                                    production:
+                                        <<: *defaults
+                                        database: prod_db
+                                        host: prod_host
+                                </code></pre>
+                                <li><strong>Error Handling: </strong>When working with configurations, it’s essential to handle errors gracefully. For example, checking if required fields are present and logging errors:</li>
+                                <pre class="language-python"><code>
+                                    try:
+                                        db_host = config['database']['host']
+                                    except KeyError as e:
+                                        logging.error(f'Missing configuration for {e}')
+                                        raise
+                                </code></pre>
+                            </ul>
+                        </li>
+                    </ol>
+                    A example complex yaml configuration file is:
+                    <pre class="language-python"><code>
+                        appName: appName
+                        logLevel: WARN
+                        
+                        AWS:
+                            Region: us-east-1
+                            Resources:
+                              EC2:
+                                Type: "AWS::EC2::Instance"
+                                Properties:
+                                  ImageId: "ami-0ff8a91507f77f867"
+                                  InstanceType: t2.micro
+                                  KeyName: testkey
+                                  BlockDeviceMappings:
+                                    -
+                                      DeviceName: /dev/sdm
+                                      Ebs:
+                                        VolumeType: io1
+                                        Iops: 200
+                                        DeleteOnTermination: false
+                                        VolumeSize: 20
+                              Lambda:
+                                  Type: "AWS::Lambda::Function"
+                                  Properties:
+                                    Handler: "index.handler"
+                                    Role:
+                                      Fn::GetAtt:
+                                        - "LambdaExecutionRole"
+                                        - "Arn"
+                                    Runtime: "python3.7"
+                                    Timeout: 25
+                                    TracingConfig:
+                                      Mode: "Active"
+                        
+                        routes:
+                          admin:
+                            url: /admin
+                            template: admin.html
+                            assets:
+                                templates: /templates
+                                static: /static
+                          dashboard:
+                            url: /dashboard
+                            template: dashboard.html
+                            assets:
+                                templates: /templates
+                                static: /static
+                          account:
+                            url: /account
+                            template: account.html
+                            assets:
+                                templates: /templates
+                                static: /static
+                        
+                        databases:
+                          cassandra:
+                            host: example.cassandra.db
+                            username: user
+                            password: password
+                          redshift:
+                            jdbcURL: jdbc:redshift://<IP>:<PORT>/file?user=username&password=pass
+                            tempS3Dir: s3://path/to/redshift/temp/dir/
+                          redis:
+                            host: hostname
+                            port: port-number
+                            auth: authentication
+                            db: databaseconfig.yaml
+                    </code></pre>
                 </section>
+
+                <pre class="language-yaml" tabindex="0"><code class="language-yaml">
+                    appName<span class="token punctuation">:</span> appName
+                    logLevel<span class="token punctuation">:</span> WARN
+                    
+                    AWS<span class="token punctuation">:</span>
+                        Region<span class="token punctuation">:</span> us<span class="token punctuation">-</span>east<span class="token punctuation">-</span><span class="token number">1</span>
+                        Resources<span class="token punctuation">:</span>
+                          EC2</span><span class="token punctuation">:</span>
+                            Type<span class="token punctuation">:</span> <span class="token string">"AWS::EC2::Instance"</span>
+                            Properties<span class="token punctuation">:</span>
+                              ImageId<span class="token punctuation">:</span> <span class="token string">"ami-0ff8a91507f77f867"</span>
+                              InstanceType<span class="token punctuation">:</span> t2.micro
+                              KeyName<span class="token punctuation">:</span> testkey
+                              BlockDeviceMappings<span class="token punctuation">:</span>
+                                <span class="token punctuation">-</span>
+                                  DeviceName<span class="token punctuation">:</span> /dev/sdm
+                                  Ebs<span class="token punctuation">:</span>
+                                    VolumeType<span class="token punctuation">:</span> io1
+                                    Iops<span class="token punctuation">:</span> <span class="token number">200</span>
+                                    DeleteOnTermination<span class="token punctuation">:</span> <span class="token boolean important">false</span>
+                                    VolumeSize<span class="token punctuation">:</span> <span class="token number">20</span>
+                          Lambda<span class="token punctuation">:</span>
+                              Type<span class="token punctuation">:</span> <span class="token string">"AWS::Lambda::Function"</span>
+                              Properties<span class="token punctuation">:</span>
+                                Handler<span class="token punctuation">:</span> <span class="token string">"index.handler"</span>
+                                Role<span class="token punctuation">:</span>
+                                  Fn::GetAtt<span class="token punctuation">:</span>
+                                    <span class="token punctuation">-</span> <span class="token string">"LambdaExecutionRole"</span>
+                                    <span class="token punctuation">-</span> <span class="token string">"Arn"</span>
+                                Runtime<span class="token punctuation">:</span> <span class="token string">"python3.7"</span>
+                                Timeout<span class="token punctuation">:</span> <span class="token number">25</span>
+                                TracingConfig<span class="token punctuation">:</span>
+                                  Mode<span class="token punctuation">:</span> <span class="token string">"Active"</span>
+                    
+                    routes<span class="token punctuation">:</span>
+                      admin<span class="token punctuation">:</span>
+                        url<span class="token punctuation">:</span> /admin
+                        template<span class="token punctuation">:</span> admin.html
+                        assets<span class="token punctuation">:</span>
+                            templates<span class="token punctuation">:</span> /templates
+                            static<span class="token punctuation">:</span> /static
+                      dashboard<span class="token punctuation">:</span>
+                        url<span class="token punctuation">:</span> /dashboard
+                        template<span class="token punctuation">:</span> dashboard.html
+                        assets<span class="token punctuation">:</span>
+                            templates<span class="token punctuation">:</span> /templates
+                            static<span class="token punctuation">:</span> /static
+                      account<span class="token punctuation">:</span>
+                        url<span class="token punctuation">:</span> /account
+                        template<span class="token punctuation">:</span> account.html
+                        assets<span class="token punctuation">:</span>
+                            templates<span class="token punctuation">:</span> /templates
+                            static<span class="token punctuation">:</span> /static
+                    
+                    databases<span class="token punctuation">:</span>
+                      cassandra<span class="token punctuation">:</span>
+                        host<span class="token punctuation">:</span> example.cassandra.db
+                        username<span class="token punctuation">:</span> user
+                        password<span class="token punctuation">:</span> password
+                      redshift<span class="token punctuation">:</span>
+                        jdbcURL<span class="token punctuation">:</span> jdbc<span class="token punctuation">:</span>redshift<span class="token punctuation">:</span>//&lt;IP<span class="token punctuation">&gt;</span><span class="token punctuation">:</span>&lt;PORT<span class="token punctuation">&gt;</span>/file<span class="token punctuation">?</span>user=username<span class="token important">&amp;password=pass</span>
+                        tempS3Dir<span class="token punctuation">:</span> s3<span class="token punctuation">:</span>//path/to/redshift/temp/dir/
+                      redis<span class="token punctuation">:</span>
+                        host<span class="token punctuation">:</span> hostname
+                        port<span class="token punctuation">:</span> port<span class="token punctuation">-</span>number
+                        auth<span class="token punctuation">:</span> authentication
+                        db<span class="token punctuation">:</span> databaseconfig.yaml
+                </code></pre>
+
+                <pre class="language-yaml" tabindex="0"><code class="language-yaml"><span class="token key atrule">appName</span><span class="token punctuation">:</span> appName
+                    <span class="token key atrule">logLevel</span><span class="token punctuation">:</span> WARN
+                    
+                    <span class="token key atrule">AWS</span><span class="token punctuation">:</span>
+                        <span class="token key atrule">Region</span><span class="token punctuation">:</span> us<span class="token punctuation">-</span>east<span class="token punctuation">-</span><span class="token number">1</span>
+                        <span class="token key atrule">Resources</span><span class="token punctuation">:</span>
+                          <span class="token key atrule">EC2</span><span class="token punctuation">:</span>
+                            <span class="token key atrule">Type</span><span class="token punctuation">:</span> <span class="token string">"AWS::EC2::Instance"</span>
+                            <span class="token key atrule">Properties</span><span class="token punctuation">:</span>
+                              <span class="token key atrule">ImageId</span><span class="token punctuation">:</span> <span class="token string">"ami-0ff8a91507f77f867"</span>
+                              <span class="token key atrule">InstanceType</span><span class="token punctuation">:</span> t2.micro
+                              <span class="token key atrule">KeyName</span><span class="token punctuation">:</span> testkey
+                              <span class="token key atrule">BlockDeviceMappings</span><span class="token punctuation">:</span>
+                                <span class="token punctuation">-</span>
+                                  <span class="token key atrule">DeviceName</span><span class="token punctuation">:</span> /dev/sdm
+                                  <span class="token key atrule">Ebs</span><span class="token punctuation">:</span>
+                                    <span class="token key atrule">VolumeType</span><span class="token punctuation">:</span> io1
+                                    <span class="token key atrule">Iops</span><span class="token punctuation">:</span> <span class="token number">200</span>
+                                    <span class="token key atrule">DeleteOnTermination</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+                                    <span class="token key atrule">VolumeSize</span><span class="token punctuation">:</span> <span class="token number">20</span>
+                          <span class="token key atrule">Lambda</span><span class="token punctuation">:</span>
+                              <span class="token key atrule">Type</span><span class="token punctuation">:</span> <span class="token string">"AWS::Lambda::Function"</span>
+                              <span class="token key atrule">Properties</span><span class="token punctuation">:</span>
+                                <span class="token key atrule">Handler</span><span class="token punctuation">:</span> <span class="token string">"index.handler"</span>
+                                <span class="token key atrule">Role</span><span class="token punctuation">:</span>
+                                  <span class="token key atrule">Fn::GetAtt</span><span class="token punctuation">:</span>
+                                    <span class="token punctuation">-</span> <span class="token string">"LambdaExecutionRole"</span>
+                                    <span class="token punctuation">-</span> <span class="token string">"Arn"</span>
+                                <span class="token key atrule">Runtime</span><span class="token punctuation">:</span> <span class="token string">"python3.7"</span>
+                                <span class="token key atrule">Timeout</span><span class="token punctuation">:</span> <span class="token number">25</span>
+                                <span class="token key atrule">TracingConfig</span><span class="token punctuation">:</span>
+                                  <span class="token key atrule">Mode</span><span class="token punctuation">:</span> <span class="token string">"Active"</span>
+                    
+                    <span class="token key atrule">routes</span><span class="token punctuation">:</span>
+                      <span class="token key atrule">admin</span><span class="token punctuation">:</span>
+                        <span class="token key atrule">url</span><span class="token punctuation">:</span> /admin
+                        <span class="token key atrule">template</span><span class="token punctuation">:</span> admin.html
+                        <span class="token key atrule">assets</span><span class="token punctuation">:</span>
+                            <span class="token key atrule">templates</span><span class="token punctuation">:</span> /templates
+                            <span class="token key atrule">static</span><span class="token punctuation">:</span> /static
+                      <span class="token key atrule">dashboard</span><span class="token punctuation">:</span>
+                        <span class="token key atrule">url</span><span class="token punctuation">:</span> /dashboard
+                        <span class="token key atrule">template</span><span class="token punctuation">:</span> dashboard.html
+                        <span class="token key atrule">assets</span><span class="token punctuation">:</span>
+                            <span class="token key atrule">templates</span><span class="token punctuation">:</span> /templates
+                            <span class="token key atrule">static</span><span class="token punctuation">:</span> /static
+                      <span class="token key atrule">account</span><span class="token punctuation">:</span>
+                        <span class="token key atrule">url</span><span class="token punctuation">:</span> /account
+                        <span class="token key atrule">template</span><span class="token punctuation">:</span> account.html
+                        <span class="token key atrule">assets</span><span class="token punctuation">:</span>
+                            <span class="token key atrule">templates</span><span class="token punctuation">:</span> /templates
+                            <span class="token key atrule">static</span><span class="token punctuation">:</span> /static
+                    
+                    <span class="token key atrule">databases</span><span class="token punctuation">:</span>
+                      <span class="token key atrule">cassandra</span><span class="token punctuation">:</span>
+                        <span class="token key atrule">host</span><span class="token punctuation">:</span> example.cassandra.db
+                        <span class="token key atrule">username</span><span class="token punctuation">:</span> user
+                        <span class="token key atrule">password</span><span class="token punctuation">:</span> password
+                      <span class="token key atrule">redshift</span><span class="token punctuation">:</span>
+                        <span class="token key atrule">jdbcURL</span><span class="token punctuation">:</span> jdbc<span class="token punctuation">:</span>redshift<span class="token punctuation">:</span>//&lt;IP<span class="token punctuation">&gt;</span><span class="token punctuation">:</span>&lt;PORT<span class="token punctuation">&gt;</span>/file<span class="token punctuation">?</span>user=username<span class="token important">&amp;password=pass</span>
+                        <span class="token key atrule">tempS3Dir</span><span class="token punctuation">:</span> s3<span class="token punctuation">:</span>//path/to/redshift/temp/dir/
+                      <span class="token key atrule">redis</span><span class="token punctuation">:</span>
+                        <span class="token key atrule">host</span><span class="token punctuation">:</span> hostname
+                        <span class="token key atrule">port</span><span class="token punctuation">:</span> port<span class="token punctuation">-</span>number
+                        <span class="token key atrule">auth</span><span class="token punctuation">:</span> authentication
+                        <span class="token key atrule">db</span><span class="token punctuation">:</span> databaseconfig.yaml</code></pre>
 
                 <!-------Reference ------->
                 <section id="reference">
                     <h2>References</h2>
                     <ul>
-                        <li><a href="https://learn.opengeoedu.de/en/fernerkundung" target="_blank">Remote Sensing, Notes by Opengeodu.</a></li>
-                        <li><a href="https://www.dspguide.com/ch1.htm" target="_blank">The Scientist and Engineer's Guide to Digital Signal Processing By Steven W. Smith.</a></li>
-                        <li><a href="https://www.jenkins.io/doc/tutorials/" target="_blank">Jenkins documentation</a></li>
-                        <li><a href="https://sisu.ut.ee/imageprocessing/book/1#:~:text=Image%20processing%20is%20a%20method,features%20associated%20with%20that%20image." target="_blank">Image processing lecture.</a></li>
+                        <li><a href="https://hackersandslackers.com/simplify-your-python-projects-configuration/" target="_blank">Configuring Python Projects with INI, TOML, YAML, and ENV files.</a></li>
                     </ul>
                 </section>
 
