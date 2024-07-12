@@ -1623,7 +1623,8 @@ ul.upper-alpha {
 }
 
 
-
+/*------------added this part on 12 July 2024 -----------*/
+/*------------(while adding a python code snippet in configuration-file.html page) -----------*/
 pre[class*=language-]>code[class*=language-] {
   z-index: 1;
   position: relative;
@@ -1663,3 +1664,5 @@ code, kbd, pre, samp {
   font-family: monospace, monospace;
   font-size: 1em;
 }
+
+/*-----------------------------------*/
