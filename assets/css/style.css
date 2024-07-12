@@ -1636,3 +1636,30 @@ code, kbd, pre, samp {
   font-family: monospace, monospace;
   font-size: 1em;
 }
+
+.post-content>pre, .kg-code-card>pre, .kg-code-card>code[class*=language-] {
+  -moz-tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  padding: 15px 20px 20px;
+  overflow-x: scroll;
+  background: #2e3440;
+  color: #eceff4;
+  font-family: "dm", "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+  font-size: .85em !important;
+  hyphens: none;
+  line-height: 1.5;
+  direction: ltr;
+  text-align: left;
+  text-shadow: none;
+  white-space: pre;
+  word-break: normal;
+  word-spacing: normal;
+  tab-size: 4;
+}
+
+code, kbd, pre, samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
