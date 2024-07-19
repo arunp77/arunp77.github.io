@@ -1593,16 +1593,20 @@ ul.upper-alpha {
   border-radius: 43%;
   animation: drift 3000ms infinite linear;
 }
+.wave.-one {
+  animation: drift 5000ms infinite linear;
+  background: rgb(242, 245, 93);
+}
 
 .wave.-three {
   animation: drift 5000ms infinite linear;
-  background: rgb(252, 12, 212);
+  background: rgb(10, 224, 224);
 }
 
 .wave.-two {
   animation: drift 7000ms infinite linear;
   opacity: .5;
-  background: rgb(215, 248, 96);
+  background: rgb(96, 99, 248);
 }
 
 .box2:after {
