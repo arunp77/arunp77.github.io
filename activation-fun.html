@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Activation function</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="assets/img/Favicon-1.png" rel="icon">
+    <link href="assets/img/Favicon-1.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Creating a python code section-->
+    <link rel="stylesheet" href="assets/css/prism.css">
+    <script src="assets/js/prism.js"></script>
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <!-- To set the icon, visit https://fontawesome.com/account-->
+    <script src="https://kit.fontawesome.com/5d25c1efd3.js" crossorigin="anonymous"></script>
+    <!-- end of icon-->
+
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+
+    <!-- Include the highlight.js library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script> -->
+
+    <!-- =======================================================
+    * Template Name: iPortfolio
+    * Updated: Sep 18 2023 with Bootstrap v5.3.2
+    * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+
+<body>
+    <!-- ======= Mobile nav toggle button ======= -->
+    <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+    <!-- ======= Header ======= -->
+    <header id="header">
+        <div class="d-flex flex-column">
+            <div class="profile">
+                <img src="assets/img/myphoto.jpeg" alt="" class="img-fluid rounded-circle">
+                <h1 class="text-light"><a href="index.html">Arun</a></h1>
+                <div class="social-links mt-3 text-center">
+                    <a href="https://www.linkedin.com/in/arunp77/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                    <a href="https://github.com/arunp77" target="_blank" class="github"><i class="bx bxl-github"></i></a>
+                    <a href="https://twitter.com/arunp77_" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
+                    <a href="https://www.instagram.com/arunp77/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+                    <a href="https://arunp77.medium.com/" target="_blank" class="medium"><i class="bx bxl-medium"></i></a>
+                </div>
+            </div>
+            <nav id="navbar" class="nav-menu navbar">
+                <ul>
+                    <li><a href="index.html#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+                    <li><a href="index.html#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
+                    <li><a href="index.html#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+                    <li><a href="index.html#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+                    <li><a href="index.html#skills-and-tools" class="nav-link scrollto"><i class="bx bx-wrench"></i> <span>Skills and Tools</span></a></li>
+                    <li><a href="index.html#professionalcourses" class="nav-link scrollto"><i class="bx bx-book-alt"></i> <span>Professional Certification</span></a></li>
+                    <li><a href="index.html#publications" class="nav-link scrollto"><i class="bx bx-news"></i> <span>Publications</span></a></li>
+                    <li><a href="index.html#extra-curricular" class="nav-link scrollto"><i class="bx bx-rocket"></i> <span>Extra-Curricular Activities</span></a></li>
+                    <li><a href="index.html#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+                </ul>
+            </nav><!-- .nav-menu -->
+        </div>
+    </header><!-- End Header -->
+
+    <main id="main">
+
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+            <div class="container">
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>Machine Learning</h2>
+                    <ol>
+                        <li><a href="machine-learning.html" class="clickable-box">Content section</a></li>
+                        <li><a href="index.html#portfolio" class="clickable-box">Portfolio section</a></li>
+                    </ol>
+                </div>
+
+            </div>
+        </section><!-- End Breadcrumbs -->
+
+        <!------  right dropdown menu ------->
+        <div class="right-side-list">
+            <div class="dropdown">
+                <button class="dropbtn"><strong>Shortcuts:</strong></button>
+                <div class="dropdown-content">
+                    <ul>
+                        <li><a href="cloud-compute.html"><i class="fas fa-cloud"></i> Cloud</a></li>
+                        <li><a href="AWS-GCP.html"><i class="fas fa-cloud"></i> AWS-GCP</a></li>
+                        <li><a href="amazon-s3.html"><i class="fas fa-cloud"></i> AWS S3</a></li>
+                        <li><a href="ec2-confi.html"><i class="fas fa-server"></i> EC2</a></li>
+                        <li><a href="Docker-Container.html"><i class="fab fa-docker" style="color: rgb(29, 27, 27);"></i> Docker</a></li>
+                        <li><a href="Jupyter-nifi.html"><i class="fab fa-python" style="color: rgb(34, 32, 32);"></i> Jupyter-nifi</a></li>
+                        <li><a href="snowflake-task-stream.html"><i class="fas fa-snowflake"></i> Snowflake</a></li>
+                        <li><a href="data-model.html"><i class="fas fa-database"></i> Data modeling</a></li>
+                        <li><a href="sql-basics.html"><i class="fas fa-table"></i> SQL</a></li>
+                        <li><a href="sql-basic-details.html"><i class="fas fa-database"></i> SQL</a></li>
+                        <li><a href="Bigquerry-sql.html"><i class="fas fa-database"></i> Bigquery</a></li>
+                        <li><a href="scd.html"><i class="fas fa-archive"></i> SCD</a></li>
+                        <li><a href="sql-project.html"><i class="fas fa-database"></i> SQL project</a></li>
+                        <!-- Add more subsections as needed -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======= Portfolio Details Section ======= -->
+        <section id="portfolio-details" class="portfolio-details">
+            <div class="container">
+                <div class="row gy-4">
+                    <h1>Activation function</h1>
+                    <div class="col-lg-8">
+                        <div class="portfolio-details-slider swiper">
+                            <div class="swiper-wrapper align-items-center">
+                                <figure>
+                                    <img src="assets/img/machine-ln/nlp1.png" alt="" style="max-width: 80%; max-height: 90%;"> 
+                                    <figcaption style="text-align: center;"><b></b> <a href="https://eastcoast.coastwatch.noaa.gov/cw_olci_chl.php" target="_blank"></a> </figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 grey-box">
+                        <h3>Content</h3>
+                        <ol>
+                            <li><a href="#introduction">Introduction</a></li>
+                            <li><a href="#nlp-what">What is NLP?</a></li>
+                            <li><a href="#application">Applications of NLP</a></li>
+                            <li><a href="#getting-nlp">Getting Started with NLP</a> </li>
+                            <li><a href="#how-nlp">How does natural language processing work?</a></li>
+                            <li><a href="#reference">Reference</a></li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!---------sections start here ------------>
+                <hr>
+                <section>
+                    <h2 id="Introduction">Activation function</h2>
+                    Activation functions are mathematical functions applied to the output of neurons in neural networks. They introduce non-linearity into the network, allowing it to learn complex patterns and relationships in the data. Here are some common activation functions used in machine learning along with their formulas:
+                    <figure>
+                        <img src="assets/img/machine-ln/deep-activationfun-1.png" alt="" style="max-width: 100%; max-height: auto;">
+                        <figcaption style="text-align: center;">Various activation functions (for more details, see <a href="https://github.com/arunp77/Machine-Learning/tree/main/Deep-learning" target="_blank">my Github repo</a> )</figcaption>
+                    </figure> 
+                    <figure>
+                        <img src="assets/img/machine-ln/deep-activationfun-derivatives.png" alt="" style="max-width: 100%; max-height: auto;">
+                        <figcaption style="text-align: center;">Derivatives of these activation functions (for more details, see <a href="https://github.com/arunp77/Machine-Learning/tree/main/Deep-learning" target="_blank">my Github repo</a>)</figcaption>
+                    </figure>
+                    <ol>
+                        <li><strong>Sigmoid Function: </strong>
+                            <ul>
+                                <li><strong>Formula: </strong></li>
+                                $$\sigma(x) = \frac{1}{1+ e^{-x}}$$
+                                <li><strong>Range: </strong> (0, 1)</li>
+                                <li><strong>Description: </strong>Sigmoid function squashes the input values to a range between 0 and 1. It is useful in binary classification tasks where the output needs 
+                                    to be interpreted as probabilities.</li>
+                                <li><strong>Shortcomings: </strong>
+                                    <ul>
+                                        <li><strong>Vanishing Gradient: </strong>Sigmoid functions saturate for large positive or negative inputs, leading to vanishing gradients during backpropagation, 
+                                            which can slow down or hinder learning, especially in deep networks.</li>
+                                        <li><strong>Output Range: </strong>The output of the sigmoid function is not centered around zero, which may result in unstable gradients and slower convergence 
+                                            when used in deep networks.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><strong>Hyperbolic Tangent (Tanh) Function: </strong>
+                            <ul>
+                                <li><strong>Formula: </strong></li>
+                                $$\text{tanh}(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$$
+                                <li><strong>Range: </strong>(-1,1)</li>
+                                <li><strong>Description: </strong>Tanh function squashes the input values to a range between -1 and 1, making it suitable for classification tasks where the output needs 
+                                    to be centered around zero.
+                                    Tanh functions are commonly used in hidden layers of neural networks, especially in recurrent neural networks (RNNs), to capture non-linearities and maintain gradients 
+                                    within a centered range.
+                                </li>
+                                <li><strong>Shortcomings: </strong>
+                                    <ul>
+                                        <li><strong>Vanishing Gradient: </strong>Similar to the sigmoid function, tanh functions also suffer from the vanishing gradient problem for large inputs, particularly 
+                                            in deep networks.</li>
+                                        <li><strong>Saturation: </strong>Tanh functions saturate for large inputs, leading to slower convergence and potentially unstable gradients.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><strong>Rectified Linear Unit (ReLU): </strong>
+                            <ul>
+                                <li><strong>Formula: </strong></li>
+                                $$f(x) = \text{max}(0,x)$$
+                                <li><strong>Range: </strong>\([0, +∞]\)</li>
+                                <li><strong>Description: </strong>ReLU function returns 0 for negative inputs and the input value for positive inputs. It is the most commonly used activation function in deep 
+                                    learning due to its simplicity and effectiveness.
+                                    ReLU functions are widely used in deep learning due to their simplicity and effectiveness. They allow for faster convergence and are less prone to vanishing gradients compared 
+                                    to sigmoid and tanh functions.
+                                </li>
+                                <li><strong>Shortcomings: </strong>
+                                    <ul>
+                                        <li><strong>Dying ReLU: </strong>ReLU neurons can become inactive (or "die") for negative inputs during training, leading to dead neurons and a sparse representation of the 
+                                            input space. This issue is addressed by variants such as Leaky ReLU and Parametric ReLU.</li>
+                                        <li><strong>Unbounded Output: </strong>ReLU functions have an unbounded output for positive inputs, which may lead to exploding gradients during training, especially in deeper 
+                                            networks.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><strong>Leaky ReLU: </strong>
+                            <ul>
+                                <li><strong>Formula: </strong>
+                                    <div>
+                                        $$f(x) = \begin{cases} x, & \text{if } x > 0 \\ \alpha x, & \text{otherwise} \end{cases}$$
+                                    </div>
+                                    where \(\alpha\) is a small constant (\(<1\))
+                                </li>
+                                <li><strong>Range: </strong>(-∞, +∞)</li>
+                                <li><strong>Description: </strong>Leaky ReLU addresses the "dying ReLU" problem by allowing a small gradient for negative inputs, preventing neurons from becoming inactive.</li>
+                                <li><strong>Shortcomings: </strong>
+                                    <ul>
+                                        <li><strong>Hyperparameter Tuning: </strong> Leaky ReLU introduces a hyperparameter (the leak coefficient) that needs to be manually tuned, which can be cumbersome and 
+                                            time-consuming.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><strong>Exponential Linear Unit (ELU):</strong>
+                            <ul>
+                                <li><strong>Formula: </strong>
+                                    <div>
+                                        $$f(x) = \begin{cases} x, & \text{if } x > 0 \\ \alpha (e^x - 1), & \text{otherwise} \end{cases}$$
+                                    </div>
+                                    where \(\alpha\) is a Hyperparameter.
+                                </li>
+                                <li><strong>Range: </strong>(-∞, +∞)</li>
+                                <li><strong>Description: </strong>ELU function smoothly handles negative inputs and can converge faster than ReLU, but it may be computationally more expensive.
+                                    ELU functions smoothly handle negative inputs and can converge faster than ReLU. They have a mean activation closer to zero, which helps to alleviate the vanishing gradient problem.
+                                </li>
+                                <li><strong>Shortcomings: </strong>
+                                    <ul>
+                                        <li><strong>Computational Cost: </strong>ELU functions involve exponential operations, which may be computationally more expensive compared to ReLU and its variants.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><strong>Softmax Function: </strong>
+                            <ul>
+                                <li><strong>Formula: </strong>
+                                    $$\text{softmax}(x_i) = \frac{e^{x_i}}{\sum_{j=1}^k e^{x_j}}$$
+                                for \(i=1,2, ... k\) where \(k\) is the number of classes.
+                                </li>
+                                <li><strong>Range: </strong>(0, 1) for each class, with all probabilities summing up to 1</li>
+                                <li><strong>Description: </strong>Softmax function is commonly used in the output layer of a neural network for multi-class classification tasks. It converts raw scores into probabilities.
+                                    Softmax functions are used in the output layer of neural networks for multi-class classification tasks. They convert raw scores into probabilities, enabling the model to make 
+                                    predictions across multiple classes.
+                                </li>
+                                <li><strong>Shortcomings: </strong>
+                                    <ul>
+                                        <li><strong>Sensitivity to Outliers: </strong>Softmax functions are sensitive to outliers and large input values, which may affect the stability and reliability of the 
+                                            predicted probabilities.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <figure>
+                                <img src="assets/img/machine-ln/deep-activationfun-softmax.png" alt="" style="max-width: 40%; max-height: auto;">
+                                <figcaption style="text-align: center;"></figcaption> 
+                            </figure>
+                        </li>
+                    </ol>
+                    
+                    <p>These activation functions play a crucial role in the training and performance of neural networks by controlling the output of neurons and enabling the network to learn complex relationships in the data.</p>
+                    <p>In summary, the choice of activation function depends on the specific requirements of the task, the architecture of the neural network, and empirical performance on the validation data. It is often beneficial to experiment with different activation functions and monitor the training dynamics and model performance to select the most suitable one for a given problem. Additionally, using advanced techniques such as batch normalization and adaptive learning rate methods can help mitigate some of the shortcomings associated with activation functions.</p>
+
+
+                </section>
+
+                <!-------Reference ------->
+                <section id="reference">
+                    <h2>References</h2>
+                    <ul>
+                        <li><a href="https://github.com/arunp77/Natural-Language-Processing-Journey" target="_blank">My Github repo with all codes.</a></li>
+                        <li><a href="https://www.ibm.com/topics/natural-language-processing" target="_blank">What is NLP (natural language processing)?</a> (IBM) <b>Contributor:</b> Jim Holdsworth).</li>
+                        <li><a href="https://www.ibm.com/topics/large-language-models" target="_blank">What are large language models (LLMs)? </a>(IBM)</li>
+                        <li><a href="What is generative AI?" target="_blank">What is generative AI?</a>(IBM), <b>Contributor:</b> Cole Stryker, Mark Scapicchio</li>
+                        <li><a href="https://www.udemy.com/share/10b9kU3@sdvi6LC5xfDuRqq2QQ2nFATzRodlSTEzmiC3IEA8TL11F4mf00z9CON19ziUnnBy/" target="_blank">Udemy Bootcamp on Machine learning, Deep Learning and NLP, </a>by Krish Naik</li>
+                    </ul>
+                </section>
+
+                <hr>
+
+                <div style="background-color: #f0f0f0; padding: 15px; border-radius: 5px;">
+                    <h3>Some other interesting things to know:</h3>
+                    <ul style="list-style-type: disc; margin-left: 30px;">
+                        <li>Visit my website on <a href="sql-project.html">For Data, Big Data, Data-modeling, Datawarehouse, SQL, cloud-compute.</a></li>
+                        <li>Visit my website on <a href="Data-engineering.html">Data engineering</a></li>
+                    </ul>
+                </div>
+                <p></p>
+
+                <div class="navigation">
+                    <a href="index.html#portfolio" class="clickable-box">
+                        <span class="arrow-left">Portfolio section</span>
+                    </a>
+
+                    <a href="machine-learning.html" class="clickable-box">
+                        <span class="arrow-right">Content</span>
+                    </a>
+                </div>
+            </div> 
+            
+        </section><!-- End Portfolio Details Section -->
+    </main><!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong><span>Arun</span></strong>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/typed.js/typed.umd.js"></script>
+    <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            hljs.initHighlightingOnLoad();
+        });
+    </script>
+
+    <!-- Initialize highlight.js -->
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightBlock(block);
+            });
+        });
+    </script>
+
+</body>
+
+</html>
