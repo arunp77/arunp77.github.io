@@ -166,7 +166,8 @@
                     </div>
 
                     <h2 id="Introduction">Introduction</h2>
-                    Natural Language Processing (NLP) is a fascinating field at the intersection of linguistics, computer science, and artificial intelligence (AI). Natural language processing (NLP) is the ability of a computer program to understand human language as it's spoken and written -- referred to as natural language. It's a component of artificial intelligence (AI). 
+                    Natural Language Processing (NLP) is a fascinating field at the intersection of linguistics, computer science, and artificial intelligence (AI). NLP is the ability of a computer program to understand human language as it's spoken and written -- referred to as natural language. It uses machine learning to enable computers to understand and communicate with human language.  
+                    <p>NLP research has enabled the era of <a href="https://www.ibm.com/topics/generative-ai" target="_blank">generative AI</a>, from the communication skills of <a href="https://www.ibm.com/topics/large-language-models" target="_blank">large language models (LLMs)</a> to the ability of image generation models to understand requests. NLP is already part of everyday life for many, powering search engines, prompting chatbots for customer service with spoken commands, voice-operated GPS systems and digital assistants on smartphones.</p>
 
                     <h3 id="nlp-what">What is NLP?</h3>
                     NLP is a branch of AI that deals with the interaction between computers and humans using natural language. The ultimate goal of NLP is to read, decipher, understand, and make sense of the human languages in a manner that is valuable.
@@ -175,6 +176,8 @@
                         <img src="assets/img/machine-ln/nlp2.png" alt="" style="max-width: 50%; max-height: auto;"> 
                         <figcaption style="text-align: center;"><b>Reference: </b> © Arun Kumar Pandey<a href="" target="_blank"></a> </figcaption>
                     </figure>
+
+                    NLP enables computers and digital devices to recognize, understand and generate text and speech by combining computational linguistics—the rule-based modeling of human language—together with statistical modeling, machine learning (ML) and deep learning. 
 
 
                     <h3 id="application">Applications of NLP</h3>
@@ -238,12 +241,29 @@
                             </ul>
                         </li>
                         <li><b>Algorithm development: </b>Once the data has been preprocessed, an algorithm is developed to process it. There are many different natural language processing algorithms, but the following two main types are commonly used: 
-                            <ul>
-                                <li><b>Rule-based system: </b>This system uses carefully designed linguistic rules. This approach was used early in the development of natural language processing and is still used.</li>
-                                <li><b>Machine learning-based system: </b> Machine learning algorithms use statistical methods. They learn to perform tasks based on training data they're fed and adjust their methods as more data is processed. Using a combination of machine learning, deep learning and neural networks, natural language processing algorithms hone their own rules through repeated processing and learning.</li>
-                            </ul>
+                            <ol>
+                                <li><b>Rule-based system - The early days: </b>The earliest applications of Natural Language Processing (NLP) were built using simple if-then decision trees that relied on preprogrammed rules. These systems could only provide answers to specific prompts, such as the original version of Moviefone. Without any machine learning or AI capabilities, rule-based NLP was highly limited and lacked scalability.</li>
+                                <li><b>Machine learning-based system: </b> Machine learning algorithms use statistical methods. They learn to perform tasks based on training data they're fed and adjust their methods as more data is processed. Using a combination of machine learning, deep learning and neural networks, natural language processing algorithms hone their own rules through repeated processing and learning.
+                                    <ul>
+                                        <li><b>The Emergence of Statistical NLP: </b>Developed later, statistical NLP automates the extraction, classification, and labeling of elements in text and voice data. It assigns a statistical likelihood to each possible meaning of those elements using machine learning. This enables a sophisticated analysis of linguistic features such as part-of-speech tagging. 
+                                        <p>Statistical NLP introduced the essential technique of mapping language elements—such as words and grammatical rules—to vector representations. This allows language to be modeled using mathematical methods, including regression and Markov models. These advancements informed early NLP applications such as spellcheckers and T9 texting (Text on 9 keys, used on Touch-Tone telephones).</p>
+                                        </li>
+                                        <li><b>The Rise of Deep Learning-Based NLP: </b>Recently, <a href="machine-learning.html#deep-learning">deep learning models</a> have become the dominant approach in NLP, leveraging vast amounts of raw, unstructured data—both text and voice—to achieve unprecedented accuracy. Deep learning represents an evolution of statistical NLP, distinguished by its use of neural network models. There are several subcategories of these models:
+                                            <ol type="i">
+                                                <li><b>Sequence-to-Sequence (seq2seq) Models: </b>Based on recurrent neural networks (RNNs), seq2seq models have primarily been used for machine translation. They convert a phrase from one language (such as German) into a phrase in another language (such as English).</li>
+                                                <li><b>Transformer Models: </b>Transformer models tokenize language by considering the position of each token (words or subwords) and employ self-attention mechanisms to capture dependencies and relationships within the text. They can be efficiently trained using self-supervised learning on massive text datasets. A landmark in transformer models is Google’s BERT (Bidirectional Encoder Representations from Transformers), which revolutionized how Google’s search engine operates.</li>
+                                                <li><b>Autoregressive Models: </b>Autoregressive transformer models are specifically trained to predict the next word in a sequence, significantly advancing text generation capabilities. Examples of autoregressive large language models (LLMs) include GPT, LLaMA, Claude, and the open-source Mistral.</li>
+                                                <li><b>Foundation Models: </b>Prebuilt and curated foundation models accelerate NLP efforts and enhance operational trust. For example, IBM's Granite™ foundation models are applicable across various industries, supporting tasks like content generation and insight extraction. These models facilitate retrieval-augmented generation, improving response quality by linking to external knowledge sources. They also perform named entity recognition, identifying and extracting key information from text.</li>
+                                            </ol>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ol>
                         </li>
+                        For more details on the difference between the AI, Machine learning and the deep learning, you can check out my page on <a href="Machine-learning-fundamentals.html">Machine learning fundamentals</a>. However for more details on the algoirthms, you can check my Machine learning pages on <a href="machine-learning.html">Machine leraning algorithms</a>.
                     </ol>
+
+                    <div class="grey-box">I will be adding more content on this page, as my learning grow.</div>
 
 
 
@@ -257,6 +277,10 @@
                     <h2>References</h2>
                     <ul>
                         <li><a href="https://github.com/arunp77/Natural-Language-Processing-Journey" target="_blank">My Github repo with all codes.</a></li>
+                        <li><a href="https://www.ibm.com/topics/natural-language-processing" target="_blank">What is NLP (natural language processing)?</a> (IBM) <b>Contributor:</b> Jim Holdsworth).</li>
+                        <li><a href="https://www.ibm.com/topics/large-language-models" target="_blank">What are large language models (LLMs)? </a>(IBM)</li>
+                        <li><a href="What is generative AI?" target="_blank">What is generative AI?</a>(IBM), <b>Contributor:</b> Cole Stryker, Mark Scapicchio</li>
+                        <li><a href="https://www.udemy.com/share/10b9kU3@sdvi6LC5xfDuRqq2QQ2nFATzRodlSTEzmiC3IEA8TL11F4mf00z9CON19ziUnnBy/" target="_blank">Udemy Bootcamp on Machine learning, Deep Learning and NLP, </a>by Krish Naik</li>
                     </ul>
                 </section>
 
