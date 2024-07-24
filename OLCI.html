@@ -159,13 +159,17 @@
                                     <li><a href="#instruments">Sentinel-3 Instruments</a></li>
                                     <li><a href="#OCLI-module">OCLI-module</a>
                                         <ul>
-                                            <li><a href="#sentinel-3-naming">Sentinel-3 OLCI File Naming Convention</a></li>
-                                            <li><a href="#data-sentinel3">Accessing OLCI data via the EUMETSAT Data Store</a></li>
-                                            <!-- <li><a href=""></a></li>
-                                            <li><a href=""></a></li> -->
+                                            <li><a href="#olci-spectrum">OLCI spectrum</a></li>
+                                            <li><a href="#baseline">OLCI processing baseline</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#olci-product">OLCI Product</a></li>
+                                    <li><a href="#olci-sent-analysis">OLCI Sentinel-3 data (analysis)</a>
+                                        <ul>
+                                            <li><a href="#data-sentinel3">Accessing OLCI data via the EUMETSAT Data Store</a></li>
+                                            <li><a href="#olci-product">OLCI Product</a></li>
+                                            <li><a href="#OCLI-query">Querying OLCI file structure (Level-1B)</a></li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </li>
                             
@@ -315,7 +319,7 @@
                 </section>
 
                 <section>
-                    <h3  id="OCLI-module">OLCI module</h3>
+                    <h2  id="OCLI-module">OLCI module</h2>
                     The Ocean and Land Colour Instrument (OLCI) provides spectral information on the colour of the oceans. It is a <a href="https://earthobservatory.nasa.gov/features/RemoteSensing/remote_08.php" target="_blank">radiometer</a>, which measures light reflected by the Earths surfaces. This signal contains a rich wealth of information about the composition of ocean waters, the land surface, and atmosphere. EUMETSAT produces the marine products from the Sentinel-3 OLCI sensors. Ocean colour data provides a window in to the biological activity of the worlds oceans, as well as other oceanographic and coastal processes around sediments and anthropogenic impacts. Sentinel-3 OLCI data can also be used for atmospheric composition applications, including monitoring fires, aerosols, and dust. Current OLCI marine products contain some atmospheric composition related products, and further products are in development. Sentinel-3 OLCI land products are processed by the European Space Agency (ESA).
                     <p>For example, this data can be used to monitor global ocean primary production by <a href="https://oceanservice.noaa.gov/facts/phyto.html" target="_blank">phytoplankton</a>, the basis of nearly all life in our seas. <a href="https://oceancolor.gsfc.nasa.gov/" target="_blank">Ocean colour</a> data is also vital to understand <a href="https://climateknowledgeportal.worldbank.org/overview" target="_blank">climate change</a> — ocean colour is one of the <a href="climate-data.html" target="_blank">Essential Climate Variables</a> listed by the <a href="https://wmo.int/" target="_blank">World Meteorological Organization</a> to detect biological activity in the ocean’s surface layer. Phytoplankton take up carbon dioxide (CO\(_2\)) during photosynthesis, making them important carbon sinks. </p>
                     <ul>
@@ -325,7 +329,170 @@
                     The global picture of ocean ecosystems provided by ocean colour data can guide sustainable marine resource management. Further information on the sensor and its data can be found at <a href="https://user.eumetsat.int/resources/user-guides/sentinel-3-olci-level-1-data-guide" target="_blank">http://olci.eumetsat.int</a> and in the <a href="https://eumetsatspace.atlassian.net/wiki/spaces/SEN3/overview" target="_blank">Sentinel-3 knowledge base</a>.
 
                     <br><br>
+                    <h4 id="olci-spectrum">OLCI spectrum</h4>
+                    The 21 wavelengths used to measure TOA radiance. The measured spectral response functions, which described the true shape of the wavebands, are available for both Sentinel-3A and -3B. The sampling period of the OLCI detectors (CCD’s) runs at 44ms, which correspond to a mean along-track distance of about 300m. Therefore, OLCI produces the Full Resolution (FR) product with a spatial resolution of approximately 300m. In addition, the Reduced Resolution (RR) product is generated with a spatial resolution of approximately 1.2km with 16 (nominally four by four) FR pixels averaged to create a RR pixel; the number of pixels used is varied in the across track direction, as a function of the across track pointing angle from the RR product pixel centre, so that spatial resolution degradation is minimised at the FOV edges. 
+                    <br><br>
+                    The OLCI bands are available below in the table (taken from <a href="https://user.eumetsat.int/resources/user-guides/sentinel-3-olci-level-1-data-guide" target="_blank">OLCI website</a>).
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Band number</th>
+                                <th>Central wavelength [nm]</th>
+                                <th>Spectral width [nm]</th>
+                                <th>Function</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Oa1</td>
+                                <td>400.000</td>
+                                <td>15</td>
+                                <td>Atmospheric correction, improved water constituent retrieval</td>
+                            </tr>
+                            <tr>
+                                <td>Oa2</td>
+                                <td>412.500</td>
+                                <td>10</td>
+                                <td>Coloured Dissolved Organic Matter (CDOM) and detrital pigments</td>
+                            </tr>
+                            <tr>
+                                <td>Oa3</td>
+                                <td>442.500</td>
+                                <td>10</td>
+                                <td>Chlorophyll-a (Chl-a) absorption maximum</td>
+                            </tr>
+                            <tr>
+                                <td>Oa4</td>
+                                <td>490.000</td>
+                                <td>10</td>
+                                <td>High Chl-a and other photosynthetic pigments</td>
+                            </tr>
+                            <tr>
+                                <td>Oa5</td>
+                                <td>510.000</td>
+                                <td>10</td>
+                                <td>Chl-a, TSM, turbidity and red tides</td>
+                            </tr>
+                            <tr>
+                                <td>Oa6</td>
+                                <td>560.000</td>
+                                <td>10</td>
+                                <td>Chl-a reference (minimum)</td>
+                            </tr>
+                            <tr>
+                                <td>Oa7</td>
+                                <td>620.000</td>
+                                <td>10</td>
+                                <td>TSM</td>
+                            </tr>
+                            <tr>
+                                <td>Oa8</td>
+                                <td>665.000</td>
+                                <td>10</td>
+                                <td>Chl-a (2nd absorption maximum), TSM and CDOM</td>
+                            </tr>
+                            <tr>
+                                <td>Oa9</td>
+                                <td>673.750</td>
+                                <td>7.5</td>
+                                <td>Improved fluorescence retrieval</td>
+                            </tr>
+                            <tr>
+                                <td>Oa10</td>
+                                <td>681.250</td>
+                                <td>7.5</td>
+                                <td>Chl-a fluorescence peak</td>
+                            </tr>
+                            <tr>
+                                <td>Oa11</td>
+                                <td>708.750</td>
+                                <td>10</td>
+                                <td>Chl-a fluorescence baseline</td>
+                            </tr>
+                            <tr>
+                                <td>Oa12</td>
+                                <td>753.750</td>
+                                <td>7.5</td>
+                                <td>O2 (oxygen) absorption and clouds</td>
+                            </tr>
+                            <tr>
+                                <td>Oa13</td>
+                                <td>761.250</td>
+                                <td>2.5</td>
+                                <td>O2 absorption band and AC aerosol estimation</td>
+                            </tr>
+                            <tr>
+                                <td>Oa14</td>
+                                <td>764.375</td>
+                                <td>3.75</td>
+                                <td>AC</td>
+                            </tr>
+                            <tr>
+                                <td>Oa15</td>
+                                <td>767.500</td>
+                                <td>2.5</td>
+                                <td>O2 A-band absorption band used for cloud top pressure</td>
+                            </tr>
+                            <tr>
+                                <td>Oa16</td>
+                                <td>778.750</td>
+                                <td>15</td>
+                                <td>AC aerosol estimation</td>
+                            </tr>
+                            <tr>
+                                <td>Oa17</td>
+                                <td>865.000</td>
+                                <td>20</td>
+                                <td>AC aerosol estimation, clouds and pixel co-registration, in common with SLSTR</td>
+                            </tr>
+                            <tr>
+                                <td>Oa18</td>
+                                <td>885.000</td>
+                                <td>10</td>
+                                <td>Water vapour absorption reference band</td>
+                            </tr>
+                            <tr>
+                                <td>Oa19</td>
+                                <td>900.000</td>
+                                <td>10</td>
+                                <td>Water vapour absorption</td>
+                            </tr>
+                            <tr>
+                                <td>Oa20</td>
+                                <td>940.000</td>
+                                <td>20</td>
+                                <td>Water vapour absorption, linked to AC</td>
+                            </tr>
+                            <tr>
+                                <td>Oa21</td>
+                                <td>1020.000</td>
+                                <td>40</td>
+                                <td>AC aerosol estimation</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br><br>
                     
+                    
+                    <!----------------------------------->
+                    <h4 id="baseline">OLCI processing baseline</h4>
+                    The OLCI operational processor comprises three major processing levels: Level-0, Level-1 and Level-2 (for more details, please check the <a href="Satellite-data.html">link</a>):
+                    <ul>
+                        <li><b>Level 0:</b> This step processes raw data contained in instrument source packets. Level 0 products are internal products, and are not disseminated to users.</li>
+                        <li><b>Level 1:</b> This step processes the level 0 data to geo-located and calibrated top of atmosphere radiances for each OLCI band.</li>
+                        <li><b>Level 2:</b> This step processes the level 1 data to water leaving reflectances and bio-optical variables (eg chlorophyll-a concentration).</li>
+                    </ul>
+                    <figure>
+                        <img src="assets/img/remote-sensing/olci-products-pdp.png" alt="" style="max-width: 30%; max-height: auto;">
+                        <figcaption style="text-align: center;"><b></b> <a href="" target="_blank"></a>Schematic of the products generated by the OLCI processor at each level</figcaption>
+                    </figure>
+                    <div class="grey-box"><a href="https://user.eumetsat.int/resources/user-guides/sentinel-3-ocean-colour-level-2-data-guide" target="_blank">For more details on the Sentinel-3 ocean colour level 2 data guide</a>, please follow the original EUMESAT documentation.</div>
+
+                    <br><br>
+                    
+
+                    <!----------------------------------------->
+                    <h2 id="olci-sent-analysis">OLCI Sentinel-3 data (analysis)</h2> 
                     <h4 id="data-sentinel3">Accessing OLCI data via the EUMETSAT Data Store </h4>
                     <div class="alert alert-info"> <i class="bi bi-arrow-right-circle"></i> The notebooks are provided by EUMESAT during <font color="#F33365">Copernicus Marine Training programm 2023</font> and Authors are "<strong>Ben Loveday (EUMETSAT/Innoflair UG), Hayley Evers-King (EUMETSAT), Ana Ruescas (Brockmann Consult GmbH / University of Valencia)</strong>".<br>
                     </div>
