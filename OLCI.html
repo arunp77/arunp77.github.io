@@ -161,18 +161,17 @@
                                         <ul>
                                             <li><a href="#olci-spectrum">OLCI spectrum</a></li>
                                             <li><a href="#baseline">OLCI processing baseline</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#olci-sent-analysis">OLCI Sentinel-3 data (analysis)</a>
-                                        <ul>
-                                            <li><a href="#data-sentinel3">Accessing OLCI data via the EUMETSAT Data Store</a></li>
                                             <li><a href="#olci-product">OLCI Product</a></li>
-                                            <li><a href="#OCLI-query">Querying OLCI file structure (Level-1B)</a></li>
                                         </ul>
                                     </li>
                                 </ul>
                             </li>
-                            
+                            <li><a href="#olci-sent-analysis">OLCI Sentinel-3 data (analysis)</a>
+                                <ul>
+                                    <li><a href="#data-sentinel3">Accessing OLCI data via the EUMETSAT Data Store</a></li>
+                                    <li><a href="#OCLI-query">Querying OLCI file structure (Level-1B)</a></li>
+                                </ul>
+                            </li>
                             <li><a href="#reference">Reference</a></li>
                         </ol>
                     </div>
@@ -488,6 +487,60 @@
                     </figure>
                     <div class="grey-box"><a href="https://user.eumetsat.int/resources/user-guides/sentinel-3-ocean-colour-level-2-data-guide" target="_blank">For more details on the Sentinel-3 ocean colour level 2 data guide</a>, please follow the original EUMESAT documentation.</div>
 
+                    <p>The OLCI level 1B processor operates in three different modes, each creating specific types of products:</p>
+                    <ol>
+                        <li><b>Radiometric Calibration Mode:: </b>Processes calibration data to develop radiometric models (used to measure the intensity of light). The radiometric model is built using continuous in-flight calibration data. It includes: Radiometric Gain Coefficients: These are reference values that help convert raw data into accurate measurements, updated regularly to ensure accuracy. Long-term Evolution Model: This model tracks and adjusts for changes over time.</li>
+                        <li><b>Spectral Calibration Mode: </b>Processes calibration data to develop spectral models (used to measure the light's wavelength).</li>
+                        <li><b>Earth Observation Mode: </b>Produces detailed and location-specific Earth observation data at full and reduced resolutions.</li>
+                    </ol>
+
+
+                    <p></p>
+                    <!------------------------------------>
+                    <h4 id="olci-product">OLCI Product</h4>
+                    <p>Data from all the Sentinel satellites operated under the <a href="https://www.copernicus.eu/en" target="_blank">European Commissions Copernicus Programme</a> are delievered in "<a href="https://user.eumetsat.int/resources/user-guides/sentinel-safe-format-guide" target="_blank">SAFE format</a>". The Sentinel-SAFE format is a specific variation of the Standard Archive Format for Europe (SAFE) format specification designed for the Sentinel satellite products.  It is based on the XML Formatted Data Units (XFDU) standard under development by the <a href="https://public.ccsds.org/default.aspx" target="_blank">Consultative Committee for Space Data Systems (CCSDS)</a>. Sentinel-SAFE is a profile of XFDU, and it restricts the XFDU specifications for specific utilisation in the Earth Observation domain, providing semantics in the same domain to improve interoperability between ground segment facilities.</p>
+
+                    <p>Each product package includes:</p>
+                    <ul>
+                        <li>a manifest file containing a metadata section and a data object section (an xml file).</li>
+                        <li>measurement data files (NetCDF-4 format)</li>
+                        <li>annotation data files, if defined (NetCDF-4 format)</li>
+                    </ul>
+
+                    <p>The product package can exist as a directory in a filesystem, zipped folder or tarball. The containing unit has a set file name that describes the product.</p>
+                    <p>The Sentinel-SAFE product package file naming is based on a sequence of fields (for more details, please check <a href="https://user.eumetsat.int/resources/user-guides/sentinel-safe-format-guide" target="_blank">official documentation</a>):</p>
+
+                    <figure>
+                        <img src="assets/img/remote-sensing/sentinel-3-naming.png" alt="" style="max-width: 100%; max-height: auto;">
+                        <figcaption style="text-align: center;"><b></b> <a href="" target="_blank"></a></figcaption>
+                    </figure>
+                    <div class="grey-box">
+                        <p>For example,  Sentinel-3 near real-time OLCI marine data at Level-2 product file looks like: <code>S3B_SL_2_AOD____20210803T215713_20210803T220308_20210804T002802_0355_055_229______MAR_O_NR_001</code>, where:
+                            <figure>
+                                <img src="assets/img/remote-sensing/sentinel-filename-structure.png" alt="" style="max-width: 90%; max-height: auto;">
+                                <figcaption style="text-align: center;"><b></b> <a href="" target="_blank"></a></figcaption>
+                            </figure>
+                            1 would be:
+                            <ul>
+                                <li>S3B for Sentinel 3B</li>
+                                <li>SL for SLSTR data source</li>
+                                <li>L=2, for level 2 data</li>
+                                <li>20210803T215713: Sensing start at 03 Aug 2021 at 21:37:13 hr. </li>
+                                <li>20210803T220308: Sensing stops at 03 Aug 2021 at 22:03:08 hr. </li>
+                                <li>20210804T002802: Product created at 04 Aug 2021 at 00:28:02 hr.</li>
+                                <li>0355_055_229____ (17 character): 'Duration'_'cycle-number'_'relative orbit number'____</li>
+                                <li>GGG–Product Generating Centre: 
+                                    <ul>
+                                        <li>'MAR' for Marine Processing and Archiving Centre (EUMETSAT).</li>
+                                        <li>'LN3' for Land Surface Topography Mission Processing and Archiving Centre.</li>
+                                        <li>SVL = Svalbard Satellite Core Ground Station.</li>
+                                    </ul>
+                                </li>
+                                <li>O_NR_001 (format 'P_XX_NNN'): Eight characters to indicate the processing system. So here O=operational, NR for near real-time. Three letters/digits ('001') indicating the baseline collection. A significant change typically triggers a reprocessing and a new baseline collection.</li>
+                            </ul>
+                        </p>
+                    </div>
+                    <hr>
                     <br><br>
                     
 
@@ -846,52 +899,7 @@ finished.
                         </li>
                     </ul>
 
-                    <!------------------------------------>
-                    <h3 id="olci-product">OLCI Product</h3>
-                    <p>Data from all the Sentinel satellites operated under the <a href="https://www.copernicus.eu/en" target="_blank">European Commissions Copernicus Programme</a> are delievered in "<a href="https://user.eumetsat.int/resources/user-guides/sentinel-safe-format-guide" target="_blank">SAFE format</a>". The Sentinel-SAFE format is a specific variation of the Standard Archive Format for Europe (SAFE) format specification designed for the Sentinel satellite products.  It is based on the XML Formatted Data Units (XFDU) standard under development by the <a href="https://public.ccsds.org/default.aspx" target="_blank">Consultative Committee for Space Data Systems (CCSDS)</a>. Sentinel-SAFE is a profile of XFDU, and it restricts the XFDU specifications for specific utilisation in the Earth Observation domain, providing semantics in the same domain to improve interoperability between ground segment facilities.</p>
-
-                    <p>Each product package includes:</p>
-                    <ul>
-                        <li>a manifest file containing a metadata section and a data object section (an xml file).</li>
-                        <li>measurement data files (NetCDF-4 format)</li>
-                        <li>annotation data files, if defined (NetCDF-4 format)</li>
-                    </ul>
-
-                    <p>The product package can exist as a directory in a filesystem, zipped folder or tarball. The containing unit has a set file name that describes the product.</p>
-                    <p>The Sentinel-SAFE product package file naming is based on a sequence of fields (for more details, please check <a href="https://user.eumetsat.int/resources/user-guides/sentinel-safe-format-guide" target="_blank">official documentation</a>):</p>
-
-                    <figure>
-                        <img src="assets/img/remote-sensing/sentinel-3-naming.png" alt="" style="max-width: 100%; max-height: auto;">
-                        <figcaption style="text-align: center;"><b></b> <a href="" target="_blank"></a></figcaption>
-                    </figure>
-                    <div class="grey-box">
-                        <p>For example,  Sentinel-3 near real-time OLCI marine data at Level-2 product file looks like: <code>S3B_SL_2_AOD____20210803T215713_20210803T220308_20210804T002802_0355_055_229______MAR_O_NR_001</code>, where:
-                            <figure>
-                                <img src="assets/img/remote-sensing/sentinel-filename-structure.png" alt="" style="max-width: 90%; max-height: auto;">
-                                <figcaption style="text-align: center;"><b></b> <a href="" target="_blank"></a></figcaption>
-                            </figure>
-                            1 would be:
-                            <ul>
-                                <li>S3B for Sentinel 3B</li>
-                                <li>SL for SLSTR data source</li>
-                                <li>L=2, for level 2 data</li>
-                                <li>20210803T215713: Sensing start at 03 Aug 2021 at 21:37:13 hr. </li>
-                                <li>20210803T220308: Sensing stops at 03 Aug 2021 at 22:03:08 hr. </li>
-                                <li>20210804T002802: Product created at 04 Aug 2021 at 00:28:02 hr.</li>
-                                <li>0355_055_229____ (17 character): 'Duration'_'cycle-number'_'relative orbit number'____</li>
-                                <li>GGG–Product Generating Centre: 
-                                    <ul>
-                                        <li>'MAR' for Marine Processing and Archiving Centre (EUMETSAT).</li>
-                                        <li>'LN3' for Land Surface Topography Mission Processing and Archiving Centre.</li>
-                                        <li>SVL = Svalbard Satellite Core Ground Station.</li>
-                                    </ul>
-                                </li>
-                                <li>O_NR_001 (format 'P_XX_NNN'): Eight characters to indicate the processing system. So here O=operational, NR for near real-time. Three letters/digits ('001') indicating the baseline collection. A significant change typically triggers a reprocessing and a new baseline collection.</li>
-                            </ul>
-                        </p>
-                    </div>
-                    <br>
-
+                    <!----------------------------------------------> 
                     <h4 id="OCLI-query">Querying OLCI file structure (Level-1B)</h4>
                     To query the data, we will first need to provide the path to the data. 
                     <pre class="language-python"><coce>
