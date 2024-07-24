@@ -149,10 +149,9 @@
                         <h3>Content</h3>
                         <ol>
                             <li><a href="#introduction">Introduction</a></li>
-                            <li><a href="#nlp-what">What is NLP?</a></li>
-                            <li><a href="#application">Applications of NLP</a></li>
-                            <li><a href="#getting-nlp">Getting Started with NLP</a> </li>
-                            <li><a href="#how-nlp">How does natural language processing work?</a></li>
+                            <li><a href="#what-activation">What is an Activation Function?</a></li>
+                            <li><a href="#types">Types of Activation Functions</a></li>
+                            <li><a href="#choose-activation">Choosing the Right Activation Function</a></li>
                             <li><a href="#reference">Reference</a></li>
                         </ol>
                     </div>
@@ -161,8 +160,30 @@
                 <!---------sections start here ------------>
                 <hr>
                 <section>
-                    <h2 id="Introduction">Activation function</h2>
-                    Activation functions are mathematical functions applied to the output of neurons in neural networks. They introduce non-linearity into the network, allowing it to learn complex patterns and relationships in the data. Here are some common activation functions used in machine learning along with their formulas:
+                    <h2 id="Introduction">Introduction</h2>
+                    Activation functions are a fundamental component in the architecture of neural networks. They introduce non-linearity into the network, enabling it to learn and perform more complex tasks. Without activation functions, a neural network would simply be a linear regression model, incapable of handling the intricacies of real-world data.
+
+                    <h4 id="what-activation">What is an Activation Function?</h4>
+                    An activation function defines the output of a neuron given an input or set of inputs. It is a crucial part of neural networks, allowing them to model complex data and learn from it. Activation functions determine whether a neuron should be activated or not, based on the weighted sum of inputs received and a bias.
+
+                    <h4 id="types">Types of Activation Functions</h4>
+                    There are several types of activation functions used in deep learning, each with its own advantages and disadvantages. The most commonly used activation functions include:
+                    <ol>
+                        <li>Linear Activation Function</li>
+                        <li>Non-Linear Activation Functions: 
+                            <ul>
+                                <li>Sigmoid</li>
+                                <li>Hyperbolic Tangent (Tanh)</li>
+                                <li>Rectified Linear Unit (ReLU)</li>
+                                <li>Leaky ReLU</li>
+                                <li>Parametric ReLU (PReLU)</li>
+                                <li>Exponential Linear Unit (ELU)</li>
+                                <li>Swish</li>
+                                <li>Softmax</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
                     <figure>
                         <img src="assets/img/machine-ln/deep-activationfun-1.png" alt="" style="max-width: 100%; max-height: auto;">
                         <figcaption style="text-align: center;">Various activation functions (for more details, see <a href="https://github.com/arunp77/Machine-Learning/tree/main/Deep-learning" target="_blank">my Github repo</a> )</figcaption>
@@ -171,20 +192,19 @@
                         <img src="assets/img/machine-ln/deep-activationfun-derivatives.png" alt="" style="max-width: 100%; max-height: auto;">
                         <figcaption style="text-align: center;">Derivatives of these activation functions (for more details, see <a href="https://github.com/arunp77/Machine-Learning/tree/main/Deep-learning" target="_blank">my Github repo</a>)</figcaption>
                     </figure>
+                    
+                    Let's learn more on the various types of Activation functions:
                     <ol>
                         <li><strong>Sigmoid Function: </strong>
                             <ul>
                                 <li><strong>Formula: </strong></li>
                                 $$\sigma(x) = \frac{1}{1+ e^{-x}}$$
                                 <li><strong>Range: </strong> (0, 1)</li>
-                                <li><strong>Description: </strong>Sigmoid function squashes the input values to a range between 0 and 1. It is useful in binary classification tasks where the output needs 
-                                    to be interpreted as probabilities.</li>
+                                <li><strong>Description: </strong>Sigmoid function squashes the input values to a range between 0 and 1. It is useful in binary classification tasks where the output needs to be interpreted as probabilities.</li>
                                 <li><strong>Shortcomings: </strong>
                                     <ul>
-                                        <li><strong>Vanishing Gradient: </strong>Sigmoid functions saturate for large positive or negative inputs, leading to vanishing gradients during backpropagation, 
-                                            which can slow down or hinder learning, especially in deep networks.</li>
-                                        <li><strong>Output Range: </strong>The output of the sigmoid function is not centered around zero, which may result in unstable gradients and slower convergence 
-                                            when used in deep networks.</li>
+                                        <li><strong>Vanishing Gradient: </strong>Sigmoid functions saturate for large positive or negative inputs, leading to vanishing gradients during backpropagation, which can slow down or hinder learning, especially in deep networks.</li>
+                                        <li><strong>Output Range: </strong>The output of the sigmoid function is not centered around zero, which may result in unstable gradients and slower convergence when used in deep networks.</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -194,15 +214,11 @@
                                 <li><strong>Formula: </strong></li>
                                 $$\text{tanh}(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$$
                                 <li><strong>Range: </strong>(-1,1)</li>
-                                <li><strong>Description: </strong>Tanh function squashes the input values to a range between -1 and 1, making it suitable for classification tasks where the output needs 
-                                    to be centered around zero.
-                                    Tanh functions are commonly used in hidden layers of neural networks, especially in recurrent neural networks (RNNs), to capture non-linearities and maintain gradients 
-                                    within a centered range.
+                                <li><strong>Description: </strong>Tanh function squashes the input values to a range between -1 and 1, making it suitable for classification tasks where the output needs to be centered around zero. Tanh functions are commonly used in hidden layers of neural networks, especially in recurrent neural networks (RNNs), to capture non-linearities and maintain gradients within a centered range.
                                 </li>
                                 <li><strong>Shortcomings: </strong>
                                     <ul>
-                                        <li><strong>Vanishing Gradient: </strong>Similar to the sigmoid function, tanh functions also suffer from the vanishing gradient problem for large inputs, particularly 
-                                            in deep networks.</li>
+                                        <li><strong>Vanishing Gradient: </strong>Similar to the sigmoid function, tanh functions also suffer from the vanishing gradient problem for large inputs, particularly in deep networks.</li>
                                         <li><strong>Saturation: </strong>Tanh functions saturate for large inputs, leading to slower convergence and potentially unstable gradients.</li>
                                     </ul>
                                 </li>
@@ -213,17 +229,12 @@
                                 <li><strong>Formula: </strong></li>
                                 $$f(x) = \text{max}(0,x)$$
                                 <li><strong>Range: </strong>\([0, +∞]\)</li>
-                                <li><strong>Description: </strong>ReLU function returns 0 for negative inputs and the input value for positive inputs. It is the most commonly used activation function in deep 
-                                    learning due to its simplicity and effectiveness.
-                                    ReLU functions are widely used in deep learning due to their simplicity and effectiveness. They allow for faster convergence and are less prone to vanishing gradients compared 
-                                    to sigmoid and tanh functions.
+                                <li><strong>Description: </strong>ReLU function returns 0 for negative inputs and the input value for positive inputs. It is the most commonly used activation function in deep learning due to its simplicity and effectiveness. ReLU functions are widely used in deep learning due to their simplicity and effectiveness. They allow for faster convergence and are less prone to vanishing gradients compared to sigmoid and tanh functions.
                                 </li>
                                 <li><strong>Shortcomings: </strong>
                                     <ul>
-                                        <li><strong>Dying ReLU: </strong>ReLU neurons can become inactive (or "die") for negative inputs during training, leading to dead neurons and a sparse representation of the 
-                                            input space. This issue is addressed by variants such as Leaky ReLU and Parametric ReLU.</li>
-                                        <li><strong>Unbounded Output: </strong>ReLU functions have an unbounded output for positive inputs, which may lead to exploding gradients during training, especially in deeper 
-                                            networks.</li>
+                                        <li><strong>Dying ReLU: </strong>ReLU neurons can become inactive (or "die") for negative inputs during training, leading to dead neurons and a sparse representation of the input space. This issue is addressed by variants such as Leaky ReLU and Parametric ReLU.</li>
+                                        <li><strong>Unbounded Output: </strong>ReLU functions have an unbounded output for positive inputs, which may lead to exploding gradients during training, especially in deeper networks.</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -240,8 +251,7 @@
                                 <li><strong>Description: </strong>Leaky ReLU addresses the "dying ReLU" problem by allowing a small gradient for negative inputs, preventing neurons from becoming inactive.</li>
                                 <li><strong>Shortcomings: </strong>
                                     <ul>
-                                        <li><strong>Hyperparameter Tuning: </strong> Leaky ReLU introduces a hyperparameter (the leak coefficient) that needs to be manually tuned, which can be cumbersome and 
-                                            time-consuming.</li>
+                                        <li><strong>Hyperparameter Tuning: </strong> Leaky ReLU introduces a hyperparameter (the leak coefficient) that needs to be manually tuned, which can be cumbersome and time-consuming.</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -255,8 +265,7 @@
                                     where \(\alpha\) is a Hyperparameter.
                                 </li>
                                 <li><strong>Range: </strong>(-∞, +∞)</li>
-                                <li><strong>Description: </strong>ELU function smoothly handles negative inputs and can converge faster than ReLU, but it may be computationally more expensive.
-                                    ELU functions smoothly handle negative inputs and can converge faster than ReLU. They have a mean activation closer to zero, which helps to alleviate the vanishing gradient problem.
+                                <li><strong>Description: </strong>ELU function smoothly handles negative inputs and can converge faster than ReLU, but it may be computationally more expensive. ELU functions smoothly handle negative inputs and can converge faster than ReLU. They have a mean activation closer to zero, which helps to alleviate the vanishing gradient problem.
                                 </li>
                                 <li><strong>Shortcomings: </strong>
                                     <ul>
@@ -272,14 +281,11 @@
                                 for \(i=1,2, ... k\) where \(k\) is the number of classes.
                                 </li>
                                 <li><strong>Range: </strong>(0, 1) for each class, with all probabilities summing up to 1</li>
-                                <li><strong>Description: </strong>Softmax function is commonly used in the output layer of a neural network for multi-class classification tasks. It converts raw scores into probabilities.
-                                    Softmax functions are used in the output layer of neural networks for multi-class classification tasks. They convert raw scores into probabilities, enabling the model to make 
-                                    predictions across multiple classes.
+                                <li><strong>Description: </strong>Softmax function is commonly used in the output layer of a neural network for multi-class classification tasks. It converts raw scores into probabilities. Softmax functions are used in the output layer of neural networks for multi-class classification tasks. They convert raw scores into probabilities, enabling the model to make predictions across multiple classes.
                                 </li>
                                 <li><strong>Shortcomings: </strong>
                                     <ul>
-                                        <li><strong>Sensitivity to Outliers: </strong>Softmax functions are sensitive to outliers and large input values, which may affect the stability and reliability of the 
-                                            predicted probabilities.</li>
+                                        <li><strong>Sensitivity to Outliers: </strong>Softmax functions are sensitive to outliers and large input values, which may affect the stability and reliability of the predicted probabilities.</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -291,6 +297,15 @@
                     </ol>
                     
                     <p>These activation functions play a crucial role in the training and performance of neural networks by controlling the output of neurons and enabling the network to learn complex relationships in the data.</p>
+
+                    <h4 id="choose-activation">Choosing the Right Activation Function</h4>
+                    Selecting the appropriate activation function for a neural network is a crucial decision that can significantly affect the model's performance. The choice depends on various factors such as the type of problem (classification or regression), the depth of the network, the need for computational efficiency, and the nature of the data. Here are some guidelines and considerations for choosing the right activation function:
+                    <ul>
+                        <li><b>ReLU and its variants (Leaky ReLU, PReLU):</b> are widely used in hidden layers due to their efficiency and effectiveness in mitigating vanishing gradient problems.</li>
+                        <li><b>Sigmoid and Tanh: </b>are often used in binary classification problems or in the output layer of certain types of networks.</li>
+                        <li><b>Softmax: </b> is specifically used for multi-class classification problems in the output layer.</li>
+                        <li><b>Swish and ELU: </b>can be considered for deeper networks where traditional activation functions might not perform well.</li>
+                    </ul>
                     <p>In summary, the choice of activation function depends on the specific requirements of the task, the architecture of the neural network, and empirical performance on the validation data. It is often beneficial to experiment with different activation functions and monitor the training dynamics and model performance to select the most suitable one for a given problem. Additionally, using advanced techniques such as batch normalization and adaptive learning rate methods can help mitigate some of the shortcomings associated with activation functions.</p>
 
 
