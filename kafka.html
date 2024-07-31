@@ -151,7 +151,7 @@
                                     <li><a href="#use-case">Kafka API use cases</a></li>
                                     <li><a href="#kafka-connect">Kafka Connect</a></li>
                                     <li><a href="#kafka-stream">Kafka Streams</a></li>
-                                    <li><a href="#model">Model prediction</a></li>
+                                    <li><a href="#configuration">Key broker configurations</a></li>
                                     <li><a href="#model-evaluate">Model evaluation</a></li>
                                 </ul>
                                 <li><a href="#instalation">Kafka installation: set in local machine</a></li>
@@ -164,6 +164,16 @@
                 <section>
                     <h3 id="introduction">Introduction to Kafka</h3>
                     <p><a href="https://kafka.apache.org/quickstart" target="_blank">Apache Kafka</a> is an open-source distributed event streaming platform initially developed by LinkedIn in 2011 and later open-sourced as an Apache Software Foundation project. It is designed to handle real-time data feeds, allowing for the building of robust and scalable streaming data pipelines. Kafka is widely used in various industries for applications such as real-time analytics, log aggregation, monitoring, and messaging.</p>
+
+                    <div class="box-background1">
+                        <h5>Apache Kafka in Layman Language</h5>
+                        <p>Apache Kafka is like a super-efficient postal system for digital messages. Imagine you have a bunch of mailmen (producers) who are constantly picking up messages from people and dropping them into different mailboxes (topics). These mailboxes are organized by subject, so all related messages go into the same mailbox.</p>
+
+                        <p>Now, there are other mailmen (consumers) who come to these mailboxes and pick up messages to deliver to the right people or systems. Kafka makes sure this process is fast, reliable, and can handle a huge number of messages without getting overwhelmed.</p>
+
+                        In short, Apache Kafka helps in moving lots of information from one place to another smoothly and quickly.
+                    </div>
+
                     <p> In Kafka, data communication revolves around the concepts of producers, topics, and consumers, which closely align with the pub/sub paradigm.</p>
                     <figure>
                         <img src="assets/img/data-engineering/kadka-producer-consumer.png" alt="" style="max-width: 50%; max-height: auto;">
@@ -197,17 +207,24 @@
                         <li><strong>Message Queuing:</strong> Kafka acts as a message queue, allowing services to publish messages (producing) to topics and consume messages (subscribing) from topics asynchronously. This decouples producers and consumers, enabling asynchronous and distributed communication.</li>
                         <li><strong>Scalability and Flexibility:</strong> Kafka's distributed architecture scales horizontally, allowing for the addition of new producers and consumers without impacting existing services. It provides flexibility in adding or removing services without disrupting the overall communication flow.</li>
                         <li><strong>Fault Tolerance and Durability:</strong> Kafka replicates data across multiple brokers, ensuring fault tolerance and data durability. If a broker or service fails, Kafka can continue to serve messages from replicated partitions, preventing data loss and maintaining system availability.</li>
-                        <li><strong>Stream Processing:</strong>Kafka supports stream processing capabilities, enabling real-time data processing and analytics on streaming data. Services can consume and process data in real-time, leading to timely insights and actions</li>
-                        <li><strong>Integration with Ecosystem:</strong>Kafka integrates seamlessly with various data processing frameworks and tools, such as Apache Spark, Apache Flink, and Apache Storm, enabling a rich ecosystem of data processing capabilities.</li>
+                        <li><strong>Stream Processing: </strong>Kafka supports stream processing capabilities, enabling real-time data processing and analytics on streaming data. Services can consume and process data in real-time, leading to timely insights and actions</li>
+                        <li><strong>Integration with Ecosystem: </strong>Kafka integrates seamlessly with various data processing frameworks and tools, such as Apache Spark, Apache Flink, and Apache Storm, enabling a rich ecosystem of data processing capabilities.</li>
                     </ul>
                     <p>By introducing Kafka as a central messaging backbone, the communication architecture becomes more resilient, scalable, and flexible. It addresses major issues such as point-to-point communication, scalability, fault tolerance, and data consistency, making the overall system more robust and reliable.</p>
 
                     <h4 id="components">Kafka components</h4>
-                    <p>Apache Kafka comprises several key components that work together to provide a distributed event streaming platform. </p>
+                    <p>Apache Kafka comprises several key components that work together to provide a distributed event streaming platform. 
+                        <div class="grey-box">
+                            <figure>
+                                <img src="assets/img/data-engineering/kafka-broker.png" alt="" style="max-width: 50%; max-height: auto;">
+                                <figcaption style="text-align: center;">Since Kafka is a distributed system, in such a scenario we can break Kakfa topic into multiple parts and distribute those parts into different machines. This is known as partioning and each part is called as partition. So whenever, a producer send a message then it can go and sit into any of the partions. So as soon as a message arrives in partion, a number is assigned to them and they are known as offset numbers. These messages will be consumed by consumer. If we have single consumer then he/she can consume from each and every partions. On such kind of systems, if just one user is consuming the messages/events then it can perform upto it's capacity. So what we can do, we can create n-number consumer instances. In this case, we can group some users with a group name. For example in a payment systems, we can create a group with 'payment_consumer_group' and 'transaction_group' etc. So in the case of 'payment_consumer_group', we can devide the work load to each and every consumer to achive better output. <strong>&#169; Image credit:</strong> <a href="index.html">Arun Kumar Pandey</a></figcaption>
+                            </figure>
+                        </div>
+                    </p>
                     <ol>
                         <li><strong>Publishers (Producers):</strong> Producers are responsible for publishing records to Kafka topics. They generate records containing a key, a value, and an optional timestamp and send them to Kafka brokers. Producers can choose the partition to which a record should be sent or rely on Kafka's default partitioning mechanism.</li>
                         <li><strong>Consumer:</strong> Consumers subscribe to Kafka topics to consume records from them. They read records from partitions in a topic and process them according to their application logic. Consumers can be grouped into consumer groups for parallel processing and load balancing.</li>
-                        <li><strong>Broker</strong> Kafka brokers are the fundamental building blocks of a Kafka cluster. They handle storage, replication, and serving of partitions of topics. Brokers receive messages from producers and deliver them to consumers. Kafka clusters typically consist of multiple brokers distributed across physical or virtual machines.</li>
+                        <li><strong>Broker</strong> Kafka brokers are the fundamental building blocks of a Kafka cluster. They handle storage, replication (it means, if replication factor is 3, then we are mentaining 3 copies of the partion), and serving of partitions of topics. Brokers receive messages from producers and deliver them to consumers. Kafka clusters typically consist of multiple brokers distributed across physical or virtual machines.</li>
                         <li><strong>Cluster:</strong> In Kafka, a cluster refers to a group of Kafka brokers working together to form a distributed messaging system. A Kafka cluster typically consists of multiple brokers, each running on separate physical or virtual machines. These brokers collaborate to store and serve data, handle client requests, and maintain cluster metadata. These are helpful when producer gernate a huge amount of data.</li>
                         <figure>
                             <img src="assets/img/data-engineering/kafka-cluster.png" alt="" style="max-width: 90%; max-height: auto;">
@@ -216,9 +233,18 @@
                         <li><strong>Topic:</strong> Topics represent streams of records, which are organized and categorized based on a common theme or subject. Producers publish records to topics, specifying the topic name to which the record should be sent. Consumers subscribe to topics to consume records from them.</li>
                         <li><strong>Partitions:</strong> Topics are divided into partitions, which are individual ordered sequences of records. Each partition can be hosted on multiple brokers for fault tolerance and scalability. Partitioning allows Kafka to parallelize data ingestion and consumption, enabling high throughput and efficient data processing.</li>
                         <figure>
-                            <img src="assets/img/data-engineering/kafka-broker.png" alt="" style="max-width: 50%; max-height: auto;">
-                            <figcaption style="text-align: center;">Since Kafka is a distributed system, in such a scenario we can break Kakfa topic into multiple parts and distribute those parts into different machines. This is known as partioning and each part is called as partition. So whenever, a producer send a message then it can go and sit into any of the partions. So as soon as a message arrives in partion, a number is assigned to them and they are known as offset numbers. These messages will be consumed by consumer. If we have single consumer then he/she can consume from each and every partions. On such kind of systems, if just one user is consuming the messages/events then it can perform upto it's capacity. So what we can do, we can create n-number consumer instances. In this case, we can group some users with a group name. For example in a payment systems, we can create a group with 'payment_consumer_group' and 'transaction_group' etc. So in the case of 'payment_consumer_group', we can devide the work load to each and every consumer to achive better output. <strong>&#169; Image credit:</strong> <a href="index.html">Arun Kumar Pandey</a></figcaption>
+                            <img src="assets/img/data-engineering/kafka-partition.png" alt="" style="max-width: 70%; max-height: auto;">
+                            <figcaption style="text-align: center;">So, here we have saved 2 more copies of a given partition on different systems. Therefore the replication factor is 3. Normally, we don't set a replication factor for a partition but we set it for a topic and it applies to all partitions within the topic. (<strong>&#169; Image credit:</strong> <a href="index.html">Arun Kumar Pandey</a>)</figcaption>
                         </figure>
+                        <li><strong>Replication factor: </strong>In Apache Kafka, topics are divided into partitions to enable parallel processing and scalability. Each partition is a separate log where messages are stored sequentially. Replication factor is the number of copies of a partition that are maintained in the clusters.
+                            <ul>
+                                <li>Kafka makes copies of partitions for fault tolerance through replication. Each partition is replicated across multiple Kafka brokers.</li>
+                                <li>The primary copy of a partition is called the leader, while the others are followers.</li>
+                                <li>The leader handles all read and write requests, and followers replicate the data from the leader.</li>
+                                <li>If the leader fails, a follower takes over as the new leader to ensure data availability and durability.</li>
+                            </ul>
+                            This mechanism ensures that even if a broker fails, the topic's data remains accessible and consistent.
+                        </li>
                         <li><strong>Offset:</strong> In Kafka, an offset represents the position of a consumer within a partition of a topic. It is a numeric value that uniquely identifies a message within the partition. Each message in a partition is assigned a sequential offset, starting from 0 for the first message and increasing incrementally for subsequent messages. Offsets allow consumers to keep track of which messages they have already consumed within a partition. This enables consumers to resume reading from where they left off in case of failures or restarts. Consumers use offsets to determine the next message they need to read from a partition. By maintaining the offset of the last processed message, consumers can retrieve subsequent messages for processing. Consumers can commit their current offset to Kafka to indicate that they have successfully processed messages up to that point. This commit is typically done atomically along with processing logic to ensure exactly-once processing semantics.</li>
                         <li><strong>Consumer Group: </strong> A consumer group is a logical grouping of consumers that jointly consume and process records from one or more partitions of a topic. Each partition within a topic is consumed by exactly one consumer within a consumer group, enabling parallel processing and load distribution.</li>
                         <li><strong>Zookeper:</strong> ZooKeeper is used by Kafka for managing cluster metadata, leader election, and synchronization. It maintains information about brokers, topics, partitions, and consumer group membership. While ZooKeeper was a critical component in earlier versions of Kafka, newer versions are gradually moving towards removing this dependency.</li>
@@ -228,6 +254,263 @@
                         </figure>
                     </ol>
 
+                    <h4 id="configuration">Key broker configurations</h4>
+                    In Apache Kafka, brokers are critical components that handle message storage, retrieval, and distribution across the cluster. Configuring Kafka brokers properly is essential for performance, scalability, and fault tolerance. Here are some key Kafka broker configurations:
+                    <ul>
+                        <li><strong>General Settings: </strong>
+                            <table>
+                                <tr>
+                                    <th>Configuration</th>
+                                    <th>Description</th>
+                                    <th>Example</th>
+                                </tr>
+                                <tr>
+                                    <td><strong>broker.id</strong></td>
+                                    <td>Unique identifier for each broker in the Kafka cluster. It's crucial for differentiating brokers, especially in clusters with multiple brokers.</td>
+                                    <td><code>broker.id=1</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>listeners</strong></td>
+                                    <td>Specifies the network interfaces and ports on which the broker listens for client requests (e.g., producers, consumers).</td>
+                                    <td><code>listeners=PLAINTEXT://localhost:9092</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>log.dirs</strong></td>
+                                    <td>Directories where Kafka stores partition data. Multiple directories can be specified for load balancing across disks.</td>
+                                    <td><code>log.dirs=/var/lib/kafka/data</code></td>
+                                </tr>
+                            </table>
+                        </li>
+                        <li><strong> Topic and Log Management: </strong>
+                            <table>
+                                <tr>
+                                    <th>Configuration</th>
+                                    <th>Description</th>
+                                    <th>Example</th>
+                                </tr>
+                                <tr>
+                                    <td><strong>num.partitions</strong></td>
+                                    <td>Default number of partitions per topic when a new topic is created without specifying the number of partitions.</td>
+                                    <td><code>num.partitions=3</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>log.retention.hours</strong></td>
+                                    <td>Time period for which Kafka retains messages. After this period, messages are eligible for deletion.</td>
+                                    <td><code>log.retention.hours=168</code> (7 days)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>log.segment.bytes</strong></td>
+                                    <td>Maximum size of a single log segment file. Once this size is reached, Kafka rolls over to a new segment file.</td>
+                                    <td><code>log.segment.bytes=1073741824</code> (1 GB)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>log.cleanup.policy</strong></td>
+                                    <td>Defines the cleanup policy for logs. Options are <code>delete</code> (removes old logs) and <code>compact</code> (log compaction for topics with keys).</td>
+                                    <td><code>log.cleanup.policy=delete</code></td>
+                                </tr>
+                            </table>
+                        </li>
+                        <li><strong>Replication and Fault Tolerance: </strong>
+                            <table>
+                                <tr>
+                                    <th>Configuration</th>
+                                    <th>Description</th>
+                                    <th>Example</th>
+                                </tr>
+                                <tr>
+                                    <td><strong>num.partitions</strong></td>
+                                    <td>Default number of partitions per topic when a new topic is created without specifying the number of partitions.</td>
+                                    <td><code>num.partitions=3</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>log.retention.hours</strong></td>
+                                    <td>Time period for which Kafka retains messages. After this period, messages are eligible for deletion.</td>
+                                    <td><code>log.retention.hours=168</code> (7 days)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>log.segment.bytes</strong></td>
+                                    <td>Maximum size of a single log segment file. Once this size is reached, Kafka rolls over to a new segment file.</td>
+                                    <td><code>log.segment.bytes=1073741824</code> (1 GB)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>log.cleanup.policy</strong></td>
+                                    <td>Defines the cleanup policy for logs. Options are <code>delete</code> (removes old logs) and <code>compact</code> (log compaction for topics with keys).</td>
+                                    <td><code>log.cleanup.policy=delete</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>default.replication.factor</strong></td>
+                                    <td>Default replication factor for topics when created. Ensures redundancy and fault tolerance.</td>
+                                    <td><code>default.replication.factor=3</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>min.insync.replicas</strong></td>
+                                    <td>Minimum number of in-sync replicas that must acknowledge a write for the write to be considered successful. Helps in ensuring data durability.</td>
+                                    <td><code>min.insync.replicas=2</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>unclean.leader.election.enable</strong></td>
+                                    <td>Determines if Kafka can elect an out-of-sync replica as leader in case of failure. Disabling this ensures data consistency but might reduce availability.</td>
+                                    <td><code>unclean.leader.election.enable=false</code></td>
+                                </tr>
+                            </table>
+                        </li>
+                        <li><strong>Performance Tuning: </strong>
+                            <table>
+                                <tr>
+                                    <th>Configuration</th>
+                                    <th>Description</th>
+                                    <th>Example</th>
+                                </tr>
+                                <tr>
+                                    <td><strong>num.partitions</strong></td>
+                                    <td>Default number of partitions per topic when a new topic is created without specifying the number of partitions.</td>
+                                    <td><code>num.partitions=3</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>log.retention.hours</strong></td>
+                                    <td>Time period for which Kafka retains messages. After this period, messages are eligible for deletion.</td>
+                                    <td><code>log.retention.hours=168</code> (7 days)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>log.segment.bytes</strong></td>
+                                    <td>Maximum size of a single log segment file. Once this size is reached, Kafka rolls over to a new segment file.</td>
+                                    <td><code>log.segment.bytes=1073741824</code> (1 GB)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>log.cleanup.policy</strong></td>
+                                    <td>Defines the cleanup policy for logs. Options are <code>delete</code> (removes old logs) and <code>compact</code> (log compaction for topics with keys).</td>
+                                    <td><code>log.cleanup.policy=delete</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>default.replication.factor</strong></td>
+                                    <td>Default replication factor for topics when created. Ensures redundancy and fault tolerance.</td>
+                                    <td><code>default.replication.factor=3</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>min.insync.replicas</strong></td>
+                                    <td>Minimum number of in-sync replicas that must acknowledge a write for the write to be considered successful. Helps in ensuring data durability.</td>
+                                    <td><code>min.insync.replicas=2</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>unclean.leader.election.enable</strong></td>
+                                    <td>Determines if Kafka can elect an out-of-sync replica as leader in case of failure. Disabling this ensures data consistency but might reduce availability.</td>
+                                    <td><code>unclean.leader.election.enable=false</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>num.network.threads</strong></td>
+                                    <td>Number of threads handling network requests. Adjust based on the expected load.</td>
+                                    <td><code>num.network.threads=3</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>num.io.threads</strong></td>
+                                    <td>Number of threads for disk I/O operations. Increasing this can improve performance if the broker handles heavy disk activity.</td>
+                                    <td><code>num.io.threads=8</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>socket.send.buffer.bytes</strong> and <strong>socket.receive.buffer.bytes</strong></td>
+                                    <td>Size of the TCP send and receive buffer sizes. These can be tuned based on network bandwidth and latency.</td>
+                                    <td><code>socket.send.buffer.bytes=102400</code>, <code>socket.receive.buffer.bytes=102400</code></td>
+                                </tr>
+                            </table>
+                        </li>
+                        <li><strong>Security: </strong>
+                            <table border="1">
+                                <thead>
+                                  <tr>
+                                    <th>Configuration</th>
+                                    <th>Description</th>
+                                    <th>Example</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>ssl.keystore.location</td>
+                                    <td>Path to the SSL keystore used for secure communication</td>
+                                    <td>/var/private/ssl/kafka.server.keystore.jks</td>
+                                  </tr>
+                                  <tr>
+                                    <td>ssl.keystore.password</td>
+                                    <td>Password for the SSL keystore</td>
+                                    <td>yourpassword</td>
+                                  </tr>
+                                  <tr>
+                                    <td>ssl.truststore.location</td>
+                                    <td>Path to the SSL truststore used to verify client certificates</td>
+                                    <td>/var/private/ssl/kafka.server.truststore.jks</td>
+                                  </tr>
+                                  <tr>
+                                    <td>ssl.truststore.password</td>
+                                    <td>Password for the SSL truststore</td>
+                                    <td>yourpassword</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                              
+                        </li>
+                        <li><strong>Monitoring and Metrics: </strong>
+                            <table border="1">
+                                <thead>
+                                  <tr>
+                                    <th>Configuration</th>
+                                    <th>Description</th>
+                                    <th>Example</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>metric.reporters</td>
+                                    <td>A list of classes used to report Kafka metrics. These can integrate with external monitoring systems like Prometheus or JMX.</td>
+                                    <td>metric.reporters=com.example.MyMetricsReporter</td>
+                                  </tr>
+                                  <tr>
+                                    <td>log.flush.interval.messages</td>
+                                    <td>Controls how frequently data is flushed to disk in terms of the number of messages. Lower intervals reduce the risk of data loss but can impact performance.</td>
+                                    <td>log.flush.interval.messages=10000</td>
+                                  </tr>
+                                  <tr>
+                                    <td>log.flush.interval.ms</td>
+                                    <td>Controls how frequently data is flushed to disk in terms of time interval. Lower intervals reduce the risk of data loss but can impact performance.</td>
+                                    <td>log.flush.interval.ms=1000</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                              
+                        </li>
+                        <li><strong>Zookeeper Configuration: </strong>
+                            <table border="1">
+                                <thead>
+                                  <tr>
+                                    <th>Configuration</th>
+                                    <th>Description</th>
+                                    <th>Example</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>metric.reporters</td>
+                                    <td>A list of classes used to report Kafka metrics. These can integrate with external monitoring systems like Prometheus or JMX.</td>
+                                    <td>metric.reporters=com.example.MyMetricsReporter</td>
+                                  </tr>
+                                  <tr>
+                                    <td>log.flush.interval.messages</td>
+                                    <td>Controls how frequently data is flushed to disk in terms of the number of messages. Lower intervals reduce the risk of data loss but can impact performance.</td>
+                                    <td>log.flush.interval.messages=10000</td>
+                                  </tr>
+                                  <tr>
+                                    <td>log.flush.interval.ms</td>
+                                    <td>Controls how frequently data is flushed to disk in terms of time interval. Lower intervals reduce the risk of data loss but can impact performance.</td>
+                                    <td>log.flush.interval.ms=1000</td>
+                                  </tr>
+                                  <tr>
+                                    <td>zookeeper.connect</td>
+                                    <td>Zookeeper connection string, which includes Zookeeper hosts and ports. Used by brokers to connect to the Zookeeper ensemble.</td>
+                                    <td>zookeeper.connect=localhost:2181</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                              
+                        </li>
+                    </ul>
 
                     
                     <!------------------------>

@@ -1550,8 +1550,8 @@ ul.upper-alpha {
   border-radius: 8px;
 }
 
-.custom-box {
-  background-color: #02ff9e25; /* Light grey background */
+.box-background1 {
+  background-color: #eaeee07a; /* Light grey background */
   padding: 20px; /* Padding inside the box */
   border: 1px solid #ccc; /* Grey border */
   border-radius: 5px; /* Rounded corners */
