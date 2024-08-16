@@ -202,21 +202,21 @@
                                     By default, the logging module logs messages with a severity level of <code>WARNING</code> or above unless configured otherwise.
                                     <p><b>Basic Example: </b></p>
                                     <pre class="language-python"><code>
-                                        import logging
+                            import logging
 
-                                        logging.basicConfig(level=logging.INFO)
-                                        
-                                        def divide(a, b):
-                                            logging.info(f"Dividing {a} by {b}")
-                                            try:
-                                                result = a / b
-                                            except ZeroDivisionError:
-                                                logging.error("Attempted to divide by zero")
-                                                return None
-                                            else:
-                                                return result
-                                        
-                                        result = divide(10, 0)  # This will trigger an error log
+                            logging.basicConfig(level=logging.INFO)
+                            
+                            def divide(a, b):
+                                logging.info(f"Dividing {a} by {b}")
+                                try:
+                                    result = a / b
+                                except ZeroDivisionError:
+                                    logging.error("Attempted to divide by zero")
+                                    return None
+                                else:
+                                    return result
+                            
+                            result = divide(10, 0)  # This will trigger an error log
                                     </code></pre>
                                 </p>
                                 </li>
@@ -224,61 +224,61 @@
                                     <ul>
                                         <li><b>Configuring Log Output Format: </b>You can customize the log message format using the <code>format</code> argument in <code>basicConfig()</code>.
                                             <pre class="language-python"><code>
-                                                import logging
+                            import logging
 
-                                                logging.basicConfig(level=logging.DEBUG,
-                                                                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-                                                
-                                                logging.info("This is an info message with a custom format")
+                            logging.basicConfig(level=logging.DEBUG,
+                                                format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+                            
+                            logging.info("This is an info message with a custom format")
                                             </code></pre>
                                         </li>
                                         <li><b>Logging to a File: </b>You can configure logging to output messages to a file instead of the console.
                                             <pre class="language-python"><code>
-                                                import logging
+                            import logging
 
-                                                logging.basicConfig(filename='app.log', filemode='w', level=logging.DEBUG,
-                                                                    format='%(name)s - %(levelname)s - %(message)s')
-                                                
-                                                logging.debug("This message will be logged to a file")
-                                                logging.info("This is another message logged to the file")
+                            logging.basicConfig(filename='app.log', filemode='w', level=logging.DEBUG,
+                                                format='%(name)s - %(levelname)s - %(message)s')
+                            
+                            logging.debug("This message will be logged to a file")
+                            logging.info("This is another message logged to the file")
                                             </code></pre>
                                         </li>
                                         <li><b>Adding Multiple Handlers: </b>Handlers are responsible for sending the log messages to the specified destination, such as the console, files, or external systems. You can configure multiple handlers to direct logs to multiple destinations.
-                                            <pre><code>
-                                                import logging
+                                            <pre class="language-python"><code>
+                            import logging
 
-                                                # Create a logger
-                                                logger = logging.getLogger('my_logger')
-                                                logger.setLevel(logging.DEBUG)
-                                                
-                                                # Create console handler and set level to debug
-                                                console_handler = logging.StreamHandler()
-                                                console_handler.setLevel(logging.DEBUG)
-                                                
-                                                # Create file handler and set level to warning
-                                                file_handler = logging.FileHandler('my_app.log')
-                                                file_handler.setLevel(logging.WARNING)
-                                                
-                                                # Create a formatter and set it for both handlers
-                                                formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-                                                console_handler.setFormatter(formatter)
-                                                file_handler.setFormatter(formatter)
-                                                
-                                                # Add handlers to the logger
-                                                logger.addHandler(console_handler)
-                                                logger.addHandler(file_handler)
-                                                
-                                                # Example log messages
-                                                logger.debug("This is a debug message")
-                                                logger.info("This is an info message")
-                                                logger.warning("This is a warning message")
-                                                logger.error("This is an error message")
-                                                logger.critical("This is a critical message")
+                            # Create a logger
+                            logger = logging.getLogger('my_logger')
+                            logger.setLevel(logging.DEBUG)
+                            
+                            # Create console handler and set level to debug
+                            console_handler = logging.StreamHandler()
+                            console_handler.setLevel(logging.DEBUG)
+                            
+                            # Create file handler and set level to warning
+                            file_handler = logging.FileHandler('my_app.log')
+                            file_handler.setLevel(logging.WARNING)
+                            
+                            # Create a formatter and set it for both handlers
+                            formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+                            console_handler.setFormatter(formatter)
+                            file_handler.setFormatter(formatter)
+                            
+                            # Add handlers to the logger
+                            logger.addHandler(console_handler)
+                            logger.addHandler(file_handler)
+                            
+                            # Example log messages
+                            logger.debug("This is a debug message")
+                            logger.info("This is an info message")
+                            logger.warning("This is a warning message")
+                            logger.error("This is an error message")
+                            logger.critical("This is a critical message")
                                             </code></pre>
                                             where:
                                             <ul>
                                                 <li>The console handler will log messages of all levels to the console.</li>
-                                                <li>The file handler will log messages of level WARNING and above to the file my_app.log.</li>
+                                                <li>The file handler will log messages of level <code>WARNING</code> and above to the file <code>my_app.log</code>.</li>
                                             </ul>
                                             <li><b>Loggers, Handlers, and Formatters: </b>
                                                 <ul>
@@ -286,30 +286,30 @@
                                                     <li><b>Handler:</b> Directs the log messages to the appropriate destination (e.g., console, file).</li>
                                                     <li><b>Formatter:</b> Defines the format of the log messages.</li>
                                                 </ul>
-                                                <pre><code>
-                                                    import logging
+                                                <pre class="language-python"><code>
+                                        import logging
 
-                                                    # Logger configuration
-                                                    logger = logging.getLogger('example_logger')
-                                                    logger.setLevel(logging.DEBUG)
-                                                    
-                                                    # Handler configuration
-                                                    handler = logging.FileHandler('example.log')
-                                                    handler.setLevel(logging.DEBUG)
-                                                    
-                                                    # Formatter configuration
-                                                    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-                                                    handler.setFormatter(formatter)
-                                                    
-                                                    # Add the handler to the logger
-                                                    logger.addHandler(handler)
-                                                    
-                                                    # Example usage
-                                                    logger.info("This is an info message")
+                                        # Logger configuration
+                                        logger = logging.getLogger('example_logger')
+                                        logger.setLevel(logging.DEBUG)
+                                        
+                                        # Handler configuration
+                                        handler = logging.FileHandler('example.log')
+                                        handler.setLevel(logging.DEBUG)
+                                        
+                                        # Formatter configuration
+                                        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+                                        handler.setFormatter(formatter)
+                                        
+                                        # Add the handler to the logger
+                                        logger.addHandler(handler)
+                                        
+                                        # Example usage
+                                        logger.info("This is an info message")
                                                 </code></pre>
                                             </li>
-                                            <li><b>Rotating Log Files: </b>For long-running applications, log files can become very large. Python’s logging.handlers module provides a RotatingFileHandler that can rotate log files based on size or time.
-                                                <pre><code>
+                                            <li><b>Rotating Log Files: </b>For long-running applications, log files can become very large. Python’s <code>logging.handlers</code> module provides a <code>RotatingFileHandler</code> that can rotate log files based on size or time.
+                                                <pre class="language-python"><code>
                                                     import logging
                                                     from logging.handlers import RotatingFileHandler
                                                     
@@ -333,13 +333,13 @@
                                 </li>
                                 <li><b>Logging Best Practices: </b>
                                     <ul>
-                                        <li>Use the Appropriate Logging Level: Choose the appropriate logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL) based on the importance of the message.</li>
-                                        <li>Avoid Using Print Statements for Logging: Use the logging module instead of print statements for better control and flexibility.</li>
-                                        <li>Configure Logging Early in the Program: Set up logging configurations at the start of your program to ensure consistent logging throughout.</li>
-                                        <li>Use Logging for Exception Handling: Log exceptions to capture stack traces and error details for debugging.</li>
+                                        <li><b>Use the Appropriate Logging Level:</b> Choose the appropriate logging level (<code>DEBUG</code>, <code>INFO</code>, <code>WARNING</code>, <code>ERROR</code>, <code>CRITICAL</code>) based on the importance of the message.</li>
+                                        <li><b>Avoid Using Print Statements for Logging:</b> Use the logging module instead of print statements for better control and flexibility.</li>
+                                        <li><b>Configure Logging Early in the Program:</b> Set up logging configurations at the start of your program to ensure consistent logging throughout.</li>
+                                        <li><b>Use Logging for Exception Handling:</b> Log exceptions to capture stack traces and error details for debugging.</li>
                                     </ul>
                                     <p><b>Example: Logging in Exception Handling</b></p>
-                                    <pre><code>
+                                    <pre class="language-python"><code>
                                         import logging
 
                                         logging.basicConfig(level=logging.ERROR)
@@ -349,21 +349,14 @@
                                         except ZeroDivisionError as e:
                                             logging.error("Exception occurred", exc_info=True)
                                     </code></pre>
+                                    This will log the exception details, including the stack trace, which is useful for debugging.
                                 </li>
-                                <li><b></b></li>
-                                <li><b></b></li>
-                                <li><b></b></li>
                             </ul>
                         </li>
-                        <li><b></b></li>
-                        <li><b></b></li>
-                        <li><b></b></li>
-                        <li><b></b></li>
                     </ol>
+                    Logging is a crucial part of developing reliable, maintainable, and scalable software. Python’s logging module provides a robust and flexible framework for handling logging in applications. By understanding and utilizing logging, you can track your application's behavior, troubleshoot issues, and ensure smoother operation in production environments.
                     
 
-
-    
 
                 </section>
 
@@ -373,16 +366,7 @@
                 <section id="reference">
                     <h3>References</h3>
                     <ol>
-                        <li><a href="https://www.youtube.com/watch?v=dq-ZACSt_gA&t=28s" target="_blank">Youtube Kafka tutorial videos (I specially followed this one. Great playlist).</a></li>
-                        <li><a href="https://kafka.apache.org/documentation/" target="_blank">Apache</a></li>
-                        <li><a href="https://spark.apache.org/documentation.html" target="_blank"> Official Documentation</a></li>
-                        <li><a href="https://www.databricks.com/learn/training/login" target="_blank">Databricks Learning Academy</a></li>
-                        <li><a href="https://sparkbyexamples.com/" target="_blank">Spark by Examples</a></li>
-                        <li><a href="https://www.datacamp.com/tutorial/pyspark-tutorial-getting-started-with-pyspark" target="_blank">Datacamp tutorial</a>.</li>
-                        <li>For databricks, you can look at tutorial videos on youtube at <a href="https://www.youtube.com/watch?v=ChISx0-cMpU" target="_blank">youtube video by Bryan Cafferky</a>, 
-                            writer of the book "Master Azure Databricks". A great playlist for someone who just want to learn about the big data analytics at Databricks Azure cloud platform.</li>
-                        <li>See the video for <a href="https://www.youtube.com/watch?v=_C8kWso4ne4" target="_blank">pyspark basics by Krish Naik</a>. Great video for starter.</li>
-                        <li><a href="https://www.youtube.com/watch?v=QLGrLFOzMRw" target="_blank">Great youtube on Apache spark</a> one premise working.</li>
+                        <li>Udemy playlist on advanced python by Krish Naik</li>
                     </ol> 
                 </section>
 
