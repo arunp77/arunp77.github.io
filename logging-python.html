@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Logging in python</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <!-- Favicons -->
+    <link href="assets/img/Favicon-1.png" rel="icon">
+    <link href="assets/img/Favicon-1.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Creating a python code section-->
+    <link rel="stylesheet" href="assets/css/prism.css">
+    <script src="assets/js/prism.js"></script>
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <!-- To set the icon, visit https://fontawesome.com/account-->
+    <script src="https://kit.fontawesome.com/5d25c1efd3.js" crossorigin="anonymous"></script>
+    <!-- end of icon-->
+
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <!-- =======================================================
+    * Template Name: iPortfolio
+    * Updated: Sep 18 2023 with Bootstrap v5.3.2
+    * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+
+<body>
+
+    <!-- ======= Mobile nav toggle button ======= -->
+    <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+    <!-- ======= Header ======= -->
+    <header id="header">
+    <div class="d-flex flex-column">
+        <div class="profile">
+            <img src="assets/img/myphoto.jpeg" alt="" class="img-fluid rounded-circle">
+            <h1 class="text-light"><a href="index.html">Arun</a></h1>
+            <div class="social-links mt-3 text-center">
+                <a href="https://www.linkedin.com/in/arunp77/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                <a href="https://github.com/arunp77" target="_blank" class="github"><i class="bx bxl-github"></i></a>
+                <a href="https://twitter.com/arunp77_" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="https://www.instagram.com/arunp77/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="https://arunp77.medium.com/" target="_blank" class="medium"><i class="bx bxl-medium"></i></a>
+            </div>
+        </div>
+
+        <nav id="navbar" class="nav-menu navbar">
+            <ul>
+                <li><a href="index.html#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+                <li><a href="index.html#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
+                <li><a href="index.html#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+                <li><a href="index.html#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+                <li><a href="index.html#skills-and-tools" class="nav-link scrollto"><i class="bx bx-wrench"></i> <span>Skills and Tools</span></a></li>
+                <!-- <li><a href="index.html#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li>-->
+                <li><a href="index.html#professionalcourses" class="nav-link scrollto"><i class="bx bx-book-alt"></i> <span>Professional Certification</span></a></li>
+                <li><a href="index.html#publications" class="nav-link scrollto"><i class="bx bx-news"></i> <span>Publications</span></a></li>
+                <li><a href="index.html#extra-curricular" class="nav-link scrollto"><i class="bx bx-rocket"></i> <span>Extra-Curricular Activities</span></a></li>
+                <li><a href="index.html#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+            </ul>
+        </nav><!-- .nav-menu -->
+    </div>
+    </header><!-- End Header -->
+
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs"> 
+        <div class="container">
+    
+            <div class="d-flex justify-content-between align-items-center">
+            <h2>Python</h2>
+            <ol>
+                <li><a href="portfolio-details.html" class="clickable-box">Content section</a></li>
+                <li><a href="index.html#portfolio" class="clickable-box">Portfolio section</a></li>
+            </ol>
+            </div>
+    
+        </div>
+        </section><!-- End Breadcrumbs -->
+
+        <!------  right dropdown menue ------->
+        <div class="right-side-list">
+            <div class="dropdown">
+                <button class="dropbtn"><strong>Shortcuts:</strong></button>
+                <div class="dropdown-content">
+                    <ul>
+                        <li><a href="cloud-compute.html"><i class="fas fa-cloud"></i> Cloud</a></li>
+                        <li><a href="AWS-GCP.html"><i class="fas fa-cloud"></i> AWS-GCP</a></li>
+                        <li><a href="amazon-s3.html"><i class="fas fa-cloud"></i> AWS S3</a></li>
+                        <li><a href="ec2-confi.html"><i class="fas fa-server"></i> EC2</a></li>
+                        <li><a href="Docker-Container.html"><i class="fab fa-docker" style="color: rgb(29, 27, 27);"></i> Docker</a></li>
+                        <li><a href="Jupyter-nifi.html"><i class="fab fa-python" style="color: rgb(34, 32, 32);"></i> Jupyter-nifi</a></li>
+                        <li><a href="snowflake-task-stream.html"><i class="fas fa-snowflake"></i> Snowflake</a></li>
+                        <li><a href="data-model.html"><i class="fas fa-database"></i> Data modeling</a></li>
+                        <li><a href="sql-basics.html"><i class="fas fa-table"></i> QL</a></li>
+                        <li><a href="sql-basic-details.html"><i class="fas fa-database"></i> SQL</a></li>
+                        <li><a href="Bigquerry-sql.html"><i class="fas fa-database"></i> Bigquery</a></li>
+                        <li><a href="scd.html"><i class="fas fa-archive"></i> SCD</a></li>
+                        <li><a href="sql-project.html"><i class="fas fa-database"></i> SQL project</a></li>
+                            <!-- Add more subsections as needed -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======= Portfolio Details Section ======= -->
+        <section id="portfolio-details" class="portfolio-details">
+            <div class="container">
+                <div class="row gy-4">
+                    <h1>Logging in Python</h1>
+                    <div class="col-lg-8">
+                        <div class="portfolio-details-slider swiper">
+                            <div class="swiper-wrapper align-items-center"> 
+                                <figure>
+                                    <img src="assets/img/machine-ln/in-depth-python-logging.png" alt="" style="max-width: 100%; max-height: auto;">
+                                    <figcaption style="text-align: center;"></figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 grey-box">
+                        <div class="section-title">
+                            <h3>Table of Contents</h3>
+                            <ol>
+                                <li><a href="#introduction">Introduction</a></li>
+                                <ul>
+                                    <li><a href="#why">Why IV&V is Important?</a></li>
+                                    <li><a href="#key">Key benefits of IV&V include</a></li>
+                                    <li><a href="#component">Components of IV&V</a></li>
+                                    <li><a href="#process">The IV&V Process</a></li>
+                                    <li><a href="#relationship">The Relationship Between Verification and Validation</a></li>
+                                    <li><a href="#importance-software">The Importance of Software Verification and Validation</a></li>
+                                    <li><a href="#method">IV&V in Different Software Development Methodologies</a></li>
+                                    <li><a href="#tools">Tools and Techniques Used in IV&V</a></li>
+                                    <li><a href="#challanges">Challenges in Implementing IV&V</a></li>
+                                    <li><a href="#best">Best Practices for IV&V</a></li>
+                                </ul>
+                                <li><a href="#reference">Reference</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <section>
+                    <h2 id="introduction">Introduction</h2>
+                    Logging is an essential aspect of software development that helps track events that happen when software runs. Python's <code>logging</code> module provides a flexible framework for emitting log messages from Python programs. By using logging, you can gain insights into your application's behavior, diagnose problems, and audit operations.
+
+                    <ol>
+                        <li><b>Why Use Logging?</b>
+                            <ul>
+                                <li><b>Debugging:</b> Logs help track down bugs by providing detailed information about program execution.</li>
+                                <li><b>Monitoring:</b> Logs can be used to monitor application behavior over time.</li>
+                                <li><b>Auditing:</b> Logs provide a record of activities, which is essential for auditing and compliance.</li>
+                                <li><b>Error Reporting:</b> Logs capture errors and exceptions, which helps in understanding failures and fixing them.</li>
+                            </ul>
+                        </li>
+                        <li><b>Basics of Python Logging: </b>
+                            <ul>
+                                <li><b>mporting the Logging Module: </b>To start using logging, you need to import Python's built-in <code>logging</code> module: <code>import logging</code></li>
+                                <li><b>Basic Logging Configuration: </b>The simplest way to log messages is by configuring the logging system with basic settings using <code>logging.basicConfig()</code>.
+                                    <pre class="language-python"><code>
+                                        import logging
+
+                                        logging.basicConfig(level=logging.DEBUG)
+                                        logging.debug("This is a debug message")
+                                        logging.info("This is an info message")
+                                        logging.warning("This is a warning message")
+                                        logging.error("This is an error message")
+                                        logging.critical("This is a critical message")
+                                    </code></pre>
+                                </li>
+                                <li><b>Logging Levels: </b>Logging levels determine the severity of the events being logged. The standard levels, in increasing order of severity, are:
+                                    <ul>
+                                        <li><code>DEBUG</code>: Detailed information, typically of interest only when diagnosing problems.</li>
+                                        <li><code>INFO</code>: Confirmation that things are working as expected.</li>
+                                        <li><code>WARNING</code>: An indication that something unexpected happened, or indicative of some problem in the near future (e.g., ‘disk space low’). The software is still working as expected.</li>
+                                        <li><code>ERROR</code>: Due to a more serious problem, the software has not been able to perform some function.</li>
+                                        <li><code>CRITICAL</code>: A very serious error, indicating that the program itself may be unable to continue running.</li>
+                                    </ul>
+                                    By default, the logging module logs messages with a severity level of <code>WARNING</code> or above unless configured otherwise.
+                                    <p><b>Basic Example: </b></p>
+                                    <pre class="language-python"><code>
+                                        import logging
+
+                                        logging.basicConfig(level=logging.INFO)
+                                        
+                                        def divide(a, b):
+                                            logging.info(f"Dividing {a} by {b}")
+                                            try:
+                                                result = a / b
+                                            except ZeroDivisionError:
+                                                logging.error("Attempted to divide by zero")
+                                                return None
+                                            else:
+                                                return result
+                                        
+                                        result = divide(10, 0)  # This will trigger an error log
+                                    </code></pre>
+                                </p>
+                                </li>
+                                <li><b>Advanced Logging Configuration: </b>
+                                    <ul>
+                                        <li><b>Configuring Log Output Format: </b>You can customize the log message format using the <code>format</code> argument in <code>basicConfig()</code>.
+                                            <pre class="language-python"><code>
+                                                import logging
+
+                                                logging.basicConfig(level=logging.DEBUG,
+                                                                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+                                                
+                                                logging.info("This is an info message with a custom format")
+                                            </code></pre>
+                                        </li>
+                                        <li><b>Logging to a File: </b>You can configure logging to output messages to a file instead of the console.
+                                            <pre class="language-python"><code>
+                                                import logging
+
+                                                logging.basicConfig(filename='app.log', filemode='w', level=logging.DEBUG,
+                                                                    format='%(name)s - %(levelname)s - %(message)s')
+                                                
+                                                logging.debug("This message will be logged to a file")
+                                                logging.info("This is another message logged to the file")
+                                            </code></pre>
+                                        </li>
+                                        <li><b>Adding Multiple Handlers: </b>Handlers are responsible for sending the log messages to the specified destination, such as the console, files, or external systems. You can configure multiple handlers to direct logs to multiple destinations.
+                                            <pre><code>
+                                                import logging
+
+                                                # Create a logger
+                                                logger = logging.getLogger('my_logger')
+                                                logger.setLevel(logging.DEBUG)
+                                                
+                                                # Create console handler and set level to debug
+                                                console_handler = logging.StreamHandler()
+                                                console_handler.setLevel(logging.DEBUG)
+                                                
+                                                # Create file handler and set level to warning
+                                                file_handler = logging.FileHandler('my_app.log')
+                                                file_handler.setLevel(logging.WARNING)
+                                                
+                                                # Create a formatter and set it for both handlers
+                                                formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+                                                console_handler.setFormatter(formatter)
+                                                file_handler.setFormatter(formatter)
+                                                
+                                                # Add handlers to the logger
+                                                logger.addHandler(console_handler)
+                                                logger.addHandler(file_handler)
+                                                
+                                                # Example log messages
+                                                logger.debug("This is a debug message")
+                                                logger.info("This is an info message")
+                                                logger.warning("This is a warning message")
+                                                logger.error("This is an error message")
+                                                logger.critical("This is a critical message")
+                                            </code></pre>
+                                            where:
+                                            <ul>
+                                                <li>The console handler will log messages of all levels to the console.</li>
+                                                <li>The file handler will log messages of level WARNING and above to the file my_app.log.</li>
+                                            </ul>
+                                            <li><b>Loggers, Handlers, and Formatters: </b>
+                                                <ul>
+                                                    <li><b>Logger:</b> The entry point for the logging system. Each logger can have multiple handlers.</li>
+                                                    <li><b>Handler:</b> Directs the log messages to the appropriate destination (e.g., console, file).</li>
+                                                    <li><b>Formatter:</b> Defines the format of the log messages.</li>
+                                                </ul>
+                                                <pre><code>
+                                                    import logging
+
+                                                    # Logger configuration
+                                                    logger = logging.getLogger('example_logger')
+                                                    logger.setLevel(logging.DEBUG)
+                                                    
+                                                    # Handler configuration
+                                                    handler = logging.FileHandler('example.log')
+                                                    handler.setLevel(logging.DEBUG)
+                                                    
+                                                    # Formatter configuration
+                                                    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+                                                    handler.setFormatter(formatter)
+                                                    
+                                                    # Add the handler to the logger
+                                                    logger.addHandler(handler)
+                                                    
+                                                    # Example usage
+                                                    logger.info("This is an info message")
+                                                </code></pre>
+                                            </li>
+                                            <li><b>Rotating Log Files: </b>For long-running applications, log files can become very large. Python’s logging.handlers module provides a RotatingFileHandler that can rotate log files based on size or time.
+                                                <pre><code>
+                                                    import logging
+                                                    from logging.handlers import RotatingFileHandler
+                                                    
+                                                    handler = RotatingFileHandler('app.log', maxBytes=2000, backupCount=5)
+                                                    logger = logging.getLogger('my_logger')
+                                                    logger.setLevel(logging.DEBUG)
+                                                    logger.addHandler(handler)
+                                                    
+                                                    # Example log messages to generate file rotation
+                                                    for i in range(100):
+                                                        logger.debug(f"This is log message {i}")
+                                                </code></pre>
+                                                where:
+                                                <ul>
+                                                    <li><code>maxBytes=2000</code>: The log file will rotate when it reaches 2000 bytes.</li>
+                                                    <li><code>backupCount=5</code>: Keeps the last 5 log files as backups.</li>
+                                                </ul>
+                                            </li>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><b>Logging Best Practices: </b>
+                                    <ul>
+                                        <li>Use the Appropriate Logging Level: Choose the appropriate logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL) based on the importance of the message.</li>
+                                        <li>Avoid Using Print Statements for Logging: Use the logging module instead of print statements for better control and flexibility.</li>
+                                        <li>Configure Logging Early in the Program: Set up logging configurations at the start of your program to ensure consistent logging throughout.</li>
+                                        <li>Use Logging for Exception Handling: Log exceptions to capture stack traces and error details for debugging.</li>
+                                    </ul>
+                                    <p><b>Example: Logging in Exception Handling</b></p>
+                                    <pre><code>
+                                        import logging
+
+                                        logging.basicConfig(level=logging.ERROR)
+                                        
+                                        try:
+                                            result = 10 / 0
+                                        except ZeroDivisionError as e:
+                                            logging.error("Exception occurred", exc_info=True)
+                                    </code></pre>
+                                </li>
+                                <li><b></b></li>
+                                <li><b></b></li>
+                                <li><b></b></li>
+                            </ul>
+                        </li>
+                        <li><b></b></li>
+                        <li><b></b></li>
+                        <li><b></b></li>
+                        <li><b></b></li>
+                    </ol>
+                    
+
+
+    
+
+                </section>
+
+                
+
+                <!-------Reference ------->
+                <section id="reference">
+                    <h3>References</h3>
+                    <ol>
+                        <li><a href="https://www.youtube.com/watch?v=dq-ZACSt_gA&t=28s" target="_blank">Youtube Kafka tutorial videos (I specially followed this one. Great playlist).</a></li>
+                        <li><a href="https://kafka.apache.org/documentation/" target="_blank">Apache</a></li>
+                        <li><a href="https://spark.apache.org/documentation.html" target="_blank"> Official Documentation</a></li>
+                        <li><a href="https://www.databricks.com/learn/training/login" target="_blank">Databricks Learning Academy</a></li>
+                        <li><a href="https://sparkbyexamples.com/" target="_blank">Spark by Examples</a></li>
+                        <li><a href="https://www.datacamp.com/tutorial/pyspark-tutorial-getting-started-with-pyspark" target="_blank">Datacamp tutorial</a>.</li>
+                        <li>For databricks, you can look at tutorial videos on youtube at <a href="https://www.youtube.com/watch?v=ChISx0-cMpU" target="_blank">youtube video by Bryan Cafferky</a>, 
+                            writer of the book "Master Azure Databricks". A great playlist for someone who just want to learn about the big data analytics at Databricks Azure cloud platform.</li>
+                        <li>See the video for <a href="https://www.youtube.com/watch?v=_C8kWso4ne4" target="_blank">pyspark basics by Krish Naik</a>. Great video for starter.</li>
+                        <li><a href="https://www.youtube.com/watch?v=QLGrLFOzMRw" target="_blank">Great youtube on Apache spark</a> one premise working.</li>
+                    </ol> 
+                </section>
+
+                <hr>
+            
+                <div style="background-color: #f0f0f0; padding: 15px; border-radius: 5px;">
+
+                    <h3>Some other interesting things to know:</h3>
+                    <ul style="list-style-type: disc; margin-left: 30px;">
+                        <li>Visit my website on <a href="sql-project.html">For Data, Big Data, Data-modeling, Datawarehouse, SQL, cloud-compute.</a></li>
+                        <li>Visit my website on <a href="Data-engineering.html">Data engineering</a></li>
+                    </ul>
+                </div>
+                <p></p>
+
+                <div class="navigation">
+                    
+                    <a href="index.html#portfolio" class="clickable-box">
+                        <span class="arrow-left">Portfolio section</span>
+                    </a>
+                    
+                    <a href="portfolio-details.html" class="clickable-box">
+                        <span class="arrow-right">Content</span>
+                    </a>
+
+                </div>
+            </div>
+        </section><!-- End Portfolio Details Section -->
+    </main><!-- End #main --
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+    <div class="container">
+        <div class="copyright">
+        &copy; Copyright <strong><span>Arun</span></strong>
+        </div>
+    </div>
+    </footer><!-- End  Footer -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/typed.js/typed.umd.js"></script>
+    <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        hljs.initHighlightingOnLoad();
+    });
+    </script>
+
+</body>
+
+</html> 
