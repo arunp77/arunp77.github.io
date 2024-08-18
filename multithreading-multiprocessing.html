@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Multithreading and multiprocessing in python</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <!-- Favicons -->
+    <link href="assets/img/Favicon-1.png" rel="icon">
+    <link href="assets/img/Favicon-1.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Creating a python code section-->
+    <link rel="stylesheet" href="assets/css/prism.css">
+    <script src="assets/js/prism.js"></script>
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <!-- To set the icon, visit https://fontawesome.com/account-->
+    <script src="https://kit.fontawesome.com/5d25c1efd3.js" crossorigin="anonymous"></script>
+    <!-- end of icon-->
+
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <!-- =======================================================
+    * Template Name: iPortfolio
+    * Updated: Sep 18 2023 with Bootstrap v5.3.2
+    * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+
+<body>
+
+    <!-- ======= Mobile nav toggle button ======= -->
+    <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+    <!-- ======= Header ======= -->
+    <header id="header">
+    <div class="d-flex flex-column">
+        <div class="profile">
+            <img src="assets/img/myphoto.jpeg" alt="" class="img-fluid rounded-circle">
+            <h1 class="text-light"><a href="index.html">Arun</a></h1>
+            <div class="social-links mt-3 text-center">
+                <a href="https://www.linkedin.com/in/arunp77/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                <a href="https://github.com/arunp77" target="_blank" class="github"><i class="bx bxl-github"></i></a>
+                <a href="https://twitter.com/arunp77_" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="https://www.instagram.com/arunp77/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="https://arunp77.medium.com/" target="_blank" class="medium"><i class="bx bxl-medium"></i></a>
+            </div>
+        </div>
+
+        <nav id="navbar" class="nav-menu navbar">
+            <ul>
+                <li><a href="index.html#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+                <li><a href="index.html#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
+                <li><a href="index.html#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+                <li><a href="index.html#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+                <li><a href="index.html#skills-and-tools" class="nav-link scrollto"><i class="bx bx-wrench"></i> <span>Skills and Tools</span></a></li>
+                <!-- <li><a href="index.html#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li>-->
+                <li><a href="index.html#professionalcourses" class="nav-link scrollto"><i class="bx bx-book-alt"></i> <span>Professional Certification</span></a></li>
+                <li><a href="index.html#publications" class="nav-link scrollto"><i class="bx bx-news"></i> <span>Publications</span></a></li>
+                <li><a href="index.html#extra-curricular" class="nav-link scrollto"><i class="bx bx-rocket"></i> <span>Extra-Curricular Activities</span></a></li>
+                <li><a href="index.html#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+            </ul>
+        </nav><!-- .nav-menu -->
+    </div>
+    </header><!-- End Header -->
+
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs"> 
+        <div class="container">
+    
+            <div class="d-flex justify-content-between align-items-center">
+            <h2>Python</h2>
+            <ol>
+                <li><a href="portfolio-details.html" class="clickable-box">Content section</a></li>
+                <li><a href="index.html#portfolio" class="clickable-box">Portfolio section</a></li>
+            </ol>
+            </div>
+    
+        </div>
+        </section><!-- End Breadcrumbs -->
+
+        <!------  right dropdown menue ------->
+        <div class="right-side-list">
+            <div class="dropdown">
+                <button class="dropbtn"><strong>Shortcuts:</strong></button>
+                <div class="dropdown-content">
+                    <ul>
+                        <li><a href="cloud-compute.html"><i class="fas fa-cloud"></i> Cloud</a></li>
+                        <li><a href="AWS-GCP.html"><i class="fas fa-cloud"></i> AWS-GCP</a></li>
+                        <li><a href="amazon-s3.html"><i class="fas fa-cloud"></i> AWS S3</a></li>
+                        <li><a href="ec2-confi.html"><i class="fas fa-server"></i> EC2</a></li>
+                        <li><a href="Docker-Container.html"><i class="fab fa-docker" style="color: rgb(29, 27, 27);"></i> Docker</a></li>
+                        <li><a href="Jupyter-nifi.html"><i class="fab fa-python" style="color: rgb(34, 32, 32);"></i> Jupyter-nifi</a></li>
+                        <li><a href="snowflake-task-stream.html"><i class="fas fa-snowflake"></i> Snowflake</a></li>
+                        <li><a href="data-model.html"><i class="fas fa-database"></i> Data modeling</a></li>
+                        <li><a href="sql-basics.html"><i class="fas fa-table"></i> QL</a></li>
+                        <li><a href="sql-basic-details.html"><i class="fas fa-database"></i> SQL</a></li>
+                        <li><a href="Bigquerry-sql.html"><i class="fas fa-database"></i> Bigquery</a></li>
+                        <li><a href="scd.html"><i class="fas fa-archive"></i> SCD</a></li>
+                        <li><a href="sql-project.html"><i class="fas fa-database"></i> SQL project</a></li>
+                            <!-- Add more subsections as needed -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======= Portfolio Details Section ======= -->
+        <section id="portfolio-details" class="portfolio-details">
+            <div class="container">
+                <div class="row gy-4">
+                    <h1>Multithreading and multiprocessing in python</h1>
+                    <div class="col-lg-8">
+                        <div class="portfolio-details-slider swiper">
+                            <div class="swiper-wrapper align-items-center"> 
+                                <figure>
+                                    <img src="assets/img/data-engineering/Multithreading-vs-Multiprocessing-1.jpg" alt="" style="max-width: 100%; max-height: auto;">
+                                    <figcaption style="text-align: center;"></figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 grey-box">
+                        <div class="section-title">
+                            <h3>Table of Contents</h3>
+                            <ol>
+                                <li><a href="#introduction">Introduction</a></li>
+                                <li><a href="#project">Project: To-Do List Application</a></li>
+                                <li><a href="#reference">Reference</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <section>
+                    <h2 id="introduction">Introduction</h2>
+                    Multithreading and multiprocessing are two techniques used to achieve concurrent execution in Python. Although they share the common goal of improving performance by leveraging multiple tasks simultaneously, they are fundamentally different in how they manage and utilize system resources.
+
+                    <div class="box" style="background-color: lightgreen;">
+                        &#128712; A processor (or CPU for Central Processing Unit), is one of the essential electronic components found in our computers and is responsible for executing instructions. A processor is mainly defined by 2 characteristics: its frequency and its number of cores. The frequency associated with the processor corresponds to the number of cycles it can perform per second. A processor can have one or more cores, which correspond to computing units. A multi-core processor will be able to execute several tasks simultaneously, if these tasks allow it, by distributing the tasks by available core.
+                    </div>
+                    <div class="box" style="background-color: lightgreen;">
+                        &#128712; The RAM for Random Access Memory is the random access memory of a computer. It is a temporary storage space. The system accesses this memory instantaneously which allows the interface to run smoothly.
+                    </div>
+                    
+                    <ol>
+                        <li><strong>Multithreading:</strong>
+                            <ul>
+                                <li>Multithreading involves running multiple threads in a single process. Threads share the same memory space and resources within the process.</li>
+                                <li>Python's threading module is used for creating and managing threads.</li>
+                                <li>It's suitable for I/O-bound tasks where the threads spend most of their time waiting for I/O operations to complete (e.g., network requests, file I/O, etc.).</li>
+                                <li>Due to Python's Global Interpreter Lock (GIL), multithreading might not be as effective for CPU-bound tasks that require intensive computation because only one thread can execute Python bytecode at a time.</li>
+                                <li>Example: concurrent downloading of files from the internet.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Multiprocessing:</strong>
+                            <ul>
+                                <li>Multiprocessing involves running multiple processes, each with its own memory space and resources. Processes do not share memory by default and communicate via inter-process communication (IPC) mechanisms.</li>
+                                <li>Python's multiprocessing module is used for creating and managing processes.</li>
+                                <li>It's suitable for CPU-bound tasks where parallelism can be achieved by distributing the workload across multiple processes.</li>
+                                <li>Since each process has its own GIL, multiprocessing can effectively utilize multiple CPU cores.</li>
+                                <li>Example: parallelizing a CPU-intensive task such as image processing.</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+
+
+                    
+
+                </section>
+
+                
+
+                <!-------Reference ------->
+                <section id="reference">
+                    <h3>References</h3>
+                    <ol>
+                        <li>Udemy playlist on advanced python by Krish Naik</li>
+                        <li>For more details, please chekout the <a href="https://docs.python.org/3/library/logging.html" target="_blank">official documentation</a>.</li>
+                    </ol> 
+                </section>
+
+                <hr>
+            
+                <div style="background-color: #f0f0f0; padding: 15px; border-radius: 5px;">
+
+                    <h3>Some other interesting things to know:</h3>
+                    <ul style="list-style-type: disc; margin-left: 30px;">
+                        <li>Visit my website on <a href="sql-project.html">For Data, Big Data, Data-modeling, Datawarehouse, SQL, cloud-compute.</a></li>
+                        <li>Visit my website on <a href="Data-engineering.html">Data engineering</a></li>
+                    </ul>
+                </div>
+                <p></p>
+
+                <div class="navigation">
+                    
+                    <a href="index.html#portfolio" class="clickable-box">
+                        <span class="arrow-left">Portfolio section</span>
+                    </a>
+                    
+                    <a href="portfolio-details.html" class="clickable-box">
+                        <span class="arrow-right">Content</span>
+                    </a>
+
+                </div>
+            </div>
+        </section><!-- End Portfolio Details Section -->
+    </main><!-- End #main --
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+    <div class="container">
+        <div class="copyright">
+        &copy; Copyright <strong><span>Arun</span></strong>
+        </div>
+    </div>
+    </footer><!-- End  Footer -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/typed.js/typed.umd.js"></script>
+    <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        hljs.initHighlightingOnLoad();
+    });
+    </script>
+
+</body>
+
+</html> 
