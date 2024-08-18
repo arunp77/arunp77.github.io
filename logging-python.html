@@ -179,6 +179,14 @@
                                         logging.error("This is an error message")
                                         logging.critical("This is a critical message")
                                     </code></pre>
+                                    we will get following, if we run the script: 
+                                    <pre><code>
+                                        DEBUG:root:This is a debug message
+                                        INFO:root:This is an info message
+                                        WARNING:root:This is a warning message
+                                        ERROR:root:This is an error message
+                                        CRITICAL:root:This is a critical message
+                                    </code></pre>
                                 </li>
                                 <li><b>Logging Levels: </b>Logging levels determine the severity of the events being logged. The standard levels, in increasing order of severity, are:
                                     <ul>
@@ -190,7 +198,7 @@
                                     </ul>
                                     By default, the logging module logs messages with a severity level of <code>WARNING</code> or above unless configured otherwise.
                                     <p><b>Basic Example: </b></p>
-                                    <pre class="language-python"><code>
+                        <pre class="language-python"><code>
                             import logging
 
                             logging.basicConfig(level=logging.INFO)
@@ -206,7 +214,11 @@
                                     return result
                             
                             result = divide(10, 0)  # This will trigger an error log
-                                    </code></pre>
+                        </code></pre>
+                        <pre>
+                            INFO:root:Dividing 10 by 0
+                            ERROR:root:Attempted to divide by zero
+                        </pre>
                                 </p>
                                 </li>
                                 <li><b>Advanced Logging Configuration: </b>
@@ -220,13 +232,20 @@
                             
                             logging.info("This is an info message with a custom format")
                                             </code></pre>
+                            <pre>
+                                INFO:root:This is an info message with a custom format
+                            </pre>
                                         </li>
                                         <li><b>Logging to a File: </b>You can configure logging to output messages to a file instead of the console.
                                             <pre class="language-python"><code>
                             import logging
 
-                            logging.basicConfig(filename='app.log', filemode='w', level=logging.DEBUG,
-                                                format='%(name)s - %(levelname)s - %(message)s')
+                            logging.basicConfig(
+                                filename='app.log', 
+                                filemode='w', 
+                                level=logging.DEBUG,
+                                format='%(name)s - %(levelname)s - %(message)s'
+                                )
                             
                             logging.debug("This message will be logged to a file")
                             logging.info("This is another message logged to the file")
@@ -469,6 +488,7 @@
                     <h3>References</h3>
                     <ol>
                         <li>Udemy playlist on advanced python by Krish Naik</li>
+                        <li>For more details, please chekout the <a href="https://docs.python.org/3/library/logging.html" target="_blank">official documentation</a>.</li>
                     </ol> 
                 </section>
 
