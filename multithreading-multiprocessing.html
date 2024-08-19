@@ -162,11 +162,23 @@
                     <div class="box" style="background-color: rgba(255, 0, 55, 0.548);">
                         &#128712; The RAM for Random Access Memory is the random access memory of a computer. It is a temporary storage space. The system accesses this memory instantaneously which allows the interface to run smoothly.
                     </div>
+                    <div class="box" style="background-color: rgba(255, 238, 0, 0.534);">
+                        
+                        <p><b>Global Interpreter Lock (GIL): </b> Python's standard implementation, CPython, has a Global Interpreter Lock (GIL) that prevents multiple native threads from executing Python bytecodes at once. This means that even though a program has multiple threads, only one thread can execute Python code at a time. This significantly limits the performance gains of multithreading for CPU-bound tasks in Python.</p>
+                        <p><strong>I/O-Bound Tasks: </strong> Tasks that involve a lot of waiting, such as reading or writing files, making network requests, or interacting with databases. </p>
+                    </div>
+
                     <div class="box" style="background-color: rgba(136, 255, 0, 0.534);">
                         <p><strong>What Are Threads?</strong> </p>
-                        A thread is a smaller unit of a process that can be scheduled to run by the operating system. When a program starts, it runs as a single process that contains at least one thread — the main thread. This main thread is where the program begins execution. However, a process can create additional threads, and each of these threads can run code independently and concurrently within the same process.
-                        <p><strong>I/O-Bound Tasks: </strong> Tasks that involve a lot of waiting, such as reading or writing files, making network requests, or interacting with databases.</p>
-                        <p><b>Global Interpreter Lock (GIL): </b> Python's standard implementation, CPython, has a Global Interpreter Lock (GIL) that prevents multiple native threads from executing Python bytecodes at once. This means that even though a program has multiple threads, only one thread can execute Python code at a time. This significantly limits the performance gains of multithreading for CPU-bound tasks in Python.</p>
+                        A thread is a smaller unit of a process that can be scheduled to run by the operating system. When a program starts, it runs as a single process that contains at least one thread — the main thread. This main thread is where the program begins execution. However, a process can create additional threads, and each of these threads can run code independently and concurrently within the same process. The key characteristics of threads are:
+                        
+                        <ul>
+                            <li><b>Shared Memory Space: </b>All threads within a process share the same memory space. This means they can access and modify the same variables and data structures. While this can be beneficial for sharing information between threads, it also requires careful management to avoid issues like race conditions, where two or more threads attempt to modify the same data simultaneously.</li>
+                            <li><b>Independent Execution: </b>Each thread runs independently of the others. This means threads can perform different tasks simultaneously, which can improve the efficiency and responsiveness of a program.</li>
+                            <li><b>Lightweight: </b>Compared to processes, threads are relatively lightweight. Creating a thread consumes fewer resources than creating a new process because threads within the same process share many resources like memory and file handles.</li>
+                            <li><b>Concurrency: </b>Threads allow a program to perform multiple operations concurrently. For example, in a web server, one thread might handle client requests, while another handles logging, and yet another thread manages database queries, all simultaneously.</li>
+                            <li><b>Context Switching: </b>The operating system can switch between different threads, a process known as context switching. This allows for the concurrent execution of threads, even on a single-core processor, by quickly switching between threads.</li>
+                        </ul>
                         
                     </div>
                     
@@ -262,10 +274,108 @@
                         </li>
                     </ul>
 
-                    
-                    
+                    <h5 id="creating-threads1">Creating and Using Threads in Python</h5>
+                    Python provides the threading module to work with threads. Below is a simple example of how to create and start a thread:
+                    <pre class="language-python"><code>
+                        import threading
 
-                    
+                        def print_numbers():
+                            for i in range(10):
+                                print(i)
+                        
+                        # Create a thread object
+                        thread = threading.Thread(target=print_numbers)
+                        
+                        # Start the thread
+                        thread.start()
+                        
+                        # Wait for the thread to finish
+                        thread.join()                        
+                    </code></pre>
+
+                    <h5 id="threads2">Thread Synchronization</h5>
+                    Due to the shared memory space, threads may encounter issues like race conditions when they try to access shared resources simultaneously. To avoid these issues, Python provides several synchronization primitives, such as Locks, RLocks, Semaphores, Events, and Conditions.
+                    <ul>
+                        <li><b>Lock:</b> A Lock object is a basic synchronization primitive. It ensures that only one thread can access a particular section of code at a time.
+                            <pre class="language-python"><code>
+                                import threading
+
+                                lock = threading.Lock()
+                                
+                                def safe_increment(counter):
+                                    with lock:
+                                        counter.value += 1
+                            </code></pre>
+                        </li>
+                        <li><b>RLock: </b>A reentrant lock (RLock) allows a thread to acquire the same lock multiple times without blocking itself.</li>
+                    </ul>
+
+
+                    <h5 id="threads3">Thread Pools</h5>
+                    For managing a pool of threads, Python provides <code>concurrent.futures.ThreadPoolExecutor</code>, which makes it easier to work with multiple threads.
+                    <pre class="language-python"><code>
+                        from concurrent.futures import ThreadPoolExecutor
+
+                        def square(n):
+                            return n * n
+                        
+                        with ThreadPoolExecutor(max_workers=4) as executor:
+                            results = executor.map(square, [1, 2, 3, 4])
+                            print(list(results))
+                    </code></pre>
+
+
+
+                    <!---------------------------------------------->
+                    <h2 id="multiprocessing">Multiprocessing</h2>
+                    Multiprocessing involves running multiple processes simultaneously. Each process has its own memory space and Python interpreter, which means there is no GIL limitation. This makes multiprocessing more suitable for CPU-bound tasks where multiple processes can run in parallel on different CPU cores.
+
+                    <h5 id="processes1">Creating and Using Processes in Python</h5>
+                    Python provides the multiprocessing module to create and manage processes. Each process runs independently, and processes do not share memory space, which avoids issues like race conditions but requires inter-process communication (IPC) to share data.
+
+                    <pre class="language-python"><code>
+                        import multiprocessing
+
+                        def print_numbers():
+                            for i in range(10):
+                                print(i)
+                        
+                        # Create a process object
+                        process = multiprocessing.Process(target=print_numbers)
+                        
+                        # Start the process
+                        process.start()
+                        
+                        # Wait for the process to finish
+                        process.join()
+                    </code></pre>
+
+                    <h5 id="processes2">Inter-Process Communication (IPC)</h5>
+                    Since processes do not share memory, Python provides several IPC mechanisms:
+                    <ul>
+                        <li><b>Queues: </b>Used to pass messages or data between processes.</li>
+                        <li><b>Pipes: </b>A Pipe provides a two-way communication channel between two processes.</li>
+                        <li><b>Shared Memor: </b>Allows sharing of variables between processes using <code>multiprocessing.Value</code> or <code>multiprocessing.Array</code>.</li>
+                    </ul>
+
+                    <h5 id="processes3">Process Pools</h5>
+                    Similar to thread pools, Python provides <code>concurrent.futures.ProcessPoolExecutor</code> for managing a pool of worker processes.
+                    <pre class="language-python"><code>
+                        from concurrent.futures import ProcessPoolExecutor
+
+                        def square(n):
+                            return n * n
+                        
+                        with ProcessPoolExecutor(max_workers=4) as executor:
+                            results = executor.map(square, [1, 2, 3, 4])
+                            print(list(results))
+                    </code></pre>
+
+                    <h5 id="process4">Synchronization in Multiprocessing</h5>
+                    Even though processes do not share memory, they might need to coordinate actions. Python provides synchronization primitives similar to those in threading, such as Locks, Events, Semaphores, and Conditions, but adapted for inter-process use.
+
+
+
 
                 </section>
 
