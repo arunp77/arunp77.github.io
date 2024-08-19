@@ -375,6 +375,13 @@
                     Even though processes do not share memory, they might need to coordinate actions. Python provides synchronization primitives similar to those in threading, such as Locks, Events, Semaphores, and Conditions, but adapted for inter-process use.
 
 
+                    <h3 id="choosing">Choosing Between Multithreading and Multiprocessing</h3>
+                    <ul>
+                        <li>Use Multithreading when your application is I/O-bound, meaning that the task spends most of its time waiting for I/O operations like file handling, network communication, etc.</li>
+                        <li>Use Multiprocessing when your application is CPU-bound, meaning that the task spends most of its time performing computations, and you want to leverage multiple CPU cores for parallel execution.</li>
+                    </ul>
+
+
 
 
                 </section>
