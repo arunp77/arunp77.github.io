@@ -162,6 +162,13 @@
                     <div class="box" style="background-color: rgba(255, 0, 55, 0.548);">
                         &#128712; The RAM for Random Access Memory is the random access memory of a computer. It is a temporary storage space. The system accesses this memory instantaneously which allows the interface to run smoothly.
                     </div>
+                    <div class="box" style="background-color: rgba(136, 255, 0, 0.534);">
+                        <p><strong>What Are Threads?</strong> </p>
+                        A thread is a smaller unit of a process that can be scheduled to run by the operating system. When a program starts, it runs as a single process that contains at least one thread — the main thread. This main thread is where the program begins execution. However, a process can create additional threads, and each of these threads can run code independently and concurrently within the same process.
+                        <p><strong>I/O-Bound Tasks: </strong> Tasks that involve a lot of waiting, such as reading or writing files, making network requests, or interacting with databases.</p>
+                        <p><b>Global Interpreter Lock (GIL): </b> Python's standard implementation, CPython, has a Global Interpreter Lock (GIL) that prevents multiple native threads from executing Python bytecodes at once. This means that even though a program has multiple threads, only one thread can execute Python code at a time. This significantly limits the performance gains of multithreading for CPU-bound tasks in Python.</p>
+                        
+                    </div>
                     
                     <ol>
                         <li><strong>Multithreading:</strong>
@@ -228,7 +235,35 @@
                          </tr>
                     </table>
 
+                    <br>
+                    <!------------------------------------------------->
+                    <h2 id="multithreading">What is Multithreading?</h2>
+                    <p>Multithreading allows a program to run multiple threads concurrently, which is particularly useful in scenarios where the program needs to perform multiple tasks simultaneously without requiring significant CPU resources.</p>
+                    <p>In multithreading, each thread operates independently but shares the same memory space with other threads within the same process. This is especially beneficial for I/O-bound tasks (e.g., file I/O, network operations), where the program often spends time waiting for operations to complete. While one thread is waiting for I/O, other threads can continue executing, leading to better overall performance and reduced idle time.</p>
+                    <!------------------------------------------------>
+                    <ul>
+                        <li><b>When to use Multithreading? </b>Multithreading is most beneficial in the following scenarios:
+                            <ul>
+                                <li><b>Multiple Tasks Simultaneously: </b> When the program needs to handle several tasks at once without significant CPU load.</li>
+                                <li><b>I/O-Bound Operations: </b>In tasks where the program spends a lot of time waiting for I/O operations to complete, such as reading/writing files, network communication, or database interactions.</li>
+                            </ul>
+                        </li>
+                        <li><b>Why Use Multithreading?: </b> 
+                            <ul>
+                                <li><b>Efficency: </b> Multithreading improves efficiency by allowing other threads to execute while one thread is waiting, minimizing idle time.</li>
+                                <li><b>Improved Responsiveness: </b> In applications like GUIs, multithreading can keep the interface responsive while performing background tasks.</li>
+                            </ul>
+                        </li>
+                        <li><b>Example: </b>
+                            <ul>
+                                <li><b>Web Scraping:</b> Fetching data from multiple web pages simultaneously.</li>
+                                <li><b>Network Operations:</b> Handling multiple client connections on a server, downloading files, or sending requests to APIs.</li>
+                            </ul>
+                        </li>
+                    </ul>
 
+                    
+                    
 
                     
 
