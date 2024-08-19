@@ -184,6 +184,50 @@
                         </li>
                     </ol>
 
+                    <h4 id="comparision">Comparison Between Multithreading and Multiprocessing</h4>
+                    <table>
+                        <tr>
+                            <th>Aspect</th>
+                            <th>Multithreading</th>
+                            <th>Multiprocessing</th>
+                        </tr>
+                         <tr>
+                            <td>Memory Usage</td>
+                            <td>Less memory usage/Shared memory space</td>
+                            <td>More memory usage/Separate memory space for each process</td>
+                         </tr>
+                         <tr>
+                            <td>Concurrency Type</td>
+                            <td>Concurrent threads within a single process</td>
+                            <td>Parallel processes with separate memory spaces</td>
+                         </tr>
+                         <tr>
+                            <td>GIL Impact</td>
+                            <td>Affected by GIL (only one thread executes Python code at a time)</td>
+                            <td>No GIL; multiple processes can run Python code simultaneously</td>
+                         </tr>
+                         <tr>
+                            <td>Best For</td>
+                            <td>I/O-bound tasks (e.g., web scraping, file I/O)</td>
+                            <td>CPU-bound tasks (e.g., heavy computations)</td>
+                         </tr>
+                         <tr>
+                            <td>Synchronization</td>
+                            <td>More complex due to shared state</td>
+                            <td>Less complex but requires IPC for communication</td>
+                         </tr>
+                         <tr>
+                            <td>Overhead</td>
+                            <td>Lower overhead, but limited by GIL</td>
+                            <td>Higher overhead due to process creation and management, but no GIL limitation</td>
+                         </tr>
+                         <tr>
+                            <td>Fault Isolation</td>
+                            <td>A thread crash can affect the entire process</td>
+                            <td>A process crash is isolated to that process</td>
+                         </tr>
+                    </table>
+
 
 
                     
