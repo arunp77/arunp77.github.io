@@ -162,7 +162,7 @@
 
             <section>
             <h3 id="introduction">Getting started with Flask</h3>
-            <a href="https://flask.palletsprojects.com/en/2.0.x/" target="_blank">Flask</a> is a famous Python framework for building web applications. Released in 2011, Flask has established itself as a reference for creating an API on Python. It stands out from <a href="https://www.djangoproject.com/" target="_blank">Django</a>, another famous framework used in Python, because of its lightness. Indeed, Flask is considered as a micro framework, you do not have to define the databases to use or the formatting. However with Flask, you create the core of your web application, then according to your need you add different services. That's why, in a few lines, we can easily display a Hello World on a web page without using an HTML file.
+            <a href="https://flask.palletsprojects.com/en/2.0.x/" target="_blank">Flask</a> is a famous Python framework for building web applications. Released in 2011, Flask has established itself as a reference for creating an API on Python. It stands out from <a href="https://www.djangoproject.com/" target="_blank">Django</a>, another famous framework used in Python, because of its lightness. Indeed, Flask is considered as a micro framework, you do not have to define the databases to use or the formatting. However with Flask, you create the core of your web application, then according to your need you add different services. That's why, in a few lines, we can easily display a Hello World on a web page without using an HTML file. (For more details on the flask, please checkout the repostiroy: <a href="https://github.com/arunp77/Data-engineering-tools/tree/main/Flask-application" target="_blank">Flask repository</a>.)
 
             <!--------------->
             <h4 id="steps">Flask application</h4>
@@ -174,6 +174,8 @@
                     <pre><code class="language-python">
                         from flask import Flask
 
+                        # Now create a instance of the FLask class, which will be the WGSI 
+                        # (WGSI: Web server Gateway interface) application
                         app = Flask(__name__)
                         
                         @app.route("/")
