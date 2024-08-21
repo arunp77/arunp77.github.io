@@ -181,6 +181,10 @@
                         @app.route("/")
                         def hello():
                             return "Hello World !"
+
+                                                
+                        if __name__=="__main__":
+                        app.run(debug=True)
                     </code></pre>
                     where the directory structure of the project is:
                     <pre class="language-python">
@@ -189,7 +193,7 @@
                         ├── first_app.py
                         └── .env
                     </pre>
-                    <p>Let's see in detail what we have done here. First, we instantiated an object of the Flask class. Then, with this object named app, we use it in the decorator <code>@app.route("/")</code>, to create a route (endpoint). Going to <code>/</code>, we get the result of the <code>hello</code> function, which simply returns a <code>Hello World !</code>>. Thus, we can create several routes using the `<code>app</code>' variable.</p>
+                    <p>Let's see in detail what we have done here. First, we instantiated an object of the Flask class. Then, with this object named app, we use it in the decorator <code>@app.route("/")</code>, to create a route (endpoint). Going to <code>/</code>, we get the result of the <code>hello</code> function, which simply returns a <code>Hello World !</code>. Thus, we can create several routes using the `<code>app</code>' variable.</p>
                     <p>Then set the environment variable FLASK_APP with the name of your python file : <code>export FLASK_APP=first_app.py </code> or you can also save the environment variables in <code>.env</code> file and Load the environment variables from <code>.env</code> file using: <code>load_dotenv()</code> (For better understanding, you can see my <a href="https://github.com/arunp77/Data-engineering-tools/tree/main/FLask" target="_blank">github repo</a>). To run the application, use following command in your terminal:</p>
                     <pre><code class="language-bash">flask run --host=0.0.0.0</code></pre>
                     On a web browser go to the address <code>ip_address:5000</code> (localhost:5000 if you are using your home machine), you should see a <code>"Hello World !"</code> message. Port <code>5000</code> is used by default on Flask, you can change the port via the <code>--port</code> flag when using <code>flask run</code>.
@@ -252,6 +256,7 @@
                     </code></pre>
                 
                 <li><strong>Error Handler Functions:</strong> Error handler functions handle exceptions or errors that occur during the processing of a request. Flask provides decorators such as <code>@app.errorhandler()</code> to define error handlers for specific HTTP status codes or exception types. These functions return customized error responses to the client.</li>
+                
                     <pre><code class="language-python">
                         from flask import Flask, jsonify
 
@@ -266,7 +271,7 @@
                     </code></pre>
                 
                 <li><strong>Before and After Request Functions:</strong> Flask allows developers to execute code before and after each request. Functions decorated with <code>@app.before_request</code> are executed before any request is processed, while functions decorated with <code>@app.after_request</code> are executed after a response has been generated. These functions are commonly used for tasks such as setting up database connections or cleaning up resources.
-                    <pre><code class="language-python">
+                    <pre class="language-python"><code>
                         from flask import Flask, g
 
                         app = Flask(__name__)
