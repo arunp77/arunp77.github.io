@@ -166,16 +166,140 @@
 
                 <section>
                     <h2 id="introduction">Introduction</h2>
+                    Code testing or software testing is a fundamental part of a modern software development cycle that ensures the quality, functionality, and performance of the software. Through code testing, you can verify that a given software project works as expected and fulfills its requirements. Testing enforces code quality and robustness.
+                    
+                    <div class="box-background1">
+                        IV&V stands for Independent Verification and Validation. 
+                    </div>
+                    <ul>
+                        <li>The code testing is done during the development stage of an application or project. You’ll write tests that isolate sections of your code and verify its correctness. A well-written battery or suite of tests can also serve as documentation for the project at hand.</li>
+                        <li><b>Verification</b> and <b>validation</b> are commonly used terms in software testing, but they are frequently confused with each other. This is due to unclear definitions, various interpretations in the labor market and the use of these terms interchangeably in different contexts.</li>
+                        <li>There are several types of testing methods used at different stages of the software development lifecycle. Below, I provide a detailed explanation of various testing types, organized into categories based on their purpose and timing in the development process.</li>
+                    </ul>
+                    <figure>
+                        <img src="assets/img/data-engineering/software_testing.png" alt="" style="max-width: 100%; max-height: auto;">
+                        <figcaption style="text-align: center;">Credit: Arun Kumar Pandey</figcaption>
+                    </figure>
+
+                    <h3>What is Verification in software testing? </h3>
+                    Verification in software testing is the process of checking documents, design, code and program to control whether the software has been built according to requirements. The primary role of the verification system is to guarantee the quality of the application, architecture, design, etc. As part of the software verification process, activities such as reviews here are undertaken.
+
+                    <h5>Features of the verification process</h5>
+                    The main features of the verification process include:
+                    <ul>
+                        <li>inspecting documents, design, code and program</li>
+                        <li>it does not require code execution</li>
+                        <li>checks if software conforms to specifications</li>
+                        <li>finds errors early in the development cycle</li>
+                        <li>the target area here is the application and software architecture, complete design, specification, high-level design, and databases</li>
+                        <li>it is carried out by the QA team, which makes sure that the software complies with the requirements in the SRS document</li>
+                        <li>it uses methods such as instruction, reviews, inspections, and document checking</li>
+                        <li>verification happens before validation</li>
+                    </ul>
+
+                    <h3>What is validation in software testing?</h3>
+                    Validation in software testing is an effective mechanism for testing and verifying that software adequately meets customer needs. Thanks to this mechanism, it is possible to assess whether the software fulfills its purpose in a suitable environment. During the validation process, activities such as unit testing, integration testing, system testing and user acceptance testing can be performed.
+
+                    <h5>Features of the validation process</h5>
+                    The main features of the validation process are as follows:
+                    <ul>
+                        <li>it is a dynamic mechanism for testing and validating the actual product</li>
+                        <li>it always involves code execution</li>
+                        <li>it uses methods such as black-box testing, white-box testing, and non-functional testing</li>
+                        <li>it can detect bugs, failures and other inaccuracies that the verification process cannot catch</li>
+                        <li>the target is the actual product</li>
+                        <li>it is performed with the help of a qualified team of testers</li>
+                        <li>checks if the software meets the customer’s requirements and expectations</li>
+                        <li>follows verification</li>
+                    </ul>
+
+                    <h4>Key differences between verification and validation</h4>
+                    Validation and verification are both critical processes in software development, but they serve different purposes and occur at different stages in the development lifecycle. Below is a detailed table highlighting the key differences between these two processes:
+
+                    <table border="1" cellpadding="10" cellspacing="0">
+                        <tr>
+                            <th>Aspect</th>
+                            <th>Verification</th>
+                            <th>Validation</th>
+                        </tr>
+                        <tr>
+                            <td>Purpose</td>
+                            <td>Ensures the product is being built correctly (according to specifications).</td>
+                            <td>Ensures the right product is built (meets user needs and requirements).</td>
+                        </tr>
+                        <tr>
+                            <td>Focus</td>
+                            <td>Process-oriented; focuses on whether the software meets specified requirements.</td>
+                            <td>Product-oriented; focuses on whether the software fulfills the intended use.</td>
+                        </tr>
+                        <tr>
+                            <td>Timing</td>
+                            <td>Performed during the development phase.</td>
+                            <td>Performed after the development phase, typically during testing or pre-release.</td>
+                        </tr>
+                        <tr>
+                            <td>Activities Involved</td>
+                            <td>Inspections, reviews, walkthroughs, desk-checking, and static analysis.</td>
+                            <td>Functional testing, user acceptance testing (UAT), system testing, integration testing.</td>
+                        </tr>
+                        <tr>
+                            <td>Methodology</td>
+                            <td>Generally involves static methods (does not require code execution).</td>
+                            <td>Involves dynamic methods (requires code execution).</td>
+                        </tr>
+                        <tr>
+                            <td>Documentation</td>
+                            <td>Verification of design documents, specifications, architecture, and code.</td>
+                            <td>Validation of the final product against user requirements and real-world scenarios.</td>
+                        </tr>
+                        <tr>
+                            <td>Responsibility</td>
+                            <td>Typically handled by developers, QA engineers, and technical reviewers.</td>
+                            <td>Typically handled by testers, QA teams, and end-users (for UAT).</td>
+                        </tr>
+                        <tr>
+                            <td>Questions Addressed</td>
+                            <td>"Are we building the product right?"</td>
+                            <td>"Are we building the right product?"</td>
+                        </tr>
+                        <tr>
+                            <td>Outcome</td>
+                            <td>Identifies issues in the process and ensures the product conforms to specifications.</td>
+                            <td>Confirms the product works as intended and satisfies customer requirements.</td>
+                        </tr>
+                        <tr>
+                            <td>Examples</td>
+                            <td>Code review, design review, unit testing, static code analysis.</td>
+                            <td>Beta testing, user acceptance testing, system integration testing.</td>
+                        </tr>
+                        <tr>
+                            <td>Tools Used</td>
+                            <td>Static analysis tools, design review checklists, code coverage tools.</td>
+                            <td>Testing frameworks, test management tools, automated testing tools.</td>
+                        </tr>
+                        <tr>
+                            <td>Error Detection</td>
+                            <td>Detects errors early in the development process.</td>
+                            <td>Detects errors that are closer to the user's experience and final product usage.</td>
+                        </tr>
+                        <tr>
+                            <td>Cost of Error Fixing</td>
+                            <td>Lower, as issues are found early in the lifecycle.</td>
+                            <td>Higher, as issues are found later in the lifecycle and may require rework.</td>
+                        </tr>
+                    </table>
                     
 
 
 
+                    <p><b>Summary:</b></p>
+                    <ul>
+                        <li><strong>Verification</strong> is about ensuring the software is built correctly according to specifications through a series of process-oriented checks, often using static methods.</li>
+                        <li><strong>Validation</strong> is about ensuring the final product meets user needs, involving dynamic methods and testing against real-world scenarios.</li>
+                    </ul>
 
 
 
-                    <div class="box-background1">
-                        IV&V stands for Independent Verification and Validation. 
-                    </div>
                     It's a process used in software development to ensure that a product meets the specified requirements and performs its intended functions. The "independent" aspect means that the verification and validation (V&V) are conducted by a separate entity from the development team to provide an objective assessment.
 
                     <h4 id="why">Why IV&V is Important?</h4>
