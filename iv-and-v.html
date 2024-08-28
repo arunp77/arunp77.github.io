@@ -146,18 +146,14 @@
                             <h3>Table of Contents</h3>
                             <ol>
                                 <li><a href="#introduction">Introduction</a></li>
-                                <ul>
-                                    <li><a href="#why">Why IV&V is Important?</a></li>
-                                    <li><a href="#key">Key benefits of IV&V include</a></li>
-                                    <li><a href="#component">Components of IV&V</a></li>
-                                    <li><a href="#process">The IV&V Process</a></li>
-                                    <li><a href="#relationship">The Relationship Between Verification and Validation</a></li>
-                                    <li><a href="#importance-software">The Importance of Software Verification and Validation</a></li>
-                                    <li><a href="#method">IV&V in Different Software Development Methodologies</a></li>
-                                    <li><a href="#tools">Tools and Techniques Used in IV&V</a></li>
-                                    <li><a href="#challanges">Challenges in Implementing IV&V</a></li>
-                                    <li><a href="#best">Best Practices for IV&V</a></li>
-                                </ul>
+                                <li><a href="#what-software">What is Verification in software testing?</a></li>
+                                <li><a href="#verification-features">Features of the validation process</a></li>
+                                <li><a href="#what-validation">What is validation in software testing?</a></li>
+                                <li><a href="#validation-features">Features of the validation process</a></li>
+                                <li><a href="#differences">Key differences between verification and validation</a></li>
+                                
+                                <li><a href="#component">Components of IV&V</a></li>
+                                <li><a href="#method">IV&V in Different Software Development Methodologies</a></li>
                                 <li><a href="#reference">Reference</a></li>
                             </ol>
                         </div>
@@ -181,10 +177,10 @@
                         <figcaption style="text-align: center;">Credit: Arun Kumar Pandey</figcaption>
                     </figure>
 
-                    <h3>What is Verification in software testing? </h3>
+                    <h3 id="what-software">What is Verification in software testing? </h3>
                     Verification in software testing is the process of checking documents, design, code and program to control whether the software has been built according to requirements. The primary role of the verification system is to guarantee the quality of the application, architecture, design, etc. As part of the software verification process, activities such as reviews here are undertaken.
 
-                    <h5>Features of the verification process</h5>
+                    <h5 id="verification-features">Features of the verification process</h5>
                     The main features of the verification process include:
                     <ul>
                         <li>inspecting documents, design, code and program</li>
@@ -197,10 +193,10 @@
                         <li>verification happens before validation</li>
                     </ul>
 
-                    <h3>What is validation in software testing?</h3>
+                    <h3 id="what-validation">What is validation in software testing?</h3>
                     Validation in software testing is an effective mechanism for testing and verifying that software adequately meets customer needs. Thanks to this mechanism, it is possible to assess whether the software fulfills its purpose in a suitable environment. During the validation process, activities such as unit testing, integration testing, system testing and user acceptance testing can be performed.
 
-                    <h5>Features of the validation process</h5>
+                    <h5 id="validation-features">Features of the validation process</h5>
                     The main features of the validation process are as follows:
                     <ul>
                         <li>it is a dynamic mechanism for testing and validating the actual product</li>
@@ -213,7 +209,7 @@
                         <li>follows verification</li>
                     </ul>
 
-                    <h4>Key differences between verification and validation</h4>
+                    <h4 id="differences">Key differences between verification and validation</h4>
                     Validation and verification are both critical processes in software development, but they serve different purposes and occur at different stages in the development lifecycle. Below is a detailed table highlighting the key differences between these two processes:
 
                     <table border="1" cellpadding="10" cellspacing="0">
@@ -288,10 +284,6 @@
                             <td>Higher, as issues are found later in the lifecycle and may require rework.</td>
                         </tr>
                     </table>
-                    
-
-
-
                     <p><b>Summary:</b></p>
                     <ul>
                         <li><strong>Verification</strong> is about ensuring the software is built correctly according to specifications through a series of process-oriented checks, often using static methods.</li>
@@ -349,67 +341,7 @@
                             <figcaption style="text-align: center;"><b>Image credit:</b> <a href="https://de.mathworks.com/help/slcoverage/verification-and-validation.html" target="_blank">Mathwork</a></figcaption>
                         </figure>
 
-                        <h4 id="relationship">The Relationship Between Verification and Validation</h4>
-                        Although verification and validation are distinct processes, they are complementary and often intertwined in the software development lifecycle. Verification focuses on ensuring that the product is built correctly according to the design, while validation ensures that the product meets the user's expectations and requirements. Together, they help ensure that the software is both technically sound and functionally appropriate.
-
-                        <h4 id="importance-software">The Importance of Software Verification and Validation</h4>
-                        <ol>
-                            <li><b>Ensuring Quality and Reliability: </b>The primary goal of software verification and validation is to ensure that the software is of high quality and reliability. These processes help identify and correct defects early in the development cycle, reducing the likelihood of costly and time-consuming errors in later stages. High-quality software is less prone to failures, which is particularly critical in safety-critical systems where software malfunctions can lead to catastrophic outcomes.</li>
-                            <li><b>Meeting Regulatory and Compliance Requirements: </b>In many industries, software must adhere to strict regulatory and compliance requirements. For example, in the medical device industry, software must comply with standards such as ISO 13485 and IEC 62304, which mandate rigorous verification and validation processes. Similarly, in the automotive industry, ISO 26262 requires functional safety to be demonstrated through thorough verification and validation. These processes help organizations meet legal and regulatory obligations, reducing the risk of non-compliance penalties.</li>
-                            <li><b>Reducing Development Costs and Time: </b>While verification and validation require upfront investment in terms of time and resources, they ultimately help reduce development costs and time to market. By identifying defects early, these processes prevent the need for costly rework and late-stage changes. Additionally, they provide confidence that the software is ready for release, reducing the likelihood of post-release issues that could lead to recalls, patches, or customer dissatisfaction.</li>
-                            <li><b>Enhancing Customer Satisfaction: </b>Software that has undergone thorough verification and validation is more likely to meet customer expectations and deliver a positive user experience. By ensuring that the software is reliable, performs well, and fulfills its intended purpose, these processes contribute to higher customer satisfaction and loyalty. Satisfied customers are more likely to trust and continue using the software, leading to long-term business success.</li>
-                        </ol>
-
-
-                        <h4 id="process">The IV&V Process</h4>
-                        <ol>
-                            <li><b>Planning:</b>
-                                <ul>
-                                    <li>Define the scope and objectives of IV&V.</li>
-                                    <li>Identify key milestones and deliverables.</li>
-                                    <li>Develop a detailed IV&V plan, including resource allocation, schedules, and tools to be used.</li>
-                                </ul>
-                            </li>
-                            <li><b>Requirements Analysis:</b>
-                                <ul>
-                                    <li>Review requirements documentation to ensure they are complete, consistent, and testable.</li>
-                                    <li>Identify critical requirements that have a significant impact on the project's success.</li>
-                                </ul>
-                            </li>
-                            <li><b>Design Review:</b>
-                                <ul>
-                                    <li>Analyze design documents to ensure they align with the requirements.</li>
-                                    <li>Verify that the design is feasible and that all requirements are covered.</li>
-                                </ul>
-                            </li>
-                            <li><b>Code Review and Analysis:</b>
-                                <ul>
-                                    <li>Perform static code analysis to check for potential issues.</li>
-                                    <li>Conduct code reviews to ensure coding standards and best practices are followed.</li>
-                                </ul>
-                            </li>
-                            <li><b>Testing:</b>
-                                <ul>
-                                    <li>Develop and execute test cases based on requirements.</li>
-                                    <li>Perform integration testing to ensure different components work together as expected.</li>
-                                    <li>Conduct system testing to evaluate the complete system's functionality and performance.</li>
-                                </ul>
-                            </li>
-                            <li><b>Reporting and Feedback:</b>
-                                <ul>
-                                    <li>Document findings and provide feedback to the development team.</li>
-                                    <li>Track identified defects and ensure they are resolved.</li>
-                                </ul>
-                            </li>
-                            <li><b>Final Validation:</b>
-                                <ul>
-                                    <li>Conduct final validation tests, including UAT, to ensure the product is ready for deployment.</li>
-                                    <li>Verify that all issues identified during the IV&V process have been addressed.</li>
-                                </ul>
-                            </li>
-                        </ol>
-
-
+                        
                         <!----------------------------------->
                         <h4 id="verification-key">Key Components of Software Verification</h4>
                         <ol>
@@ -489,29 +421,6 @@
                             <li><b>Waterfall:</b> IV&V is typically performed at the end of each phase (e.g., after requirements, design, coding).</li>
                             <li><b>Agile:</b> IV&V is integrated into the iterative cycles, with verification and validation happening continuously.</li>
                             <li><b>DevOps:</b> IV&V focuses on continuous integration and delivery, with automation playing a key role in testing and validation</li>
-                        </ul>
-
-                        <h4 id="tools">Tools and Techniques Used in IV&V</h4>
-                        <ul>
-                            <li><b>Static Analysis Tools:</b> For code analysis without execution (e.g., SonarQube, Checkmarx).</li>
-                            <li><b>Dynamic Testing Tools:</b> For running tests and checking runtime behavior (e.g., Selenium, JUnit).</li>
-                            <li><b>Requirements Management Tools:</b> To track and manage requirements (e.g., IBM DOORS, Jama Connect).</li>
-                            <li><b>Defect Tracking Systems:</b> To log and manage issues (e.g., Jira, Bugzilla).</li>
-                        </ul>
-
-                        <h4 id="challanges">Challenges in Implementing IV&V</h4>
-                        <ul>
-                            <li><b>Cost:</b> Independent teams and thorough testing can be expensive.</li>
-                            <li><b>Time:</b> IV&V can extend the project timeline, especially in tightly scheduled projects.</li>
-                            <li><b>Resistance from Development Teams:</b> Developers might resist external scrutiny or fear that it slows down their work.</li>
-                        </ul>
-
-                        <h4 id="best">Best Practices for IV&V</h4>
-                        <ul>
-                            <li><b>Early Involvement: </b> Involve the IV&V team early in the project to identify potential issues sooner.</li>
-                            <li><b>Clear Communication: </b> Maintain open communication between the IV&V team and the development team.</li>
-                            <li><b>Iterative Approach: </b> In Agile or iterative development, integrate IV&V into each cycle.</li>
-                            <li><b>Tailoring IV&V: </b> Customize the IV&V process to fit the project's size, complexity, and risk level.</li>
                         </ul>
 
 
