@@ -125,12 +125,12 @@
         <section id="portfolio-details" class="portfolio-details">
             <div class="container">
                 <div class="row gy-4">
-                    <h1>Image processing and its role in remote sensing</h1>
-                    <div class="col-lg-8">
+                    <h1>Electromagnetic Spectrum and Its Relevance</h1>
+                    <div class="col-lg-8"> 
                         <div class="portfolio-details-slider swiper">
                             <div class="swiper-wrapper align-items-center">
                                 <figure>
-                                    <img src="assets/img/remote-sensing/image-processing-logo.png" alt="" style="max-width: 50%; max-height: 50%;">
+                                    <img src="assets/img/remote-sensing/emt1.png" alt="" style="max-width: 70%; max-height: 50%;">
                                     <figcaption></figcaption>
                                 </figure>
                             </div>
@@ -151,32 +151,179 @@
                 </div>
 
                 <!---------sections start here ------------>
-                <section id="introduction">
-                <!-- Introduction content here -->
-                </section>
+                <h2 id="introduction">Introduction:</h2>
+                <p>For remote sensing to be effective, it requires a source of electromagnetic radiation to illuminate the target, except when the target itself emits the sensed energy. All electromagnetic radiation exhibits fundamental properties and adheres to predictable behaviors governed by wave theory. It comprises an electric field (<code>E</code>) that fluctuates in magnitude perpendicular to the direction of propagation and a magnetic field (<code>M</code>) oriented at right angles to the electric field. Both fields travel at the speed of light (<code>c</code>). Two characteristics of electromagnetic radiation are particularly important for understanding remote sensing. These are the wavelength <strong><code>λ</code></strong> and frequency <strong><code>ν</code></strong>. Wavelength and frequency are related to each other by: 
+                <pre><code>c = λ ν</code></pre></p>
+                <img src="assets/img/remote-sensing/EM-wave.png" alt="" style="max-width: 90%; max-height: 90%;">
+                <p> The electromagnetic spectrum ranges from the shorter wavelengths (including gamma and x-rays) to the longer wavelengths (including microwaves and broadcast radio waves). There are several regions of the electromagnetic spectrum which are useful for remote sensing. </p>
+                <figure style="text-align: center;">
+                    <img src="assets/img/remote-sensing/EM-spectrum.png" alt="" style="max-width: 90%; max-height: 90%;">
+                    <figcaption style="text-align: center;"><strong>Image credit:</strong> NASA</figcaption>
+                </figure>
+                <br>
+                <p>Although we see sunlight as a uniform or homogeneous colour, it is actually composed of various wavelengths of radiation in primarily the ultraviolet, visible and infrared portions of the spectrum.</p>
+                <ul>
+                    <li><strong>UV: </strong>For most purposes, the ultraviolet or UV portion of the spectrum has the shortest
+                        wavelengths which are practical for remote sensing. Some Earth surface materials, 
+                        primarily rocks and minerals, fluoresce or emit visible light when illuminated by UV radiation.</li>
+                    <li><strong>Visible (0.4 - 0.7 µm): </strong>The light which our eyes - our "remote sensors" - can detect is part of the visible spectrum.</li>
+                    <li><strong>Infrared (IR) (0.7 - 100  µm):</strong> The next portion of the spectrum of interest is the infrared (IR) region.
+                        The infrared region can be divided into two categories based on their radiation properties -
+                        <ul>
+                            <li><strong>Reflected IR</strong>: Radiation in the reflected IR region is used for remote sensing purposes in ways very similar to radiation in the visible portion. The reflected IR covers wavelengths from approximately 0.7 µm to 3.0 µm.</li>
+                            <li><strong>Emitted or thermal IR</strong>: The thermal IR region is quite different than the visible and reflected IR portions, as this energy is essentially the radiation that is emitted from the Earth's surface in the form of heat. The thermal IR covers wavelengths from approximately 3.0 µm to 100 µm.</li>
+                        </ul> 
+                    </li>
+                    <li><strong>Microwave region (1 mm - 1 m):</strong>The portion of the spectrum of more recent interest to remote sensing is the microwave region.</li>
+                </ul>
 
-                <section id="concept">
-                <!-- API concept content here -->
-                </section>
+                <table border="1">
+                    <tr>
+                      <th>Region</th>
+                      <th>Wavelength range (approx.)</th>
+                      <th>Frequency range (approx.)</th>
+                      <th>Comments</th>
+                    </tr>
+                    <tr>
+                      <td>Long-wave radio</td>
+                      <td>&gt;10 m</td>
+                      <td>&lt;3x10<sup>7</sup> Hz</td>
+                      <td>Includes traditional AM radio region. These frequencies can travel long distances by multiple reflections between the surface of the earth and its ionosphere.</td>
+                    </tr>
+                    <tr>
+                      <td>Short-wave radio</td>
+                      <td>10 cm - 10 m</td>
+                      <td>3x10<sup>7</sup> - 3x10<sup>9</sup></td>
+                      <td>Used for TV, FM, and other communication purposes. Generally travels only relatively short distances because the ionosphere is transparent to it.</td>
+                    </tr>
+                    <tr>
+                      <td>Microwave</td>
+                      <td>1 mm - 10 cm</td>
+                      <td>3x10<sup>9</sup> - 3x10<sup>11</sup></td>
+                      <td>Present limit of radio technology for most purposes.</td>
+                    </tr>
+                    <tr>
+                      <td>Far infrared</td>
+                      <td>30 μm - 1 mm</td>
+                      <td>3x10<sup>11</sup> - 10<sup>13</sup></td>
+                      <td>3 K radiation fills universe.</td>
+                    </tr>
+                    <tr>
+                      <td>Thermal infrared</td>
+                      <td>3 μm - 30 μm</td>
+                      <td>10<sup>13</sup> - 10<sup>14</sup></td>
+                      <td>Thermal emission of earth and planets.</td>
+                    </tr>
+                    <tr>
+                      <td>Near infrared</td>
+                      <td>700 nm - 3 μm</td>
+                      <td>10<sup>14</sup> - 4x10<sup>14</sup></td>
+                      <td>Solar and stellar emission.</td>
+                    </tr>
+                    <tr>
+                      <td>Visible</td>
+                      <td>400 nm - 700 nm (1.7 - 3 eV)</td>
+                      <td>4x10<sup>14</sup> - 7x10<sup>14</sup></td>
+                      <td>Peak of solar radiation. Visible to human eye, standard photographic film and CCD video detectors.</td>
+                    </tr>
+                    <tr>
+                      <td>Ultraviolet</td>
+                      <td>200 nm - 400 nm (3 - 6 eV)</td>
+                      <td>7x10<sup>14</sup> - 1.5x10<sup>15</sup></td>
+                      <td>Divided at 300 nm by atmospheric (ozone) cutoff. Appreciable solar flux causes sunburn.</td>
+                    </tr>
+                    <tr>
+                      <td>Vacuum UV (EUV)</td>
+                      <td>10 nm - 200 nm (6 - 120 eV)</td>
+                      <td>1.5x10<sup>15</sup> - 3x10<sup>16</sup></td>
+                      <td>Very strong absorption in matter, hence very difficult to observe.</td>
+                    </tr>
+                    <tr>
+                      <td>X-rays</td>
+                      <td>120 eV - 100 keV</td>
+                      <td>3x10<sup>16</sup> - 3x10<sup>19</sup></td>
+                      <td>Produced by electron beams in X-ray tubes, and by inner atomic transitions. Progressively more penetrating as E increases, up to many centimeters in water.</td>
+                    </tr>
+                    <tr>
+                      <td>γ-rays</td>
+                      <td>&gt;100 keV</td>
+                      <td>3x10<sup>19</sup></td>
+                      <td>Produced by nuclear and other high energy processes. Can penetrate up to meters in water.</td>
+                    </tr>
+                  </table>
+                  where,
 
-                <section id="fastapi">
-                <!-- FastAPI content here -->
-                </section>
-
-                <section id="json">
-                <!-- JSON content here -->
-                </section>
-
-
-
-
+                  <table>
+                    <tr>
+                      <th>Unit</th>
+                      <th>Prefix</th>
+                      <th>Abbreviation</th>
+                      <th>Symbol</th>
+                      <th>Value</th>
+                    </tr>
+                    <tr>
+                      <td>meter</td>
+                      <td></td>
+                      <td>Meter</td>
+                      <td>m</td>
+                      <td>1m</td>
+                    </tr>
+                    <tr>
+                      <td>centimeter</td>
+                      <td>centi</td>
+                      <td>Centimeter</td>
+                      <td>cm</td>
+                      <td>10<sup>-2</sup>m</td>
+                    </tr>
+                    <tr>
+                      <td>millimeter</td>
+                      <td>milli</td>
+                      <td>Millimeter</td>
+                      <td>mm</td>
+                      <td>10<sup>-3</sup>m</td>
+                    </tr>
+                    <tr>
+                      <td>micrometer</td>
+                      <td>micro</td>
+                      <td>Micrometer</td>
+                      <td>µm</td>
+                      <td>10<sup>-6</sup>m</td>
+                    </tr>
+                    <tr>
+                      <td>nanometer</td>
+                      <td>nano</td>
+                      <td>Nanometer</td>
+                      <td>nm</td>
+                      <td>10<sup>-9</sup>m</td>
+                    </tr>
+                    <tr>
+                      <td>picometer</td>
+                      <td>pico</td>
+                      <td>Picometer</td>
+                      <td>pm</td>
+                      <td>10<sup>-12</sup>m</td>
+                    </tr>
+                    <tr>
+                      <td>femtometer</td>
+                      <td>femto</td>
+                      <td>Femtometer</td>
+                      <td>fm</td>
+                      <td>10<sup>-15</sup>m</td>
+                    </tr>
+                    <tr>
+                      <td>attometer</td>
+                      <td>atto</td>
+                      <td>Attometer</td>
+                      <td>am</td>
+                      <td>10<sup>-18</sup>m</td>
+                    </tr>
+                  </table>
+            
                 
                 <!-------Reference ------->
                 <section id="reference">
                     <h2>References</h2>
                     <ul>
-                        <li><a href="https://www.dspguide.com/ch1.htm" target="_blank">The Scientist and Engineer's Guide to Digital Signal Processing By Steven W. Smith.</a></li>
-                        <li><a href="https://www.jenkins.io/doc/tutorials/" target="_blank">Jenkins documentation</a></li>
                         <li><a href="https://sisu.ut.ee/imageprocessing/book/1#:~:text=Image%20processing%20is%20a%20method,features%20associated%20with%20that%20image." target="_blank">Image processing lecture.</a></li>
                     </ul>
                 </section>
