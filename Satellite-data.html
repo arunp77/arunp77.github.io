@@ -177,9 +177,37 @@
           <!---------------------------->
           <h4>Satellite Data levels</h4>
           <p>Within remote sensing and its applications, there are a series of levels that are used to define the amount of processing that has been performed to provide a given dataset. Satellite data is collected at various levels, each representing a different stage of processing and refinement. Here are the common levels of satellite data (<a href="https://classroom.eumetsat.int/mod/book/tool/print/index.php?id=13919#ch621" target="_blank">reference 1</a> and <a href="https://www.star.nesdis.noaa.gov/atmospheric-composition-training/satellite_data_processing_levels.php" target="_blank">reference 2</a>):</p>
+          <table>
+            <tr> 
+              <th>Processing level</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td>Level 0 (L0) </td> 
+              <td>Unprocessed instrument data</td>
+            </tr>
+            <tr>
+              <td>Level 1 (L1) </td> 
+              <td>Data processed to sensor unit</td>
+            </tr>
+            <tr>
+              <td>Level 2 (L2) </td> 
+              <td>Derived geophysical variables</td>
+            </tr>
+            <tr>
+              <td>Level 3 (L3) </td> 
+              <td>Georeferenced data</td>
+            </tr>
+            <tr>
+              <td>Level 4 (L4) </td> 
+              <td>Data have had the greatest amount of processing applied, possibly including modelled output and measurements from several satellites and several days. All input data are validated.</td>
+            </tr>
+          </table>
+
+          <p>Let's explore more on the individal level of the satellite data.</p>
 
           <ol>
-            <li><strong>Level 0 (L0): Raw Data:</strong> Level-0 data refers to the raw data received directly from the satellite sensors. This data is essentially the raw measurements taken by the sensors and detectors onboard the satellite. It is typically in a compressed or encoded format. The first step is to decompress or decode the raw data into a usable format for further processing. It includes unprocessed digital counts or voltage measurements. L0 data is transmitted to ground stations. It is unlikely that we will work with this level of data, especially for more modern sensors, as this data lacks information such as geo-referencing and time-referencing ancillary information. Let's understand the basic concepts here:
+            <li><strong>Level 0 (L0): Raw Data:</strong> <span style="color: red;">Level-0 data refers to the raw data received directly from the satellite sensors. This data is essentially the raw measurements taken by the sensors and detectors onboard the satellite.</span> It is typically in a compressed or encoded format. The first step is to decompress or decode the raw data into a usable format for further processing. It includes unprocessed digital counts or voltage measurements. L0 data is transmitted to ground stations. It is unlikely that we will work with this level of data, especially for more modern sensors, as this data lacks information such as geo-referencing and time-referencing ancillary information. Let's understand the basic concepts here:
               <ul>
                 <li><b>Electromagnetic Signals: </b>
                   <ul>
@@ -201,10 +229,11 @@
                 </li>
               </ul>
             </li>
-            <li><strong>Level 1 (L1):</strong> Level 1 is further divided into A and B. Level 1A is the full resolution sensor data with time-referencing, ancillary information including radiometric and geometric calibration coefficients and georeferencing parameters computed and added to the file.  Level 1B is the stage following the application of the parameters appended to the files at L1A (such as instrument calibration coefficients). This level also includes quality and classification flags.
+            <li><strong>Level 1 (L1):</strong> Level 1 is further divided into A and B.
               <ul>
                 <li><b>Level 1A (Reconstructed Unprocessed Instrument Data): </b>
                   <ul>
+                    <li><span style="color: red;">Level 1A is the full resolution sensor data with time-referencing, ancillary information including radiometric and geometric calibration coefficients and georeferencing parameters computed and added to the file.</span></li>
                     <li>Decompress or decode the raw satellite data received from the sensor.
                       Apply initial sensor-specific calibration algorithms to the raw data.</li>
                     <li>Perform time-referencing and append ancillary information, including radiometric and geometric calibration coefficients and georeferencing parameters.</li>
@@ -214,6 +243,7 @@
                 </li>
                 <li><b>Level 1B (Sensor Data Record): </b>
                 <ul>
+                  <li><span style="color: red;">Level 1B is the stage following the application of the parameters appended to the files at L1A (such as instrument calibration coefficients). This level also includes quality and classification flags.</span></li>
                   <li>Apply radiometric calibration to convert the raw sensor counts into physical units of radiance or reflectance.</li>
                   <li>Perform geometric corrections and geolocation to assign geographic coordinates (latitude, longitude) to each pixel.</li>
                   <li>Apply sensor-specific corrections for various effects (e.g., detector nonlinearity, spectral response, stray light).</li>
@@ -242,29 +272,33 @@
             </li>
             <li><strong>Level 3 & 4 :</strong> Levels 3 and 4 refer to binned and or merged/filled versions of the level 2 data for a given spatial or temporal resolution. 
               <ul>
-                <li><strong>Level 3 (Geophysical Data Record): </strong>Level 3 data are Level 2 data that have been mapped on a uniform space-time grid, and thus have been averaged over space and/or time.
+                <li><strong>Level 3 (Geophysical Data Record): </strong>
                   <ul>
-                    <li>Spatially and temporally aggregate or grid the Level 2 products into regular grids or maps.</li>
-                    <li>Apply additional filtering, smoothing, or gap-filling techniques to enhance the data quality and continuity.</li>
+                    <li><span style="color: red;">Level 3 data refers to satellite data that has been processed and gridded to a uniform space-time grid, often aggregating multiple observations. This level of data is typically designed to be user-friendly, enabling easier analysis, comparison, and integration into larger datasets</span>.</li>
+                    <li><b>Spatial and Temporal Gridding:</b> Data is averaged or resampled onto a consistent spatial grid (e.g., a global grid of 1° x 1° cells) and often includes temporal averaging (e.g., daily, monthly).</li>
+                    <li><b>Global or Regional Coverage:</b> Level 3 data usually provides extensive spatial coverage, often global, and is used for broad-scale studies.</li>
+                    <li><b>Ready for Analysis:</b> The data is more easily accessible and ready for scientific analysis and visualization.</li>
                     <li>Implement compositing or mosaicking algorithms to create multi-day, multi-sensor, or multi-resolution products.</li>
                     <li>Perform additional quality control and flagging based on the aggregated data.</li>
                   </ul>
-                  <p><strong>Example: </strong> the VIIRS Level 3 AOD product is a gridded composite at 0.1° or 0.25° resolution, available daily or as a monthly average; it is derived from the daily 750 m resolution Level 2 AOD data.</p>
+                  <p><strong>Example: 1</strong> the VIIRS Level 3 AOD product is a gridded composite at 0.1° or 0.25° resolution, available daily or as a monthly average; it is derived from the daily 750 m resolution Level 2 AOD data.</p>
                   <figure style="text-align: center;">
                     <img src="assets/img/remote-sensing/level3.png" alt="" style="max-width: 50%; max-height: 50%;">
                     <figcaption style="text-align: center;">Level 3 NOAA-20 VIIRS AOD imagery at 0.1° resolution for January 3, 2020. (<strong>Image credit: © </strong><a href="https://www.star.nesdis.noaa.gov/atmospheric-composition-training/satellite_data_processing_levels.php" target="_blank"> NOAA</a>)</figcaption>
                   </figure>
+                  <p><strong>Example-2 : MODIS (Moderate Resolution Imaging Spectroradiometer) Sea Surface Temperature (SST) Level 3 Data:</strong> MODIS instruments on NASA's Terra and Aqua satellites capture sea surface temperature data. The Level 3 SST product averages these observations over a day or a month, mapping them onto a global grid (e.g., 4 km resolution). This data is used in climate studies, weather forecasting, and oceanography.</p>
                 </li>
                 <li><strong>Level 4 (Model Output or Results): </strong>
                   <ul>
-                    <li>Assimilate the Level 2 or Level 3 products into numerical models or data assimilation systems.</li>
-                    <li>Perform model simulations or forecasts using the satellite data as input or constraints.</li>
-                    <li>Derive higher-level products or analyses by combining satellite data with other data sources (e.g., in-situ measurements, model outputs).</li>
-                    <li>Implement validation and uncertainty quantification procedures for the model outputs or derived products.</li>
+                    <li><span style="color: red;">Level 4 data goes beyond Level 3 by incorporating models, algorithms, or additional datasets to generate new, higher-level information. This data might involve combining satellite observations with other data sources, like in situ measurements or model outputs, to produce refined datasets or derived products </span>.</li>
+                    <li><b>Derived Products:</b> Level 4 products are often the result of data assimilation (combining observations with model data) or other advanced processing techniques.</li>
+                    <li><b>Enhanced Information:</b> They typically provide more value-added information, such as long-term climate trends, predictive models, or high-resolution simulations.</li>
+                    <li><b>Complex Processing:</b> The generation of Level 4 data usually involves significant computation and modeling, producing results that are often more comprehensive than what is possible from direct observations alone.</li>
                   </ul>
                 </li>
               </ul>
-              <p><b>Example:</b> The level 2 data from the <a href="https://marine.copernicus.eu/" target="_blank">Copernicus Marine Data Stream (CMDS)</a> feeds in to a further component of Copernicus (the Copernicus Marine Environmental Monitoring Service - <a href="https://insitu.copernicus.eu/FactSheets/CMEMS/" target="_blank">CMEMS</a>). This data can be useful for those wanting better spatial coverage, and those looking at marine processes that happen over longer time periods. In particular merged data can be used to generate long time series from multiple sensors, which is essential for climate studies</p>
+              <p><b>Example-1:</b> The level 2 data from the <a href="https://marine.copernicus.eu/" target="_blank">Copernicus Marine Data Stream (CMDS)</a> feeds in to a further component of Copernicus (the Copernicus Marine Environmental Monitoring Service - <a href="https://insitu.copernicus.eu/FactSheets/CMEMS/" target="_blank">CMEMS</a>). This data can be useful for those wanting better spatial coverage, and those looking at marine processes that happen over longer time periods. In particular merged data can be used to generate long time series from multiple sensors, which is essential for climate studies</p>
+              <p><strong>Example-2: Global Carbon Fluxes Level 4 Product:</strong> NASA’s Carbon Monitoring System (CMS) produces Level 4 data that estimates global carbon dioxide fluxes by integrating satellite measurements (e.g., from the OCO-2 satellite) with atmospheric transport models. These products provide insights into sources and sinks of carbon, crucial for climate change research.</p>
             </li>
           </ol>
           
@@ -279,14 +313,14 @@
             <h5>Note on Cal/Val (calibration/validation) activities:</h5>
             So before moving to the main pre-processing step, we may also need to do following calibration:
             <ol>
-              <li><b>Vicarious calibration:</b> Vicarious calibration is a technique used to calibrate satellite sensors by comparing their measurements with well-characterized ground-based or airborne measurements over specific calibration sites. These sites are carefully selected and characterized for their stable and well-known surface properties, such as reflectance or radiance. The process typically involves:
+              <li><b>Vicarious calibration:</b> <span style="color: red;">Vicarious calibration is a technique used to calibrate satellite sensors by comparing their measurements with well-characterized ground-based or airborne measurements over specific calibration sites.</span> These sites are carefully selected and characterized for their stable and well-known surface properties, such as reflectance or radiance. The process typically involves:
                 <ul>
                   <li>Collecting simultaneous ground-based or airborne measurements over the calibration site at the time of satellite overpass.</li>
                   <li>Using radiative transfer models to simulate the at-sensor radiance or reflectance based on the ground-based measurements and atmospheric conditions.</li>
                   <li>Comparing the simulated and satellite-measured radiances/reflectances to derive calibration coefficients or adjustments for the satellite sensor.</li>
                 </ul>
               </li>
-              <li><b>Cross-calibration with other satellites:</b> Cross-calibration involves comparing the measurements from one satellite sensor with those from another well-calibrated satellite sensor, typically operating in similar spectral bands. This helps ensure consistency between different satellite missions and maintains long-term data records. The process involves:
+              <li><b>Cross-calibration with other satellites:</b> <span style="color: red;">Cross-calibration involves comparing the measurements from one satellite sensor with those from another well-calibrated satellite sensor, typically operating in similar spectral bands.</span> This helps ensure consistency between different satellite missions and maintains long-term data records. The process involves:
                 <ul>
                   <li>Identifying simultaneous <a href="http://gsics.atmos.umd.edu/bin/view/Development/SimultaneousNadirOverpassMethod" target="_blank">nadir overpasses (SNOs)</a> or <a href="https://digitalenvironment.org/nerc-embedded-digital-researcher-highlighting-the-potential-of-coincident-satellite-data/" target="_blank">coincident observations</a> between the two satellites over common surfaces or targets.</li>
                   <li>Applying appropriate corrections for spectral band differences, viewing geometry, and atmospheric conditions.</li>
@@ -295,7 +329,7 @@
                 </ul>
               </li> 
               <li><b>Product validation using ground-truth data: </b>
-                This activity involves comparing satellite-derived geophysical products (e.g., atmospheric, land, or ocean products) with ground-based or in-situ measurements to assess their accuracy and validate the retrieval algorithms. The process typically includes:
+                <span style="color: red;">This activity involves comparing satellite-derived geophysical products (e.g., atmospheric, land, or ocean products) with ground-based or in-situ measurements to assess their accuracy and validate the retrieval algorithms.</span> The process typically includes:
                 <ul>
                   <li>Collecting ground-truth measurements of the geophysical parameter of interest using various instruments and techniques (e.g., weather balloons, buoys, field campaigns).</li>
                   <li>Co-locating and matching the ground-based measurements with the satellite observations in space and time.</li>
@@ -315,6 +349,76 @@
               <img src="assets/img/remote-sensing/Level-0-4.png" alt="" style="max-width: 90%; max-height: 90%;">
               <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://link.springer.com/referenceworkentry/10.1007/978-0-387-36699-9_36">Processing Levels, Ron Weaver </a></figcaption>
             </figure>
+
+            <div class="box">
+              <h3>Important Parameters</h3>
+              Let's learn about few fundamental parameters. 
+              <h5>1. Radiance</h5>
+              Radiance is a measure of the energy (or light) reaching a sensor from a surface or atmosphere in a specific direction, per unit area, per unit solid angle, and per unit wavelength. mathematically, radiance \(L(\lambda)\) is given as:
+              $$L(\lambda) = \frac{d^2 E(\lambda)}{dA\cdot d\Omega \cdot d\lambda}$$
+              where:
+              <ul>
+                <li>\(L(\lambda)\) is the radiance at a specific wavelength \(\lambda\) (in units of \(W/(m^2\cdot {\rm sr}\cdot {\rm nm}\))).</li>
+                <li>\(d^2 E(\lambda)\)  is the amount of electromagnetic energy (radiant flux) in watts at wavelength \(\lambda\).</li>
+                <li>\(dA\) is the area of the sensor's field of view.</li>
+                <li>\(d\Omega\) is the solid angle (in steradians sr) subtended by the target area being viewed.</li>
+                <li>\(d\lambda\)  is the wavelength range (in nanometers or micrometers) over which the radiance is measured.</li>
+              </ul>
+
+              <h5>2. Solar Irradiance</h5>
+              Solar irradiance is the total energy per unit area incident from the Sun on a surface at the top of the Earth's atmosphere, measured over all wavelengths.
+
+              <p>At a given wavelength \(\lambda\), solar irradiance \(E_{\rm sun}(\lambda)\) is:</p>
+              $$E_{\rm sun} = \frac{dE_{\rm sun}}{dA\cdot d\lambda }$$
+              where:
+              <ul>
+                <li>\(E_{\rm sun}(\lambda)\)  is the irradiance from the Sun at wavelength \(\lambda\) in units of \(W/(m^2\cdot {\rm nm})\)</li>
+                <li>\(dE_{\rm sun}\) is the amount of electromagnetic energy coming from the sun</li>
+                <li>\(dA\) is the area of the sensor's field of view.</li>
+                <li>\(d\lambda\)  is the wavelength range over which the irradiance is measured (typically in nanometers, nm).</li>
+              </ul>
+              This value is dependent on the solar spectrum, and the Sun's irradiance decreases with increasing distance from the Sun and varies across wavelengths.
+
+              <h5>3. Sun-Normalized Radiance Spectra</h5>
+              Sun-normalized radiance spectra is the radiance measured by a sensor, normalized by the solar irradiance to correct for variations in sunlight due to the Sun-Earth distance, atmospheric effects, or other influences.
+              <p>Mathematically, sun-normalized radiance is expressed as:</p>
+              $$L_{\rm norm}(\lambda) = \frac{L(\lambda)}{E_{\rm sun}(\lambda)}.$$
+              where:
+              <ul>
+                <li>\(L_{\rm norm}(\lambda)\) is the sun-normalized radiance at wavelength \(\lambda\) (dimensionless, but sometimes expressed in relative units).</li>
+                <li>\(L(\lambda)\) is the radiance at wavelength \(\lambda\)  which is influenced by the target surface reflectance, the atmosphere, and the solar irradiance.</li>
+                <li>\(E_{\rm sun}(\lambda)\) is the solar irradaince at wavelength \(\lambda\). The amount of solar energy reaching the top of the Earth's atmosphere at a specific wavelength. This accounts for how much sunlight is available to reflect or emit from the target.</li>
+              </ul>
+
+              <h5>4. Reflectance and Its Relationship to Sun-Normalized Radiance</h5>
+              Sun-normalized radiance is closely related to the concept of reflectance \(R(\lambda)\),  which is the ratio of the radiation reflected by a surface to the incident radiation from the Sun. The reflectance at a given wavelength \(\lambda\) is given by:
+              $$R(\lambda) = \frac{L(\lambda)}{E_{\rm sun}(\lambda)\cdot \cos(\theta)}$$
+              where:
+              <ul>
+                <li>\(R(\lambda)\) is the reflectance at wavelength \(\lambda\)</li>
+                <li>\(L(\lambda)\) is the radiance reflected from the surface at wavelength \(\lambda\)</li>
+                <li>\(E_{\rm sun}(\lambda)\) is the solar irradiance  at wavelength \(\lambda\)</li>
+              </ul>
+              This equation provides the surface reflectance, accounting for the solar angle.
+
+              <h5>Why Normalize Radiance to Solar Irradiance?</h5>
+              Normalizing radiance by the solar irradiance allows remote sensing measurements to be independent of changes in solar illumination due to factors like:
+              <ul>
+                <Li>Time of day or year (affecting solar zenith angle).</Li>
+                <li>Earth-Sun distance (which varies over the year).</li>
+                <li>Atmospheric conditions (such as clouds or aerosols).</li>
+              </ul>
+              By doing so, the measured radiance is converted to a form that reflects the intrinsic properties of the Earth's surface or atmosphere.
+
+              <p><strong>Example:</strong> Consider a satellite sensor measuring radiance at 550 nm (green light):</p>
+              <ul>
+                <li>Measured radiance \(L(550) = 100 W/m^2 /sr /nm\)</li>
+                <li>Solar irradaince at 550 nm \(E_{\rm sun} = 1800 W/m^2/nm\)</li>
+              </ul>
+              Sun-normalized radiance at 550 nm would be:
+              $$L{\rm norm}(\lambda=550 ~{\rm nm}) = \frac{100}{1800} = 0.0556$$
+              This value of 0.0556 represents the relative radiance normalized to the Sun, providing a comparable measure across different conditions.
+            </div>
             
             <ul>
               <li><strong>Level-0 to Level-1 Transformation: </strong>
@@ -330,7 +434,7 @@
                       <li>\(L\) is radiance (TOA spectral radiance) and is typically in units of \(W/(m^2 ~\text{srad}~ \mu \text{m})\),</li>
                       <li><code>DN</code> is a dimensionless integer and known as digital counts or Digital Number or raw sensor count (DN). It has a value in the range of <code>0</code> to <code>65535</code> for a 16-bit sensor,</li>
                       <li><code>Offset</code> (an additive calibration coefficient that accounts for the sensor's dark current or instrument offset) and,</li>
-                      <li>Gain = A multiplicative calibration coefficient that accounts for the sensor's gain or sensitivity and units depends on the calibrated quantity (radiance or reflectance).
+                      <li><code>Gain</code> = A multiplicative calibration coefficient that accounts for the sensor's gain or sensitivity and units depends on the calibrated quantity (radiance or reflectance).
                         <ul>
                           <li><b>For radiance: </b> \((W/(m^2 ~\text{sr}~ \mu \text{m})) / \text{count}\)</li>
                           <li><b>For reflectance: </b>Unitless (reflectance values are inherently dimensionless)</li>
