@@ -1750,3 +1750,20 @@ code, kbd, pre, samp {
   visibility: visible;
   opacity: 1;
 }
+
+
+.video-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  text-align: center;
+}
+.video-container iframe {
+  max-width: 100%;
+  height: auto;
+}
+.video-caption {
+  margin-top: 10px;
+}
