@@ -218,6 +218,13 @@
               <a href="https://natural-resources.canada.ca/maps-tools-and-publications/satellite-imagery-and-air-photos/tutorial-fundamentals-remote-sensing/satellites-and-sensors/satellite-characteristics-orbits-and-swaths/9283" target="_blank"> 
                 © Remote Sensing Tutorials (Natural Resources Canada).</a>)</figcaption>
           </figure>
+          
+          <figure style="text-align: center;">
+            <img src="assets/img/remote-sensing/slstr-eumesat.jpg" alt="" style="max-width: 40%; max-height: 50%;">
+            <figcaption style="text-align: center;"><a href="https://user.eumetsat.int/resources/user-guides/sentinel-3-slstr-level-1-data-guide" target="_blank">The SLSTR dual view configuration</a> (<strong>Image credit:</strong>
+              <a href="https://www.sciencedirect.com/science/article/abs/pii/S0034425712000685?casa_token=jIlJG5p-GlIAAAAA:9K_claA3IXDPvTfv7e7CXOPriENq_a3-TyzubEpWlb5jQyEn8-_pH1dK_rmYgJ2Ukl8FgKmNSGY" target="_blank"> 
+                © Donlon et al., 2012)</a></figcaption>
+          </figure>
         </li>
       </ol>
     </div>
@@ -272,9 +279,74 @@
                 <figcaption style="text-align: center;"><strong>Image credit:</strong> <a href="https://arunp77.github.io/Arun-Kumar-Pandey/" target="_blank"> © arunp77</a></figcaption>
               </figure>
               <ul style="list-style-type: circle;">
-                <li><strong>Rayleigh scattering:</strong> Rayleigh scattering occurs when particles are significantly smaller than the wavelength of radiation, such as tiny dust particles or nitrogen and oxygen molecules. This phenomenon causes shorter wavelengths of energy to scatter more than longer wavelengths. In the upper atmosphere, Rayleigh scattering is the predominant mechanism. The daytime sky appears blue because, as sunlight passes through the atmosphere, the shorter (blue) wavelengths of the visible spectrum scatter more than the longer ones. During sunrise and sunset, when light travels a longer path through the atmosphere, the scattering of shorter wavelengths is more pronounced, contributing to the colorful hues of the sky.</li>
-                <li><strong>Mie scattering:</strong> Mie scattering takes place when particles are approximately the same size as the wavelength of the radiation. Common causes of Mie scattering include dust, pollen, smoke, and water vapor. Unlike Rayleigh scattering, Mie scattering impacts longer wavelengths. It is prevalent in the lower atmosphere where larger particles are more abundant, and it becomes dominant under overcast cloud conditions.</li>
-                <li><strong>Nonselective scattering:</strong> The last significant scattering mechanism is known as nonselective scattering. This occurs when particles are considerably larger than the wavelength of the radiation, typically observed with water droplets and large dust particles. Nonselective scattering earns its name because it scatters all wavelengths roughly equally. Consequently, this type of scattering is responsible for the white appearance of fog and clouds to our eyes, as blue, green, and red light are scattered in approximately equal amounts, resulting in a combination that appears as white light.</li>
+                <li><strong>Rayleigh Scattering</strong>
+                  <ul>
+                      <li><strong>Description:</strong> Occurs when electromagnetic radiation interacts with particles much smaller than the wavelength of the radiation, like molecules.</li>
+                      <li><strong>Characteristics:</strong> 
+                          <ul>
+                              <li>Strongly wavelength-dependent, with shorter wavelengths (blue/violet) scattered more than longer wavelengths (red).</li>
+                              <li>Responsible for the blue sky and red/orange hues at sunrise and sunset.</li>
+                          </ul>
+                      </li>
+                      <li><strong>Relevance in Remote Sensing:</strong> Affects visibility and color in satellite images, requiring atmospheric corrections.</li>
+                  </ul>
+                </li>
+                <li><strong>Mie Scattering</strong>
+                    <ul>
+                        <li><strong>Description:</strong> Occurs when radiation interacts with particles comparable in size to the wavelength, such as dust, smoke, and water droplets.</li>
+                        <li><strong>Characteristics:</strong> 
+                            <ul>
+                                <li>Less wavelength-dependent, leading to more uniform light scattering.</li>
+                                <li>Causes the white appearance of clouds and hazy conditions.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Relevance in Remote Sensing:</strong> Influences reflectance in areas with particulate matter, complicating data interpretation.</li>
+                    </ul>
+                </li>
+                <li><strong>Non-Selective Scattering</strong>
+                    <ul>
+                        <li><strong>Description:</strong> Occurs when particles are much larger than the wavelength, such as water droplets and ice crystals in clouds.</li>
+                        <li><strong>Characteristics:</strong> 
+                            <ul>
+                                <li>Scatters all wavelengths equally, giving clouds their white or gray appearance.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Relevance in Remote Sensing:</strong> Important for cloud detection and monitoring, affecting climate studies and weather prediction.</li>
+                    </ul>
+                </li>
+                <li><strong>Raman Scattering</strong>
+                    <ul>
+                        <li><strong>Description:</strong> Inelastic scattering where the wavelength of light is shifted due to interaction with molecular vibrations or rotations.</li>
+                        <li><strong>Characteristics:</strong> 
+                            <ul>
+                                <li>Weaker than Rayleigh or Mie scattering, resulting in a change in the energy and wavelength of scattered light.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Relevance in Remote Sensing:</strong> Used in LIDAR systems to measure atmospheric constituents like water vapor and trace gases.</li>
+                    </ul>
+                </li>
+                <li><strong>Brillouin Scattering</strong>
+                    <ul>
+                        <li><strong>Description:</strong> Inelastic scattering where light interacts with acoustic vibrations in a medium, leading to a small frequency shift.</li>
+                        <li><strong>Characteristics:</strong> 
+                            <ul>
+                                <li>Typically observed in liquids and gases under certain conditions.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Relevance in Remote Sensing:</strong> Relevant in specialized applications like oceanographic studies to measure temperature and salinity.</li>
+                    </ul>
+                </li>
+                <li><strong>Multiple Scattering</strong>
+                    <ul>
+                        <li><strong>Description:</strong> Occurs when photons undergo several scattering events, typically in dense media like clouds or fog.</li>
+                        <li><strong>Characteristics:</strong> 
+                            <ul>
+                                <li>Complicates light paths, making data interpretation more complex.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Relevance in Remote Sensing:</strong> Affects radiative transfer calculations and requires complex models for accurate data interpretation.</li>
+                    </ul>
+                </li>
               </ul>
             </li>
         
@@ -283,7 +355,7 @@
                 <li><strong>Ozone:</strong> Ozone plays a crucial role in absorbing the potentially harmful ultraviolet radiation emitted by the sun, shielding most living organisms. The presence of this protective layer in the atmosphere prevents skin damage that would occur if exposed to sunlight without it.</li>
                 <li><strong>Carbon dioxide (greenhouse gas):</strong> Carbon dioxide is often referred to as a greenhouse gas due to its strong absorption of radiation in the far infrared part of the spectrum, particularly associated with thermal heating. This absorption property contributes to trapping heat within the atmosphere. Meanwhile, water vapor in the atmosphere plays a significant role in absorbing both incoming longwave infrared and shortwave microwave radiation, occurring within the range of 22µm to 1m. The presence of water vapor in the lower atmosphere varies significantly based on location and time of year. For instance, air above a desert would contain minimal water vapor, limiting energy absorption, while tropical regions, characterized by high humidity, would have elevated concentrations of water vapor.</li>
               </ul>
-              <p>These gases have a selective absorption of electromagnetic energy within specific regions of the spectrum, influencing the areas suitable for remote sensing observations. Segments of the spectrum that are minimally affected by atmospheric absorption, making them valuable for remote sensors, are termed "atmospheric windows." By comparing the characteristics of the two primary energy sources, the sun and the Earth, with available atmospheric windows, we can identify wavelengths most effectively used for remote sensing.</p>
+              <p>These gases have a selective absorption of electromagnetic energy within specific regions of the spectrum, influencing the areas suitable for remote sensing observations. Segments of the spectrum that are minimally affected by atmospheric absorption, making them valuable for remote sensors, are termed "<a href="electromagnetic-waves.html#windows">atmospheric windows</a>." By comparing the characteristics of the two primary energy sources, the sun and the Earth, with available atmospheric windows, we can identify wavelengths most effectively used for remote sensing.</p>
               <p>The visible spectrum, aligned with the peak energy level of the sun and matching our eyes' sensitivity, corresponds to an atmospheric window. Additionally, the thermal infrared region around 10 µm is a window for the Earth's emitted heat energy, while wavelengths beyond 1 mm create a substantial window in the microwave region.</p>
               <p>Now that we comprehend the intricate journey of electromagnetic energy from its source to the surface, the next exploration involves understanding the fate of this radiation upon reaching the Earth's surface.</p>
             </li>
@@ -745,7 +817,7 @@
       <ul>
         <li>My github Repositories on Remote sensing <a href="https://github.com/arunp77/EUMETSET-courses" target="_blank">Atmosphere and remote sensing</a></li>
         <li>Good reference: <a href="https://natural-resources.canada.ca/maps-tools-and-publications/satellite-imagery-and-air-photos/tutorial-fundamentals-remote-sensing/9309" target="_blank">Remote Sensing Tutorials</a> </li>
-        <li>https://rutwikroutu.medium.com/introduction-to-gis-for-beginners-ebc6d27e235a</li>
+        <li><a href="https://rutwikroutu.medium.com/introduction-to-gis-for-beginners-ebc6d27e235a" target="_blank">Introduction to GIS for Beginners</a>.</li>
       </ul>
     </section>
 

@@ -146,7 +146,7 @@
                         <h3>Content</h3>
                         <ol>
                             <li><a href="#introduction">Introduction</a></li>
-                            <li><a href="#concept">API concept</a></li>
+                            <li><a href="#windows">Atmospheric windows</a></li>
                             <li><a href="#fastapi">FastAPI</a></li>
                             <li><a href="#json">JSON: JavaScript Object Notation</a></li>
                             <li><a href="#reference">Reference</a></li>
@@ -323,6 +323,50 @@
                       <td>10<sup>-18</sup>m</td>
                     </tr>
                   </table>
+
+
+                  <h3 id="windows">Atmospheric windows</h3>
+                  Atmospheric windows refer to specific wavelength ranges in the electromagnetic spectrum where the Earth's atmosphere is relatively transparent to radiation, allowing electromagnetic waves to pass through with minimal absorption or scattering. Of the total incoming elctromagnetic radiation, the atmosphere absorbs parts of this radiation while allowing other wavelengths to pass through. The places where energy passes through are called "<strong>atmospheric windows</strong>". We use these "windows" in remote sensing to peer into the atmosphere, which allows us to obtain much information concerning the weather.
+                  
+                  <p>These windows are crucial in remote sensing, astronomy, and telecommunications because they allow signals or observations from space to reach the Earth's surface and vice versa. Key Atmospheric Windows are as follows:</p>
+                  <figure style="text-align: center;">
+                    <img src="assets/img/remote-sensing/amtmo-window0.png" alt="" style="max-width: 90%; max-height: 90%;">
+                    <figcaption style="text-align: center;">Most of the Sun's energy comes from visible light and the near infrared portion of the electromagnetic spectrum. All of the outgoing energy emitted by the Earth is infrared. (<strong>Image credit:</strong> <a href="https://www.noaa.gov/jetstream/satellites/absorb" target="_blank">NOAA</a>) </figcaption>
+                  </figure>
+                  <figure style="text-align: center;">
+                    <img src="assets/img/remote-sensing/amtmo-window1.png" alt="" style="max-width: 90%; max-height: 90%;">
+                    <figcaption style="text-align: center;">The places with limited or almost no absorption by the atmosphere is known as the atmospheric window - allowing us to peer into the atmosphere at various wavelengths. (<strong>Image credit:</strong> <a href="https://www.noaa.gov/jetstream/satellites/absorb" target="_blank">NOAA</a>) </figcaption>
+                  </figure>
+                  <figure style="text-align: center;">
+                    <img src="assets/img/remote-sensing/amtmo-window2.png" alt="" style="max-width: 90%; max-height: 90%;">
+                    <figcaption style="text-align: center;">Approximate locations of the 16 channels, used to peer through the atmosphere with the GOES-R series satellites.(<strong>Image credit:</strong> <a href="https://www.noaa.gov/jetstream/satellites/absorb" target="_blank">NOAA</a>) </figcaption>
+                  </figure>
+                  <ul>
+                    <li><strong>Visible Window (0.4 - 0.7 µm): </strong>
+                      <ul>
+                        <li><strong>Description:</strong> This range corresponds to the visible light spectrum, which is why we can see sunlight and other visible phenomena. The atmosphere is largely transparent to visible light, with minimal absorption by gases like oxygen and nitrogen.</li>
+                        <li>Applications: Remote sensing of land, oceans, and clouds; optical astronomy; human vision</li>
+                      </ul>
+                    </li>
+                    <li><strong>Near-Infrared (NIR) Window (0.7 - 1.3 µm): </strong>
+                      <ul>
+                        <li><strong>Description:</strong> The atmosphere is relatively transparent in this range, allowing for the observation of vegetation, water content, and surface temperatures.</li>
+                        <li><strong>Applications:</strong>  Vegetation monitoring, surface reflectance studies, and some forms of optical communication.</li>
+                      </ul>
+                    </li>
+                    <li><strong>Thermal Infrared (TIR) Window (8 - 14 µm)</strong>
+                      <ul>
+                        <li><strong>Description:</strong> This window allows thermal radiation emitted by the Earth's surface and atmosphere to pass through. It's crucial for observing temperature and heat patterns.</li>
+                        <li><strong>Applications:</strong> Thermal imaging, climate studies, and infrared astronomy.</li>
+                      </ul>
+                    </li>
+                    <li><strong>Microwave Window (1 mm - 30 cm)</strong>
+                      <ul>
+                        <li><strong>Description:</strong> The atmosphere is mostly transparent to microwaves, except for certain absorption lines like water vapor and oxygen. This window is critical for satellite communication, radar, and some types of remote sensing.</li>
+                        <li><strong>Applications:</strong> Weather radar, satellite communications, microwave remote sensing of atmospheric water vapor, and sea surface temperature.</li>
+                      </ul>
+                    </li>
+                  </ul>
             
                 
                 <!-------Reference ------->
