@@ -175,7 +175,7 @@
           <h2 id="basic-principle">Satellite Data Processing: From Raw Measurements to Calibrated Insights</h2>
           Let's delve into the details of how satellite data is processed, starting from the raw Level-0 data received by the sensors and then transforming it to Level-1 data.
           <!---------------------------->
-          <h3>Satellite Data levels</h3>
+          <h4>Satellite Data levels</h4>
           <p>Within remote sensing and its applications, there are a series of levels that are used to define the amount of processing that has been performed to provide a given dataset. Satellite data is collected at various levels, each representing a different stage of processing and refinement. Here are the common levels of satellite data (<a href="https://classroom.eumetsat.int/mod/book/tool/print/index.php?id=13919#ch621" target="_blank">reference 1</a> and <a href="https://www.star.nesdis.noaa.gov/atmospheric-composition-training/satellite_data_processing_levels.php" target="_blank">reference 2</a>):</p>
 
           <ol>
@@ -313,8 +313,7 @@
           <p>Level 0 (L0) data represents the raw, unprocessed data directly received from a satellite's sensors. Transforming Level 0 data into Level 1 and higher levels involves several essential steps to convert the raw sensor measurements into physically meaningful units. Here's a step-by-step process for this transformation:</p>
             <figure style="text-align: center;">
               <img src="assets/img/remote-sensing/Level-0-4.png" alt="" style="max-width: 90%; max-height: 90%;">
-              <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://link.springer.com/referenceworkentry/10.1007/978-0-387-36699-9_36">Processing Levels, 
-                Ron Weaver </a></figcaption>
+              <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://link.springer.com/referenceworkentry/10.1007/978-0-387-36699-9_36">Processing Levels, Ron Weaver </a></figcaption>
             </figure>
             
             <ul>
@@ -328,7 +327,7 @@
                   <br>
                     where 
                     <ul>
-                      <li>\(L\) is radiance and is typically in units of \(W/(m^2 ~\text{sr}~ \mu \text{m})\),</li>
+                      <li>\(L\) is radiance (TOA spectral radiance) and is typically in units of \(W/(m^2 ~\text{srad}~ \mu \text{m})\),</li>
                       <li><code>DN</code> is a dimensionless integer and known as digital counts or Digital Number or raw sensor count (DN). It has a value in the range of <code>0</code> to <code>65535</code> for a 16-bit sensor,</li>
                       <li><code>Offset</code> (an additive calibration coefficient that accounts for the sensor's dark current or instrument offset) and,</li>
                       <li>Gain = A multiplicative calibration coefficient that accounts for the sensor's gain or sensitivity and units depends on the calibrated quantity (radiance or reflectance).
