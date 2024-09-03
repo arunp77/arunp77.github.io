@@ -130,16 +130,15 @@
           </div>
 
           <section>
-            
           <!-------------------------->
-          <h3>Introduction</h3>
+          <h2>Introduction</h2> 
           <p>The Ground Segment refers to all the systems and infrastructure on Earth that support and control satellites in space. It includes the equipment, software, and facilities needed to communicate with the satellite, receive its data, and ensure it operates correctly.</p>
 
           <p><b>Purpose:</b> The main purpose of the Ground Segment is to manage the satellite's operations, like sending commands to the satellite, monitoring its health, and collecting the data it sends back to Earth. This data is then processed and distributed to users, such as weather agencies or scientists, who rely on the information gathered by the satellite.
           </p>
 
           <!--------------------------------->
-          <h3> Primary Elements of a Ground System</h3>
+          <h4> Primary Elements of a Ground System</h4>
           <table>
             <tr>
               <th>Element</th>
@@ -186,15 +185,180 @@
             <li><strong>Data Archiving and Distribution: </strong>The DPGS archives and distributes processed data products to users through various means, such as online data repositories, data portals, and direct delivery to user facilities.</li>
           </ul>
 
-          <h4>DPGS Components</h4>
+          <!----------------------->
+          <h2>Ground Systems Architecture</h2> 
+          A typical small satellite mission has the following elements within the ground system architecture:
           <ul>
-            <li><strong>Data Acquisition and Distribution System:</strong> Handles the reception, storage, and distribution of raw sensor data.</li>
-            <li><strong>Preprocessing System:</strong> Performs radiometric calibration, geometric correction, and noise reduction on raw data.</li>
-            <li><strong>Processing System:</strong> Applies image classification, image segmentation, change detection, and feature extraction techniques.</li>
-            <li><strong>Product Generation System:</strong> Creates and formats data products according to user specifications.</li>
-            <li><strong>Archiving and Distribution System:</strong> Archiving processed data products and distributing them to users.</li>
-            <li><strong>Quality Control and Monitoring System:</strong> Ensures the quality and accuracy of data products throughout the processing pipeline.</li>
+            <li><b>Ground Station Terminal:</b> Transmitter and receiver or transceiver at the ground station to transmit and receive information, including related hardware such as antennas. These may be in a Radio Frequency (RF) or in an optical wavelength.</li>
+            <li><b>Mission Operations Center (MOC): </b>
+              <ul>
+                <li>Commands the spacecraft</li>
+                <li>Monitors spacecraft performance</li>
+                <li>Requests and retrieves data as necessary</li>
+              </ul>
+            </li>
+            <li><b>Science Operations Center (SOC): </b>
+              <ul>
+                <li>Generates and disseminates science data products</li>
+                <li>Determines science operations to be relayed to the MOC</li>
+              </ul>
+            </li>
+            <li><b>Ground Station Data Storage and Network:</b>
+              <ul>
+                <li>Provides live connectivity to a MOC for commands and telemetry.</li>
+                <li>Temporarily stores data to be retrieved by the MOC and/or SOC.</li>
+              </ul>
+            </li>
           </ul>
+          <figure style="text-align: center;">
+            <img src="assets/img/remote-sensing/dgps-nasa.webp" alt="" style="max-width: 80%; max-height: 60%;">
+            <figcaption style="text-align: center;">Example of a ground system architecture for a small satellite using NASA’s Near Space Network. (<strong>Image credit:</strong><a href="https://www.nasa.gov/smallsat-institute/sst-soa/ground-data-systems-and-mission-operations/"> NASA</a>)</figcaption>
+          </figure>
+
+          <p>In this architecture, the Mission Operations Center (MOC) serves as the central hub for all communications with the spacecraft. While the Space Operations Center (SOC) and engineering teams can coordinate their work through the MOC, they also have the option to interact directly with the flight system during critical phases like commissioning and troubleshooting. This direct access empowers the engineering team to address issues promptly. To ensure data accessibility, the MOC maintains a separate database containing telemetry and housekeeping data, which is available to relevant stakeholders.</p>
+
+          <!----------------------------->
+          <h5>Types of Communication Infrastructures</h5>
+          <ul>
+            <li><b>Direct-to-Earth (DTE):</b>
+              <ul>
+                <li>DTE communication is a direct connection between a spacecraft and a ground station. It offers high data rates but is limited by line-of-sight constraints. </li>
+                <li>The antennas at ground stations which are strategically located and equipped with telemetry, command, and tracking services helps us to communicate with the satellites in the orbit.</li>
+              </ul>   
+            </li>
+
+            <li><b>Space relay satellites: </b>
+              <ul>
+                <li>Space relay involves an intermediate satellite that communicates with both the spacecraft and the ground station. </li>
+                <li>This provides continuous coverage and is useful for missions requiring constant contact. However, space relays have lower data rates than DTE.</li>
+                <li>Relay communication satellites for low-Earth orbit spacecraft can be in Geosynchronous Equatorial Orbit (GEO), about 36,000 km from Earth, or in low-Earth orbit. </li>
+                <li>Relays are essential for providing communication and tracking when direct-to-ground communications are not feasible due to physical asset visibility constraints. </li>
+                <li> It is common for a low-Earth orbit spacecraft to only be in a DTE ground station’s line of sight for a portion of the orbit.</li>
+                <li>The addition of space-based relay assets can provide missions with full-time coverage and continuous access to communication and tracking services. They are most useful for missions that need continuous coverage, low latencies, and coverage of launch, critical events, or emergencies.</li>
+              </ul>
+            </li>
+
+          </ul>
+          <p>Choosing between DTE and space relay depends on mission requirements. DTE is ideal for frequent, short-duration contacts with high data throughput, while space relay is suitable for continuous coverage, low latencies, and emergency situations.</p>
+
+
+          <!------------------------------------>
+          <h5>Frequency Considerations</h5>
+          The spacecraft transceiver and ground station need to be on a coordinated frequency to communicate. Selecting transmit and receive frequencies are a critical part of the spacecraft communications system design process. Frequencies are divided into different bands as shown in table:
+
+          <table>
+            <thead>
+              <tr>
+                <th>Band</th>
+                <th>Frequency Range (MHz)</th>
+                <th>Application</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>HF</td>
+                <td>3 to 30</td>
+                <td>Shortwave radio, amateur radio, international broadcasting, aviation communication, maritime communication</td>
+              </tr>
+              <tr>
+                <td>VHF</td>
+                <td>30 to 300</td>
+                <td>FM radio broadcasting, television broadcasting, air traffic control, two-way radio, marine radio</td>
+              </tr>
+              <tr>
+                <td><span style="color: red;">UHF</span></td> 
+                <td><span style="color: red;">300 to 1000</td>
+                <td><span style="color: red;">Television broadcasting, cellular phones, Wi-Fi, Bluetooth, GPS, radar</td>
+              </tr>
+              <tr>
+                <td>L</td>
+                <td>1000 to 2000</td>
+                <td>Satellite communications (e.g., GPS, satellite phones), radar, microwave ovens</td>
+              </tr>
+              <tr>
+                <td><span style="color: red;">S</span></td>
+                <td><span style="color: red;">2000 to 4000</span></td>
+                <td><span style="color: red;">Satellite communications, radar, microwave ovens, medical equipment (MRI)</span></td>
+              </tr>
+              <tr>
+                <td>C</td>
+                <td>4000 to 8000</td>
+                <td>Satellite communications, radar, microwave ovens, cable television</td>
+              </tr>
+              <tr>
+                <td><span style="color: red;">X</span></td>
+                <td><span style="color: red;">8000 to 12000</span></td>
+                <td><span style="color: red;">Radar, satellite communications, military applications, radio astronomy</span></td>
+              </tr>
+              <tr>
+                <td>Ku</td>
+                <td>12000 to 18000</td>
+                <td>Satellite television broadcasting (direct-to-home), satellite internet, radar</td>
+              </tr>
+              <tr>
+                <td><span style="color: red;">Ka</span></td>
+                <td><span style="color: red;">27000 to 40000</span></td>
+                <td><span style="color: red;">Satellite communications, high-speed internet, radar</span></td>
+              </tr>
+              <tr>
+                <td>V</td>
+                <td>40000 to 75000</td>
+                <td>Radar, satellite communications, atmospheric research</td>
+              </tr>
+              <tr>
+                <td>W</td>
+                <td>75000 to 110000</td>
+                <td>Radar, satellite communications, atmospheric research</td>
+              </tr>
+              <tr>
+                <td>mm</td>
+                <td>110000 to 300000</td>
+                <td>Millimeter-wave radar, high-capacity wireless communications (5G), atmospheric research</td> 
+              </tr>
+            </tbody>
+          </table>
+          <p></p>
+          <ul>
+            <li>Typical bands considered for small satellites and therefore ground stations are Ultra High Frequency (UHF), S, X, and Ka.</li>
+            <li>UHF was the band of choice for early small satellites, but in recent years, there has been a shift to S and X and Ka.</li> 
+            <li>A ground station needs to maintain antennas and receivers such that the ground receive matches the space segment’s transmit frequency and vice versa.</li> 
+            <li>Since Transmit (Tx) and Receive (Rx) have different key drivers and requirements, many ground stations are dual or tri-band.</li>
+          </ul>
+
+          <h5>Ground Station Receive (Spacecraft Return, Telemetry)</h5>
+          <ul>
+            <li><b>Frequencies:</b> S and X bands for LEO/GEO orbits, X and Ka bands for deep space.</li>
+            <li><b>Ka band:</b> Preferred for future small satellite missions due to higher data rates and frequency control.</li>
+            <li><b>UHF:</b> Less expensive but lower data rates and higher interference risk.</li>
+            <li><b>Higher frequencies:</b> Wider bandwidths but require more precise pointing.</li>
+          </ul>
+
+          <h5>Ground Station Forward (Spacecraft Commanding)</h5>
+          <ul>
+            <li><b>Key factor:</b> Reaching the satellite, especially during its initial phase after launch.</li>
+            <li><b>Wide beamwidth:</b> Essential for the spacecraft's receiving antenna(s) to ensure successful command.</li>
+            <li><b>Ground station design:</b> High power and Low Noise Amplifiers (LNA) to compensate for low-gain, omni-directional antennas.</li>
+            <li><b>Lower frequency bands:</b> Ideal for initial command due to wider beamwidth.</li>
+          </ul>
+
+
+          <h5>Ground Segment Services</h5>
+          Ground segment services may include the below four categories.
+          <ul>
+            <li><b>Mission Integration:</b> this includes development of service agreements, interfaces, documentation, support of reviews, etc.</li>
+            <li><b>Mission Planning and Scheduling:</b> this includes performing link and loading analyses, supporting service requests, and generating and implementing operational schedules.</li>
+            <li><b>User Mission Data Transfer:</b> this includes primarily spacecraft forward command and return telemetry data.</li>
+            <li><b>Position, Navigation and Timing (PNT):</b>  this includes navigation.</li>
+          </ul>
+
+
+          
+          
+          
+          
+
+
+
           </section>
 
           
