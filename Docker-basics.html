@@ -147,57 +147,133 @@
                     These containers encapsulate everything an application needs to run, including code, libraries, dependencies, and runtime environments. Unlike traditional 
                     virtual machines, Docker containers share the host OS kernel, which makes them extremely efficient and fast to start.</p>
                 <p>Docker provides an environment that enables developers to build, test, deploy, and run applications by using containerization technology.</p>
-                <p>The key benefits of Docker include:</p>
-                <ol style="list-style-type: disc; margin-left: 30px;">
-                    <li><b>Isolation:</b> Containers run in isolated environments, ensuring that applications don't interfere with each other.</li>
-                    <li><b>Consistency:</b> Docker ensures that an application behaves the same way in development, testing, and production environments.</li>
-                    <li><b>Portability:</b> Containers can run on any system that supports Docker, making it easy to move applications between different environments.</li>
-                    <li><b>Scalability:</b> Dock
-                </ol><br>
 
-                <div style="background-color: #f0f0f0; padding: 15px; border-radius: 5px; border: 1px solid #000;">
-                    <h5><strong>Virtual Machines Overview</strong></h5>
-                    <p>
-                      Virtual machines (VMs) are software-based emulations of physical computers. They allow the simultaneous
-                      operation of multiple operating systems on a single physical machine, optimizing hardware resources.
-                    </p>
-                    <p>
-                      <strong>Key Points:</strong>
-                      <ul>
-                        <li>VMs are managed by a hypervisor, facilitating the creation and control of virtualized environments.</li>
-                        <li>Isolation is ensured, as each VM operates independently with its own virtualized hardware resources.</li>
-                        <li>VMs support various guest operating systems, enabling diverse software environments on the same hardware.</li>
-                        <li>Resource allocation by the hypervisor optimizes hardware use, allowing multiple VMs on a single server.</li>
-                      </ul>
-                    </p>
-                    <p>
-                      Virtual machines find applications in data centers for server consolidation, testing, development, and more.
-                      They offer flexibility, allowing easy migration between physical servers and efficient resource management.
-                    </p>
-                    <p>
-                      <em>Popular virtualization platforms include VMware, Microsoft Hyper-V, and open-source solutions like KVM.</em>
-                    </p>
-                </div><br>
-                <div style="background-color: #66a8a56b; padding: 15px; border-radius: 5px; border: 1px solid #000;">
-                    <h4><strong>Containerization:</strong></h4>
-                        <ul>
-                            <li><strong>Concept:</strong> Containerization is a lightweight form of virtualization that allows you to package and run applications and their dependencies in isolated units called containers.</li>
-                            <li><strong>Key Points: </strong>
-                                <ul>
-                                    <li>Containers encapsulate an application and its dependencies, ensuring consistency across different environments</li>
-                                    <li>They provide a standardized and efficient way to deploy, distribute, and manage applications.</li>
-                                </ul>
-                            </li>
-                        </ul>
-                </div><br>
-                <div style="background-color: #f1f5f56b; padding: 15px; border-radius: 5px; border: 1px solid #111111;">
-                <strong>Hypervisor: </strong> A hypervisor, also known as a Virtual Machine Monitor (VMM), is a software or firmware that enables the creation and management of virtual machines (VMs) on a 
-                physical host machine. It allows multiple operating systems to run concurrently on a single hardware platform. Hypervisors play a crucial role in virtualization technology, facilitating the 
-                isolation and efficient allocation of resources for different virtualized environments. They are commonly used in cloud computing, server consolidation, and other scenarios where maximizing 
-                hardware utilization and flexibility are key objectives. <br><br>
-                <p>In summary, the hypervisor is the layer that enables the creation and management of virtual machines on a physical host. VMs are the instances of virtualized operating systems and applications 
-                  that run on top of the hypervisor. The hypervisor provides the abstraction and control necessary to efficiently share and allocate resources among multiple VMs.</p>
-                </div><br>
+            <!----------------------------------------->
+            <p>The key benefits of Docker include:</p>
+            <ol style="list-style-type: disc; margin-left: 30px;">
+                <li><b>Isolation:</b> Containers run in isolated environments, ensuring that applications don't interfere with each other.</li>
+                <li><b>Consistency:</b> Docker ensures that an application behaves the same way in development, testing, and production environments.</li>
+                <li><b>Portability:</b> Containers can run on any system that supports Docker, making it easy to move applications between different environments.</li>
+                <li><b>Scalability:</b> Dock
+            </ol><br>
+
+            <h3>Docker images and containers</h3>
+            Docker images are lightweight, stand-alone, executable software packages that include everything needed to run a piece of software: the code, runtime, libraries, environment variables, and configuration files.
+            <ul>
+              <li><b>Docker Image: </b>A read-only template with instructions for creating a Docker container. Images can be shared via Docker Hub or other registries.</li>
+              <li><b>Docker Container: </b>A runnable instance of a Docker image. Containers are isolated environments that run applications with their dependencies. Containers can be started, stopped, and removed without affecting the image.</li>
+            </ul>
+
+            <div class="box">
+              We can think of Docekr image as the blueprint of a Docker container. 
+            </div>
+
+            <p>When we create a Docker container, we’re adding a writable layer on top of the Docker image. We can run many Docker containers from the same Docker image. We can see a Docker container as a runtime instance of a Docker image.</p>
+            <figure style="text-align: center;">
+              <img src="assets/img/data-engineering/container-image.png" alt="" style="max-width: 40%; max-height: auto;">
+              <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://stackify.com/docker-build-a-beginners-guide-to-building-docker-images/?s=03" target="_blank"> stackify</a></figcaption>
+            </figure>   
+
+            <!------------------------>
+            <h4>Dockerfile</h4>
+            A <code>Dockerfile</code> is a text file that contains a series of instructions used to build a Docker image. Each instruction in the Dockerfile defines a specific step that Docker follows to construct the image, layer by layer. When the Dockerfile is processed, Docker creates an image based on the commands written in it.
+            <p><b>Structure of a Dockerfile:</b>A typical Docekrfile includes:</p>
+            <ul>
+              <li><b>Base Image: </b>The starting point for your image.</li>
+              <li><b>Instructions: </b>Commands that copy files, install dependencies, and set up the environment.</li>
+              <li><b>Final Command: </b>The default command or entry point for the container when it's run.</li>
+            </ul>
+
+            <p><b>Key Instructions in a Dockerfile: </b>Let's consider a simple python Flask application and the try to understand how the DOcker images are created.</p>
+            <pre class="language-docker"><code>
+              # Step 1: Use an official Python runtime as a base image
+              FROM python:3.9-slim
+              
+              # Step 2: Set the working directory inside the container
+              WORKDIR /app
+              
+              # Step 3: Copy the requirements file from the host to the container
+              COPY requirements.txt .
+              
+              # Step 4: Install dependencies inside the container
+              RUN pip install --no-cache-dir -r requirements.txt
+              
+              # Step 5: Copy the current directory contents to /app in the container
+              COPY . .
+              
+              # Step 6: Expose port 5000 (used by Flask)
+              EXPOSE 5000
+              
+              # Step 7: Define the command to run the Flask app
+              CMD ["python", "app.py"]
+              
+            </code></pre>
+
+
+            <p>Here’s a breakdown of common instructions in a Dockerfile:</p>
+            <ul>
+              <li><b>FROM: </b>This specifies the base image that your image will be built upon. The base image can be anything, from a bare OS (like ubuntu) to a specific language runtime (like python:3.9). For example in the present example: <code>FROM python:3.9-slim</code>, uses a minimal Python 3.9 environment as the base image.</li>
+              <li><b>WORKDIR: </b>Sets the working directory inside the Docker container. All subsequent instructions and paths in the Dockerfile will be relative to this directory. <code>WORKDIR /app</code> will creates and sets the <code>/app</code> directory as the working directory inside the container.</li>
+              <li><b>COPY: </b>This instruction copies files from your host machine into the Docker container. The source file or directory on your machine is specified first, followed by the destination path inside the container. For example, in our case, <code>COPY requirements.txt .</code> command copies the <code>requirements.txt</code> from the local machine into the current working directory <code>/app</code> in the container. The second <code>COPY . .</code> copies all the files from the current directory on the machine into <code>/app</code>.</li>
+              <li><b>RUN: </b>This executes a command in the shell during the build process. Commonly used to install dependencies or set up the environment. The <code>RUN pip install --no-cache-dir -r requirements.txt</code> installs the Python packages listed in <code>requirements.txt</code> using <code>pip</code>.</li>
+              <li><b>EXPOSE: </b>This informs Docker that the container listens on a specific network port at runtime. It doesn’t actually publish the port, but it serves as documentation for which ports should be exposed. The <code>EXPOSE 5000</code> declares that the container will listen on port 5000 (used by Flask in the present example).</li>
+              <li><b>CMD: </b>Specifies the command to run when the container starts. Unlike <code>RUN</code>, which is executed during the build, <code>CMD</code> is executed when the container is started. If multiple <code>CMD</code> instructions are provided, only the last one is used. The <code>CMD ["python", "app.py"]</code> runs the <code>python app.py</code> command when the container starts, which launches the Flask application.</li>
+              <li><b>ENTRYPOINT (Optional): </b>Similar to <code>CMD</code>, but it defines the main command to be executed when the container starts, and it can't be overridden. It is often combined with <code>CMD</code> for arguments.</li>
+            </ul>
+            So once the Dockerfile is ready, we can create the Docekr image using the following command:
+            <pre><code>
+              docker build -t my-python-app .
+            </code></pre>
+            This command reads the instructions in the Dockerfile and creates an image named <code>my-python-app</code>. So, a Dockerfile is essentially a recipe that tells Docker how to assemble an image. It’s written in a simple format that lets you define the base environment, install dependencies, copy files, and define what happens when the container is run.
+
+
+            <!----------------------->
+            <p><strong><code>docker-compose.yml</code>: </strong>The <code>docker-compose.yml</code> file is used with Docker Compose, a tool that helps define and manage multi-container Docker applications. Instead of managing each container separately, <code>docker-compose.yml</code> allows us to describe how our entire application—comprising multiple containers.</p>
+
+
+            <div style="background-color: #f0f0f0; padding: 15px; border-radius: 5px; border: 1px solid #000;">
+                <h5><strong>Virtual Machines Overview</strong></h5>
+                <p>
+                  Virtual machines (VMs) are software-based emulations of physical computers. They allow the simultaneous
+                  operation of multiple operating systems on a single physical machine, optimizing hardware resources.
+                </p>
+                <p>
+                  <strong>Key Points:</strong>
+                  <ul>
+                    <li>VMs are managed by a hypervisor, facilitating the creation and control of virtualized environments.</li>
+                    <li>Isolation is ensured, as each VM operates independently with its own virtualized hardware resources.</li>
+                    <li>VMs support various guest operating systems, enabling diverse software environments on the same hardware.</li>
+                    <li>Resource allocation by the hypervisor optimizes hardware use, allowing multiple VMs on a single server.</li>
+                  </ul>
+                </p>
+                <p>
+                  Virtual machines find applications in data centers for server consolidation, testing, development, and more.
+                  They offer flexibility, allowing easy migration between physical servers and efficient resource management.
+                </p>
+                <p>
+                  <em>Popular virtualization platforms include VMware, Microsoft Hyper-V, and open-source solutions like KVM.</em>
+                </p>
+            </div><br>
+            <div style="background-color: #66a8a56b; padding: 15px; border-radius: 5px; border: 1px solid #000;">
+                <h4><strong>Containerization:</strong></h4>
+                    <ul>
+                        <li><strong>Concept:</strong> Containerization is a lightweight form of virtualization that allows you to package and run applications and their dependencies in isolated units called containers.</li>
+                        <li><strong>Key Points: </strong>
+                            <ul>
+                                <li>Containers encapsulate an application and its dependencies, ensuring consistency across different environments</li>
+                                <li>They provide a standardized and efficient way to deploy, distribute, and manage applications.</li>
+                            </ul>
+                        </li>
+                    </ul>
+            </div><br>
+            <div style="background-color: #f1f5f56b; padding: 15px; border-radius: 5px; border: 1px solid #111111;">
+            <strong>Hypervisor: </strong> A hypervisor, also known as a Virtual Machine Monitor (VMM), is a software or firmware that enables the creation and management of virtual machines (VMs) on a 
+            physical host machine. It allows multiple operating systems to run concurrently on a single hardware platform. Hypervisors play a crucial role in virtualization technology, facilitating the 
+            isolation and efficient allocation of resources for different virtualized environments. They are commonly used in cloud computing, server consolidation, and other scenarios where maximizing 
+            hardware utilization and flexibility are key objectives. <br><br>
+            <p>In summary, the hypervisor is the layer that enables the creation and management of virtual machines on a physical host. VMs are the instances of virtualized operating systems and applications 
+              that run on top of the hypervisor. The hypervisor provides the abstraction and control necessary to efficiently share and allocate resources among multiple VMs.</p>
+            </div><br>
 
                 <h4>Difference between the Virtual machines and Dockerr</h4>
                 <table>
@@ -252,6 +328,7 @@
             <li>Now create a project and hence image and push it to docker repository.</li>
           </ol>
 
+
           <!------------------------------>
           <section id ="project">
             <h3>Simple Flask application</h3>
@@ -277,7 +354,7 @@
               section of the code runs the Flask app. <code>debug=True</code> enables debugging mode, <code>host="0.0.0.0"</code> makes the app accessible from external devices, and <code>port="5000"</code>
               sets the port to 5000.
               </li>
-              <li><strong>Step-2:</strong>Create a file named requirements.txt with the following content:
+              <li><strong>Step-2:</strong>Create a file named <code>requirements.txt</code> with the following content:
                 <pre class="language-docker"><code> Flask == 2.0.1</code></pre>
                 This file specifies the dependencies for your Flask app.
               </li>
@@ -292,7 +369,7 @@
                 This Dockerfile specifies how to build your Docker image.
               </li>
               <li><strong>Step-4:</strong>Open a terminal, navigate to the directory containing your <code>Dockerfile</code>, <code>app.py</code>, and <code>requirements.txt</code>, and run the following command:
-                <pre class="language-bash"><code>$ docker build -t my-flask-app .</code></pre>
+                <pre class="language-bash"><code>$ docker build -t welcome-app .</code></pre>
                 <figure style="text-align: center;">
                   <img src="assets/img/data-engineering/docker-images.png" alt="" style="max-width: 90%; max-height: auto;">
                   <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a></figcaption>
@@ -301,7 +378,7 @@
               </li>
               <li><strong>Step-5:</strong>
                 After building the Docker image, you can run a container using the following command:
-                <pre class="language-bash"><code>$ docker run -p 5000:5000 my-flask-app</code></pre>
+                <pre class="language-bash"><code>$ docker run -p 5000:5000 welcome-app</code></pre>
                 This command runs the Docker container and maps port 5000 from the container to port 5000 on your host machine.
               </li>
               <li><strong>Step-6:</strong>Open a web browser and go to <a href="http://localhost:5000" target="_blank">http://localhost:5000</a>. You should see the message "Hello, world!".</li>
@@ -390,7 +467,7 @@ if __name__ == "__main__":
                 </ul>
               </li>
               <li><strong>Dockerfile: </strong>
-                <pre>
+                <pre class="language-docker">
                   FROM python:3.7-alpine
                   WORKDIR /code
                   ENV FLASK_APP=app.py
