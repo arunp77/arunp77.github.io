@@ -168,33 +168,102 @@
 
                 <section id="theoretical">
                     <h2>Basic Concept: Gravitational Waves in General Relativity</h2>
+                    Gravitational waves are a key prediction of <b>Einstein’s General Theory of Relativity</b>. To understand the basic concept of gravitational waves, we must derive them mathematically as a solution to the linearized Einstein field equations. This section will develop the theory behind gravitational waves starting from Einstein's equations, focusing on the weak-field approximation and the wave-like nature of spacetime perturbations.
+
                     Gravitational waves arise as a solution to the <b>Einstein field equations</b> in general relativity. These equations relate the curvature of spacetime (described by the <b>Einstein tensor</b> \( G_{\mu\nu} \)) to the distribution of energy and momentum (encoded in the <b>stress-energy tensor</b> \( T_{\mu\nu} \)):
 
                     \[
                     G_{\mu\nu} = \frac{8 \pi G}{c^4} T_{\mu\nu}
                     \]
 
-                    For weak gravitational fields, the Einstein field equations can be linearized. This linearization is valid when the gravitational fields are small perturbations on flat spacetime. Let us consider small perturbations \( h_{\mu\nu} \) to the flat Minkowski metric \( \eta_{\mu\nu} \):
+                    <p>Here \(G_{\mu\nu}\) is a function of the metric \(g_{\mu\nu}\) and its derivatives. \( T_{\mu\nu} \) represents the distribution of matter and energy. In the absence of matter (i.e., in vacuum), the equation reduces to:</p>
+
+                    $$G_{\mu\nu} = 0$$
+
+                    This describes how spacetime is curved even in the absence of matter, a fundamental concept for gravitational waves.
+
+                    <h4>Linearized Gravity</h4>
+                    In many astrophysical scenarios, the curvature of spacetime is weak, and the metric \(g_{\mu\nu}\) can be expressed as a small perturbation \(h_{\mu\nu}\) on flat spacetime (the Minkowski metric \(\eta_{\mu\nu}\)):
 
                     \[
                     g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu}, \quad |h_{\mu\nu}| \ll 1
                     \]
 
-                    Substituting this into the Einstein field equations and keeping only the linear terms in \( h_{\mu\nu} \) leads to the <b>linearized Einstein equations</b>. In the absence of matter, these reduce to:
+                    The metric perturbation \(h_{\mu\nu}\) represents the deviation from flat spacetime. The Minkowski metric \(\eta_{\mu\nu}\) in Cartesian coordinates is: 
+
+                    $$\eta = \text{diag}(-1,+1,+1,+1)$$
+
+                    <p></p>
+                    <h5>Expansion of the Einstein Tensor</h5>
+                    To derive the wave equation for gravitational waves, we must expand the Einstein tensor \(G_{\mu\nu}\) to first order in \(h_{\mu\nu}\). The Einstein tensor is related to the Ricci tensor \(R_{\mu\nu}\) and the Ricci scalar \(R\) via:
 
                     \[
-                    \Box h_{\mu\nu} = 0
+                    G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R
                     \]
 
-                    where \( \Box \) is the d'Alembertian operator, representing the wave equation in spacetime. This equation implies that the perturbations \( h_{\mu\nu} \) propagate as waves through spacetime, which are identified as gravitational waves.
+                    The Ricci tensor is obtained from the <b>Christoffel symbols</b> \( \Gamma^\lambda_{\mu\nu} \), which are functions of the metric and its first derivatives:
 
+                    \[
+                    R_{\mu\nu} = \partial_\lambda \Gamma^\lambda_{\mu\nu} - \partial_\mu \Gamma^\lambda_{\lambda\nu} + \Gamma^\lambda_{\mu\nu} \Gamma^\sigma_{\lambda\sigma} - \Gamma^\sigma_{\mu\lambda} \Gamma^\lambda_{\nu\sigma}
+                    \]
                     
-                </section>
+                    By linearizing these expressions, we find that the Einstein tensor to first order in \( h_{\mu\nu} \) is given by:
+                    
+                    \[
+                    G_{\mu\nu}^{(1)} = \frac{1}{2} \left( \partial_\mu \partial_\nu h - \Box h_{\mu\nu} - \partial_\mu \partial^\lambda h_{\nu\lambda} - \partial_\nu \partial^\lambda h_{\mu\lambda} \right)
+                    \]
+                    
+                    where \( h = h^\lambda_\lambda \) is the trace of the perturbation, and \( \Box = \eta^{\mu\nu} \partial_\mu \partial_\nu \) is the d'Alembert operator.
+                    
+                    <p></p>
+                    <!------------------------------->
+                    <h5>Gauge Freedom and the Transverse-Traceless (TT) Gauge</h5>
+                    Gravitational waves possess <b>gauge freedom</b>, meaning that different choices of coordinates lead to different representations of the same physical wave. By making a suitable coordinate transformation, we can simplify the form of \( h_{\mu\nu} \). A commonly used gauge is the <b>Lorenz gauge</b>, which imposes:
 
-                <section id="cpi">
-                    <h2>Mathematical Description of Gravitational Waves</h2>
-                    <h4>Gravitational Wave Polarizations</h4>
-                    Gravitational waves are **transverse** waves, meaning that the oscillations occur perpendicular to the direction of propagation. They have two polarizations, denoted as \( h_+ \) and \( h_\times \), which describe how they stretch and squeeze spacetime in orthogonal directions. The general form of the perturbation can be written as:
+                    \[
+                    \partial^\mu h_{\mu\nu} = \frac{1}{2} \partial_\nu h
+                    \]
+                    
+                    However, a more useful gauge for gravitational waves is the <b>transverse-traceless (TT) gauge</b>, where we impose two conditions:
+                    <ul>
+                        <li>The perturbation is <b>transverse</b>: \( h_{0\mu} = 0 \) and \( h_{z\mu} = 0 \).</li>
+                        <li>The perturbation is <b>traceless</b>: \( h^\mu_\mu = 0 \).</li>
+                    </ul>
+                    
+                    In the TT gauge, the linearized Einstein equations simplify, and the gravitational wave equation in vacuum becomes:
+                    
+                    \[
+                    \Box h_{\mu\nu}^{\text{TT}} = 0
+                    \]
+                    
+                    This is simply a wave equation, showing that \( h_{\mu\nu}^{\text{TT}} \) propagates as a wave through spacetime. The solutions to this equation are <b>gravitational waves</b>.
+
+                    <p></p>
+                    <!--------------------------------->
+                    <h5>Solutions: Plane Waves</h5>
+                    The simplest solutions to the wave equation \( \Box h_{\mu\nu}^{\text{TT}} = 0 \) are <b>plane waves</b>. A plane wave solution for gravitational waves can be written as:
+
+                    \[
+                    h_{\mu\nu}^{\text{TT}}(t, \vec{x}) = A_{\mu\nu} \exp(i k_\alpha x^\alpha) + \text{c.c.}
+                    \]
+                    
+                    where \( A_{\mu\nu} \) is the <b>amplitude tensor</b>, \( k_\alpha \) is the wave vector, and \( x^\alpha = (t, \vec{x}) \) represents the spacetime coordinates. The wave vector satisfies the <b>dispersion relation</b> for massless waves:
+                    
+                    \[
+                    k_\alpha k^\alpha = 0 \quad \Rightarrow \quad \omega = c |\vec{k}|
+                    \]
+                    
+                    Thus, gravitational waves propagate at the <b>speed of light</b>.
+
+                    <p></p>
+                    <h5>Polarization States</h5>
+                    In the TT gauge, gravitational waves have only two independent components, which correspond to the two possible <b>polarization states</b>. These are conventionally denoted as \( h_+ \) and \( h_\times \). A gravitational wave propagating in the \( z \)-direction can be written as:
+
+                    \[
+                    h_{+}(t, z) = A_+ \cos(\omega t - k z), \quad h_{\times}(t, z) = A_\times \cos(\omega t - k z)
+                    \]
+                    
+                    These two polarization modes describe how the wave stretches and compresses spacetime in orthogonal directions. They represent the "<b>plus</b>" and "<b>cross</b>" polarizations of the wave. These two are <b>transverse</b> waves, meaning that the oscillations occur perpendicular to the direction of propagation. They have two polarizations, denoted as \( h_+ \) and \( h_\times \), which describe how they stretch and squeeze spacetime in orthogonal directions. The general form of the perturbation can be written as:
 
                     \[
                     h_{\mu\nu}(t, \vec{x}) =
@@ -206,10 +275,7 @@
                     \end{pmatrix}
                     \]
                     
-                    These two polarization states correspond to different ways spacetime is deformed as the gravitational wave passes through a region.
-                    
-                    <h4>Plane Wave Solutions</h4>
-                    A gravitational wave traveling in the \( z \)-direction can be expressed as a plane wave:
+                    These two polarization states correspond to different ways spacetime is deformed as the gravitational wave passes through a region. A gravitational wave traveling in the \( z \)-direction can be expressed as a plane wave:
 
                     \[
                     h_{\mu\nu}(t, z) =
@@ -223,17 +289,55 @@
                     
                     Here, the functions \( h_+(t - z/c) \) and \( h_\times(t - z/c) \) describe the two polarization modes of the gravitational wave as it propagates.
 
-                    <h4>Quadrupole Formula</h4>
-                    Gravitational waves are produced by the <b>quadrupole moment </b>  of a system, as opposed to the dipole radiation seen in electromagnetism. The reason is that gravitational waves involve changes in the geometry of spacetime, which are generated by mass distributions that are not spherically symmetric (i.e., have a time-varying quadrupole moment).
+                    
+                    <p>Therefore, GW represent ripples in spacetime that propagate as disturbances in the metric \( h_{\mu\nu} \). They arise from time-varying quadrupole moments of mass distributions and propagate at the speed of light. The weak-field approximation and the TT gauge simplify the Einstein field equations, revealing the wave-like nature of spacetime perturbations. Understanding the mathematical basis of gravitational waves not only deepens our understanding of General Relativity but also paves the way for exploring astrophysical phenomena through gravitational wave astronomy.</p>
+                </section>
 
-                    The power radiated in the form of gravitational waves is given by the <b>quadrupole formula</b>:
+                <section id="cpi">
+                    <h2>Energy of Gravitational Waves and Quadrupole moments</h2>
+                    <p></p> 
+                    <h4>Energy of Gravitational Waves</h4>
+                    Gravitational waves carry energy, which can be computed by evaluating the energy-momentum tensor for the perturbation. The <b>effective energy density</b> of gravitational waves is given by:
+
+                    \[
+                    \rho_{\text{GW}} = \frac{1}{32 \pi G} \langle \dot{h}_{\mu\nu}^{\text{TT}} \dot{h}^{\mu\nu}_{\text{TT}} \rangle
+                    \]
+                    
+                    Here, the angle brackets \( \langle \dots \rangle \) denote an averaging over several wavelengths, and \( \dot{h}_{\mu\nu}^{\text{TT}} \) is the time derivative of the TT component of the perturbation.
+                    
+                    The energy flux of gravitational waves is proportional to \( \rho_{\text{GW}} \), and the total power radiated by a source is proportional to the <b>quadrupole moment</b> of the mass distribution (as discussed in earlier sections).
+
+                    <!------------------------------->
+                    <p></p>
+                    <h4>Quadrupole Moments</h4>
+                    Gravitational waves are generated by the time-varying <b>quadrupole moment</b> of a mass distribution. This is in contrast to electromagnetic waves, which are generated by dipole moments. The quadrupole moment tensor \( Q_{ij} \) for a system of masses is given by:
+
+                    \[
+                    Q_{ij} = \int \rho(x_i x_j - \frac{1}{3} \delta_{ij} r^2) d^3 x
+                    \]
+                    
+                    The rate of change of this quadrupole moment determines the amplitude of the emitted gravitational waves. The <b>quadrupole radiation formula</b> for the power radiated as gravitational waves is:
                     
                     \[
                     P_{\text{GW}} = \frac{G}{5c^5} \left\langle \dddot{Q}_{ij} \dddot{Q}^{ij} \right\rangle
                     \]
                     
-                    where \( Q_{ij} \) is the <b>mass quadrupole moment</b> of the source, and the triple dot denotes the third time derivative. This formula shows that only systems with a time-varying quadrupole moment, such as binary star systems, black hole mergers, or rotating non-axisymmetric objects, can emit gravitational waves.Gravitational waves are produced by the <b>quadrupole moment </b>  of a system, as opposed to the dipole radiation seen in electromagnetism. The reason is that gravitational waves involve changes in the geometry of spacetime, which are generated by mass distributions that are not spherically symmetric (i.e., have a time-varying quadrupole moment).
+                    where \( \dddot{Q}_{ij} \) denotes the third time derivative of the quadrupole moment tensor. This formula shows that systems with large time-varying quadrupole moments (such as binary stars or black hole mergers) are strong emitters of gravitational waves.
 
+                    <!--------------------------->
+                    <p></p>
+                    <h4>Example: Binary Systems</h4>
+                    The classic example of gravitational wave emission is a binary system, such as two compact objects (black holes or neutron stars) orbiting each other. The quadrupole moment of such a system is time-dependent due to
+
+                    the orbital motion, leading to the emission of gravitational waves. The energy carried away by these waves causes the orbit to decay, eventually leading to a merger.
+
+                   The loss of orbital energy due to gravitational radiation leads to the inspiral of the two objects, which is described by the <b>Peters-Mathews equation</b>:
+
+                    \[
+                    \frac{dE}{dt} = -\frac{32 G^4}{5c^5} \frac{(M_1 M_2)^2 (M_1 + M_2)}{a^5}
+                    \]
+                    
+                    where \( M_1 \) and \( M_2 \) are the masses of the objects, and \( a \) is the orbital separation. This gradual inspiral produces a characteristic "chirp" signal, which was first observed by LIGO in the detection of merging black holes.  
                     
                     
                 </section>
@@ -258,6 +362,290 @@
                     </ul>
                     These waves would form a <b>stochastic gravitational wave background</b>, which could provide insight into the conditions of the early universe.
                     
+                </section>
+
+                <section id="phase-transition">
+                    <h2>Gravitational Wave Sources During Cosmological Phase Transitions</h2>
+                    Cosmological phase transitions in the early universe are pivotal events that can generate a stochastic background of gravitational waves (GWs). These transitions involve changes in the vacuum state of a field as the universe cools, leading to phenomena such as bubble nucleation and collisions, which are potent sources of gravitational radiation. This section provides a detailed mathematical explanation of how gravitational waves are produced during these phase transitions.
+
+                    <p></p>
+                    <h4>Introduction to Cosmological Phase Transitions</h4>
+                    In the early universe, phase transitions occur as a result of spontaneous symmetry breaking in fundamental interactions. Notable transitions include:
+                    <ul>
+                        <li><b>Grand Unified Theory (GUT) Phase Transition:</b> Occurs at temperatures around \(10^{16}\) GeV.</li>
+                        <li><b>Electroweak Phase Transition:</b>Occurs at temperatures around \(100\) GeV.</li>
+                        <li><b>Quantum Chromodynamics (QCD) Phase Transition</b> Occurs at temperatures around \(200\) MeV.</li>
+                    </ul>
+                    <p><b>Phase transitions can be classified as:</b></p>
+                    <ul>
+                        <li><b>First-Order Phase Transitions: </b>Proceed via bubble nucleation and involve latent heat.</li>
+                        <li><b>Second-Order (or Crossover) Phase Transitions: </b>Proceed smoothly without latent heat.</li>
+                    </ul>
+                    First-order phase transitions are of particular interest for gravitational wave production due to the violent dynamics they entail.
+
+                    <!------------------------->
+                    <p></p>
+                    <h4>Dynamics of First-Order Phase Transitions</h4>
+                    During a first-order phase transition:
+                    <ol>
+                        <li><b>Supercooling: </b>The universe cools below the critical temperature \( T_c \), remaining in a metastable (false vacuum) state.</li>
+                        <li><b>Bubble Nucleation: </b>Quantum tunneling or thermal fluctuations cause bubbles of the true vacuum to form within the false vacuum.
+                        </li>
+                        <li><b>Bubble Expansion: </b>Bubbles expand, driven by the difference in vacuum energy (\( \Delta V \)) between the true and false vacua.</li>
+                        <li><b>Bubble Collisions and Percolation: </b>Expanding bubbles collide and merge, completing the transition to the true vacuum phase.</li>
+                    </ol>
+                    These processes create anisotropic stresses in the energy-momentum tensor, which source gravitational waves.
+
+                    <p></p>
+                    <h4>Gravitational Wave Generation Mechanisms</h4>
+                    There are three main mechanisms for gravitational wave production during first-order phase transitions:
+                    <ol>
+                        <li>Collision of Bubble Walls</li>
+                        <li>Sound Waves in the Bubble Plasma</li>
+                        <li>Magnetohydrodynamic (MHD) Turbulence</li>
+                    </ol>
+
+                    <p></p>
+                    <h5>Mathematical Framework</h5>
+                    <ol>
+                        <li><b>Bubble Nucleation Rate:</b> The nucleation rate per unit volume is given by:
+                            \[
+                            \Gamma(T) = A(T) e^{-S(T)}
+                            \]
+                            where:
+                            <ul>
+                                <li>\( A(T) \): Determinant prefactor, typically \( \sim T^4 \).</li>
+                                <li>\( S(T) \): Euclidean action of the critical bubble.</li>
+                            </ul>
+                            For thermal transitions, \( S(T) \) is the three-dimensional action \( S_3(T) \) divided by the temperature:
+
+                            \[
+                            \Gamma(T) = T^4 \left( \frac{S_3(T)}{2\pi T} \right)^{3/2} e^{-S_3(T)/T}
+                            \]
+                        </li>
+                        <li><b>The Euclidean Action: </b>The action \( S_3(T) \) is given by:
+                        
+                            \[
+                            S_3(T) = 4\pi \int_0^{R} r^2 dr \left[ \frac{1}{2} \left( \frac{d\phi}{dr} \right)^2 + V(\phi, T) \right]
+                            \]
+                            where:
+                            <ul>
+                                <li>\( \phi(r) \): Field profile of the bubble.</li>
+                                <li>\( V(\phi, T) \): Temperature-dependent effective potential.</li>
+                            </ul>
+                            The critical bubble solution minimizes \( S_3(T) \).
+                        </li>
+                        <li><b>Bubble Wall Velocity: </b>The wall velocity \( v_w \) depends on the balance between the driving force from the vacuum energy difference and the friction from the plasma:
+
+                            \[
+                            F_{\text{drive}} = \Delta V, \quad F_{\text{friction}} = \eta v_w
+                            \]
+                            
+                            Where \( \eta \) is the friction coefficient. The wall reaches a terminal velocity when \( F_{\text{drive}} = F_{\text{friction}} \).
+                        </li>
+                    </ol>
+
+                    <p></p>
+                    <h3>Gravitational Waves from Bubble Collisions</h3>
+                    The energy-momentum tensor for the scalar field \( \phi \) driving the transition is:
+
+                    \[
+                    T_{\mu\nu} = \partial_\mu \phi \partial_\nu \phi - g_{\mu\nu} \left[ \frac{1}{2} \partial^\lambda \phi \partial_\lambda \phi - V(\phi) \right]
+                    \]
+                    
+                    Anisotropies in \( T_{\mu\nu} \) during bubble collisions source gravitational waves.
+
+                    <p>In the transverse-traceless (TT) gauge, the metric perturbation \( h_{ij} \) satisfies:</p>
+
+                    \[
+                    \Box h_{ij}(\mathbf{x}, t) = 16\pi G T_{ij}^{\text{TT}}(\mathbf{x}, t)
+                    \]
+                    where 
+                    <ul>
+                        <li>\( \Box \): D'Alembert operator.</li>
+                        <li>\( T_{ij}^{\text{TT}} \): Transverse-traceless part of the energy-momentum tensor.</li>
+                    </ul>
+
+                    <h5>Solution for Gravitational Wave Energy Density</h5>
+                    The energy density of gravitational waves is:
+
+                    \[
+                    \rho_{\text{GW}} = \frac{\langle \dot{h}_{ij} \dot{h}_{ij} \rangle}{32\pi G}
+                    \]
+                    
+                    Where \( \langle \cdot \rangle \) denotes an average over several wavelengths.
+
+                    <h5> Envelope Approximation</h5>
+                    Assuming that the scalar field stress-energy is significant only at the bubble walls and neglecting overlaps, the gravitational wave spectrum can be calculated using the envelope approximation.
+
+                    The fractional energy density today is:
+                    
+                    \[
+                    \Omega_{\text{GW},0} h^2 = \Omega_{\text{rad},0} h^2 \left( \frac{g_{*0}}{g_{*}} \right)^{1/3} \frac{\rho_{\text{GW}}}{\rho_{\text{rad}}}
+                    \]
+                    where
+                    <ul>
+                        <li>\( \Omega_{\text{rad},0} h^2 \): Present radiation density parameter.</li>
+                        <li>\( g_{*0} \) and \( g_{*} \): Effective degrees of freedom today and at the time of the phase transition.</li>
+                    </ul>
+
+
+                    <p></p>
+                    <h3>Gravitational Waves from Sound Waves</h3>
+                    After bubble collisions, the kinetic energy of the plasma contributes to gravitational wave production.
+
+                    <p>The fluid velocity \( v(\mathbf{x}, t) \) generated by the expanding bubbles can be decomposed into solenoidal (vortical) and irrotational components.</p>
+
+                    <p>The kinetic energy density is:</p>
+                    
+                    \[
+                    \rho_{\text{kin}} = \frac{1}{2} w v^2
+                    \]
+                    where 
+                    <ul>
+                        <li>\( w \): Enthalpy density of the plasma.</li>
+                    </ul>
+                    The anisotropic stress tensor from the fluid is:
+                    \[
+                    \Pi_{ij} = w \left( v_i v_j - \frac{1}{3} \delta_{ij} v^2 \right)
+                    \]
+                    
+                    This sources gravitational waves via:
+                    
+                    \[
+                    \Box h_{ij}(\mathbf{x}, t) = \frac{16\pi G}{c^4} \Pi_{ij}(\mathbf{x}, t)
+                    \]
+
+                    <h5>Power spectrum </h5>
+                    The power spectrum of gravitational waves from sound waves is given by integrating over the Fourier transforms of \( \Pi_{ij} \):
+
+                    \[
+                    P_h(k, t) = \frac{32\pi G}{c^4 k^2} \int d^3 k' \Pi_{ij}(\mathbf{k}', t) \Pi^{*}_{ij}(\mathbf{k} - \mathbf{k}', t)
+                    \]
+
+                    <h3>Gravitational Waves from MHD Turbulence</h3>
+                    The MHD turbulence generated by the bubble collisions also produces gravitational waves. Assuming Kolmogorov turbulence, the energy spectrum \( E(k) \) scales as:
+
+                    \[
+                    E(k) \propto k^{-5/3}
+                    \]
+                    
+                    Between the injection scale \( k_{\text{inj}} \) and the dissipation scale \( k_{\text{diss}} \).
+
+                    <p>The gravitational wave energy density from turbulence is:</p>
+
+                    \[
+                    \rho_{\text{GW}} \propto G \int_{k_{\text{min}}}^{k_{\text{max}}} dk \, k^2 \left| \tilde{v}(k) \right|^2
+                    \]
+                    
+                    Where \( \tilde{v}(k) \) is the Fourier transform of the velocity field.
+                    
+                    <h3>Spectral Shapes and Peak Frequencies</h3>
+
+                    <h4>Bubble Collisions</h4>
+                    The spectral shape from bubble collisions is generally a broken power law, with a peak frequency determined by:
+
+                    \[
+                    f_{\text{coll}} = \frac{0.62}{1.8 - 0.1 v_w + v_w^2} \frac{\beta}{H_*} \frac{T_*}{100 \, \text{GeV}} \times 10^{-5} \, \text{Hz}
+                    \]
+                    where:
+                    <ul>
+                        <li>\( H_* \): Hubble parameter at the transition temperature \( T_* \).</li>
+                    </ul>
+
+                    <h4>Sound Waves</h4>
+                    Peak frequency for sound waves:
+
+                    \[
+                    f_{\text{sw}} = \frac{2}{\sqrt{3} v_w} \frac{\beta}{H_*} \frac{T_*}{100 \, \text{GeV}} \times 10^{-5} \, \text{Hz}
+                    \]
+
+                    <h4>Turbulence</h4>
+                    Peak frequency for turbulence is similar to that of sound waves.
+                    
+                    
+
+                    <h3>Parameters Affecting Gravitational Wave Signals</h3>
+                    <ul>
+                        <li><b>Strength Parameter (\( \alpha \)): </b> Ratio of vacuum energy density to radiation energy density.</li>
+
+                        \[
+                        \alpha = \frac{\Delta \rho}{\rho_{\text{rad}}}
+                        \]
+
+                      <li><b>Inverse Duration Parameter (\( \beta \)): </b> Characterizes the timescale of the transition.</li>
+                      
+                        \[
+                        \beta = \left. H_* T \frac{d (S_3(T)/T)}{dT} \right|_{T = T_*}
+                        \]
+                      
+                      <li><b>Wall Velocity (\( v_w \)):</b> Influences the efficiency of gravitational wave production.</li>>
+                      
+                      <li><b>Efficiency Factors (\( \kappa \)):</b> Determine how much vacuum energy goes into bulk motions.</li>
+                      
+                    </ul>
+
+                    <h3>Detectability with Gravitational Wave Observatories</h3>
+                    Space-based detectors like <b>LISA</b>, or from <b>NanoGrav</b>, and <b>BBO</b> are designed to detect gravitational waves in the frequency range relevant for cosmological phase transitions.
+
+                    The <b>signal-to-noise ratio (SNR)</b> for detection depends on the sensitivity curve of the detector \( S_n(f) \) and the gravitational wave spectrum \( \Omega_{\text{GW}}(f) \):
+                    
+                    \[
+                    \text{SNR} = \sqrt{ \int_{f_{\text{min}}}^{f_{\text{max}}} \left( \frac{h^2 \Omega_{\text{GW}}(f)}{h^2 \Omega_{\text{noise}}(f)} \right)^2 df }
+                    \]
+
+                    <p><strong>Example calculation</strong></p>
+                    Suppose we have a strong first-order phase transition with:
+                    <ul>
+                        <li>\( \alpha = 0.1 \)</li>
+                        <li>\( \beta/H_* = 100 \)</li>
+                        <li>\( v_w = 0.95 \)</li>
+                        <li>\( T_* = 100 \, \text{GeV} \)</li>
+                        <li>\( g_* = 100 \)</li>
+                        <li></li>
+                    </ul>
+                    
+                    Calculating the peak frequency for sound waves:
+                    
+                    \[
+                    f_{\text{sw}} = \frac{2}{\sqrt{3} \times 0.95} \times \frac{100}{100} \times \frac{100}{100} \times 10^{-5} \, \text{Hz} \approx 1.2 \times 10^{-4} \, \text{Hz}
+                    \]
+                    
+                    Estimating the gravitational wave energy density:
+                    
+                    \[
+                    \Omega_{\text{GW}} h^2 \approx 2.65 \times 10^{-6} \times \left( \frac{H_*}{\beta} \right) \left( \frac{\kappa_v \alpha}{1 + \alpha} \right)^2 v_w
+                    \]
+                    
+                    Assuming \( \kappa_v \approx 0.05 \):
+                    
+                    \[
+                    \Omega_{\text{GW}} h^2 \approx 2.65 \times 10^{-6} \times \frac{1}{100} \left( \frac{0.05 \times 0.1}{1 + 0.1} \right)^2 \times 0.95 \approx 5 \times 10^{-11}
+                    \]
+                    
+                    This signal could be detectable by LISA, depending on the exact sensitivity and background noise.
+
+
+                    <h4>Implications for Particle Physics and Cosmology</h4>
+                    <ul>
+                        <li><b>Probing New Physics:</b> Gravitational waves from phase transitions can test models beyond the Standard Model, such as supersymmetry or extra dimensions.</li>
+                        <li><b>Baryogenesis:</b> First-order phase transitions are essential for electroweak baryogenesis mechanisms.</li>
+                        <li><b>Dark Matter:</b> Some dark matter models predict phase transitions that could produce observable gravitational waves.</li>
+                    </ul>
+
+                    <h4>Current Research and Challenges</h4>
+                    <ul>
+                        <li><b>Non-Perturbative Effects:</b> Calculations of \( \kappa \) and \( \beta \) require non-perturbative methods like lattice simulations.</li>
+                        <li><b>Bubble Wall Dynamics:</b> Understanding wall velocities and interactions with the plasma is complex.</li>
+                        <li><b>Overlap of Sources:</b> Combining contributions from bubble collisions, sound waves, and turbulence requires careful modeling.</li>
+                    </ul>
+                    Gravitational waves from cosmological phase transitions offer a promising avenue to explore the early universe and fundamental physics. The mathematical modeling involves intricate calculations of bubble dynamics, plasma interactions, and gravitational wave propagation. Advances in detector technology and theoretical understanding may soon allow us to detect these signals, opening a new window into high-energy physics.
+                    
+
+                    
+
+
+
                 </section>
 
                 <section id="cpgw">
