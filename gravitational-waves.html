@@ -147,10 +147,24 @@
                         <h3>Content</h3>
                         <ol>
                             <li><a href="#introduction">Introduction</a></li>
-                            <li><a href="#theoretical">Theoretical Background</a></li>
-                            <li><a href="#cpi">Chiral Plasma Instabilities in the Early Universe</a></li>
-                            <li><a href="#pmf">Magnetic Field Generation via Chiral Instabilities</a></li>
-                            <li><a href="#cpgw">Chiral Plasma and Gravitational Waves</a></li>
+                            <li><a href="#theoretical">Theoretical Background</a>
+                                <ul>
+                                    <li><a href="#linearized">Linearized Gravity</a></li>
+                                    <li><a href="#expansion">Expansion of the Einstein Tensor</a></li>
+                                    <li><a href="#gauge">Gauge Freedom and the Transverse-Traceless (TT) Gauge</a></li>
+                                    <li><a href="#polarization">Polarization States</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#energy">Energy of Gravitational Waves and Quadrupole moments</a>
+                                <ul>
+                                    <li><a href="#energy-gw">Energy of Gravitational Waves</a></li>
+                                    <li><a href="#quadrupole">Quadrupole Moments</a></li>
+                                    <li><a href="#example1">Example: Binary Systems</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#sources">Sources of Gravitational Waves</a></li>
+                            <li><a href="#phase-transition">Gravitational Wave Sources During Cosmological Phase Transitions</a></li>
+                            <li><a href="#chiral">Chiral Plasma and Gravitational Waves</a></li>
                             <li><a href="#reference">Reference</a></li>
                         </ol>
                     </div>
@@ -166,8 +180,8 @@
 
                 </section>
 
-                <section id="theoretical">
-                    <h2>Basic Concept: Gravitational Waves in General Relativity</h2>
+                <section>
+                    <h2 id="theoretical">Basic Concept: Gravitational Waves in General Relativity</h2>
                     Gravitational waves are a key prediction of <b>Einstein’s General Theory of Relativity</b>. To understand the basic concept of gravitational waves, we must derive them mathematically as a solution to the linearized Einstein field equations. This section will develop the theory behind gravitational waves starting from Einstein's equations, focusing on the weak-field approximation and the wave-like nature of spacetime perturbations.
 
                     Gravitational waves arise as a solution to the <b>Einstein field equations</b> in general relativity. These equations relate the curvature of spacetime (described by the <b>Einstein tensor</b> \( G_{\mu\nu} \)) to the distribution of energy and momentum (encoded in the <b>stress-energy tensor</b> \( T_{\mu\nu} \)):
@@ -182,7 +196,7 @@
 
                     This describes how spacetime is curved even in the absence of matter, a fundamental concept for gravitational waves.
 
-                    <h4>Linearized Gravity</h4>
+                    <h4 id="linearized">Linearized Gravity</h4>
                     In many astrophysical scenarios, the curvature of spacetime is weak, and the metric \(g_{\mu\nu}\) can be expressed as a small perturbation \(h_{\mu\nu}\) on flat spacetime (the Minkowski metric \(\eta_{\mu\nu}\)):
 
                     \[
@@ -194,7 +208,7 @@
                     $$\eta = \text{diag}(-1,+1,+1,+1)$$
 
                     <p></p>
-                    <h5>Expansion of the Einstein Tensor</h5>
+                    <h4 id="expansion">Expansion of the Einstein Tensor</h4>
                     To derive the wave equation for gravitational waves, we must expand the Einstein tensor \(G_{\mu\nu}\) to first order in \(h_{\mu\nu}\). The Einstein tensor is related to the Ricci tensor \(R_{\mu\nu}\) and the Ricci scalar \(R\) via:
 
                     \[
@@ -217,7 +231,7 @@
                     
                     <p></p>
                     <!------------------------------->
-                    <h5>Gauge Freedom and the Transverse-Traceless (TT) Gauge</h5>
+                    <h4 id="gauge">Gauge Freedom and the Transverse-Traceless (TT) Gauge</h4>
                     Gravitational waves possess <b>gauge freedom</b>, meaning that different choices of coordinates lead to different representations of the same physical wave. By making a suitable coordinate transformation, we can simplify the form of \( h_{\mu\nu} \). A commonly used gauge is the <b>Lorenz gauge</b>, which imposes:
 
                     \[
@@ -256,7 +270,7 @@
                     Thus, gravitational waves propagate at the <b>speed of light</b>.
 
                     <p></p>
-                    <h5>Polarization States</h5>
+                    <h4 id="polarization">Polarization States</h4>
                     In the TT gauge, gravitational waves have only two independent components, which correspond to the two possible <b>polarization states</b>. These are conventionally denoted as \( h_+ \) and \( h_\times \). A gravitational wave propagating in the \( z \)-direction can be written as:
 
                     \[
@@ -293,10 +307,10 @@
                     <p>Therefore, GW represent ripples in spacetime that propagate as disturbances in the metric \( h_{\mu\nu} \). They arise from time-varying quadrupole moments of mass distributions and propagate at the speed of light. The weak-field approximation and the TT gauge simplify the Einstein field equations, revealing the wave-like nature of spacetime perturbations. Understanding the mathematical basis of gravitational waves not only deepens our understanding of General Relativity but also paves the way for exploring astrophysical phenomena through gravitational wave astronomy.</p>
                 </section>
 
-                <section id="cpi">
-                    <h2>Energy of Gravitational Waves and Quadrupole moments</h2>
+                <section>
+                    <h2 id="energy">Energy of Gravitational Waves and Quadrupole moments</h2>
                     <p></p> 
-                    <h4>Energy of Gravitational Waves</h4>
+                    <h4 id="energy-gw">Energy of Gravitational Waves</h4>
                     Gravitational waves carry energy, which can be computed by evaluating the energy-momentum tensor for the perturbation. The <b>effective energy density</b> of gravitational waves is given by:
 
                     \[
@@ -309,7 +323,7 @@
 
                     <!------------------------------->
                     <p></p>
-                    <h4>Quadrupole Moments</h4>
+                    <h4 id="quadrupole">Quadrupole Moments</h4>
                     Gravitational waves are generated by the time-varying <b>quadrupole moment</b> of a mass distribution. This is in contrast to electromagnetic waves, which are generated by dipole moments. The quadrupole moment tensor \( Q_{ij} \) for a system of masses is given by:
 
                     \[
@@ -326,7 +340,7 @@
 
                     <!--------------------------->
                     <p></p>
-                    <h4>Example: Binary Systems</h4>
+                    <h5 id="example1">Example: Binary Systems</h5>
                     The classic example of gravitational wave emission is a binary system, such as two compact objects (black holes or neutron stars) orbiting each other. The quadrupole moment of such a system is time-dependent due to
 
                     the orbital motion, leading to the emission of gravitational waves. The energy carried away by these waves causes the orbit to decay, eventually leading to a merger.
@@ -342,30 +356,30 @@
                     
                 </section>
 
-                <section id="pmf">
-                    <h2>Sources of Gravitational Waves</h2>
-                    <h4>Binary Systems</h4>
-                    One of the primary sources of gravitational waves is <b>binary systems</b>, where two massive objects (such as black holes or neutron stars) orbit each other. As they lose energy through gravitational radiation, the two objects spiral closer together, eventually merging in a dramatic event that releases a burst of gravitational waves.
-
-                    <p>The inspiral and merger of black holes or neutron stars can be described by solving the <b>Post-Newtonian approximation</b> of the Einstein equations. In the final stages of the merger, full <b>numerical relativity</b> is needed to simulate the dynamics and the gravitational wave signal.</p>
-
-                    <h4>Stellar Collapse (Supernovae)</h4>
-                    Core-collapse supernovae, where a massive star undergoes gravitational collapse, can generate gravitational waves. These waves are generated when there is a significant asymmetry in the collapse. However, these signals are typically weaker and harder to detect compared to binary mergers.
-
-                    <h4>Early Universe Sources</h4>
-                    Gravitational waves could also be generated in the early universe during events such as:
+                <section>
+                    <h2 id="sources">Sources of Gravitational Waves</h2>
                     <ul>
-                        <li>cosmic inflation</li>
-                        <li>phase transitions</li>
-                        <li>cosmic strings</li>
-                        <li>...so many models ....</li>
+                        <li><b>Binary Systems: </b>One of the primary sources of gravitational waves is <b>binary systems</b>, where two massive objects (such as black holes or neutron stars) orbit each other. As they lose energy through gravitational radiation, the two objects spiral closer together, eventually merging in a dramatic event that releases a burst of gravitational waves.
+    
+                        <p>The inspiral and merger of black holes or neutron stars can be described by solving the <b>Post-Newtonian approximation</b> of the Einstein equations. In the final stages of the merger, full <b>numerical relativity</b> is needed to simulate the dynamics and the gravitational wave signal.</p>
+                        </li>
+                        <li><b>Stellar Collapse (Supernovae):</b> Core-collapse supernovae, where a massive star undergoes gravitational collapse, can generate gravitational waves. These waves are generated when there is a significant asymmetry in the collapse. However, these signals are typically weaker and harder to detect compared to binary mergers.</li>
+    
+                        <li><b>Early Universe Sources: </b> Gravitational waves could also be generated in the early universe during events such as:
+                        <ul>
+                            <li>cosmic inflation</li>
+                            <li>phase transitions</li>
+                            <li>cosmic strings</li>
+                            <li>...so many models ....</li>
+                        </ul>
                     </ul>
+                    
                     These waves would form a <b>stochastic gravitational wave background</b>, which could provide insight into the conditions of the early universe.
                     
                 </section>
 
-                <section id="phase-transition">
-                    <h2>Gravitational Wave Sources During Cosmological Phase Transitions</h2>
+                <section>
+                    <h2 id="phase-transition">Gravitational Wave Sources During Cosmological Phase Transitions</h2>
                     Cosmological phase transitions in the early universe are pivotal events that can generate a stochastic background of gravitational waves (GWs). These transitions involve changes in the vacuum state of a field as the universe cools, leading to phenomena such as bubble nucleation and collisions, which are potent sources of gravitational radiation. This section provides a detailed mathematical explanation of how gravitational waves are produced during these phase transitions.
 
                     <p></p>
@@ -648,8 +662,8 @@
 
                 </section>
 
-                <section id="cpgw">
-                    <h2>Chiral Plasma and Gravitational Waves</h2>
+                <section>
+                    <h2 id="chiral">Chiral Plasma and Gravitational Waves</h2>
                     In my research, I explored the interaction between <b>chiral plasma</b> and gravitational waves. Chiral plasma in the early universe can generate <b>anisotropic stresses</b> that source gravitational waves.
 
                     <h4> Tensor Perturbations and Gravitational Waves</h4>
@@ -668,7 +682,9 @@
 
                     The characteristic frequency of these gravitational waves depends on the scale of the magnetic field and the strength of the chiral imbalance. The power spectrum of these waves can be estimated from the dynamics of the chiral plasma.
                     
-                    
+                    <div class="grey-box">
+                        <b>Notes:</b> Will write in details about the generation in a chiral plasma soon....
+                    </div>
 
                 </section>
                 
@@ -693,10 +709,12 @@
                     <h2>References</h2>
                     <ul>
                         
-                        <li>Chiral Plasma Instability and Primordial Gravitational waves, Sampurn Anad, Jitesh R. Bhatt & Arun Kumar Pandey <span><a href="https://arxiv.org/abs/1801.00650">[arXiv:1801.00650 [astro-ph.CO] (2019)]</a> Eur. Phys. J. C (2019) 79: 119.</span></li>
+                        <li>Chiral Plasma Instability and Primordial Gravitational waves, Sampurn Anad, Jitesh R. Bhatt & Arun Kumar Pandey <span><a href="https://arxiv.org/abs/1801.00650" target="_blank">[arXiv:1801.00650 [astro-ph.CO] (2019)]</a> Eur. Phys. J. C (2019) 79: 119.</span></li>
                         
                         
-                        <li>Gravitational waves in neutrino plasma and NANOGrav signal, Arun Kumar Pandey <a href="https://arxiv.org/abs/2011.05821">arXiv:2011.05821 [astro-ph.CO] (2020)</a>  [Eur.Phys.J.C 81 (2021) 5, 399]</li>
+                        <li>Gravitational waves in neutrino plasma and NANOGrav signal, Arun Kumar Pandey <a href="https://arxiv.org/abs/2011.05821" target="_blank">arXiv:2011.05821 [astro-ph.CO] (2020)</a>  [Eur.Phys.J.C 81 (2021) 5, 399]</li>
+
+                        <li><a href="https://www.americanscientist.org/article/gravitational-waves-and-the-effort-to-detect-them" target="_blank">Gravitational Waves and the Effort to Detect them</a>, By Peter Shawhan</li>
                         
                     </ul>
                 </section>
