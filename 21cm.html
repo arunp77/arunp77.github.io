@@ -162,13 +162,13 @@
                     <p>21 cm cosmology is a powerful observational tool to study the early universe, especially during the so-called <b>"Dark Ages"</b> and <b>"Cosmic Dawn"</b> periods, which are difficult to observe by other means. The 21 cm line corresponds to the hyperfine transition of neutral hydrogen (\(H\)) atoms, occurring due to the interaction between the electron's spin and the proton's spin in a hydrogen atom. When the spins flip from parallel to antiparallel, the atom emits a photon with a wavelength of 21 cm (frequency of about 1.42 GHz).</p>
                     <p>This emission or absorption signal provides crucial information about the physical conditions of the early universe, such as the density of neutral hydrogen, temperature, and the effects of the first stars and galaxies on the intergalactic medium (IGM). It is an essential probe for understanding the "<b>Epoch of Reionization (EoR)</b>", the period when the first stars and galaxies formed and ionized the surrounding hydrogen.</p>
 
-                    <figure style="text-align: center;">
-                        <img src="assets/img/Scietific/research-interest.001.jpeg" alt="" style="max-width: 90%; max-height: 90%;">
-                        <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="" target="_blank"></a> © CTC, DAMTP, Centre for Mathematical Sciences, Wilberforce Road, Cambridge CB3 0WA.</figcaption>
-                    </figure> 
+                    
         
                     <!------------------------------------------>
                     <h2 id="21cm">The 21 cm Signal: Key Equations</h2>
+                    <div class="box">
+                        For more details, please check out the paper by Jonathan R. Pritchard (CfA, Imperial), Abraham Loeb (CfA): <a href="https://arxiv.org/abs/1109.6012">21-cm cosmology</a>.
+                    </div>
                     The observed brightness temperature \( T_b \) of the 21 cm line, relative to the background radiation (typically the Cosmic Microwave Background, CMB), depends on several factors: the spin temperature \( T_s \), the neutral hydrogen density, the background radiation temperature \( T_\gamma \), and the redshift \( z \). The key equation governing this is the <b>brightness temperature equation</b>:
 
                     \[
@@ -210,6 +210,10 @@
 
                     <h4>Evolution of the 21 cm Signal in the Early Universe</h4>
                     The 21 cm signal undergoes several phases during the early universe, reflecting different physical processes:
+                    <figure style="text-align: center;">
+                        <img src="assets/img/Scietific/Pritchard.png" alt="" style="max-width: 90%; max-height: 90%;">
+                        <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://arxiv.org/abs/1109.6012"> Jonathan R. Pritchard (CfA, Imperial), Abraham Loeb (CfA)</a></figcaption>
+                    </figure> 
                     <ol>
                         <li><b>Dark Ages (Before Cosmic Dawn, \( z \sim 200 - 30 \)): </b>
                             <ul>
@@ -321,20 +325,122 @@
                     </ol>
                     Baryon-dark matter interactions, beyond gravity, remain a speculative but fascinating area of research. While the standard model of cosmology relies heavily on dark matter's gravitational effects, exploring potential non-gravitational interactions such as scattering, annihilation, dark photon mediation, and heat exchange can provide deeper insights into the true nature of dark matter. These interactions, if confirmed, could help resolve existing tensions in our understanding of the small-scale structure of the universe and shed light on the thermal history of the cosmos.
 
+                </section>
 
+                <section>
+                    <h2>Baryon-Dark matter interaction during the dark ages</h2>
+                    In the early universe, baryons, dark matter, and photons interact and evolve thermally, governed by the expansion of the universe. Their evolution is described by coupled differential equations derived from the Boltzmann equation, which tracks their energy exchanges. These equations include terms for interactions between these components and the effects of the universe's expansion (Please chekout following two research artciles by me:
+                    <span><a href="#paper-1">Paper-1</a></span>
+                    <span><a href="#paper-2">Paper-2</a></span>)
 
+                    <ol>
+                        <li><b>Photon Temperature Evolution: </b>Photons redshift as the universe expands, so their temperature decreases as the universe grows. In an expanding universe, the photon temperature \( T_\gamma \) evolves as:
+                            \[
+                            \frac{d T_\gamma}{dt} = - H T_\gamma
+                            \]
+                            This equation reflects the fact that photon energy redshifts in proportion to the expansion of the universe, where \( H \) is the Hubble parameter.
+                        </li>
+                        <li><b>Baryon Temperature Evolution: </b>The baryon temperature \( T_b \) is affected by the expansion of the universe, interactions with photons (e.g., Compton scattering before decoupling), and possible interactions with dark matter.
+                        <p>The evolution equation for baryons can be derived from the first law of thermodynamics and includes two main effects:</p>
+                        <ul>
+                            <li><b>Adiabatic expansion</b>, which cools the baryons,</li>
+                            <li><b>Compton scattering</b> with photons, which heats the baryons before decoupling.</li>
+                        </ul>
+                        Thus, the baryon temperature evolves as:
+                        \[
+                        \frac{d T_b}{dt} = - 2 H T_b + \Gamma_{b \gamma} (T_\gamma - T_b) + \Gamma_{b \text{DM}} (T_{\text{DM}} - T_b)
+                        \]
+                        Where:
+                            <ul>
+                                <li>\( \Gamma_{b \gamma} \) is the interaction rate between baryons and photons.</li>
+                                <li>\( \Gamma_{b \text{DM}} \) is the interaction rate between baryons and dark matter.</li>
+                            </ul>
+                            <p></p>
+                            <h5>Photon-Baryon Coupling Term \( \Gamma_{b \gamma} \):</h5>
+                            The coupling between baryons and photons is given by the Compton scattering rate:
 
+                            \[
+                            \Gamma_{b \gamma} = \frac{8 \sigma_T a_r T_\gamma^4}{3 m_e c} \frac{x_e}{1 + x_e}
+                            \]
+                            
+                            where:
+                            <ul>
+                                <li>\( \sigma_T \) is the Thomson scattering cross-section,</li>
+                                <li>\( a_r \) is the radiation constant,</li>
+                                <li>\( x_e \) is the ionization fraction of baryons,</li>
+                                <li>\( m_e \) is the electron mass.</li>
+                            </ul>
+
+                            <p></p>
+                            <h5>Dark Matter-Baryon Coupling Term \( \Gamma_{b \text{DM}} \):</h5>
+                            The rate of interaction between dark matter and baryons depends on the assumed interaction cross-section \( \sigma_{b \text{DM}} \) and the relative velocity \( v \) between the two. It can be written as:
+
+                            \[
+                            \Gamma_{b \text{DM}} = \frac{\sigma_{b \text{DM}} n_{\text{DM}} v}{m_b}
+                            \]
+
+                            where:
+                            <ul>
+                                <li>\( \sigma_{b \text{DM}} \) is the dark matter-baryon scattering cross-section,</li>
+                                <li>\( n_{\text{DM}} \) is the number density of dark matter particles,</li>
+                                <li>\( m_b \) is the baryon mass.</li>
+                            </ul>
+                        </li>
+                        <li><b>Dark Matter Temperature Evolution: </b>Dark matter, being non-relativistic, cools as the universe expands. Its temperature evolves due to adiabatic expansion and possible interactions with baryons. The evolution equation for dark matter temperature \( T_{\text{DM}} \) is given by:
+                            \[
+                            \frac{d T_{\text{DM}}}{dt} = - 2 H T_{\text{DM}} + \Gamma_{\text{DM} b} (T_b - T_{\text{DM}})
+                            \]
+                            
+                            Where \( \Gamma_{\text{DM} b} \) is the interaction rate between dark matter and baryons, which is the same as \( \Gamma_{b \text{DM}} \) derived earlier, as interactions are symmetric.
+                        
+                        </li>
+                        <li><b>Friedmann Equation for Expansion Rate: </b>
+                            The expansion rate \( H \) is governed by the Friedmann equation, which includes contributions from the total energy density of the universe:
+
+                            \[
+                            H^2 = \frac{8 \pi G}{3} (\rho_{\text{DM}} + \rho_b + \rho_\gamma + \rho_\Lambda)
+                            \]
+                            
+                            Where:
+                            <ul>
+                                <li>\( \rho_{\text{DM}} \), \( \rho_b \), \( \rho_\gamma \), and \( \rho_\Lambda \) are the energy densities of dark matter, baryons, photons, and dark energy, respectively.</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h3>Summary of evolution equations</h3>
+                    <ul>
+                        <li><b>Photon temperature evolution: </b>
+                            \[
+                            \frac{d T_\gamma}{dt} = - H T_\gamma
+                            \]
+                        </li>
+                        <li><b>Baryon temperature evolution: </b>
+                            \[
+                            \frac{d T_b}{dt} = - 2 H T_b + \Gamma_{b \gamma} (T_\gamma - T_b) + \Gamma_{b \text{DM}} (T_{\text{DM}} - T_b)
+                            \]
+                        </li>
+                        <li><b>Dark matter temperature evolution: </b>
+                            \[
+                            \frac{d T_{\text{DM}}}{dt} = - 2 H T_{\text{DM}} + \Gamma_{\text{DM} b} (T_b - T_{\text{DM}})
+                            \]
+                        </li>
+                    </ul>
+                    These coupled equations describe the evolution of temperatures for photons, baryons, and dark matter, incorporating the effects of universe expansion, photon-baryon scattering, and dark matter-baryon interactions. The specific terms for the interaction rates depend on the cross-sections and the relative velocity between the interacting particles.
 
                 </section>
                 <!-------Reference ------->
                 <section id="reference">
                     <h2>References</h2>
                     <ul>
-                        <li><a href="https://arxiv.org/abs/1201.2434">Observational Probes of Cosmic Acceleration</a></li>
-                        <li><a href="https://link.springer.com/article/10.12942/lrr-2012-10">Modified Newtonian Dynamics (MOND): Observational Phenomenology and Relativistic Extensions</a></li>
-                        <li><a href="https://www.sciencedirect.com/science/article/pii/S1387647322000185?via%3Dihub">Challenges for Λ CDM: An update</a></li>
-                        <li><a href="https://www.mdpi.com/2218-1997/9/2/94">Hubble Tension: The Evidence of New Physics</a></li>
-                        <li><span><a href="https://courses.lumenlearning.com/suny-physics/chapter/34-1-cosmology-and-particle-physics/" target="_blank">Cosmology and Particle Physics.</span></li>
+                        <ul>
+                            <li><a href="https://arxiv.org/abs/1201.2434">Observational Probes of Cosmic Acceleration</a></li>
+                            <li>Baryon-Dark matter interaction in presence of magnetic fields in light of EDGES signal, Jitesh R Bhatt, Pravin Kumar Natwariya, Aleka C. Nayak, Arun Kumar Pandey <span><a href="https://arxiv.org/abs/1905.13486">[arXiv:1905.13486 [astro-ph.CO] (2019)]</a>, Eur. Phys. J. C 80, 334 (2020)</span></li>
+                            
+                            <li id="paper-1">Implications of baryon-dark matter interaction on IGM temperature and tSZ effect with magnetic field, Arun Kumar Pandey, Sunil Malik, T. R. Seshadri, <a href="https://arxiv.org/abs/2006.07901">arXiv:2006.07901 [astro-ph.CO] (2020)</a>, Mon.Not.Roy.Astron.Soc. 500 (2020)</li>
+                            
+                            <li id="paper-2">Thermal SZ effect in a magnetized IGM dominated by interacting DM decay/annihilation during dark ages, Arun Kumar Pandey, Sunil Malik (2022) <a href="https://arxiv.org/abs/2204.08088">[arXiv:2204.08088]</a></li>
+                        </ul>
                     </ul>
                 </section>
 
