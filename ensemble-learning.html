@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Ensemble learning</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="assets/img/Favicon-1.png" rel="icon">
+    <link href="assets/img/Favicon-1.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Creating a python code section-->
+    <link rel="stylesheet" href="assets/css/prism.css">
+    <script src="assets/js/prism.js"></script>
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <!-- To set the icon, visit https://fontawesome.com/account-->
+    <script src="https://kit.fontawesome.com/5d25c1efd3.js" crossorigin="anonymous"></script>
+    <!-- end of icon-->
+
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <!-- =======================================================
+    * Template Name: iPortfolio
+    * Updated: Sep 18 2023 with Bootstrap v5.3.2
+    * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+
+<body>
+    <!-- ======= Mobile nav toggle button ======= -->
+    <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+    <!-- ======= Header ======= -->
+    <header id="header">
+        <div class="d-flex flex-column">
+            <div class="profile">
+                <img src="assets/img/myphoto.jpeg" alt="" class="img-fluid rounded-circle">
+                <h1 class="text-light"><a href="index.html">Arun</a></h1>
+                <div class="social-links mt-3 text-center">
+                    <a href="https://www.linkedin.com/in/arunp77/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                    <a href="https://github.com/arunp77" target="_blank" class="github"><i class="bx bxl-github"></i></a>
+                    <a href="https://twitter.com/arunp77_" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
+                    <a href="https://www.instagram.com/arunp77/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+                    <a href="https://arunp77.medium.com/" target="_blank" class="medium"><i class="bx bxl-medium"></i></a>
+                </div>
+            </div>
+            <nav id="navbar" class="nav-menu navbar">
+                <ul>
+                    <li><a href="index.html#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+                    <li><a href="index.html#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
+                    <li><a href="index.html#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+                    <li><a href="index.html#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+                    <li><a href="index.html#skills-and-tools" class="nav-link scrollto"><i class="bx bx-wrench"></i> <span>Skills and Tools</span></a></li>
+                    <li><a href="index.html#language" class="nav-link scrollto"><i class="bi bi-menu-up"></i> <span>Languages</span></a></li>
+                    <li><a href="index.html#awards" class="nav-link scrollto"><i class="bi bi-award-fill"></i> <span>Awards</span></a></li>
+                    <li><a href="index.html#professionalcourses" class="nav-link scrollto"><i class="bx bx-book-alt"></i> <span>Professional Certification</span></a></li>
+                    <li><a href="index.html#publications" class="nav-link scrollto"><i class="bx bx-news"></i> <span>Publications</span></a></li>
+                    <li><a href="index.html#extra-curricular" class="nav-link scrollto"><i class="bx bx-rocket"></i> <span>Extra-Curricular Activities</span></a></li>
+                    <!-- <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li> -->
+                </ul>
+            </nav><!-- .nav-menu -->
+        </div>
+    </header><!-- End Header -->
+
+    <main id="main">
+
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+            <div class="container">
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>Machine Learning</h2>
+                    <ol>
+                        <li><a href="machine-learning.html" class="clickable-box">Content section</a></li>
+                        <li><a href="index.html#portfolio" class="clickable-box">Portfolio section</a></li>
+                    </ol>
+                </div>
+
+            </div>
+        </section><!-- End Breadcrumbs -->
+
+        <!------  right dropdown menu ------->
+        <div class="right-side-list">
+            <div class="dropdown">
+                <button class="dropbtn"><strong>Shortcuts:</strong></button>
+                <div class="dropdown-content">
+                    <ul>
+                        <li><a href="cloud-compute.html"><i class="fas fa-cloud"></i> Cloud</a></li>
+                        <li><a href="AWS-GCP.html"><i class="fas fa-cloud"></i> AWS-GCP</a></li>
+                        <li><a href="amazon-s3.html"><i class="fas fa-cloud"></i> AWS S3</a></li>
+                        <li><a href="ec2-confi.html"><i class="fas fa-server"></i> EC2</a></li>
+                        <li><a href="Docker-Container.html"><i class="fab fa-docker" style="color: rgb(29, 27, 27);"></i> Docker</a></li>
+                        <li><a href="Jupyter-nifi.html"><i class="fab fa-python" style="color: rgb(34, 32, 32);"></i> Jupyter-nifi</a></li>
+                        <li><a href="snowflake-task-stream.html"><i class="fas fa-snowflake"></i> Snowflake</a></li>
+                        <li><a href="data-model.html"><i class="fas fa-database"></i> Data modeling</a></li>
+                        <li><a href="sql-basics.html"><i class="fas fa-table"></i> SQL</a></li>
+                        <li><a href="sql-basic-details.html"><i class="fas fa-database"></i> SQL</a></li>
+                        <li><a href="Bigquerry-sql.html"><i class="fas fa-database"></i> Bigquery</a></li>
+                        <li><a href="scd.html"><i class="fas fa-archive"></i> SCD</a></li>
+                        <li><a href="sql-project.html"><i class="fas fa-database"></i> SQL project</a></li>
+                        <!-- Add more subsections as needed -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======= Portfolio Details Section ======= -->
+        <section id="portfolio-details" class="portfolio-details">
+            <div class="container">
+                <hr>
+                <div class="row gy-4">
+                    <h1>𝑬𝒏𝒔𝒆𝒎𝒃𝒍𝒆 𝑳𝒆𝒂𝒓𝒏𝒊𝒏𝒈 𝒊𝒏 𝑫𝒂𝒕𝒂 𝑺𝒄𝒊𝒆𝒏𝒄𝒆</h1>
+                    <div class="col-lg-8">
+                        <div class="portfolio-details-slider swiper">
+                            <div class="swiper-wrapper align-items-center">
+                                <figure>
+                                    <img src="assets/img/machine-ln/enseble-ml.png" alt="" style="max-width: 60%; max-height: auto;">
+                                    <figcaption style="text-align: center;"><a href="" target="_blank"></a>.</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 grey-box">
+                        <h3>Content</h3>
+                        <ol>
+                            <li><a href="#introduction">Introduction</a></li>
+                            <li><a href="#different">Different type ensemble methods</a>
+                                <ul>
+                                    <li><a href="#bagging-bootstrap">1. Bagging (Bootstrap Aggregating)</a></li>
+                                    <li><a href="#boosting">2. Boosting</a></li>
+                                    <li><a href="#stacking">3. Stacking</a></li>
+                                    <li><a href="#random-forest">4. Random Forest</a></li>
+                                    <li><a href="#voting">5. Voting</a></li>
+                                    <li><a href="#blending">6. Blending</a></li>
+                                    <li><a href="#gbms">7. Gradient Boosting Machines (GBMs)</a></li>
+                                    <li><a href="#xgboost">8. XGBoost, LightGBM, and CatBoost</a></li>
+                                    <li><a href="#bragging">9. Bagging Variants</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#reference">Reference</a></li>
+                        </ol>
+                    </div>
+                    <hr>
+                </div>
+
+                <!---------sections start here ------------>
+                <section>
+                    <h2 id="introduction">Introduction </h2>
+                    Ensemble learning in machine learning refers to techniques that combine the predictions from multiple models (learners) to improve the overall performance. The main idea is that a group of weak learners (models with moderate accuracy) can come together to form a strong learner. Ensemble methods can often achieve better results than individual models by reducing variance, bias, or improving predictions.
+
+                    <p><strong>Types of Ensemble Learning Methods:</strong></p>
+                    <ul>
+                        <li>Bagging (Bootstrap Aggregating)</li>
+                        <li>Boosting</li>
+                        <li>Stacking</li>
+                        <li>Random Forest</li>
+                        <li>Voting</li>
+                        <li>Blending</li>
+                        <li>Gradient Boosting Machines (GBMs)</li>
+                        <li>XGBoost, LightGBM, and CatBoost</li>
+                        <li>Bagging Variants</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 id="different">Different type ensemble methods</h2>
+                    <p>There are several types of ensemble methods, each with its own strengths and weaknesses.</p>
+
+                    <!----------------------------------------->
+                    <h4 id="bagging-bootstrap">1. Bagging (Bootstrap Aggregating)</h4>
+                    Bagging aims to reduce the variance of a model by training multiple instances of the same model on different subsets of the training data. The final prediction is made by averaging (for regression) or voting (for classification) over all models.
+
+                    <p>Let’s assume we have \( B \) models \( f_1(x), f_2(x), \dots, f_B(x) \), each trained on a bootstrap sample of the data. The final ensemble prediction \( \hat{f}(x) \) is:</p>
+                    <ul>
+                        <li><strong>For regression: </strong>
+                            \[
+                            \hat{f}(x) = \frac{1}{B} \sum_{i=1}^{B} f_i(x)
+                            \]
+                        </li>
+                        <li><strong>For classification: </strong>
+                            \[
+                            \hat{f}(x) = \text{mode}(f_1(x), f_2(x), \dots, f_B(x))
+                            \]
+                        </li>
+                    </ul>
+
+                    <!----------------------------------------->
+                    <h4 id="boosting">2. Boosting</h4>
+                    Boosting focuses on reducing the bias of models by training weak models sequentially. Each model is trained to correct the errors of its predecessor. Popular boosting algorithms include <b>AdaBoost</b> and <b>Gradient Boosting</b>.
+
+                    <p>In <b>AdaBoost</b>, each model is assigned a weight, and misclassified points are given more weight in the next iteration. Assume we have \( B \) weak learners, \( f_1(x), f_2(x), \dots, f_B(x) \), each assigned a weight \( \alpha_i \).</p>
+
+                    <p>The final model is a weighted sum of all weak learners:</p>
+                    \[
+                    \hat{f}(x) = \text{sign}\left( \sum_{i=1}^{B} \alpha_i f_i(x) \right)
+                    \]
+
+                    Here, \( \alpha_i \) is calculated based on the error rate of each weak learner.
+
+                    <!----------------------------------------->
+                    <h4 id="stacking">3. Stacking</h4>
+                    Stacking involves training multiple different models and then using a meta-model to learn the best way to combine these base models' predictions. This meta-model is typically a simple model like linear regression.
+
+                    <p>Let \( f_1(x), f_2(x), \dots, f_B(x) \) be the base models. The meta-model \( g(x) \) takes the predictions of these base models as input:</p>
+                    \[
+                    \hat{f}(x) = g(f_1(x), f_2(x), \dots, f_B(x))
+                    \]
+
+                    <p>The goal is for the meta-model to learn how to best combine the base models’ predictions.</p>
+
+                    <!----------------------------------------->
+                    <h4 id="random-forest">4. Random Forest</h4>
+                    A <b>Random Forest</b> is an extension of the bagging technique, where multiple decision trees are used as the base learners. The key difference from bagging is that Random Forest introduces additional randomness by selecting a random subset of features at each split in the decision trees.
+
+                    <p> Assume we have \( B \) decision trees \( T_1(x), T_2(x), \dots, T_B(x) \), each trained on different bootstrap samples and a random subset of features. The final prediction is:</p>
+                    <ul>
+                        <li><strong>For regression: </strong>
+                            \[
+                            \hat{f}(x) = \frac{1}{B} \sum_{i=1}^{B} T_i(x)
+                            \]
+                        </li>
+                        <li><strong>For classification: </strong>
+                            \[
+                            \hat{f}(x) = \text{mode}(T_1(x), T_2(x), \dots, T_B(x))
+                            \]
+                        </li>
+                    </ul>
+
+
+                    <!----------------------------------------->
+                    <h4 id="voting">5. Voting</h4>
+                    <b>Voting</b> is an ensemble method where multiple models (either of the same type or different types) are trained on the same dataset, and their predictions are combined using voting for classification tasks or averaging for regression tasks.
+                    <ul>
+                        <li><b>Hard Voting:</b> The final prediction is the majority vote among the models.</li>
+                        <li><b>Soft Voting:</b> Each model outputs a probability, and the final prediction is based on the weighted sum of these probabilities.</li>
+                    </ul>
+
+                    <p>Let \( f_1(x), f_2(x), \dots, f_B(x) \) represent \( B \) models.</p>
+                    <ul>
+                        <li><strong>For hard voting (classification): </strong>
+                            \[
+                            \hat{f}(x) = \text{mode}(f_1(x), f_2(x), \dots, f_B(x))
+                            \]
+                        </li>
+                        <li><strong>For soft voting (classification with probabilities \( p_1, p_2, \dots, p_B \)):</strong>
+                            \[
+                            \hat{f}(x) = \text{argmax} \left( \sum_{i=1}^{B} w_i p_i(x) \right)
+                            \]
+                        </li>
+                        where \( w_i \) is the weight assigned to the \( i \)-th model.
+                    </ul>
+
+                    <!----------------------------------------->
+                    <h4 id="blending">6. Blending</h4>
+                    Blending is similar to stacking, but the key difference is how the meta-model is trained. In stacking, the base models are trained using cross-validation, and their predictions are passed to the meta-model. In blending, a holdout validation set is used for training the meta-model, and the base models are trained on the entire training set.
+                    <p>Let the training set be split into two parts: </p>
+                    <ul>
+                        <li>Training set for base models: \( X_{\text{train}} \)</li>
+                        <li>Holdout validation set for meta-model: \( X_{\text{holdout}} \)</li>
+                    </ul>
+
+                    <p>Train base models \( f_1(x), f_2(x), \dots, f_B(x) \) on \( X_{\text{train}} \).</p>
+
+                    <p>Train a meta-model \( g(x) \) on the predictions of these base models on \( X_{\text{holdout}} \):</p>
+                    \[
+                    \hat{f}(x) = g(f_1(x), f_2(x), \dots, f_B(x))
+                    \]
+
+
+                    <!----------------------------------------->
+                    <h4 id="gbms">7. Gradient Boosting Machines (GBMs)</h4>
+                    <b>Gradient Boosting</b> is an extension of boosting that optimizes a differentiable loss function by iteratively adding weak learners (typically decision trees) that fit the residual errors of the previous model.
+
+                    <p><strong>Mathematical explanantion:</strong></p>
+                    <ul>
+                        <li>Initialize the model with a constant value:
+                            \[
+                            F_0(x) = \arg \min_{\gamma} \sum_{i=1}^{n} L(y_i, \gamma)
+                            \]
+                            where \( L \) is the loss function and \( y_i \) are the true labels.
+                        </li>
+                        <li>For each iteration \( m = 1, 2, \dots, M \):
+                            <ul>
+                                <li>Compute the residuals (error) \( r_i^{(m)} \) of the current model:
+                                    \[
+                                    r_i^{(m)} = -\left[ \frac{\partial L(y_i, F(x_i))}{\partial F(x_i)} \right]_{F(x) = F_{m-1}(x)}
+                                    \]
+                                </li>
+                                <li>Train a weak learner \( h_m(x) \) to fit the residuals.</li>
+                                <li>Update the model by adding the weak learner to the current model:
+                                    \[
+                                    F_m(x) = F_{m-1}(x) + \eta h_m(x)
+                                    \]
+                                    where \( \eta \) is the learning rate.
+                                </li>
+                            </ul>
+                        </li>
+                        <li>The final prediction is \( F_M(x) \), the sum of all weak learners.</li>
+                    </ul>
+
+                    <!----------------------------------------->
+                    <h4 id="xgboost">8. XGBoost, LightGBM, and CatBoost</h4>
+                    These are highly optimized and scalable implementations of <b>Gradient Boosting</b>, each offering its own improvements:
+                    <ul>
+                        <li><strong>XGBoost</strong>uses regularization to reduce overfitting.</li>
+                        <li><strong>LightGBM</strong> focuses on efficiency by using a leaf-wise tree growth strategy.</li>
+                        <li><strong>CatBoost</strong> is optimized for categorical features and reduces overfitting through feature combination techniques.</li>
+                    </ul>
+                    While the underlying method remains similar to Gradient Boosting Machines (GBMs), these methods introduce optimizations in tree building, feature handling, and regularization.
+
+
+                    <!----------------------------------------->
+                    <h4 id="bragging">9. Bagging Variants</h4>
+                    <b>Pasting</b> is a variant of bagging where instead of bootstrap sampling (sampling with replacement), we sample subsets of the training data <b>without</b> replacement. It reduces variance in a slightly different way compared to standard bagging.
+                    <p>If we have \( N \) training examples, instead of sampling with replacement to create different training sets, we sample without replacement, ensuring all training examples are used only once in each subset.</p>
+
+                    <p>Each method has its own strengths, and the choice of the ensemble method often depends on the specific problem at hand, dataset characteristics, and desired trade-offs between bias, variance, and computational cost.</p>
+
+                </section>
+                <!-------Reference ------->
+                <!-- <section id="reference">
+                    <h2>References</h2>
+                    <ul>
+                        <li><a href="https://arxiv.org/abs/1201.2434">Observational Probes of Cosmic Acceleration</a></li>
+                        <li>Baryon-Dark matter interaction in presence of magnetic fields in light of EDGES signal, Jitesh R Bhatt, Pravin Kumar Natwariya, Aleka C. Nayak, Arun Kumar Pandey <span><a href="https://arxiv.org/abs/1905.13486">[arXiv:1905.13486 [astro-ph.CO] (2019)]</a>, Eur. Phys. J. C 80, 334 (2020)</span></li>
+                        
+                        <li id="paper-1">Implications of baryon-dark matter interaction on IGM temperature and tSZ effect with magnetic field, Arun Kumar Pandey, Sunil Malik, T. R. Seshadri, <a href="https://arxiv.org/abs/2006.07901">arXiv:2006.07901 [astro-ph.CO] (2020)</a>, Mon.Not.Roy.Astron.Soc. 500 (2020)</li>
+                        
+                        <li id="paper-2">Thermal SZ effect in a magnetized IGM dominated by interacting DM decay/annihilation during dark ages, Arun Kumar Pandey, Sunil Malik (2022) <a href="https://arxiv.org/abs/2204.08088">[arXiv:2204.08088]</a></li>
+                    </ul>
+                </section> -->
+
+                <hr>
+
+                <div style="background-color: #f0f0f0; padding: 15px; border-radius: 5px;">
+
+                    <h3>Some other interesting things to know:</h3>
+                    <ul style="list-style-type: disc; margin-left: 30px;">
+                        <li>Visit my website on <a href="sql-project.html">For Data, Big Data, Data-modeling, Datawarehouse, SQL, cloud-compute.</a></li>
+                        <li>Visit my website on <a href="Data-engineering.html">Data engineering</a></li>
+                    </ul>
+                </div>
+                <p></p>
+
+                <div class="navigation">
+                    <a href="index.html#portfolio" class="clickable-box">
+                        <span class="arrow-left">Portfolio section</span>
+                    </a>
+
+                    <a href="portfolio-details-2.html" class="clickable-box">
+                        <span class="arrow-right">Content</span>
+                    </a>
+                </div>
+            </div>
+        </section><!-- End Portfolio Details Section -->
+    </main><!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong><span>Arun</span></strong>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/typed.js/typed.umd.js"></script>
+    <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            hljs.initHighlightingOnLoad();
+        });
+    </script>
+
+</body>
+
+</html>
