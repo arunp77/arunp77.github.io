@@ -191,7 +191,7 @@
 
                     <!----------------------------------------->
                     <h4 id="bagging-bootstrap">1. Bagging (Bootstrap Aggregating)</h4>
-                    Bagging aims to reduce the variance of a model by training multiple instances of the same model on different subsets of the training data. The final prediction is made by averaging (for regression) or voting (for classification) over all models.
+                    Bagging involves creating multiple models from a single base model by training each model on a different subset of the training data. The subsets are created using bootstrap sampling, where samples are drawn from the original dataset with replacement. Each base model is trained independently, and their predictions are combined using majority voting for classification or averaging for regression. Random Forest is a popular example of a bagging algorithm that uses decision trees as base models.
 
                     <p>Let’s assume we have \( B \) models \( f_1(x), f_2(x), \dots, f_B(x) \), each trained on a bootstrap sample of the data. The final ensemble prediction \( \hat{f}(x) \) is:</p>
                     <ul>
@@ -209,7 +209,7 @@
 
                     <!----------------------------------------->
                     <h4 id="boosting">2. Boosting</h4>
-                    Boosting focuses on reducing the bias of models by training weak models sequentially. Each model is trained to correct the errors of its predecessor. Popular boosting algorithms include <b>AdaBoost</b> and <b>Gradient Boosting</b>.
+                    Boosting is an iterative process where weak learners (base models) are trained sequentially, with each subsequent model focusing on the mistakes made by the previous models. The most well-known boosting algorithm is <b>AdaBoost (Adaptive Boosting)</b>, which adjusts the weights of the training samples based on the performance of the previous models. <b>Gradient Boosting</b> is another popular boosting technique that uses gradient descent to minimize the loss function and improve the ensemble’s performance.
 
                     <p>In <b>AdaBoost</b>, each model is assigned a weight, and misclassified points are given more weight in the next iteration. Assume we have \( B \) weak learners, \( f_1(x), f_2(x), \dots, f_B(x) \), each assigned a weight \( \alpha_i \).</p>
 
@@ -221,8 +221,8 @@
                     Here, \( \alpha_i \) is calculated based on the error rate of each weak learner.
 
                     <!----------------------------------------->
-                    <h4 id="stacking">3. Stacking</h4>
-                    Stacking involves training multiple different models and then using a meta-model to learn the best way to combine these base models' predictions. This meta-model is typically a simple model like linear regression.
+                    <h4 id="stacking">3. Stacking (Stacked generation)</h4>
+                    Stacking involves training multiple base models on the same dataset and then using a meta-model to combine their predictions. The base models are trained independently, and their outputs are used as features for the meta-model. The meta-model is trained to learn the optimal way to combine the predictions of the base models. Stacking can handle heterogeneous base models, allowing for different types of machine-learning algorithms.
 
                     <p>Let \( f_1(x), f_2(x), \dots, f_B(x) \) be the base models. The meta-model \( g(x) \) takes the predictions of these base models as input:</p>
                     \[
@@ -277,6 +277,10 @@
                     <h4 id="blending">6. Blending</h4>
                     Blending is similar to stacking, but the key difference is how the meta-model is trained. In stacking, the base models are trained using cross-validation, and their predictions are passed to the meta-model. In blending, a holdout validation set is used for training the meta-model, and the base models are trained on the entire training set.
                     <p>Let the training set be split into two parts: </p>
+
+
+                    Blending is similar to stacking, but it uses a simpler approach to combine the predictions of the base models. Instead of training a meta-model, blending uses a weighted average of the base model predictions. The weights are determined based on the performance of each base model on a validation set or using a grid search technique.
+                    
                     <ul>
                         <li>Training set for base models: \( X_{\text{train}} \)</li>
                         <li>Holdout validation set for meta-model: \( X_{\text{holdout}} \)</li>
