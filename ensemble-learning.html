@@ -171,18 +171,31 @@
                     <h2 id="introduction">Introduction </h2>
                     Ensemble learning in machine learning refers to techniques that combine the predictions from multiple models (learners) to improve the overall performance. The main idea is that a group of weak learners (models with moderate accuracy) can come together to form a strong learner. Ensemble methods can often achieve better results than individual models by reducing variance, bias, or improving predictions.
 
-                    <p><strong>Types of Ensemble Learning Methods:</strong></p>
+                    
+                    <p></p>
+                    <p><strong>Ensemble Techniques in Machine Learning:</strong> Here are some of the most commonly used ensemble techniques:</p>
                     <ul>
                         <li>Bagging (Bootstrap Aggregating)</li>
                         <li>Boosting</li>
-                        <li>Stacking</li>
+                        <li>Stacking (Stacked Generalization)</li>
+                        <li>Blending</li>
+                    </ul>
+                    <p>These ensemble techniques can significantly improve the accuracy and robustness of machine learning models by leveraging the strengths of multiple models. However, it’s important to note that ensemble methods may come at the cost of interpretability, as the final model becomes more complex.</p>
+
+                    <p><strong>Algorithms for Ensemble Learning: </strong></p>
+                    <ul>
                         <li>Random Forest</li>
                         <li>Voting</li>
-                        <li>Blending</li>
+                        
                         <li>Gradient Boosting Machines (GBMs)</li>
                         <li>XGBoost, LightGBM, and CatBoost</li>
                         <li>Bagging Variants</li>
                     </ul>
+
+                    <div class="box">
+                        A good description on the topic is given in <a href="https://aitech.studio/aie/ensemble-learning/" target="_blank">Ensemble Learning: Supercharge Your The Best Predictions,</a> Posted By AITech.Studio.
+                    </div>
+
                 </section>
 
                 <section>
@@ -233,7 +246,13 @@
 
                     <!----------------------------------------->
                     <h4 id="random-forest">4. Random Forest</h4>
-                    A <b>Random Forest</b> is an extension of the bagging technique, where multiple decision trees are used as the base learners. The key difference from bagging is that Random Forest introduces additional randomness by selecting a random subset of features at each split in the decision trees.
+                    A <b>Random Forest</b> is an extension of the bagging technique, where multiple decision trees are used as the base learners. The key difference from bagging is that Random Forest introduces additional randomness by selecting a random subset of features at each split in the decision trees. Here are key points about Random Forest:
+                    <ul>
+                        <li>Random Forest involves creating multiple decision trees by selecting random subsets of features and data points to build each tree.</li>
+                        <li>Each tree in the forest is trained independently, and the final prediction is made by aggregating the predictions of all trees through voting or averaging.</li>
+                        <li>This algorithm is known for its robustness against overfitting and its ability to handle high-dimensional data effectively.</li>
+                        <li>Random Forest is widely used in various applications due to its simplicity, scalability, and high accuracy in both classification and regression tasks.</li>
+                    </ul>
 
                     <p> Assume we have \( B \) decision trees \( T_1(x), T_2(x), \dots, T_B(x) \), each trained on different bootstrap samples and a random subset of features. The final prediction is:</p>
                     <ul>
@@ -276,10 +295,10 @@
                     <!----------------------------------------->
                     <h4 id="blending">6. Blending</h4>
                     Blending is similar to stacking, but the key difference is how the meta-model is trained. In stacking, the base models are trained using cross-validation, and their predictions are passed to the meta-model. In blending, a holdout validation set is used for training the meta-model, and the base models are trained on the entire training set.
+
+                    <p>These ensemble techniques can significantly improve the accuracy and robustness of machine learning models by leveraging the strengths of multiple models. However, it’s important to note that ensemble methods may come at the cost of interpretability, as the final model becomes more complex.</p>
+
                     <p>Let the training set be split into two parts: </p>
-
-
-                    Blending is similar to stacking, but it uses a simpler approach to combine the predictions of the base models. Instead of training a meta-model, blending uses a weighted average of the base model predictions. The weights are determined based on the performance of each base model on a validation set or using a grid search technique.
                     
                     <ul>
                         <li>Training set for base models: \( X_{\text{train}} \)</li>
@@ -329,12 +348,12 @@
                     <h4 id="xgboost">8. XGBoost, LightGBM, and CatBoost</h4>
                     These are highly optimized and scalable implementations of <b>Gradient Boosting</b>, each offering its own improvements:
                     <ul>
-                        <li><strong>XGBoost</strong>uses regularization to reduce overfitting.</li>
+                        <li><strong>XGBoost</strong> uses regularization to reduce overfitting.</li>
                         <li><strong>LightGBM</strong> focuses on efficiency by using a leaf-wise tree growth strategy.</li>
                         <li><strong>CatBoost</strong> is optimized for categorical features and reduces overfitting through feature combination techniques.</li>
                     </ul>
                     While the underlying method remains similar to Gradient Boosting Machines (GBMs), these methods introduce optimizations in tree building, feature handling, and regularization.
-
+                    
 
                     <!----------------------------------------->
                     <h4 id="bragging">9. Bagging Variants</h4>
@@ -345,17 +364,12 @@
 
                 </section>
                 <!-------Reference ------->
-                <!-- <section id="reference">
+                <section id="reference">
                     <h2>References</h2>
                     <ul>
-                        <li><a href="https://arxiv.org/abs/1201.2434">Observational Probes of Cosmic Acceleration</a></li>
-                        <li>Baryon-Dark matter interaction in presence of magnetic fields in light of EDGES signal, Jitesh R Bhatt, Pravin Kumar Natwariya, Aleka C. Nayak, Arun Kumar Pandey <span><a href="https://arxiv.org/abs/1905.13486">[arXiv:1905.13486 [astro-ph.CO] (2019)]</a>, Eur. Phys. J. C 80, 334 (2020)</span></li>
-                        
-                        <li id="paper-1">Implications of baryon-dark matter interaction on IGM temperature and tSZ effect with magnetic field, Arun Kumar Pandey, Sunil Malik, T. R. Seshadri, <a href="https://arxiv.org/abs/2006.07901">arXiv:2006.07901 [astro-ph.CO] (2020)</a>, Mon.Not.Roy.Astron.Soc. 500 (2020)</li>
-                        
-                        <li id="paper-2">Thermal SZ effect in a magnetized IGM dominated by interacting DM decay/annihilation during dark ages, Arun Kumar Pandey, Sunil Malik (2022) <a href="https://arxiv.org/abs/2204.08088">[arXiv:2204.08088]</a></li>
+                        <li><a href="https://aitech.studio/aie/ensemble-learning/">Ensemble Learning: Supercharge Your The Best Predictions</a></li>
                     </ul>
-                </section> -->
+                </section>
 
                 <hr>
 
