@@ -170,6 +170,10 @@
                 <section>
                     <h2 id="introduction">Introduction </h2>
                     Ensemble learning in machine learning refers to techniques that combine the predictions from multiple models (learners) to improve the overall performance. The main idea is that a group of weak learners (models with moderate accuracy) can come together to form a strong learner. Ensemble methods can often achieve better results than individual models by reducing variance, bias, or improving predictions.
+                    <figure>
+                        <img src="assets/img/machine-ln/ensemble-learning.png" alt="" style="max-width: 40%; max-height: auto;">
+                        <figcaption style="text-align: center;"><a href="https://livebook.manning.com/concept/machine-learning/ensemble-method" target="_blank">concept ensemble method in category machine learning</a>.</figcaption>
+                    </figure>
 
                     
                     <p></p>
@@ -219,10 +223,19 @@
                             \]
                         </li>
                     </ul>
+                    <figure>
+                        <img src="assets/img/machine-ln/bagging.png" alt="" style="max-width: 30%; max-height: auto;">
+                        <figcaption style="text-align: center;"><a href="https://towardsdatascience.com/ensemble-learning-bagging-boosting-3098079e5422" target="_blank">Ensemble learning, Fernando López</a>.</figcaption>
+                    </figure>
 
                     <!----------------------------------------->
                     <h4 id="boosting">2. Boosting</h4>
                     Boosting is an iterative process where weak learners (base models) are trained sequentially, with each subsequent model focusing on the mistakes made by the previous models. The most well-known boosting algorithm is <b>AdaBoost (Adaptive Boosting)</b>, which adjusts the weights of the training samples based on the performance of the previous models. <b>Gradient Boosting</b> is another popular boosting technique that uses gradient descent to minimize the loss function and improve the ensemble’s performance.
+
+                    <figure>
+                        <img src="assets/img/machine-ln/ensemble-learning1.png" alt="" style="max-width: 50%; max-height: auto;">
+                        <figcaption style="text-align: center;"><a href="https://www.geeksforgeeks.org/boosting-in-machine-learning-boosting-and-adaboost/" target="_blank">Boosting in Machine Learning | Boosting and AdaBoost, Geedks for Geeks</a>.</figcaption>
+                    </figure>
 
                     <p>In <b>AdaBoost</b>, each model is assigned a weight, and misclassified points are given more weight in the next iteration. Assume we have \( B \) weak learners, \( f_1(x), f_2(x), \dots, f_B(x) \), each assigned a weight \( \alpha_i \).</p>
 
@@ -232,6 +245,10 @@
                     \]
 
                     Here, \( \alpha_i \) is calculated based on the error rate of each weak learner.
+                    <figure></figure>
+                        <img src="assets/img/machine-ln/boosting.png" alt="" style="max-width: 30%; max-height: auto;">
+                        <figcaption style="text-align: center;"><a href="https://towardsdatascience.com/ensemble-learning-bagging-boosting-3098079e5422" target="_blank">Ensemble learning, Fernando López</a>.</figcaption>
+                    </figure>
 
                     <!----------------------------------------->
                     <h4 id="stacking">3. Stacking (Stacked generation)</h4>
@@ -368,6 +385,7 @@
                     <h2>References</h2>
                     <ul>
                         <li><a href="https://aitech.studio/aie/ensemble-learning/">Ensemble Learning: Supercharge Your The Best Predictions</a></li>
+                        <li><a href="https://www.v7labs.com/blog/ensemble-learning" target="_blank">The Complete Guide to Ensemble Learning</a></li>
                     </ul>
                 </section>
 
