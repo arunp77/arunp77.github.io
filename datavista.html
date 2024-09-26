@@ -28,13 +28,10 @@
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
 
-    <!-- To set the icon, visit https://fontawesome.com/account-->
-    <script src="https://kit.fontawesome.com/5d25c1efd3.js" crossorigin="anonymous"></script>
-    <!-- end of icon-->
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" /> -->
 
-    <script type="text/javascript" async
-            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
+
 
     <!-- =======================================================
     * Template Name: iPortfolio
@@ -185,6 +182,19 @@
                         <li>Python 3.x</li>
                         <li>Tkinter (included with standard Python installation)</li>
                     </ul>
+
+                    <!-- <pre class="language-bash"><code>
+                        #!/bin/bash
+                        # Bash example: List all files in the current directory
+                        for file in *; do
+                            echo "Found file: $file"
+                        done
+                    </code></pre> -->
+
+                    <!-- <pre class="language-sql"><code>
+                        -- SQL example: Select all rows from a table
+                        SELECT * FROM users WHERE status = 'active';
+                    </code></pre> -->
             
                     <h2>Steps</h2>
                     <ol>
@@ -197,11 +207,17 @@
                         <li>Create a virtual environment and install dependencies:
                             <ul>
                                 <li>Create and activate a virtual environment:
-                                    <pre><code>python -m venv venv<br>source venv/bin/activate  # On Windows use `venv\Scripts\activate`</code></pre>
+                                    <pre class="language-python"><code>
+                                        #!/bin/bash
+                                        $ python -m venv venv
+                                        $ source venv/bin/activate              # On linux
+                                        $ venv\Scripts\activate                 # on windows
+                                    </code></pre>
+                                    
                                 </li>
                                 <li>Install required packages:
                                     <pre><code>poetry install</code></pre>
-                                    or just install `tkinter` using (for more details on the tkinter library, please check the <a href="https://docs.python.org/3/library/tkinter.html" target="_blank">official documentation</a>):
+                                    or just install <code>tkinter</code> using (for more details on the tkinter library, please check the <a href="https://docs.python.org/3/library/tkinter.html" target="_blank">official documentation</a>):
                                     <pre><code>pip install tk</code></pre>
                                 </li>
                             </ul>
@@ -345,6 +361,19 @@
         hljs.initHighlightingOnLoad();
     });
     </script>
+
+    <!-- To set the icon, visit https://fontawesome.com/account-->
+    <script src="https://kit.fontawesome.com/5d25c1efd3.js" crossorigin="anonymous"></script>
+    <!-- end of icon-->
+
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <!-- Prism.js JavaScript for handling syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
 
 </body>
 
