@@ -336,12 +336,43 @@
                     <span><a href="#paper-1">Paper-1</a></span>
                     <span><a href="#paper-2">Paper-2</a></span>)
 
+                    <div class="grey-box">
+                        In cosmology, equations are often expressed in terms of <b>redshift</b> \( z \), rather than time \( t \), because redshift is directly observable and it correlates with time in an expanding universe. To rewrite the evolution equations for photon, baryon, and dark matter temperatures in terms of redshift, we use the following relation between redshift \( z \) and time \( t \):
+
+                        \[
+                        \frac{d}{dt} = -H(z) (1+z) \frac{d}{dz}
+                        \]
+                        
+                        Where:
+                        <ul>
+                            <li>\( H(z) \) is the Hubble parameter as a function of redshift, given by
+
+                                \[
+                                H(z) = H_0 \sqrt{\Omega_m (1+z)^3 + \Omega_r (1+z)^4 + \Omega_\Lambda + \Omega_k (1+z)^2}
+                                \]
+
+                                where:
+                                <ul>
+                                    <li>\( H_0 \) is the current value of the Hubble constant.</li>
+                                    <li>\( \Omega_m \) is the total matter density parameter (includes both baryons and dark matter).</li>
+                                    <li>\( \Omega_r \) is the radiation density parameter (includes photons and relativistic species).</li>
+                                    <li>\( \Omega_\Lambda \) is the dark energy density parameter (cosmological constant).</li>
+                                    <li>\( \Omega_k \) is the curvature density parameter.</li>
+                                    <li>\( z \) is the redshift.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
                     <ol>
                         <li><b>Photon Temperature Evolution: </b>Photons redshift as the universe expands, so their temperature decreases as the universe grows. In an expanding universe, the photon temperature \( T_\gamma \) evolves as:
                             \[
                             \frac{d T_\gamma}{dt} = - H T_\gamma
                             \]
-                            This equation reflects the fact that photon energy redshifts in proportion to the expansion of the universe, where \( H \) is the Hubble parameter.
+                            This equation reflects the fact that photon energy redshifts in proportion to the expansion of the universe, where \( H \) is the Hubble parameter. In terms of red-shift, we can rewrite:
+                            \[
+                            T_\gamma(z) = T_0 (1+z)
+                            \]
                         </li>
                         <li><b>Baryon Temperature Evolution: </b>The baryon temperature \( T_b \) is affected by the expansion of the universe, interactions with photons (e.g., Compton scattering before decoupling), and possible interactions with dark matter.
                         <p>The evolution equation for baryons can be derived from the first law of thermodynamics and includes two main effects:</p>
@@ -358,6 +389,15 @@
                                 <li>\( \Gamma_{b \gamma} \) is the interaction rate between baryons and photons.</li>
                                 <li>\( \Gamma_{b \text{DM}} \) is the interaction rate between baryons and dark matter.</li>
                             </ul>
+
+
+                        The evolution of the baryon temperature \( T_b \) due to adiabatic expansion, Compton scattering with photons, and interactions with dark matter can be expressed as:
+
+                            \[
+                            (1+z) \frac{d T_b}{dz} = 2 T_b - \frac{2 \Gamma_{b \gamma}}{H(z) (1+z)} (T_b - T_\gamma) - \frac{2 \Gamma_{b \text{DM}}}{H(z) (1+z)} (T_b - T_{\text{DM}})
+                            \]
+                            
+
                             <p></p>
                             <h5>Photon-Baryon Coupling Term \( \Gamma_{b \gamma} \):</h5>
                             The coupling between baryons and photons is given by the Compton scattering rate:
@@ -396,6 +436,12 @@
                             
                             Where \( \Gamma_{\text{DM} b} \) is the interaction rate between dark matter and baryons, which is the same as \( \Gamma_{b \text{DM}} \) derived earlier, as interactions are symmetric.
                         
+                            The evolution of the dark matter temperature \( T_{\text{DM}} \) can also be expressed as a function of redshift:
+
+                            \[
+                            (1+z) \frac{d T_{\text{DM}}}{dz} = 2 T_{\text{DM}} - \frac{2 \Gamma_{\text{DM} b}}{H(z) (1+z)} (T_{\text{DM}} - T_b)
+                            \]
+                            
                         </li>
                         <li><b>Friedmann Equation for Expansion Rate: </b>
                             The expansion rate \( H \) is governed by the Friedmann equation, which includes contributions from the total energy density of the universe:
@@ -417,15 +463,27 @@
                             \[
                             \frac{d T_\gamma}{dt} = - H T_\gamma
                             \]
+                            or 
+                            \[
+                            T_\gamma(z) = T_0 (1+z)
+                            \]
                         </li>
                         <li><b>Baryon temperature evolution: </b>
                             \[
                             \frac{d T_b}{dt} = - 2 H T_b + \Gamma_{b \gamma} (T_\gamma - T_b) + \Gamma_{b \text{DM}} (T_{\text{DM}} - T_b)
                             \]
+                            or 
+                            \[
+                            (1+z) \frac{d T_b}{dz} = 2 T_b - \frac{2 \Gamma_{b \gamma}}{H(z) (1+z)} (T_b - T_\gamma) - \frac{2 \Gamma_{b \text{DM}}}{H(z) (1+z)} (T_b - T_{\text{DM}})
+                            \]
                         </li>
                         <li><b>Dark matter temperature evolution: </b>
                             \[
                             \frac{d T_{\text{DM}}}{dt} = - 2 H T_{\text{DM}} + \Gamma_{\text{DM} b} (T_b - T_{\text{DM}})
+                            \]
+                            or
+                            \[
+                            (1+z) \frac{d T_{\text{DM}}}{dz} = 2 T_{\text{DM}} - \frac{2 \Gamma_{\text{DM} b}}{H(z) (1+z)} (T_{\text{DM}} - T_b)
                             \]
                         </li>
                     </ul>
