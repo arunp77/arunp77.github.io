@@ -167,6 +167,7 @@
                                     <li><a href="#synchrotron">Synchrotron Radiation</a></li>
                                     <li><a href="#zeeman">Zeeman Effect</a></li>
                                     <li><a href="#cmb-polarization">CMB Polarization (Faraday Rotation in the CMB)</a></li>
+                                    <li><a href="#dust">Polarized Dust Emission</a></li>
                                     <li><a href="#large-scale-structure">Magnetic Fields from Large-Scale Structure and Turbulence</a></li>
                                 </ol>
                             </li>
@@ -319,6 +320,7 @@
                         </li>
                     </ol>
 
+
                     <h4 id="mg-galaxies-cluster">Magnetic Fields in Galaxy Clusters</h4>
                     Magnetic fields are also observed in galaxy clusters, with typical strengths ranging from \( 0.1 - 10 \, \mu G \). Galaxy clusters are massive structures containing galaxies, hot ionized gas (intracluster medium, or ICM), and dark matter. Observations of magnetic fields in clusters are important because they provide clues about the amplification of primordial magnetic fields through large-scale structure formation.
                     <ol>
@@ -381,7 +383,7 @@
                     <h2 id="measurments">Measurement of Magnetic Fields</h2>
                     Magnetic fields in cosmic environments, such as galaxies, galaxy clusters, and the intergalactic medium, are measured through several observational techniques. These measurements are primarily indirect, relying on the interactions between magnetic fields and charged particles or electromagnetic radiation. Below is a detailed explanation of how these magnetic fields are measured using key mathematical equations.
                     <ol>
-                        <li id="rotation"><strong>Faraday Rotation: </strong>Faraday Rotation is one of the most common methods for measuring magnetic fields in space. It occurs when linearly polarized electromagnetic radiation passes through a magnetized plasma. The magnetic field causes the plane of polarization to rotate, and this rotation is proportional to the strength of the magnetic field along the line of sight, as well as the electron density.
+                        <li id="rotation"><strong>Faraday Rotation: </strong>Faraday Rotation is one of the most common methods for measuring magnetic fields in space. It occurs when polarized electromagnetic radiation (usually from radio sources such as quasars) passes through a magnetized plasma. The magnetic field causes the plane of polarization to rotate, and this rotation is proportional to the strength of the magnetic field along the line of sight, as well as the electron density.
                         The Rotation Measure (RM) quantifies the amount of this rotation and is given by:
 
                             \[
@@ -390,8 +392,8 @@
                             
                         Where:
                         <ul>
-                            <li>\( RM \) is the rotation measure in units of \(rad/m^2\)</li>
-                            <li>\( n_e(z) \) is the electron density in \(cm^3\)</li>
+                            <li>\( RM \) is the rotation measure in units of \(\text{rad}/\text{m}^2\)</li>
+                            <li>\( n_e(z) \) is the electron density in \(\text{cm}^3\)</li>
                             <li>\( B_{\parallel}(z) \) is the magnetic field component along the line of sight in \(\mu\) G</li>
                             <li>\( z \) is the position along the line of sight in pc (parsecs), and \( L \) is the distance to the source.</li>
                         </ul>
@@ -402,11 +404,13 @@
                         \]
                         
                         Thus, the rotation angle \( \Delta \theta \) depends on the wavelength of the radiation, and measuring \( \Delta \theta \) at different wavelengths allows astronomers to calculate the RM. Once the RM is known, the magnetic field strength along the line of sight can be determined, provided the electron density \( n_e \) is estimated from other observations (e.g., X-ray observations of the hot gas in galaxy clusters).
+                        <p><strong>Data Source:</strong> Radio telescopes like the Very Large Array (VLA), LOFAR, and ASKAP are used for Faraday Rotation studies. RM grids are constructed using observations of polarized radio emissions from extragalactic sources.</p>
                         <p><strong>Key points: </strong></p>
                         <ul>
                             <li><b>Faraday Rotation</b> is sensitive to the magnetic field component along the line of sight \( B_{\parallel} \).</li>
                             <li>The RM integrates the product of the magnetic field and the electron density along the line of sight.</li>
                         </ul>
+                        
                         </li>
                         <li id="synchrotron"><strong>Synchrotron Radiation: </strong>Synchrotron radiation is produced when relativistic electrons (electrons moving at nearly the speed of light) spiral around magnetic field lines. The radiation is emitted in the radio spectrum and is polarized, making it a useful tool for measuring both the strength and structure of magnetic fields.
 
@@ -444,7 +448,13 @@
                                 <li>\( \Pi \) is the fractional polarization of the synchrotron radiation.</li>
                                 <li>\( p = 2\alpha \) is the spectral index of the electron energy distribution.</li>
                             </ul>
-                            Highly polarized synchrotron emission indicates a well-ordered magnetic field, whereas less polarized emission suggests a more turbulent or random field.
+                            <p>Highly polarized synchrotron emission indicates a well-ordered magnetic field, whereas less polarized emission suggests a more turbulent or random field.</p>
+                            <p><strong>Data source: </strong></p>
+                                <ul>
+                                    <li>Radio telescopes detect synchrotron emission in the radio frequency range (e.g., VLA, GMRT, SKA). Observations can also be made at high frequencies, such as millimeter wavelengths (e.g., with ALMA).</li>
+                                    <li>Fermi Gamma-ray Space Telescope can observe synchrotron radiation from high-energy electrons.</li>
+                                </ul>
+                            
                             <p><strong>Key points: </strong></p>
                             <ul>
                                 <li>Synchrotron Radiation provides information about the magnetic field component perpendicular to the line of sight \( B_{\perp} \).</li>
@@ -474,6 +484,9 @@
                             <p>Where \( h \) is Planck’s constant. By measuring the frequency shift \( \Delta \nu \) in the spectral line, the magnetic field strength \( B \) can be directly determined.</p>
                             
                             <p>The Zeeman effect is particularly useful for measuring line-of-sight magnetic fields in dense regions, such as molecular clouds where strong magnetic fields are present.</p>
+
+                            <p><strong>Data source: </strong>Radio and submillimeter telescopes like Arecibo, Effelsberg, and ALMA, which observe specific spectral lines like the 21-cm line of neutral hydrogen or OH lines in molecular clouds.</p> 
+
                             <p><strong>Key points: </strong></p>
                             <ul>
                                 <li>Zeeman Effect is sensitive to the magnetic field along the line of sight.</li>
@@ -492,6 +505,15 @@
                                 <li>\( a(z) \) is the scale factor at redshift \( z \).</li>
                             </ul>
                             This equation shows that the rotation angle depends on the magnetic field strength along the line of sight, the electron density, and the wavelength of the CMB photons. Measuring this rotation requires extremely sensitive polarization measurements of the CMB, which can provide constraints on the strength of primordial magnetic fields.
+                            <p><strong>Data Source: </strong>CMB experiments such as Planck and BICEP2 aim to detect B-mode polarization, which could be related to primordial magnetic fields.</p>
+                        </li>
+                        <li id="dust"><strong>Polarized Dust Emission: </strong>In the interstellar medium (ISM), elongated dust grains tend to align with magnetic field lines. As these grains emit thermal radiation, the radiation is polarized in a direction aligned with the magnetic field. By mapping polarized dust emission, we can infer the orientation of magnetic fields in star-forming regions, galaxies, and the Milky Way.
+                        <p><strong>Data Source: </strong>
+                            <ul>
+                                <li>Planck satellite measured polarized dust emission across the sky and provided an all-sky map of the magnetic field in the Milky Way.</li>
+                                <li>Ground-based submillimeter observatories (e.g., the Submillimeter Array) also contribute to the study of polarized dust emission.</li>
+                            </ul>
+                        </p>
                         </li>
                         <li id="large-scale-structure"><strong>Magnetic Fields from Large-Scale Structure and Turbulence: </strong>In galaxy clusters and filaments, magnetic fields are measured through their interactions with turbulent plasma. Magnetohydrodynamics (MHD) equations govern the behavior of such magnetized plasmas:
 
