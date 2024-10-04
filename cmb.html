@@ -216,10 +216,7 @@
                 </section>
 
                 <section>
-                    <h2 id="derivation">Mathematical explanation of CMB physics</h2>
-                    There are few topics important concepts in context of CMB such as Temperature Anisotropies in the CMB, Power Spectrum of the CMB Anisotropies and The Sachs-Wolfe Effect. 
-
-                    <h3 id="anisotropy">Temperature Anisotropies in the CMB</h3>
+                    <h2 id="derivation">Temperature Anisotropies in the CMB</h2>
                     The temperature anisotropies in the CMB represent small fluctuations in the temperature of the radiation across the sky. These fluctuations, on the order of one part in 100,000, are essential for understanding the large-scale structure of the universe, as they encode information about the early universe, including its composition, geometry, and the physics of inflation.
 
                     <p>In this section, we'll derive the formalism for temperature anisotropies in the CMB from scratch, starting from the physical origins of these fluctuations to the mathematical description.</p>
@@ -227,13 +224,23 @@
                     <h5>Physical Origin of Temperature Anisotropies</h5>
                     The temperature anisotropies in the CMB arise from several key physical mechanisms that occurred in the early universe:
                     <ul>
-                        <li><b>Density fluctuations:</b> At the time of recombination (~380,000 years after the Big Bang), the universe had small variations in density. Regions with slightly higher densities had stronger gravitational potentials, affecting the temperature of the photons escaping from those regions.</li>
-                        <li><b>Gravitational redshift (Sachs-Wolfe effect):</b> Photons climbing out of gravitational potential wells lose energy, which appears as a redshift, lowering the observed temperature in those directions.</li>
+                        <li><b><a href="density-fluctuations.html">Density fluctuations</a>:</b> At the time of recombination (~380,000 years after the Big Bang), the universe had small variations in density. Regions with slightly higher densities had stronger gravitational potentials, affecting the temperature of the photons escaping from those regions.</li>
+                        <li><b>Gravitational redshift (Sachs-Wolfe effect):</b>
+                            The Sachs-Wolfe effect is one of the dominant sources of temperature anisotropies on large angular scales (\( \ell \lesssim 100 \)). It is caused by the redshift of photons climbing out of gravitational potential wells at the time of last scattering. The temperature fluctuation due to this effect can be written as:
+
+                            \[
+                            \frac{\Delta T}{T} \sim \frac{\delta \Phi}{c^2}
+                            \]
+                            
+                            where \( \delta \Phi \) is the gravitational potential perturbation.
+                        </li>
                         <li><b>Doppler effect:</b> The motion of baryons (normal matter) at the time of recombination can induce Doppler shifts in the frequency of photons, leading to temperature fluctuations.</li>
-                        <li><b>Acoustic oscillations:</b> The interaction between photons and baryons in the early universe created pressure waves (acoustic oscillations) in the photon-baryon plasma. These oscillations left imprints on the CMB temperature.</li>
+                        <li><b>Acoustic oscillations: </b>In the early universe, interactions between photons and baryons created pressure waves, or acoustic oscillations, in the photon-baryon plasma. Before recombination, these oscillations were driven by the competition between gravity and radiation pressure. As a result, they left distinct imprints on the temperature fluctuations of the Cosmic Microwave Background (CMB), producing a series of peaks in the CMB power spectrum, especially at smaller angular scales.</li>
                     </ul>
 
-                    The CMB temperature anisotropies are small fluctuations around the mean temperature \( T_0 \approx 2.725 \, \text{K} \). It is described on the sky plane as a function \( \Delta T(\hat{n}) \), where \( \hat{n} \) is the direction on the sky and \( \Delta T(\hat{n}) = T(\hat{n}) - \bar{T} \) is the difference between the observed temperature in that direction and the average temperature \( \bar{T} \) of the CMB.
+
+                    <h5>CMB temperature anisotropies : Mathematical explanantion</h5>
+                    The CMB temperature anisotropies are small fluctuations around the mean temperature \( T_0 \approx 2.725 \, \text{K} \). It is described on the sky plane as a function \( \Delta T(\hat{n}) \), where \( \hat{n} \) is the direction on the sky and \( \Delta T(\hat{n}) = T(\hat{n}) - \bar{T} \) is the difference between the observed temperature in that direction and the average temperature \( \bar{T} = T_0 \) of the CMB.
 
                     where:
                     <ul>
@@ -244,7 +251,7 @@
                     <p>Instead of analyzing these fluctuations in real space, we expand them in spherical harmonics, \( Y_{\ell m}(\hat{n}) \), since the CMB fluctuations occur on the surface of a sphere:</p>
 
                     \[
-                    \frac{\Delta T(\hat{n})}{\bar{T}} = \sum_{\ell=0}^{\infty} \sum_{m=-\ell}^{\ell} a_{\ell m} Y_{\ell m}(\hat{n})
+                    \frac{\Delta T(\hat{n})}{\bar{T}} =  \frac{T(\hat{n}) - T_0}{T_0} = \sum_{\ell=0}^{\infty} \sum_{m=-\ell}^{\ell} a_{\ell m} Y_{\ell m}(\hat{n})
                     \]
 
                     <p>where:</p>
@@ -253,19 +260,125 @@
                         <li>\( m \) is the azimuthal quantum number (\( -\ell \leq m \leq \ell \)).</li>
                         <li>\( a_{\ell m} \) are the multipole coefficients representing the amplitude of fluctuations at each \( \ell \) and \( m \).</li>
                     </ul>
+
+                    <h4>Two-Point Correlation Function and Statistical Isotropy</h4>
+                    To statistically characterize the temperature anisotropies, we compute the two-point correlation function \( C(\theta) \), which measures how temperature fluctuations at two points on the sky, separated by an angle \( \theta \), are related:
+
+                    \[
+                    C(\theta) = \left\langle \frac{\Delta T(\hat{n})}{T_0} \frac{\Delta T(\hat{n}')}{T_0} \right\rangle
+                    \]
+
+                    Assuming statistical isotropy, meaning the fluctuations are the same in every direction, \( C(\theta) \) depends only on the angular separation \( \theta \) between the two points and not their specific locations. 
+
+                    Substituting the spherical harmonic expansion into the correlation function, we obtain:
                     
-                    <P><strong>Statistical Properties of the Temperature Anisotropies: </strong>The CMB temperature anisotropies are assumed to be a Gaussian random field, meaning that the fluctuations are statistically isotropic and homogeneous. As a result, the ensemble average of the multipole moments \( a_{\ell m} \) is zero:</P>
                     \[
-                    \langle a_{\ell m} \rangle = 0
+                    C(\theta) = \sum_{\ell} \frac{2\ell + 1}{4\pi} C_\ell P_\ell(\cos\theta)
+                    \]
+                    
+                    Here, \( P_\ell(\cos\theta) \) are the <p>Legendre polynomials</p>, and \( C_\ell \) is the <b>angular power spectrum</b>. The power spectrum \( C_\ell \) represents the variance of the temperature fluctuations at a given angular scale.
+
+
+                    <h4>Power Spectrum \( C_\ell \) and Angular Scales</h4>
+                    The power spectrum \( C_\ell \) gives us a statistical description of the CMB anisotropies as a function of angular scale. The multipole \( \ell \) corresponds to different angular scales on the sky:
+
+                    \[
+                    \theta \sim \frac{180^\circ}{\ell}
                     \]
 
-                    However, the variance of these moments is not zero and is expressed in terms of the power spectrum \( C_{\ell} \), which encodes the angular distribution of the temperature anisotropies:
+                    <ul>
+                        <li>Low \( \ell \) values (small \( \ell \)) represent large angular scales on the sky.</li>
+                        <li>High \( \ell \) values (large \( \ell \)) represent small angular scales.</li>
+                    </ul>
+
+                    The total variance of the temperature fluctuations is then given by summing over all multipoles:
 
                     \[
-                    \langle a_{\ell m} a_{\ell' m'}^* \rangle = C_{\ell} \delta_{\ell \ell'} \delta_{m m'}
+                    \langle \left( \frac{\Delta T}{T} \right)^2 \rangle = \frac{1}{4\pi} \sum_{\ell=0}^{\infty} (2\ell + 1) C_{\ell}
                     \]
+                    
+                    This equation shows how the power spectrum \( C_\ell \) distributes the temperature variance across different angular scales.
 
-                    This equation shows that the variance of the \( a_{\ell m} \)'s depends only on \( \ell \), reflecting the fact that the temperature fluctuations are statistically isotropic.
+                    <div class="grey-box">
+                        <h5>Statistical Properties of the Temperature Anisotropies: </h5>
+                        <ul>
+                            <li>
+                                The CMB temperature anisotropies are assumed to be a Gaussian random field, meaning that the fluctuations are statistically isotropic and homogeneous. As a result, the ensemble average of the multipole moments \( a_{\ell m} \) is zero:</P>
+                                \[
+                                \langle a_{\ell m} \rangle = 0
+                                \]
+            
+                                However, the variance of these moments is not zero and is expressed in terms of the power spectrum \( C_{\ell} \), which encodes the angular distribution of the temperature anisotropies:
+            
+                                \[
+                                \langle a_{\ell m} a_{\ell' m'}^* \rangle = C_{\ell} \delta_{\ell \ell'} \delta_{m m'}
+                                \]
+            
+                                This equation shows that the variance of the \( a_{\ell m} \)'s depends only on \( \ell \), reflecting the fact that the temperature fluctuations are statistically isotropic.
+            
+                                \[
+                                \langle a_{\ell m} \rangle = 0
+                                \]
+                            </li>
+                            <li><b>Orthonormality of Spherical Harmonics: </b>
+                                \[
+                                \int Y_{\ell m}(\hat{n}) Y_{\ell' m'}^*(\hat{n}) \, d\Omega = \delta_{\ell \ell'} \delta_{m m'}
+                                \]
+                                
+                                where \( d\Omega = \sin\theta \, d\theta \, d\phi \), and \( \delta \) is the Kronecker delta.
+                            </li>
+                            <li><b>Completeness: </b>
+                                \[
+                                \sum_{\ell=0}^{\infty} \sum_{m=-\ell}^{\ell} Y_{\ell m}(\hat{n}) Y_{\ell m}^*(\hat{n}') = \delta(\hat{n} - \hat{n}')
+                                \]
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    
+
+                    <!----------------------------------------------->
+                    <br>
+                    <h4>Derivation of the Power Spectrum \( C_\ell \)</h4>
+                    The power spectrum \( C_{\ell} \) describes how much variance in the temperature fluctuations occurs at a given angular scale. To understand its physical meaning, we need to connect \( C_{\ell} \) with the temperature fluctuations.
+
+                    <p>To compute \( C_\ell \), we can use either the correlation function or the spherical harmonic coefficients \( a_{\ell m} \). The two approaches are related by the **addition theorem** of spherical harmonics:</p>
+
+                    \[
+                    \sum_{m=-\ell}^{\ell} Y_{\ell m}(\hat{n}) Y_{\ell m}^*(\hat{n}') = \frac{2\ell + 1}{4\pi} P_\ell(\cos\theta)
+                    \]
+                    
+                    Thus, the correlation function \( C(\theta) \) can be expressed in terms of the power spectrum \( C_\ell \):
+                    
+                    \[
+                    C(\theta) = \sum_{\ell} C_\ell \frac{2\ell + 1}{4\pi} P_\ell(\cos\theta)
+                    \]
+                    
+                    In practice, \( C_\ell \) can also be computed from the spherical harmonic coefficients as:
+                    
+                    \[
+                    C_\ell = \frac{1}{2\ell + 1} \sum_{m=-\ell}^{\ell} |a_{\ell m}|^2
+                    \]
+                    
+                    This provides a practical way to estimate \( C_\ell \) from observational data of the CMB.
+
+                    <!--------------------------------------------------->
+                    <br>
+                    <h5>Physical Interpretation of the Power Spectrum</h5>
+                    The angular power spectrum \( C_\ell \) describes how temperature fluctuations in the CMB vary across different angular scales:
+
+                    <ul>
+                        <li><b>Low \( \ell \) (Large Angular Scales):</b> These correspond to large-scale fluctuations, which capture information about the early universe's global geometry and the largest structures.</li>
+                        <li><b>High \( \ell \) (Small Angular Scales): </b> These correspond to smaller-scale fluctuations, including the detailed physics of sound waves (acoustic oscillations) in the photon-baryon plasma before recombination.</li>
+                    </ul>
+                    <p>The <b>acoustic peaks</b> in the power spectrum reflect these oscillations, with the positions and heights of the peaks providing insights into the universe’s composition (e.g., dark matter, baryonic matter, dark energy) and curvature. The <b>damping tail</b> at very high \( \ell \) occurs due to photon diffusion, which smooths out small-scale fluctuations.</p>
+
+                    <p>The angular power spectrum \( C_\ell \) is a crucial tool in cosmology, encapsulating the temperature fluctuations across different angular scales of the CMB. By expanding the temperature anisotropies in spherical harmonics, computing their correlations, and assuming statistical isotropy, we derive a robust framework for understanding the universe's early conditions, matter content, and geometry.</p>
+
+                    <p>The detailed analysis of the power spectrum has allowed cosmologists to refine the standard <b>ΛCDM model</b> and has been instrumental in understanding the universe's expansion, the relative amounts of dark matter and dark energy, and the formation of large-scale structures.
+                    </p>
+                    
+
                     
                     
 
