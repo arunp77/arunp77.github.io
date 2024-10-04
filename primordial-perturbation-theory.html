@@ -135,8 +135,8 @@
                         <div class="portfolio-details-slider swiper">
                             <div class="swiper-wrapper align-items-center">
                                 <figure>
-                                    <img src="assets/img/Scietific/cmb2.png" alt="" style="max-width: 90%; max-height: auto;">
-                                    <figcaption style="text-align: center;"><a href="https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2018/07/planck_s_view_of_the_cosmic_microwave_background/17601794-1-eng-GB/Planck_s_view_of_the_cosmic_microwave_background_pillars.jpg" target="_blank">Cosmic Microwave Background (CMB) radiation</a>, copyright - ©ESA.</figcaption>
+                                    <img src="assets/img/Scietific/interplay.png" alt="" style="max-width: 50%; max-height: auto;">
+                                    <figcaption style="text-align: center;"><a href="https://cmb.wintherscoming.no/theory_perturbations.php" target="_blank">Cosmology II, Course note book</a></figcaption>
                                 </figure>
                             </div>
                             <div class="swiper-pagination"></div>
@@ -386,17 +386,508 @@
                         </li>
                     </ol>
 
+
+                    <h3>Einstein's Equations with Perturbations</h3>
+                    To derive the perturbation equations, we need to apply Einstein's field equations to the perturbed metric and energy-momentum tensor.
+
+                    <h5>Einstein's Field Equations</h5>
+                    Einstein's equations relate the geometry of spacetime to its energy content:
+
+                    \[
+                    G_{\mu\nu} = \frac{8\pi G}{c^4} T_{\mu\nu}
+                    \]
                     
+                    where:
+                    <ul>
+                        <li>\( G_{\mu\nu} \) is the Einstein tensor,</li>
+                        <li>\( T_{\mu\nu} \) is the energy-momentum tensor.</li>
+                    </ul>
+
+                    <h5>Perturbed Einstein Tensor</h5>
+                    For the perturbed FRW metric, the Einstein tensor \( G_{\mu\nu} \) can be expanded to first order in perturbations:
+
+                    \[
+                    G_{\mu\nu} = G_{\mu\nu}^{(0)} + G_{\mu\nu}^{(1)} + \mathcal{O}(\text{perturbations}^2)
+                    \]
+                    
+                    where:
+                    <ul>
+                        <li>\( G_{\mu\nu}^{(0)} \) corresponds to the background FRW universe,</li>
+                        <li>\( G_{\mu\nu}^{(1)} \) contains the linear perturbations.</li>
+                    </ul>
+
+                    <h5>Perturbed Energy-Momentum Tensor</h5>
+                    Similarly, the energy-momentum tensor is expanded as:
+
+                    \[
+                    T_{\mu\nu} = T_{\mu\nu}^{(0)} + T_{\mu\nu}^{(1)} + \mathcal{O}(\text{perturbations}^2)
+                    \]
+                    
+                    where:
+                    <ul>
+                        <li>\( T_{\mu\nu}^{(0)} \) is the background energy-momentum tensor (perfect fluid),</li>
+                        <li>\( T_{\mu\nu}^{(1)} \) contains the perturbations (density fluctuations, velocity perturbations, etc.).</li>
+                    </ul>
+
+                    <h5>Linearized Einstein Equations</h5>
+                    Equating the perturbed Einstein tensor to the perturbed energy-momentum tensor yields the linearized Einstein equations:
+
+                    \[
+                    G_{\mu\nu}^{(1)} = \frac{8\pi G}{c^4} T_{\mu\nu}^{(1)}
+                    \]
+                    
+                    These equations govern the evolution of perturbations in the early universe.
+
+
+                    <h4>Deriving the Perturbation Equations</h4>
+                    To derive the perturbation equations, we will focus on scalar perturbations, which are most relevant for density fluctuations and the formation of large-scale structures.
+
+                    <h5>Scalar Perturbations in the Newtonian Gauge</h5>
+                    In the Newtonian gauge, scalar perturbations of the FRW metric are given by:
+                    \[
+                    ds^2 = -(1 + 2\Phi) c^2 dt^2 + a^2(t) (1 - 2\Psi) \delta_{ij} dx^i dx^j
+                    \]
+                    
+                    Assuming no anisotropic stress (\( \Phi = \Psi \)), the metric simplifies further.
+
+
+                    <h5>Energy-Momentum Tensor for a Perfect Fluid</h5>
+
+                    For a perfect fluid, the energy-momentum tensor is:
+
+                    \[
+                    T_{\mu\nu} = (\rho + \frac{p}{c^2}) u_\mu u_\nu + p g_{\mu\nu}
+                    \]
+
+                    where:
+                    <ul>
+                        <li>\( \rho \) is the energy density,</li>
+                        <li>\( p \) is the pressure,</li>
+                        <li>\( u_\mu \) is the four-velocity of the fluid.</li>
+                    </ul>
+
+
+                    <div class="important-box">
+                        <b>Matter Content: Perfect Fluids and Other Components:</b>
+                        To close the system of equations, we need to specify the matter content of the universe. Common components include:
+                        <ol>
+                            <li><b>Cold Dark Matter (CDM):</b> Pressureless, non-relativistic.</li>
+                            <li><b>Baryonic Matter: </b>Ordinary matter, behaves similarly to CDM at large scales but interacts electromagnetically.</li>
+                            <li><b>Radiation: </b>Includes photons and relativistic particles.</li>
+                            <li><b>Dark Energy: </b>Causes the accelerated expansion of the universe.</li>
+                        </ol>
+                        For primordial perturbations relevant to structure formation and the CMB, CDM and baryonic matter are most pertinent.
+                        <p><b>Perfect Fluid Description: </b> For a perfect fluid, the stress-energy tensor is fully described by its density \( \rho \), pressure \( p \), and four-velocity \( u^\mu \). Perturbations introduce:</p>
+                        <ul>
+                            <li><b>Density Perturbations: </b>\( \delta \rho \)</li>
+                            <li><b>Pressure Perturbations: </b>\( \delta p \)</li>
+                            <li><b>Velocity Perturbations: </b>\( v \)</li>
+                            <li><b>Anisotropic Stress: </b>\( \pi^i_j \) (usually negligible for scalar modes in the absence of free-streaming particles)</li>
+                        </ul>
+                    </div>
+
+                    <h5>Perturbing the Energy-Momentum Tensor</h5>
+                    Introducing perturbations, the energy density, pressure, and four-velocity become:
+
+                    \[
+                    \rho = \bar{\rho}(t) + \delta\rho(\vec{x}, t)
+                    \]
+                    \[
+                    p = \bar{p}(t) + \delta p(\vec{x}, t)
+                    \]
+                    \[
+                    u^\mu = \left( \frac{1 - \Phi}{c}, v^i(\vec{x}, t) \right)
+                    \]
+                    
+                    where:
+                    <ul>
+                        <li>\( \delta\rho \) and \( \delta p \) are perturbations in density and pressure,</li>
+                        <li>\( v^i \) is the peculiar velocity perturbation.</li>
+                    </ul>
+
+
+                    <h4>Einstein's Equations for Scalar Perturbations</h4>
+                    Applying the linearized Einstein equations \( G_{\mu\nu}^{(1)} = \frac{8\pi G}{c^4} T_{\mu\nu}^{(1)} \), we obtain a set of coupled differential equations governing the evolution of \( \Phi \), \( \delta\rho \), \( \delta p \), and \( v^i \).
+
+                    <ol>
+                        <li><b>\( G_{00} \) Component: </b>
+                            \[
+                            \nabla^2 \Phi - 3 \mathcal{H} (\dot{\Phi} + \mathcal{H} \Phi) = \frac{4\pi G}{c^2} a^2 \delta\rho
+                            \]                            
+                        </li>
+                        <li><b>\( G_{0i} \) Component: </b>
+                            \[
+                            \partial_i (\dot{\Phi} + \mathcal{H} \Phi) = \frac{4\pi G}{c^2} a^2 (\rho + p) v_i
+                            \]
+                        </li>
+                        <li><b>\( G_{ij} \) Component: </b>
+                            \[
+                            \ddot{\Phi} + \mathcal{H} \dot{\Phi} + \left( 2\dot{\mathcal{H}} + \mathcal{H}^2 \right) \Phi = \frac{4\pi G}{c^4} a^2 \delta p
+                            \]
+                        </li>
+                    </ol>
+
+
+                    <h5>Conservation Equations: </h5>
+                    In addition to Einstein's equations, the conservation of energy and momentum \( \nabla_\mu T^{\mu\nu} = 0 \) provides further equations:
+                    <ol>
+                        <li><b>Continuity Equation: </b>
+                            \[
+                            \dot{\delta} + (1 + w) \left( \nabla \cdot v - 3 \dot{\Phi} \right) + 3 \mathcal{H} \left( \frac{\delta p}{\delta \rho} - w \right) \delta = 0
+                            \]
+                        </li>
+                        <li><b>Euler Equation: </b>
+                            \[
+                            \dot{v} + \mathcal{H} v + \frac{\nabla \delta p}{\delta \rho + p} + \nabla \Phi = 0
+                            \]
+                            where:
+                            <ul>
+                                <li>\( \delta = \frac{\delta\rho}{\bar{\rho}} \) is the density contrast,</li>
+                                <li>\( w = \frac{\bar{p}}{\bar{\rho} c^2} \) is the equation of state parameter.</li>
+                            </ul>                            
+                        </li>
+                    </ol>
+                    <div class="important-box">
+                        <b>Note:</b> \( \mathcal{H} = \frac{\dot{a}}{a} \) is the conformal Hubble parameter, and dots denote derivatives with respect to conformal time \( \eta \), where \( d\eta = \frac{dt}{a(t)} \).
+                    </div>
+
+
+                    <h3>Evolution of Scalar Perturbations</h3>
+                    With the set of equations derived, we can now analyze the evolution of scalar perturbations in the early universe.
+                    <div class="important-box">
+                        <b>Fourier Space Representation: </b>
+                        To simplify the analysis, we perform a Fourier transform of the perturbation variables. For any scalar quantity \( f(\vec{x}, t) \):
+
+                        \[
+                        f(\vec{x}, t) = \int \frac{d^3k}{(2\pi)^{3/2}} f(\vec{k}, t) e^{i\vec{k} \cdot \vec{x}}
+                        \]
+                        
+                        Applying this to the perturbation equations converts spatial derivatives into algebraic terms involving the wavenumber \( k \).
+                    </div>
+                    
+                    <ol>
+                        <li><b>Poisson Equation in Fourier Space</b>
+                            The \( G_{00} \) component becomes:
+
+                            \[
+                            k^2 \Phi + 3 \mathcal{H} (\dot{\Phi} + \mathcal{H} \Phi) = \frac{4\pi G}{c^2} a^2 \bar{\rho} \delta
+                            \]
+                        </li>
+                        <li><b>Relation Between Density Contrast and Potential: </b>Assuming adiabatic perturbations (where \( \delta p = c_s^2 \delta \rho \)), and using the equation of state \( w = \frac{c_s^2}{c^2} \), we can relate \( \delta \) and \( \Phi \).</li>
+                        <li><b>Second-Order Differential Equation for \( \Phi \): </b>
+                            Combining the equations, we derive a second-order differential equation for the gravitational potential \( \Phi \):
+
+                            \[
+                            \ddot{\Phi} + (4 + 3w)\mathcal{H} \dot{\Phi} + \left( 2\dot{\mathcal{H}} + (1 + 3w)\mathcal{H}^2 \right) \Phi = 0
+                            \]
+                            
+                            This equation describes how the gravitational potential evolves over time in different cosmological epochs.
+                        </li>
+                    </ol>
+
+                    <h5>Solutions in Different Eras</h5>
+                    <ol>
+                        <li><b>Radiation-Dominated Era (\( w = \frac{1}{3} \)): </b>
+                            <ul>
+                                <li><b>Scale factor:</b> \( a(\eta) \propto \eta \)</li>
+                                <li><b>Solution:</b> \( \Phi = \text{constant} \) and \( \Phi \propto \eta^{-2} \)</li>
+                            </ul>
+                        </li>
+                        <li><b>Matter-Dominated Era (\( w = 0 \)): </b>
+                            <ul>
+                                <li><b>Scale factor:</b>\( a(\eta) \propto \eta^2 \)</li>
+                                <li><b>Solution:</b> \( \Phi = \text{constant} \)</li>
+                            </ul>
+                        </li>
+                        <li><b>Dark Energy-Dominated Era (\( w \approx -1 \)): </b>
+                            <ul>
+                                <li>Gravitational potentials decay over time due to accelerated expansion.</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h3> Growth of Density Perturbations</h3>
+                    The growth of the density contrast \( \delta \) is governed by the interplay between gravitational attraction and pressure support. In the matter-dominated era, perturbations grow as:
+
+                    \[
+                    \delta \propto a(t) \propto \eta^2
+                    \]
+                    
+                    In the radiation-dominated era, growth is suppressed due to radiation pressure.
+
+                    <h3>Acoustic Oscillations</h3>
+                    Before recombination, baryons and photons were tightly coupled, forming a photon-baryon plasma. Perturbations in this plasma undergo acoustic oscillations due to the competition between gravitational infall and radiation pressure. These oscillations leave characteristic imprints in the CMB power spectrum, known as acoustic peaks.
+
+                    The equation governing these oscillations in Fourier space is:
+                    
+                    \[
+                    \ddot{\delta}_b + \mathcal{H} \dot{\delta}_b + c_s^2 k^2 \delta_b = -k^2 \Phi
+                    \]
+                    
+                    where:
+                    <ul>
+                        <li>\( \delta_b \) is the baryon density contrast,</li>
+                        <li>\( c_s \) is the sound speed in the photon-baryon fluid.</li>
+                    </ul>
+
+                    <!-------------------------->
+                    <h3>Tensor Perturbations and Gravitational Waves</h3>
+                    While scalar perturbations are responsible for density fluctuations, tensor perturbations correspond to gravitational waves—ripples in the fabric of spacetime itself.
+                    <ol>
+                        <li><b>Tensor Perturbations in the FRW Metric: </b>
+                            Tensor perturbations are introduced as transverse and traceless perturbations to the spatial part of the metric:
+
+                            \[
+                            ds^2 = -c^2 dt^2 + a^2(t) \left[ \delta_{ij} + h_{ij}(\vec{x}, t) \right] dx^i dx^j
+                            \]
+                            
+                            where \( h_{ij} \) satisfies:
+                            <ul>
+                                <li>\( \partial^i h_{ij} = 0 \),</li>
+                                <li>\( h^i_i = 0 \).</li>
+                            </ul>
+                        </li>
+                        <li><b>Einstein's Equations for Tensor Perturbations: </b>For tensor perturbations, Einstein's equations reduce to:
+
+                            \[
+                            \ddot{h}_{ij} + 2\mathcal{H} \dot{h}_{ij} + k^2 h_{ij} = 0
+                            \]
+                        This is a wave equation with damping due to the expansion of the universe.
+                        </li>
+                        <li><b>Solutions for Gravitational Waves: </b>The general solution to the tensor perturbation equation depends on the epoch:
+                            <ul>
+                                <li><b>Radiation-Dominated Era (\( a(\eta) \propto \eta \)): </b>
+                                    \[
+                                    h_{ij}(\eta, \vec{k}) = \frac{A_{ij}}{k} \sin(k\eta) + \frac{B_{ij}}{k} \cos(k\eta)
+                                    \]
+                                </li>
+                                <li><b>Matter-Dominated Era (\( a(\eta) \propto \eta^2 \)): </b>
+                                    \[
+                                    h_{ij}(\eta, \vec{k}) = \frac{A_{ij}}{k} \sin(k\eta) + \frac{B_{ij}}{k} \cos(k\eta)
+                                    \]
+                                </li>
+                            </ul>
+                            In both eras, gravitational waves oscillate with frequency \( k \) and are damped by the expansion.
+                        </li>
+                        <li><b>Primordial Gravitational Waves: </b>Inflation predicts the generation of a stochastic background of gravitational waves. These primordial gravitational waves can leave imprints on the CMB polarization, particularly in the form of B-modes, providing a potential window into the physics of inflation.</li>
+                    </ol>
+
+                    <!------------------------------>
+                    <h3>Power Spectrum of Primordial Perturbations</h3>
+                    The power spectrum quantifies the distribution of perturbation amplitudes across different scales and is a crucial observable in cosmology.
+
+                    <ol>
+                        <li><b>Definition of the Power Spectrum: </b>
+                            For scalar perturbations, the power spectrum \( P(k) \) is defined via the Fourier transform of the two-point correlation function:
+
+                            \[
+                            \langle \delta(\vec{k}) \delta^*(\vec{k}') \rangle = (2\pi)^3 \delta^3(\vec{k} - \vec{k}') P(k)
+                            \]
+                            
+                            where \( \delta(\vec{k}) \) is the Fourier transform of the density contrast \( \delta(\vec{x}) \).
+                        </li>
+                        <li><b>Primordial Power Spectrum from Inflation: </b>
+                            Inflation generates nearly scale-invariant primordial perturbations. The primordial power spectrum is often parameterized as:
+
+                            \[
+                            P_{\text{primordial}}(k) = A_s \left( \frac{k}{k_0} \right)^{n_s - 1}
+                            \]
+                            
+                            where:
+                            <ul>
+                                <li>\( A_s \) is the amplitude of the scalar perturbations,</li>
+                                <li>\( n_s \) is the scalar spectral index,</li>
+                                <li>\( k_0 \) is a pivot scale.</li>
+                            </ul>
+                        </li>
+                        <li><b>Transfer Function: </b>
+                            The transfer function \( T(k) \) encodes the evolution of perturbations from the early universe to the present day. It accounts for processes like horizon crossing, radiation pressure, and matter-radiation equality.
+
+                            The evolved power spectrum is given by:
+                            
+                            \[
+                            P(k, t) = P_{\text{primordial}}(k) \, T^2(k) \, D^2(t)
+                            \]
+                            
+                            where \( D(t) \) is the growth factor.
+                        </li>
+                        <li><b>Observational Constraints: </b>Observations of the CMB, large-scale structure, and galaxy surveys constrain the power spectrum parameters \( A_s \) and \( n_s \), providing insights into the inflationary epoch and the composition of the universe.</li>
+                        <li><b>Tensor Power Spectrum: </b>Similarly, tensor perturbations have their own power spectrum \( P_T(k) \), related to the amplitude of primordial gravitational waves. The ratio of tensor to scalar power, \( r \), is a key observable for probing inflationary models.</li>
+                    </ol>
+
+
+
 
 
 
                     
-                    
+                    <!---------------------------->
+                    <div class="box">
+                        <h3>Another way to derive these equations:</h3>
+                        For a perfect fluid, in the conformaly flat space (for this, see the metric given above), the stress-energy tensor \( T_{\mu\nu} \) can be perturbed as:
 
-                    
+                        \[
+                        T_{\mu\nu} = (\bar{\rho} + \bar{p}) u_\mu u_\nu + \bar{p} g_{\mu\nu} + \delta T_{\mu\nu}
+                        \]
+                        where:
+                        <ul>
+                            <li>\( \delta T_{\mu\nu} \) represents the perturbations.</li>
+                            <li>\( u^\mu \) is the four-velocity of the fluid.</li>
+                        </ul>
+                        In the Newtonian gauge, the perturbations are characterized by:
 
-                    
-                    
+                        \[
+                        \delta T^0_0 = -\delta \rho
+                        \]
+                        
+                        \[
+                        \delta T^0_i = (\bar{\rho} + \bar{p}) \partial_i v
+                        \]
+                        
+                        \[
+                        \delta T^i_j = \delta p \delta^i_j + \pi^i_j
+                        \]
+                        
+                        where:
+                        <ul>
+                            <li>\( \delta \rho \) is the density perturbation.</li>
+                            <li>\( \delta p \) is the pressure perturbation.</li>
+                            <li>\( v \) is the velocity potential.</li>
+                            <li>\( \pi^i_j \) represents anisotropic stress (usually negligible for scalar perturbations in the absence of free-streaming particles).</li>
+                        </ul>
+                        <h5>Perturbed Einstein Equations</h5>
+                        \[
+                        G_{\mu\nu}^{(0)} + \delta G_{\mu\nu} = 8\pi G (\bar{T}_{\mu\nu} + \delta T_{\mu\nu})
+                        \]
+                        Subtracting the background equations \( G_{\mu\nu}^{(0)} = 8\pi G \bar{T}_{\mu\nu} \), we obtain the linearized Einstein Equations:
+                        \[
+                        \delta G_{\mu\nu} = 8\pi G \delta T_{\mu\nu}
+                        \]
+                        <ol>
+                            <li><b>00-component: </b>
+                                \[
+                                \delta G^0_0 = 2 \nabla^2 \Psi - 6 \mathcal{H} (\Psi' + \mathcal{H} \Phi)
+                                \]
+                            </li>
+                            <li><b>0i-component: </b>
+                                \[
+                                \delta G^0_i = 2 \partial_i (\Psi' + \mathcal{H} \Phi)
+                                \]
+                            </li>
+                            <li><b>ij-component: </b>
+                                \[
+                                \delta G^i_j = \left[ \nabla^2 (\Psi - \Phi) + 2 \mathcal{H} (\Psi' + \mathcal{H} \Phi) + 2 \Psi'' + 4 \mathcal{H} \Psi' + 2 (\mathcal{H}' + \mathcal{H}^2) \Phi \right] \delta^i_j - (\Psi - \Phi)_{,i,j}
+                                \]
+                            </li>
+                        </ol>
+                        where \( \mathcal{H} = a' / a \) is the conformal Hubble parameter, and primes denote derivatives with respect to conformal time \( \eta \).
+
+                        <p>With the perturbed Einstein equations and the matter content specified, we proceed to derive the equations governing the evolution of perturbations.</p>
+                        <ol>
+                            <li><b>00-component: Poisson Equation: </b>
+                                From \( \delta G^0_0 = 8\pi G \delta T^0_0 \):
+
+                                \[
+                                2 \nabla^2 \Psi - 6 \mathcal{H} (\Psi' + \mathcal{H} \Phi) = -8\pi G a^2 \delta \rho
+                                \]
+                                
+                                Rearranging:
+                                
+                                \[
+                                \nabla^2 \Psi = 4\pi G a^2 \delta \rho + 3 \mathcal{H} (\Psi' + \mathcal{H} \Phi)
+                                \]
+                                
+                                For sub-horizon scales (\( k \gg \mathcal{H} \)), the second term on the right is negligible, yielding the Poisson equation:
+                                
+                                \[
+                                k^2 \Psi = 4\pi G a^2 \delta \rho
+                                \]   
+                            </li>
+                            <li><b>0i-component: Momentum Constraint: </b>
+                                From \( \delta G^0_i = 8\pi G \delta T^0_i \):
+
+                                \[
+                                2 \partial_i (\Psi' + \mathcal{H} \Phi) = 8\pi G (\bar{\rho} + \bar{p}) \partial_i v
+                                \]
+                                
+                                Dividing both sides by \( 2 \partial_i \) (assuming \( \partial_i \neq 0 \)):
+                                
+                                \[
+                                \Psi' + \mathcal{H} \Phi = 4\pi G (\bar{\rho} + \bar{p}) v
+                                \]
+                            </li>
+                            <li><b>ij-component: Evolution of Metric Perturbations: </b>
+                                From \( \delta G^i_j = 8\pi G \delta T^i_j \):
+
+                                \[
+                                \left[ \nabla^2 (\Psi - \Phi) + 2 \mathcal{H} (\Psi' + \mathcal{H} \Phi) + 2 \Psi'' + 4 \mathcal{H} \Psi' + 2 (\mathcal{H}' + \mathcal{H}^2) \Phi \right] \delta^i_j - (\Psi - \Phi)_{,i,j} = 8\pi G a^2 \left( \delta p \delta^i_j + \pi^i_j \right)
+                                \]
+                                
+                                For scalar perturbations without anisotropic stress (\( \pi^i_j = 0 \)):
+                                
+                                \[
+                                \Psi = \Phi
+                                \]
+                                
+                                Thus, the equation simplifies to:
+                                
+                                \[
+                                2 \Psi'' + 4 \mathcal{H} \Psi' + 2 (\mathcal{H}' + \mathcal{H}^2) \Psi = 8\pi G a^2 \delta p
+                                \]
+                                
+                                Dividing by \( 2 \):
+                                
+                                \[
+                                \Psi'' + 2 \mathcal{H} \Psi' + (\mathcal{H}' + \mathcal{H}^2) \Psi = 4\pi G a^2 \delta p
+                                \]
+                            </li>
+                            <li><b>Continuity and Euler Equations: </b>To fully describe the dynamics, we also need the continuity and Euler equations from the conservation of the stress-energy tensor \( \nabla_\mu T^{\mu\nu} = 0 \).
+                                <ul>
+                                    <li><b>Continuity Equation: </b>
+                                        From \( \nabla_\mu T^{\mu 0} = 0 \):
+
+                                        \[
+                                        \delta \rho' + 3 \mathcal{H} (\delta \rho + \delta p) = - (\bar{\rho} + \bar{p}) \nabla^2 v + 3 \bar{p}' \Phi
+                                        \]
+                                    </li>
+                                    <li><b>Euler Equation: </b>
+                                        From \( \nabla_\mu T^{\mu i} = 0 \):
+
+                                        \[
+                                        (\bar{\rho} + \bar{p}) v' + 4 \mathcal{H} (\bar{\rho} + \bar{p}) v = \delta p + (\bar{\rho} + \bar{p}) \Phi
+                                        \]
+                                    </li>
+                                </ul>
+                            </li>
+                        </ol>
+                        These equations, combined with the perturbed Einstein equations, form a closed system governing the evolution of cosmological perturbations.
+
+                        <h4>Evolution of Perturbations:</h4>
+                        While the full treatment requires General Relativity, for certain regimes, a Newtonian approximation suffices. However, the GR approach is necessary for accurately describing perturbations on scales comparable to the horizon or during radiation domination.
+
+                        <ol>
+                            <li><b>Newtonian Approximation: </b> In the Newtonian limit (\( c \rightarrow \infty \)), and for sub-horizon scales (\( k \gg \mathcal{H} \)), General Relativity reduces to Newtonian gravity. The key equations simplify to:
+                                <ul>
+                                    <li><b>Poisson Equation: </b>
+                                        \[
+                                        k^2 \Psi = 4\pi G a^2 \delta \rho
+                                        \]
+                                    </li>
+                                    <li><b>Continuity Equation: </b>
+                                        \[
+                                        \delta' + \nabla^2 v = 0
+                                        \]
+                                    </li>
+                                    <li><b>Euler Equation: </b>
+                                        \[
+                                        v' + \mathcal{H} v = -\Phi - \frac{\delta p}{\bar{\rho} + \bar{p}}
+                                        \]
+                                    </li>
+                                </ul>
+                            </li>
+                            These equations describe the growth of density perturbations under gravity and pressure forces.
+                        </ol>
+                    </div>
 
                 </section>
                 <!-------Reference ------->
@@ -404,7 +895,7 @@
                     <h2>References</h2>
                     <ul>
                         <ul>
-                            <li><a href="https://news.mit.edu/2022/how-universe-got-its-magnetic-field-0525">How the universe got its magnetic field</a></li>
+                            <li><a href="https://cmb.wintherscoming.no/index.php">Cosmology II, Notes and code</a></li>
                             <li>Baryon-Dark matter interaction in presence of magnetic fields in light of EDGES signal, Jitesh R Bhatt, Pravin Kumar Natwariya, Aleka C. Nayak, Arun Kumar Pandey <span><a href="https://arxiv.org/abs/1905.13486">[arXiv:1905.13486 [astro-ph.CO] (2019)]</a>, Eur. Phys. J. C 80, 334 (2020)</span></li>
                             
                             <li id="paper-1">Implications of baryon-dark matter interaction on IGM temperature and tSZ effect with magnetic field, Arun Kumar Pandey, Sunil Malik, T. R. Seshadri, <a href="https://arxiv.org/abs/2006.07901">arXiv:2006.07901 [astro-ph.CO] (2020)</a>, Mon.Not.Roy.Astron.Soc. 500 (2020)</li>
