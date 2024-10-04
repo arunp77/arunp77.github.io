@@ -130,7 +130,7 @@
             <div class="container">
                 <hr>
                 <div class="row gy-4">
-                    <h1>Gravitational Primordial Perturbation Theory: A Comprehensive Overview</h1>
+                    <h1>Gravitational Primordial Perturbation Theory</h1>
                     <div class="col-lg-8">
                         <div class="portfolio-details-slider swiper">
                             <div class="swiper-wrapper align-items-center">
@@ -146,16 +146,21 @@
                     <div class="col-lg-4 grey-box">
                         <h3>Content</h3>
                         <ol>
-                            
                             <li><a href="#intro">Introduction to Cosmological Perturbation Theory</a></li>
                             <li><a href="#flrw">Background Cosmology: The Friedmann-Robertson-Walker (FRW) Universe</a></li>
-                            <li><a href="#sca-vec-ten">Introducing Perturbations: Scalar, Vector, and Tensor Modes</a></li>
-                            <li><a href="#gauge">Gauge Freedom and Gauge Choices</a></li>
-                            <li><a href="#einstein">Einstein's Equations with Perturbations</a></li>
-                            <li><a href="#derivation">Deriving the Perturbation Equations</a></li>
-                            <li><a href="#inhomo-maxwell">Inhomogeneous Maxwell Equations in an Expanding Universe</a></li>
+                            <li><a href="#einstein-fld">Einstein's Field Equations for the FRW Universe</a></li>
+                            <li><a href="#perturb">Introducing Perturbations: Scalar, Vector, and Tensor Modes</a></li>
+                            <li><a href="#pertu-frw">Perturbed FRW Metric</a></li>
+                            <li><a href="#gauge-freedom">Gauge Freedom and Gauge Choices</a></li>
+                            <li><a href="#ein-eq-pert">Einstein's Equations with Perturbations</a></li>
+                            <li><a href="#derv-pertu">Deriving the Perturbation Equations</a></li>
+                            <li><a href="#ein-scalar">Einstein's Equations for Scalar Perturbations</a></li>
+                            <li><a href="#evol-scalar">Evolution of Scalar Perturbations</a></li>
+                            <li><a href="#growth-density">Growth of Density Perturbations</a></li>
+                            <li><a href="#acoustic">Acoustic Oscillations</a></li>
                             <li><a href="#tensor-per">Tensor Perturbations and Gravitational Waves</a></li>
-                            <li><a href="power">Power Spectrum of Primordial Perturbations</a></li>
+                            <li><a href="#power-spec">Power Spectrum of Primordial Perturbations</a></li>
+                            <li><a href="#other-way">Another way to derive these equations (Conformal system)</a></li>
                             <li><a href="#reference">Reference</a></li>
                         </ol>
                     </div>
@@ -227,7 +232,7 @@
     
                     </div>
 
-                    <h3>Einstein's Field Equations for the FRW Universe</h3>
+                    <h3 id="einstein-fld">Einstein's Field Equations for the FRW Universe</h3>
                     The dynamics of the FRW universe are governed by Einstein's Field Equations:
                     \[
                     G_{\mu\nu} = 8\pi G T_{\mu\nu}
@@ -292,7 +297,7 @@
 
 
                     <!------------------------------>
-                    <h3>Introducing Perturbations: Scalar, Vector, and Tensor Modes</h3>
+                    <h2 id="perturb">Introducing Perturbations: Scalar, Vector, and Tensor Modes</h2>
                     In a perfectly homogeneous and isotropic universe, all spatial points are equivalent. However, real cosmological observations reveal deviations from this idealization. To study these deviations, we introduce perturbations to the FRW metric and the energy-momentum tensor.
                     <h5>Types of perturbations:</h5> Perturbations can be classified based on their transformation properties under spatial rotations:
                     <ol>
@@ -319,7 +324,7 @@
                         </li>
                     </ol>
 
-                    <h5>Perturbed FRW Metric</h5>
+                    <h4 id="pertu-frw">Perturbed FRW Metric</h4>
                     In the Newtonian gauge (also known as the conformal Newtonian gauge), the perturbed FRW metric including scalar, vector, and tensor perturbations is written as:
 
                     \[
@@ -350,7 +355,7 @@
                         For vector and tensor perturbations, additional terms are introduced, but for gravitational primordial perturbations related to density fluctuations, scalar perturbations are of primary interest.
                     </div>
 
-                    <h4>Gauge Freedom and Gauge Choices</h4>
+                    <h4 id="gauge-freedom">Gauge Freedom and Gauge Choices</h4>
                     When introducing perturbations, one must account for the gauge freedom—the freedom to choose coordinate systems in General Relativity. Different gauge choices can simplify the analysis of perturbations.
                     <ol>
                         <li><b>Gauge Transformations: </b>A gauge transformation involves shifting the coordinates by a small amount:
@@ -387,7 +392,8 @@
                     </ol>
 
 
-                    <h3>Einstein's Equations with Perturbations</h3>
+                    <!---------------------------------->
+                    <h2 id="ein-eq-pert">Einstein's Equations with Perturbations</h2>
                     To derive the perturbation equations, we need to apply Einstein's field equations to the perturbed metric and energy-momentum tensor.
 
                     <h5>Einstein's Field Equations</h5>
@@ -439,7 +445,7 @@
                     These equations govern the evolution of perturbations in the early universe.
 
 
-                    <h4>Deriving the Perturbation Equations</h4>
+                    <h2 id="derv-pertu">Deriving the Perturbation Equations</h2>
                     To derive the perturbation equations, we will focus on scalar perturbations, which are most relevant for density fluctuations and the formation of large-scale structures.
 
                     <h5>Scalar Perturbations in the Newtonian Gauge</h5>
@@ -506,7 +512,8 @@
                     </ul>
 
 
-                    <h4>Einstein's Equations for Scalar Perturbations</h4>
+                    <!--------------------------------------------->
+                    <h2 id="ein-scalar">Einstein's Equations for Scalar Perturbations</h2>
                     Applying the linearized Einstein equations \( G_{\mu\nu}^{(1)} = \frac{8\pi G}{c^4} T_{\mu\nu}^{(1)} \), we obtain a set of coupled differential equations governing the evolution of \( \Phi \), \( \delta\rho \), \( \delta p \), and \( v^i \).
 
                     <ol>
@@ -552,7 +559,8 @@
                     </div>
 
 
-                    <h3>Evolution of Scalar Perturbations</h3>
+                    <!------------------------------------------------------------>
+                    <h2 id="evol-scalar">Evolution of Scalar Perturbations</h2>
                     With the set of equations derived, we can now analyze the evolution of scalar perturbations in the early universe.
                     <div class="important-box">
                         <b>Fourier Space Representation: </b>
@@ -606,7 +614,7 @@
                         </li>
                     </ol>
 
-                    <h3> Growth of Density Perturbations</h3>
+                    <h3 id="growth-density">Growth of Density Perturbations</h3>
                     The growth of the density contrast \( \delta \) is governed by the interplay between gravitational attraction and pressure support. In the matter-dominated era, perturbations grow as:
 
                     \[
@@ -615,7 +623,7 @@
                     
                     In the radiation-dominated era, growth is suppressed due to radiation pressure.
 
-                    <h3>Acoustic Oscillations</h3>
+                    <h3 id="acoustic">Acoustic Oscillations</h3>
                     Before recombination, baryons and photons were tightly coupled, forming a photon-baryon plasma. Perturbations in this plasma undergo acoustic oscillations due to the competition between gravitational infall and radiation pressure. These oscillations leave characteristic imprints in the CMB power spectrum, known as acoustic peaks.
 
                     The equation governing these oscillations in Fourier space is:
@@ -631,7 +639,7 @@
                     </ul>
 
                     <!-------------------------->
-                    <h3>Tensor Perturbations and Gravitational Waves</h3>
+                    <h2 id="tensor-per">Tensor Perturbations and Gravitational Waves</h2>
                     While scalar perturbations are responsible for density fluctuations, tensor perturbations correspond to gravitational waves—ripples in the fabric of spacetime itself.
                     <ol>
                         <li><b>Tensor Perturbations in the FRW Metric: </b>
@@ -673,7 +681,7 @@
                     </ol>
 
                     <!------------------------------>
-                    <h3>Power Spectrum of Primordial Perturbations</h3>
+                    <h2 id="power-spec">Power Spectrum of Primordial Perturbations</h2>
                     The power spectrum quantifies the distribution of perturbation amplitudes across different scales and is a crucial observable in cosmology.
 
                     <ol>
@@ -714,16 +722,10 @@
                         <li><b>Observational Constraints: </b>Observations of the CMB, large-scale structure, and galaxy surveys constrain the power spectrum parameters \( A_s \) and \( n_s \), providing insights into the inflationary epoch and the composition of the universe.</li>
                         <li><b>Tensor Power Spectrum: </b>Similarly, tensor perturbations have their own power spectrum \( P_T(k) \), related to the amplitude of primordial gravitational waves. The ratio of tensor to scalar power, \( r \), is a key observable for probing inflationary models.</li>
                     </ol>
-
-
-
-
-
-
                     
                     <!---------------------------->
                     <div class="box">
-                        <h3>Another way to derive these equations:</h3>
+                        <h2 id="other-way">Another way to derive these equations:</h2>
                         For a perfect fluid, in the conformaly flat space (for this, see the metric given above), the stress-energy tensor \( T_{\mu\nu} \) can be perturbed as:
 
                         \[
