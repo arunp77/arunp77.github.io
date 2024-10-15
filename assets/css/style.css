@@ -1602,6 +1602,24 @@ ul.upper-alpha {
   color: black; /* Set text color to black */
 }
 
+.box2:after {
+  content: '';
+  display: block;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(#e8a, 1), rgba(#def, 0) 80%, rgba(white, .5));
+  z-index: 11;
+  transform: translate3d(0, 0, 0);
+}
+
+@keyframes drift {
+  from { transform: rotate(0deg); }
+  from { transform: rotate(360deg); }
+}
+
+
 .wave {
   opacity: .4;
   position: absolute;
@@ -1631,24 +1649,6 @@ ul.upper-alpha {
   opacity: .5;
   background: rgb(96, 99, 248);
 }
-
-.box2:after {
-  content: '';
-  display: block;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(#e8a, 1), rgba(#def, 0) 80%, rgba(white, .5));
-  z-index: 11;
-  transform: translate3d(0, 0, 0);
-}
-
-@keyframes drift {
-  from { transform: rotate(0deg); }
-  from { transform: rotate(360deg); }
-}
-
 
 /*------------added this part on 12 July 2024 -----------*/
 /*------------(while adding a python code snippet in configuration-file.html page) -----------*/
