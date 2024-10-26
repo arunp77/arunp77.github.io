@@ -1634,20 +1634,30 @@ ul.upper-alpha {
   border-radius: 43%;
   animation: drift 3000ms infinite linear;
 }
+/* Wave 1: Bright Aqua */
 .wave.-one {
-  animation: drift 5000ms infinite linear;
-  background: rgb(242, 245, 93);
+  background: rgba(0, 255, 255, 0.7);
+  animation: drift 3000ms infinite linear;
 }
 
-.wave.-three {
-  animation: drift 5000ms infinite linear;
-  background: rgb(10, 224, 224);
-}
-
+/* Wave 2: Vivid Magenta */
 .wave.-two {
+  background: rgba(255, 0, 255, 0.6);
+  animation: drift 5000ms infinite linear;
+  opacity: 0.5;
+}
+
+/* Wave 3: Electric Blue */
+.wave.-three {
+  background: rgba(0, 119, 255, 0.6);
   animation: drift 7000ms infinite linear;
-  opacity: .5;
-  background: rgb(96, 99, 248);
+}
+
+/* Wave 4: Neon Green */
+.wave.-four {
+  background: rgba(43, 173, 19, 0.7);
+  animation: drift 8000ms infinite linear;
+  opacity: 0.5;
 }
 
 /*------------added this part on 12 July 2024 -----------*/
