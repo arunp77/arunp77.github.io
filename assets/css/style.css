@@ -1777,3 +1777,192 @@ code, kbd, pre, samp {
 .video-caption {
   margin-top: 10px;
 }
+
+
+/* Education Section Styles */
+.resume-item {
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+/* Wider Timeline Styles */
+.timeline-container-wide {
+  position: relative;
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+.timeline-track-wide {
+  display: flex;
+  gap: 25px;
+  padding: 25px 0;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.timeline-track-wide::-webkit-scrollbar {
+  display: none;
+}
+
+.timeline-item-wide {
+  flex: 0 0 400px; /* Wider cards */
+  scroll-snap-align: start;
+}
+
+.timeline-card-wide {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  height: 100%;
+  transition: transform 0.3s ease;
+  min-height: 400px; /* Taller cards */
+}
+
+.timeline-card-wide:hover {
+  transform: translateY(-5px);
+}
+
+.timeline-position {
+  color: #0563bb;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.timeline-date {
+  color: #6c757d;
+  font-size: 0.9em;
+  margin-bottom: 12px;
+}
+
+.timeline-location {
+  font-style: italic;
+  margin-bottom: 15px;
+  color: #6c757d;
+}
+
+.timeline-details {
+  margin-top: 15px;
+}
+
+.timeline-details ul {
+  padding-left: 20px;
+}
+
+.timeline-details li {
+  margin-bottom: 8px;
+}
+
+.timeline-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #0563bb;
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0.8;
+  transition: all 0.3s;
+  font-size: 1.2rem;
+}
+
+.timeline-nav:hover {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.timeline-nav-prev {
+  left: 15px;
+}
+
+.timeline-nav-next {
+  right: 15px;
+}
+
+.timeline-years-wide {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 25px;
+  padding: 0 50px;
+}
+
+.year-marker-wide {
+  position: relative;
+  color: #6c757d;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: all 0.3s;
+}
+
+.year-marker-wide::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background: #0563bb;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.year-marker-wide.active {
+  color: #0563bb;
+}
+
+.year-marker-wide.active::after {
+  opacity: 1;
+}
+
+.year-marker-wide:hover {
+  color: #0563bb;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .timeline-item-wide {
+    flex: 0 0 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  .timeline-item-wide {
+    flex: 0 0 85%;
+  }
+  
+  .timeline-nav {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .timeline-years-wide {
+    gap: 25px;
+  }
+}
+
+@media (max-width: 576px) {
+  .timeline-years-wide {
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  
+  .year-marker-wide {
+    font-size: 1rem;
+  }
+}
