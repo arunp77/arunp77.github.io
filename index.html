@@ -1319,44 +1319,47 @@
   </script>
 
   <script>
-  function calculateDuration(start, end) {
-    const [startYear, startMonth] = start.split('-').map(Number);
-    let endDate;
+    function calculateDuration(start, end) {
+      const [startYear, startMonth] = start.split('-').map(Number);
+      let endDate;
 
-    if (end.toLowerCase() === 'present') {
-      endDate = new Date();
-    } else {
-      const [endYear, endMonth] = end.split('-').map(Number);
-      endDate = new Date(endYear, endMonth - 1);
+      if (end.toLowerCase() === 'present') {
+        const now = new Date();
+        endDate = new Date(now.getFullYear(), now.getMonth());
+      } else {
+        const [endYear, endMonth] = end.split('-').map(Number);
+        endDate = new Date(endYear, endMonth - 1);
+      }
+
+      const startDate = new Date(startYear, startMonth - 1);
+
+      // Include both start and end month by adding 1
+      let months = (endDate.getFullYear() - startDate.getFullYear()) * 12
+                + (endDate.getMonth() - startDate.getMonth()) + 1;
+
+      const years = Math.floor(months / 12);
+      months = months % 12;
+
+      let result = "(";
+      if (years > 0) result += `${years} year${years > 1 ? 's' : ''}`;
+      if (years > 0 && months > 0) result += " ";
+      if (months > 0) result += `${months} month${months > 1 ? 's' : ''}`;
+      if (years === 0 && months === 0) result += "less than a month";
+      result += ")";
+
+      return result;
     }
 
-    const startDate = new Date(startYear, startMonth - 1);
-    let months = (endDate.getFullYear() - startDate.getFullYear()) * 12 + (endDate.getMonth() - startDate.getMonth());
+    document.addEventListener("DOMContentLoaded", () => {
+      const durations = document.querySelectorAll(".duration");
 
-    const years = Math.floor(months / 12);
-    months = months % 12;
-
-    let result = "(";
-    if (years > 0) result += `${years} year${years > 1 ? 's' : ''}`;
-    if (years > 0 && months > 0) result += " ";
-    if (months > 0) result += `${months} month${months > 1 ? 's' : ''}`;
-    if (years === 0 && months === 0) result += "less than a month";
-    result += ")";
-
-    return result;
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    const durations = document.querySelectorAll(".duration");
-
-    durations.forEach(span => {
-      const start = span.getAttribute("data-start");
-      const end = span.getAttribute("data-end");
-      span.textContent = ` ${calculateDuration(start, end)}`;
+      durations.forEach(span => {
+        const start = span.getAttribute("data-start");
+        const end = span.getAttribute("data-end");
+        span.textContent = ` ${calculateDuration(start, end)}`;
+      });
     });
-  });
-  </script>
-
+  </script>  
   <!-- ======= Mobile nav toggle button ======= -->
   <!-- Vendor JS Files -->
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
