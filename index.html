@@ -370,7 +370,7 @@
                 <div class="timeline-item-wide">
                   <div class="timeline-card-wide">
                     <h4>EPS-SG IVV Engineer at EUMETSAT</h4>
-                    <p class="timeline-date">Oct 2024 - Present</p>
+                    <p class="timeline-date">Oct 2024 - Present <span class="duration" data-start="2024-10" data-end="present"></span></p>
                     <p class="timeline-location">Darmstadt, Germany</p>
                     <div class="timeline-details">
                       <ul>
@@ -387,7 +387,7 @@
                 <div class="timeline-item-wide">
                   <div class="timeline-card-wide">
                     <h4>Data Consultant | Data Engineer</h4>
-                    <p class="timeline-date">Jan 2023 - Sep 2024</p>
+                    <p class="timeline-date">Jan 2023 - Sep 2024 <span class="duration" data-start="2023-01" data-end="2024-09"></span></p>
                     <p class="timeline-location">Darmstadt, Germany</p>
                     <div class="timeline-details">
                       <ul>
@@ -1217,7 +1217,7 @@
   <footer id="footer">
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong><span>Arun</span></strong> 2024
+        &copy; Copyright <strong><span>Arun</span></strong> 2025
       </div>
       
       <!--<div class="credits">--->
@@ -1314,6 +1314,45 @@
           });
         }
       });
+    });
+  });
+  </script>
+
+  <script>
+  function calculateDuration(start, end) {
+    const [startYear, startMonth] = start.split('-').map(Number);
+    let endDate;
+
+    if (end.toLowerCase() === 'present') {
+      endDate = new Date();
+    } else {
+      const [endYear, endMonth] = end.split('-').map(Number);
+      endDate = new Date(endYear, endMonth - 1);
+    }
+
+    const startDate = new Date(startYear, startMonth - 1);
+    let months = (endDate.getFullYear() - startDate.getFullYear()) * 12 + (endDate.getMonth() - startDate.getMonth());
+
+    const years = Math.floor(months / 12);
+    months = months % 12;
+
+    let result = "(";
+    if (years > 0) result += `${years} year${years > 1 ? 's' : ''}`;
+    if (years > 0 && months > 0) result += " ";
+    if (months > 0) result += `${months} month${months > 1 ? 's' : ''}`;
+    if (years === 0 && months === 0) result += "less than a month";
+    result += ")";
+
+    return result;
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const durations = document.querySelectorAll(".duration");
+
+    durations.forEach(span => {
+      const start = span.getAttribute("data-start");
+      const end = span.getAttribute("data-end");
+      span.textContent = ` ${calculateDuration(start, end)}`;
     });
   });
   </script>
