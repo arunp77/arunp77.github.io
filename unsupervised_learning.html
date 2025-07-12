@@ -176,9 +176,14 @@
                     In unsupervised learning:
                 </p>
                 <ul>
-                    <li>There are <strong>no target labels</strong></li>
-                    <li>The model tries to learn the <strong>structure or distribution</strong> of the data</li>
-                    <li>It discovers <strong>clusters, associations, or anomalies</strong></li>
+                    <li>There are <strong>no target labels (no $y$)</strong>
+                        <ul>
+                            <li>Groups or clusters of similar data points</li>
+                            <li>Dimensionality reduction or feature compression</li>
+                            <li>Density or distribution estimates</li>
+                            <li>Anomalies or outliers</li>
+                        </ul>
+                    </li>
                 </ul>
                 <p>
                     Key components often include:
@@ -191,9 +196,9 @@
             </div>
 
             <div class="section" id="types">
-                <h2>Key Types of Unsupervised Algorithms</h2>
+                <h3>Key Types of Unsupervised Algorithms</h3>
 
-                <h3>1. Clustering Algorithms</h3>
+                <h4>1. Clustering Algorithms</h4>
                 <ul>
                     <li><strong>K-Means:</strong> Partitions data into <code>K</code> groups by minimizing intra-cluster distances. Fast and scalable.</li>
                     <li><strong>Hierarchical Clustering:</strong> Creates a nested tree of clusters using a bottom-up (agglomerative) or top-down approach. Doesn’t require K.</li>
@@ -201,21 +206,21 @@
                     <li><strong>Gaussian Mixture Models (GMM):</strong> Soft clustering using a probabilistic approach with Gaussian distributions.</li>
                 </ul>
 
-                <h3>2. Dimensionality Reduction</h3>
+                <h4>2. Dimensionality Reduction</h4>
                 <ul>
                     <li><strong>PCA:</strong> Projects data into a lower-dimensional space while preserving variance.</li>
                     <li><strong>t-SNE:</strong> Non-linear technique for 2D/3D visualization by preserving local relationships.</li>
                     <li><strong>UMAP:</strong> Similar to t-SNE but faster and better at preserving global structure.</li>
                 </ul>
 
-                <h3>3. Anomaly Detection</h3>
+                <h4>3. Anomaly Detection</h4>
                 <ul>
                     <li><strong>One-Class SVM:</strong> Learns a decision boundary around the normal data points.</li>
                     <li><strong>Isolation Forest:</strong> Randomly splits data—anomalies are isolated faster with fewer splits.</li>
                     <li><strong>Local Outlier Factor (LOF):</strong> Detects outliers by comparing local density to neighbors.</li>
                 </ul>
 
-                <h3>4. Association Rule Learning</h3>
+                <h4>4. Association Rule Learning</h4>
                 <ul>
                     <li><strong>Apriori Algorithm:</strong> Finds frequent itemsets and derives association rules (e.g., market basket analysis).</li>
                     <li><strong>Eclat Algorithm:</strong> A vertical layout-based alternative to Apriori, faster for large datasets.</li>
