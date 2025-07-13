@@ -1,5 +1,5 @@
 # My-Portfolio
-🚀 Hi frinds🚀
+🚀 Hi Friends🚀
 
 This is Arun Kumar Pandey and here you can explor my journey, skills, and the projects I'm passionate about. 🌟
 
