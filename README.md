@@ -1,24 +1,21 @@
 # My-Portfolio
-🚀 Hi Friends🚀
 
-This is Arun Kumar Pandey and here you can explor my journey, skills, and the projects I'm passionate about. 🌟
+Hi Friends
 
-📌 Here's what you'll find on my website:
+This is Arun Kumar Pandey and here you can explor my journey, skills, and the projects I'm passionate about. 
 
-🔹 About Me: Get to know me better - my background, expertise, and interests.
+Here's what you'll find on my website:
 
-🔹 Portfolio: Dive into a collection of my projects, ranging from data analysis to astrophysics research. 💻🌌
+- **About Me:** Get to know me better - my background, expertise, and interests.
+- **Portfolio:** Dive into a collection of my projects, ranging from data analysis to astrophysics research.
+-  **Skills:** Discover the tools and technologies I'm proficient in, from Python to data engineering.
+-  **Blog:** Stay updated with my insights, tips, and musings on data science, analytics, finance, and more!
+-  **Contact:** Reach out to me directly for collaborations, inquiries, or just to say hello.
 
-🔹 Skills: Discover the tools and technologies I'm proficient in, from Python to data engineering.
+I'm passionate about data science, data analytics, finance, and data engineering, and I can't wait to share my journey with you.
 
-🔹 Blog: Stay updated with my insights, tips, and musings on data science, analytics, finance, and more! 📚
+Feel free to explore the website, and if you have any feedback or questions, don't hesitate to reach out. Your support means the world to me!
 
-🔹 Contact: Reach out to me directly for collaborations, inquiries, or just to say hello. 📩
-
-I'm passionate about data science, data analytics, finance, and data engineering, and I can't wait to share my journey with you. 📈🔍
-
-Feel free to explore the website, and if you have any feedback or questions, don't hesitate to reach out. Your support means the world to me! 🙌
-
-Thank you for being part of this exciting journey with me. Let's connect and explore the world of data together! 🌐💡
+Thank you for being part of this exciting journey with me. Let's connect and explore the world of data together! 
 
 Let's connect on Linkedin: <a href="https://www.linkedin.com/in/arunp77/" target="_blank">My linkedin account</a>
