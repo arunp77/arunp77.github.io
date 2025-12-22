@@ -134,7 +134,159 @@
             <div class="row gy-4">
 
                 <section id="Probability">
-                    <h1>Probability distributions</h2>
+                    
+
+                    <h2>Random Variables</h2>
+                    Random variables play an important role in describing, measuring and analyzing uncertain events. It is a function that maps every outcome in the sample space to a real number. A random variable can be classified as: 
+                        
+                    <ul>                            
+                        <li><strong>Discrete random variable: </strong>
+                            <ul>
+                        
+                                <li>Takes on a countable number of distinct values.</li>
+                                <li>Examples include the number of heads in multiple coin tosses or the count of occurrences in a specific time period.</li>
+                                <li>Discrete random variable are described using "Probability mass Function (PMF)" and "Cumulative Distribution Function (CDF)".</li>
+                                <li>PMF is the probability that a random variable X takes a specific value k; for example. the number of
+                                    fraudulent transactions at an e-commerce platform is 10, written as  \(P(X=10)\). On the other hand, CDF is the probability that a random variable X, takes a value less than or equal to 10
+                                    which is written as \(P(X\leq 10)\). 
+                                </li>
+                            </ul>
+                        </li>
+                        <li><strong>Continuous random variable</strong>
+                            <ul>
+                                <li>A random variable X which can take a value from an infintie set of values is called a continuous random variable.</li>
+                                <li>Examples include measurements like height, weight, or time intervals.</li>
+                                <li>Continuous random variables are described using "Probability Desnity Function (PDF)", and "Cumulative Distribution Fnction (CDF)". 
+                                    PDF is the probabilitythat a continuous random variable \(X\) takes value in a small neighbourhood of "\(x\)" and is given by:
+                                    $$f(x) = \text{Lim}_{\delta x \rightarrow 0} P[x\leq X \leq x+\delta x].$$ 
+                                    The CDF of a continuous random varibale is the probability that the random variable \(X\) takes value less than or equal to a value "\(a\)". Mathematically:
+                                    $$F(a) = \int_{-\infty }^\infty f(x) dx.$$
+                                </li>     
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+
+                <section id="examples">
+                    <h2>Probability distributions</h2>
+                    <p>A probability distribution is a function that describes the likelihood of each possible outcome in a random experiment. Variables that follow a probability 
+                        distribution are called random variables. In other words, it is a mathematical function that assigns probabilities to all possible outcomes of a random variable.
+                    There are two types of probability distributions:</p>
+                    
+                    <h3>Discrete distributions</h3>
+                    <p>A discrete probability distribution assigns probabilities to a finite or countably infinite number of possible outcomes. There are several types of discrete probability distributions, including:</p>
+                    
+                    <h4>Bernoulli distribution</h4>
+                    <p>The Bernoulli distribution is a simple probability distribution that describes the probability of success or failure in a single trial of a binary experiment. 
+                        The Bernoulli distribution has two possible outcomes: success (with probability $p$) or failure (with probability $1-p$). The formula for the Bernoulli distribution is:</p>
+
+                        $P(X=x) = p^x \times (1-p)^{(1-x)}$
+
+                    where $X$ is the random variable, $x$ is the outcome (either `0` or `1`), and $p$ is the probability of success.
+
+                    
+                    <figure>
+                        <img src="assets/img/machine-ln/bernoulli_variable.png" alt="" style="max-width: 90%; max-height: 90%;">
+                        <figcaption>Image credit: Scribbr</figcaption>
+                    </figure>                    
+
+
+                    <h4>Binomial distribution</h4>
+                    The binomial distribution describes the probability of getting a certain number of successes in a fixed number of independent trials of a binary experiment. The binomial distribution has two parameters: $n$, the number of trials, and $p$, the probability of success in each trial. The formula for the binomial distribution is:
+
+                    $P(X=x) = ^nC_x ~ p^x ~ (1-p)^{(n-x)}$
+
+                    where $X$ is the random variable representing the number of successes, $x$ is the number of successes, $n$ is the number of trials, $p$ is the probability of success, and $^nC_x = \frac{n!}{x! (n-x)!}$ is the binomial coefficient, which represents the number of ways to choose $x$ objects from a set of n objects.
+
+
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                            <th>Statistic</th>
+                            <th>Formula</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td>Mean</td>
+                            <td>$$\mu = np$$</td>
+                            </tr>
+                            <tr>
+                            <td>Variance</td>
+                            <td>$$\sigma^2 = np(1 - p)$$</td>
+                            </tr>
+                            <tr>
+                            <td>Standard Deviation</td>
+                            <td>$$\sigma = \sqrt{np(1 - p)}$$</td>
+                            </tr>
+                            <tr>
+                            <td>Moment Coefficient of Skewness</td>
+                            <td>$$\alpha_3 = \frac{1 - 2p}{\sqrt{np(1 - p)}}$$</td>
+                            </tr>
+                            <tr>
+                            <td>Moment Coefficient of Kurtosis</td>
+                            <td>$$\alpha_4 = 3 + \frac{1 - 6p(1 - p)}{np(1 - p)}$$</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <img src="" width="550" height="350" />
+                    [A link to generate the plot](https://homepage.divms.uiowa.edu/~mbognar/applets/bin.html)
+
+                    <figure>
+                        <img src="assets/img/Binomial_distribution.png" alt="" style="max-width: 90%; max-height: 90%;">
+                        <figcaption>A link to generate the plot](https://homepage.divms.uiowa.edu/~mbognar/applets/bin.html)/figcaption>
+                    </figure>       
+                    
+                    
+                    <h4>Poisson distribution </h4>
+                    <p>The Poisson distribution is used to describe the probability of a certain number of events occurring in a fixed time interval when the events occur 
+                        independently and at a constant rate. The Poisson distribution has one parameter: $\lambda$, which represents the expected number of events in the 
+                        time interval. The formula for the Poisson distribution is:</p>
+
+                        $P(X=x) = e^{-λ} \frac{λ^x}{x!}$
+
+                    <p>where $X$ is the random variable representing the number of events, $x$ is the number of events, $e$ is the mathematical constant, 
+                    $\lambda$ is the expected number of events, and $x!$ is the factorial function.</p>
+
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                            <th>Statistic</th>
+                            <th>Formula</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td>Mean</td>
+                            <td>$$\mu = \lambda$$</td>
+                            </tr>
+                            <tr>
+                            <td>Variance</td>
+                            <td>$$\sigma^2 = \lambda$$</td>
+                            </tr>
+                            <tr>
+                            <td>Standard Deviation</td>
+                            <td>$$\sigma = \sqrt{\lambda}$$</td>
+                            </tr>
+                            <tr>
+                            <td>Moment Coefficient of Skewness</td>
+                            <td>$$\alpha_3 = \frac{1}{\sqrt{\lambda}}$$</td>
+                            </tr>
+                            <tr>
+                            <td>Moment Coefficient of Kurtosis</td>
+                            <td>$$\alpha_4 = 3 + \frac{1}{\lambda}$$</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <figure>
+                        <img src="assets/img/machine-ln/possion_distribution.png" alt="" style="max-width: 90%; max-height: 90%;">
+                        <figcaption><a href="https://homepage.divms.uiowa.edu/~mbognar/applets/pois.html" target="_blank">A link to generate the plot</a>]/figcaption>
+                    </figure>     
+                    
+                    <div class="alert alert-info"> <i class="bi bi-pen-fill"></i> 
+                        <h1>Probability distributions</h2>
                     <ul>
                         <li>Probability is a subject that deals with uncertainty.</li>
                         <li>In everyday terminology, probability can be thought of as a numerical measure of the likelihood that a particular event will occur.</li>
@@ -143,7 +295,7 @@
                             $$p=Pr\{E\}=\frac{h}{n} ~~~~~~~~~~~~~~~ (\text{success probability}) $$
                         </li>
                         <li>The probability of non-occurrence of the event (called its failure) is denoted by
-                        $$𝑞=1−𝑝 \rightarrow 𝑝+𝑞=1 $$
+                        $$𝑞=1−𝑝 \rightarrow 𝑝+𝑞=1  ~~~~~~~~~~~~~~~ (\text{Failure probability}) $$
                         </li>
                     </ul>
                     <h3>Conditional probability; Independent and dependent events</h3>
@@ -185,40 +337,23 @@
                             $$Pr\{ 𝐸_1 + 𝐸_2 \} = Pr\{ 𝐸_1 \} + Pr\{ 𝐸_2 \} − Pr\{ 𝐸_1 ~ 𝐸_2 \}.$$
                         </li>
                     </ul>
+                    </div>
+                    
 
-                    <h2>Random Variables</h2>
-                    Random variables play an important role in describing, measuring and analyzing uncertain events. It is a function that maps every outcome in the sample space to a real number. A random variable can be classified as: 
-                        
-                    <ul>                            
-                        <li><strong>Discrete random variable: </strong>
-                            <ul>
-                        
-                                <li>Takes on a countable number of distinct values.</li>
-                                <li>Examples include the number of heads in multiple coin tosses or the count of occurrences in a specific time period.</li>
-                                <li>Discrete random variable are described using "Probability mass Function (PMF)" and "Cumulative Distribution Function (CDF)".</li>
-                                <li>PMF is the probability that a random variable X takes a specific value k; for example. the number of
-                                    fraudulent transactions at an e-commerce platform is 10, written as  \(P(X=10)\). On the other hand, CDF is the probability that a random variable X, takes a value less than or equal to 10
-                                    which is written as \(P(X\leq 10)\). 
-                                </li>
-                            </ul>
-                        </li>
-                        <li><strong>Continuous random variable</strong>
-                            <ul>
-                                <li>A random variable X which can take a value from an infintie set of values is called a continuous random variable.</li>
-                                <li>Examples include measurements like height, weight, or time intervals.</li>
-                                <li>Continuous random variables are described using "Probability Desnity Function (PDF)", and "Cumulative Distribution Fnction (CDF)". 
-                                    PDF is the probabilitythat a continuous random variable \(X\) takes value in a small neighbourhood of "\(x\)" and is given by:
-                                    $$f(x) = \text{Lim}_{\delta x \rightarrow 0} P[x\leq X \leq x+\delta x].$$ 
-                                    The CDF of a continuous random varibale is the probability that the random variable \(X\) takes value less than or equal to a value "\(a\)". Mathematically:
-                                    $$F(a) = \int_{-\infty }^\infty f(x) dx.$$
-                                </li>     
-                            </ul>
-                        </li>
-                    </ul>
-                </section>
 
-                <section id="examples">
-                    <h3>Python libraries used for the </h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
                     <p><strong>Importing the libraries:</strong></p>
                     <pre><code>
                         # Standard Dependencies
@@ -324,107 +459,106 @@
                         <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="index.html"></a>☞ Arun Kumar Pandey</figcaption>
                     </figure>
 
-                    <h3>Probability Distributions</h3>
+                    <hr>
+
+                    <h2>Probability Distributions</h2>
                     <p>A Probability distribution tells us something about the likelihood of each value of the random variable.
                     A random variable X is a function that maps events to real numbers. The visualizations in this section are of discrete distributions. 
                     Many of these distributions can however also be continuous.</p>
                     
-                    <ul>
-                        <li><strong>Uniform Distribution: </strong>A Uniform distribution is pretty straightforward. Every value has an equal change of occuring. 
-                            Therefore, the distribution consists of random values with no patterns in them. In this example we generate random floating numbers between 0 and 1.
-                            <p>The PDF of a Uniform Distribution:</p>
-                            $$
-                            f(x)= \begin{cases}
-                                    \frac{1}{b-a}, &amp; a \leq x \leq b \\
-                                    0, &amp; \text{otherwise}
-                                    \end{cases}
-                            $$
-                            <p>CDF:</p> 
-                            $$
-                            CDF = 
-                            \begin{cases}
-                            0, &amp; x < a \\
-                            \frac{x-a}{b-a} &amp; a \leq x \leq b \\
-                            1 &amp; for x\geq b
-                            \end{cases}
-                            $$
-                            <pre><code>
-                                # Uniform distribution (between 0 and 1)
-                                uniform_dist = np.random.random(1000)
-                                uniform_df = pd.DataFrame({'value' : uniform_dist})
-                                uniform_dist = pd.Series(uniform_dist) 
-                                plt.figure(figsize=(18,5))
-                                sns.scatterplot(data=uniform_df)
-                                plt.legend(fontsize='xx-large')
-                                plt.title('Scatterplot of a Random/Uniform Distribution', fontsize='xx-large')                   
-                            </code></pre>
-                            <figure>
-                                <img src="assets/img/data-engineering/scatter-uniform.png" alt="" style="max-width: 70%; max-height: 70%;">
-                                <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="index.html"></a>☞ Arun Kumar Pandey</figcaption>
-                            </figure>
+                    <h3>Discrete distributions</h3>
+                    <h4>Uniform Distribution: </h4>
+                    A Uniform distribution is pretty straightforward. Every value has an equal change of occuring. Therefore, the distribution consists of random values with no patterns in them. In this example we generate random floating numbers between 0 and 1.
+                    <p>The PDF of a Uniform Distribution:</p>
+                        $$
+                        f(x)= \begin{cases}
+                                \frac{1}{b-a}, &amp; a \leq x \leq b \\
+                                0, &amp; \text{otherwise}
+                                \end{cases}
+                        $$
+                    <p>CDF:</p> 
+                        $$
+                        CDF = 
+                        \begin{cases}
+                        0, &amp; x < a \\
+                        \frac{x-a}{b-a} &amp; a \leq x \leq b \\
+                        1 &amp; for x\geq b
+                        \end{cases}
+                        $$
+                        <pre><code>
+                            # Uniform distribution (between 0 and 1)
+                            uniform_dist = np.random.random(1000)
+                            uniform_df = pd.DataFrame({'value' : uniform_dist})
+                            uniform_dist = pd.Series(uniform_dist) 
+                            plt.figure(figsize=(18,5))
+                            sns.scatterplot(data=uniform_df)
+                            plt.legend(fontsize='xx-large')
+                            plt.title('Scatterplot of a Random/Uniform Distribution', fontsize='xx-large')                   
+                        </code></pre>
+                        <figure>
+                            <img src="assets/img/data-engineering/scatter-uniform.png" alt="" style="max-width: 70%; max-height: 70%;">
+                            <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="index.html"></a>☞ Arun Kumar Pandey</figcaption>
+                        </figure>
 
-                            <pre><code>
-                                plt.figure(figsize=(18,5))
-                                sns.distplot(uniform_df)
-                                plt.title('Random/Uniform distribution', fontsize='xx-large')                    
-                            </code></pre>
-                            <figure>
-                                <img src="assets/img/data-engineering/ran-uni.png" alt="" style="max-width: 70%; max-height: 70%;">
-                                <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="index.html"></a>☞ Arun Kumar Pandey</figcaption>
-                            </figure>
-                        </li>
-                        <li><strong>Normal Distribution: </strong>
-                            <pre><code>
-                                # Generate Normal Distribution
-                                normal_dist = np.random.randn(10000)
-                                normal_df = pd.DataFrame({'value' : normal_dist})
-                                # Create a Pandas Series for easy sample function
-                                normal_dist = pd.Series(normal_dist)
-                                
-                                normal_dist2 = np.random.randn(10000)
-                                normal_df2 = pd.DataFrame({'value' : normal_dist2})
-                                # Create a Pandas Series for easy sample function
-                                normal_dist2 = pd.Series(normal_dist)
-                                
-                                normal_df_total = pd.DataFrame({'value1' : normal_dist, 
-                                                                'value2' : normal_dist2}) 
-                                                                # Scatterplot
-                                                                plt.figure(figsize=(18,5))
-                                                                sns.scatterplot(data=normal_df)
-                                                                plt.legend(fontsize='xx-large')
-                                                                plt.title('Scatterplot of a Normal Distribution', fontsize='xx-large')                                                                       
-                            </code></pre>
-                            <figure>
-                                <img src="assets/img/data-engineering/scat-norm.png" alt="" style="max-width: 70%; max-height: 70%;">
-                                <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="index.html"></a>☞ Arun Kumar Pandey</figcaption>
-                            </figure>
-                            <pre><code>
-                                # Normal Distribution as a Bell Curve
-                                plt.figure(figsize=(18,5))
-                                sns.displot(normal_df, kde=True)
-                                plt.title('Normal distribution (n=1000)', fontsize='xx-large')
-                                plt.show()                    
-                            </code></pre>
-                            <figure>
-                                <img src="assets/img/data-engineering/norm-plot.png" alt="" style="max-width: 70%; max-height: 70%;">
-                                <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="index.html"></a>☞ Arun Kumar Pandey</figcaption>
-                            </figure>
-                            <pre><code>
-                                plt.figure(figsize=(7,5))
-                                sns.histplot(normal_df, kde=True)
-                                plt.title('Normal distribution (n=1000)', fontsize='xx-large')
-                                plt.show()                    
-                            </code></pre>
-                            <figure>
-                                <img src="assets/img/data-engineering/norm-distri.png" alt="" style="max-width: 70%; max-height: 70%;">
-                                <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="index.html"></a>☞ Arun Kumar Pandey</figcaption>
-                            </figure>
-                        </li>
-                        <li><strong>Binomial Distribution: </strong></li>
-                        <li><strong></strong></li>
-                        <li><strong></strong></li>
-                        <li><strong></strong></li>
-                    </ul>
+                        <pre><code>
+                            plt.figure(figsize=(18,5))
+                            sns.distplot(uniform_df)
+                            plt.title('Random/Uniform distribution', fontsize='xx-large')                    
+                        </code></pre>
+                        <figure>
+                            <img src="assets/img/data-engineering/ran-uni.png" alt="" style="max-width: 70%; max-height: 70%;">
+                            <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="index.html"></a>☞ Arun Kumar Pandey</figcaption>
+                        </figure>
+                    
+                    <h4>Normal Distribution: </h4>
+                        <pre><code>
+                            # Generate Normal Distribution
+                            normal_dist = np.random.randn(10000)
+                            normal_df = pd.DataFrame({'value' : normal_dist})
+                            # Create a Pandas Series for easy sample function
+                            normal_dist = pd.Series(normal_dist)
+                            
+                            normal_dist2 = np.random.randn(10000)
+                            normal_df2 = pd.DataFrame({'value' : normal_dist2})
+                            # Create a Pandas Series for easy sample function
+                            normal_dist2 = pd.Series(normal_dist)
+                            
+                            normal_df_total = pd.DataFrame({'value1' : normal_dist, 
+                                                            'value2' : normal_dist2}) 
+                                                            # Scatterplot
+                                                            plt.figure(figsize=(18,5))
+                                                            sns.scatterplot(data=normal_df)
+                                                            plt.legend(fontsize='xx-large')
+                                                            plt.title('Scatterplot of a Normal Distribution', fontsize='xx-large')                                                                       
+                        </code></pre>
+                        <figure>
+                            <img src="assets/img/data-engineering/scat-norm.png" alt="" style="max-width: 70%; max-height: 70%;">
+                            <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="index.html"></a>☞ Arun Kumar Pandey</figcaption>
+                        </figure>
+                        <pre><code>
+                            # Normal Distribution as a Bell Curve
+                            plt.figure(figsize=(18,5))
+                            sns.displot(normal_df, kde=True)
+                            plt.title('Normal distribution (n=1000)', fontsize='xx-large')
+                            plt.show()                    
+                        </code></pre>
+                        <figure>
+                            <img src="assets/img/data-engineering/norm-plot.png" alt="" style="max-width: 70%; max-height: 70%;">
+                            <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="index.html"></a>☞ Arun Kumar Pandey</figcaption>
+                        </figure>
+                        <pre><code>
+                            plt.figure(figsize=(7,5))
+                            sns.histplot(normal_df, kde=True)
+                            plt.title('Normal distribution (n=1000)', fontsize='xx-large')
+                            plt.show()                    
+                        </code></pre>
+                        <figure>
+                            <img src="assets/img/data-engineering/norm-distri.png" alt="" style="max-width: 70%; max-height: 70%;">
+                            <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="index.html"></a>☞ Arun Kumar Pandey</figcaption>
+                        </figure>
+
+                    <h4>Binomial Distribution: </h4>
+
 
                 </section>                
 
