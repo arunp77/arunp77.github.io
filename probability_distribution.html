@@ -182,7 +182,7 @@
 
                         $$P(X=x) = p^x \times (1-p)^{(1-x)}$$
 
-                    where $X$ is the random variable, $x$ is the outcome (either `0` or `1`), and $p$ is the probability of success.
+                    where \(X\) is the random variable, \(x\) is the outcome (either \(0\) or \(1\)), and \(p\) is the probability of success.
 
                     
                     <figure>
@@ -196,7 +196,8 @@
 
                     $$P(X=x) = ^nC_x ~ p^x ~ (1-p)^{(n-x)}$$
 
-                    where $X$ is the random variable representing the number of successes, $x$ is the number of successes, $n$ is the number of trials, $p$ is the probability of success, and $^nC_x = \frac{n!}{x! (n-x)!}$ is the binomial coefficient, which represents the number of ways to choose $x$ objects from a set of n objects.
+                    where \(X\) is the random variable representing the number of successes, \(x\) is the number of successes, \(n\) is the number of trials, \(p\) is the probability of success, 
+                    and \(^nC_x = \frac{n!}{x! (n-x)!}\) is the binomial coefficient, which represents the number of ways to choose $x$ objects from a set of n objects.
 
 
                     <table class="table table-bordered table-striped">
@@ -239,13 +240,13 @@
                     
                     <h4>3. Poisson distribution </h4>
                     <p>The Poisson distribution is used to describe the probability of a certain number of events occurring in a fixed time interval when the events occur 
-                        independently and at a constant rate. The Poisson distribution has one parameter: $\lambda$, which represents the expected number of events in the 
+                        independently and at a constant rate. The Poisson distribution has one parameter: \(\lambda\), which represents the expected number of events in the 
                         time interval. The formula for the Poisson distribution is:</p>
 
                         $$P(X=x) = e^{-λ} \frac{λ^x}{x!}$$
 
-                    <p>where $X$ is the random variable representing the number of events, $x$ is the number of events, $e$ is the mathematical constant, 
-                    $\lambda$ is the expected number of events, and $x!$ is the factorial function.</p>
+                    <p>where \(X\) is the random variable representing the number of events, \(x\) is the number of events, \(e\) is the mathematical constant, 
+                    \(\lambda\) is the expected number of events, and \(x!\) is the factorial function.</p>
 
                     <table class="table table-bordered table-striped">
                         <thead>
@@ -314,7 +315,8 @@
                         </figure>
 
                         <h4>PDF (Probability Density Functions)</h4>
-                        The PDF is the same as a PMF, but continuous. It can be said that the distribution has an infinite number of possible values. Here we visualize a simple normal distribution with a mean of 0 and standard deviation of 1.
+                        The PDF is the same as a PMF, but continuous. It can be said that the distribution has an infinite number of possible values. 
+                        Here we visualize a simple normal distribution with a mean of 0 and standard deviation of 1.
                         <pre><code>
                             # Plot normal distribution
                             mu = 0
@@ -333,7 +335,9 @@
                         </figure>
 
                         <h4>CDF (Cumulative Distribution Function)</h4>
-                        The CDF maps the probability that a random variable X will take a value of less than or equal to a value x (P(X ≤ x)). CDF's can be discrete or continuous. In this section we visualize the continuous case. You can see in the plot that the CDF accumulates all probabilities and is therefore bounded between \(0 \leq x \leq 1\).
+                        The CDF maps the probability that a random variable \(X\) will take a value of less than or equal to a value \(x\) (\(P(X ≤ x)\)). 
+                        CDF's can be discrete or continuous. In this section we visualize the continuous case. You can see in the plot that the CDF 
+                        accumulates all probabilities and is therefore bounded between \(0 \leq x \leq 1\).
                         <pre><code>
                             # Data
                             X  = np.arange(-2, 2, 0.01)
