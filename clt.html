@@ -130,26 +130,120 @@
         <div class="row gy-4">
           <div class="image"></div>
 
-        <div class="box-background1">
-        <h3>Chapter 4: Probability Distributions</h3>
-        <div id="md-content"></div>
-        </div>
-
-        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-        <script>
-        fetch('https://raw.githubusercontent.com/arunp77/statistics-and-atmospheric-data/main/fundamentals_statistics/04_chapter4.md')
-            .then(response => response.text())
-            .then(text => {
-            document.getElementById('md-content').innerHTML = marked.parse(text);
-            });
-        </script>
-          
+        <h2>Central Limit theorem (CLT)</h2>
+        <p>The central limit theorem (CLT) is a fundamental concept in statistics and probability theory. It states that under certain conditions, the sampling distribution of the mean of a random sample drawn from any population will approximate a normal distribution, regardless of the shape of the original population distribution.</p>
+        <p>Specifically, the CLT states that as the sample size n increases, the sampling distribution of the mean approaches a normal distribution with mean equal to the population mean and standard deviation equal to the population standard deviation divided by the square root of the sample size. This means that even if the population distribution is not normal, the distribution of sample means will tend to be normal if the sample size is sufficiently large.</p>
         
+        <p>The conditions necessary for the CLT to hold are:</p>
+        <ul>
+            <li><strong>Independence: </strong>Each sample observation must be independent of all the others.</li>
+            <li><strong>Random sampling: </strong>The samples must be drawn at random from the population.</li>
+            <li><strong>Finite variance:</strong> The population distribution must have a finite variance.</li>
+        </ul>
              
 
+        <p>The CLT has many important practical applications, as it allows us to make inferences about population means and proportions based on samples drawn from the population. It is also used in hypothesis testing, confidence interval estimation, and in the construction of many statistical models.</p>
 
-            
+        <h3>Application of CLT</h3>
+        <p>The central limit theorem (CLT) has many important applications in statistics and data analysis. Here are a few examples:</p>
+        <ul>
+            <li><strong>Estimating population parameters: </strong>The CLT can be used to estimate population parameters, such as the population mean or proportion, based on a sample drawn from the population. For example, if we want to estimate the average height of all adults in a country, we can take a random sample of heights and use the CLT to construct a confidence interval for the population mean.</li>
+            <li><strong>Hypothesis testing: </strong>The CLT is often used in hypothesis testing to determine whether a sample is likely to have come from a particular population. For example, if we want to test whether the mean salary of a group of employees is different from the mean salary of all employees in the company, we can use the CLT to calculate the probability of observing a sample mean as extreme as the one we observed if the null hypothesis (i.e., the mean salaries are equal) is true.</li>
+            <li><strong>Machine learning: </strong>The CLT is used in many machine learning algorithms that require the assumption of normality, such as linear regression and logistic regression. In these algorithms, the CLT is used to justify the assumption that the errors or residuals of the model are normally distributed.    </li>
+            <li><strong></strong></li>
+        </ul>
 
+        <p><b>Forumla: </b> The formula for the CLT depends on the specific population distribution and the sample size. In general, if \(X\) is 
+            a random variable with mean $\mu$ and standard deviation \(\sigma\), then the distribution of the sample mean \(\mu_X\) of a random sample of size \(n\) from \(X\) 
+            approaches a normal distribution with mean $\mu$ and standard deviation $\sigma/\sqrt{n}$ as $n$ gets larger. This can be expressed mathematically as:</p>
+
+        $$\frac{\mu_X - \mu}{\sigma/\sqrt{n}}\sim N(0,1)$$
+
+        <p>where $N(0,1)$ represents a _**standard normal distribution**_ with mean $0$ and standard deviation $1$.</p>
+
+        <p>In practice, the CLT is often used to calculate confidence intervals for population means or proportions. The formula for a confidence interval for the population mean based on a sample mean $\mu_X$ and a sample standard deviation $s$ is:</p>
+
+        $$\mu_X \pm z^* \left(\frac{s}{\sqrt{n}}\right)$$
+
+        where $z^*$ is the appropriate critical value from the standard normal distribution based on the desired level of confidence.
+
+        <p><b>Note: </b>To calculate the value of $z^*$ for a given level of confidence, we need to use a standard normal distribution table (Z-table or normal probability table) or a statistical software program (R, Python, and GNU Octave to commercial software like SPSS, SAS, and Stata). For example, if we want to find the critical value for a 95% confidence level, we would look up the corresponding value in a standard normal distribution table or use the formula:
+
+        $$z^* = \text{invNorm}(1 - \frac{\alpha}{2})$$
+
+        where invNorm is the inverse cumulative distribution function of the standard normal distribution, and $\alpha$ is the significance level, which is equal to 1 - confidence level.</p>
+
+        For a 95% confidence level, alpha is 0.05, so we would have:
+
+        $$z^* = \text{invNorm}(1 - 0.05/2) = \text{invNorm}(0.975) = 1.96$$
+
+        Therefore, the critical value $z^*$ for a 95% confidence level is 1.96.
+
+        <h4>Normal distribution vs the standard normal distribution</h4>
+
+        <ul>
+            <li>The standard normal distribution, also called the z-distribution, is a special normal distribution where the mean is 0 and the standard deviation is 1.</li>
+            <li>All normal distributions, like the standard normal distribution, are unimodal and symmetrically distributed with a bell-shaped curve.</li>
+            <li>Every normal distribution is a version of the standard normal distribution that’s been stretched or squeezed and moved horizontally right or left.</li>
+            <li>The mean determines where the curve is centered. Increasing the mean moves the curve right, while decreasing it moves the curve left.</li>
+        </ul>
+
+        <table>
+        <thead>
+            <tr>
+            <th>Curve</th>
+            <th>Position or Shape (relative to standard normal distribution)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <td>A (M = 0, SD = 1)</td>
+            <td>Standard normal distribution</td>
+            </tr>
+            <tr>
+            <td>B (M = 0, SD = 0.5)</td>
+            <td>Squeezed, because SD &lt; 1</td>
+            </tr>
+            <tr>
+            <td>C (M = 0, SD = 2)</td>
+            <td>Stretched, because SD &gt; 1</td>
+            </tr>
+            <tr>
+            <td>D (M = 1, SD = 1)</td>
+            <td>Shifted right, because M &gt; 0</td>
+            </tr>
+            <tr>
+            <td>E (M = −1, SD = 1)</td>
+            <td>Shifted left, because M &lt; 0</td>
+            </tr>
+        </tbody>
+        </table>
+
+        <img src="https://raw.githubusercontent.com/arunp77/statistics-and-atmospheric-data/main/images/snd-nd.png" width="650" height="450" />
+        [☞(For image Reference, click here)](https://www.scribbr.com/statistics/standard-normal-distribution/)
+
+
+        <h4>Standardizing a normal distribution</h4>
+        <p>When you standardize a normal distribution, the mean becomes 0 and the standard deviation becomes 1. This allows you to easily calculate the probability of certain values occurring in your distribution, or to compare data sets with different means and standard deviations.</p>
+        <p>While data points are referred to as x in a normal distribution, they are called z or z scores in the z distribution. A z score is a standard score that tells you how many standard deviations away from the mean an individual value (x) lies:</p>
+        <ul>
+            <li>A positive \(z\) score means that your \(x\) value is greater than the mean.</li>
+            <li>A negative \(z\) score means that your \(x\) value is less than the mean.</li>
+            <li>A \(z\) score of zero means that your \(x\) value is equal to the mean.</li>
+        </ul>
+        <img src="https://raw.githubusercontent.com/arunp77/statistics-and-atmospheric-data/main/images/snd.png" width="650" height="450" />
+
+        <p><strong>Formula: </strong></p>
+
+
+        $z=\frac{x-\mu}{\sigma}$
+
+        <p>where</p>
+        <ul>
+            <li>\(x\) = individual value</li>
+            <li>\(\mu\) = mean</li>
+            <li>\(\sigma\) = standard deviation</li>
+        </ul>
           
 
 
