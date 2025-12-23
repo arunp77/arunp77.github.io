@@ -8069,6 +8069,111 @@ After calculating the t-value and degrees of freedom, the p-value can be obtaine
 </ul>
 </li>
 </ol>
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Objective</th>
+      <th>Data Type</th>
+      <th>Groups / Variables</th>
+      <th>Common Test(s)</th>
+      <th>Notes / Assumptions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Compare means (parametric)</strong></td>
+      <td>Continuous</td>
+      <td>2 independent groups</td>
+      <td><strong>Independent t-test</strong></td>
+      <td>Data normal, equal variances</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Continuous</td>
+      <td>2 related groups (before–after)</td>
+      <td><strong>Paired t-test</strong></td>
+      <td>Normal difference scores</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Continuous</td>
+      <td>3+ groups</td>
+      <td><strong>ANOVA (One-way)</strong></td>
+      <td>Normal, equal variances</td>
+    </tr>
+    <tr>
+      <td><strong>Compare medians (nonparametric)</strong></td>
+      <td>Ordinal / Non-normal continuous</td>
+      <td>2 independent groups</td>
+      <td><strong>Mann–Whitney U test</strong></td>
+      <td>No normality assumption</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Ordinal / Non-normal continuous</td>
+      <td>3+ groups</td>
+      <td><strong>Kruskal–Wallis test</strong></td>
+      <td>Nonparametric ANOVA alternative</td>
+    </tr>
+    <tr>
+      <td><strong>Compare proportions</strong></td>
+      <td>Categorical</td>
+      <td>2+ categories</td>
+      <td><strong>Chi-square test</strong></td>
+      <td>Expected frequency ≥ 5</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Categorical</td>
+      <td>Small sample</td>
+      <td><strong>Fisher’s Exact Test</strong></td>
+      <td>For small expected counts</td>
+    </tr>
+    <tr>
+      <td><strong>Test relationships</strong></td>
+      <td>Continuous</td>
+      <td>2 variables</td>
+      <td><strong>Pearson correlation (r)</strong></td>
+      <td>Linear relationship, normal variables</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Continuous / Ordinal</td>
+      <td>2 variables</td>
+      <td><strong>Spearman correlation (ρ)</strong></td>
+      <td>Nonlinear or ranked data</td>
+    </tr>
+    <tr>
+      <td><strong>Predict a variable</strong></td>
+      <td>Continuous (Y)</td>
+      <td>1+ predictors</td>
+      <td><strong>Linear regression</strong></td>
+      <td>Linearity, independence, homoscedasticity</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Categorical (Y)</td>
+      <td>1+ predictors</td>
+      <td><strong>Logistic regression</strong></td>
+      <td>Binary or multinomial outcome</td>
+    </tr>
+    <tr>
+      <td><strong>Test goodness of fit</strong></td>
+      <td>Categorical</td>
+      <td>1 variable</td>
+      <td><strong>Chi-square goodness-of-fit</strong></td>
+      <td>Observed vs expected frequencies</td>
+    </tr>
+    <tr>
+      <td><strong>Check variance equality</strong></td>
+      <td>Continuous</td>
+      <td>2+ groups</td>
+      <td><strong>Levene’s / Bartlett’s test</strong></td>
+      <td>Tests homogeneity of variances</td>
+    </tr>
+  </tbody>
+</table>
+
 </div>
 </div>
 </div>
