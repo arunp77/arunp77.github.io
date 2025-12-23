@@ -362,6 +362,52 @@
                         </tbody>
                     </table>
 
+                    <pre><code>
+                            # Generate Normal Distribution
+                            normal_dist = np.random.randn(10000)
+                            normal_df = pd.DataFrame({'value' : normal_dist})
+                            # Create a Pandas Series for easy sample function
+                            normal_dist = pd.Series(normal_dist)
+                            
+                            normal_dist2 = np.random.randn(10000)
+                            normal_df2 = pd.DataFrame({'value' : normal_dist2})
+                            # Create a Pandas Series for easy sample function
+                            normal_dist2 = pd.Series(normal_dist)
+                            
+                            normal_df_total = pd.DataFrame({'value1' : normal_dist, 
+                                                            'value2' : normal_dist2}) 
+                                                            # Scatterplot
+                                                            plt.figure(figsize=(18,5))
+                                                            sns.scatterplot(data=normal_df)
+                                                            plt.legend(fontsize='xx-large')
+                                                            plt.title('Scatterplot of a Normal Distribution', fontsize='xx-large')                                                                       
+                        </code></pre>
+                        <figure>
+                            <img src="assets/img/data-engineering/scat-norm.png" alt="" style="max-width: 70%; max-height: 70%;">
+                            <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="index.html"></a>☞ Arun Kumar Pandey</figcaption>
+                        </figure>
+                        <pre><code>
+                            # Normal Distribution as a Bell Curve
+                            plt.figure(figsize=(18,5))
+                            sns.displot(normal_df, kde=True)
+                            plt.title('Normal distribution (n=1000)', fontsize='xx-large')
+                            plt.show()                    
+                        </code></pre>
+                        <figure>
+                            <img src="assets/img/data-engineering/norm-plot.png" alt="" style="max-width: 70%; max-height: 70%;">
+                            <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="index.html"></a>☞ Arun Kumar Pandey</figcaption>
+                        </figure>
+                        <pre><code>
+                            plt.figure(figsize=(7,5))
+                            sns.histplot(normal_df, kde=True)
+                            plt.title('Normal distribution (n=1000)', fontsize='xx-large')
+                            plt.show()                    
+                        </code></pre>
+                        <figure>
+                            <img src="assets/img/data-engineering/norm-distri.png" alt="" style="max-width: 70%; max-height: 70%;">
+                            <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="index.html"></a>☞ Arun Kumar Pandey</figcaption>
+                        </figure>
+
                     <h4>2. Uniform distribution</h4>
                     this is a distribution in which all values in a given range are equally likely to occur. The PDF of the uniform distribution is:
 
@@ -395,7 +441,49 @@
                         <img src="assets/img/machine-ln/exponential_distribution.png" alt="" class="img-fluid" style="max-width: 50%;">
                     </figure>  
 
+                    In this example we generate random floating numbers between 0 and 1.
+                    <p>The PDF of a Uniform Distribution:</p>
+                        $$
+                        f(x)= \begin{cases}
+                                \frac{1}{b-a}, &amp; a \leq x \leq b \\
+                                0, &amp; \text{otherwise}
+                                \end{cases}
+                        $$
+                        
+                    <p>CDF:</p> 
+                        $$
+                        CDF = 
+                        \begin{cases}
+                        0, &amp; x < a \\
+                        \frac{x-a}{b-a} &amp; a \leq x \leq b \\
+                        1 &amp; for x\geq b
+                        \end{cases}
+                        $$
+                        <pre><code>
+                            # Uniform distribution (between 0 and 1)
+                            uniform_dist = np.random.random(1000)
+                            uniform_df = pd.DataFrame({'value' : uniform_dist})
+                            uniform_dist = pd.Series(uniform_dist) 
+                            plt.figure(figsize=(18,5))
+                            sns.scatterplot(data=uniform_df)
+                            plt.legend(fontsize='xx-large')
+                            plt.title('Scatterplot of a Random/Uniform Distribution', fontsize='xx-large')                   
+                        </code></pre>
+                        <figure>
+                            <img src="assets/img/data-engineering/scatter-uniform.png" alt="" style="max-width: 70%; max-height: 70%;">
+                            <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="index.html"></a>☞ Arun Kumar Pandey</figcaption>
+                        </figure>
 
+                        <pre><code>
+                            plt.figure(figsize=(18,5))
+                            sns.distplot(uniform_df)
+                            plt.title('Random/Uniform distribution', fontsize='xx-large')                    
+                        </code></pre>
+                        <figure>
+                            <img src="assets/img/data-engineering/ran-uni.png" alt="" style="max-width: 70%; max-height: 70%;">
+                            <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="index.html"></a>☞ Arun Kumar Pandey</figcaption>
+                        </figure>
+                    
                     <h4>3. Gamma distribution</h4>
                     this is a distribution that is used to model the sum of several exponentially distributed random variables. The PDF of the gamma distribution is:
 
@@ -410,20 +498,6 @@
                     <p>The probability distribution is an essential concept in probability theory and is used to calculate the expected values, 
                         variances, and other statistical properties of random variables. Understanding probability distributions is important 
                         in fields such as statistics, physics, engineering, finance, and many others where randomness plays a role.</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    
 
                     <div class="alert alert-info"> <i class="bi bi-pen-fill"></i> 
                         <h1>PMF (Probability Mass Function)</h2>
@@ -496,127 +570,6 @@
                             <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="index.html"></a>☞ Arun Kumar Pandey</figcaption>
                         </figure>
                     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                   
-                    
-                    <h4>PMF (Probability Mass Function)</h4>
-                    
-                    <hr>
-
-                    <h2>Probability Distributions</h2>
-                    <p>A Probability distribution tells us something about the likelihood of each value of the random variable.
-                    A random variable X is a function that maps events to real numbers. The visualizations in this section are of discrete distributions. 
-                    Many of these distributions can however also be continuous.</p>
-                    
-                    <h3>Discrete distributions</h3>
-                    <h4>Uniform Distribution: </h4>
-                    A Uniform distribution is pretty straightforward. Every value has an equal change of occuring. Therefore, the distribution consists of random values with no patterns in them. In this example we generate random floating numbers between 0 and 1.
-                    <p>The PDF of a Uniform Distribution:</p>
-                        $$
-                        f(x)= \begin{cases}
-                                \frac{1}{b-a}, &amp; a \leq x \leq b \\
-                                0, &amp; \text{otherwise}
-                                \end{cases}
-                        $$
-                    <p>CDF:</p> 
-                        $$
-                        CDF = 
-                        \begin{cases}
-                        0, &amp; x < a \\
-                        \frac{x-a}{b-a} &amp; a \leq x \leq b \\
-                        1 &amp; for x\geq b
-                        \end{cases}
-                        $$
-                        <pre><code>
-                            # Uniform distribution (between 0 and 1)
-                            uniform_dist = np.random.random(1000)
-                            uniform_df = pd.DataFrame({'value' : uniform_dist})
-                            uniform_dist = pd.Series(uniform_dist) 
-                            plt.figure(figsize=(18,5))
-                            sns.scatterplot(data=uniform_df)
-                            plt.legend(fontsize='xx-large')
-                            plt.title('Scatterplot of a Random/Uniform Distribution', fontsize='xx-large')                   
-                        </code></pre>
-                        <figure>
-                            <img src="assets/img/data-engineering/scatter-uniform.png" alt="" style="max-width: 70%; max-height: 70%;">
-                            <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="index.html"></a>☞ Arun Kumar Pandey</figcaption>
-                        </figure>
-
-                        <pre><code>
-                            plt.figure(figsize=(18,5))
-                            sns.distplot(uniform_df)
-                            plt.title('Random/Uniform distribution', fontsize='xx-large')                    
-                        </code></pre>
-                        <figure>
-                            <img src="assets/img/data-engineering/ran-uni.png" alt="" style="max-width: 70%; max-height: 70%;">
-                            <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="index.html"></a>☞ Arun Kumar Pandey</figcaption>
-                        </figure>
-                    
-                    <h4>Normal Distribution: </h4>
-                        <pre><code>
-                            # Generate Normal Distribution
-                            normal_dist = np.random.randn(10000)
-                            normal_df = pd.DataFrame({'value' : normal_dist})
-                            # Create a Pandas Series for easy sample function
-                            normal_dist = pd.Series(normal_dist)
-                            
-                            normal_dist2 = np.random.randn(10000)
-                            normal_df2 = pd.DataFrame({'value' : normal_dist2})
-                            # Create a Pandas Series for easy sample function
-                            normal_dist2 = pd.Series(normal_dist)
-                            
-                            normal_df_total = pd.DataFrame({'value1' : normal_dist, 
-                                                            'value2' : normal_dist2}) 
-                                                            # Scatterplot
-                                                            plt.figure(figsize=(18,5))
-                                                            sns.scatterplot(data=normal_df)
-                                                            plt.legend(fontsize='xx-large')
-                                                            plt.title('Scatterplot of a Normal Distribution', fontsize='xx-large')                                                                       
-                        </code></pre>
-                        <figure>
-                            <img src="assets/img/data-engineering/scat-norm.png" alt="" style="max-width: 70%; max-height: 70%;">
-                            <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="index.html"></a>☞ Arun Kumar Pandey</figcaption>
-                        </figure>
-                        <pre><code>
-                            # Normal Distribution as a Bell Curve
-                            plt.figure(figsize=(18,5))
-                            sns.displot(normal_df, kde=True)
-                            plt.title('Normal distribution (n=1000)', fontsize='xx-large')
-                            plt.show()                    
-                        </code></pre>
-                        <figure>
-                            <img src="assets/img/data-engineering/norm-plot.png" alt="" style="max-width: 70%; max-height: 70%;">
-                            <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="index.html"></a>☞ Arun Kumar Pandey</figcaption>
-                        </figure>
-                        <pre><code>
-                            plt.figure(figsize=(7,5))
-                            sns.histplot(normal_df, kde=True)
-                            plt.title('Normal distribution (n=1000)', fontsize='xx-large')
-                            plt.show()                    
-                        </code></pre>
-                        <figure>
-                            <img src="assets/img/data-engineering/norm-distri.png" alt="" style="max-width: 70%; max-height: 70%;">
-                            <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="index.html"></a>☞ Arun Kumar Pandey</figcaption>
-                        </figure>
-
-                    <h4>Binomial Distribution: </h4>
-
-
                 </section>                
 
 
