@@ -145,234 +145,241 @@
         
         <p>Some common measures of descriptive statistics include:</p>
 
-        <ol>
-          <li><strong>Measures of central tendency: </strong>
-              <ol type="1">
-                  <li><strong>Mean: </strong>The mean is the arithmetic average of a dataset and is calculated by adding up all the values in the dataset and dividing by the total number of values. If
-                      \(x_1, x_2, x_3, ..... x_i ...., x_k\) have frequency \(f_1, f_2, f_3,…… f_k\) then</p>
-                      $$\mu = \sum_i \frac{f_i x_i}{N}$$
-                      i.e. 
-                      $$\text{Mean} = \frac{\text{sum of all values}}{\text{total number of values}}$$
-                      <p><strong>Example:</strong> if we have a dataset of test scores for a class of students: 70, 80, 90, 85, and 75, we can calculate the mean by adding up all the scores and dividing by the total number of scores: Mean = (70 + 80 + 90 + 85 + 75) / 5 = 80. So the mean test score for the class is 80.</p>
-                      <p>The mean is commonly used in statistics to summarize and describe a dataset, and is often used as a benchmark for making comparisons between different groups or distributions. However, the mean can be affected by extreme values or outliers, which can skew the results. In such cases, it may be more appropriate to use other measures of central tendency, such as the median or mode, to represent the typical or central value of the dataset.</p>
-                  </li>
-                  <li><strong>median: </strong>
-                      The median is the middle value of a dataset when the values are arranged in order of magnitude. It is used to represent the typical or central value when the data are skewed or have outliers.</p>
-                      <ul>
-                          <li><strong>How to calculate?:</strong> To calculate the median, follow these steps:</li>
-                      </ul>
-                      <ul>
-                          <li>Arrange the values in the dataset in order from smallest to largest (or vice versa).</li>
-                          <li>If the dataset has an odd number of values, the median is the middle value. For example, in the dataset {1, 3, 5, 7, 9}, the median is 5 because it is the middle value.</li>
-                          <li>If the dataset has an even number of values, the median is the average of the two middle values. For example, in the dataset {1, 3, 5, 7, 9, 11}, the two middle values are 5 and 7, so the median is (5+7)/2 = 6.</li>
-                      </ul>
-                      <p>The median is a useful measure of central tendency for datasets that have outliers or extreme values, as it is less sensitive to these values than the mean. Additionally, the median is appropriate for ordinal data, where the values have an inherent order but the distance between values is not meaningful (e.g. ranks, grades).</p>
-                  </li>
-                  <li><strong>Mode: </strong>
-                      The mode is the value that occurs most frequently in a dataset. It is used to represent the most common or typical value when the data are categorical or have a discrete distribution. Unlike mean and median, the mode does not take into account the actual numerical values of the data points, but only their frequencies.</p>
-                      <ul>
-                          <li><p><strong>How to calculate?:</strong> The mode can be calculated for any type of data, including nominal, ordinal, interval, and ratio data. In a dataset with a single mode, there is only one value that occurs more frequently than any other value. However, it is also possible to have datasets with multiple modes, where there are several values that occur with the same highest frequency.</p>
-                              <p><strong>Example:</strong> Here is an example of how to calculate the mode for a dataset of heights:</p>
-                          <ol>
-                              <li><p>Sort the dataset in ascending order: 62, 64, 66, 66, 68, 68, 68, 70, 70, 72.</p></li>
-                              <li><p>Count the frequency of each value: 62 (1), 64 (1), 66 (2), 68 (3), 70 (2), 72 (1).</p></li>
-                              <li><p>Identify the value with the highest frequency: 68.</p></li>
-                              <li><p>The mode of the dataset is 68, indicating that 68 is the most common height in the dataset.</p></li>
-                          </ol>
-                          <p>Note that in some cases, a dataset may not have a mode if all the values occur with the same frequency. In other cases, the mode may not be a meaningful measure of central tendency if there are extreme values or outliers that skew the distribution.</p>
-                          </li>
-                          <li><p>The mode is often used in conjunction with other measures of central tendency, such as mean and median, to gain a better understanding of the underlying distribution of the data. It is especially useful for describing skewed distributions, where the mean and median may not accurately represent the central tendency of the data.</p></li>
-                      </ul>
-                      <strong>Choice of which measure: </strong> The choice of which measure of central tendency to use depends on the nature of the data and the research question. The mean is commonly used when the data are normally distributed and have a symmetrical distribution. The median is used when the data are skewed or have outliers. The mode is used when the data are categorical or have a discrete distribution.
-                  </li>
-          <li><strong>Measures of variability: </strong>
-              <p>Measures of variability are statistical measures that describe the spread or dispersion of a dataset. Some common measures of variability include:</p>
-              <ul>
-                <li><p><strong>Range:</strong> The range is the difference between the maximum and minimum values in a dataset. It is the simplest measure of variability but can be heavily influenced by outliers. It is calculated using the formula:</p>
-                    $$\text{Range} = \text{max value} - \text{min value}$$
-                    <p><strong>Example:</strong> if a dataset consists of the following values: 2, 5, 7, 8, 12, the range would be calculated as:</p>
-                    <p>Range = 12 - 2 = 10</p>
-                </li>
-                <li><p><strong>Variance:</strong> The variance measures how much the values in a dataset vary from the mean. It is calculated by taking the average of the squared differences between each value and the mean. It is calculated using the formula:</p>
-                    $$\text{Variance} = \sum \frac{(x-\mu)^2}{n}$$
-                    <p>Variance is commonly used in statistical analysis and can be influenced by extreme values.</p>
-                    <p>where \(\sum\) represents the sum of, \(x\) represents each value in the dataset, \(\mu\) represents the mean of the dataset, and \(n\) represents the number of values in the dataset.</p>
-                    <p><strong>Example:</strong> If a dataset consists of the following values: 10, 15, 20, 25, 30, and the mean is calculated to be 20, the variance would be calculated as:</p>
-                    $$Variance = [(10-20)^2 + (15-20)^2 + (20-20)^2 + (25-20)^2 + (30-20)^2] / 5 = 200 / 5 = 40$$
-                </li>
-                <li><p><strong>Standard deviation:</strong> Standard deviation is a measure of how spread out a set of data is from its mean or average. It tells you how much the data deviates from the average. A low standard deviation indicates that the data is clustered closely around the mean, while a high standard deviation indicates that the data is spread out over a larger range of values. It is a commonly used measure of variability and is often preferred over the variance because it is expressed in the same units as the original data. The formula for standard deviation is:</p>
-                    $$\sigma = \sqrt{\frac{\sum (x-\mu)^2}{n}}$$
-                    <p>(Standard deviation of the population)</p>
-                    <p>where:</p>
-                    <ul>
-                        <li>\(\sigma\) is the standard deviation</li>
-                        <li>\(\sum\) is the sum of all the data points</li>
-                        <li>\(x\) is each individual data point</li>
-                        <li>\(\mu\) is the mean or average of the data</li>
-                        <li>\(n\) is the total number of data points</li>
-                    </ul>
-                    <p><strong>Method:</strong> To find the standard deviation, you first subtract each data point from the mean, square the result, sum up all the squared differences, divide by the total number of data points, and finally, take the square root of the result.</p>
-                    <p><strong>Example:</strong> let's say you have the following set of data: {2, 4, 6, 8, 10}.</p>
-                    <ul>
-                      <li>First, find the mean: \(\mu = (2 + 4 + 6 + 8 + 10) / 5 = 6\).</li>
-                      <li>Next, calculate the difference between each data point and the mean: (2 - 6) = -4, (4 - 6) = -2, (6 - 6) = 0, (8 - 6) = 2, (10 - 6) = 4.</li>
-                      <li>Then, square each of these differences and add up all the squared differences: \((-4)^2 = 16, (-2)^2 = 4, (0)^2 = 0, (2)^2 = 4, (4)^2 = 6.\)</li>
-                      <li>Divide by the total number of data points: 16 + 4 + 0 + 4 + 16 = 40.</li>
-                      <li>Finally, take the square root of the result: 40 / 5 = 8.</li>
-                      <li>So, the standard deviation of this set of data is approximately 2.83.</li>
-                    </ul>
-                </li>
-                <li><p><strong>Interquartile range (IQR):</strong> The IQR is the difference between the third quartile (the value above which 75% of the data falls) and the 
-                  first quartile (the value below which 25% of the data falls). It is a measure of the spread of the middle 50% of the data and is less influenced by extreme 
-                  values than the range.</p>
-                  <p>The formula for calculating the IQR is as follows:</p>
-                    
-                  $$\text{IQR} =Q_3 -Q_1$$
-                  
-                  <p>Where \(Q_3\) is the third quartile and \(Q_1\) is the first quartile. The quartiles are calculated by dividing the dataset into four equal parts. The first quartile (i.e. \(Q_1\)) represents the 25th percentile of the dataset, and the third quartile (i.e. \(Q_3\)) represents the 75th percentile.</p>
-                  <figure>
-                      <img src="assets/img/data-engineering/IQR.png" alt="" style="max-width: 90%; max-height: 90%;">
-                      <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://commons.wikimedia.org/wiki/File:Boxplot_vs_PDF.svg">Jhguch at en.wikipedia</a>, <a href="https://creativecommons.org/licenses/by-sa/2.5">CC BY-SA 2.5</a>, via Wikimedia Commons</figcaption>
-                  </figure>
-                  <p><strong>Example:</strong> Consider the following dataset: 1, 3, 5, 6, 7, 8, 9, 10, 11, 15.</p>
-                  <ul>
-                    <li>The first quartile (\(Q_1\)) is 4 and the third quartile (\(Q_3\)) is 10. Therefore, the IQR is:</li>
-                  </ul>
-                  
-                  $$IQR = Q_3 - Q_1 = 10 - 4 = 6$$
-                  <ul>
-                    <li>This means that the middle 50% of the dataset (between the 25th and 75th percentiles) falls within a range of 6.</li>
-                  </ul>
-                  <blockquote>
-                      <p><strong>Quartiles:</strong> Quartiles are a way to divide a dataset into four equal parts or quarters. Quartiles are used to understand the distribution of a dataset and to calculate other measures of variability such as the interquartile range.
-                      There are three quartiles that divide a dataset into four parts:</p>
-                      <ul>
-                          <li>The first quartile (\(Q_1\)) is the 25th percentile of the dataset. It divides the dataset into the bottom 25% and the top 75%.</li>
-                          <li>The second quartile (\(Q_2\)) is the median of the dataset. It divides the dataset into two equal parts.</li>
-                          <li>The third quartile (\(Q_3\)) is the 75th percentile of the dataset. It divides the dataset into the bottom 75% and the top 25%.</li>
-                      </ul>
-                  </blockquote>
-                </li>
-                <li><p><strong>Mean absolute deviation (MAD):</strong> The mean absolute deviation (MAD) is a measure of variability that indicates how much the observations in a dataset deviate, on average, from the mean of the dataset. The MAD is the average of the absolute differences between each value and the mean. It is a robust measure of variability that is less sensitive to outliers than the variance and standard deviation.</p>
-                    <p><strong>Formula:</strong> MAD is calculated by finding the absolute difference between each data point and the mean, then taking the average of those absolute differences. The formula for calculating MAD is as follows:</p>
-                
-                    $$\text{MAD} = \frac{1}{n}\sum_i^n |x_i - \mu|$$
-                
-                    <p>Where \(n\) is the number of observations in the dataset, \(x_i\) is the value of the ith observation, \(\mu\) is the mean of the dataset, and \(\sum\) represents the sum of the absolute differences.</p>
-                
-                    <p><strong>Example:</strong> For example, consider the following dataset: 2, 3, 5, 6, 7, 8, 9, 10, 11, 15</p>
-                    <p>To calculate the MAD, we first find the mean of the dataset:</p>
-                    <p>\(\mu\) = (2 + 3 + 5 + 6 + 7 + 8 + 9 + 10 + 11 + 15) / 10 = 7.6</p>
-                    <p>Next, we find the absolute difference between each data point and the mean: |2 - 7.6| = 5.6, |3 - 7.6| = 4.6, |5 - 7.6| = 2.6, |6 - 7.6| = 1.6, |7 - 7.6| = 0.6, |8 - 7.6| = 0.4, |9 - 7.6| = 1.4, |10 - 7.6| = 2.4, |11 - 7.6| = 3.4, |15 - 7.6| = 7.4.</p>
-                    <p>Then we take the average of those absolute differences:</p>
-                    <p>\(MAD = (1/10) \times (5.6 + 4.6 + 2.6 + 1.6 + 0.6 + 0.4 + 1.4 + 2.4 + 3.4 + 7.4) = 3.34\)</p>
-                    <p>The MAD for this dataset is 3.34, which means that, on average, each observation deviates from the mean by approximately 3.34.</p>
-                  </li>
-                </ul>
-                <p>These measures of variability are useful in providing information about how much the values in a dataset vary from each other. The appropriate measure 
-                  to use depends on the specific characteristics of the data and the research question being asked.</p>
-          </li>
-          <!-- Measures of variabilit end's here -->
-          <li><strong>Measures of distribution: </strong>
-            <p>Skewness and kurtosis are two statistical measures used to describe the shape of a probability distribution.</p>
-            <ul>
-              <li><p><strong>Skewness:</strong> Skewness measures the degree of asymmetry in a distribution. A distribution with a positive skewness has a longer tail 
-                on the positive side of the mean, while a negative skewness means the tail is longer on the negative side of the mean. A perfectly symmetrical distribution 
-                has a skewness of zero.</p>
-                <table>
-                  <tr>
-                    <td><img src="/assets/img/data-engineering/Pos-skew.jpeg" alt="Positive Skew"></td>
-                    <td><img src="/assets/img/data-engineering/neg-skew.jpeg" alt="Negative Skew"></td>
-                    <td><img src="/assets/img/data-engineering/zero-skew.png" alt="Zero Skew"></td>
-                  </tr>
-                </table>
-                <p>(<a href="https://www.analyticsvidhya.com/blog/2021/08/a-guide-to-complete-statistics-for-data-science-beginners/">Image credit</a>)</p>
-                <p>Here are three common measures of skewness:</p>
-                <ol>
-                  <li><p><strong>Pearson's moment coefficient of skewness:</strong></p>
-                
-                    $$\text{Skewness} = \frac{3(\text{Mean}-\text{Mode})}{\text{Standard deviation}}.$$
+        <h3>Measures of central tendency</h3>
+        <h4>1. Mean</h4>
+        The mean is the arithmetic average of a dataset and is calculated by adding up all the values in the dataset and dividing by the total number of values. If
+        \(x_1, x_2, x_3, ..... x_i ...., x_k\) have frequency \(f_1, f_2, f_3,…… f_k\) then</p>
         
-                    <p>This is the formula described above that uses the third moment of the distribution to measure skewness.</p>
-                  </li>
-                  <li><p><strong>Sample skewness:</strong> This is a formula that uses the sample mean, standard deviation, and third central moment to estimate the skewness of the distribution. The formula for sample skewness is:</p>
-                
-                    $$\text{Skewness} = \frac{n}{(n - 1) * (n - 2)}\times \left(\frac{\sum(x_i - \mu)^3}{\sigma_s^3}\right)$$
-                
-                    <p>(known as Fisher-Pearson standardized moment coefficient)</p>
-                
-                    <p>where \(n\) is the sample size, \(\mu\) is the sample mean, \(x_i\) is the \(i\)-th observation in the sample, and \(\sigma_s\) is the sample standard deviation.</p>
-                    <blockquote>
-                        <p><strong>Sample standard deviation:</strong> The sample standard deviation measures the spread of the data around the mean. It tells you how much the individual data points deviate from the mean, on average. Note that the sample standard deviation is calculated using \(n - 1\) in the denominator instead of \(n\), which is known as Bessel's correction. This is because using \(n\) instead of \(n-1\) tends to underestimate the true variance of the population from which the sample was drawn.</p>
-                        <p>Formula:</p>
-                            $$\sigma_s = \sqrt{\frac{\sum_i^n (x_i-\mu)}{n-1}}$$
-                        <p>Care should be taken when getting the standard deviation because the standard deviation is different from the standard deviation of a sample. If the problem describes a situation dealing with a sample or subset of a group, then the sample standard deviation, s, should be used.</p>
-                    </blockquote>
-                    <p><strong>How to Transform Skewed Data?</strong> The graph of skewed data may be transformed into a symmetrical, balanced bell curve shape by changing the data using various methods. The selection of which method to use depends on the characteristic of the data set and its behavior. Here are the most common ways of correcting the skewness of data distribution:</p>
-                    <ul>
-                        <li>Logarithmic transformation</li>
-                        <li>Square root transformation</li>
-                        <li>Inverse transformation</li>
-                        <li>Box-Cox transformation</li>
-                    </ul>
-                    <p>It is important to note that transforming the data may not always be necessary or appropriate. The choice of transformation depends on the distribution of the data, the research question, and the statistical model being used. In addition, some transformations may change the interpretation of the data, so it is important to carefully consider the implications of any transformations before applying them.</p>
-                  </li>
-                  <li><p><strong>Quartile skewness:</strong> This measure of skewness is based on the difference between the median and the mode of the distribution. Specifically, the quartile skewness is defined as:</p>
-                
-                    $$\text{Skewness} = \frac{Q_1 + Q_3 - 2 * \text{median}}{Q_3 - Q_1}$$
-                
-                    <p>where \(Q_1\) and \(Q_3\) are the first and third quartiles of the distribution, and the median is the second quartile.</p>
-                  </li>
-                </ol>
-                <p>Each of these measures of skewness has its own strengths and weaknesses, and the choice of measure may depend on the context and purpose of the analysis.</p>
-              </li>
-              <!-- Skewness end's here -->
-              <li><p><strong>Kurtosis:</strong> Kurtosis is a statistical measure that describes the shape of a distribution by measuring the degree of peakedness or flatness of the distribution compared to the normal distribution. A distribution with high kurtosis indicates that the data have many outliers or extreme values, while a distribution with low kurtosis indicates that the data are more spread out and have fewer outliers.</p>
-                <p><strong>How to calculate kurtosis:</strong> Mathematically speaking, kurtosis is the standardized fourth moment of a distribution. Moments are a set of measurements that tell you about the shape of a distribution.</p>
-                <p>Moments are standardized by dividing them by the standard deviation raised to the appropriate power.</p>
-                <ul>
-                  <li><p><strong>Kurtosis of a population:</strong> The following formula describes the kurtosis of a population:</p>
-                
-                    $$\text{Kurtosis} = \tilde{\mu}_4 = \frac{\mu_4}{\sigma^4}.$$
-                    <p>Where:</p>
-                    <ul>
-                        <li>\(\tilde{\mu}_4\) is the standardized fourth moment</li>
-                        <li>\(\mu_4\) is the unstandardized central fourth moment</li>
-                        <li>\(\sigma\) is the standard deviation</li>
-                    </ul>
-                  </li>
-                  <li><p><strong>Kurtosis of a sample:</strong> The kurtosis of a sample is an estimate of the kurtosis of the population.</p>
-                    <p>It might seem natural to calculate a sample’s kurtosis as the fourth moment of the sample divided by its standard deviation to the fourth power. However, this leads to a biased estimate.</p>
-                    <p>The formula for the unbiased estimate of excess kurtosis includes a lengthy correction based on the sample size:</p>
-                  
-                      $$\text{Kurtosis} = \frac{(n+1)(n-1)}{(n-1)(n-3)}\frac{\sum (x_i -\mu)^4}{(\sum (x_i - \mu)^2)^2}- 3\frac{(n-1)^2}{(n-2)(n-3)}$$
-                    <p>Where</p>
-                    <ul>
-                      <li>\(n\) is the sample size</li>
-                      <li>\(x_i\) are observations of the variable x</li>
-                      <li>\(\mu\) is the mean of the variable x.</li>
-                    </ul>
-                  </li>
-                </ul>
-                <p><strong>Types of kurtosis:</strong> Examples of kurtosis include:</p>
-                <ol>
-                  <li><p><strong>Mesokurtic distribution:</strong> A mesokurtic distribution has a kurtosis value of zero and is similar in shape to the normal distribution. It has a moderate degree of peakedness and is neither too flat nor too peaked.</p>
-                  </li>
-                  <li><p><strong>Leptokurtic distribution:</strong> A leptokurtic distribution has a kurtosis value greater than zero and is more peaked than the normal distribution. It has heavier tails and more outliers than a normal distribution.</p>
-                  </li>
-                  <li><p><strong>Platykurtic distribution:</strong> A platykurtic distribution has a kurtosis value less than zero and is flatter than the normal distribution. It has fewer outliers and less extreme values than a normal distribution.</p>
-                  </li>
-                  <figure>
-                    <img src="assets/img/data-engineering/kurtosis.png" alt="" style="max-width: 90%; max-height: 90%;">
-                    <figcaption style="text-align: center;"><strong>Image credit: </strong> scribbr</figcaption>
-                  </figure>
-                </ol>
-              
-                <p>It's important to note that kurtosis can only be interpreted in the context of the specific distribution being analyzed. A high or low kurtosis value does not necessarily indicate that the data are problematic or that any action needs to be taken. Rather, kurtosis can provide insight into the shape of the distribution and can help to identify potential issues with the data.</p>
-              </li>        
+          $$\mu = \sum_i \frac{f_i x_i}{N}$$
+          
+          i.e. 
+          
+          $$\text{Mean} = \frac{\text{sum of all values}}{\text{total number of values}}$$
+          
+          <p><strong>Example:</strong> if we have a dataset of test scores for a class of students: 70, 80, 90, 85, and 75, we can calculate the mean by adding up all the scores and dividing by the total number of scores: Mean = (70 + 80 + 90 + 85 + 75) / 5 = 80. So the mean test score for the class is 80.</p>
+          <p>The mean is commonly used in statistics to summarize and describe a dataset, and is often used as a benchmark for making comparisons between different groups or distributions. However, the mean can be affected by extreme values or outliers, which can skew the results. In such cases, it may be more appropriate to use other measures of central tendency, such as the median or mode, to represent the typical or central value of the dataset.</p>
+        
+        <h4>2. Median</h4>
+        The median is the middle value of a dataset when the values are arranged in order of magnitude. It is used to represent the typical or central value when the data are skewed or have outliers.</p>
+        <ul>
+            <li><strong>How to calculate?:</strong> To calculate the median, follow these steps:</li>
+        </ul>
+        <ul>
+            <li>Arrange the values in the dataset in order from smallest to largest (or vice versa).</li>
+            <li>If the dataset has an odd number of values, the median is the middle value. For example, in the dataset {1, 3, 5, 7, 9}, the median is 5 because it is the middle value.</li>
+            <li>If the dataset has an even number of values, the median is the average of the two middle values. For example, in the dataset {1, 3, 5, 7, 9, 11}, the two middle values are 5 and 7, so the median is (5+7)/2 = 6.</li>
+        </ul>
+        <p>The median is a useful measure of central tendency for datasets that have outliers or extreme values, as it is less sensitive to these values than the mean. Additionally, the median is appropriate for ordinal data, where the values have an inherent order but the distance between values is not meaningful (e.g. ranks, grades).</p>
+
+        <h4>3. Mode</h4>
+        <p>The mode is the value that occurs most frequently in a dataset. It is used to represent the most common or typical value when the data are categorical or have a discrete distribution. Unlike mean and median, the mode does not take into account the actual numerical values of the data points, but only their frequencies.</p></p>
+
+        <ul>
+          <li><p><strong>How to calculate?:</strong> The mode can be calculated for any type of data, including nominal, ordinal, interval, and ratio data. In a dataset with a single mode, there is only one value that occurs more frequently than any other value. However, it is also possible to have datasets with multiple modes, where there are several values that occur with the same highest frequency.</p>
+              <p><strong>Example:</strong> Here is an example of how to calculate the mode for a dataset of heights:</p>
+          <ol>
+              <li><p>Sort the dataset in ascending order: 62, 64, 66, 66, 68, 68, 68, 70, 70, 72.</p></li>
+              <li><p>Count the frequency of each value: 62 (1), 64 (1), 66 (2), 68 (3), 70 (2), 72 (1).</p></li>
+              <li><p>Identify the value with the highest frequency: 68.</p></li>
+              <li><p>The mode of the dataset is 68, indicating that 68 is the most common height in the dataset.</p></li>
+          </ol>
+          <p>Note that in some cases, a dataset may not have a mode if all the values occur with the same frequency. In other cases, the mode may not be a meaningful measure of central tendency if there are extreme values or outliers that skew the distribution.</p>
+          </li>
+          <li><p>The mode is often used in conjunction with other measures of central tendency, such as mean and median, to gain a better understanding of the underlying distribution of the data. It is especially useful for describing skewed distributions, where the mean and median may not accurately represent the central tendency of the data.</p></li>
+        </ul>
+        <strong>Choice of which measure: </strong> The choice of which measure of central tendency to use depends on the nature of the data and the research question. The mean is commonly used when the data are normally distributed and have a symmetrical distribution. The median is used when the data are skewed or have outliers. The mode is used when the data are categorical or have a discrete distribution.
+
+
+        <h3>Measures of variability</h3>
+        <p>Measures of variability are statistical measures that describe the spread or dispersion of a dataset. Some common measures of variability include:</p>
+        <h4>Range</h4>
+        The range is the difference between the maximum and minimum values in a dataset. It is the simplest measure of variability but can be heavily influenced by outliers. It is calculated using the formula:</p>
+        
+        $$\text{Range} = \text{max value} - \text{min value}$$
+        
+        <p><strong>Example:</strong> if a dataset consists of the following values: 2, 5, 7, 8, 12, the range would be calculated as:</p>
+        
+        <p>Range = 12 - 2 = 10</p>
+
+        <h4>Standard deviation</h4>
+        Standard deviation is a measure of how spread out a set of data is from its mean or average. It tells you how much the data deviates from the average. A low standard deviation indicates that the data is clustered closely around the mean, while a high standard deviation indicates that the data is spread out over a larger range of values. It is a commonly used measure of variability and is often preferred over the variance because it is expressed in the same units as the original data. The formula for standard deviation is:</p>
+        $$\sigma = \sqrt{\frac{\sum (x-\mu)^2}{n}}$$
+        <p>(Standard deviation of the population)</p>
+        <p>where:</p>
+        <ul>
+            <li>\(\sigma\) is the standard deviation</li>
+            <li>\(\sum\) is the sum of all the data points</li>
+            <li>\(x\) is each individual data point</li>
+            <li>\(\mu\) is the mean or average of the data</li>
+            <li>\(n\) is the total number of data points</li>
+        </ul>
+        <p><strong>Method:</strong> To find the standard deviation, you first subtract each data point from the mean, square the result, sum up all the squared differences, divide by the total number of data points, and finally, take the square root of the result.</p>
+        <p><strong>Example:</strong> let's say you have the following set of data: {2, 4, 6, 8, 10}.</p>
+        <ul>
+          <li>First, find the mean: \(\mu = (2 + 4 + 6 + 8 + 10) / 5 = 6\).</li>
+          <li>Next, calculate the difference between each data point and the mean: (2 - 6) = -4, (4 - 6) = -2, (6 - 6) = 0, (8 - 6) = 2, (10 - 6) = 4.</li>
+          <li>Then, square each of these differences and add up all the squared differences: \((-4)^2 = 16, (-2)^2 = 4, (0)^2 = 0, (2)^2 = 4, (4)^2 = 6.\)</li>
+          <li>Divide by the total number of data points: 16 + 4 + 0 + 4 + 16 = 40.</li>
+          <li>Finally, take the square root of the result: 40 / 5 = 8.</li>
+          <li>So, the standard deviation of this set of data is approximately 2.83.</li>
+        </ul>
+
+
+        <h4>Interquartile range (IQR)</h4>
+        The IQR is the difference between the third quartile (the value above which 75% of the data falls) and the 
+        first quartile (the value below which 25% of the data falls). It is a measure of the spread of the middle 50% of the data and is less influenced by extreme 
+        values than the range.</p>
+        <p>The formula for calculating the IQR is as follows:</p>
+        $$\text{IQR} =Q_3 -Q_1$$
+
+        <p>Where \(Q_3\) is the third quartile and \(Q_1\) is the first quartile. The quartiles are calculated by dividing the dataset into four equal parts. The first quartile (i.e. \(Q_1\)) represents the 25th percentile of the dataset, and the third quartile (i.e. \(Q_3\)) represents the 75th percentile.</p>
+          <figure>
+              <img src="assets/img/data-engineering/IQR.png" alt="" style="max-width: 90%; max-height: 90%;">
+              <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://commons.wikimedia.org/wiki/File:Boxplot_vs_PDF.svg">Jhguch at en.wikipedia</a>, <a href="https://creativecommons.org/licenses/by-sa/2.5">CC BY-SA 2.5</a>, via Wikimedia Commons</figcaption>
+          </figure>
+          <p><strong>Example:</strong> Consider the following dataset: 1, 3, 5, 6, 7, 8, 9, 10, 11, 15.</p>
+          <ul>
+            <li>The first quartile (\(Q_1\)) is 4 and the third quartile (\(Q_3\)) is 10. Therefore, the IQR is:</li>
+          </ul>
+          
+          $$IQR = Q_3 - Q_1 = 10 - 4 = 6$$
+          <ul>
+            <li>This means that the middle 50% of the dataset (between the 25th and 75th percentiles) falls within a range of 6.</li>
+          </ul>
+          <blockquote>
+              <p><strong>Quartiles:</strong> Quartiles are a way to divide a dataset into four equal parts or quarters. Quartiles are used to understand the distribution of a dataset and to calculate other measures of variability such as the interquartile range.
+              There are three quartiles that divide a dataset into four parts:</p>
+              <ul>
+                  <li>The first quartile (\(Q_1\)) is the 25th percentile of the dataset. It divides the dataset into the bottom 25% and the top 75%.</li>
+                  <li>The second quartile (\(Q_2\)) is the median of the dataset. It divides the dataset into two equal parts.</li>
+                  <li>The third quartile (\(Q_3\)) is the 75th percentile of the dataset. It divides the dataset into the bottom 75% and the top 25%.</li>
+              </ul>
+          </blockquote>
+
+
+          <h4>Mean absolute deviation (MAD)</h4>
+          The mean absolute deviation (MAD) is a measure of variability that indicates how much the observations in a dataset deviate, on average, from the mean of the dataset. The MAD is the average of the absolute differences between each value and the mean. It is a robust measure of variability that is less sensitive to outliers than the variance and standard deviation.</p>
+          <p><strong>Formula:</strong> MAD is calculated by finding the absolute difference between each data point and the mean, then taking the average of those absolute differences. The formula for calculating MAD is as follows:</p>
+      
+          $$\text{MAD} = \frac{1}{n}\sum_i^n |x_i - \mu|$$
+      
+          <p>Where \(n\) is the number of observations in the dataset, \(x_i\) is the value of the ith observation, \(\mu\) is the mean of the dataset, and \(\sum\) represents the sum of the absolute differences.</p>
+      
+          <p><strong>Example:</strong> For example, consider the following dataset: 2, 3, 5, 6, 7, 8, 9, 10, 11, 15</p>
+          <p>To calculate the MAD, we first find the mean of the dataset:</p>
+          <p>\(\mu\) = (2 + 3 + 5 + 6 + 7 + 8 + 9 + 10 + 11 + 15) / 10 = 7.6</p>
+          <p>Next, we find the absolute difference between each data point and the mean: |2 - 7.6| = 5.6, |3 - 7.6| = 4.6, |5 - 7.6| = 2.6, |6 - 7.6| = 1.6, |7 - 7.6| = 0.6, |8 - 7.6| = 0.4, |9 - 7.6| = 1.4, |10 - 7.6| = 2.4, |11 - 7.6| = 3.4, |15 - 7.6| = 7.4.</p>
+          <p>Then we take the average of those absolute differences:</p>
+          <p>\(MAD = (1/10) \times (5.6 + 4.6 + 2.6 + 1.6 + 0.6 + 0.4 + 1.4 + 2.4 + 3.4 + 7.4) = 3.34\)</p>
+          <p>The MAD for this dataset is 3.34, which means that, on average, each observation deviates from the mean by approximately 3.34.</p>
+          <p>These measures of variability are useful in providing information about how much the values in a dataset vary from each other. The appropriate measure 
+            to use depends on the specific characteristics of the data and the research question being asked.</p>
+
+          <h3>Measures of distribution</h3>
+          <p>Skewness and kurtosis are two statistical measures used to describe the shape of a probability distribution.</p>
+          
+          <h4>Skewness</h4>
+
+          <p>Skewness measures the degree of asymmetry in a distribution. A distribution with a positive skewness has a longer tail 
+          on the positive side of the mean, while a negative skewness means the tail is longer on the negative side of the mean. A perfectly symmetrical distribution 
+          has a skewness of zero.</p>
+          <table>
+            <tr>
+              <td><img src="/assets/img/data-engineering/Pos-skew.jpeg" alt="Positive Skew"></td>
+              <td><img src="/assets/img/data-engineering/neg-skew.jpeg" alt="Negative Skew"></td>
+              <td><img src="/assets/img/data-engineering/zero-skew.png" alt="Zero Skew"></td>
+            </tr>
+          </table>
+
+          <p>(<a href="https://www.analyticsvidhya.com/blog/2021/08/a-guide-to-complete-statistics-for-data-science-beginners/">Image credit</a>)</p>
+          <p>Here are three common measures of skewness:</p>
+          <ol>
+            <li><p><strong>Pearson's moment coefficient of skewness:</strong></p>
+          
+              $$\text{Skewness} = \frac{3(\text{Mean}-\text{Mode})}{\text{Standard deviation}}.$$
+  
+              <p>This is the formula described above that uses the third moment of the distribution to measure skewness.</p>
             </li>
-        </ol>
-        <p>Descriptive statistics are commonly used in fields such as business, economics, psychology, sociology, and healthcare, among others. They are an important tool for making informed decisions and drawing meaningful conclusions from data.</p>
+            <li><p><strong>Sample skewness:</strong> This is a formula that uses the sample mean, standard deviation, and third central moment to estimate the skewness of the distribution. The formula for sample skewness is:</p>
+          
+              $$\text{Skewness} = \frac{n}{(n - 1) * (n - 2)}\times \left(\frac{\sum(x_i - \mu)^3}{\sigma_s^3}\right)$$
+          
+              <p>(known as Fisher-Pearson standardized moment coefficient)</p>
+          
+              <p>where \(n\) is the sample size, \(\mu\) is the sample mean, \(x_i\) is the \(i\)-th observation in the sample, and \(\sigma_s\) is the sample standard deviation.</p>
+              <blockquote>
+                  <p><strong>Sample standard deviation:</strong> The sample standard deviation measures the spread of the data around the mean. It tells you how much the individual data points deviate from the mean, on average. Note that the sample standard deviation is calculated using \(n - 1\) in the denominator instead of \(n\), which is known as Bessel's correction. This is because using \(n\) instead of \(n-1\) tends to underestimate the true variance of the population from which the sample was drawn.</p>
+                  <p>Formula:</p>
+                      $$\sigma_s = \sqrt{\frac{\sum_i^n (x_i-\mu)}{n-1}}$$
+                  <p>Care should be taken when getting the standard deviation because the standard deviation is different from the standard deviation of a sample. If the problem describes a situation dealing with a sample or subset of a group, then the sample standard deviation, s, should be used.</p>
+              </blockquote>
+              <p><strong>How to Transform Skewed Data?</strong> The graph of skewed data may be transformed into a symmetrical, balanced bell curve shape by changing the data using various methods. The selection of which method to use depends on the characteristic of the data set and its behavior. Here are the most common ways of correcting the skewness of data distribution:</p>
+              <ul>
+                  <li>Logarithmic transformation</li>
+                  <li>Square root transformation</li>
+                  <li>Inverse transformation</li>
+                  <li>Box-Cox transformation</li>
+              </ul>
+              <p>It is important to note that transforming the data may not always be necessary or appropriate. The choice of transformation depends on the distribution of the data, the research question, and the statistical model being used. In addition, some transformations may change the interpretation of the data, so it is important to carefully consider the implications of any transformations before applying them.</p>
+            </li> 
+          </ol>     
+          
+          <h4>Quartile skewness</h4>
+           This measure of skewness is based on the difference between the median and the mode of the distribution. Specifically, the quartile skewness is defined as:</p>
+                
+           $$\text{Skewness} = \frac{Q_1 + Q_3 - 2 * \text{median}}{Q_3 - Q_1}$$
+        
+           <p>where \(Q_1\) and \(Q_3\) are the first and third quartiles of the distribution, and the median is the second quartile.</p>
+           <p>Each of these measures of skewness has its own strengths and weaknesses, and the choice of measure may depend on the context and purpose of the analysis.</p>
+
+           <h4>Kurtosis</h4>
+              Kurtosis is a statistical measure that describes the shape of a distribution by measuring the degree of peakedness or flatness of the distribution compared to the normal distribution. A distribution with high kurtosis indicates that the data have many outliers or extreme values, while a distribution with low kurtosis indicates that the data are more spread out and have fewer outliers.</p>
+              <p><strong>How to calculate kurtosis:</strong> Mathematically speaking, kurtosis is the standardized fourth moment of a distribution. Moments are a set of measurements that tell you about the shape of a distribution.</p>
+              <p>Moments are standardized by dividing them by the standard deviation raised to the appropriate power.</p>
+              <ul>
+                <li><p><strong>Kurtosis of a population:</strong> The following formula describes the kurtosis of a population:</p>
+              
+                  $$\text{Kurtosis} = \tilde{\mu}_4 = \frac{\mu_4}{\sigma^4}.$$
+                  <p>Where:</p>
+                  <ul>
+                      <li>\(\tilde{\mu}_4\) is the standardized fourth moment</li>
+                      <li>\(\mu_4\) is the unstandardized central fourth moment</li>
+                      <li>\(\sigma\) is the standard deviation</li>
+                  </ul>
+                </li>
+                <li><p><strong>Kurtosis of a sample:</strong> The kurtosis of a sample is an estimate of the kurtosis of the population.</p>
+                  <p>It might seem natural to calculate a sample’s kurtosis as the fourth moment of the sample divided by its standard deviation to the fourth power. However, this leads to a biased estimate.</p>
+                  <p>The formula for the unbiased estimate of excess kurtosis includes a lengthy correction based on the sample size:</p>
+                
+                    $$\text{Kurtosis} = \frac{(n+1)(n-1)}{(n-1)(n-3)}\frac{\sum (x_i -\mu)^4}{(\sum (x_i - \mu)^2)^2}- 3\frac{(n-1)^2}{(n-2)(n-3)}$$
+                  <p>Where</p>
+                  <ul>
+                    <li>\(n\) is the sample size</li>
+                    <li>\(x_i\) are observations of the variable x</li>
+                    <li>\(\mu\) is the mean of the variable x.</li>
+                  </ul>
+                </li>
+              </ul>
+
+              <h5>Types of kurtosis</h5>
+              Examples of kurtosis include:
+              <ol>
+                <li><p><strong>Mesokurtic distribution:</strong> A mesokurtic distribution has a kurtosis value of zero and is similar in shape to the normal distribution. It has a moderate degree of peakedness and is neither too flat nor too peaked.</p>
+                </li>
+                <li><p><strong>Leptokurtic distribution:</strong> A leptokurtic distribution has a kurtosis value greater than zero and is more peaked than the normal distribution. It has heavier tails and more outliers than a normal distribution.</p>
+                </li>
+                <li><p><strong>Platykurtic distribution:</strong> A platykurtic distribution has a kurtosis value less than zero and is flatter than the normal distribution. It has fewer outliers and less extreme values than a normal distribution.</p>
+                </li>
+                <figure>
+                  <img src="assets/img/data-engineering/kurtosis.png" alt="" style="max-width: 90%; max-height: 90%;">
+                  <figcaption style="text-align: center;"><strong>Image credit: </strong> scribbr</figcaption>
+                </figure>
+              </ol>
+
+              <p>It's important to note that kurtosis can only be interpreted in the context of the specific distribution being analyzed. A high or low kurtosis value does not necessarily indicate that the data are problematic or 
+                that any action needs to be taken. Rather, kurtosis can provide insight into the shape of the distribution and can help to identify potential issues with the data.</p>
+
+                <p>Descriptive statistics are commonly used in fields such as business, economics, psychology, sociology, and healthcare, among others. They are an important tool for making informed decisions and drawing meaningful conclusions from data.</p>
     </section>
 
     <section id="Example">
