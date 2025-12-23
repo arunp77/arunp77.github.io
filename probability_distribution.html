@@ -170,7 +170,7 @@
 
                 <hr>
 
-                <section id="examples">
+                <section id="probability">
                     <h2>Probability distributions</h2>
                     <p>A probability distribution is a function that describes the likelihood of each possible outcome in a random experiment. Variables that follow a probability 
                         distribution are called random variables. In other words, it is a mathematical function that assigns probabilities to all possible outcomes of a random variable.
@@ -194,7 +194,7 @@
 
                     
                     <figure>
-                        <img src="assets/img/machine-ln/bernoulli_variable.png" alt="" class="img-fluid" style="max-width: 60%;">
+                        <img src="assets/img/machine-ln/bernoulli_variable.png" alt="" class="img-fluid" style="max-width: 50%;">
                         <figcaption>Image credit: Scribbr</figcaption>
                     </figure>                    
 
@@ -208,7 +208,7 @@
                     and \(^nC_x = \frac{n!}{x! (n-x)!}\) is the binomial coefficient, which represents the number of ways to choose \(x\) objects from a set of n objects.
 
                     <figure style="text-align: center;"> 
-                        <img src="assets/img/machine-ln/Binomial_distribution.png" alt="Binomial distribution" class="img-fluid" style="max-width: 60%;" > 
+                        <img src="assets/img/machine-ln/Binomial_distribution.png" alt="Binomial distribution" class="img-fluid" style="max-width: 50%;" > 
                         <figcaption style="text-align: center;"> A link to generate the plot: <a href="https://homepage.divms.uiowa.edu/~mbognar/applets/bin.html" target="_blank"> Binomial distribution applet </a> 
                         </figcaption>
                     </figure>
@@ -256,7 +256,7 @@
                     \(\lambda\) is the expected number of events, and \(x!\) is the factorial function.</p>
 
                     <figure>
-                        <img src="assets/img/machine-ln/possion_distribution.png" alt="" class="img-fluid" style="max-width: 60%;">
+                        <img src="assets/img/machine-ln/possion_distribution.png" alt="" class="img-fluid" style="max-width: 50%;">
                         <figcaption><a href="https://homepage.divms.uiowa.edu/~mbognar/applets/pois.html" target="_blank">A link to generate the plot</a>]</figcaption>
                     </figure>     
 
@@ -305,7 +305,7 @@
                     where \(x\) is  the random variable, \(\mu\) is the mean, \(\sigma\) is the standard deviation.
 
                     <figure>
-                        <img src="assets/img/machine-ln/normal_distribution.png" alt="" class="img-fluid" style="max-width: 60%;">
+                        <img src="assets/img/machine-ln/normal_distribution.png" alt="" class="img-fluid" style="max-width: 50%;">
                         <figcaption><a href="https://homepage.divms.uiowa.edu/~mbognar/applets/normal.html" target="_blank">A link to generate the plot</a>]</figcaption>
                     </figure>  
 
@@ -320,7 +320,7 @@
                     This means that if a distribution is approximately normal, we can use these percentages to estimate the proportion of data that falls within a certain range of values.
 
                     <figure>
-                        <img src="assets/img/machine-ln/deviation.png" alt="" class="img-fluid" style="max-width: 60%;">
+                        <img src="assets/img/machine-ln/deviation.png" alt="" class="img-fluid" style="max-width: 50%;">
                         <figcaption><a href="https://homepage.divms.uiowa.edu/~mbognar/applets/normal.html" target="_blank">A link to generate the plot</a>]</figcaption>
                     </figure>  
 
@@ -374,7 +374,7 @@
                     where \(x\) is the random variable, \(a\) is the lower bound of the range, and \(b\) is the upper bound of the range.
 
                     <figure>
-                        <img src="assets/img/machine-ln/uniform_distribution.png" alt="" class="img-fluid" style="max-width: 60%;">
+                        <img src="assets/img/machine-ln/uniform_distribution.png" alt="" class="img-fluid" style="max-width: 50%;">
                     </figure>  
 
 
@@ -392,7 +392,7 @@
                     where \(x\) is the random variable, and \(\lambda\) is the rate parameter.
 
                     <figure>
-                        <img src="assets/img/machine-ln/exponential_distribution.png" alt="" class="img-fluid" style="max-width: 60%;">
+                        <img src="assets/img/machine-ln/exponential_distribution.png" alt="" class="img-fluid" style="max-width: 50%;">
                     </figure>  
 
 
@@ -404,7 +404,7 @@
                     where \(x\) is the random variable, \(k\) is the shape parameter, \(\theta\) is the scale parameter, and \(\Gamma(k)\) is the gamma function.
 
                     <figure>
-                        <img src="assets/img/machine-ln/gamma_distribution.png" alt="" class="img-fluid" style="max-width: 60%;">
+                        <img src="assets/img/machine-ln/gamma_distribution.png" alt="" class="img-fluid" style="max-width: 50%;">
                     </figure>  
 
                     <p>The probability distribution is an essential concept in probability theory and is used to calculate the expected values, 
@@ -512,42 +512,7 @@
 
 
 
-                    <p><strong>Importing the libraries:</strong></p>
-                    <pre><code>
-                        # Standard Dependencies
-                        import os
-                        import numpy as np
-                        import pandas as pd
-                        from math import sqrt
-                        
-                        # Visualization
-                        from pylab import *
-                        import matplotlib.mlab as mlab
-                        import matplotlib.pyplot as plt
-                        import seaborn as sns
-                        
-                        # Statistics
-                        from statistics import median
-                        from scipy import signal
-                        # from scipy.misc import factorial
-                        import scipy.stats as stats
-                        from scipy.stats import sem, binom, lognorm, poisson, bernoulli, spearmanr
-                        from scipy.fftpack import fft, fftshift
-                        
-                        # Scikit-learn for Machine Learning models
-                        from sklearn.linear_model import LogisticRegression
-                        from sklearn.model_selection import train_test_split
-                        
-                        # Seed for reproducability
-                        seed = 12345
-                        np.random.seed(seed)            
-                    </code></pre>
-                    <p><strong>Loading the data files:</strong></p>
-                    <pre><code>
-                        # Read in csv of Toy Dataset
-                        # We will use this dataset throughout the tutorial
-                        toy_df = pd.read_csv('ml-data/toy_dataset.csv')            
-                    </code></pre>
+                   
                     
                     <h4>PMF (Probability Mass Function)</h4>
                     
