@@ -1606,6 +1606,16 @@ ul.upper-alpha {
   color: #fff;
 }
 
+.link-button.switch {
+  background-color: #e9ecef;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+.link-button.switch:hover {
+  background-color: #d6d6d6;
+}
+
 /*---------------------------------------------*/
 /*                     Text box                */
 /*---------------------------------------------*/
