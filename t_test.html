@@ -205,17 +205,21 @@
         t= \frac{\bar{x}_1-\bar{x}_2}{s_p/\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}
         $$
 
-        <p>
+        <!-- <p>
         t = ( x̄₁ − x̄₂ ) / ( s<sub>p</sub> √(1/n₁ + 1/n₂) )
-        </p>
+        </p> -->
 
         <p>
         where the pooled standard deviation is:
         </p>
 
-        <p>
+        $$
+        s_p = \sqrt{\frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}}
+        $$
+
+        <!-- <p>
         s<sub>p</sub> = √[ ((n₁ − 1)s₁² + (n₂ − 1)s₂²) / (n₁ + n₂ − 2) ]
-        </p>
+        </p> -->
 
         <h4>Degrees of Freedom</h4>
 
@@ -229,9 +233,13 @@
         When variances are not equal, Welch’s t-test is preferred:
         </p>
 
-        <p>
+        $$
+        t=\frac{\bar{x}_1-\bar{x}_2}{sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}}
+        $$
+
+        <!-- <p>
         t = ( x̄₁ − x̄₂ ) / √( s₁²/n₁ + s₂²/n₂ )
-        </p>
+        </p> -->
 
         <p>
         Degrees of freedom are approximated using the Welch–Satterthwaite equation.
@@ -266,6 +274,10 @@
         <p>
         Then compute:
         </p>
+
+        $$
+        t = \frac{\bar{d}}{s_d/\sqrt{n}}
+        $$
 
         <p>
         t = d̄ / ( s<sub>d</sub> / √n )
