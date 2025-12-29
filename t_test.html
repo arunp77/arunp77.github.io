@@ -132,46 +132,192 @@
             <li><strong>Paired t-test:</strong> Compares means from the same group at two different times.</li>
         </ul>        
 
-        <h2>3. Mathematical Formulation</h2>
+        <h2>3. Types of t-Tests: Mathematical Explanation</h2>
 
-        Independent Samples t-Test:
-        The independent samples t-test is used to compare the means of two independent groups. The null hypothesis is that the two groups have equal means, while the alternative hypothesis is that they have different means.
+        <p>
+        The t-test is used to determine whether there is a statistically significant difference
+        between means. Depending on the structure of the data and the research question,
+        three main types of t-tests are used.
+        </p>
 
-        The formula for the independent samples t-test is:
+        <hr>
+
+        <h3>1. One-Sample t-Test</h3>
+
+        <p>
+        The one-sample t-test is used when we want to compare the mean of a single sample
+        to a known or hypothesized population mean.
+        </p>
+
+        <h4>Hypotheses</h4>
+        <p>
+        H₀: μ = μ₀ &nbsp;&nbsp; (sample mean equals population mean) <br>
+        H₁: μ ≠ μ₀ &nbsp;&nbsp; (sample mean is different from population mean)
+        </p>
+
+        <h4>Test Statistic</h4>
+
+        <p>
+        The t-statistic is computed as:
+        </p>
+
+        $$t= \frac{\bar{x}-\mu_0}{s/\sqrt{n}}$$
+
+        <p>
+        where:
+        </p>
+
+        <ul>
+          <li>x̄ = sample mean</li>
+          <li>μ₀ = hypothesized population mean</li>
+          <li>s = sample standard deviation</li>
+          <li>n = sample size</li>
+        </ul>
+
+        <p>
+        This statistic measures how many standard errors the sample mean is away from the
+        hypothesized population mean.
+        </p>
+
+        <hr>
+
+        <h3>2. Independent (Two-Sample) t-Test</h3>
+
+        <p>
+        The independent t-test compares the means of two independent groups to determine
+        whether their population means differ significantly.
+        </p>
+
+        <h4>Hypotheses</h4>
+
+        <p>
+        H₀: μ₁ = μ₂ <br>
+        H₁: μ₁ ≠ μ₂
+        </p>
+
+        <h4>Test Statistic (Equal Variance Assumption)</h4>
+
+        <p>
+        When the population variances are assumed equal, a pooled variance is used.
+        </p>
 
         $$
-        t = \frac{\bar{X}_1 - \bar{X}_2}{s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}}
+        t= \frac{\bar{x}_1-\bar{x}_2}{s_p/\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}
         $$
 
-        Where:
-        - $\bar{x}_1$ and $\bar{x}_2$ are the means of the two groups
-        - $s_p$ is the pooled standard deviation
-        - $n_1$ and $n_2$ are the sample sizes of the two groups
+        <p>
+        t = ( x̄₁ − x̄₂ ) / ( s<sub>p</sub> √(1/n₁ + 1/n₂) )
+        </p>
 
-        Here pooled standard deviation is defined as:
+        <p>
+        where the pooled standard deviation is:
+        </p>
 
-        $$
-        s_p = \sqrt{\frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}}
-        $$
+        <p>
+        s<sub>p</sub> = √[ ((n₁ − 1)s₁² + (n₂ − 1)s₂²) / (n₁ + n₂ − 2) ]
+        </p>
 
-        The independent samples t-test assumes that the variances of the two groups are equal. If they are not, a modified version of the t-test called Welch's t-test can be used.
+        <h4>Degrees of Freedom</h4>
 
-        ### Paired Samples t-Test:
-        The paired samples t-test is used to compare the means of two related groups, such as before and after measurements of the same group. The null hypothesis is that the mean difference between the two groups is zero, while the alternative hypothesis is that the mean difference is different from zero.
+        <p>
+        df = n₁ + n₂ − 2
+        </p>
 
-        The formula for the paired samples t-test is:
+        <h4>Unequal Variance Case (Welch’s t-test)</h4>
 
-        $$
-        t = \frac{\bar{d}}{s_d / \sqrt{n}}
-        $$
+        <p>
+        When variances are not equal, Welch’s t-test is preferred:
+        </p>
 
-        where
-        - $\bar{d}$ = mean of differences, 
-        - $s_d$ = standard deviation of differences, 
-        - $n$ = sample size.
+        <p>
+        t = ( x̄₁ − x̄₂ ) / √( s₁²/n₁ + s₂²/n₂ )
+        </p>
 
-        The paired samples t-test assumes that the differences between the two groups are normally distributed.
+        <p>
+        Degrees of freedom are approximated using the Welch–Satterthwaite equation.
+        </p>
 
+        <hr>
+
+        <h3>3. Paired Sample t-Test</h3>
+
+        <p>
+        The paired t-test is used when observations come in pairs — for example,
+        before-and-after measurements on the same subjects.
+        </p>
+
+        <h4>Hypotheses</h4>
+
+        <p>
+        H₀: μ<sub>d</sub> = 0 &nbsp;&nbsp; (mean difference is zero)<br>
+        H₁: μ<sub>d</sub> ≠ 0
+        </p>
+
+        <h4>Test Statistic</h4>
+
+        <p>
+        First compute the difference for each pair:
+        </p>
+
+        <p>
+        d<sub>i</sub> = x<sub>1i</sub> − x<sub>2i</sub>
+        </p>
+
+        <p>
+        Then compute:
+        </p>
+
+        <p>
+        t = d̄ / ( s<sub>d</sub> / √n )
+        </p>
+
+        <p>
+        where:
+        </p>
+
+        <ul>
+          <li>d̄ = mean of the differences</li>
+          <li>s<sub>d</sub> = standard deviation of the differences</li>
+          <li>n = number of paired observations</li>
+        </ul>
+
+        <hr>
+
+        <h3>Summary Table</h3>
+
+        <table border="1" cellpadding="8" cellspacing="0">
+          <tr>
+            <th>Test Type</th>
+            <th>Used When</th>
+            <th>Key Assumption</th>
+          </tr>
+          <tr>
+            <td>One-sample t-test</td>
+            <td>Compare sample mean to known value</td>
+            <td>Normal population</td>
+          </tr>
+          <tr>
+            <td>Independent t-test</td>
+            <td>Compare two independent groups</td>
+            <td>Independent samples, normality</td>
+          </tr>
+          <tr>
+            <td>Paired t-test</td>
+            <td>Compare before–after or matched data</td>
+            <td>Differences are normally distributed</td>
+          </tr>
+        </table>
+
+        <hr>
+
+        <h3>Key Takeaway</h3>
+
+        <p>
+        The t-test family provides a powerful framework for comparing means under different
+        experimental conditions. Choosing the correct version depends on the structure of
+        the data and the relationship between observations.
+        </p>
+          
 
 
 
