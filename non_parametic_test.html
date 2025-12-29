@@ -260,191 +260,192 @@
 
             Similarly compute \( U_2 \), and use the smaller of the two.
 
-
-            <h4>2. </h4>
-
-            <p><strong>Purpose: </strong></p>
-
-            <p><strong>Hypotheses: </strong></p>
-
-
-            <h4>2. </h4>
-
-            <p><strong>Purpose: </strong></p>
-
-            <p><strong>Hypotheses: </strong></p>
-
-
-
-
-
-
-
-
-
-
-
----
-
-### When to Use
-
-✔ Two independent samples
-✔ Ordinal or continuous data
-✔ Non-normal distributions
-
----
-
-## 3. Kruskal–Wallis Test
-
-### Purpose
-
-The **Kruskal–Wallis test** extends the Mann–Whitney test to **three or more independent groups**.
-
-It is the non-parametric alternative to **one-way ANOVA**.
-
----
-
-### Hypotheses
-
-* **H₀:** All groups come from the same distribution
-* **H₁:** At least one group differs
-
----
-
-### Mathematical Idea
-
-All observations are ranked together.
-
-Let:
-
-* ( R_i ) = sum of ranks in group *i*
-* ( n_i ) = size of group *i*
-* ( N ) = total sample size
-
-Test statistic:
-
-[
-H = \frac{12}{N(N+1)} \sum_{i=1}^{k} \frac{R_i^2}{n_i} - 3(N+1)
-]
-
-This statistic approximately follows a **χ² distribution** with ( k - 1 ) degrees of freedom.
-
----
-
-### When to Use
-
-✔ More than two independent groups
-✔ Non-normal distributions
-✔ Ordinal or continuous data
-
----
-
-## 4. Spearman Rank Correlation (ρ)
-
-### Purpose
-
-Measures the **strength and direction of a monotonic relationship** between two variables.
-
-Unlike Pearson correlation, Spearman does **not assume linearity or normality**.
-
----
-
-### How It Works
-
-1. Convert raw data into ranks
-2. Compute correlation between ranks
-
-Formula:
-
-[
-\rho = 1 - \frac{6 \sum d_i^2}{n(n^2 - 1)}
-]
-
-Where:
-
-* ( d_i ) = difference between ranks
-* ( n ) = number of observations
-
----
-
-### Interpretation
-
-| ρ Value | Interpretation                          |
-| ------- | --------------------------------------- |
-| +1      | Perfect positive monotonic relationship |
-| 0       | No monotonic relationship               |
-| −1      | Perfect negative monotonic relationship |
-
----
-
-## 5. Summary Table
-
-| Test                 | Purpose                       | Parametric Equivalent | Data Type            |
-| -------------------- | ----------------------------- | --------------------- | -------------------- |
-| Wilcoxon Signed-Rank | Paired samples                | Paired t-test         | Ordinal / Continuous |
-| Mann–Whitney U       | Two independent samples       | Independent t-test    | Ordinal / Continuous |
-| Kruskal–Wallis       | ≥ 3 independent groups        | One-way ANOVA         | Ordinal / Continuous |
-| Spearman Correlation | Association between variables | Pearson correlation   | Ordinal / Continuous |
-
----
-
-## Key Takeaway
-
-> When data violate normality assumptions, **non-parametric tests provide reliable, distribution-free alternatives** to classical parametric tests — at the cost of slightly reduced statistical power.
-
----
-
-If you want, I can next:
-
-* Add **visual diagrams** for each test
-* Provide **Python implementations** with real datasets
-* Create a **decision flowchart** for choosing the correct test
-
-Just tell me 👍
-
-
-               
-
-
-            <!-------Reference ------->
-            <section id="reference">
-                <h2>References</h2>
-                <ol>
-                    <li><a href="https://www.simplilearn.com/tutorials/deep-learning-tutorial/convolutional-neural-network" target="_blank">Convolutional Neural Network Tutorial</a></li>
-                    <li><a href="https://www.datacamp.com/tutorial/cnn-tensorflow-python" target="_blank">Datacamp tutorial</a>.</li>
-                    <li><a href="https://www.analyticsvidhya.com/blog/2021/10/a-comprehensive-guide-on-deep-learning-optimizers/" target="_blank">Analyticsvidhya tutorials</a>.</li>
-                    <li><a href="https://learnopencv.com/getting-started-with-tensorflow-keras/" target="_blank">Getting started with Keras, Tensorflow and Deep Learning</a>.</li>
-                    <li><a href="https://www.geeksforgeeks.org/introduction-deep-learning/?ref=lbp" target="_blank">Introduction to Deep Learning</a></li>
-                    <li><a href="https://www.ibm.com/topics/deep-learning?cm_sp=ibmdev-_-developer-articles-_-ibmcom" target="_blank">What is deep learning?</a></li>
-                    <li><a href="https://developer.ibm.com/articles/cc-machine-learning-deep-learning-architectures/" target="_blank">Deep learning architectures</a></li>
-                    <li>Hands on Machine Learning with Scikit-Learn, Keras, & TensorFlow, Aurelien Geron</li>
-                </ol> 
-            </section>
+            <p><b>When to use: </b></p>
+
+            <ul>
+                <li>✔ Two independent samples</li>
+                <li>✔ Ordinal or continuous data</li>
+                <li>✔ Non-normal distributions</li>
+            </ul>
 
             <hr>
+
+
+            <h4>3. Kruskal–Wallis Test</h4>
+
+            <p><strong>Purpose: </strong>The Kruskal–Wallis test extends the Mann–Whitney test to three or more independent groups.</p>
+            It is the non-parametric alternative to one-way ANOVA.
+
+            <p><strong>Hypotheses: </strong></p>
+            <ul>
+                <li>H₀: All groups come from the same distribution</li>
+
+                <li>H₁: At least one group differs</li>
+            </ul>
+
+            <p><b>Mathematical Idea: </b>All observations are ranked together. Let:</p>
+            <ul>
+                <li>\(R_i\) = sum of rankeds in group \(i\)</li>
+                <li>\(n_i\) size of group \(i\)</li>
+                <li>\(N\)= total sample size</li>
+            </ul>
+
+            The Test statistic is defined as: 
+
+            $$
+            H = \frac{12}{N(N+1)} \sum_{i=1}^{k} \frac{R_i^2}{n_i} - 3(N+1)
+            $$      
+            
+            This statistic approximately follows a χ² distribution with \( k - 1 \) degrees of freedom.
+            
+            <p>When to Use:</p>
+            <ul>
+                <li>✔ More than two independent groups</li>
+                <li>✔ Non-normal distributions</li>
+                <li>✔ Ordinal or continuous data</li>
+            </ul>
+
+
+            <hr>
+
+            <h4>4. Spearman Rank Correlation (ρ)</h4>
+
+            <p><strong>Purpose: </strong>Measures the strength and direction of a monotonic relationship between two variables. 
+                Unlike Pearson correlation, Spearman does not assume linearity or normality.</p>
+
+            <p><strong>How It Works: </strong></p>
+            <ul>
+                <li>Convert raw data into ranks</li>
+                <li>Compute correlation between ranks</li>
+            </ul>
+
+            <p><b>Mathematical Idea: </b></p>
+            $$
+            \rho = 1 - \frac{6 \sum d_i^2}{n(n^2 - 1)}
+            $$
+
+
+
+
+
+
+
+        Where:
+        <ul>
+            <li>\( d_i \) = difference between ranks</li>
+            <li>\( n \) = number of observations</li>
+        </ul>
+
+        <p><b>Interpretation</b></p>
+
+        <table>
+        <thead>
+            <tr>
+            <th>ρ Value</th>
+            <th>Interpretation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <td>+1</td>
+            <td>Perfect positive monotonic relationship</td>
+            </tr>
+            <tr>
+            <td>0</td>
+            <td>No monotonic relationship</td>
+            </tr>
+            <tr>
+            <td>−1</td>
+            <td>Perfect negative monotonic relationship</td>
+            </tr>
+        </tbody>
+        </table>
+
+        <h3>Summary table</h3>
+        <table>
+        <thead>
+            <tr>
+            <th>Test</th>
+            <th>Purpose</th>
+            <th>Parametric Equivalent</th>
+            <th>Data Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <td>Wilcoxon Signed-Rank</td>
+            <td>Paired samples</td>
+            <td>Paired t-test</td>
+            <td>Ordinal / Continuous</td>
+            </tr>
+            <tr>
+            <td>Mann–Whitney U</td>
+            <td>Two independent samples</td>
+            <td>Independent t-test</td>
+            <td>Ordinal / Continuous</td>
+            </tr>
+            <tr>
+            <td>Kruskal–Wallis</td>
+            <td>≥ 3 independent groups</td>
+            <td>One-way ANOVA</td>
+            <td>Ordinal / Continuous</td>
+            </tr>
+            <tr>
+            <td>Spearman Correlation</td>
+            <td>Association between variables</td>
+            <td>Pearson correlation</td>
+            <td>Ordinal / Continuous</td>
+            </tr>
+        </tbody>
+        </table>
+
+        <h3>Key takeaway</h3>
+
+        When data violate normality assumptions, non-parametric tests provide reliable, distribution-free alternatives to classical parametric 
+        tests — at the cost of slightly reduced statistical power.
+
+
+        <hr>
+
+        <!-------Reference ------->
+        <section id="reference">
+            <h2>References</h2>
+            <ol>
+                <li><a href="https://www.simplilearn.com/tutorials/deep-learning-tutorial/convolutional-neural-network" target="_blank">Convolutional Neural Network Tutorial</a></li>
+                <li><a href="https://www.datacamp.com/tutorial/cnn-tensorflow-python" target="_blank">Datacamp tutorial</a>.</li>
+                <li><a href="https://www.analyticsvidhya.com/blog/2021/10/a-comprehensive-guide-on-deep-learning-optimizers/" target="_blank">Analyticsvidhya tutorials</a>.</li>
+                <li><a href="https://learnopencv.com/getting-started-with-tensorflow-keras/" target="_blank">Getting started with Keras, Tensorflow and Deep Learning</a>.</li>
+                <li><a href="https://www.geeksforgeeks.org/introduction-deep-learning/?ref=lbp" target="_blank">Introduction to Deep Learning</a></li>
+                <li><a href="https://www.ibm.com/topics/deep-learning?cm_sp=ibmdev-_-developer-articles-_-ibmcom" target="_blank">What is deep learning?</a></li>
+                <li><a href="https://developer.ibm.com/articles/cc-machine-learning-deep-learning-architectures/" target="_blank">Deep learning architectures</a></li>
+                <li>Hands on Machine Learning with Scikit-Learn, Keras, & TensorFlow, Aurelien Geron</li>
+            </ol> 
+        </section>
+
+        <hr>
         
-            <div style="background-color: #f0f0f0; padding: 15px; border-radius: 5px;">
+        <div style="background-color: #f0f0f0; padding: 15px; border-radius: 5px;">
 
-                <h3>Some other interesting things to know:</h3>
-                <ul style="list-style-type: disc; margin-left: 30px;">
-                    <li>Visit my website on <a href="sql-project.html">For Data, Big Data, Data-modeling, Datawarehouse, SQL, cloud-compute.</a></li>
-                    <li>Visit my website on <a href="Data-engineering.html">Data engineering</a></li>
-                </ul>
-            </div>
-            <p></p>
-
-            <div class="navigation">
-                <a href="index.html#portfolio" class="clickable-box">
-                    <span class="arrow-left">Portfolio section</span>
-                </a>
-                
-                <a href="machine-learning.html" class="clickable-box">
-                    <span class="arrow-right">Content</span>
-                </a>
-            </div>
+            <h3>Some other interesting things to know:</h3>
+            <ul style="list-style-type: disc; margin-left: 30px;">
+                <li>Visit my website on <a href="sql-project.html">For Data, Big Data, Data-modeling, Datawarehouse, SQL, cloud-compute.</a></li>
+                <li>Visit my website on <a href="Data-engineering.html">Data engineering</a></li>
+            </ul>
         </div>
-        </section><!-- End Portfolio Details Section -->
-    </main><!-- End #main --
+        <p></p>
+
+        <div class="navigation">
+            <a href="index.html#portfolio" class="clickable-box">
+                <span class="arrow-left">Portfolio section</span>
+            </a>
+            
+            <a href="machine-learning.html" class="clickable-box">
+                <span class="arrow-right">Content</span>
+            </a>
+        </div>
+    </div>
+</section><!-- End Portfolio Details Section -->
+</main><!-- End #main --
 
     <!-- ======= Footer ======= -->
     <footer id="footer">
