@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Deep Learning</title>
+  <title>ANOVA test</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -91,7 +91,7 @@
           <div class="container">
     
             <div class="d-flex justify-content-between align-items-center">
-              <h2>Machine Learning</h2>
+              <h2><a href="index.html" target="_blank">Home</a></h2>
               <ol>
                 <li><a href="machine-learning.html" class="clickable-box">Content section</a></li>
                 <li><a href="index.html#portfolio" class="clickable-box">Portfolio section</a></li>
@@ -135,8 +135,11 @@
                     <div class="portfolio-details-slider swiper">
                         <div class="swiper-wrapper align-items-center"> 
                             <figure>
-                            <img src="assets/img/machine-ln/cnn-2.jpg" alt="" style="max-width: 70%; max-height: auto;">
-                            <figcaption style="text-align: center;">(<strong>Image credit: </strong> © <a href="https://www.kaggle.com/code/kanncaa1/convolutional-neural-network-cnn-tutorial">Kaggle</a>)</figcaption>
+                            <img src="assets/img/machine-ln/t_vs_Anov.png" alt="" style="max-width: 70%; max-height: auto;">
+                            <figcaption style="text-align: center;">
+                                (<strong>Image credit: </strong>
+                                © <a href="https://www.clyte.tech/post/when-to-use-t-test-vs-anova?srsltid=AfmBOopedwIILxYkItnLLtsZ111XQxx2U-Ym8HgUlfLpr6POqzGHhFJG">clyte.tech</a>)
+                            </figcaption>
                             </figure>
                         </div>
                         <div class="swiper-pagination"></div>
@@ -471,20 +474,154 @@
             </li>
             </ul>
 
+            <h2>When to use t-test vs ANOVA: Choosing the Right Statistical Test</h2>
+            When comparing group means, one of the most common questions in statistics is whether to use a t-test or ANOVA. 
+            Both are hypothesis testing methods, but they are designed for different situations. Choosing the correct test is essential to avoid incorrect conclusions.
+
+            <p>The most important difference between a t-test vs ANOVA is the number of groups you're comparing:</p>
+            <ul>
+                <li>T-Test: Use when comparing the means of two groups.</li>
+                <li>ANOVA: Use when comparing the means of three or more groups.</li>
+            </ul>
+
+            <h4>Key Differences at a Glance</h4>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>t-test</th>
+                        <th>ANOVA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Number of groups</td>
+                        <td>2</td>
+                        <td>3 or more</td>
+                    </tr>
+                    <tr>
+                        <td>Main purpose</td>
+                        <td>Compare two means</td>
+                        <td>Compare multiple means</td>
+                    </tr>
+                    <tr>
+                        <td>Output</td>
+                        <td>t-statistic, p-value</td>
+                        <td>F-statistic, p-value</td>
+                    </tr>
+                    <tr>
+                        <td>Type I error risk</td>
+                        <td>Low (for 2 groups)</td>
+                        <td>Controlled across many groups</td>
+                    </tr>
+                    <tr>
+                        <td>Post-hoc tests needed?</td>
+                        <td>No</td>
+                        <td>Yes (if significant)</td>
+                    </tr>
+                </tbody>
+            </table>         
+            
+            
+            <h4>hy Not Use Multiple t-Tests Instead of ANOVA?</h4>
+            Using multiple t-tests increases the Type I error rate (false positives).
+            <p><strong>Example: </strong></p>
+            <ul>
+                <li>Testing 3 groups using pairwise t-tests requires 3 comparisons.</li>
+                <li>Each test at α = 0.05 increases the chance of false significance.</li>
+                <li>ANOVA controls this by testing all groups simultaneously.</li>
+            </ul>
+
+            <h4>Decision Guide (Quick Rule)</h4>
+            
+            <table>
+            <thead>
+                <tr>
+                <th>Situation</th>
+                <th>Recommended Test</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>One group vs known value</td>
+                <td>One-sample t-test</td>
+                </tr>
+                <tr>
+                <td>Two independent groups</td>
+                <td>Independent t-test</td>
+                </tr>
+                <tr>
+                <td>Same group measured twice</td>
+                <td>Paired t-test</td>
+                </tr>
+                <tr>
+                <td>Three or more groups</td>
+                <td>One-way ANOVA</td>
+                </tr>
+                <tr>
+                <td>Multiple factors</td>
+                <td>Two-way ANOVA</td>
+                </tr>
+            </tbody>
+            </table>      
+            
+            <p><b>Example:</b> Sepal length of Iris species</p>
+
+            <pre><code>
+                import seaborn as sns
+                import matplotlib.pyplot as plt
+                from scipy.stats import ttest_ind, f_oneway
+
+                # Load dataset
+                iris = sns.load_dataset("iris")
+
+                # Split groups
+                setosa = iris[iris["species"] == "setosa"]["sepal_length"]
+                versicolor = iris[iris["species"] == "versicolor"]["sepal_length"]
+                virginica = iris[iris["species"] == "virginica"]["sepal_length"]
+
+                # ----- T-TEST -----
+                t_stat, p_val = ttest_ind(setosa, versicolor)
+                print("T-test (Setosa vs Versicolor)")
+                print("t =", t_stat, "p =", p_val)
+
+                # ----- ANOVA -----
+                f_stat, p_val_anova = f_oneway(setosa, versicolor, virginica)
+                print("\nANOVA Result")
+                print("F =", f_stat, "p =", p_val_anova)
+            </code></pre>
+
+            <p>Code output:</p>
+
+            <pre><code>
+                T-test (Setosa vs Versicolor)
+                t = -10.52098626754911 p = 8.985235037487079e-18
+
+                ANOVA Result
+                F = 119.26450218450468 p = 1.6696691907693826e-31
+            </code></pre>
+
+            Chart to compare:
+
+            <pre><code>
+                import seaborn as sns
+                import matplotlib.pyplot as plt
+
+                sns.boxplot(x="species", y="sepal_length", data=iris)
+                plt.title("Sepal Length Comparison Across Species")
+                plt.show()
+            </code></pre>
 
 
-
-
-
-
-
-
+            
 
             <figure>
-                <img src="assets/img/machine-ln/deep-convoluition.png" alt="" style="max-width: 70%; max-height: auto;">
-                <figcaption style="text-align: center;">Schematic diagram of a basic convolutional neural network (CNN) architecture (<strong>Image Credit: </strong> © <a href="https://www.mdpi.com/2076-3417/9/21/4500">Van Hiep Phung and Eun Joo Rhee</a>) </figcaption>
-            </figure>
-            
+                <img src="assets/img/machine-ln/t_test_vs_anova_IRIS_data.png" alt="" style="max-width: 60%; max-height: auto;">
+                <figcaption style="text-align: center;">This plot visually explains why ANOVA is needed — multiple group means compared at once.</figcaption>
+            </figure>            
+
+
 
 
             
