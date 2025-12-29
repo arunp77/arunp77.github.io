@@ -383,6 +383,99 @@
 
         </ol>
 
+        <div class="example-section">
+
+        <p><strong>Example:</strong> To illustrate this process, consider the following scenario.</p>
+
+        <p>
+            Suppose we want to test whether there is a difference in the average height of men and women.
+            We collect a sample of 100 men and 100 women and measure their heights.
+            The goal is to determine whether the observed difference in sample means is statistically significant.
+        </p>
+
+        <ul>
+            <li>
+            <strong>Null hypothesis (H₀):</strong>
+            μ₁ = μ₂  
+            <br>
+            (There is no difference in height between men and women.)
+            </li>
+
+            <li>
+            <strong>Alternative hypothesis (H₁):</strong>
+            μ₁ ≠ μ₂  
+            <br>
+            (There is a difference in height between men and women.)
+            </li>
+
+            <li>
+            <strong>Significance level:</strong>
+            α = 0.05
+            </li>
+
+            <li>
+            <strong>Statistical test:</strong>
+            A two-sample t-test is used to compare the means of the two groups.
+            </li>
+
+            <li>
+            <strong>Test statistic:</strong>
+            <p>
+                The test statistic for a two-sample t-test is:
+            </p>
+            <p>
+                t = (x̄₁ − x̄₂) / (s / √(n₁ + n₂))
+            </p>
+
+            <p>
+                where x̄₁ and x̄₂ are the sample means, s is the pooled standard deviation,
+                and n₁ and n₂ are the sample sizes.
+            </p>
+
+            <p>
+                Suppose the sample mean height for men is 175 cm and for women is 162 cm.
+                Let the sample standard deviations be s₁ = 6 cm and s₂ = 5 cm.
+            </p>
+
+            <p>
+                The pooled standard deviation is:
+            </p>
+
+            <p>
+                s = √[( (n₁ − 1)s₁² + (n₂ − 1)s₂² ) / (n₁ + n₂ − 2)] = 5.524
+            </p>
+
+            <p>
+                Substituting into the test statistic:
+            </p>
+
+            <p>
+                t = (175 − 162) / (5.524 / √(100 + 100)) = 12.215
+            </p>
+            </li>
+
+            <li>
+            <strong>P-value:</strong>
+            <p>
+                The p-value represents the probability of observing a t-statistic as extreme as 12.215
+                assuming the null hypothesis is true.
+                Using a t-distribution with 198 degrees of freedom, the p-value is far less than 0.05.
+            </p>
+            </li>
+
+            <li>
+            <strong>Conclusion:</strong>
+            <p>
+                Since the p-value is smaller than the significance level (0.05),
+                we reject the null hypothesis and conclude that there is a statistically
+                significant difference in average height between men and women.
+            </p>
+            </li>
+        </ul>
+
+        </div>
+
+
         <hr>
 
         <h2 id="null-and-alternative-hypothesis">Null and Alternative Hypothesis</h2>
@@ -416,6 +509,7 @@
         </p>
         <p>A one-tailed hypothesis predicts the direction of the effect (e.g., the new drug will lower blood pressure), while a two-tailed hypothesis does not predict the 
             direction of the effect (e.g., there is a difference in job satisfaction between men and women).</p>
+
 
         <p>In summary, formulating the null and alternative hypotheses is a critical step in hypothesis testing, as it defines the research question and the direction of the analysis. 
             The hypotheses must be mutually exclusive and collectively exhaustive, and their formulation depends on the research question and the expected relationship or difference 
