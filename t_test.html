@@ -132,8 +132,45 @@
             <li><strong>Paired t-test:</strong> Compares means from the same group at two different times.</li>
         </ul>        
 
+        <h2>3. Mathematical Formulation</h2>
 
+        Independent Samples t-Test:
+        The independent samples t-test is used to compare the means of two independent groups. The null hypothesis is that the two groups have equal means, while the alternative hypothesis is that they have different means.
 
+        The formula for the independent samples t-test is:
+
+        $$
+        t = \frac{\bar{X}_1 - \bar{X}_2}{s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}}
+        $$
+
+        Where:
+        - $\bar{x}_1$ and $\bar{x}_2$ are the means of the two groups
+        - $s_p$ is the pooled standard deviation
+        - $n_1$ and $n_2$ are the sample sizes of the two groups
+
+        Here pooled standard deviation is defined as:
+
+        $$
+        s_p = \sqrt{\frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}}
+        $$
+
+        The independent samples t-test assumes that the variances of the two groups are equal. If they are not, a modified version of the t-test called Welch's t-test can be used.
+
+        ### Paired Samples t-Test:
+        The paired samples t-test is used to compare the means of two related groups, such as before and after measurements of the same group. The null hypothesis is that the mean difference between the two groups is zero, while the alternative hypothesis is that the mean difference is different from zero.
+
+        The formula for the paired samples t-test is:
+
+        $$
+        t = \frac{\bar{d}}{s_d / \sqrt{n}}
+        $$
+
+        where
+        - $\bar{d}$ = mean of differences, 
+        - $s_d$ = standard deviation of differences, 
+        - $n$ = sample size.
+
+        The paired samples t-test assumes that the differences between the two groups are normally distributed.
 
 
 
