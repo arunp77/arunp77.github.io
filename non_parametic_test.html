@@ -324,12 +324,6 @@
             \rho = 1 - \frac{6 \sum d_i^2}{n(n^2 - 1)}
             $$
 
-
-
-
-
-
-
         Where:
         <ul>
             <li>\( d_i \) = difference between ranks</li>
@@ -360,6 +354,154 @@
             </tr>
         </tbody>
         </table>
+
+
+        <hr>
+
+        <h4>Chi-Square Test (\(\xi^2\) test) </h4>
+        The Chi-Square \(\chi^2\) test is a non-parametric statistical test used to examine whether there is a significant association between categorical variables. 
+        Unlike t-tests or ANOVA, it does not compare means, but instead compares observed frequencies with expected frequencies.
+
+        <ol>
+            <li><b>When to Use the Chi-Square Test: </b>Use the Chi-square test when:
+                <ul>
+                    <li>The data are categorical (nominal or ordinal)</li>
+                    <li>You want to test association or independence</li>
+                    <li>Observations are independent</li>
+                    <li>Expected frequencies in each cell are sufficiently large (usually ≥ 5)</li>
+                </ul>
+            </li>
+            <li><b>Types of Chi-Square Tests: </b>
+                <ul>
+                    <li><b>1️⃣ Chi-Square Test of Independence: </b>Used to determine whether two categorical variables are related.
+                        <p><b>Example:</b>
+                            <ul>
+                                <li>Gender (Male / Female)</li>
+                                <li>Product preference (A / B / C)</li>
+                            </ul>
+                        </p>
+                        Question: Is product preference independent of gender?
+                    </li>
+                    <li><b>2️⃣ Chi-Square Goodness-of-Fit Test: </b>Used to test whether observed data follows a theoretical distribution.
+                        <p><b>Example: </b>
+                            <ul>
+                                <li>Is a die fair?</li>
+                                <li>Do observed frequencies match expected proportions?</li>
+                            </ul>
+                        </p>
+                    </li>
+                </ul>
+            </li>
+            <li><b>Hypotheses: </b>For Chi-Square Test of Independence 
+                <ul>
+                    <li>Null hypothesis (H₀): The two categorical variables are independent.</li>
+                    <li>Alternative hypothesis (H₁): The variables are dependent (associated).</li>
+                </ul>
+            </li>
+            <li><b>Test Statistic (Mathematical Formulation): </b>The chi-square statistic is defined as: 
+                $$
+                    \chi^2 =\sum \frac{(O_i - E_i)^2}{E_i}
+                $$
+                where: 
+                    <ul>
+                        <li>\(O_i\) = observed frequency</li>
+                        <li>\(E_i\) = expected frequency</li>
+                        <li>The sum is taken over all cells in the contingency table</li>
+                    </ul>
+                <p>Expected Frequency Formula:</p>
+                $$
+                E_{ij}= \frac{(\text{Row Total}_i​)(\text{Column Total}_j​)​}{\text{Grand Total}}
+                $$
+            </li>
+            <li><b>Degrees of Freedom: </b>
+                $$df = (r−1)(c−1) $$
+                <p>Where: </p>
+                <ul>
+                    <li> \(r\) = number of rows</li>
+                    <li>\(c\) = number of columns</li>
+                </ul>
+            </li>
+            <li><b>Decision Rule: </b>
+                <ul>
+                    <li>Compute the chi-square statistic</li>
+                    <li>Find the critical value from the \(\chi^2\)  distribution table (or \(p\)-value)</li>
+                    <li>If:
+                        <p>$$\chi_{\text{calculated}}^2 > \chi_{\text{critical}}^2$$</p>
+                        <p>or</p>
+                        $$p < \alpha$$ 
+                    </li>
+                    → Reject the null hypothesis
+                </ul>
+            </li>
+            <li>Example: Chi-Square Test of Independence</li>
+                <p>Observed data: </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Tea</th>
+                            <th>Coffee</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Male</strong></td>
+                            <td>30</td>
+                            <td>20</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Female</strong></td>
+                            <td>20</td>
+                            <td>30</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Total</strong></td>
+                            <td>50</td>
+                            <td>50</td>
+                            <td>100</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <ul>
+                    <li><b>Step 1: Compute Expected Frequencies</b>
+                    $$E = \frac{(\text{row total})(\text{column total})}{\text{grand total}}$$
+                    <p>For males who prefer tea:</p>
+                    $$E = \frac{50\times 50}{100} =25$$
+                    </li>
+                    <li><b>Step 2: Compute \(\chi^2\)</b>
+                        $$\chi^2 = \sum \frac{(O-E)^2}{E}$$
+                    </li>
+                    <li><b>Step 3: Degrees of Freedom</b>
+                        $$df=(2−1)(2−1)=1$$
+                    </li>
+                    <li><b>Step 4: Decision</b>
+                        If \(\chi^2 > \chi^2_{0.05}(1 = 3.84 \rightarrow H_0)\)
+                    If χ² > χ²₀.₀₅(1) = 3.84 → reject H₀
+                    </li>
+                </ul> 
+            <li><b>Interpretation:</b>
+                <ul>
+                    <li>Significant result → variables are associated</li>
+                    <li>Non-significant result → no evidence of association</li>
+                </ul>
+            </li>  
+            <li><b>When NOT to Use Chi-Square: </b>
+                <ul>
+                    <li>Expected cell counts < 5 (use Fisher’s Exact Test)</li>
+                    <li>Continuous data</li>
+                    <li>Very small sample sizes</li>
+                </ul>
+            </li>        
+        </ol>
+
+        <p><b>Final Note:</b> The Chi-square test is one of the most widely used tools in statistics for analyzing categorical data. It is simple, robust, and powerful when used correctly—but always ensure its assumptions are met before applying it.</p>
+
+
+
+
 
         <h3>Summary table</h3>
         <table>
