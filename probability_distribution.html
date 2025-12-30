@@ -186,7 +186,7 @@
                     
                     <h4>1. Bernoulli distribution</h4>
                     <p>The Bernoulli distribution is a simple probability distribution that describes the probability of success or failure in a single trial of a binary experiment. 
-                        The Bernoulli distribution has two possible outcomes: success (with probability $p$) or failure (with probability $1-p$). The formula for the Bernoulli distribution is:</p>
+                        The Bernoulli distribution has two possible outcomes: success (with probability \(p\)) or failure (with probability \(1-p\)). The formula for the Bernoulli distribution is:</p>
 
                         $$P(X=x) = p^x \times (1-p)^{(1-x)}$$
 
@@ -195,12 +195,67 @@
                     
                     <figure>
                         <img src="assets/img/machine-ln/bernoulli_variable.png" alt="" class="img-fluid" style="max-width: 50%;">
-                        <figcaption style="text-align: center;">Image credit: Scribbr</figcaption>
-                    </figure>                    
+                        <!-- <figcaption style="text-align: center;">Image credit: Scribbr</figcaption> -->
+                    </figure>      
+
+                    <table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+                        <thead>
+                            <tr>
+                                <th colspan="2">Bernoulli Distribution</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Random Variable</strong></td>
+                                <td>
+                                    X ∈ {0, 1}<br>
+                                    P(X = 1) = p, &nbsp; P(X = 0) = 1 − p
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>Mean (Expected Value)</strong></td>
+                                <td>
+                                    μ = E[X] = p
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>Variance</strong></td>
+                                <td>
+                                    Var(X) = p(1 − p)
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>Standard Deviation</strong></td>
+                                <td>
+                                    σ = √[p(1 − p)]
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>Moment Coefficient of Skewness</strong></td>
+                                <td>
+                                    γ₁ = (1 − 2p) / √[p(1 − p)]
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>Moment Coefficient of Kurtosis</strong></td>
+                                <td>
+                                    γ₂ = (1 − 6p(1 − p)) / (p(1 − p))
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
 
 
                     <h4>2. Binomial distribution</h4>
-                    The binomial distribution describes the probability of getting a certain number of successes in a fixed number of independent trials of a binary experiment. The binomial distribution has two parameters: $n$, the number of trials, and $p$, the probability of success in each trial. The formula for the binomial distribution is:
+                    The binomial distribution describes the probability of getting a certain number of successes in a fixed number of independent trials of a binary experiment. 
+                    The binomial distribution has two parameters: \(n\), the number of trials, and \(p\), the probability of success in each trial. The formula for the binomial 
+                    distribution is:
 
                     $$P(X=x) = ^nC_x ~ p^x ~ (1-p)^{(n-x)}$$
 
