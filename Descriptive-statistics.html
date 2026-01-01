@@ -208,94 +208,95 @@
 
         </div>
 
-        <hr>
+        <div class="box">
 
-        <h3>Measures of variability</h3>
-        <p>Measures of variability are statistical measures that describe the spread or dispersion of a dataset. Some common measures of variability include:</p>
-        
-        <h4>1. Range</h4>
-        The range is the difference between the maximum and minimum values in a dataset. It is the simplest measure of variability but can be heavily influenced by outliers. It is calculated using the formula:</p>
-        
-        $$\text{Range} = \text{max value} - \text{min value}$$
-        
-        <p><strong>Example:</strong> if a dataset consists of the following values: 2, 5, 7, 8, 12, the range would be calculated as:</p>
-        
-        <p>Range = 12 - 2 = 10</p>
-
-        <h4>2. Standard deviation</h4>
-        Standard deviation is a measure of how spread out a set of data is from its mean or average. It tells you how much the data deviates from the average. A low standard deviation indicates that the data is clustered closely around the mean, while a high standard deviation indicates that the data is spread out over a larger range of values. It is a commonly used measure of variability and is often preferred over the variance because it is expressed in the same units as the original data. The formula for standard deviation is:</p>
-        $$\sigma = \sqrt{\frac{\sum (x-\mu)^2}{n}}$$
-        <p>(Standard deviation of the population)</p>
-        <p>where:</p>
-        <ul>
-            <li>\(\sigma\) is the standard deviation</li>
-            <li>\(\sum\) is the sum of all the data points</li>
-            <li>\(x\) is each individual data point</li>
-            <li>\(\mu\) is the mean or average of the data</li>
-            <li>\(n\) is the total number of data points</li>
-        </ul>
-        <p><strong>Method:</strong> To find the standard deviation, you first subtract each data point from the mean, square the result, sum up all the squared differences, divide by the total number of data points, and finally, take the square root of the result.</p>
-        <p><strong>Example:</strong> let's say you have the following set of data: {2, 4, 6, 8, 10}.</p>
-        <ul>
-          <li>First, find the mean: \(\mu = (2 + 4 + 6 + 8 + 10) / 5 = 6\).</li>
-          <li>Next, calculate the difference between each data point and the mean: (2 - 6) = -4, (4 - 6) = -2, (6 - 6) = 0, (8 - 6) = 2, (10 - 6) = 4.</li>
-          <li>Then, square each of these differences and add up all the squared differences: \((-4)^2 = 16, (-2)^2 = 4, (0)^2 = 0, (2)^2 = 4, (4)^2 = 6.\)</li>
-          <li>Divide by the total number of data points: 16 + 4 + 0 + 4 + 16 = 40.</li>
-          <li>Finally, take the square root of the result: 40 / 5 = 8.</li>
-          <li>So, the standard deviation of this set of data is approximately 2.83.</li>
-        </ul>
-
-
-        <h4>3. Interquartile range (IQR)</h4>
-        The IQR is the difference between the third quartile (the value above which 75% of the data falls) and the 
-        first quartile (the value below which 25% of the data falls). It is a measure of the spread of the middle 50% of the data and is less influenced by extreme 
-        values than the range.</p>
-        <p>The formula for calculating the IQR is as follows:</p>
-        $$\text{IQR} =Q_3 -Q_1$$
-
-        <p>Where \(Q_3\) is the third quartile and \(Q_1\) is the first quartile. The quartiles are calculated by dividing the dataset into four equal parts. The first quartile (i.e. \(Q_1\)) represents the 25th percentile of the dataset, and the third quartile (i.e. \(Q_3\)) represents the 75th percentile.</p>
-          <figure>
-              <img src="assets/img/data-engineering/IQR.png" alt="" style="max-width: 90%; max-height: 90%;">
-              <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://commons.wikimedia.org/wiki/File:Boxplot_vs_PDF.svg">Jhguch at en.wikipedia</a>, <a href="https://creativecommons.org/licenses/by-sa/2.5">CC BY-SA 2.5</a>, via Wikimedia Commons</figcaption>
-          </figure>
-          <p><strong>Example:</strong> Consider the following dataset: 1, 3, 5, 6, 7, 8, 9, 10, 11, 15.</p>
-          <ul>
-            <li>The first quartile (\(Q_1\)) is 4 and the third quartile (\(Q_3\)) is 10. Therefore, the IQR is:</li>
-          </ul>
+          <h3>Measures of variability</h3>
+          <p>Measures of variability are statistical measures that describe the spread or dispersion of a dataset. Some common measures of variability include:</p>
           
-          $$IQR = Q_3 - Q_1 = 10 - 4 = 6$$
+          <h4>1. Range</h4>
+          The range is the difference between the maximum and minimum values in a dataset. It is the simplest measure of variability but can be heavily influenced by outliers. It is calculated using the formula:</p>
+          
+          $$\text{Range} = \text{max value} - \text{min value}$$
+          
+          <p><strong>Example:</strong> if a dataset consists of the following values: 2, 5, 7, 8, 12, the range would be calculated as:</p>
+          
+          <p>Range = 12 - 2 = 10</p>
+
+          <h4>2. Standard deviation</h4>
+          Standard deviation is a measure of how spread out a set of data is from its mean or average. It tells you how much the data deviates from the average. A low standard deviation indicates that the data is clustered closely around the mean, while a high standard deviation indicates that the data is spread out over a larger range of values. It is a commonly used measure of variability and is often preferred over the variance because it is expressed in the same units as the original data. The formula for standard deviation is:</p>
+          $$\sigma = \sqrt{\frac{\sum (x-\mu)^2}{n}}$$
+          <p>(Standard deviation of the population)</p>
+          <p>where:</p>
           <ul>
-            <li>This means that the middle 50% of the dataset (between the 25th and 75th percentiles) falls within a range of 6.</li>
+              <li>\(\sigma\) is the standard deviation</li>
+              <li>\(\sum\) is the sum of all the data points</li>
+              <li>\(x\) is each individual data point</li>
+              <li>\(\mu\) is the mean or average of the data</li>
+              <li>\(n\) is the total number of data points</li>
           </ul>
-          <blockquote>
-              <p><strong>Quartiles:</strong> Quartiles are a way to divide a dataset into four equal parts or quarters. Quartiles are used to understand the distribution of a dataset and to calculate other measures of variability such as the interquartile range.
-              There are three quartiles that divide a dataset into four parts:</p>
-              <ul>
-                  <li>The first quartile (\(Q_1\)) is the 25th percentile of the dataset. It divides the dataset into the bottom 25% and the top 75%.</li>
-                  <li>The second quartile (\(Q_2\)) is the median of the dataset. It divides the dataset into two equal parts.</li>
-                  <li>The third quartile (\(Q_3\)) is the 75th percentile of the dataset. It divides the dataset into the bottom 75% and the top 25%.</li>
-              </ul>
-          </blockquote>
+          <p><strong>Method:</strong> To find the standard deviation, you first subtract each data point from the mean, square the result, sum up all the squared differences, divide by the total number of data points, and finally, take the square root of the result.</p>
+          <p><strong>Example:</strong> let's say you have the following set of data: {2, 4, 6, 8, 10}.</p>
+          <ul>
+            <li>First, find the mean: \(\mu = (2 + 4 + 6 + 8 + 10) / 5 = 6\).</li>
+            <li>Next, calculate the difference between each data point and the mean: (2 - 6) = -4, (4 - 6) = -2, (6 - 6) = 0, (8 - 6) = 2, (10 - 6) = 4.</li>
+            <li>Then, square each of these differences and add up all the squared differences: \((-4)^2 = 16, (-2)^2 = 4, (0)^2 = 0, (2)^2 = 4, (4)^2 = 6.\)</li>
+            <li>Divide by the total number of data points: 16 + 4 + 0 + 4 + 16 = 40.</li>
+            <li>Finally, take the square root of the result: 40 / 5 = 8.</li>
+            <li>So, the standard deviation of this set of data is approximately 2.83.</li>
+          </ul>
 
 
-          <h4>4. Mean absolute deviation (MAD)</h4>
-          The mean absolute deviation (MAD) is a measure of variability that indicates how much the observations in a dataset deviate, on average, from the mean of the dataset. The MAD is the average of the absolute differences between each value and the mean. It is a robust measure of variability that is less sensitive to outliers than the variance and standard deviation.</p>
-          <p><strong>Formula:</strong> MAD is calculated by finding the absolute difference between each data point and the mean, then taking the average of those absolute differences. The formula for calculating MAD is as follows:</p>
-      
-          $$\text{MAD} = \frac{1}{n}\sum_i^n |x_i - \mu|$$
-      
-          <p>Where \(n\) is the number of observations in the dataset, \(x_i\) is the value of the ith observation, \(\mu\) is the mean of the dataset, and \(\sum\) represents the sum of the absolute differences.</p>
-      
-          <p><strong>Example:</strong> For example, consider the following dataset: 2, 3, 5, 6, 7, 8, 9, 10, 11, 15</p>
-          <p>To calculate the MAD, we first find the mean of the dataset:</p>
-          <p>\(\mu\) = (2 + 3 + 5 + 6 + 7 + 8 + 9 + 10 + 11 + 15) / 10 = 7.6</p>
-          <p>Next, we find the absolute difference between each data point and the mean: |2 - 7.6| = 5.6, |3 - 7.6| = 4.6, |5 - 7.6| = 2.6, |6 - 7.6| = 1.6, |7 - 7.6| = 0.6, |8 - 7.6| = 0.4, |9 - 7.6| = 1.4, |10 - 7.6| = 2.4, |11 - 7.6| = 3.4, |15 - 7.6| = 7.4.</p>
-          <p>Then we take the average of those absolute differences:</p>
-          <p>\(MAD = (1/10) \times (5.6 + 4.6 + 2.6 + 1.6 + 0.6 + 0.4 + 1.4 + 2.4 + 3.4 + 7.4) = 3.34\)</p>
-          <p>The MAD for this dataset is 3.34, which means that, on average, each observation deviates from the mean by approximately 3.34.</p>
-          <p>These measures of variability are useful in providing information about how much the values in a dataset vary from each other. The appropriate measure 
-            to use depends on the specific characteristics of the data and the research question being asked.</p>
+          <h4>3. Interquartile range (IQR)</h4>
+          The IQR is the difference between the third quartile (the value above which 75% of the data falls) and the 
+          first quartile (the value below which 25% of the data falls). It is a measure of the spread of the middle 50% of the data and is less influenced by extreme 
+          values than the range.</p>
+          <p>The formula for calculating the IQR is as follows:</p>
+          $$\text{IQR} =Q_3 -Q_1$$
 
+          <p>Where \(Q_3\) is the third quartile and \(Q_1\) is the first quartile. The quartiles are calculated by dividing the dataset into four equal parts. The first quartile (i.e. \(Q_1\)) represents the 25th percentile of the dataset, and the third quartile (i.e. \(Q_3\)) represents the 75th percentile.</p>
+            <figure>
+                <img src="assets/img/data-engineering/IQR.png" alt="" style="max-width: 90%; max-height: 90%;">
+                <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://commons.wikimedia.org/wiki/File:Boxplot_vs_PDF.svg">Jhguch at en.wikipedia</a>, <a href="https://creativecommons.org/licenses/by-sa/2.5">CC BY-SA 2.5</a>, via Wikimedia Commons</figcaption>
+            </figure>
+            <p><strong>Example:</strong> Consider the following dataset: 1, 3, 5, 6, 7, 8, 9, 10, 11, 15.</p>
+            <ul>
+              <li>The first quartile (\(Q_1\)) is 4 and the third quartile (\(Q_3\)) is 10. Therefore, the IQR is:</li>
+            </ul>
+            
+            $$IQR = Q_3 - Q_1 = 10 - 4 = 6$$
+            <ul>
+              <li>This means that the middle 50% of the dataset (between the 25th and 75th percentiles) falls within a range of 6.</li>
+            </ul>
+            <blockquote>
+                <p><strong>Quartiles:</strong> Quartiles are a way to divide a dataset into four equal parts or quarters. Quartiles are used to understand the distribution of a dataset and to calculate other measures of variability such as the interquartile range.
+                There are three quartiles that divide a dataset into four parts:</p>
+                <ul>
+                    <li>The first quartile (\(Q_1\)) is the 25th percentile of the dataset. It divides the dataset into the bottom 25% and the top 75%.</li>
+                    <li>The second quartile (\(Q_2\)) is the median of the dataset. It divides the dataset into two equal parts.</li>
+                    <li>The third quartile (\(Q_3\)) is the 75th percentile of the dataset. It divides the dataset into the bottom 75% and the top 25%.</li>
+                </ul>
+            </blockquote>
+
+
+            <h4>4. Mean absolute deviation (MAD)</h4>
+            The mean absolute deviation (MAD) is a measure of variability that indicates how much the observations in a dataset deviate, on average, from the mean of the dataset. The MAD is the average of the absolute differences between each value and the mean. It is a robust measure of variability that is less sensitive to outliers than the variance and standard deviation.</p>
+            <p><strong>Formula:</strong> MAD is calculated by finding the absolute difference between each data point and the mean, then taking the average of those absolute differences. The formula for calculating MAD is as follows:</p>
+        
+            $$\text{MAD} = \frac{1}{n}\sum_i^n |x_i - \mu|$$
+        
+            <p>Where \(n\) is the number of observations in the dataset, \(x_i\) is the value of the ith observation, \(\mu\) is the mean of the dataset, and \(\sum\) represents the sum of the absolute differences.</p>
+        
+            <p><strong>Example:</strong> For example, consider the following dataset: 2, 3, 5, 6, 7, 8, 9, 10, 11, 15</p>
+            <p>To calculate the MAD, we first find the mean of the dataset:</p>
+            <p>\(\mu\) = (2 + 3 + 5 + 6 + 7 + 8 + 9 + 10 + 11 + 15) / 10 = 7.6</p>
+            <p>Next, we find the absolute difference between each data point and the mean: |2 - 7.6| = 5.6, |3 - 7.6| = 4.6, |5 - 7.6| = 2.6, |6 - 7.6| = 1.6, |7 - 7.6| = 0.6, |8 - 7.6| = 0.4, |9 - 7.6| = 1.4, |10 - 7.6| = 2.4, |11 - 7.6| = 3.4, |15 - 7.6| = 7.4.</p>
+            <p>Then we take the average of those absolute differences:</p>
+            <p>\(MAD = (1/10) \times (5.6 + 4.6 + 2.6 + 1.6 + 0.6 + 0.4 + 1.4 + 2.4 + 3.4 + 7.4) = 3.34\)</p>
+            <p>The MAD for this dataset is 3.34, which means that, on average, each observation deviates from the mean by approximately 3.34.</p>
+            <p>These measures of variability are useful in providing information about how much the values in a dataset vary from each other. The appropriate measure 
+              to use depends on the specific characteristics of the data and the research question being asked.</p>
+          </div>
+          
           <h3>Measures of distribution</h3>
           <p>Skewness and kurtosis are two statistical measures used to describe the shape of a probability distribution.</p>
           
