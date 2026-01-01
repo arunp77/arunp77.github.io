@@ -296,112 +296,116 @@
             <p>These measures of variability are useful in providing information about how much the values in a dataset vary from each other. The appropriate measure 
               to use depends on the specific characteristics of the data and the research question being asked.</p>
           </div>
-          
-          <h3>Measures of distribution</h3>
-          <p>Skewness and kurtosis are two statistical measures used to describe the shape of a probability distribution.</p>
-          
-          <h4>1. Skewness</h4>
 
-          <p>Skewness measures the degree of asymmetry in a distribution. A distribution with a positive skewness has a longer tail 
-          on the positive side of the mean, while a negative skewness means the tail is longer on the negative side of the mean. A perfectly symmetrical distribution 
-          has a skewness of zero.</p>
-          <table>
-            <tr>
-              <td><img src="/assets/img/data-engineering/Pos-skew.jpeg" alt="Positive Skew"></td>
-              <td><img src="/assets/img/data-engineering/neg-skew.jpeg" alt="Negative Skew"></td>
-              <td><img src="/assets/img/data-engineering/zero-skew.png" alt="Zero Skew"></td>
-            </tr>
-          </table>
+          <div class="important-box">
 
-          <p>(<a href="https://www.analyticsvidhya.com/blog/2021/08/a-guide-to-complete-statistics-for-data-science-beginners/">Image credit</a>)</p>
-          <p>Here are three common measures of skewness:</p>
-          <ol>
-            <li><p><strong>Pearson's moment coefficient of skewness:</strong></p>
+            <h3>Measures of distribution</h3>
+            <p>Skewness and kurtosis are two statistical measures used to describe the shape of a probability distribution.</p>
+            
+            <h4>1. Skewness</h4>
+
+            <p>Skewness measures the degree of asymmetry in a distribution. A distribution with a positive skewness has a longer tail 
+            on the positive side of the mean, while a negative skewness means the tail is longer on the negative side of the mean. A perfectly symmetrical distribution 
+            has a skewness of zero.</p>
+            <table>
+              <tr>
+                <td><img src="/assets/img/data-engineering/Pos-skew.jpeg" alt="Positive Skew"></td>
+                <td><img src="/assets/img/data-engineering/neg-skew.jpeg" alt="Negative Skew"></td>
+                <td><img src="/assets/img/data-engineering/zero-skew.png" alt="Zero Skew"></td>
+              </tr>
+            </table>
+
+            <p>(<a href="https://www.analyticsvidhya.com/blog/2021/08/a-guide-to-complete-statistics-for-data-science-beginners/">Image credit</a>)</p>
+            <p>Here are three common measures of skewness:</p>
+            <ol>
+              <li><p><strong>Pearson's moment coefficient of skewness:</strong></p>
+            
+                $$\text{Skewness} = \frac{3(\text{Mean}-\text{Mode})}{\text{Standard deviation}}.$$
+    
+                <p>This is the formula described above that uses the third moment of the distribution to measure skewness.</p>
+              </li>
+              <li><p><strong>Sample skewness:</strong> This is a formula that uses the sample mean, standard deviation, and third central moment to estimate the skewness of the distribution. The formula for sample skewness is:</p>
+            
+                $$\text{Skewness} = \frac{n}{(n - 1) * (n - 2)}\times \left(\frac{\sum(x_i - \mu)^3}{\sigma_s^3}\right)$$
+            
+                <p>(known as Fisher-Pearson standardized moment coefficient)</p>
+            
+                <p>where \(n\) is the sample size, \(\mu\) is the sample mean, \(x_i\) is the \(i\)-th observation in the sample, and \(\sigma_s\) is the sample standard deviation.</p>
+                <blockquote>
+                    <p><strong>Sample standard deviation:</strong> The sample standard deviation measures the spread of the data around the mean. It tells you how much the individual data points deviate from the mean, on average. Note that the sample standard deviation is calculated using \(n - 1\) in the denominator instead of \(n\), which is known as Bessel's correction. This is because using \(n\) instead of \(n-1\) tends to underestimate the true variance of the population from which the sample was drawn.</p>
+                    <p>Formula:</p>
+                        $$\sigma_s = \sqrt{\frac{\sum_i^n (x_i-\mu)}{n-1}}$$
+                    <p>Care should be taken when getting the standard deviation because the standard deviation is different from the standard deviation of a sample. If the problem describes a situation dealing with a sample or subset of a group, then the sample standard deviation, s, should be used.</p>
+                </blockquote>
+                <p><strong>How to Transform Skewed Data?</strong> The graph of skewed data may be transformed into a symmetrical, balanced bell curve shape by changing the data using various methods. The selection of which method to use depends on the characteristic of the data set and its behavior. Here are the most common ways of correcting the skewness of data distribution:</p>
+                <ul>
+                    <li>Logarithmic transformation</li>
+                    <li>Square root transformation</li>
+                    <li>Inverse transformation</li>
+                    <li>Box-Cox transformation</li>
+                </ul>
+                <p>It is important to note that transforming the data may not always be necessary or appropriate. The choice of transformation depends on the distribution of the data, the research question, and the statistical model being used. In addition, some transformations may change the interpretation of the data, so it is important to carefully consider the implications of any transformations before applying them.</p>
+              </li> 
+            </ol>     
+            
+            <h4>2. Quartile skewness</h4>
+            This measure of skewness is based on the difference between the median and the mode of the distribution. Specifically, the quartile skewness is defined as:</p>
+                  
+            $$\text{Skewness} = \frac{Q_1 + Q_3 - 2 * \text{median}}{Q_3 - Q_1}$$
           
-              $$\text{Skewness} = \frac{3(\text{Mean}-\text{Mode})}{\text{Standard deviation}}.$$
-  
-              <p>This is the formula described above that uses the third moment of the distribution to measure skewness.</p>
-            </li>
-            <li><p><strong>Sample skewness:</strong> This is a formula that uses the sample mean, standard deviation, and third central moment to estimate the skewness of the distribution. The formula for sample skewness is:</p>
-          
-              $$\text{Skewness} = \frac{n}{(n - 1) * (n - 2)}\times \left(\frac{\sum(x_i - \mu)^3}{\sigma_s^3}\right)$$
-          
-              <p>(known as Fisher-Pearson standardized moment coefficient)</p>
-          
-              <p>where \(n\) is the sample size, \(\mu\) is the sample mean, \(x_i\) is the \(i\)-th observation in the sample, and \(\sigma_s\) is the sample standard deviation.</p>
-              <blockquote>
-                  <p><strong>Sample standard deviation:</strong> The sample standard deviation measures the spread of the data around the mean. It tells you how much the individual data points deviate from the mean, on average. Note that the sample standard deviation is calculated using \(n - 1\) in the denominator instead of \(n\), which is known as Bessel's correction. This is because using \(n\) instead of \(n-1\) tends to underestimate the true variance of the population from which the sample was drawn.</p>
-                  <p>Formula:</p>
-                      $$\sigma_s = \sqrt{\frac{\sum_i^n (x_i-\mu)}{n-1}}$$
-                  <p>Care should be taken when getting the standard deviation because the standard deviation is different from the standard deviation of a sample. If the problem describes a situation dealing with a sample or subset of a group, then the sample standard deviation, s, should be used.</p>
-              </blockquote>
-              <p><strong>How to Transform Skewed Data?</strong> The graph of skewed data may be transformed into a symmetrical, balanced bell curve shape by changing the data using various methods. The selection of which method to use depends on the characteristic of the data set and its behavior. Here are the most common ways of correcting the skewness of data distribution:</p>
-              <ul>
-                  <li>Logarithmic transformation</li>
-                  <li>Square root transformation</li>
-                  <li>Inverse transformation</li>
-                  <li>Box-Cox transformation</li>
-              </ul>
-              <p>It is important to note that transforming the data may not always be necessary or appropriate. The choice of transformation depends on the distribution of the data, the research question, and the statistical model being used. In addition, some transformations may change the interpretation of the data, so it is important to carefully consider the implications of any transformations before applying them.</p>
-            </li> 
-          </ol>     
-          
-          <h4>2. Quartile skewness</h4>
-           This measure of skewness is based on the difference between the median and the mode of the distribution. Specifically, the quartile skewness is defined as:</p>
+            <p>where \(Q_1\) and \(Q_3\) are the first and third quartiles of the distribution, and the median is the second quartile.</p>
+            <p>Each of these measures of skewness has its own strengths and weaknesses, and the choice of measure may depend on the context and purpose of the analysis.</p>
+
+            <h4>3. Kurtosis</h4>
+                Kurtosis is a statistical measure that describes the shape of a distribution by measuring the degree of peakedness or flatness of the distribution compared to the normal distribution. A distribution with high kurtosis indicates that the data have many outliers or extreme values, while a distribution with low kurtosis indicates that the data are more spread out and have fewer outliers.</p>
+                <p><strong>How to calculate kurtosis:</strong> Mathematically speaking, kurtosis is the standardized fourth moment of a distribution. Moments are a set of measurements that tell you about the shape of a distribution.</p>
+                <p>Moments are standardized by dividing them by the standard deviation raised to the appropriate power.</p>
+                <ul>
+                  <li><p><strong>Kurtosis of a population:</strong> The following formula describes the kurtosis of a population:</p>
                 
-           $$\text{Skewness} = \frac{Q_1 + Q_3 - 2 * \text{median}}{Q_3 - Q_1}$$
-        
-           <p>where \(Q_1\) and \(Q_3\) are the first and third quartiles of the distribution, and the median is the second quartile.</p>
-           <p>Each of these measures of skewness has its own strengths and weaknesses, and the choice of measure may depend on the context and purpose of the analysis.</p>
+                    $$\text{Kurtosis} = \tilde{\mu}_4 = \frac{\mu_4}{\sigma^4}.$$
+                    <p>Where:</p>
+                    <ul>
+                        <li>\(\tilde{\mu}_4\) is the standardized fourth moment</li>
+                        <li>\(\mu_4\) is the unstandardized central fourth moment</li>
+                        <li>\(\sigma\) is the standard deviation</li>
+                    </ul>
+                  </li>
+                  <li><p><strong>Kurtosis of a sample:</strong> The kurtosis of a sample is an estimate of the kurtosis of the population.</p>
+                    <p>It might seem natural to calculate a sample’s kurtosis as the fourth moment of the sample divided by its standard deviation to the fourth power. However, this leads to a biased estimate.</p>
+                    <p>The formula for the unbiased estimate of excess kurtosis includes a lengthy correction based on the sample size:</p>
+                  
+                      $$\text{Kurtosis} = \frac{(n+1)(n-1)}{(n-1)(n-3)}\frac{\sum (x_i -\mu)^4}{(\sum (x_i - \mu)^2)^2}- 3\frac{(n-1)^2}{(n-2)(n-3)}$$
+                    <p>Where</p>
+                    <ul>
+                      <li>\(n\) is the sample size</li>
+                      <li>\(x_i\) are observations of the variable x</li>
+                      <li>\(\mu\) is the mean of the variable x.</li>
+                    </ul>
+                  </li>
+                </ul>
 
-           <h4>3. Kurtosis</h4>
-              Kurtosis is a statistical measure that describes the shape of a distribution by measuring the degree of peakedness or flatness of the distribution compared to the normal distribution. A distribution with high kurtosis indicates that the data have many outliers or extreme values, while a distribution with low kurtosis indicates that the data are more spread out and have fewer outliers.</p>
-              <p><strong>How to calculate kurtosis:</strong> Mathematically speaking, kurtosis is the standardized fourth moment of a distribution. Moments are a set of measurements that tell you about the shape of a distribution.</p>
-              <p>Moments are standardized by dividing them by the standard deviation raised to the appropriate power.</p>
-              <ul>
-                <li><p><strong>Kurtosis of a population:</strong> The following formula describes the kurtosis of a population:</p>
-              
-                  $$\text{Kurtosis} = \tilde{\mu}_4 = \frac{\mu_4}{\sigma^4}.$$
-                  <p>Where:</p>
-                  <ul>
-                      <li>\(\tilde{\mu}_4\) is the standardized fourth moment</li>
-                      <li>\(\mu_4\) is the unstandardized central fourth moment</li>
-                      <li>\(\sigma\) is the standard deviation</li>
-                  </ul>
-                </li>
-                <li><p><strong>Kurtosis of a sample:</strong> The kurtosis of a sample is an estimate of the kurtosis of the population.</p>
-                  <p>It might seem natural to calculate a sample’s kurtosis as the fourth moment of the sample divided by its standard deviation to the fourth power. However, this leads to a biased estimate.</p>
-                  <p>The formula for the unbiased estimate of excess kurtosis includes a lengthy correction based on the sample size:</p>
-                
-                    $$\text{Kurtosis} = \frac{(n+1)(n-1)}{(n-1)(n-3)}\frac{\sum (x_i -\mu)^4}{(\sum (x_i - \mu)^2)^2}- 3\frac{(n-1)^2}{(n-2)(n-3)}$$
-                  <p>Where</p>
-                  <ul>
-                    <li>\(n\) is the sample size</li>
-                    <li>\(x_i\) are observations of the variable x</li>
-                    <li>\(\mu\) is the mean of the variable x.</li>
-                  </ul>
-                </li>
-              </ul>
-
-              <h5>Types of kurtosis</h5>
-              Examples of kurtosis include:
-              <ol>
-                <li><p><strong>Mesokurtic distribution:</strong> A mesokurtic distribution has a kurtosis value of zero and is similar in shape to the normal distribution. It has a moderate degree of peakedness and is neither too flat nor too peaked.</p>
-                </li>
-                <li><p><strong>Leptokurtic distribution:</strong> A leptokurtic distribution has a kurtosis value greater than zero and is more peaked than the normal distribution. It has heavier tails and more outliers than a normal distribution.</p>
-                </li>
-                <li><p><strong>Platykurtic distribution:</strong> A platykurtic distribution has a kurtosis value less than zero and is flatter than the normal distribution. It has fewer outliers and less extreme values than a normal distribution.</p>
-                </li>
-                <figure>
-                  <img src="assets/img/data-engineering/kurtosis.png" alt="" style="max-width: 90%; max-height: 90%;">
-                  <figcaption style="text-align: center;"><strong>Image credit: </strong> scribbr</figcaption>
-                </figure>
-              </ol>
+                <h5>Types of kurtosis</h5>
+                Examples of kurtosis include:
+                <ol>
+                  <li><p><strong>Mesokurtic distribution:</strong> A mesokurtic distribution has a kurtosis value of zero and is similar in shape to the normal distribution. It has a moderate degree of peakedness and is neither too flat nor too peaked.</p>
+                  </li>
+                  <li><p><strong>Leptokurtic distribution:</strong> A leptokurtic distribution has a kurtosis value greater than zero and is more peaked than the normal distribution. It has heavier tails and more outliers than a normal distribution.</p>
+                  </li>
+                  <li><p><strong>Platykurtic distribution:</strong> A platykurtic distribution has a kurtosis value less than zero and is flatter than the normal distribution. It has fewer outliers and less extreme values than a normal distribution.</p>
+                  </li>
+                  <figure>
+                    <img src="assets/img/data-engineering/kurtosis.png" alt="" style="max-width: 90%; max-height: 90%;">
+                    <figcaption style="text-align: center;"><strong>Image credit: </strong> scribbr</figcaption>
+                  </figure>
+                </ol>
 
               <p>It's important to note that kurtosis can only be interpreted in the context of the specific distribution being analyzed. A high or low kurtosis value does not necessarily indicate that the data are problematic or 
                 that any action needs to be taken. Rather, kurtosis can provide insight into the shape of the distribution and can help to identify potential issues with the data.</p>
 
-                <p>Descriptive statistics are commonly used in fields such as business, economics, psychology, sociology, and healthcare, among others. They are an important tool for making informed decisions and drawing meaningful conclusions from data.</p>
+              <p>Descriptive statistics are commonly used in fields such as business, economics, psychology, sociology, and healthcare, among others. They are an important tool for making informed decisions and drawing meaningful conclusions from data.</p>
+    
+          </div>
     </section>
 
     <section id="Example">
