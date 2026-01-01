@@ -135,7 +135,8 @@
       <div class="container">
         <section id="introdction">
         <h2>Descriptive statistics</h2>
-        Descriptive statistics is a branch of statistics that deals with the collection, organization, analysis, and presentation of data. It involves summarizing and describing the main features of a dataset, such as the central tendency, variability, and distribution of the data.
+        Descriptive statistics is a branch of statistics that deals with the collection, organization, analysis, and presentation of data. It involves summarizing and describing 
+        the main features of a dataset, such as the central tendency, variability, and distribution of the data.
         <figure>
             <img src="assets/img/data-engineering/descriptive-stat.png" alt="" class="img-fluid" style="max-width: 70%;">
             <figcaption style="text-align: center;">Image credit: Scribbr</figcaption>
@@ -166,7 +167,8 @@
               other measures of central tendency, such as the median or mode, to represent the typical or central value of the dataset.</p>
         
           <h4>2. Median</h4>
-          The median is the middle value of a dataset when the values are arranged in order of magnitude. It is used to represent the typical or central value when the data are skewed or have outliers.</p>
+          The median is the middle value of a dataset when the values are arranged in order of magnitude. It is used to represent the typical or central value when the data are 
+          skewed or have outliers.</p>
           <ul>
               <li><strong>How to calculate?:</strong> To calculate the median, follow these steps:</li>
           </ul>
@@ -224,7 +226,8 @@
           <p>Measures of variability are statistical measures that describe the spread or dispersion of a dataset. Some common measures of variability include:</p>
           
           <h4>1. Range</h4>
-          The range is the difference between the maximum and minimum values in a dataset. It is the simplest measure of variability but can be heavily influenced by outliers. It is calculated using the formula:</p>
+          The range is the difference between the maximum and minimum values in a dataset. It is the simplest measure of variability but can be heavily influenced by outliers. 
+          It is calculated using the formula:</p>
           
           $$\text{Range} = \text{max value} - \text{min value}$$
           
@@ -233,7 +236,10 @@
           <p>Range = 12 - 2 = 10</p>
 
           <h4>2. Standard deviation</h4>
-          Standard deviation is a measure of how spread out a set of data is from its mean or average. It tells you how much the data deviates from the average. A low standard deviation indicates that the data is clustered closely around the mean, while a high standard deviation indicates that the data is spread out over a larger range of values. It is a commonly used measure of variability and is often preferred over the variance because it is expressed in the same units as the original data. The formula for standard deviation is:</p>
+          Standard deviation is a measure of how spread out a set of data is from its mean or average. It tells you how much the data deviates from the average. A low standard 
+          deviation indicates that the data is clustered closely around the mean, while a high standard deviation indicates that the data is spread out over a larger range of 
+          values. It is a commonly used measure of variability and is often preferred over the variance because it is expressed in the same units as the original data. 
+          The formula for standard deviation is:</p>
           $$\sigma = \sqrt{\frac{\sum (x-\mu)^2}{n}}$$
           <p>(Standard deviation of the population)</p>
           <p>where:</p>
@@ -244,7 +250,8 @@
               <li>\(\mu\) is the mean or average of the data</li>
               <li>\(n\) is the total number of data points</li>
           </ul>
-          <p><strong>Method:</strong> To find the standard deviation, you first subtract each data point from the mean, square the result, sum up all the squared differences, divide by the total number of data points, and finally, take the square root of the result.</p>
+          <p><strong>Method:</strong> To find the standard deviation, you first subtract each data point from the mean, square the result, sum up all the squared differences, 
+            divide by the total number of data points, and finally, take the square root of the result.</p>
           <p><strong>Example:</strong> let's say you have the following set of data: {2, 4, 6, 8, 10}.</p>
           <ul>
             <li>First, find the mean: \(\mu = (2 + 4 + 6 + 8 + 10) / 5 = 6\).</li>
@@ -263,10 +270,12 @@
           <p>The formula for calculating the IQR is as follows:</p>
           $$\text{IQR} =Q_3 -Q_1$$
 
-          <p>Where \(Q_3\) is the third quartile and \(Q_1\) is the first quartile. The quartiles are calculated by dividing the dataset into four equal parts. The first quartile (i.e. \(Q_1\)) represents the 25th percentile of the dataset, and the third quartile (i.e. \(Q_3\)) represents the 75th percentile.</p>
+          <p>Where \(Q_3\) is the third quartile and \(Q_1\) is the first quartile. The quartiles are calculated by dividing the dataset into four equal parts. The first quartile 
+            (i.e. \(Q_1\)) represents the 25th percentile of the dataset, and the third quartile (i.e. \(Q_3\)) represents the 75th percentile.</p>
             <figure>
                 <img src="assets/img/data-engineering/IQR.png" alt="" style="max-width: 80%; max-height: 80%;">
-                <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://commons.wikimedia.org/wiki/File:Boxplot_vs_PDF.svg">Jhguch at en.wikipedia</a>, <a href="https://creativecommons.org/licenses/by-sa/2.5">CC BY-SA 2.5</a>, via Wikimedia Commons</figcaption>
+                <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://commons.wikimedia.org/wiki/File:Boxplot_vs_PDF.svg">Jhguch at en.wikipedia</a>, 
+                  <a href="https://creativecommons.org/licenses/by-sa/2.5">CC BY-SA 2.5</a>, via Wikimedia Commons</figcaption>
             </figure>
             <p><strong>Example:</strong> Consider the following dataset: 1, 3, 5, 6, 7, 8, 9, 10, 11, 15.</p>
             <ul>
@@ -278,7 +287,8 @@
               <li>This means that the middle 50% of the dataset (between the 25th and 75th percentiles) falls within a range of 6.</li>
             </ul>
             <blockquote>
-                <p><strong>Quartiles:</strong> Quartiles are a way to divide a dataset into four equal parts or quarters. Quartiles are used to understand the distribution of a dataset and to calculate other measures of variability such as the interquartile range.
+                <p><strong>Quartiles:</strong> Quartiles are a way to divide a dataset into four equal parts or quarters. Quartiles are used to understand the distribution of a 
+                  dataset and to calculate other measures of variability such as the interquartile range.
                 There are three quartiles that divide a dataset into four parts:</p>
                 <ul>
                     <li>The first quartile (\(Q_1\)) is the 25th percentile of the dataset. It divides the dataset into the bottom 25% and the top 75%.</li>
@@ -289,12 +299,16 @@
 
 
             <h4>4. Mean absolute deviation (MAD)</h4>
-            The mean absolute deviation (MAD) is a measure of variability that indicates how much the observations in a dataset deviate, on average, from the mean of the dataset. The MAD is the average of the absolute differences between each value and the mean. It is a robust measure of variability that is less sensitive to outliers than the variance and standard deviation.</p>
-            <p><strong>Formula:</strong> MAD is calculated by finding the absolute difference between each data point and the mean, then taking the average of those absolute differences. The formula for calculating MAD is as follows:</p>
+            The mean absolute deviation (MAD) is a measure of variability that indicates how much the observations in a dataset deviate, on average, from the mean of the dataset. 
+            The MAD is the average of the absolute differences between each value and the mean. It is a robust measure of variability that is less sensitive to outliers than the 
+            variance and standard deviation.</p>
+            <p><strong>Formula:</strong> MAD is calculated by finding the absolute difference between each data point and the mean, then taking the average of those absolute differences. 
+              The formula for calculating MAD is as follows:</p>
         
             $$\text{MAD} = \frac{1}{n}\sum_i^n |x_i - \mu|$$
         
-            <p>Where \(n\) is the number of observations in the dataset, \(x_i\) is the value of the ith observation, \(\mu\) is the mean of the dataset, and \(\sum\) represents the sum of the absolute differences.</p>
+            <p>Where \(n\) is the number of observations in the dataset, \(x_i\) is the value of the ith observation, \(\mu\) is the mean of the dataset, and \(\sum\) represents 
+              the sum of the absolute differences.</p>
         
             <p><strong>Example:</strong> For example, consider the following dataset: 2, 3, 5, 6, 7, 8, 9, 10, 11, 15</p>
             <p>To calculate the MAD, we first find the mean of the dataset:</p>
@@ -346,19 +360,27 @@
             
                 <p>where \(n\) is the sample size, \(\mu\) is the sample mean, \(x_i\) is the \(i\)-th observation in the sample, and \(\sigma_s\) is the sample standard deviation.</p>
                 <blockquote>
-                    <p><strong>Sample standard deviation:</strong> The sample standard deviation measures the spread of the data around the mean. It tells you how much the individual data points deviate from the mean, on average. Note that the sample standard deviation is calculated using \(n - 1\) in the denominator instead of \(n\), which is known as Bessel's correction. This is because using \(n\) instead of \(n-1\) tends to underestimate the true variance of the population from which the sample was drawn.</p>
+                    <p><strong>Sample standard deviation:</strong> The sample standard deviation measures the spread of the data around the mean. It tells you how much the 
+                      individual data points deviate from the mean, on average. Note that the sample standard deviation is calculated using \(n - 1\) in the denominator 
+                      instead of \(n\), which is known as Bessel's correction. This is because using \(n\) instead of \(n-1\) tends to underestimate the true variance of 
+                      the population from which the sample was drawn.</p>
                     <p>Formula:</p>
                         $$\sigma_s = \sqrt{\frac{\sum_i^n (x_i-\mu)}{n-1}}$$
-                    <p>Care should be taken when getting the standard deviation because the standard deviation is different from the standard deviation of a sample. If the problem describes a situation dealing with a sample or subset of a group, then the sample standard deviation, s, should be used.</p>
+                    <p>Care should be taken when getting the standard deviation because the standard deviation is different from the standard deviation of a sample. 
+                      If the problem describes a situation dealing with a sample or subset of a group, then the sample standard deviation, s, should be used.</p>
                 </blockquote>
-                <p><strong>How to Transform Skewed Data?</strong> The graph of skewed data may be transformed into a symmetrical, balanced bell curve shape by changing the data using various methods. The selection of which method to use depends on the characteristic of the data set and its behavior. Here are the most common ways of correcting the skewness of data distribution:</p>
+                <p><strong>How to Transform Skewed Data?</strong> The graph of skewed data may be transformed into a symmetrical, balanced bell curve shape by changing 
+                  the data using various methods. The selection of which method to use depends on the characteristic of the data set and its behavior. Here are the most 
+                  common ways of correcting the skewness of data distribution:</p>
                 <ul>
                     <li>Logarithmic transformation</li>
                     <li>Square root transformation</li>
                     <li>Inverse transformation</li>
                     <li>Box-Cox transformation</li>
                 </ul>
-                <p>It is important to note that transforming the data may not always be necessary or appropriate. The choice of transformation depends on the distribution of the data, the research question, and the statistical model being used. In addition, some transformations may change the interpretation of the data, so it is important to carefully consider the implications of any transformations before applying them.</p>
+                <p>It is important to note that transforming the data may not always be necessary or appropriate. The choice of transformation depends on the distribution 
+                  of the data, the research question, and the statistical model being used. In addition, some transformations may change the interpretation of the data, 
+                  so it is important to carefully consider the implications of any transformations before applying them.</p>
               </li> 
             </ol>     
             
@@ -371,8 +393,11 @@
             <p>Each of these measures of skewness has its own strengths and weaknesses, and the choice of measure may depend on the context and purpose of the analysis.</p>
 
             <h4>3. Kurtosis</h4>
-                Kurtosis is a statistical measure that describes the shape of a distribution by measuring the degree of peakedness or flatness of the distribution compared to the normal distribution. A distribution with high kurtosis indicates that the data have many outliers or extreme values, while a distribution with low kurtosis indicates that the data are more spread out and have fewer outliers.</p>
-                <p><strong>How to calculate kurtosis:</strong> Mathematically speaking, kurtosis is the standardized fourth moment of a distribution. Moments are a set of measurements that tell you about the shape of a distribution.</p>
+                Kurtosis is a statistical measure that describes the shape of a distribution by measuring the degree of peakedness or flatness of the distribution compared to 
+                the normal distribution. A distribution with high kurtosis indicates that the data have many outliers or extreme values, while a distribution with low kurtosis 
+                indicates that the data are more spread out and have fewer outliers.</p>
+                <p><strong>How to calculate kurtosis:</strong> Mathematically speaking, kurtosis is the standardized fourth moment of a distribution. Moments are a set of 
+                  measurements that tell you about the shape of a distribution.</p>
                 <p>Moments are standardized by dividing them by the standard deviation raised to the appropriate power.</p>
                 <ul>
                   <li><p><strong>Kurtosis of a population:</strong> The following formula describes the kurtosis of a population:</p>
@@ -402,11 +427,14 @@
                 <h5>Types of kurtosis</h5>
                 Examples of kurtosis include:
                 <ol>
-                  <li><p><strong>Mesokurtic distribution:</strong> A mesokurtic distribution has a kurtosis value of zero and is similar in shape to the normal distribution. It has a moderate degree of peakedness and is neither too flat nor too peaked.</p>
+                  <li><p><strong>Mesokurtic distribution:</strong> A mesokurtic distribution has a kurtosis value of zero and is similar in 
+                    shape to the normal distribution. It has a moderate degree of peakedness and is neither too flat nor too peaked.</p>
                   </li>
-                  <li><p><strong>Leptokurtic distribution:</strong> A leptokurtic distribution has a kurtosis value greater than zero and is more peaked than the normal distribution. It has heavier tails and more outliers than a normal distribution.</p>
+                  <li><p><strong>Leptokurtic distribution:</strong> A leptokurtic distribution has a kurtosis value greater than zero and is 
+                    more peaked than the normal distribution. It has heavier tails and more outliers than a normal distribution.</p>
                   </li>
-                  <li><p><strong>Platykurtic distribution:</strong> A platykurtic distribution has a kurtosis value less than zero and is flatter than the normal distribution. It has fewer outliers and less extreme values than a normal distribution.</p>
+                  <li><p><strong>Platykurtic distribution:</strong> A platykurtic distribution has a kurtosis value less than zero and is 
+                    flatter than the normal distribution. It has fewer outliers and less extreme values than a normal distribution.</p>
                   </li>
                   <figure>
                     <img src="assets/img/data-engineering/kurtosis.png" alt="" style="max-width: 90%; max-height: 90%;">
@@ -414,14 +442,17 @@
                   </figure>
                 </ol>
 
-              <p>It's important to note that kurtosis can only be interpreted in the context of the specific distribution being analyzed. A high or low kurtosis value does not necessarily indicate that the data are problematic or 
-                that any action needs to be taken. Rather, kurtosis can provide insight into the shape of the distribution and can help to identify potential issues with the data.</p>
+              <p>It's important to note that kurtosis can only be interpreted in the context of the specific distribution being analyzed. A high or low 
+                kurtosis value does not necessarily indicate that the data are problematic or 
+                that any action needs to be taken. Rather, kurtosis can provide insight into the shape of the distribution and can help to identify potential 
+                issues with the data.</p>
 
-              <p>Descriptive statistics are commonly used in fields such as business, economics, psychology, sociology, and healthcare, among others. They are an important tool for making informed decisions and drawing meaningful conclusions from data.</p>
+              <p>Descriptive statistics are commonly used in fields such as business, economics, psychology, sociology, and healthcare, among others. They are 
+                an important tool for making informed decisions and drawing meaningful conclusions from data.</p>
     
           </div>
     </section>
-    
+
         <br>
         <hr>
         <br> 
