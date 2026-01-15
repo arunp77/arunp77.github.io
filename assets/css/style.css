@@ -2051,3 +2051,43 @@ code, kbd, pre, samp {
   font-size: 14px;
   font-weight: 700;
 }
+
+.reference-section {
+  margin-top: 40px;
+}
+
+.reference-block {
+  margin-bottom: 24px;
+}
+
+.reference-block h4 {
+  margin-bottom: 8px;
+  color: #0f172a;
+}
+
+.reference-block ul {
+  padding-left: 20px;
+}
+
+.reference-block li {
+  margin-bottom: 6px;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+}
+
+.clickable-box {
+  padding: 10px 18px;
+  border-radius: 8px;
+  background: #149ddd;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.clickable-box:hover {
+  background: #117bb8;
+}
