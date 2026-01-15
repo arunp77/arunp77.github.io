@@ -2020,3 +2020,34 @@ code, kbd, pre, samp {
 .project-link:hover {
   color: #1d4ed8;
 }
+
+
+/* ==========================================================
+   Automatic numbering for portfolio sections
+   ========================================================== */
+
+.portfolio-list {
+  counter-reset: portfolio-item;
+  list-style: none;
+  padding-left: 0;
+}
+
+.portfolio-list > li {
+  counter-increment: portfolio-item;
+}
+
+/* Number badge before title */
+.portfolio-title::before {
+  content: counter(portfolio-item);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: #149ddd;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+}
