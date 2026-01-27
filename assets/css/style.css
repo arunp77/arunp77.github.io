@@ -535,7 +535,7 @@ section {
   transition: 0.9s;
   background-color: #1c61a1;
 }
-
+ 
 /*--------------------------------------------------------------
 # Resume
 --------------------------------------------------------------*/
@@ -2038,7 +2038,7 @@ code, kbd, pre, samp {
 
 /* Number badge before title */
 .portfolio-title::before {
-  content: counter(portfolio-item);
+  content: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
