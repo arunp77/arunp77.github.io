@@ -2037,8 +2037,9 @@ code, kbd, pre, samp {
 }
 
 /* Number badge before title */
-.portfolio-title::before {
-  content: none;
+/* .portfolio-title::before { */
+.portfolio-list .portfolio-title::before {
+  content: counter(portfolio-item);
   display: inline-flex;
   align-items: center;
   justify-content: center;
