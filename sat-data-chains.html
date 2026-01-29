@@ -255,6 +255,21 @@
                             <b>Level 2: Derived Geophysical Variables </b>
                             At this stage, the calibrated measurements are converted into geophysical parameters such as surface temperature, cloud cover, ocean salinity, or greenhouse gas 
                             concentrations. This step often involves radiative transfer models and retrieval algorithms that integrate information from multiple sensors and external databases.
+                            <p>
+                                Level 2 products estimate geophysical quantities such as temperature, humidity, or trace gas concentration from L1 radiances. This step is an inverse problem,
+                                often written as:
+                                $$z=g(y,b) + \delta$$
+                                where,
+                                <ul>
+                                    <li>\(z\) is the retrieved geophysical state,</li>
+                                    <li>\(y\) is the vector of observed radiances,</li>
+                                    <li>\(b\) represents auxiliary data and model parameters,</li>
+                                    <li>\(g\) is the retrieval algorithm,</li>
+                                    <li>\(\delta\) epresents residual modelling error.</li>
+                                </ul>
+                                Retrieval algorithms range from simple empirical relationships to complex physics-based methods such as optimal estimation. 
+                                The quality of L2 products depends not only on measurement accuracy but also on assumptions embedded in radiative transfer models and prior information.
+                            </p>
                         </li>
                         <li>
                             <b>Level 3 and 4: Aggregation and Analysis-Ready Products </b>
