@@ -171,7 +171,7 @@
 
                     <p>These raw counts are the starting point of the processing chain.</p>
 
-
+                    <!-- section -->
                     <h3>Journey (High-Level Flow)</h3>
 
                     <pre><code>
@@ -184,6 +184,7 @@
                         </div>
                     </div>
 
+                    <!-- heading started -->
                     <h3>The Backbone: Satellite Systems</h3>
                     Modern Earth observation (EO) satellites, such as the METOP-SG or Sentinel series from the Copernicus program, are equipped with an array of instruments. 
                     These include radiometers, spectrometers, and radar sensors that collect data across various spectral ranges and spatial resolutions. 
@@ -200,21 +201,55 @@
                     <p>However, these instruments merely initiate the data chain. What follows is a sophisticated multi-tiered processing pipeline that transforms these bits 
                         and bytes into meaningful insights.</p>
 
+                    <!-- heading started -->
                     <h3>The Data Processing Chain: From Bits to Insight</h3>
                     <p>Onboard Processing and Transmission</p>
                     <p>The process starts with satellite instruments measuring Earth system parameters. Minimal preprocessing occurs onboard (such as data compression and 
-                        time tagging) before the telemetry is transmitted to ground stations.</p>
+                        time tagging) before the telemetry is transmitted to ground stations.
+                    </p>
+
+                    <p>To manage complexity and responsibilities, satellite data are conventionally grouped into processing levels. While exact definitions vary between 
+                        agencies, the general structure is well established.
+                    </p>
 
 
                     <ul>
                         <li><b>Level 0: Raw Data Reception</b> Once transmitted to ground stations, the satellite data are received in their rawest form, often including telemetry, 
-                            ancillary data, and mission-specific housekeeping information. This level is mainly concerned with assembling and decommutating the telemetry stream, with 
-                            no scientific interpretation yet.
+                            ancillary data, and mission-specific housekeeping information. 
+                            <p>At this stage, the data are not calibrated and have little direct scientific meaning. Digitisation already imposes a fundamental limit on 
+                                precision. For example, an \(N\-bit analogue-to-digital converter introduces a quantisation uncertainty of approximately
+                                $$\sigm_{\text{digit}}= \frac{1}{\sqrt{12}} \Delta$$ 
+
+                                where \(\Delta\) is the quantisation step.
+                            </p>
                         </li>
                         <li>
                             <b>Level 1: Calibration and Geolocation</b>
                             The next step involves converting the raw measurements into physical units (e.g., radiance or reflectance), correcting for instrument-specific biases and 
                             geometric distortions. This calibration and geolocation process is crucial to ensure that the data are both accurate and traceable to physical ground locations.
+
+                            <p>A simplified calibration equation for one channel can be written as:</p>
+                            $$L = a+0+a_1 C +a_2 C^2$$ 
+                            where,
+                            <ul>
+                                <li>\(L\) is the calibrated radiance,</li>
+                                <li>(C\) is the measured count, </li>
+                                <li>(a_0\), (a_1\) and (a_2\) are calibration parameters (offset, gain, non-linearity).</li>
+                                <li>(\)</li>
+                            </ul>
+                            <p>Calibration parameters are derived from pre-launch characterisation and in-flight calibration sources (e.g. blackbodies or solar diffusers). 
+                                Over time, sensor degradation and changing thermal conditions introduce drift, making long-term stability a major challenge.
+                            </p>
+                            <p>
+                                Uncertainty in L1 radiances arises from:
+                                <ul>
+                                    <li>detector noise,</li>
+                                    <li>calibration parameter uncertainty,</li>
+                                    <li>digitisation,</li>
+                                    <li>imperfect knowledge of the sensor response.</li>
+                                </ul>
+                                Importantly, some of these errors are correlated across pixels or channels, which has major implications for later processing.
+                            </p>
                         </li>
                         <li>
                             <b>Level 2: Derived Geophysical Variables </b>
