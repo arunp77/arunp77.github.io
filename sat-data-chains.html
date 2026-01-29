@@ -278,12 +278,14 @@
                                 Retrieval algorithms range from simple empirical relationships to complex physics-based methods such as optimal estimation. 
                                 The quality of L2 products depends not only on measurement accuracy but also on assumptions embedded in radiative transfer models and prior information.
                             </p>
+                            <p></p>
+                            <p>
+                                Subsequent levels involve spatial and temporal aggregation, gridding, and fusion with data from other sources (e.g., in-situ or model data). These higher-level 
+                            products are designed for direct use in scientific analyses, weather forecasting models, and policy-making dashboards.
+                            </p>
                         </li>
                         <li>
-                            <b>Level 3 and 4: Aggregation and Analysis-Ready Products: </b>
-                            Subsequent levels involve spatial and temporal aggregation, gridding, and fusion with data from other sources (e.g., in-situ or model data). These higher-level 
-                            products are designed for direct use in scientific analyses, weather forecasting models, and policy-making dashboards.
-
+                            <b>Level 3 (L3): Gridded Products: </b>
                             <p>
                                 Level 3 products reorganise L2 data onto a fixed spatial and/or temporal grid. This often involves averaging: 
                                 $$\bar{z} = \frac{\sum_{i=1}^N w_i z_i}{\sum_{i=1}^N w_i}$$
@@ -294,6 +296,14 @@
                                 because irregular satellite observations are used to represent continuous geophysical fields.
                             </p>
                         </li>
+                        <lI>
+                            <b>Level 4 (L4): Gap-Filled and Model-Integrated Products: </b>
+                            <p>
+                                Level 4 products combine satellite data with models and/or in situ observations to produce spatially and temporally complete fields. 
+                                These products are highly useful but are no longer purely observation-based. Their uncertainty reflects a mixture of measurement error, 
+                                model assumptions, and interpolation choices.
+                            </p>
+                        </lI>
                     </ul>
 
                     <h3>Challenges in the Chain</h3>
