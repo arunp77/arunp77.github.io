@@ -152,7 +152,7 @@
                      <h3>Satellite planning and data processing chain</h3>
 
                     <div class="col-lg-8">
-                        <div class="portfolio-details-slider swiper"> #Active-passive.png
+                        <div class="portfolio-details-slider swiper">
                             <img src="assets/img/remote-sensing/sat_pipeline.png" class="img-fluid" alt="Image Description" style="width: 80%; height: auto;">
                         </div>
                     </div>                     
@@ -280,9 +280,19 @@
                             </p>
                         </li>
                         <li>
-                            <b>Level 3 and 4: Aggregation and Analysis-Ready Products </b>
+                            <b>Level 3 and 4: Aggregation and Analysis-Ready Products: </b>
                             Subsequent levels involve spatial and temporal aggregation, gridding, and fusion with data from other sources (e.g., in-situ or model data). These higher-level 
                             products are designed for direct use in scientific analyses, weather forecasting models, and policy-making dashboards.
+
+                            <p>
+                                Level 3 products reorganise L2 data onto a fixed spatial and/or temporal grid. This often involves averaging: 
+                                $$\bar{z} = \frac{\sum_{i=1}^N w_i z_i}{\sum_{i=1}^N w_i}$$
+
+                                whee \(z_i\) are individual L2 observations and \(w_i\) are weights based on quality or sampling. 
+                            </p>
+                            <p>While averaging reduces random noise, it does not necessarily reduce correlated errors. In addition, L3 products introduce sampling uncertainty, 
+                                because irregular satellite observations are used to represent continuous geophysical fields.
+                            </p>
                         </li>
                     </ul>
 
@@ -298,9 +308,6 @@
 
                     <!-- heading added -->
                     <h3>Collaboration Across Specialized Teams</h3>
-                    <pre><code>
-                        [Raw signals: numbers/currents] → [Ground station antennas] → [Processing: cleaning, correction] → [Data products: maps/charts] → [Scientists using data]
-                    </code></pre>
 
                     <div class="col-lg-8">
                         <div class="portfolio-details-slider swiper"> #Active-passive.png
