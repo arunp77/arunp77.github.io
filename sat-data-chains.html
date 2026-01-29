@@ -136,6 +136,7 @@
                     </div>
 
                 <section>
+                    <h3>Introduction</h3>
                     <p>Modern satellite missions observe the Earth continuously, producing vast amounts of data that support weather forecasting, climate monitoring, and environmental 
                         research. However, satellite data are not directly usable when they are first received on the ground. Instead, they pass through a multi-stage data processing 
                         chain, where raw instrument measurements are transformed into geophysical products such as temperature, humidity, trace gas concentrations, or ocean surface 
@@ -152,6 +153,19 @@
                     <p>The fundamental measured quantity is usually spectral radiance, integrated over the spectral response of a sensor channel. 
                         In simplified form, the sensor output can be written as
                     </p>
+
+                    $$C = f(L) + \epsilon $$
+
+                    where
+
+                    <ul>
+                        <li>\(C\) is the recorded digital count (or digital number),</li>
+                        <li>\(L\) is the true radiance reaching the instrument,</li>
+                        <li>\(f(.)\) represents the sensor response (gain, offset, non-linearity),</li>
+                        <li>\(\epsilon\) represents measurement noise and unmodelled effects.</li>
+                    </ul>
+
+                    <p>These raw counts are the starting point of the processing chain.</p>
 
 
                     <h3>Journey (High-Level Flow)</h3>
