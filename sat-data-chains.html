@@ -306,6 +306,19 @@
                         </lI>
                     </ul>
 
+                    <!-- heading added -->
+                     <h3>Propagation of Uncertainty Through the Chain</h3>
+                     <p>A central concept in satellite data processing is that uncertainty propagates through each processing step. For a measurement function. </p>
+
+                     $$y = f(x_1,x_2,...,x_n)$$
+
+                     <p>the standard uncertainty in \(y\) can be approximated using the Law of Propagation of Uncertainty:</p>
+
+                     $$\sigma_y^2 = \sum_{ij} \frac{\partial f}{\partial_i}\frac{\partial f}{\partial_j}$$
+
+                     <p>This expression highlights why error correlations matter. Ignoring covariance terms can lead to under- or overestimation of uncertainty, especially in gridded and climate-scale products.</p>
+
+
                     <h3>Challenges in the Chain</h3>
                     <p>Maintaining the fidelity and integrity of data throughout this processing pipeline is a non-trivial engineering and scientific challenge. Issues such as 
                         file size inconsistencies, synchronization errors, and processor-specific variations (e.g., between different ground segments or missions) can affect data quality. 
