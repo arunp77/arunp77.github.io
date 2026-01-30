@@ -192,137 +192,193 @@
 
 
                     <div class="box">
-                      <h3>Sea Surface Temperature (SST): A Detailed Mathematical Description</h3>
-                      To understand Sea Surface Temperature (SST) mathematically, we must view it as the thermodynamic result of the energy balance at the interface between the ocean and the atmosphere.
+                      <h3>Governing Thermodynamic Description of Sea Surface Temperature</h3>
+                      To understand Sea Surface Temperature (SST) mathematically, we must view it as the thermodynamic result of the energy balance at the 
+                      interface between the ocean and the atmosphere. In physical oceanography, SST is not a single value but a vertical profile. We differentiate 
+                      between the Skin Temperature \(\text{SST}_{\text{skin}}\) and the Bulk Temperature \(\text{SST}_{\text{bulk}}\).
+
+                      <h4>Temperature as a Prognostic Variable</h4>
+                      The ocean temperature field is a continuous function of space and time:
+
+                      $$T = T(x, y, z, t)$$
+
+                      where,
+
+                      <ul>
+                        <li>\(x, y\) are horizontal coordinates,</li>
+                        <li>\(z\) is vertical depth (positive downward),</li>
+                        <li>\(t\) is time.</li>
+                      </ul>
+
+                      Temperature evolution in the ocean is governed by energy conservation.
 
 
+                      <h4>Heat Conservation Equation (First Law of Thermodynamics)</h4>
+                      The local rate of change of temperature is governed by the heat equation:
+
+                      $$
+                        \rho c_p \frac{\partial T}{\partial t}
+                        = - \nabla \cdot \mathbf{F}_{\text{heat}} + Q
+                      $$
+
+                      where:
+
+                      <ul>
+                        <li>\(\rho\) is seawater density,</li>
+                        <li>\(c_p\) is specific heat capacity,</li>
+                        <li>\(\mathbf{F}_{\text{heat}}\) is the heat flux vector,</li>
+                        <li>\(Q\) represents internal heat sources (usually negligible near the surface).</li>
+                      </ul>
 
 
+                      <h4>Decomposition of Heat Flux</h4>
+                      The heat flux consists of advective and diffusive components:
+
+                      $$
+                        \mathbf{F}_{\text{heat}}
+                        = \rho c_p \mathbf{u} T * k \nabla T
+                      $$
+
+                      where:
+
+                      <ul>
+                        <li>\(\mathbf{u}\) is the fluid velocity,</li>
+                        <li>\(k\) is thermal conductivity (or turbulent diffusivity).</li>
+                      </ul>
+
+                      Substituting:
+                      $$
+                        \frac{\partial T}{\partial t} * \mathbf{u} \cdot \nabla T = \nabla \cdot (\kappa \nabla T)
+                      $$
+
+                      This is the advection–diffusion equation for temperature.
 
 
+                      <h4>Near-Surface Vertical Structure</h4>
+                      Near the ocean surface, vertical gradients dominate over horizontal gradients. We simplify:
+
+                      $$
+                        \frac{\partial T}{\partial t}
+                        \approx
+                        \frac{\partial}{\partial z}
+                        \left(
+                        \kappa \frac{\partial T}{\partial z}
+                        \right)
+                      $$
+
+                      This approximation is valid within the upper few centimeters, where molecular and turbulent diffusion dominate.
+
+                      <h4>Boundary Condition at the Air–Sea Interface</h4>
+
+                      At the surface \((z = 0)\), the vertical heat flux is set by the net air–sea heat exchange:
+
+                      $$
+                        - k \frac{\partial T}{\partial z}\Big|_{z=0} = Q_{\text{net}}
+                      $$
+
+                      where:
+
+                      $$Q_{\text{net}}= Q_{\text{sw}} - Q_{\text{lw}} - Q_{\text{sens}} - Q_{\text{lat}}$$ 
+
+                      This boundary condition couples ocean thermodynamics to the atmosphere.
+
+
+                      <h4>Formation of the Skin Layer</h4>
+                      In the uppermost micrometers, turbulent mixing vanishes and molecular diffusion dominates. Under quasi-steady conditions:
+
+                      $$
+                      \frac{\partial}{\partial z} \left( k \frac{\partial T}{\partial z} \right)= 0
+                      $$
+
+                      which integrates to a linear gradient:
+
+                      $$\frac{\partial T}{\partial z} = -\frac{Q_{\text{net}}}{k}$$ 
+
+                      <h4>Skin–Bulk Temperature Difference</h4>
+                      Integrating over the skin layer thickness (\delta):
+
+                      $$T_{\text{skin}} - T_{\text{bulk}} = - \int_0^{\delta} \frac{Q_{\text{net}}}{k}, dz$$ 
+
+                      which yields:
+
+                      $$
+                        \boxed{
+                        \Delta T
+                        = T_{\text{skin}} - T_{\text{bulk}}
+                        \approx - \frac{Q_{\text{net}}}{\rho c_p u_*}
+                        }                      
+                      $$
+
+                      where \(u_*\) is the friction velocity, representing turbulent exchange. 
+
+                      <p>This equation explains why:</p>
+
+                      <ul>
+                        <li>low wind → strong skin cooling,</li>
+                        <li>high wind → reduced skin–bulk difference.</li>
+                      </ul>
+
+
+                      <h4>Definition of Satellite-Relevant SST</h4>
+
+                      Thermal infrared satellites sense radiation emitted from the skin layer, therefore:
+
+                      $$T_{\text{sat}} \equiv T_{\text{skin}} = T(z \rightarrow 0^+)$$
+
+                      This is a boundary value, not a vertically averaged temperature.
+
+                      <h4>Radiative Expression of Skin Temperature</h4>
+
+                      The skin temperature enters the radiation field via Planck’s law:
+
+                      $$
+                        B(\lambda, T_{\text{skin}})
+                        = \frac{2hc^2}{\lambda^5}
+                        \frac{1}{\exp\left(\frac{hc}{\lambda k T_{\text{skin}}}\right)-1}                      
+                      $$
+
+                      The emitted ocean radiance is:
+
+                      $$L_{\text{surf}}(\lambda) = \varepsilon(\lambda), B(\lambda, T_{\text{skin}})$$
+
+                      <h4>Atmosphere–Ocean Coupled Observation Equation</h4>
+
+                      Including atmospheric effects:
+
+                      $$L_{\text{TOA}}(\lambda) \tau(\lambda) \varepsilon(\lambda) B(\lambda, T_{\text{skin}})  L_{\text{atm}}^{\uparrow}(\lambda)$$
+                      
+                      This is the forward physical model linking thermodynamics to satellite observations.
+
+                      <h4>Observed Quantity and Inversion Target</h4>
+
+                      The satellite measures channel-integrated radiance:
+
+                      $$L_c = \int L_{\text{TOA}}(\lambda), R_c(\lambda), d\lambda$$ 
+
+                      The retrieval problem is:
+
+                      $$
+                      \boxed{
+                      \text{Given } L_c ;\Rightarrow; \text{Estimate } T_{\text{skin}}
+                      }
+                      $$
+
+                      This is an inverse problem, constrained by thermodynamics, radiative transfer, and statistics.
+
+                      <h4>Conceptual Closure</h4>
+
+                      Starting from the heat equation, we have shown that:
+
+                      <ul>
+                        <li>SST is governed by energy conservation</li>
+                        <li> The skin temperature emerges from surface boundary conditions.</li>
+                        <li>Satellites sense a thermodynamic boundary layer.</li>
+                        <li>SST retrieval is fundamentally a physics-based inversion.</li>
+                      </ul>
+
+                      This framework ensures that SST is understood not as a “product”, but as the solution of a coupled thermodynamic–radiative system.
 
                     </div>
-
-In physical oceanography, SST is not a single value but a vertical profile. We differentiate between the **Skin Temperature** () and the **Bulk Temperature** ().
-
----
-
-## 1. The Governing Thermodynamic Equation
-
-The rate of change of temperature () in the upper ocean layer (the mixed layer) is governed by the conservation of heat energy. The heat budget equation for a water column of depth  is:
-
-Where:
-
-* : Density of seawater ().
-* : Specific heat capacity of seawater ().
-* : Net surface heat flux.
-* : Heat loss/gain due to horizontal advection ().
-* : Vertical diffusion or entrainment at the base of the mixed layer.
-
----
-
-## 2. The Net Surface Heat Flux ()
-
-The  is the most critical component for SST. It is the sum of four distinct flux terms:
-
-### A. Shortwave Radiation ()
-
-This is the solar energy absorbed by the ocean. It depends on the solar constant, albedo (), and solar zenith angle ().
-
-
-
-However, not all  stays at the surface; it penetrates the water column according to **Beer’s Law**:
-
-
-
-where  is the attenuation coefficient.
-
-### B. Longwave Radiation ()
-
-The ocean emits infrared radiation as a blackbody (modified by emissivity ). According to the **Stefan-Boltzmann Law**:
-
-
-* : Stefan-Boltzmann constant ().
-* : Absolute sea surface temperature.
-* : Atmospheric temperature.
-
-### C. Latent Heat Flux ()
-
-This is the heat lost due to evaporation. It is mathematically modeled using the **Bulk Aerodynamic Formula**:
-
-
-* : Air density.
-* : Latent heat of vaporization.
-* : Transfer coefficient for moisture.
-* : Wind speed.
-* : Specific humidity gradient between the surface and the air.
-
-### D. Sensible Heat Flux ()
-
-This is the direct heat transfer due to the temperature difference between air and water:
-
-
-* : Stanton number (transfer coefficient for heat).
-
----
-
-## 3. The "Cool Skin" Phenomenon
-
-Because heat loss () occurs exactly at the surface, while heat gain () is distributed through depth, the very top layer (the "skin") is usually cooler than the water 10 cm below. This is described by the **Fourier Law of Conduction** in the molecular sublayer:
-
-* : Thickness of the molecular sublayer ().
-* : Thermal conductivity of water.
-
----
-
-## 4. Summary Table of Variables
-
-| Variable | Description | Typical Units |
-| --- | --- | --- |
-|  | Sea Surface Temperature |  or  |
-|  | Latent Heat (Evaporation) |  |
-|  | Sensible Heat (Conduction) |  |
-|  | Surface Wind Speed |  |
-|  | Albedo (Reflectivity) | Dimensionless |
-
----
-
-## 5. Why this matters for your research
-
-If you are applying to the research centers mentioned earlier (like **IITM** or **INCOIS**), you will likely deal with **Coupled Models**. In these models, the SST is the "boundary condition." If the math in your model incorrectly calculates  (evaporation), your Monsoon predictions will fail.
-
-**Would you like me to explain how these equations are discretized for use in numerical climate models like WRF or ROMS?**
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                     <br>
                     <h3>Reference</h3>
