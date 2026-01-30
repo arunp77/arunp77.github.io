@@ -93,7 +93,7 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Motivation and Scope</h2>
+          <h2>Sea Surface Temperature</h2>
           <ol>
             <li><a href="project_sst_1.html" class="clickable-box"><i class="fas fa-arrow-left"></i> Content</a></li>
             <li><a href="Remote-sensing-content.html" class="clickable-box">Home</a></li>
@@ -132,7 +132,7 @@
     <section id="portfolio-details" class="portfolio-details">
         <div class="container">
             <div class="row gy-4">
-                <h1>Understanding Satellite Systems and the Complexity of data Processing Chains</h1>
+                <h1>Physical Quantity of Interest: Sea Surface Temperature</h1>
                 <div class="w-100">
                     <img src="assets/img/remote-sensing/Active-passive.png"
                         alt="Active Passive"
@@ -141,16 +141,51 @@
                     
 
                 <section>
-                    <h3>Motivation and Scope</h3>
+                    <h3>Physical Quantity of Interest: Sea Surface Temperature</h3>
                     <p>
-                        Satellite data products are the result of a long and carefully structured processing chain, transforming raw instrument signals into geophysically meaningful quantities. Understanding this chain is essential for correct interpretation of satellite-derived information, especially in climate and environmental applications where small biases and long-term stability matter.
+                        
                     </p>
                     <p>
-                        Sea Surface Temperature (SST) is chosen as a representative example because it combines relatively well-understood physical principles with a high level of practical relevance. SST has been observed from space for several decades, is produced operationally by multiple satellite missions, and is widely used in weather prediction, oceanography, and climate studies. At the same time, SST retrieval highlights many of the key challenges common to satellite data processing, including calibration stability, atmospheric correction, model dependence, and uncertainty propagation.
+                        Before discussing satellite instruments or algorithms, it is important to define the geophysical quantity of interest. 
+                        Sea Surface Temperature (SST) refers to the temperature of the ocean at or near the interface between the ocean and the atmosphere. 
+                        However, this seemingly simple definition hides important physical distinctions.
                     </p>
-                    <p>The scope of this example is deliberately limited. The discussion does not aim to describe mission-specific implementations, sensor-dependent tuning, or operational software details. Nor does it attempt to optimise or validate a particular SST algorithm. Instead, the focus is on explaining the logical structure of the processing chain, from measurement to higher-level products, and on clarifying how physical assumptions and mathematical transformations enter at each stage.</p>
-                    <p>This example is intended for readers with a basic technical background who seek a conceptual and quantitative understanding of satellite data processing, rather than a step-by-step guide to code implementation. The emphasis is on measurement principles, processing logic, and interpretation, rather than on programming or system engineering.</p>
-                    <p><b>The purpose of this document is to open that box.</b></p>
+                    <p>Before discussing satellite instruments or algorithms, it is important to define the geophysical quantity of interest. 
+                      <b>Sea Surface Temperature (SST)</b> refers to the temperature of the ocean at or near the interface between the ocean and the atmosphere. 
+                      However, this seemingly simple definition hides important physical distinctions.
+                    </p>
+
+                    <p>Satellite infrared radiometers are sensitive to radiation emitted from the <b>uppermost micrometres of the ocean surface</b>, 
+                      commonly referred to as the <b>skin layer</b>. The temperature inferred from thermal infrared measurements is therefore the <b>skin SST</b>, 
+                      denoted \(T_{\text{skin}}\). In contrast, in-situ measurements from buoys or ships typically represent the <b>bulk SST</b>, measured at depths of 
+                      order centimetres to meters, denoted \(T_{\text{bulk}}\).
+                    </p>
+                    <p>The relationship between these quantities can be expressed schematically as: </p>
+
+                    $$T_{\text{skin}} = T_{\text{bulk}} + \Delta T$$
+
+                    <p>where \(\Delta T\) represents the skin–bulk temperature difference, influenced by factors such as wind speed, solar heating, and turbulent mixing. 
+                      This difference is typically small (on the order of a few tenths of a kelvin) but is not negligible for climate applications.
+                    </p>
+
+                    <p>Satellites cannot measure SST directly. Instead, they observe <b>thermal infrared radiance</b> emitted by the ocean–atmosphere system. 
+                      This radiance depends not only on surface temperature but also on atmospheric absorption and emission, surface emissivity, and viewing geometry. 
+                      As a result, SST must be <b>estimated indirectly</b> by solving an inverse problem that links observed radiance to surface temperature through physical models.
+                    </p>
+                    <p>Despite these limitations, SST is one of the most widely used satellite-derived geophysical variables. It plays a central role in:</p>
+                    <ul>
+                      <li>numerical weather prediction, where SST influences air–sea heat and moisture fluxes,</li>
+                      <li>ocean circulation and air–sea interaction studies,</li>
+                      <li>detection and analysis of climate variability and long-term trends,</li>
+                      <li>marine ecosystem and biogeochemical applications.</li>                      
+                    </ul>
+
+                    <p>Because SST sits at the intersection of physics, observation, and modelling, it provides an ideal framework for illustrating the complexity and 
+                      logic of satellite data processing chains.
+                    </p>
+
+
+                    
 
                     <div class="col-lg-8">
                         <div class="portfolio-details-slider swiper">
@@ -158,6 +193,21 @@
                         </div>
                     </div>
                     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
