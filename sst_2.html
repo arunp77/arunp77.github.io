@@ -236,7 +236,7 @@
 
                       $$
                         \mathbf{F}_{\text{heat}}
-                        = \rho c_p \mathbf{u} T \times k \nabla T
+                        = \rho c_p \mathbf{u} T -  k \nabla T
                       $$
 
                       where:
@@ -248,7 +248,7 @@
 
                       Substituting:
                       $$
-                        \frac{\partial T}{\partial t} \times \mathbf{u} \cdot \nabla T = \nabla \cdot (\kappa \nabla T)
+                        \frac{\partial T}{\partial t} + \mathbf{u} \cdot \nabla T = \nabla \cdot (\kappa \nabla T)
                       $$
 
                       This is the advection–diffusion equation for temperature.
@@ -345,7 +345,7 @@
 
                       Including atmospheric effects:
 
-                      $$L_{\text{TOA}}(\lambda) \tau(\lambda) \varepsilon(\lambda) B(\lambda, T_{\text{skin}})  L_{\text{atm}}^{\uparrow}(\lambda)$$
+                      $$L_{\text{TOA}}(\lambda) = \tau(\lambda) \varepsilon(\lambda) B(\lambda, T_{\text{skin}})  + L_{\text{atm}}^{\uparrow}(\lambda)$$
                       
                       This is the forward physical model linking thermodynamics to satellite observations.
 
@@ -353,7 +353,7 @@
 
                       The satellite measures channel-integrated radiance:
 
-                      $$L_c = \int L_{\text{TOA}}(\lambda), R_c(\lambda), d\lambda$$ 
+                      $$L_c = \int L_{\text{TOA}}(\lambda) R_c(\lambda), d\lambda$$ 
 
                       The retrieval problem is:
 
