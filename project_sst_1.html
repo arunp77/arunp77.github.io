@@ -141,11 +141,7 @@
 
                 <section>
                     <h3>Introduction</h3>
-                    <p>Modern satellite missions observe the Earth continuously, producing vast amounts of data that support weather forecasting, climate monitoring, and environmental 
-                        research. However, satellite data are not directly usable when they are first received on the ground. Instead, they pass through a multi-stage data processing 
-                        chain, where raw instrument measurements are transformed into geophysical products such as temperature, humidity, trace gas concentrations, or ocean surface 
-                        properties. This transformation involves complex systems and coordinated efforts among multiple technical and scientific teams. This transformation relies on 
-                        sophisticated data processing chains, which are both technically complex and scientifically essential.  
+                    <p>
                     </p>
 
                     <!-- heading started -->
@@ -155,243 +151,29 @@
                         <div class="portfolio-details-slider swiper">
                             <img src="assets/img/remote-sensing/sat_pipeline.png" class="img-fluid" alt="Image Description" style="width: 80%; height: auto;">
                         </div>
-                    </div>                     
-
-                    <h3>What a Satellite Actually Measures</h3> 
-                    <p>Satellite instruments do not measure geophysical variables directly. Instead, they measure electromagnetic radiation reaching the sensor at the top of 
-                        the atmosphere. Depending on the instrument, this radiation may be reflected sunlight (visible and near-infrared) or thermal emission from the 
-                        Earth–atmosphere system (infrared and microwave).
-                    </p>
-                    <p>The fundamental measured quantity is usually spectral radiance, integrated over the spectral response of a sensor channel. 
-                        In simplified form, the sensor output can be written as
-                    </p>
-
-                    $$C = f(L) + \epsilon $$
-
-                    where
-
-                    <ul>
-                        <li>\(C\) is the recorded digital count (or digital number),</li>
-                        <li>\(L\) is the true radiance reaching the instrument,</li>
-                        <li>\(f(.)\) represents the sensor response (gain, offset, non-linearity),</li>
-                        <li>\(\epsilon\) represents measurement noise and unmodelled effects.</li>
-                    </ul>
-
-                    <p>These raw counts are the starting point of the processing chain.</p>
-
-                    <!-- section -->
-                    <h3>Journey (High-Level Flow)</h3>
-
-                    <pre><code>
-                        Mission Goals → Satellite Design → Launch → Data Reception  → Data Processing → Research
-                    </code></pre>
-
-                    <div class="col-lg-8">
-                        <div class="portfolio-details-slider swiper">
-                            <img src="assets/img/remote-sensing/orbit.png" class="img-fluid" alt="Image Description" style="width: 80%; height: auto;">
-                        </div>
-                    </div>
-
-                    <!-- heading started -->
-                    <h3>The Backbone: Satellite Systems</h3>
-                    Modern Earth observation (EO) satellites, such as the METOP-SG or Sentinel series from the Copernicus program, are equipped with an array of instruments. 
-                    These include radiometers, spectrometers, and radar sensors that collect data across various spectral ranges and spatial resolutions. 
-                    Instruments like IASI (Infrared Atmospheric Sounding Interferometer) and SAR (Synthetic Aperture Radar) capture voluminous raw data with high 
-                    temporal and spatial fidelity.
-
-                    <div class="col-lg-8">
-                        <div class="portfolio-details-slider swiper">
-                            <img src="assets/img/remote-sensing/sentinal_A.png" class="img-fluid" alt="Image Description" style="width: 80%; height: auto;">
-                        </div>
-                    </div>
-
-
-                    <p>However, these instruments merely initiate the data chain. What follows is a sophisticated multi-tiered processing pipeline that transforms these bits 
-                        and bytes into meaningful insights.</p>
-
-                    <!-- heading started -->
-                    <h3>The Data Processing Chain: From Bits to Insight</h3>
-                    <p>Onboard Processing and Transmission</p>
-                    <p>The process starts with satellite instruments measuring Earth system parameters. Minimal preprocessing occurs onboard (such as data compression and 
-                        time tagging) before the telemetry is transmitted to ground stations.
-                    </p>
-
-                    <p>To manage complexity and responsibilities, satellite data are conventionally grouped into processing levels. While exact definitions vary between 
-                        agencies, the general structure is well established.
-                    </p>
-
-
-                    <ul>
-                        <li><b>Level 0: Raw Data Reception</b> Once transmitted to ground stations, the satellite data are received in their rawest form, often including telemetry, 
-                            ancillary data, and mission-specific housekeeping information. 
-                            <p>At this stage, the data are not calibrated and have little direct scientific meaning. Digitisation already imposes a fundamental limit on 
-                                precision. For example, an \(N\)-bit analogue-to-digital converter introduces a quantisation uncertainty of approximately
-                                
-                                $$\sigma_{\text{digit}}= \frac{1}{\sqrt{12}} \Delta$$ 
-
-                                where \(\Delta\) is the quantisation step.
-                            </p>
-                        </li>
-                        <li>
-                            <b>Level 1: Calibration and Geolocation</b>
-                            The next step involves converting the raw measurements into physical units (e.g., radiance or reflectance), correcting for instrument-specific biases and 
-                            geometric distortions. This calibration and geolocation process is crucial to ensure that the data are both accurate and traceable to physical ground locations.
-
-                            <p>A simplified calibration equation for one channel can be written as:</p>
-                            $$L = a+0+a_1 C +a_2 C^2$$ 
-                            where,
-                            <ul>
-                                <li>\(L\) is the calibrated radiance,</li>
-                                <li>\(C\) is the measured count, </li>
-                                <li>\(a_0\), (a_1\) and (a_2\) are calibration parameters (offset, gain, non-linearity).</li>
-                            </ul>
-                            <p>Calibration parameters are derived from pre-launch characterisation and in-flight calibration sources (e.g. blackbodies or solar diffusers). 
-                                Over time, sensor degradation and changing thermal conditions introduce drift, making long-term stability a major challenge.
-                            </p>
-                            <p>
-                                Uncertainty in L1 radiances arises from:
-                                <ul>
-                                    <li>detector noise,</li>
-                                    <li>calibration parameter uncertainty,</li>
-                                    <li>digitisation,</li>
-                                    <li>imperfect knowledge of the sensor response.</li>
-                                </ul>
-                                Importantly, some of these errors are correlated across pixels or channels, which has major implications for later processing.
-                            </p>
-                        </li>
-                        <li>
-                            <b>Level 2: Derived Geophysical Variables </b>
-                            At this stage, the calibrated measurements are converted into geophysical parameters such as surface temperature, cloud cover, ocean salinity, or greenhouse gas 
-                            concentrations. This step often involves radiative transfer models and retrieval algorithms that integrate information from multiple sensors and external databases.
-                            <p>
-                                Level 2 products estimate geophysical quantities such as temperature, humidity, or trace gas concentration from L1 radiances. This step is an inverse problem,
-                                often written as:
-                                $$z=g(y,b) + \delta$$
-                                where,
-                                <ul>
-                                    <li>\(z\) is the retrieved geophysical state,</li>
-                                    <li>\(y\) is the vector of observed radiances,</li>
-                                    <li>\(b\) represents auxiliary data and model parameters,</li>
-                                    <li>\(g\) is the retrieval algorithm,</li>
-                                    <li>\(\delta\) epresents residual modelling error.</li>
-                                </ul>
-                                Retrieval algorithms range from simple empirical relationships to complex physics-based methods such as optimal estimation. 
-                                The quality of L2 products depends not only on measurement accuracy but also on assumptions embedded in radiative transfer models and prior information.
-                            </p>
-                            <p></p>
-                            <p>
-                                Subsequent levels involve spatial and temporal aggregation, gridding, and fusion with data from other sources (e.g., in-situ or model data). These higher-level 
-                            products are designed for direct use in scientific analyses, weather forecasting models, and policy-making dashboards.
-                            </p>
-                        </li>
-                        <li>
-                            <b>Level 3 (L3): Gridded Products: </b>
-                            <p>
-                                Level 3 products reorganise L2 data onto a fixed spatial and/or temporal grid. This often involves averaging: 
-                                $$\bar{z} = \frac{\sum_{i=1}^N w_i z_i}{\sum_{i=1}^N w_i}$$
-
-                                whee \(z_i\) are individual L2 observations and \(w_i\) are weights based on quality or sampling. 
-                            </p>
-                            <p>While averaging reduces random noise, it does not necessarily reduce correlated errors. In addition, L3 products introduce sampling uncertainty, 
-                                because irregular satellite observations are used to represent continuous geophysical fields.
-                            </p>
-                        </li>
-                        <lI>
-                            <b>Level 4 (L4): Gap-Filled and Model-Integrated Products: </b>
-                            <p>
-                                Level 4 products combine satellite data with models and/or in situ observations to produce spatially and temporally complete fields. 
-                                These products are highly useful but are no longer purely observation-based. Their uncertainty reflects a mixture of measurement error, 
-                                model assumptions, and interpolation choices.
-                            </p>
-                        </lI>
-                    </ul>
-
-                    <!-- heading added -->
-                     <h3>Propagation of Uncertainty Through the Chain</h3>
-                     <p>A central concept in satellite data processing is that uncertainty propagates through each processing step. For a measurement function. </p>
-
-                     $$y = f(x_1,x_2,...,x_n)$$
-
-                     <p>the standard uncertainty in \(y\) can be approximated using the Law of Propagation of Uncertainty:</p>
-
-                     $$\sigma_y^2 = \sum_{ij} \frac{\partial f}{\partial_i}\frac{\partial f}{\partial_j}$$
-
-                     <p>This expression highlights why error correlations matter. Ignoring covariance terms can lead to under- or overestimation of uncertainty, especially in gridded and climate-scale products.</p>
-
-
-                    <h3>Challenges in the Chain</h3>
-                    <p>Maintaining the fidelity and integrity of data throughout this processing pipeline is a non-trivial engineering and scientific challenge. Issues such as 
-                        file size inconsistencies, synchronization errors, and processor-specific variations (e.g., between different ground segments or missions) can affect data quality. 
-                        These anomalies must be continuously monitored, understood, and resolved.
-                    </p>
-                    <p>
-                        Additionally, with growing demands for near real-time (NRT) products, latency and computational throughput have become critical parameters. Data processing systems 
-                        must therefore be scalable, fault-tolerant, and optimized for high-performance computing environments.
-                    </p>
-
-                    <!-- heading added -->
-                    <h3>Collaboration Across Specialized Teams</h3>
-
-                    <div class="col-lg-8">
-                        <div class="portfolio-details-slider swiper"> 
-                            <img src="assets/img/remote-sensing/data_processing_steps.png" class="img-fluid" alt="Image Description" style="width: 80%; height: auto;">
-                        </div>
-                    </div>                       
-
-                    <p>The successful generation and delivery of satellite products depend on close collaboration between diverse teams, each with unique responsibilities:</p>
+                    </div>   
                     
-                    <ul>
-                        <li>
-                            <b>Instrument and Engineering Teams: </b>
-                            These teams understand the behavior of onboard instruments and provide support for calibration algorithms, noise handling, and anomaly detection. They are also responsible for instrument-specific configurations in the processor chains. 
-                        </li>
-                        <li>
-                            <b>Data Processing and Software Engineering Teams: </b>
-                            These teams design and maintain the ground processing systems and algorithms. They handle tasks like performance tuning, software validation, and ensuring consistent file formats and metadata structures.
-                        </li>
-                        <li>
-                            <b>Validation and Verification Teams (IV&V): </b>
-                            Independent teams evaluate whether processing chains meet scientific and operational requirements. They analyze outputs for accuracy, quality, and compliance with mission specifications.
-                        </li>
-                        <li>
-                            <b>Data Quality Control and Monitoring Teams: </b>
-                            These groups continuously monitor the outputs, investigate anomalies, and flag inconsistencies. For instance, they might identify unexpected variations in file sizes or processing delays and coordinate with upstream teams to resolve them.
-                        </li>
-                        <li>
-                            <b>Archiving and Distribution Teams</b>
-                            Once products are validated, they are archived and distributed through systems like EUMETSAT’s EUMETCast or UMARF (Unified Meteorological Archive and Retrieval Facility), making them accessible to end users.                
-                        </li>
-                    </ul>
-
-
-                    <h3>Importance of Coordination and Robust Infrastructure</h3>
-
-                    <p>The seamless functioning of this ecosystem depends on robust documentation, regular coordination meetings, and shared monitoring tools. For example, dashboards may display the status of each processing node, enabling quick detection of bottlenecks. Reporting systems highlight gaps (e.g., files sent to EDL but not archived), which teams investigate collaboratively.</p>
-                    <p>In large operations like EPS-SG, issues such as mismatched file counts, varying file sizes, or missing data often involve cross-functional inputs. Resolving these requires a systems-thinking approach and transparency across teams.</p>
-
-
-                    <h3>Why This Matters?</h3>
-
-                    <p>Understanding and investing in satellite data processing chains is not merely a technical requirement; it is foundational to the credibility and applicability of satellite-derived information. These chains are essential for:</p>
-                    <ul>
-                        <li>
-                            <b>Climate Research:</b> Long-term, consistent data records support climate trend analysis and predictive modeling.
-                        </li>
-                        <li>
-                            <b>Disaster Management: </b> Rapid data delivery enables timely responses to natural hazards like hurricanes, wildfires, and floods.
-                        </li>
-                        <li>
-                            <b>Agricultural and Water Resources Monitoring: </b>High-resolution datasets inform irrigation planning, crop yield estimation, and drought assessment.
-                        </li>
-                        <li>
-                            <b>Policy and Governance: </b> Trustworthy data support evidence-based policy decisions at national and international levels.
-                        </li>
-                    </ul>
-
-
-                    <h3>Conclusion</h3>
-                    <p>The sophistication of satellite systems and their data processing chains reflects the complexity of the Earth systems they monitor. Scientists and engineers alike must collaborate to ensure that every byte of data collected in space contributes meaningfully to our understanding and stewardship of the planet. As our need for timely, accurate Earth observation grows, so too must our investment in the integrity and performance of these critical processing infrastructures.</p>
                     
+                    <!-- heading 1 -->
+                     <h3>Motivation and Scope</h3>
+                     <p>
+                        Satellite observations play a central role in modern weather forecasting, climate monitoring, and environmental research. 
+                        Every day, satellite missions deliver large volumes of data that are transformed into maps, time series, and indicators used by 
+                        scientists, operational centres, and policy makers. Despite this widespread use, the path from an onboard sensor measurement to a final 
+                        geophysical product is often treated as a black box.
+                     </p>
+                     <p><b>The purpose of this document is to open that box.</b></p>
+                     
+
+                    
+
+
+
+
+
+
+
+
                     <br>
                     <h3>Reference</h3>
 
