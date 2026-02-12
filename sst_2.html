@@ -652,64 +652,66 @@
                               <li>underestimate SST uncertainty</li>
                               <li>misrepresent long-term stability</li>
                             </ul>
-                        </li>
-                        <li><b>Sources of Error and Correlation Structure: </b> Brightness temperature errors consist of:
-                          $$\epsilon_{b,i} = \epsilon_{\text{noise},i} + \epsilon_{\text{cal},i} + \epsilon_{\text{model},i}$$
-                        
-                        </li>
-                        <li><b>Decomposition of Error Contributions: </b>
-                        
-                          Total brightness error:
 
-                          $$
-                          \mathbf{S}_b = \mathbf{S}*{\text{noise}} + \mathbf{S}*{\text{cal}}+\mathbf{S}_{\text{model}}
-                          $$
-                            <ol>
-                              <li><b>Instrument noise: </b>Usually independent:
+                            <li><b>Sources of Error and Correlation Structure: </b> Brightness temperature errors consist of:
+                              $$\epsilon_{b,i} = \epsilon_{\text{noise},i} + \epsilon_{\text{cal},i} + \epsilon_{\text{model},i}$$
+                            
+                            </li>
+                            <li><b>Decomposition of Error Contributions: </b>
+                            
+                              Total brightness error:
+
                               $$
-                              \mathbf{S}_{\text{noise}} =
-                              \begin{bmatrix}
-                              \sigma_{n1}^2 & 0 \
-                              0 & \sigma_{n2}^2
-                              \end{bmatrix}
+                              \mathbf{S}_b = \mathbf{S}*{\text{noise}} + \mathbf{S}*{\text{cal}}+\mathbf{S}_{\text{model}}
                               $$
-                              </li>
-                              <li><b>Calibration error: </b>Often fully correlated:
+                                <ol>
+                                  <li><b>Instrument noise: </b>Usually independent:
+                                  $$
+                                  \mathbf{S}_{\text{noise}} =
+                                  \begin{bmatrix}
+                                  \sigma_{n1}^2 & 0 \
+                                  0 & \sigma_{n2}^2
+                                  \end{bmatrix}
+                                  $$
+                                  </li>
+                                  <li><b>Calibration error: </b>Often fully correlated:
+                                  $$
+                                  \mathbf{S}_{\text{cal}} = 
+                                  \sigma_{\text{cal}}^2
+                                  \begin{bmatrix}
+                                  1 & 1 \
+                                  1 & 1
+                                  \end{bmatrix}
+                                  $$                      
+                                  </li>
+                                  <li><b>Forward model error: </b>Partially correlated:
+                                    $$
+                                    0 < \rho < 1
+                                    $$
+                                    $$
+                                    \mathbf{S}_{\text{model}} = 
+                                    \begin{bmatrix}
+                                    \sigma_{m1}^2 & \rho \sigma_{m1} \sigma_{m2} \
+                                    \rho \sigma_{m1} \sigma_{m2} & \sigma_{m2}^2
+                                    \end{bmatrix}
+                                    $$
+                                  </li>
+                                </ol>
+                            </li>
+                            <li><b>Impact on SST Stability: </b>Let SST bias drift over time be: \(b(t)\). The Observed SST: 
                               $$
-                              \mathbf{S}_{\text{cal}} = 
-                              \sigma_{\text{cal}}^2
-                              \begin{bmatrix}
-                              1 & 1 \
-                              1 & 1
-                              \end{bmatrix}
-                              $$                      
-                              </li>
-                              <li><b>Forward model error: </b>Partially correlated:
-                                $$
-                                0 < \rho < 1
-                                $$
-                                $$
-                                \mathbf{S}_{\text{model}} = 
-                                \begin{bmatrix}
-                                \sigma_{m1}^2 & \rho \sigma_{m1} \sigma_{m2} \
-                                \rho \sigma_{m1} \sigma_{m2} & \sigma_{m2}^2
-                                \end{bmatrix}
-                                $$
-                              </li>
-                            </ol>
+                              \hat{T}_s(t) = T_s(t) + b(t)
+                              $$              
+                            climate trend:
+                            $$\frac{d\hat{T}_s}{dt} = \frac{dT_s}{dt} + \frac{db}{dt}$$
+                            If calibration drift induces:
+                            $$\frac{db}{dt} \sim 0.02 \text{ K decade}^{-1}$$ 
+                            and climate signal is: 
+                            $$\frac{dT_s}{dt} \sim 0.1 \text{ K decade}^{-1} $$
+                            then 20% of the trend may be instrument artifact.
+                            </li>                            
                         </li>
-                        <li><b>Impact on SST Stability: </b>Let SST bias drift over time be: \(b(t)\). The Observed SST: 
-                          $$
-                          \hat{T}_s(t) = T_s(t) + b(t)
-                          $$              
-                        climate trend:
-                        $$\frac{d\hat{T}_s}{dt} = \frac{dT_s}{dt} + \frac{db}{dt}$$
-                        If calibration drift induces:
-                        $$\frac{db}{dt} \sim 0.02 \text{ K decade}^{-1}$$ 
-                        and climate signal is: 
-                        $$\frac{dT_s}{dt} \sim 0.1 \text{ K decade}^{-1} $$
-                        then 20% of the trend may be instrument artifact.
-                        </li>
+                        
                       </ol>
                     </div>
 
