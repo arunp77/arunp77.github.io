@@ -487,50 +487,42 @@
 
                           <p>where</p>
 
-                          $$\beta_i = T_0 (1- A_i) +C_I$$
+                          $$\beta_i = T_0 (1- A_i) +C_i .$$ 
 
-                          <p>For small deviations around a reference temperature \(T_0\), linearize the Planck function:</p>
-
+                          <p><b>Physical Interpretation:</b></p> 
                           
+                          <p>This shows that brightness temperature is approximately: </p> 
 
-                          $$
-                          B_i(T) \approx B_i(T_0) + \left.\frac{\partial B_i}{\partial T}\right|_{T_0} (T - T_0)
-                          $$
+                          $$T_{b,i} = A_i T_{\rm skin} + \beta_i$$
 
+                          <p>where:</p> 
 
-                          This linearization is valid because:
                           <ul>
-                            <li>SST variability is small (order 1–2 K),</li>
-                            <li>infrared channels operate in a near-linear regime.</li>
+                            <li>\(A_i < 1\) because atmoshphere absorbs</li>
+                            <li>\(\beta_i\) contains atmospheric emission and constant offsets</li>
                           </ul>
-                        </li>
-                        <li><b>Linearized Forward Model:</b>
-                          Linearizing the full forward model around \(T_0\):
-                          $$
-                            T_{b,i} \approx T_{\text{skin}} = \alpha_i  \Delta T_{\text{atm}} + \beta_i
-                          $$ 
-                          where:
-                          <ul>
-                            <li>\(\alpha_i\) captures atmospheric absorption/emission effects,</li>
-                            <li>\(\Delta T_{\text{atm}}\) represents effective atmospheric temperature contribution,</li>
-                            <li>\(\beta_i\) absorbs emissivity and constant offsets.</li>
-                          </ul>
-                          This shows that brightness temperature differs from SST primarily due to atmospheric effects.
-                        </li>
-                        <li><b>Motivation for the Split-Window Method: </b>
-                            Atmospheric absorption in the thermal infrared is dominated by water vapour, which varies smoothly with wavelength.
 
-                            <p>Let:</p>
-                            <ul>
+                          <p>This is the correct linearized relationship.</p>
+
+                          <p><b>Why Split-Window Works?</b> For two channels, i.e. </p>
+                          <ul>
                               <li><b>channel 1: </b>\( \lambda_1 \approx 11 ,\mu\text{m} \)</li>
                               <li><b>channel 2: </b>\( \lambda_2 \approx 12 ,\mu\text{m} \)</li>
-                            </ul>
-                            These channels have similar surface sensitivity, but different atmospheric absorption.
-                            <p>Thus: </p>
-                            $$T_{b,1} - T_{b,2} \approx (\alpha_1 - \alpha_2), \Delta T_{\text{atm}}$$
+                          </ul>
 
-                            This difference isolates the atmospheric contribution.                        
+                          $$T_{b,1} = A_1 T_s + \beta_1 $$
+
+                          $$T_{b,2} = A_2 T_s + \beta_2$$
+
+                          subtract:
+
+                          $$T_{b,1}- T_{b,2}  =  (A_1 - A_2) T_s + (\beta_1 - \beta_2)$$
+
+                          <p>Since atmospheric absorption differs slightly between channels, this difference isolates atmospheric 
+                            effects, allowing us to construct a linear estimator for \(T_s\).</p>
+
                         </li>
+                        
                         <li><b>Derivation of the Split-Window SST Equation: </b>
                           Assume a linear estimator for SST: 
                           $$\hat{T}_s = a_0 + a_1 T_{b,1} + a_2 (T_{b,1} - T_{b,2})$$ 
