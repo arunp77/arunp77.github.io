@@ -549,150 +549,168 @@
 
                           $$T_s = T_{b,1} + c_1 (T_{b,1} - T_{b,2}) + c_2 (T_{b,1} - T_{b,2})^2 + c_0$$
 
-                          That is the split-window SST equation.
+                          That is the split-window SST equation, which can be re-written in linear format as:
+
+                          $$Y_s = a+0 +\gamma_1 T_{b,1} + \gamma_2 T_{b,2},$$
+
+                          <p>where \(\gamma_1  = a_1 +a_2\) and \(\gamma_2 = -a_2\)</p>
 
                         </li>
                         
-                        <li><b>Derivation of the Split-Window SST Equation: </b>
-                          Assume a linear estimator for SST: 
-                          $$\hat{T}_s = a_0 + a_1 T_{b,1} + a_2 (T_{b,1} - T_{b,2})$$ 
-                          Substitute the linearized forward expressions:
-                          $$\hat{T}_s = a_0 + a_1 \left(T_s + \alpha_1 \Delta T_{\text{atm}} \right) + a_2 (\alpha_1 - \alpha_2)\Delta T_{\text{atm}}$$ 
-                          To make the estimator unbiased, enforce:
-                          $$
-                            \begin{cases}
-                            a_1 = 1 \
-                            a_1 \alpha_1 + a_2 (\alpha_1 - \alpha_2) = 0
-                            \end{cases}
-                          $$    
-                          Solving:
-                          $$
-                            a_2 = -\frac{\alpha_1}{\alpha_1 - \alpha_2}
-                          $$       
-                          Thus the split-window form emerges naturally from linearization and atmospheric cancellation:
-                          $$\boxed{T_s = a_0 + T_{b,1} + a_2 (T_{b,1} - T_{b,2})}$$
-                          <p>The coefficients \(a_0, a_2\) are determined empirically using:</p>
-                          <ul>
-                            <li>radiative transfer simulations,</li>
-                            <li>matchups with in-situ SST.</li>
-                          </ul>
-                        </li>
+                        
                         <li><b>Error Covariance and Uncertainty Propagation: </b>
-                          Let the SST estimator be:
-                          $$T_s = f(T_{b,1}, T_{b,2})$$ 
-                          Using the law of propagation of uncertainty:
-                          $$\sigma_{T_s}^2 = \sum_{i,j} \frac{\partial f}{\partial T_{b,i}}  \frac{\partial f}{\partial T_{b,j}} \operatorname{cov}(T_{b,i}, T_{b,j})$$ 
-                          For the split-window:
-                          $$
-                            \frac{\partial T_s}{\partial T_{b,1}} = 1 + a_2,
-                            \quad
-                            \frac{\partial T_s}{\partial T_{b,2}} = -a_2
-                          $$
-                          Thus:
-                          $$\boxed{\sigma_{T_s}^2 =  (1+a_2)^2 \sigma_{11}^2 + a_2^2 \sigma_{22}^2 - 2a_2(1+a_2)\sigma_{12}}$$ 
+                          <p><b>Brightness Temperature Error Model </b> Let the measured brightness temperature be: </p>
+
+                          $$T_{b,i}^{\rm obs} = T_{b,i}^{\rm true} + \varepsilon_i$$
+
                           where:
+
+                          $$\varepsilon_i = \varepsilon_{\text{noise},i}+ \varepsilon_{\text{cal},i} + \varepsilon_{\text{model},i}.$$
+
+                          <p>Each \(\varepsilon_i\) is a random variable. Define vector: </p>
+
+                          $$
+                          \varepsilon = 
+                          \begin{bmatrix}
+                          \epsilon_1 \
+                          \epsilon_2
+                          \end{bmatrix}
+                          $$
+
+                          <p><b>Error Covariance Matrix of Brightness Temperatures: </b>Define: </p>
+                          $$
+                          \mathbf{S}_b = 
+                          \mathrm{Cov}\left(\boldsymbol{\epsilon}\right) = 
+                          \begin{bmatrix}
+                          \sigma_1^2 & \sigma_{12} \
+                          \sigma_{12} & \sigma_2^2
+                          \end{bmatrix}
+                          $$
+
+                          where 
                           <ul>
-                            <li>\(\sigma_{ii}^2\) are brightness temperature variances,</li>
-                            <li>\(\sigma_{12}\) is the error covariance between channels.</li>
+                            <li>\(\sigma_1^2 = \text{Var}(\epsilon_1)\)</li>
+                            <li>\(\sigma_2^2 = \text{Var}(\epsilon_2)\)</li>
+                            <li>\(\sigma_{12} = \text{Cov}(\varepsilon_1, \varepsilon_2)\)</li>
                           </ul>
 
-                          <p><b>Critical insight:</b>
-                            If calibration errors are correlated (which they usually are):
-                            $$\sigma_{12} \neq 0$$
-                            Ignoring this term systematically underestimates SST uncertainty.
-                          </p>
+                          This covariance term is critical.
+
+                          <p><b>Linear Uncertainty Propagation: </b>Because SST is linear in brightness temperatures:</p> 
+
+                          $$T_s =\mathbf{g}^T \mathbf{T}_b + a_0$$
+
+                          where:
+
+                          $$
+                            \mathbf{g} = 
+                            \begin{bmatrix}
+                            \gamma_1 \
+                            \gamma_2
+                            \end{bmatrix}
+                          $$
+
+                          <p>Then the variance of SST is:</p>
+
+                          $$\boxed{\sigma_{T_s}^2 = \mathbf{g}^T \mathbf{S}_b \mathbf{g}}$$ 
+
+                          <p>This is the matrix form of the law of propagation of uncertainty. This can be expanded explicitly: </p>
+
+                          $$\sigma_{T_s}^2 =  \gamma_1^2 \sigma_1^2 + \gamma_2^2 \sigma_2^2 + 2 \gamma_1 \gamma_2 \sigma_{12}$$
+
+                          This is the full propagation equation.
+
+                          <p><b>Why the Covariance Term Matters: </b></p>
+
+
+                            If errors are independent:
+
+                            $$
+                            \sigma_{12} = 0
+                            $$
+
+                            But in reality:
+
+                            <p><b>Calibration drift:</b> If both channels share calibration reference:</p>
+
+                            $$
+                            \epsilon_{\text{cal},1}
+                            \approx
+                            \epsilon_{\text{cal},2}
+                            $$
+
+                            Then:
+
+                            $$
+                            \sigma_{12} \approx \sigma_{\text{cal}}^2
+                            $$
+
+                            This introduces strong correlation.
+
+                            Ignoring covariance can:
+                            <ul>
+                              <li>underestimate SST uncertainty</li>
+                              <li>misrepresent long-term stability</li>
+                            </ul>
                         </li>
                         <li><b>Sources of Error and Correlation Structure: </b> Brightness temperature errors consist of:
                           $$\epsilon_{b,i} = \epsilon_{\text{noise},i} + \epsilon_{\text{cal},i} + \epsilon_{\text{model},i}$$
                         
                         </li>
-                        <li><b></b></li>
-                        <li><b></b></li>
+                        <li><b>Decomposition of Error Contributions: </b>
+                        
+                          Total brightness error:
+
+                          $$
+                          \mathbf{S}_b = \mathbf{S}*{\text{noise}} + \mathbf{S}*{\text{cal}}+\mathbf{S}_{\text{model}}
+                          $$
+                            <ol>
+                              <li><b>Instrument noise: </b>Usually independent:
+                              $$
+                              \mathbf{S}_{\text{noise}} =
+                              \begin{bmatrix}
+                              \sigma_{n1}^2 & 0 \
+                              0 & \sigma_{n2}^2
+                              \end{bmatrix}
+                              $$
+                              </li>
+                              <li><b>Calibration error: </b>Often fully correlated:
+                              $$
+                              \mathbf{S}_{\text{cal}} = 
+                              \sigma_{\text{cal}}^2
+                              \begin{bmatrix}
+                              1 & 1 \
+                              1 & 1
+                              \end{bmatrix}
+                              $$                      
+                              </li>
+                              <li><b>Forward model error: </b>Partially correlated:
+                                $$
+                                0 < \rho < 1
+                                $$
+                                $$
+                                \mathbf{S}_{\text{model}} = 
+                                \begin{bmatrix}
+                                \sigma_{m1}^2 & \rho \sigma_{m1} \sigma_{m2} \
+                                \rho \sigma_{m1} \sigma_{m2} & \sigma_{m2}^2
+                                \end{bmatrix}
+                                $$
+                              </li>
+                            </ol>
+                        </li>
+                        <li><b>Impact on SST Stability: </b>Let SST bias drift over time be: \(b(t)\). The Observed SST: 
+                          $$
+                          \hat{T}_s(t) = T_s(t) + b(t)
+                          $$              
+                        climate trend:
+                        $$\frac{d\hat{T}_s}{dt} = \frac{dT_s}{dt} + \frac{db}{dt}$$
+                        If calibration drift induces:
+                        $$\frac{db}{dt} \sim 0.02 \text{ K decade}^{-1}$$ 
+                        and climate signal is: 
+                        $$\frac{dT_s}{dt} \sim 0.1 \text{ K decade}^{-1} $$
+                        then 20% of the trend may be instrument artifact.
+                        </li>
                       </ol>
-
-
-
----
-
-## 7. 
-
-
-
-[
-
-]
-
-* Detector noise → mostly independent
-* Calibration drift → highly correlated
-* Forward-model error → structured correlation
-
-These correlations propagate directly into SST uncertainty.
-
----
-
-## 8. Implications for Climate Trend Detection
-
-Climate trends are small:
-
-[
-\frac{dT_s}{dt} \sim 0.01\text{–}0.03\ \text{K yr}^{-1}
-]
-
-Let SST bias drift be (b(t)). The observed trend is:
-
-[
-\frac{d\hat{T}_s}{dt}
-=====================
-
-\frac{dT_s}{dt}
-+
-\frac{db}{dt}
-]
-
-If:
-
-[
-\left|\frac{db}{dt}\right|
-\gtrsim
-\left|\frac{dT_s}{dt}\right|
-]
-
-then the climate signal becomes **indistinguishable from instrument drift**.
-
----
-
-## 9. Stability Requirement from First Principles
-
-To detect a trend ( \Delta T ) over time ( \Delta t ):
-
-[
-\sigma_{\text{stability}}
-\ll
-\frac{\Delta T}{\sqrt{N}}
-]
-
-where (N) is the number of independent observations.
-
-This is why:
-
-* calibration stability matters more than absolute accuracy,
-* inter-satellite consistency is critical,
-* reprocessing historical data is unavoidable.
-
----
-
-## 10. Conceptual Closure
-
-We have shown that:
-
-1. The split-window SST algorithm is a **linearized inversion** of radiative transfer
-2. Its form arises from **atmospheric cancellation**, not heuristics
-3. SST uncertainty depends critically on **error covariance**
-4. Climate trends are only meaningful if **instrument stability exceeds trend magnitude**
-
-
-
-
                     </div>
 
                     <br>
