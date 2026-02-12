@@ -531,8 +531,25 @@
 
                           $$T_s = a_0 +a_1 T_{b,1} + a_2 (T_{b,1} - T_{b,2}).$$
 
-                          <p>This is the split-window SST equation.</p>
+                          <p>This is the <b>split-window SST equation</b>. Where:</p> 
+                          <ul>
+                            <li>\(T_{b,1}\) contains mostly surface signal </li>
+                            <li>\(T_{b,1} - T_{b,2}\) isolates atmospheric abosrption</li>
+                            <li>A linear combination cancels first-order atmospheric effects.</li>
+                          </ul>
 
+                          <p>These coefficients \(a_0\), \(a_1\), \(a_2\) are determined from radiative transfer simulations, regression against in-situ SST, 
+                            or analytical approximation from the linearized forward model
+                          </p>
+
+                          <p>Many operational algorithms use: </p>
+
+                          $$T_s = T_{b,1} + c_1 (T_{b,1} - T_{b,2}) +c_0$$
+                          and sometimes additional terms are added, for example: 
+
+                          $$T_s = a_0 +a_1 T_{b,1} +a_2 (T_{b,1} - T_{b,2})$$
+
+                          That is the split-window SST equation.
 
                         </li>
                         
