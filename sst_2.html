@@ -519,7 +519,20 @@
                           $$T_{b,1}- T_{b,2}  =  (A_1 - A_2) T_s + (\beta_1 - \beta_2)$$
 
                           <p>Since atmospheric absorption differs slightly between channels, this difference isolates atmospheric 
-                            effects, allowing us to construct a linear estimator for \(T_s\).</p>
+                            effects, allowing us to construct a linear estimator for \(T_s\). We can solve these two equations for \(T_s\) as:
+                          </p>
+
+                          $$T_s = \frac{T_{b,1} - \beta_1}{A_1} = \frac{T_{b,2} - \beta_2}{A_2}.$$ 
+
+                          <p>But in reality, \(\beta_i\) and \(A_i\) depend on atmospheric state and are not known perfectly. So instead of solving exactly, 
+                            we build a first-order linear estimator that compensates for atmospheric effects using the brightness temperature difference. 
+                            That estimator is:
+                          </p>
+
+                          $$T_s = a_0 +a_1 T_{b,1} + a_2 (T_{b,1} - T_{b,2}).$$
+
+                          <p>This is the split-window SST equation.</p>
+
 
                         </li>
                         
