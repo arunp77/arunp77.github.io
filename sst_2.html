@@ -406,16 +406,22 @@
                           $$L_i = \tau_i  \varepsilon_i  B(T_{\text{skin}}) + L_{i}^{\uparrow}$$
                           where:
                           <ul>
+                            <li>\(B(T)\) is the Planck function (channel-integrated</li>
                             <li>\(T_{\text{skin}}\) is the sea surface skin temperature,</li>
                             <li>\(\tau_i\) is atmospheric transmittance,</li>
                             <li>\(\varepsilon_i\) is surface emissivity,</li>
                             <li>\(L_{i}^{\uparrow}\) is upwelling atmospheric emission.</li>
                           </ul>
-                          The satellite does not observe \(T_{\text{skin}}\), but the radiance \(L_i\).
+                          The satellite does not observe \(T_{\text{skin}}\), but the radiance \(L_i\). To simplify notation, define: $A_i = \tau_i \varepsilon_i$, so 
+                          $$
+                            L_i = A_i B(T_{\rm skin}) + L_{i}^{\uparrow}
+                          $$
                         </li>
                         <li><b>Brightness Temperature Representation:</b>
-                          Define the brightness temperature \(T_{b,i}\) implicitly by:
+                          Brightness temperature $T_{b,i}$ is defined implicitly by:
+
                           $$L_i = B_i(T_{b,i})$$
+                          
                           where \(B_i(\cdot)\) is the Planck function integrated over the channel response. 
 
                           <p>For small deviations around a reference temperature \(T_0\), linearize the Planck function:</p>
@@ -423,7 +429,7 @@
                           
 
                           $$
-                          B_i(T) \approx B_i(T_0) + \left.\frac{\partial B_i}{\partial T}\right|_{T_0}
+                          B_i(T) \approx B_i(T_0) + \left.\frac{\partial B_i}{\partial T}\right|_{T_0} (T - T_0)
                           $$
 
 
