@@ -380,6 +380,231 @@
 
                     </div>
 
+                    <div class="box-background1">
+                      <h3>Derivation of the Split-Window SST Algorithm</h3>
+                      <p>The split-window sea surface temperature (SST) algorithm is one of the most widely used techniques for deriving SST from thermal infrared satellite observations. 
+                        It exploits measurements from two closely spaced infrared channels, typically near 11 µm and 12 µm, which have similar sensitivity to surface temperature 
+                        but different sensitivity to atmospheric absorption, primarily by water vapour.
+                      </p>
+                      <p>The key idea of the split-window approach is that the difference between the brightness temperatures measured in these two channels provides a proxy for the 
+                        atmospheric contribution to the observed radiance. By combining the channel brightness temperatures in a linear form, the algorithm largely cancels atmospheric 
+                        effects while preserving the surface temperature signal.
+                      </p>
+                      <p>
+                        Although often introduced as an empirical formula, the split-window algorithm can be derived rigorously by linearising the radiative transfer equation around a 
+                        reference temperature. This reveals that the algorithm is a first-order approximation to the inverse problem of retrieving surface temperature from top-of-atmosphere 
+                        radiance, with coefficients that reflect atmospheric transmittance, emissivity, and instrument characteristics.
+                      </p>
+
+                      <h4>Error Propagation and Climate Stability Implications</h4>
+
+                      <ol>
+                        <li><b>Forward Radiative Transfer Model (Starting Point): </b>
+                          <p>From the thermodynamic discussion, the top-of-atmosphere (TOA) radiance in an infrared channel (i) is:</p>
+                          $$L_i = \tau_i  \varepsilon_i  B(T_{\text{skin}}) + L_{i}^{\uparrow}$$
+                          where:
+                          <ul>
+                            <li>\(T_{\text{skin}}\) is the sea surface skin temperature,</li>
+                            <li>\(\tau_i\) is atmospheric transmittance,</li>
+                            <li>\(\varepsilon_i\) is surface emissivity,</li>
+                            <li>\(L_{i}^{\uparrow}\) is upwelling atmospheric emission.</li>
+                          </ul>
+                          The satellite does not observe \(T_{\text{skin}}\), but the radiance \(L_i\).
+                        </li>
+                        <li><b>Brightness Temperature Representation:</b>
+                          Define the brightness temperature \(T_{b,i}\) implicitly by:
+                          $$L_i = B_i(T_{b,i})$$
+                          where \(B_i(\cdot)\) is the Planck function integrated over the channel response. 
+
+                          <p>For small deviations around a reference temperature \(T_0\), linearize the Planck function:</p>
+
+                          $$B_i(T) \approx B_i(T_0) + \left \frac{\partial B_i}{\partial T}\right|_{T_0} (T - T_0)$$
+
+                          This linearization is valid because:
+                          <ul>
+                            <li>SST variability is small (order 1–2 K),</li>
+                            <li>infrared channels operate in a near-linear regime.</li>
+                          </ul>
+                        </li>
+                        <li><b>Linearized Forward Model:</b>
+                          Linearizing the full forward model around \(T_0\):
+                          $$T_{b,i} \approx T_{\text{skin}} = \alpha_i  \Delta T_{\text{atm}} + \beta_i$$ 
+                          where:
+                          <ul>
+                            <li>\(\alpha_i\) captures atmospheric absorption/emission effects,</li>
+                            <li>\(\Delta T_{\text{atm}}\) represents effective atmospheric temperature contribution,</li>
+                            <li>\(\beta_i\) absorbs emissivity and constant offsets.</li>
+                          </ul>
+                          This shows that brightness temperature differs from SST primarily due to atmospheric effects.
+                        </li>
+                        <li><b>Motivation for the Split-Window Method: </b>
+                            Atmospheric absorption in the thermal infrared is dominated by water vapour, which varies smoothly with wavelength.
+
+                            <p>Let:</p>
+                            <ul>
+                              <li><b>channel 1: </b>\( \lambda_1 \approx 11 ,\mu\text{m} \)</li>
+                              <li><b>channel 2: </b>\( \lambda_2 \approx 12 ,\mu\text{m} \)</li>
+                            </ul>
+                            These channels have similar surface sensitivity, but different atmospheric absorption.
+                            <p>Thus: </p>
+                            $$T_{b,1} - T_{b,2} \approx (\alpha_1 - \alpha_2), \Delta T_{\text{atm}}$$
+
+                            This difference isolates the atmospheric contribution.                        
+                        </li>
+                        <li><b>Derivation of the Split-Window SST Equation: </b>
+                          Assume a linear estimator for SST: 
+                          $$\hat{T}_s = a_0 + a_1 T_{b,1} + a_2 (T_{b,1} - T_{b,2})$$ 
+                          Substitute the linearized forward expressions:
+                          $$\hat{T}_s = a_0 + a_1 \left(T_s + \alpha_1 \Delta T_{\text{atm}} \right) + a_2 (\alpha_1 - \alpha_2)\Delta T_{\text{atm}}$$ 
+                          To make the estimator unbiased, enforce:
+                          $$
+                            \begin{cases}
+                            a_1 = 1 \
+                            a_1 \alpha_1 + a_2 (\alpha_1 - \alpha_2) = 0
+                            \end{cases}
+                          $$    
+                          Solving:
+                          $$
+                            a_2 = -\frac{\alpha_1}{\alpha_1 - \alpha_2}
+                          $$       
+                          Thus the split-window form emerges naturally from linearization and atmospheric cancellation:
+                          $$\boxed{T_s = a_0 + T_{b,1} + a_2 (T_{b,1} - T_{b,2})}$$
+                          <p>The coefficients \(a_0, a_2\) are determined empirically using:</p>
+                          <ul>
+                            <li>radiative transfer simulations,</li>
+                            <li>matchups with in-situ SST.</li>
+                          </ul>
+                        </li>
+                        <li><b>Error Covariance and Uncertainty Propagation: </b>
+                          Let the SST estimator be:
+                          $$T_s = f(T_{b,1}, T_{b,2})$$ 
+                          Using the law of propagation of uncertainty:
+                          $$\sigma_{T_s}^2 = \sum_{i,j} \frac{\partial f}{\partial T_{b,i}}  \frac{\partial f}{\partial T_{b,j}} \operatorname{cov}(T_{b,i}, T_{b,j})$$ 
+                          For the split-window:
+                          $$
+                            \frac{\partial T_s}{\partial T_{b,1}} = 1 + a_2,
+                            \quad
+                            \frac{\partial T_s}{\partial T_{b,2}} = -a_2
+                          $$
+                          Thus:
+                          $$\boxed{\sigma_{T_s}^2 =  (1+a_2)^2 \sigma_{11}^2 + a_2^2 \sigma_{22}^2 - 2a_2(1+a_2)\sigma_{12}}$$ 
+                          where:
+                          <ul>
+                            <li>\(\sigma_{ii}^2\) are brightness temperature variances,</li>
+                            <li>\(\sigma_{12}\) is the error covariance between channels.</li>
+                          </ul>
+
+                          <p><b>Critical insight:</b>
+                            If calibration errors are correlated (which they usually are):
+                            $$\sigma_{12} \neq 0$$
+                            Ignoring this term systematically underestimates SST uncertainty.
+                          </p>
+                        </li>
+                        <li><b>Sources of Error and Correlation Structure: </b> Brightness temperature errors consist of:
+                          $$\epsilon_{b,i} = \epsilon_{\text{noise},i} + \epsilon_{\text{cal},i} + \epsilon_{\text{model},i}$$
+                        
+                        </li>
+                        <li><b></b></li>
+                        <li><b></b></li>
+                      </ol>
+
+
+
+---
+
+## 7. 
+
+
+
+[
+
+]
+
+* Detector noise → mostly independent
+* Calibration drift → highly correlated
+* Forward-model error → structured correlation
+
+These correlations propagate directly into SST uncertainty.
+
+---
+
+## 8. Implications for Climate Trend Detection
+
+Climate trends are small:
+
+[
+\frac{dT_s}{dt} \sim 0.01\text{–}0.03\ \text{K yr}^{-1}
+]
+
+Let SST bias drift be (b(t)). The observed trend is:
+
+[
+\frac{d\hat{T}_s}{dt}
+=====================
+
+\frac{dT_s}{dt}
++
+\frac{db}{dt}
+]
+
+If:
+
+[
+\left|\frac{db}{dt}\right|
+\gtrsim
+\left|\frac{dT_s}{dt}\right|
+]
+
+then the climate signal becomes **indistinguishable from instrument drift**.
+
+---
+
+## 9. Stability Requirement from First Principles
+
+To detect a trend ( \Delta T ) over time ( \Delta t ):
+
+[
+\sigma_{\text{stability}}
+\ll
+\frac{\Delta T}{\sqrt{N}}
+]
+
+where (N) is the number of independent observations.
+
+This is why:
+
+* calibration stability matters more than absolute accuracy,
+* inter-satellite consistency is critical,
+* reprocessing historical data is unavoidable.
+
+---
+
+## 10. Conceptual Closure
+
+We have shown that:
+
+1. The split-window SST algorithm is a **linearized inversion** of radiative transfer
+2. Its form arises from **atmospheric cancellation**, not heuristics
+3. SST uncertainty depends critically on **error covariance**
+4. Climate trends are only meaningful if **instrument stability exceeds trend magnitude**
+
+---
+
+### Where this naturally goes next
+
+If you want, the next logical step is:
+
+* **multi-sensor harmonisation and inter-calibration**
+* **traceability and SI links**
+* **why reprocessing is essential for climate data records**
+
+Just tell me — you are now at research-paper level rigor.
+
+
+
+
+                    </div>
+
                     <br>
                     <h3>Reference</h3>
 
