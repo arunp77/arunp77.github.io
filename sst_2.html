@@ -412,13 +412,13 @@
                             <li>\(\varepsilon_i\) is surface emissivity,</li>
                             <li>\(L_{i}^{\uparrow}\) is upwelling atmospheric emission.</li>
                           </ul>
-                          The satellite does not observe \(T_{\text{skin}}\), but the radiance \(L_i\). To simplify notation, define: $A_i = \tau_i \varepsilon_i$, so 
+                          The satellite does not observe \(T_{\text{skin}}\), but the radiance \(L_i\). To simplify notation, define: \(A_i = \tau_i \varepsilon_i\), so 
                           $$
                             L_i = A_i B(T_{\rm skin}) + L_{i}^{\uparrow}
                           $$
                         </li>
                         <li><b>Brightness Temperature Representation:</b>
-                          Brightness temperature $T_{b,i}$ is defined implicitly by:
+                          Brightness temperature \(T_{b,i}\) is defined implicitly by:
 
                           $$L_i = B_i(T_{b,i})$$
 
@@ -430,9 +430,9 @@
 
                           This equation is exact. 
 
-                          <p><b>Linearize Around a Reference Temperature</b> $T_0$:</p>
+                          <p><b>Linearize Around a Reference Temperature</b> \(T_0\):</p>
 
-                          <p>Let both temperatures be clos to a reference $T_0$. Now definin the two temperatures as:</p>
+                          <p>Let both temperatures be clos to a reference \(T_0\). Now definin the two temperatures as:</p>
 
                           $$T_{\rm skin} = T_0 +\delta T_s$$
                           $$T_{b,i} = T_0 +\delta T_{b,i}$$
@@ -463,11 +463,31 @@
                           B'(T_0) \delta T_{b,i} A_i B'(T_0) \delta T_s + (A_i -1) B(T_0) + L_{i}^{\uparrow}
                           $$
 
-                          Now divide by $B'(T_0)$, 
+                          Now divide by \(B'(T_0)\), 
 
                           $$
                           \delta T_{b,i} = A_i \delta T_s + \frac{(A_i -1) B(T_0)}{B(T_0)} + \frac{L_{i}^{\uparrow}}{B'(T_0)}.
                           $$
+
+                          <p>Now recalling \(\delta T_{b,i} = T_{b,i} - T_0\) and \(\delta T_{s} = T_{\rm skin} - T_0\). Therefore, above equation can be rearranged to:</p>
+
+                          $$
+                          T_{b,i} = T_0 + A_i (T_{\rm skin} - T_0) +C_i
+                          $$
+
+                          <p>where,</p>
+
+                          $$
+                          C_i = \frac{(A_i -1) B(T_0)}{B'(T_0)} + \frac{L_{i}^{\uparrow}}{B'(T_0)}  
+                          $$
+
+                          Therefore, we can rearranging again: 
+
+                          $$T_{b,i} = A_i T{\rm skin} + \beta_i$$
+
+                          <p>where</p>
+
+                          $$\beta_i = T_0 (1- A_i) +C_I$$
 
                           <p>For small deviations around a reference temperature \(T_0\), linearize the Planck function:</p>
 
