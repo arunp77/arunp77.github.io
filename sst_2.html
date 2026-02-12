@@ -421,7 +421,7 @@
                           <p>For small deviations around a reference temperature \(T_0\), linearize the Planck function:</p>
 
                           $$ 
-                            B_i(T) \approx B_i(T_0) + \left \frac{\partial B_i}{\partial T}\right|_{T_0} (T - T_0)
+                            B_i(T) \approx B_i(T_0) + \left \frac{\partial B_i}{\partial T}|_{T_0} (T - T_0)
                           $$
 
                           This linearization is valid because:
@@ -432,7 +432,9 @@
                         </li>
                         <li><b>Linearized Forward Model:</b>
                           Linearizing the full forward model around \(T_0\):
-                          $$T_{b,i} \approx T_{\text{skin}} = \alpha_i  \Delta T_{\text{atm}} + \beta_i$$ 
+                          $$
+                            T_{b,i} \approx T_{\text{skin}} = \alpha_i  \Delta T_{\text{atm}} + \beta_i
+                          $$ 
                           where:
                           <ul>
                             <li>\(\alpha_i\) captures atmospheric absorption/emission effects,</li>
