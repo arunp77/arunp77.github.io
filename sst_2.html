@@ -421,8 +421,53 @@
                           Brightness temperature $T_{b,i}$ is defined implicitly by:
 
                           $$L_i = B_i(T_{b,i})$$
+
+                          where \(B_i(\cdot)\) is the Planck function integrated over the channel response.  So, 
+
+                          $$
+                          B(T_{b,i}) = A_i B(T_{\rm skin}) + L_{i}^{\uparrow}
+                          $$
+
+                          This equation is exact. 
+
+                          <p><b>Linearize Around a Reference Temperature</b> $T_0$:</p>
+
+                          <p>Let both temperatures be clos to a reference $T_0$. Now definin the two temperatures as:</p>
+
+                          $$T_{\rm skin} = T_0 +\delta T_s$$
+                          $$T_{b,i} = T_0 +\delta T_{b,i}$$
+
+                          <p>Now expand Planck’s function using a first-order Taylor expansion:</p>
+
+                          $$
+                          B(T) \approx B(T_0) + B' (T_0) (T - T_0).
+                          $$
                           
-                          where \(B_i(\cdot)\) is the Planck function integrated over the channel response. 
+                          <p>Now applying this to both sides. The left hand side:</p>
+
+                          $$B(T_{b,i}) \approx B(T_0) + B'(T_0) \delta T_{b,i}.$$
+
+                          <p>and the right hand side:</p>
+
+                          $$A_i [B(T_0) + B'[T_0]\delta T_s] + L_{i}^{\uparrow}$$
+
+                          <p>Now, equating both sides:</p>
+
+                          $$
+                            B(T_0) + B'(T_0) \delta T_{b,i} = A_i B(T_0) + A_i B'(T_0) \delta T_s + L_{i}^{\uparrow}
+                          $$
+
+                          Now rearranged: 
+
+                          $$
+                          B'(T_0) \delta T_{b,i} A_i B'(T_0) \delta T_s + (A_i -1) B(T_0) + L_{i}^{\uparrow}
+                          $$
+
+                          Now divide by $B'(T_0)$, 
+
+                          $$
+                          \delta T_{b,i} = A_i \delta T_s + \frac{(A_i -1) B(T_0)}{B(T_0)} + \frac{L_{i}^{\uparrow}}{B'(T_0)}.
+                          $$
 
                           <p>For small deviations around a reference temperature \(T_0\), linearize the Planck function:</p>
 
