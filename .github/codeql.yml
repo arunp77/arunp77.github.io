@@ -1,3 +1,7 @@
+# I removed this file from the worflow folder as I dont want to keep this as it is just to check any vulnerability scanning 
+# in the repo.  Since, I am not intended to keep any secrets or anything else, I am for now removing this workflow. I only
+# keep jenkyll  workflow to launch the github pages. 
+
 name: "CodeQL"
 
 on:
