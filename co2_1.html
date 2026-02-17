@@ -296,6 +296,52 @@
 
                         <p></p>
 
+                        <h4>General Solution of RTE</h4>
+                        Linear first-order ODE, after ignoring the term represenitng contribution from other direction into the line of sight;
+
+                        $$\frac{dI}{d\tau} + I = S$$
+
+                        Multiply by integrating factor: \(e^\tau\)
+
+                        $$\frac{dI e^\tau}{d\tau} = Se^\tau$$
+
+                        and integrate:
+
+                        $$I(\tau) = I(0) e^\tau +\int_0^\tau S(t) e^{-(\tau - t)} dt$$
+
+                        This is the general solution.
+
+
+                        <h3>Optical Depth Decomposition</h3>
+                        Total extinction coefficient: 
+
+                        $$\beta_\nu = \beta_\nu^{\rm gas} + \beta_\nu^{\rm aer} + \beta_\nu^{\rm cloud}$$
+
+                        Thus:
+
+                        $$\tau_\nu = \tau_\nu^{\rm gas} + \tau_\nu^{\rm aer} + \tau_\nu^{\rm cloud}$$
+
+                        We can derive the formula for the gas optical depth. Probability of photon absorption per unit path:
+
+                        $$dP = n(z) \sigma_\nu dz$$
+
+                        Now integrating:
+
+                        $$\tau_\nu^{\rm gas} = \int_0^\infty \sigma_\nu (T,p) n(z) dz.$$
+
+                        Using ideal gas law:
+
+                        $$n(z) = \frac{p(z)}{k_B T(z)}$$
+
+                        Therefore:
+
+                        $$\tau_\nu^{\rm gas} = \int_0^\infty \sigma_\nu (T,p) \frac{p(z)}{k_B T(z)} dz.$$
+
+
+
+
+
+
 
 
 
