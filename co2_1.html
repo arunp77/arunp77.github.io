@@ -132,7 +132,7 @@
     <section id="portfolio-details" class="portfolio-details">
         <div class="container">
             <div class="row gy-4">
-                <h1>Motivation and Scope</h1>
+                <h1>Fundamental Radiometric Quantities</h1>
                 <!-- <div class="w-100">
                     <img src="assets/img/remote-sensing/Active-passive.png"
                         alt="Active Passive"
@@ -141,21 +141,46 @@
                     
 
                 <section>
-                    <p>
-                        Satellite data products are the result of a long and carefully structured processing chain, transforming raw instrument signals into geophysically meaningful quantities. Understanding this chain is essential for correct interpretation of satellite-derived information, especially in climate and environmental applications where small biases and long-term stability matter.
-                    </p>
-                    <p>
-                        Sea Surface Temperature (SST) is chosen as a representative example because it combines relatively well-understood physical principles with a high level of practical relevance. SST has been observed from space for several decades, is produced operationally by multiple satellite missions, and is widely used in weather prediction, oceanography, and climate studies. At the same time, SST retrieval highlights many of the key challenges common to satellite data processing, including calibration stability, atmospheric correction, model dependence, and uncertainty propagation.
-                    </p>
-                    <p>The scope of this example is deliberately limited. The discussion does not aim to describe mission-specific implementations, sensor-dependent tuning, or operational software details. Nor does it attempt to optimise or validate a particular SST algorithm. Instead, the focus is on explaining the logical structure of the processing chain, from measurement to higher-level products, and on clarifying how physical assumptions and mathematical transformations enter at each stage.</p>
-                    <p>This example is intended for readers with a basic technical background who seek a conceptual and quantitative understanding of satellite data processing, rather than a step-by-step guide to code implementation. The emphasis is on measurement principles, processing logic, and interpretation, rather than on programming or system engineering.</p>
-                    <!-- <p><b>The purpose of this document is to open that box.</b></p> -->
 
-                    <!-- <div class="col-lg-8">
-                        <div class="portfolio-details-slider swiper">
-                            <img src="assets/img/remote-sensing/sat_pipeline.png" class="img-fluid" alt="Image Description" style="width: 80%; height: auto;">
-                        </div>
-                    </div> -->
+                    <h3>Electromagnetic Radiation – Physical Foundation</h3>
+                    Radiative transfer begins with classical electromagnetism. Electromagnetic radiation satisfies Maxwell’s equations. In free space:
+
+                    $$
+                    \nabla^2 \boldsymbol{E} - \frac{1}{c^2} \frac{\partial^2 \boldsymbol{E}}{\partial t^2}
+                    $$
+                    
+                    The plane wave solution of this equation can be written as:
+
+                    $$\boldsymbol{E}(z,t) = \boldsymbol{E}_0 e^{i(kz-\omega t)}$$
+
+                    where, 
+                    <ul>
+                        <li>\(k = \frac{2\pi}{\lambda}\)</li>
+                        <li>\(\omega = 2\pi \nu\)</li>
+                        <li>c=c\lambda \nu</li>
+                    </ul>
+
+                    We can write energy density of EM wave: 
+
+                    $$u = \frac{1}{2} \varepsilon E^2 + \frac{1}{2\mu_0} B^2$$ 
+
+                    For plane waves: \(u = \varepsilon_0 E^2\) and the energy flud i.e. Pointing vector can be written as: \(\boldsymbol{S} = \boldsymbol{E}\times \boldsymbol{H}\).  Magneitude of the energy flux is given by \(S = c u \). This gives physical basis for radiative flux.
+
+                    <h3>Radiometric Quantities</h3> 
+                    Satellite instruments do not measure field amplitudes, instead they measure radiance. 
+
+                    <h4>Spectal Radiance</h4> 
+                    Spectral radiance is the amount of radiant energy traveling in a specific direction, per unit area, per unit solid angle, and per unit wavelength (or frequency).
+                    
+                    $$
+                    I_\nu = \frac{d\Phi}{dA \text{cos} \theta d\Omega d\nu}  = \frac{dE}{dA \text{cos} \theta d\Omega d\nu dt}  ~~~~ \text{W}\text{m}^{-2}\text{sr}^{-1}H z^{-1}.
+                    $$
+
+                    where Radiant flux \(\Phi\) in terms of energy \(E\) is defined as: \(d\Phi = \frac{dE}{dt}\)
+
+                    Energy per unit area, per unit solid angle, per unit frequency, per unit time. Radiance is conserved along a ray in vacuum.
+
+                
                     
 
 
