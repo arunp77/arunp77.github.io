@@ -157,7 +157,7 @@
                     <ul>
                         <li>\(k = \frac{2\pi}{\lambda}\)</li>
                         <li>\(\omega = 2\pi \nu\)</li>
-                        <li>c=c\lambda \nu</li>
+                        <li>c=\lambda \nu</li>
                     </ul>
 
                     We can write energy density of EM wave: 
@@ -182,16 +182,60 @@
 
                     <p><b>Relation Between Radiance and Flux: </b>The flux is defined as:</p>
 
-                    $$\Phi_nu = \int I_\nu \text{cos}\theta d\Omega$$
+                    $$\Phi_\nu = \int I_\nu \text{cos}\theta d\Omega$$
 
                     This distinction is important because radiative transfer equation governs radiance, not flux.
 
                     <h3>Interaction of Radiation with Matter</h3>
-                    Let \(\alpha_\nu\) is the absorption coefficient, then:
+                    When radiation enters atmosphere, intensity changes due to:
+                    <ol>
+                        <li>Absorption</li>
+                        <li>Scattering</li>
+                        <li>Emission</li>
+                    </ol>
+                    We define coefficients per unit length.
+
+                    <p><b>Absorption Coefficient: </b>Let \(\alpha_\nu\) is the absorption coefficient, then:</p>
+                    
 
                     $$dI_\nu = -\alpha_\nu I_\nu ds ~~~~ \text{m}^{-1}. $$
 
                     Where microscopically \(\alpha_nu = n \sigma_nu\). Here \(n\) is the number density and \(\sigma_nu\) is the absorption cross-section.
+
+                    <p><b>Scattering Coefficient: </b>It is denoted by \(\beta_\nu^{\rm sca}\).</p>
+
+                    Extinction does not mean energy disappears. It means energy is removed from the specific direction of propagation.
+                    
+                    $$\text{Extinction} = \text{Absorption} + \text{Scattering}$$
+
+                    In radiative transfer, the total extinction coefficient is the sum of:
+
+                    $$
+                    \beta_\nu = \alpha_nu + \beta_\nu^{\rm sca}
+                    $$
+
+                    <p><b>Emission Coefficient: </b>nergy emitted per unit volume per unit solid angle per unit frequency is denoted by \(j_\nu\).</p>
+
+
+                    <h3>Derivation of the Radiative Transfer Equation (RTE)</h3>
+
+                    Consider a beam traveling through medium. Energy balance over infinitesimal path \(ds\): 
+
+                    $$
+                    \text{Change in radiance} =\text{Loss due to extinction} + \text{Gain due to emission}.
+                    $$
+
+                    Mathematically: 
+
+                    $$DI_\nu = -\beta_\nu I_\nu ds + j_\nu ds ~~~~ \Rightarrow ~~~~ \frac{dI_\nu}{ds} = -\beta_\nu I_\nu + j_\nu$$
+
+                    This is the scalar Radiative Transfer Equation. This equation be re-written in terms of optical depth \(\\tau_\nu) as:
+
+                    $$\frac{dI_\nu}{d\tau_\nu} = - I_\nu +S_\nu, $$
+
+                    where \(d\tau_\nu = \beta_\nu ds\) and \(S_\nu = \frac{j_\nu}{\beta_\nu}\). Therfore, 
+
+                    $$\tau_\nu = \int_0^L \beta_\nu ds. $$
 
 
                 
