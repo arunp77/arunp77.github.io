@@ -237,7 +237,61 @@
 
                     $$\tau_\nu = \int_0^L \beta_\nu ds. $$
 
-                    <p><b>Full Equation with Explicit Terms: </b>In general above RTE can be written as:</p> 
+                    <p><b>Full Equation with Explicit Terms: </b></p>
+                        In general above RTE doesnot explain actual scenario. For example, in the case when radiation coming from other directions into the line of sight, we need 
+                        to add few terms on the right side. 
+
+                        $$
+                        \frac{dI_\nu}{ds} = -\alpha_\nu I_\nu -\beta_\nu^{\rm sca} I_\nu + j_\nu + \int_{4\pi} \beta_\nu^{\rm sca} P(\Omega' \Omega) I_\nu(\Omega') d\Omega'
+                        $$
+
+                        where \(P\) is the phase function, and is integral over all directions. 
+                    
+                    <p>Above equation can be written in more compact form as: </p>
+
+                    $$\frac{dI_\nu}{ds} = -\beta_\nu^{\rm ext} I_\nu  + \beta_\nu^{\rm ext} S_\nu$$
+                    
+                    where the source function is:
+
+                    $$S_\nu = \frac{\alpha_\nu B_\nu +\beta_\nu J_\nu}{ \beta_\nu^{\rm ext}}$$
+
+                    and 
+
+                    $$J_\nu = \frac{1}{4\pi} \int I_\nu d\Omega$$
+
+                    <p><b>Special Case: Pure Absorption (Important for CO₂ Retrieval):</b></p>
+
+                    <p><b>If scattering is negligible:</b> </p>
+
+                        $$\beta_\nu^{\rm ext} \approx \alpha_\nu$$
+
+                        Then RTE simplifies to:
+
+                        $$\frac{dI_\nu}{ds} = -\alpha_\nu I_\nu  + \alpha_\nu B_\nu$$
+
+                        This leads directly to the classical solution:
+
+                        $$I_\nu(\tau) = I_\nu(0)e^{\tau} + \int_0^\tau B_\nu e^{-(\tau - t)dt}.$$
+
+                        where: \(d\tau_\nu = \alpha_\nu ds.\)
+
+                        <p><b>Why This Is Critical for CO₂ Retrieval? </b></p>
+
+                        In near-infrared CO₂ bands:
+
+                        <ul>
+                            <li>Extinction mostly from absorption</li>
+                            <li>Optical depth depends on CO₂ concentration</li>
+                            <li>Small errors in extinction → errors in retrieved XCO₂</li>
+                        </ul>
+
+                        Scattering (aerosols, thin clouds) changes photon path length, which biases retrievals if not modeled correctly.
+
+
+
+
+
+
 
 
 
