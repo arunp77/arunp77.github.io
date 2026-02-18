@@ -246,7 +246,42 @@
                         \frac{dI_\nu}{ds} = -\alpha_\nu I_\nu -\beta_\nu^{\rm sca} I_\nu + j_\nu + \int_{4\pi} \beta_\nu^{\rm sca} P(\Omega' \Omega) I_\nu(\Omega') d\Omega'
                         $$
 
-                        where \(P\) is the phase function, and is integral over all directions. 
+                        where \(P\) is the phase function, and is integral over all directions. This function describe, how radiation coming from direction \(\Omega'\) is 
+                        redistributed into direction \(\Omega\)  after scattering. In simple words: It tells you where the photon goes after it scatters.
+
+                        <ul>
+                            <li><b>Normalization Condition:</b> The phase function is normalized such that:
+                                
+                                $$\frac{1}{4\pi}\int_{4\pi} P(\Omega' \Omega) d\Omega = 1 $$
+
+                                This ensures energy conservation during scattering.
+
+                            </li>
+                            <li><b>Common Types of Phase Functions:</b>
+                                <ul>
+                                    <li><b>Isotropic Scattering: </b>\(P= 1 \Rightarrow~~~~\)  Scattering equally in all directions. Simple but rarely realistic.</li>
+                                    <li><b>Rayleigh Scattering (Molecules): </b>Small particles relative to wavelength. 
+                                    
+                                        $$P(\theta) = \frac{3}{4}(1+\text{cos}^2\theta)$$
+
+                                        where \(\theta\) is the scattering angle. Symmetric forward/backward Important for molecular scattering. Relevant in clear-sky CO₂ retrieval
+                                    </li>
+                                    <li><b>Henyey–Greenstein Phase Function (Aerosols): </b>Very commonly used:
+                                    
+                                        $$P(\theta) =\frac{1-g^2}{(1+g^2-2g\text{cos}\theta)^{3/2}}$$
+
+                                        where \(g=\langle \text{cos}\theta \rangle\) is the asymmetry parameter, and
+
+                                        <ul>
+                                            <li> \( g=0 \rightarrow \) isotropic </li>
+                                            <li> \( g>1 \rightarrow \) forward scattering </li>
+                                            <li> \( g<1 \rightarrow \) backward scattering </li>
+                                        </ul>
+
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
                     
                     <p>Above equation can be written in more compact form as: </p>
 
@@ -336,6 +371,9 @@
                         Therefore:
 
                         $$\tau_\nu^{\rm gas} = \int_0^\infty \sigma_\nu (T,p) \frac{p(z)}{k_B T(z)} dz.$$
+
+
+                        <h3>Spectral Line Physics</h3>
 
 
 
