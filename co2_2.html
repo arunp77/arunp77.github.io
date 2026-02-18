@@ -222,8 +222,15 @@
                     
                     <!-- Section started  -->
                     <h3>Forward Model Formulation</h3>
-                    <p>The forward model describes how the atmospheric state determines the radiance measured by the satellite instrument. In retrieval problems, we define \(y = F(x)\), where 
-                        \(x =\) atmospheric state vector, \(y=\) measurement vector (radiances), \(F=\)radiative transfer operator.
+                    <p>The forward model describes how the atmospheric state determines the radiance measured by the satellite instrument. In retrieval problems, we define 
+                        
+                        $$y = F(x)$$ 
+                        where
+                        <ul>
+                            <li>\(x =\) atmospheric state vector,</li>
+                            <li>\(y=\) measurement vector (radiances),</li>
+                            <li>\(F=\)radiative transfer operator.</li>
+                        </ul> 
                     </p>
                     <p>The forward model must include:</p>
                     <ul>
@@ -233,6 +240,25 @@
                         <li>Surface reflection</li>
                         <li>Instrument effects</li>
                     </ul>
+
+                    <!-- subsection -->
+                    <h5>Measurement Geometry</h5>
+                    For reflected solar missions (SWIR CO₂ retrieval), radiance measured at the sensor depends on Solar zenith angle \(\theta_s\), 
+                    \(\theta_v\), Relative azimuth angle \(\phi\). Therefore radiance is a function of:
+
+                    $$I_\nu = I_\nu(\theta_s, \theta_v, \phi)$$
+
+                    Photon path consists of: 
+                    <ul>
+                        <li>Sun → atmosphere (downward path)</li>
+                        <li>Surface reflection</li>
+                        <li>Atmosphere (upward path) → satellite</li>
+                    </ul>
+                    Thus total optical depth is two-way.
+
+                    <!-- subsection -->
+                    <h5>Monochromatic Radiance Expression</h5>
+                    Ignoring polarization for now, the radiance at top of atmosphere (TOA) can be written as:
 
 
 
