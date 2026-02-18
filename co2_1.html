@@ -280,6 +280,7 @@
                                                 <li> \( g>1 \rightarrow \) forward scattering </li>
                                                 <li> \( g<1 \rightarrow \) backward scattering </li>
                                             </ul>
+                                            <p></p>
 
                                             <p>For aerosols: \(g\approx 0.6 - 0.8\)</p>
                                             <p>For clouds: \(g\approx 0.85 - 0.95\)</p>
@@ -399,6 +400,63 @@
 
 
                         <h3>Spectral Line Physics</h3>
+                        Absorption cross-section is not constant. It is composed of spectral lines: 
+
+                        $$\sigma_\nu = \sum_i S_i(T)f_i(\nu-\nu_i)$$
+
+                        where:
+                        <ul>
+                            <li>\(S_i(T) = \) line strength</li>
+                            <li>\(f_i = \) normalized the shape</li>
+                        </ul>
+
+                        <ol>
+                            <li><b>Doppler Broadening: </b>Thermal motion causes frequency shift: 
+                            
+                                $$\alpha_D = \nu_0 \sqrt{\frac{2k_B T}{m c^2}}$$
+
+                                Gaussian profile: 
+
+                                $$f_D(\nu) = \frac{1}{\alpha_D \sqrt{\pi}} \text{exp}\left(\frac{-(\nu - \nu_0)^2}{\alpha_D^2}\right)$$
+
+                            </li>
+                            <li><b>Pressure Broadening: </b>Collisions perturb energy levels. Lorentz profile is defined as:
+                            
+                                $$f_L(\nu) = \frac{1}{\pi} \frac{\gamma}{(\nu-\nu_0)^2 +\gamma^2}$$
+
+                            </li>
+                            <li><b>Voigt Profile: </b>Real atmosphere:
+
+                                $$f_V = f_D * f_L$$
+
+                                Convolution of Gaussian and Lorentz.
+                            
+                            </li>
+                            <li><b></b></li>
+                        </ol>
+
+                        <h3>Path Geometry in Satellite Observation</h3>
+                        For slant path: 
+
+                        $$\tau_\nu = \int \sigma_\nu n(s)ds$$ 
+
+                        If zenith angle \(\theta\): 
+
+                        $$ds = \frac{dz}{\text{cos}\theta}$$
+
+                        so:
+
+                        $$\tau_\nu = \frac{1}{\text{cos}\theta} \int \sigma_\nu n(z) dz.$$
+
+                        Thus solar zenith angle increases optical depth.
+
+                        <h3>Final Fundamental Equation for SWIR CO₂ Retrieval</h3>
+
+                        Measured radiance:
+
+                        $$I_\nu = I_{\nu,0} \text{exp}\left(-\int \sigma_\nu^{{\rm CO}_2} n_{{\rm CO}_2} ds - \tau_\nu^{\rm aer} - \tau_\nu^{\rm cloud}\right)$$
+
+                        This is the complete physical foundation.
 
 
 
