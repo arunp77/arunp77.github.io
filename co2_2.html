@@ -438,13 +438,73 @@
 
                     $$K_{ij} = \frac{\partial F_i}{\partial x_j}$$
 
-                    physically it means Sensitivity of radiance at wavelength \(\nu_i\) to state parameter \(\x_j\). 
+                    physically it means Sensitivity of radiance at wavelength \(\nu_i\) to state parameter \( x_j\). 
+                    
+                    <h5>Bayesian Formulation</h5>
 
-                    Thus:
+                    Bayesian Formulation is one of the best method to evaluate \(x\). 
+                    In this case, we compute posterior probability \(P(x|y)\). Now using the Bayes theorem:
+
+                    $$P(x|y) \propto P(y|x) P(x)$$ 
+
+                    where:
+
+                    <ul>
+                        <li>Likelihood: \( P(y|x) \)</li>
+                        <li>Prior: \( P(x) \)</li>
+                    </ul>
+
+                    <p><b>Assume Gaussian Statistics:</b></p> 
+                    Measurement error:
 
                     $$
-                    y = F(x)
+                    \epsilon \sim \mathcal{N}(0, S_\epsilon)
                     $$
+
+                    Thus likelihood:
+
+                    $$
+                    P(y|x) \propto
+                    \exp
+                    \left(
+                    -\frac{1}{2}
+                    (y - F(x))^T
+                    S_\epsilon^{-1}
+                    (y - F(x))
+                    \right)
+                    $$
+
+                    Prior:
+
+                    $$
+                    P(x) \propto
+                    \exp
+                    \left(
+                    -\frac{1}{2}
+                    (x - x_a)^T
+                    S_a^{-1}
+                    (x - x_a)
+                    \right)
+                    $$
+
+                    <h5>Cost Function Derivation</h5>
+                    Posterior maximization = minimize negative log posterior. Define cost function:
+                    $$
+                    J(x) =
+                    (y - F(x))^T
+                    S_\epsilon^{-1}
+                    (y - F(x))
+                    +
+                    (x - x_a)^T
+                    S_a^{-1}
+                    (x - x_a)
+                    $$
+
+                    This is the Optimal Estimation cost function.
+
+                    <h5>Derivation of Retrieval Equation (Linear Case)</h5>
+                    Assume linear model:
+
 
                     <h5>Instrument Effects</h5>
 
