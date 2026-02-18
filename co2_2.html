@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Fundamentals</title>
+  <title>Retrieval Theory</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -93,7 +93,7 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Fundamental Radiative Transfer Theory</h2>
+          <h2>Inverse Problem & Retrieval Theory</h2>
           <ol>
             <li><a href="project_co2_measurment.html" class="clickable-box"><i class="fas fa-arrow-left"></i> Content</a></li>
             <li><a href="Remote-sensing-content.html" class="clickable-box">Home</a></li>
@@ -132,7 +132,7 @@
     <section id="portfolio-details" class="portfolio-details">
         <div class="container">
             <div class="row gy-4">
-                <h1>Motivation and Scope</h1>
+                <h1>Inverse Problem & Retrieval Theory</h1>
                 <!-- <div class="w-100">
                     <img src="assets/img/remote-sensing/Active-passive.png"
                         alt="Active Passive"
@@ -141,24 +141,87 @@
                     
 
                 <section>
-                    <p>
-                        Satellite data products are the result of a long and carefully structured processing chain, transforming raw instrument signals into geophysically meaningful quantities. Understanding this chain is essential for correct interpretation of satellite-derived information, especially in climate and environmental applications where small biases and long-term stability matter.
-                    </p>
-                    <p>
-                        Sea Surface Temperature (SST) is chosen as a representative example because it combines relatively well-understood physical principles with a high level of practical relevance. SST has been observed from space for several decades, is produced operationally by multiple satellite missions, and is widely used in weather prediction, oceanography, and climate studies. At the same time, SST retrieval highlights many of the key challenges common to satellite data processing, including calibration stability, atmospheric correction, model dependence, and uncertainty propagation.
-                    </p>
-                    <p>The scope of this example is deliberately limited. The discussion does not aim to describe mission-specific implementations, sensor-dependent tuning, or operational software details. Nor does it attempt to optimise or validate a particular SST algorithm. Instead, the focus is on explaining the logical structure of the processing chain, from measurement to higher-level products, and on clarifying how physical assumptions and mathematical transformations enter at each stage.</p>
-                    <p>This example is intended for readers with a basic technical background who seek a conceptual and quantitative understanding of satellite data processing, rather than a step-by-step guide to code implementation. The emphasis is on measurement principles, processing logic, and interpretation, rather than on programming or system engineering.</p>
-                    <!-- <p><b>The purpose of this document is to open that box.</b></p> -->
+                    <h3>Introduction and Objective</h3>
 
-                    <!-- <div class="col-lg-8">
-                        <div class="portfolio-details-slider swiper">
-                            <img src="assets/img/remote-sensing/sat_pipeline.png" class="img-fluid" alt="Image Description" style="width: 80%; height: auto;">
-                        </div>
-                    </div> -->
+                    <p>The goal of this section is to formally describe how atmospheric CO₂ is retrieved from measured satellite spectra using inverse theory.</p>
+
+                    In <a href="co2_1.html" target="_blank">Part I</a> we derived the forward radiative transfer model:
+
+                    $$
+                    I_\nu = I_{\nu,0} \exp(-\tau_\nu)
+                    $$
+
+                    <p>This equation describes how atmospheric properties determine the measured radiance. However, satellite retrieval operates in the opposite direction:</p>
+
+                    <p>We measure radiance \( I_\nu \) and seek to determine the atmospheric state that produced it.</p>
+
+                    <p>This constitutes an inverse problem.</p>
+
+                    <p><b>So fundamental retrival question is</b>
+                        how from a given vector of measured radiance \(y\) and a radiative trasfer model \(F\), 
+                        we calculate atmospheric state vecotr \(x\), such that 
+
+                        $$y = F(x)$$
+                    </p>
+
+                    <p>For CO₂ missions like MicroCarb, the primary quantity of interest is: </p>
+
+                    $$
+                    \text{XCO}_2 = \frac{\int n_{\text{CO}_2}(z), dz}{\int n_{\text{dry}\ \text{air}}(z), dz}
+                    $$
+
+                    This is the column-averaged dry air mole fraction of CO₂. The inversion is not trivial because:
+
+                    <ul>
+                        <li>The forward model \( F(x) \) is nonlinear.</li>
+                        <li>Measurements contain noise.</li>
+                        <li>Multiple atmospheric parameters influence the spectrum simultaneously.</li>
+                        <li>Different parameters may produce similar spectral effects (degeneracy).</li>
+                        <li>The problem can be ill-conditioned.</li>
+                    </ul>
                     
+                    Thus, direct inversion is unstable.
+
+                    <p><b>Retrieval as a Statistical Estimation Problem: </b>Because measurements contain uncertainty, the solution must be formulated probabilistically. 
+                    Instead of solving:
+                    </p>
+
+                    $$
+                    y = F(x)
+                    $$
+
+                    we solve:
+
+                    $$
+                    y = F(x) + \epsilon
+                    $$
+
+                    where \( \epsilon \) represents measurement error. The goal becomes:
+
+                    <pre><code>Estimate the most probable atmospheric state consistent with the measurements and prior knowledge.</code></pre>
+
+                    This leads naturally to a Bayesian framework and the Optimal Estimation method.
+
+                    <p><b>What This Section Will Establish?</b></p>
+
+                    This section will:
+                    <ul>
+                        <li>Formulate the forward model in vector form</li>
+                        <li>Define the state vector and measurement vector</li>
+                        <li>Linearize the forward model</li>
+                        <li>Derive the Optimal Estimation retrieval equation</li>
+                        <li>Define the gain matrix</li>
+                        <li>Derive the averaging kernel</li>
+                        <li>Derive posterior error covariance</li>
+                        <li>Decompose retrieval error into noise and smoothing components</li>
+                    </ul>
 
 
+                    By the end of this section, we will have a complete mathematical description of how CO₂ is retrieved from measured spectra and 
+                    how the information content of the retrieval can be quantified.
+                    
+                    <!-- Section started  -->
+                    <h3>Forward Model Formulation</h3>
 
 
 
