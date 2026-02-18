@@ -440,7 +440,7 @@
 
                     physically it means Sensitivity of radiance at wavelength \(\nu_i\) to state parameter \( x_j\). 
                     
-                    <h5>Bayesian Formulation</h5>
+                    <h3>Bayesian Formulation</h3>
 
                     Bayesian Formulation is one of the best method to evaluate \(x\). 
                     In this case, we compute posterior probability \(P(x|y)\). Now using the Bayes theorem:
@@ -487,7 +487,7 @@
                     \right)
                     $$
 
-                    <h5>Cost Function Derivation</h5>
+                    <h4>Cost Function Derivation</h4>
                     Posterior maximization = minimize negative log posterior. Define cost function:
                     $$
                     J(x) =
@@ -502,8 +502,132 @@
 
                     This is the Optimal Estimation cost function.
 
-                    <h5>Derivation of Retrieval Equation (Linear Case)</h5>
+                    <h4>Derivation of Retrieval Equation (Linear Case)</h4>
                     Assume linear model:
+
+                    $$
+                    F(x) = F(x_a) + K(x - x_a)
+                    $$
+
+                    Define:
+
+                    $$
+                    \delta x = x - x_a
+                    $$
+
+                    $$
+                    \delta y = y - F(x_a)
+                    $$
+
+                    So:
+
+                    $$
+                    \delta y = K \delta x + \epsilon
+                    $$
+
+                    Insert into cost function:
+
+                    $$
+                    J =
+                    (\delta y - K\delta x)^T
+                    S_\epsilon^{-1}
+                    (\delta y - K\delta x)
+                    +
+                    \delta x^T
+                    S_a^{-1}
+                    \delta x
+                    $$
+
+                    <h5>Minimize Cost Function</h5>
+
+                    Take derivative wrt \( \delta x \):
+
+                    $$
+                    \frac{\partial J}{\partial \delta x} = -2K^T S_\epsilon^{-1} (\delta y - K\delta x)+ 2 S_a^{-1} \delta x
+                    $$
+
+                    Set equal to zero:
+
+                    $$
+                    K^T S_\epsilon^{-1} (\delta y - K\delta x)= S_a^{-1} \delta x
+                    $$
+
+                    Expand:
+
+                    $$
+                    K^T S_\epsilon^{-1} \delta y  - K^T S_\epsilon^{-1} K \delta x =  S_a^{-1} \delta x
+                    $$
+
+                    Rearrange:
+
+                    $
+                    (K^T S_\epsilon^{-1} K + S_a^{-1}) \delta x = K^T S_\epsilon^{-1} \delta y
+                    $$
+
+                    Thus:
+
+                    $$
+                    \delta x = (K^T S_\epsilon^{-1} K + S_a^{-1})^{-1} K^T S_\epsilon^{-1} \delta y
+                    $$
+
+                    Final retrieval:
+
+                    $$
+                    \hat{x} = x_a + (K^T S_\epsilon^{-1} K + S_a^{-1})^{-1} K^T S_\epsilon^{-1}(y - F(x_a))
+                    $$
+
+                    This is the core retrieval equation.
+
+                    <h4>Gain Matrix</h4>
+                    Define gain matrix:
+
+                    $$
+                    G =(K^T S_\epsilon^{-1} K + S_a^{-1})^{-1} K^T S_\epsilon^{-1}
+                    $$
+
+                    Then:
+
+                    $$
+                    \hat{x} = x_a + G (y - F(x_a))
+                    $$
+
+                    Interpretation:
+
+                    Maps measurement residuals to state corrections.
+
+                    <h4>Averaging Kernel Derivation</h4>
+
+                    Define:
+
+                    $$
+                    A =\frac{\partial \hat{x}}{\partial x}
+                    $$
+
+                    Substitute linear model:
+
+                    $$
+                    A = G K
+                    $$
+
+                    So:
+
+                    $$
+                    A = (K^T S_\epsilon^{-1} K + S_a^{-1})^{-1} K^T S_\epsilon^{-1} K
+                    $$
+
+                    Interpretation:
+                    <ul>
+                        <li>If \( A = I \) → perfect retrieval</li>
+                        <li>If \( A < I \) → smoothed by prior</li>
+                    </ul>
+
+                    <h4>Degrees of Freedom for Signal (DOFS)</h4>
+                    
+
+
+
+
+
 
 
                     <h5>Instrument Effects</h5>
