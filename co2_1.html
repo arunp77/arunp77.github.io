@@ -212,8 +212,10 @@
                     In radiative transfer, the total extinction coefficient is the sum of:
 
                     $$
-                    \beta_\nu = \alpha_nu + \beta_\nu^{\rm sca}
+                    \beta_\nu^{\rm ext} \equiv \beta_\nu= \alpha_\nu + \beta_\nu^{\rm sca}
                     $$
+
+                    Here, \(\alpha_\nu\) is the total absorption coefficient and \(\beta_\nu\) i.e \(\beta_\nu^{\rm ext}\) is the total scattering coefficient. So this is process based decompositon.  
 
                     <p><b>Emission Coefficient: </b>nergy emitted per unit volume per unit solid angle per unit frequency is denoted by \(j_\nu\).</p>
 
@@ -309,7 +311,7 @@
                         </ul>
                     </div>
 
-                        <p></p>
+                    <p></p>
                     
                     <p>Above equation can be written in more compact form as: </p>
 
@@ -380,7 +382,15 @@
 
                         $$\beta_\nu = \beta_\nu^{\rm gas} + \beta_\nu^{\rm aer} + \beta_\nu^{\rm cloud}$$
 
-                        Thus:
+                        This is a species-based decomposition. It separates extinction by physical contributor: 
+
+                        <ul>
+                            <li>Gas molecules (CO₂, O₂, H₂O, Rayleigh)</li>
+                            <li>Aerosols</li>
+                            <li>Clouds</li>
+                        </ul>
+
+                        Each of these contributors themselves contains absorption and scattering. Thus:
 
                         $$\tau_\nu = \tau_\nu^{\rm gas} + \tau_\nu^{\rm aer} + \tau_\nu^{\rm cloud}$$
 
