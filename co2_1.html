@@ -238,7 +238,12 @@
 
                     $$\tau_\nu = \int_0^L \beta_\nu ds. $$
 
-                    <p><b>Full Equation with Explicit Terms: </b></p>
+                    
+
+                        <p></p>
+
+                    <div class="grey-box">
+                        <p><b>Full Equation with Explicit Terms: </b></p>
                         In general above RTE doesnot explain actual scenario. For example, in the case when radiation coming from other directions into the line of sight, we need 
                         to add few terms on the right side. 
 
@@ -248,64 +253,61 @@
 
                         where \(P\) is the phase function, and is integral over all directions. This function describe, how radiation coming from direction \(\Omega'\) is 
                         redistributed into direction \(\Omega\)  after scattering. In simple words: It tells you where the photon goes after it scatters.
-
                         <p></p>
+                        <ul>
+                            <li><b>Normalization Condition:</b> The phase function is normalized such that:
+                                
+                                $$\frac{1}{4\pi}\int_{4\pi} P(\Omega' \Omega) d\Omega = 1 $$
 
-                        <div class="grey-box">
-                            <ul>
-                                <li><b>Normalization Condition:</b> The phase function is normalized such that:
+                                This ensures energy conservation during scattering.
+
+                            </li>
+                            <li><b>Common Types of Phase Functions:</b>
+                                <ul>
+                                    <li><b>Isotropic Scattering: </b>\(P= 1 \Rightarrow~~~~\)  Scattering equally in all directions. Simple but rarely realistic.</li>
+                                    <li><b>Rayleigh Scattering (Molecules): </b>Small particles relative to wavelength. 
                                     
-                                    $$\frac{1}{4\pi}\int_{4\pi} P(\Omega' \Omega) d\Omega = 1 $$
+                                        $$P(\theta) = \frac{3}{4}(1+\text{cos}^2\theta)$$
 
-                                    This ensures energy conservation during scattering.
+                                        where \(\theta\) is the scattering angle. Symmetric forward/backward Important for molecular scattering. Relevant in clear-sky CO₂ retrieval
+                                    </li>
+                                    <li><b>Henyey–Greenstein Phase Function (Aerosols): </b>Very commonly used:
+                                    
+                                        $$P(\theta) =\frac{1-g^2}{(1+g^2-2g\text{cos}\theta)^{3/2}}$$
 
-                                </li>
-                                <li><b>Common Types of Phase Functions:</b>
-                                    <ul>
-                                        <li><b>Isotropic Scattering: </b>\(P= 1 \Rightarrow~~~~\)  Scattering equally in all directions. Simple but rarely realistic.</li>
-                                        <li><b>Rayleigh Scattering (Molecules): </b>Small particles relative to wavelength. 
-                                        
-                                            $$P(\theta) = \frac{3}{4}(1+\text{cos}^2\theta)$$
+                                        where \(g=\langle \text{cos}\theta \rangle\) is the asymmetry parameter, and
 
-                                            where \(\theta\) is the scattering angle. Symmetric forward/backward Important for molecular scattering. Relevant in clear-sky CO₂ retrieval
-                                        </li>
-                                        <li><b>Henyey–Greenstein Phase Function (Aerosols): </b>Very commonly used:
-                                        
-                                            $$P(\theta) =\frac{1-g^2}{(1+g^2-2g\text{cos}\theta)^{3/2}}$$
+                                        <ul>
+                                            <li> \( g=0 \rightarrow \) isotropic </li>
+                                            <li> \( g>1 \rightarrow \) forward scattering </li>
+                                            <li> \( g<1 \rightarrow \) backward scattering </li>
+                                        </ul>
+                                        <p></p>
 
-                                            where \(g=\langle \text{cos}\theta \rangle\) is the asymmetry parameter, and
+                                        <p>For aerosols: \(g\approx 0.6 - 0.8\)</p>
+                                        <p>For clouds: \(g\approx 0.85 - 0.95\)</p>
 
-                                            <ul>
-                                                <li> \( g=0 \rightarrow \) isotropic </li>
-                                                <li> \( g>1 \rightarrow \) forward scattering </li>
-                                                <li> \( g<1 \rightarrow \) backward scattering </li>
-                                            </ul>
-                                            <p></p>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <p><b>Why Phase Function Matters for CO₂ Retrieval: </b></p>
 
-                                            <p>For aerosols: \(g\approx 0.6 - 0.8\)</p>
-                                            <p>For clouds: \(g\approx 0.85 - 0.95\)</p>
+                        In shortwave CO₂ bands:
+                        <ul>
+                            <li>Surface-reflected sunlight dominates</li>
+                            <li>Aerosol scattering changes photon path length</li>
+                            <li>Forward scattering increases effective path length</li>
+                            <li>That biases retrieved XCO₂</li>
+                        </ul>
 
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <p><b>Why Phase Function Matters for CO₂ Retrieval: </b></p>
-
-                            In shortwave CO₂ bands:
-                            <ul>
-                                <li>Surface-reflected sunlight dominates</li>
-                                <li>Aerosol scattering changes photon path length</li>
-                                <li>Forward scattering increases effective path length</li>
-                                <li>That biases retrieved XCO₂</li>
-                            </ul>
-
-                            <p>If the phase function is wrong:</p>
-                            <ul>
-                                <li>→ wrong angular redistribution</li>
-                                <li>→ wrong radiance simulation</li>
-                                <li>→ retrieval bias</li>
-                            </ul>
-                        </div>
+                        <p>If the phase function is wrong:</p>
+                        <ul>
+                            <li>→ wrong angular redistribution</li>
+                            <li>→ wrong radiance simulation</li>
+                            <li>→ retrieval bias</li>
+                        </ul>
+                    </div>
 
                         <p></p>
                     
