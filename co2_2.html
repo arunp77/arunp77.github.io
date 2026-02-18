@@ -148,12 +148,12 @@
                     In <a href="co2_1.html" target="_blank">Part I: Fundamental Radiometric Quantities</a>, we derived the forward radiative transfer model:
 
                     $$
-                    I_\nu = I_{\nu,0} \exp(-\tau_\nu)
+                    I_\nu = I_{\nu,0} \exp(-\tau_\nu(x))
                     $$
 
                     <p>This equation describes how atmospheric properties determine the measured radiance. However, satellite retrieval operates in the opposite direction:</p>
 
-                    <p>We measure radiance \( I_\nu \) and seek to determine the atmospheric state that produced it.</p>
+                    <pre>We measure radiance \( I_\nu \) and seek to determine the atmospheric state that produced it.</pre>
 
                     <p>This constitutes an inverse problem.</p>
 
@@ -385,6 +385,8 @@
 
                     <h3>Vector Form of Forward Model</h3>
 
+                    We write: \(y =F(x)+\epsilon\), where \(F(x)\) is the non-linear radiative transfer model and \(\epsilon\) is the measurement noise. This is a nonlinear inverse problem.
+
                     Discretize wavelengths:
 
                     $$
@@ -410,6 +412,8 @@
                     \end{bmatrix}
                     $$
 
+                    Here dimension of this matrix is: \(n\)
+
                     Define nonlinear operator:
 
                     $$
@@ -421,6 +425,20 @@
                     F_{\nu_m}(x)
                     \end{bmatrix}
                     $$
+
+                    Here dimension of this matrix is: \(m\) and usually \(m \gg n \). We expand around a reference state \(x_a\):
+
+                    $$F(x)\approx F(x_a) + K(x-x_a).$$
+
+                    Where Jacobian matrix:
+
+                    $$K = \frac{\partial F}{\partial x}~~~~~~~~~~~~ (\text{Dimension}: K \in \mathbb{R}^{m \times n})$$
+
+                    Each elements 
+
+                    $$K_{ij} = \frac{\partial F_i}{\partial x_j}$$
+
+                    physically it means Sensitivity of radiance at wavelength \(\nu_i\) to state parameter \(\x_j\). 
 
                     Thus:
 
