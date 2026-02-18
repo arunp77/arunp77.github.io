@@ -239,10 +239,7 @@
                     where \(d\tau_\nu = \beta_\nu ds\) and \(S_\nu = \frac{j_\nu}{\beta_\nu}\). Therfore, 
 
                     $$\tau_\nu = \int_0^L \beta_\nu ds. $$
-
-                    
-
-                        <p></p>
+                    <p></p>
 
                     <div class="grey-box">
                         <p><b>Full Equation with Explicit Terms: </b></p>
@@ -390,7 +387,18 @@
                             <li>Clouds</li>
                         </ul>
 
-                        Each of these contributors themselves contains absorption and scattering. Thus:
+                        Each of these contributors themselves contains absorption and scattering. So more explicitly: 
+
+                        $$
+                        \begin{eqnarray}
+                        \beta_\nu^{\rm gas} & = & \alpha_\nu^{\rm gas} + \beta_\nu^{\rm sca,sca} \\
+                        \beta_\nu^{\rm aer} & = &  \alpha_\nu^{\rm aer} + \beta_\nu^{\rm sca,aer} \\ 
+                        \beta_\nu^{\rm cloud}  & = & \alpha_\nu^{\rm cloud} + \beta_\nu^{\rm sca,cloud}
+                        \end{eqnarray}
+                        $$
+                        
+                        
+                        Thus:
 
                         $$\tau_\nu = \tau_\nu^{\rm gas} + \tau_\nu^{\rm aer} + \tau_\nu^{\rm cloud}$$
 
