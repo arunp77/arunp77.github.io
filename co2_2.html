@@ -265,17 +265,204 @@
                     $$
 
                     where:
+                    <ul>
+                        <li>\( \mu_s = \cos\theta_s \)</li>
+                        <li>\( E_\nu^{sun} \) = solar irradiance</li>
+                        <li>\( T_\nu^{down} \) = transmission along downward path</li>
+                        <li>\( T_\nu^{up} \) = transmission along upward path</li>
+                        <li>\( R_\nu^{surf} \) = surface reflectance</li>
+                        <li>\( I_\nu^{path} \) = atmospheric path radiance (scattering contribution)</li>
+                    </ul>
 
-                    
+                    <!-- subsection -->
+                    <h5>Transmission Terms</h5>
+                    Transmission is exponential of optical depth:
+
+                    $$
+                    T_\nu^{down} = \exp(-\tau_\nu^{down})
+                    $$
+
+                    $$
+                    T_\nu^{up} = \exp(-\tau_\nu^{up})
+                    $$
+
+                    For slant geometry:
+
+                    $$
+                    \tau_\nu^{down} =
+                    \frac{1}{\mu_s}
+                    \int_0^\infty
+                    \beta_\nu(z) dz
+                    $$
+
+                    $$
+                    \tau_\nu^{up} =
+                    \frac{1}{\mu_v}
+                    \int_0^\infty
+                    \beta_\nu(z) dz
+                    $$
+
+                    Thus total transmission:
+
+                    $$
+                    T_\nu = \exp\left(-\left(\frac{1}{\mu_s} + \frac{1}{\mu_v}\right) \int_0^\infty \beta_\nu(z) dz\right)
+                    $$
+
+                    <!-- Subsection -->
+
+                    <h5>Optical Depth Components</h5>
+                    Extinction coefficient:
+
+                    $$
+                    \beta_\nu(z) = \sum_g n_g(z) \sigma_{\nu,g}(T,p) + \beta_\nu^{aer}(z) + \beta_\nu^{cloud}(z)
+                    $$
+
+                    So optical depth becomes:
+
+                    $$
+                    \tau_\nu =
+                    \tau_\nu^{gas}
+                    +
+                    \tau_\nu^{aer}
+                    +
+                    \tau_\nu^{cloud}
+                    $$
+
+                    Gas optical depth:
+
+                    $$
+                    \tau_\nu^{gas} = \sum_g \int_0^\infty n_g(z) \sigma_{\nu,g}(T,p) dz
+                    $$
+
+                    For CO₂ retrieval, we isolate the CO₂ term:
+
+                    $$
+                    \tau_\nu^{CO_2} = \int_0^\infty n_{CO_2}(z) \sigma_\nu^{CO_2}(T,p) dz
+                    $$
+
+                    <!-- subsection -->
+                    <h5>Surface Reflectance Model</h5>
+                    Surface reflectance may be modeled as:
+
+                    Lambertian:
+
+                    $$
+                    R_\nu^{surf} = A_\nu
+                    $$
+
+                    Or BRDF model:
+
+                    $$
+                    R_\nu^{surf} =
+                    f(\theta_s, \theta_v, \phi)
+                    $$
+
+                    This becomes part of state vector.
+
+                    <h5>Full Forward Model Expression</h5>
+
+                    Putting all terms together:
+
+                    $$
+                    I_\nu^{TOA} = \frac{\mu_s}{\pi} E_\nu^{sun} A_\nu \exp(-\tau_\nu^{down} - \tau_\nu^{up}) + I_\nu^{path} 
+                    $$
+
+                    In simplified pure absorption case (neglecting path radiance):
+
+                    $$
+                    I_\nu^{TOA} =  C_\nu \exp(-\tau_\nu^{total})
+                    $$
+
+                    Where:
+
+                    $$
+                    C_\nu = \frac{\mu_s}{\pi} E_\nu^{sun} A_\nu
+                    $$
+
+                    This is often sufficient for conceptual retrieval explanation.
+
+                    <!-- section -->
+
+                    <h3>Vector Form of Forward Model</h3>
+
+                    Discretize wavelengths:
+
+                    $$
+                    y =
+                    \begin{bmatrix}
+                    I_{\nu_1} \
+                    I_{\nu_2} \
+                    \vdots \
+                    I_{\nu_m}
+                    \end{bmatrix}
+                    $$
+
+                    State vector:
+
+                    $$
+                    x =
+                    \begin{bmatrix}
+                    \text{XCO}_2 \\
+                    \text{Aerosol parameters} \\
+                    \text{Surface albedo} \\
+                    \text{Temperature scaling} \\
+                    \text{Wavelength shift}
+                    \end{bmatrix}
+                    $$
+
+                    Define nonlinear operator:
+
+                    $$
+                    F(x) =
+                    \begin{bmatrix}
+                    F_{\nu_1}(x) \
+                    F_{\nu_2}(x) \
+                    \vdots \
+                    F_{\nu_m}(x)
+                    \end{bmatrix}
+                    $$
+
+                    Thus:
+
+                    $$
+                    y = F(x)
+                    $$
+
+                    <h5>Instrument Effects</h5>
+
+                    Real measurement is convolution with instrument line shape (ILS):
+
+                    $$
+                    I_\nu^{meas} = \int I_{\nu'}^{true} G(\nu - \nu') d\nu'
+                    $$
+
+                    Where \( G \) = instrument spectral response. Thus forward model includes convolution step.
 
 
+                    <h3>Final Forward Model Definition</h3>
+                    Complete forward operator:
 
+                    $$
+                    y = \mathcal{C}
+                    \left(
+                    \mathcal{R}(x)
+                    \right)
+                    $$
 
+                    Where:
 
+                    <ul>
+                        <li>\( \mathcal{R} \) = radiative transfer operator</li>
+                        <li>\( \mathcal{C} \) = convolution with instrument response</li>
+                    </ul>
 
+                    Expanded:
 
+                    $$
+                    y = \text{ILS} \Big[\frac{\mu_s}{\pi}E_\nu^{\rm sun} A_\nu \exp\left(\tau_\nu^{{\rm CO}_2} \tau_\nu^{\rm aer} \tau_\nu^{\rm cloud}\right) \Big]
+                    $$
 
-
+                    This is the fully defined forward model.
 
 
 
