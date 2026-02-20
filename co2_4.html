@@ -150,8 +150,397 @@
                     </ul>
                   </div>
 
-                  
-                    
+                  <h3>Mathematical Framework for Error Propagation</h3>
+
+                    We start from the linearized forward model:
+
+                    $$
+                    y = F(x) + \epsilon
+                    $$
+
+                    Linearized around \( x_a \):
+
+                    $$
+                    \delta y = K \delta x + \epsilon
+                    $$
+
+                    Where:
+
+                    <ul>
+                      <li>\( K = \frac{\partial F}{\partial x} \) (Jacobian matrix)</li>
+                      <li>\( \epsilon \sim \mathcal{N}(0, S_\epsilon) \)</li>
+                    </ul>
+
+                    Optimal Estimation solution:
+
+                    $$
+                    \hat{x} = x_a + G(y - F(x_a))
+                    $$
+
+                    Where gain matrix:
+
+                    $
+                    G = (K^T S_\epsilon^{-1} K + S_a^{-1})^{-1} K^T S_\epsilon^{-1}
+                    $$
+
+                    <h3>Total Retrieval Error Decomposition</h3>
+
+                    Define true state \( x_t \).
+
+                    Retrieval error:
+
+                    $$
+                    e = \hat{x} - x_t
+                    $$
+
+                    Insert measurement model:
+
+                    $$
+                    y = F(x_t) + \epsilon
+                    $$
+
+                    Linearized:
+
+                    $$
+                    y - F(x_a) = K(x_t - x_a) + \epsilon
+                    $
+
+                    Thus:
+
+                    $$
+                    \hat{x} = x_a + G \left[ K(x_t - x_a) + \epsilon \right]
+                    $$
+
+                    Rearrange:
+
+                    $$
+                    \hat{x} = x_a + G K(x_t - x_a) + G\epsilon
+                    $$
+
+                    Subtract \( x_t \):
+
+                    $$
+                    e = (GK - I)(x_t - x_a) + G\epsilon
+                    $$
+
+                    Define averaging kernel:
+
+                    $$
+                    A = GK
+                    $$
+
+                    Thus:
+
+                    $$ e = (A - I)(x_t - x_a) + G\epsilon
+                    $$
+
+                    This equation separates:
+
+                    <ul>
+                      <li>Smoothing error</li>
+                      <li>Measurement noise error</li>
+                    </ul>
+
+                    <h3>Measurement Noise Error</h3>
+
+                    Noise term:
+
+                    $$
+                    e_{noise} = G\epsilon
+                    $$
+
+                    Covariance:
+
+                    $$
+                    S_{noise} = G S_\epsilon G^T
+                    $$
+
+                    If measurement noise covariance:
+
+                    $$
+                    S_\epsilon = \sigma^2 I
+                    $$
+
+                    Then:
+
+                    $$
+                    S_{noise} = \sigma^2 G G^T
+                    $$
+
+                    Interpretation:
+
+                    <ul>
+                      <li>Larger Jacobian → smaller noise error</li>
+                      <li>Low SNR → large posterior uncertainty</li>
+                    </ul>
+
+
+                    Random error decreases with averaging:
+
+                    $$
+                    \sigma_{mean} = \frac{\sigma}{\sqrt{N}}
+                    $$
+
+                    <h3>Smoothing Error</h3>
+
+                    Smoothing term:
+
+                    $$
+                    e_{smooth} = (A - I)(x_t - x_a)
+                    $$
+
+                    Covariance:
+
+                    $$
+                    S_{smooth} = (A - I) S_{true} (A - I)^T
+                    $$
+
+                    Where \( S_{true} \) is true state variability.
+
+                    <p><b>Physical meaning:</b></p>
+
+                    If retrieval does not fully resolve vertical structure, prior assumptions influence solution.
+
+                    <p><b>For XCO₂:</b></p>
+
+                    <ul>
+                      <li>DOFS ≈ 1</li>
+                      <li>Vertical information limited</li>
+                      <li>Smoothing error small for total column but relevant for profile retrievals.</li>
+                    </ul>
+
+                    <h3>Forward Model Parameter Errors</h3>
+
+                    Suppose forward model depends on additional parameters ( b ):
+
+                    $$
+                    y = F(x, b)
+                    $$
+
+                    If parameter error:
+
+                    $$
+                    b = b_t + \delta b
+                    $$
+
+                    Linearize:
+
+                    $$
+                    \delta y = K_x \delta x + K_b \delta b
+                    $$
+
+                    Where:
+
+                    $$
+                    K_b = \frac{\partial F}{\partial b}
+                    $$
+
+                    Retrieval error due to forward model parameter:
+
+                    $$
+                    e_{model} = G K_b \delta b
+                    $$
+
+                    Covariance:
+
+                    $$
+                    S_{model} = G K_b S_b K_b^T G^T
+                    $$
+
+                    This is key for:
+
+                    <ul>
+                      <li>Spectroscopy</li>
+                      <li>Aerosol properties</li>
+                      <li>Surface reflectance</li>
+                      <li>Calibration parameters</li>
+                    </ul>
+
+                    <h3>Spectroscopic Error Propagation </h3>
+
+                    Absorption cross-section:
+
+                    $$
+                    \sigma_\nu = S f(\nu)
+                    $$
+
+                    If line strength uncertainty:
+
+                    $$
+                    S = S_t + \delta S
+                    $$
+
+                    Optical depth:
+
+                    $$
+                    \tau_\nu \propto S XCO_2
+                    $$
+
+                    Measured radiance fixed.
+
+                    <p>Thus approximate bias:</p>
+
+                    $$
+                    \frac{\delta XCO_2}{XCO_2} \approx \frac{\delta S}{S}
+                    $$
+
+                    If:
+
+                    $$
+                    \delta S/S = 0.5%
+                    $$
+
+                    Then:
+
+                    $$
+                    \delta XCO_2 \approx 2 \text{ ppm}
+                    $$
+
+                    Systematic global bias.
+
+                    <h3>Aerosol-Induced Bias</h3>
+
+                    Radiance:
+
+                    $$
+                    I = I_0 e^{-\sigma n L}
+                    $$
+
+                    If effective path length:
+
+                    $$
+                    L = L_t + \delta L
+                    $$
+
+                    Then:
+
+                    $$
+                    I = I_0 e^{-\sigma n (L_t + \delta L)}
+                    $$
+
+                    Retrieval interprets absorption assuming ( L_t ):
+
+                    $$
+                    \delta XCO_2 \approx \frac{\delta L}{L_t} XCO_2
+                    $$
+
+                    Even:
+
+                    $$
+                    \delta L/L = 0.25%
+                    $$
+                    <p>→ 1 ppm bias.</p>
+
+                    This is dominant systematic contributor.
+
+
+                    <h3>Surface Reflectance Error</h3>
+
+                    Radiance:
+
+                    $$
+                    I \propto A_\nu e^{-\tau_\nu}
+                    $$
+
+                    <p>If surface albedo error \( \delta A \):</p>
+
+                    Nonlinear coupling with optical depth.
+
+                    Approximate sensitivity:
+
+                    [
+                    \delta XCO_2
+                    \approx
+                    \frac{\partial XCO_2}{\partial A}
+                    \delta A
+                    ]
+
+                    Especially critical over bright desert regions.
+
+                    <h3>Wavelength Calibration Error</h3>
+
+                    Shift in wavelength:
+
+                    $$
+                    \nu \rightarrow \nu + \delta \nu
+                    $$
+
+                    Line misalignment leads to systematic mismatch.
+
+                    Bias magnitude:
+
+                    $$
+                    \delta XCO_2 \propto  \frac{\partial I}{\partial \nu} \delta \nu
+                    $$
+
+                    Small spectral shifts can mimic absorption depth changes.
+
+                    <h3>Random vs Systematic Error Decomposition</h3>
+
+                    Total retrieval:
+
+                    $$
+                    X_{\rm retrieved} = X_{\rm true} + \epsilon_{\rm random} + b_{\rm systematic}
+                    $$
+
+                    Random:
+
+                    $$
+                    E[\epsilon_{\rm random}] = 0
+                    $$
+
+                    Systematic:
+
+                    $$
+                    b = E[X_{\rm retrieved}] - X_{\rm true}
+                    $$
+
+                    Total variance:
+
+                    $$
+                    \sigma_{total}^2 = \sigma_{random}^2 + b^2
+                    $$
+
+                    Random decreases with averaging.
+
+                    Systematic does not.
+
+                    <div class="important-box">
+                      <h2>Full Error Budget Expression</h2>
+
+                      Combining all components:
+
+                      $$
+                      S_{total} = S_{noise} + S_{smooth} + S_{model}
+                      $$
+
+                      Expanded:
+
+                      $$
+                      S_{total} = G S_\epsilon G^T  + (A - I) S_{true} (A - I)^T + G K_b S_b K_b^T G^T
+                      $$
+
+                      This is the complete posterior covariance.
+
+
+                      <h3>Mission-Level Error Targets</h3>
+
+                      For carbon cycle applications:
+
+                      Precision target:
+
+                      $$
+                      \sigma_{\rm random} \le 1 \text{ppm}
+                      $$
+
+                      Bias target:
+
+                      $$
+                      |b| \le 0.5 \text{ ppm}
+                      $$
+
+                      Because carbon flux inversion amplifies systematic bias.
+                    </div>
 
 
 
