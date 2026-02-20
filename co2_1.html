@@ -142,6 +142,31 @@
 
                 <section>
 
+                    <div class="box-background1">
+                        <p><b>Some important notations and defintion:</b></p>
+                        <ol>
+                            <li><b>Radiation flux:</b>
+                                Radiant flux (or radiant power) \(\Phi\) is the total amount of electromagnetic energy (radiation) emitted, transmitted, or received per unit time, measured in Watts
+                                It measures the total power from a source across all wavelengths, often used for optical, UV, or IR radiation.
+
+                                <p>Total energy passing through the element of area \(dA\) for time \(dt\) is given by: \(\Phi dA dt\).</p>
+
+                                <p>So, flux is a measure of the enrgy caried by all rays passing through a given area</p>
+                            </li>
+                            <li><b>Isotropic source: </b>
+                                A source of radition is called isotropic, if it emits energy equally in all directions, i.e.  
+                                $$\Phi(r_1)(4\pi r_1^2) dt = \Phi(r)(4\pi r^2) dt \Rightarrow \Phi(r) \propto \frac{1}{r^2} \Rightarrow \text{statement of conservation of energy}.$$
+                            </li>
+                            <li>The specific (radiative) intensity is a quantity that describes the rate of radtion trnasfer of energy through a given area 
+                                (perpendicular in a unit time and in a given frequency band):
+                                $$dE = I_\nu dA dt d\Omega d\nu $$
+                            </li>
+
+                            <p>For more details, check my notes (chapter-4) at following <a href="https://drive.google.com/file/d/1fktD6tsaJQsbTIgyccaW_aB4---dZV4n/view" target="_blank">link</a>.</p>
+                        </ol>
+
+                    </div>
+
                     <h3>Electromagnetic Radiation – Physical Foundation</h3>
                     Radiative transfer begins with classical electromagnetism. Electromagnetic radiation satisfies Maxwell’s equations. In free space:
 
@@ -164,7 +189,8 @@
 
                     $$u = \frac{1}{2} \varepsilon E^2 + \frac{1}{2\mu_0} B^2$$ 
 
-                    For plane waves: \(u = \varepsilon_0 E^2\) and the energy flud i.e. Pointing vector can be written as: \(\boldsymbol{S} = \boldsymbol{E}\times \boldsymbol{H}\).  Magneitude of the energy flux is given by \(S = c u \). This gives physical basis for radiative flux.
+                    For plane waves: \(u = \varepsilon_0 E^2\) and the energy flud i.e. Pointing vector can be written as: \(\boldsymbol{S} = \boldsymbol{E}\times \boldsymbol{H}\).  
+                    Magneitude of the energy flux is given by \(S = c u \). This gives physical basis for radiative flux.
 
                     <h3>Radiometric Quantities</h3> 
                     Satellite instruments do not measure field amplitudes, instead they measure radiance. 
@@ -186,6 +212,8 @@
                     $$\Phi_\nu = \int I_\nu \text{cos}\theta d\Omega$$
 
                     This distinction is important because radiative transfer equation governs radiance, not flux.
+
+                    <p></p>
 
                     <h3>Interaction of Radiation with Matter</h3>
                     When radiation enters atmosphere, intensity changes due to:
@@ -217,6 +245,12 @@
 
                     Here, \(\alpha_\nu\) is the total absorption coefficient and \(\beta_\nu\) i.e \(\beta_\nu^{\rm ext}\) is the total scattering coefficient. 
                     So this is process based decompositon.  
+                    
+                    <p></p>
+
+                    <p><b>Emission Coefficient: </b>Energy emitted per unit volume per unit solid angle per unit frequency is denoted by \(j_\nu\).</p>
+
+                    <p></p>
 
                     <div class="important-box">
                         Total extinction coefficient: 
@@ -259,8 +293,10 @@
                         </ul>
                         
                     </div>
+                    <p></p>
 
-                    <p><b>Emission Coefficient: </b>Energy emitted per unit volume per unit solid angle per unit frequency is denoted by \(j_\nu\).</p>
+
+                    
 
 
                     <h3>Derivation of the Radiative Transfer Equation (RTE)</h3>
