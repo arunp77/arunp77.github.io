@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Fundamentals</title>
+  <title>Spectral Line Physics</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -93,7 +93,7 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Fundamental Radiative Transfer Theory</h2>
+          <h2>Spectral Line Physics</h2>
           <ol>
             <li><a href="project_co2_measurment.html" class="clickable-box"><i class="fas fa-arrow-left"></i> Content</a></li>
             <li><a href="Remote-sensing-content.html" class="clickable-box">Home</a></li>
@@ -132,7 +132,7 @@
     <section id="portfolio-details" class="portfolio-details">
         <div class="container">
             <div class="row gy-4">
-                <h1>Motivation and Scope</h1>
+                <h1>Role of Spectral Line Physics in CO₂ Retrieval</h1>
                 <!-- <div class="w-100">
                     <img src="assets/img/remote-sensing/Active-passive.png"
                         alt="Active Passive"
@@ -141,46 +141,246 @@
                     
 
                 <section>
-                    <p>
-                        Satellite data products are the result of a long and carefully structured processing chain, transforming raw instrument signals into geophysically meaningful quantities. Understanding this chain is essential for correct interpretation of satellite-derived information, especially in climate and environmental applications where small biases and long-term stability matter.
-                    </p>
-                    <p>
-                        Sea Surface Temperature (SST) is chosen as a representative example because it combines relatively well-understood physical principles with a high level of practical relevance. SST has been observed from space for several decades, is produced operationally by multiple satellite missions, and is widely used in weather prediction, oceanography, and climate studies. At the same time, SST retrieval highlights many of the key challenges common to satellite data processing, including calibration stability, atmospheric correction, model dependence, and uncertainty propagation.
-                    </p>
-                    <p>The scope of this example is deliberately limited. The discussion does not aim to describe mission-specific implementations, sensor-dependent tuning, or operational software details. Nor does it attempt to optimise or validate a particular SST algorithm. Instead, the focus is on explaining the logical structure of the processing chain, from measurement to higher-level products, and on clarifying how physical assumptions and mathematical transformations enter at each stage.</p>
-                    <p>This example is intended for readers with a basic technical background who seek a conceptual and quantitative understanding of satellite data processing, rather than a step-by-step guide to code implementation. The emphasis is on measurement principles, processing logic, and interpretation, rather than on programming or system engineering.</p>
-                    <!-- <p><b>The purpose of this document is to open that box.</b></p> -->
+                    <p></p>
+                    <h3>Physical Origin of Spectral Lines</h3>
+                    CO₂ molecules absorb radiation when photons match the energy difference between molecular quantum states. For vibrational–rotational transitions:
 
-                    <!-- <div class="col-lg-8">
-                        <div class="portfolio-details-slider swiper">
-                            <img src="assets/img/remote-sensing/sat_pipeline.png" class="img-fluid" alt="Image Description" style="width: 80%; height: auto;">
-                        </div>
-                    </div> -->
+                    $$\Delta E = h \nu_0$$
                     
+                    Thus absorption occurs at discrete frequencies \( \nu_0 \). In SWIR bands \(\sim 1.6 \mu m, \sim 2.0 \mu m\), these correspond to overtone and 
+                    combination vibrational bands of CO₂. Each transition produces a spectral line. The observed absorption band is a superposition of thousands of individual lines.
+
+                    <h3>From Microscopic Transitions to Macroscopic Absorption</h3>
+                    Microscopically, absorption probability per molecule:
+
+                    $$
+                    \sigma_\nu
+                    $$
+
+                    Macroscopic absorption coefficient:
+
+                    $$
+                    \alpha_\nu = n \sigma_\nu
+                    $$
+
+                    Where:
+
+                    <ul>
+                        <li>\( n \) = number density</li>
+                        <li>\( \sigma_\nu \) = absorption cross-section</li>
+                    </ul>
+
+                    Spectral line physics defines ( \sigma_\nu ).
+
+                    <h3>Mathematical Description of a Spectral Line</h3>
+
+                    For a single transition:
+
+                    $$
+                    \sigma_\nu = S(T) , f(\nu - \nu_0)
+                    $$
+
+                    Where:
+                    <ul>
+                        <li>\( S(T) \) = line strength</li>
+                        <li>\( f(\nu - \nu_0) \) = line shape function</li>
+                        <li>\( \nu_0 \) = line center</li>
+                    </ul>
+                    <h5>Line Strength \( S(T) \)</h5>
+
+                    Line strength depends on temperature via Boltzmann population:
+
+                    $$
+                    S(T) = S(T_0) \frac{Q(T_0)}{Q(T)} \exp\left( -\frac{E_l}{k_B} \left( \frac{1}{T} - \frac{1}{T_0} \right) \right)
+                    $$
+
+                    Where:
+
+                    <ul>
+                        <li>\( Q(T) \) = partition function</li>
+                        <li>\( E_l \) = lower state energy</li>
+                    </ul>
+
+                    This tells you how many molecules are in the absorbing state.
+
+                    Temperature errors → line strength errors → CO₂ bias.
+
+                    <h5>Line Shape Physics</h5>
+
+                    Real lines are broadened by physical mechanisms.
+
+                    <ol>
+                        <li><b>Doppler Broadening: </b>
+                        Due to molecular thermal motion. 
+                        <p>Velocity distribution → frequency shift.</p>
+                        Width:
+
+                        $$
+                        \alpha_D =\nu_0 \sqrt{\frac{2k_B T}{mc^2}}
+                        $$
+
+                        Line shape:
+
+                        $$
+                        f_D(\nu) = \frac{1}{\alpha_D \sqrt{\pi}} \exp\left( -\frac{(\nu - \nu_0)^2}{\alpha_D^2}\right)
+                        $$
+
+                        Dominates in upper atmosphere (low pressure).
+                        </li>
+                        <li><b>Pressure (Collisional) Broadening</b>
+                            Molecular collisions perturb energy levels. 
+                            <p>Lorentzian profile:</p>
+                            $$
+                            f_L(\nu) = \frac{1}{\pi} \frac{\gamma}{ (\nu - \nu_0)^2 + \gamma^2}
+                            $$
+
+                            Where:
+
+                            $$
+                            \gamma = \gamma_{air} p_{air} + \gamma_{self} p_{CO_2}
+                            $$
+
+                            Dominates in lower troposphere.
+                        </li>
+                        <li><b>Voigt Profile: </b> Real atmosphere → convolution of Doppler and Lorentz:
+                        $$
+                        f_V(\nu) = f_D * f_L
+                        $$
+
+                        This profile determines exact absorption line shape.
+
+                        </li>
+                    </ol>
+
+                    <h3>From Spectral Lines to Optical Depth</h3>
+
+                    Gas optical depth:
+
+                    $$
+                    \tau_\nu^{CO_2} = \int_0^\infty n_{CO_2}(z) \sigma_\nu^{CO_2}(T,p) dz
+                    $$
+
+                    But:
+
+                    $$
+                    \sigma_\nu^{CO_2} = \sum_i S_i(T) f_i(\nu - \nu_i, p, T)
+                    $$
+
+                    Thus:
+
+                    $$
+                    \tau_\nu = \sum_i \int n(z) S_i(T(z)) f_i(\nu - \nu_i, p(z), T(z)) dz
+                    $$
+
+                    This equation shows:
+                    <ul>
+                        <li>Line strengths weighted by temperature</li>
+                        <li>Line shapes weighted by pressure</li>
+                        <li>Integrated over vertical column</li>
+                    </ul>
+
+                    This is the physical core of CO₂ retrieval.
+
+                    <h3>Why Spectral Line Physics Is Critical</h3>
+
+                    Retrieval does not simply measure total absorption.
+
+                    It fits:
+                    <ul>
+                        <li>Line depth</li>
+                        <li>Line width</li>
+                        <li>Line wings</li>
+                        <li>Line asymmetry</li>
+                    </ul>
+
+                    These contain information about:
+
+                    <ul>
+                        <li>CO₂ amount</li>
+                        <li>Pressure profile</li>
+                        <li>Temperature</li>
+                        <li>Path length</li>
+                    </ul>
+
+                    Even small errors in line shape modeling distort absorption depth.
+
+                    For 1 ppm precision, spectroscopy must be extremely accurate.
 
 
+                    <h3>How Retrieval Algorithms Use Spectral Line Physics</h3>
 
 
+                    Forward model workflow:
+                    <ol>
+                        <li>Read line parameters from database (e.g. HITRAN)
+                            <ul>
+                                <li>Line center</li>
+                                <li>Line strength</li>
+                                <li>Air broadening coefficients</li>
+                                <li>Temperature exponents</li>
+                            </ul>
+                        </li>
+                        <li>Compute line strength at actual temperature.</li>
+                        <li>Compute Voigt profile at each altitude.</li>
+                        <li>Compute absorption cross-section:</li>
+                            $$
+                            \sigma_\nu(z) = \sum_i S_i(T(z)) f_i(\nu, p(z), T(z))
+                            $$
+                        <li>Compute vertical optical depth:
+                            $$
+                            \tau_\nu = \int n_{CO_2}(z) \sigma_\nu(z) dz
+                            $$
+                        </li>
+                        <li>Insert into forward radiance model:
+                            $$
+                            I_\nu = I_0 e^{-\tau_\nu}
+                            $$
+                        </li>
+                        <li>Convolve with instrument line shape.</li>
+                    </ol>
 
+                    This produces simulated spectrum. The algorithm then adjusts CO₂ to match measured line depths.
 
+                    <h3>How Spectroscopy Errors Cause Bias</h3>
 
+                    Suppose line strength has error:
 
+                    $$
+                    S = S_{true} + \delta S
+                    $$
 
+                    Optical depth becomes:
 
+                    $$
+                    \tau_\nu \propto S
+                    $$
 
+                    Measured absorption depth fixed.
 
+                    Thus retrieval compensates by adjusting CO₂:
 
+                    $$
+                    \delta XCO_2
+                    \approx
+                    -\frac{\delta S}{S} XCO_2
+                    $$
 
+                    1% line strength error → ~1% CO₂ bias (~4 ppm).
 
+                    That is mission-critical.
 
+                    <h3>Subtle Spectroscopic Effects</h3>
 
+                    Advanced retrievals must also include:
+                    <ul>
+                        <li>Line mixing</li>
+                        <li>Speed dependence</li>
+                        <li>Non-Voigt corrections</li>
+                        <li>CIA (collision-induced absorption)</li>
+                        <li>Temperature-dependent broadening</li>
+                    </ul>
 
-
-
-
-
-
-
+                    Ignoring these can introduce latitude-dependent bias.
                     <br>
                     <h3>Reference</h3>
 
