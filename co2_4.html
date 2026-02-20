@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Fundamentals</title>
+  <title>Error Theory</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -93,7 +93,7 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Fundamental Radiative Transfer Theory</h2>
+          <h2>Error Theory</h2>
           <ol>
             <li><a href="project_co2_measurment.html" class="clickable-box"><i class="fas fa-arrow-left"></i> Content</a></li>
             <li><a href="Remote-sensing-content.html" class="clickable-box">Home</a></li>
@@ -132,31 +132,40 @@
     <section id="portfolio-details" class="portfolio-details">
         <div class="container">
             <div class="row gy-4">
-                <h1>Motivation and Scope</h1>
-                <!-- <div class="w-100">
-                    <img src="assets/img/remote-sensing/Active-passive.png"
-                        alt="Active Passive"
-                        style="width: 100vw; height: auto; display: block;">
-                </div> -->
-                    
+                <h1>Error Theory in CO₂ Retrieval</h1>
+                
 
                 <section>
-                    <p>
-                        Satellite data products are the result of a long and carefully structured processing chain, transforming raw instrument signals into geophysically meaningful quantities. Understanding this chain is essential for correct interpretation of satellite-derived information, especially in climate and environmental applications where small biases and long-term stability matter.
-                    </p>
-                    <p>
-                        Sea Surface Temperature (SST) is chosen as a representative example because it combines relatively well-understood physical principles with a high level of practical relevance. SST has been observed from space for several decades, is produced operationally by multiple satellite missions, and is widely used in weather prediction, oceanography, and climate studies. At the same time, SST retrieval highlights many of the key challenges common to satellite data processing, including calibration stability, atmospheric correction, model dependence, and uncertainty propagation.
-                    </p>
-                    <p>The scope of this example is deliberately limited. The discussion does not aim to describe mission-specific implementations, sensor-dependent tuning, or operational software details. Nor does it attempt to optimise or validate a particular SST algorithm. Instead, the focus is on explaining the logical structure of the processing chain, from measurement to higher-level products, and on clarifying how physical assumptions and mathematical transformations enter at each stage.</p>
-                    <p>This example is intended for readers with a basic technical background who seek a conceptual and quantitative understanding of satellite data processing, rather than a step-by-step guide to code implementation. The emphasis is on measurement principles, processing logic, and interpretation, rather than on programming or system engineering.</p>
-                    <!-- <p><b>The purpose of this document is to open that box.</b></p> -->
+                  <div class="grey-box">
+                    This section will rigorously describe:
+                    <ul>
+                      <li>Measurement noise propagation</li>
+                      <li>Forward model parameter errors</li>
+                      <li>Smoothing error</li>
+                      <li>Spectroscopic uncertainty</li>
+                      <li>Aerosol-induced bias</li>
+                      <li>Surface reflectance errors</li>
+                      <li>Calibration errors</li>
+                      <li>Random vs systematic error decomposition</li>
+                    </ul>
+                  </div>
 
-                    <!-- <div class="col-lg-8">
-                        <div class="portfolio-details-slider swiper">
-                            <img src="assets/img/remote-sensing/sat_pipeline.png" class="img-fluid" alt="Image Description" style="width: 80%; height: auto;">
-                        </div>
-                    </div> -->
+                  
                     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -197,7 +206,7 @@
                     </ul>  
                 </section>             
             </div>
-            <a href="project_sst_1.html" class="clickable-box">Go to Content</a>
+            <a href="project_co2_measurment.html" class="clickable-box">Go to Content</a>
         </div>
     </section><!-- End Portfolio Details Section -->
 </main><!-- End #main -->
