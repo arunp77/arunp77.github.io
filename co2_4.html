@@ -167,7 +167,7 @@
                     Where:
 
                     <ul>
-                      <li>\( K = \frac{\partial F}{\partial x} \) (Jacobian matrix)</li>
+                      <li>\( K = \frac{\partial F}{\partial x} \) (\text{Jacobian matrix})</li>
                       <li>\( \epsilon \sim \mathcal{N}(0, S_\epsilon) \)</li>
                     </ul>
 
@@ -231,7 +231,8 @@
 
                     Thus:
 
-                    $$ e = (A - I)(x_t - x_a) + G\epsilon
+                    $$ 
+                    e = (A - I)(x_t - x_a) + G\epsilon
                     $$
 
                     This equation separates:
@@ -252,7 +253,7 @@
                     Covariance:
 
                     $$
-                    S_{noise} = G S_\epsilon G^T
+                    S_{\rm noise} = G S_\epsilon G^T
                     $$
 
                     If measurement noise covariance:
@@ -264,7 +265,7 @@
                     Then:
 
                     $$
-                    S_{noise} = \sigma^2 G G^T
+                    S_{\rm noise} = \sigma^2 G G^T
                     $$
 
                     Interpretation:
@@ -278,7 +279,7 @@
                     Random error decreases with averaging:
 
                     $$
-                    \sigma_{mean} = \frac{\sigma}{\sqrt{N}}
+                    \sigma_{\rm mean} = \frac{\sigma}{\sqrt{N}}
                     $$
 
                     <h3>Smoothing Error</h3>
@@ -286,16 +287,16 @@
                     Smoothing term:
 
                     $$
-                    e_{smooth} = (A - I)(x_t - x_a)
+                    e_{\rm smooth} = (A - I)(x_t - x_a)
                     $$
 
                     Covariance:
 
                     $$
-                    S_{smooth} = (A - I) S_{true} (A - I)^T
+                    S_{smooth} = (A - I) S_{\rm true} (A - I)^T
                     $$
 
-                    Where \( S_{true} \) is true state variability.
+                    Where \( S_{\rm true} \) is true state variability.
 
                     <p><b>Physical meaning:</b></p>
 
@@ -338,7 +339,7 @@
                     Retrieval error due to forward model parameter:
 
                     $$
-                    e_{model} = G K_b \delta b
+                    e_{\rm model} = G K_b \delta b
                     $$
 
                     Covariance:
@@ -418,7 +419,7 @@
                     I = I_0 e^{-\sigma n (L_t + \delta L)}
                     $$
 
-                    Retrieval interprets absorption assuming ( L_t ):
+                    Retrieval interprets absorption assuming \( L_t \):
 
                     $$
                     \delta XCO_2 \approx \frac{\delta L}{L_t} XCO_2
@@ -496,7 +497,7 @@
                     Total variance:
 
                     $$
-                    \sigma_{total}^2 = \sigma_{random}^2 + b^2
+                    \sigma_{\rm total}^2 = \sigma_{\rm random}^2 + b^2
                     $$
 
                     Random decreases with averaging.
@@ -509,13 +510,13 @@
                       Combining all components:
 
                       $$
-                      S_{total} = S_{noise} + S_{smooth} + S_{model}
+                      S_{\rm total} = S_{\rm noise} + S_{\rm smooth} + S_{\rm model}
                       $$
 
                       Expanded:
 
                       $$
-                      S_{total} = G S_\epsilon G^T  + (A - I) S_{true} (A - I)^T + G K_b S_b K_b^T G^T
+                      S_{\rm total} = G S_\epsilon G^T  + (A - I) S_{\rm true} (A - I)^T + G K_b S_b K_b^T G^T
                       $$
 
                       This is the complete posterior covariance.
