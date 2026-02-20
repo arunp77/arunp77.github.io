@@ -275,6 +275,39 @@
 
                     $$d I_\nu = -\beta_\nu I_\nu ds + j_\nu ds ~~~~ \Rightarrow ~~~~ \frac{dI_\nu}{ds} = -\beta_\nu I_\nu + j_\nu$$
 
+                    <div class="grey-box">
+                        <p><b>Special Case: Reflected Solar Radiation (SWIR):</b></p>
+
+                        <p>In CO₂ retrieval missions:</p>
+                        <ul>
+                            <li>Thermal emission negligible</li>
+                            <li>Dominant process: absorption + scattering  </li>
+                        </ul>
+                        For pure absorption case:
+
+                        $$\frac{dI_\nu}{ds} = -\beta_\nu I_\nu \Rightarrow \frac{dI_\nu}{I_\nu} = -\beta_\nu ds $$
+
+                        Now integrating:
+
+                        $$\int_{I_0}^{I} \frac{dI'}{I'} = -\int_0^L \beta_\nu ds \Rightarrow \ln\left(\frac{I}{I_0}\right) = -\tau_\nu$$
+
+                        where 
+
+                        $$\tau_\nu = \int_0^L \beta_\nu ds$$
+
+                        Therefore:
+
+                        $$
+                        I_\nu = I_{\nu,0} e^{-\tau_\nu}
+                        $$
+                        
+                        This is Beer–Lambert law.
+
+
+                    </div>
+
+
+
                     This is the scalar Radiative Transfer Equation. This equation be re-written in terms of optical depth \(\tau_\nu\) as:
 
                     $$\frac{dI_\nu}{d\tau_\nu} = - I_\nu +S_\nu, $$
