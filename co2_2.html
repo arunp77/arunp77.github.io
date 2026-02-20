@@ -635,45 +635,37 @@
 
                     Where \( G \) = instrument spectral response. Thus forward model includes convolution step.
 
+                    <div class="important-box">
+                        <h3>Final Forward Model Definition</h3>
+                        Complete forward operator:
 
-                    <h3>Final Forward Model Definition</h3>
-                    Complete forward operator:
+                        $$
+                        y = \mathcal{C}
+                        \left(
+                        \mathcal{R}(x)
+                        \right)
+                        $$
 
-                    $$
-                    y = \mathcal{C}
-                    \left(
-                    \mathcal{R}(x)
-                    \right)
-                    $$
+                        Where:
 
-                    Where:
+                        <ul>
+                            <li>\( \mathcal{R} \) = radiative transfer operator</li>
+                            <li>\( \mathcal{C} \) = convolution with instrument response</li>
+                        </ul>
 
-                    <ul>
-                        <li>\( \mathcal{R} \) = radiative transfer operator</li>
-                        <li>\( \mathcal{C} \) = convolution with instrument response</li>
-                    </ul>
+                        Expanded:
 
-                    Expanded:
+                        $$
+                        y = \text{ILS} \Big[\frac{\mu_s}{\pi}E_\nu^{\rm sun} A_\nu \exp\left(\tau_\nu^{{\rm CO}_2} \tau_\nu^{\rm aer} \tau_\nu^{\rm cloud}\right) \Big]
+                        $$
 
-                    $$
-                    y = \text{ILS} \Big[\frac{\mu_s}{\pi}E_\nu^{\rm sun} A_\nu \exp\left(\tau_\nu^{{\rm CO}_2} \tau_\nu^{\rm aer} \tau_\nu^{\rm cloud}\right) \Big]
-                    $$
-
-                    This is the fully defined forward model.
-
-
-
-
-
-
-
-
-
-
-
-
+                        This is the fully defined forward model.
+                    </div>
+                    
 
                     <br>
+                    <p></p>
+                    <p></p>
                     <h3>Reference</h3>
 
                     <ul>
