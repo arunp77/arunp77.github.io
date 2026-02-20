@@ -487,7 +487,7 @@
 
                         <p>Folloiwng cases can be considered from this equation:</p>
                         <ol>
-                            <li><b>Caste-1: If \(S_\nu = \text{constant}\): </b>
+                            <li><b>Caste-1: </b> If \(S_\nu = \text{constant}\)
                                 $$
                                     I_\nu(\tau_\nu) & =&  I_\nu(0) {\rm e}^{-\tau_\nu} +S_\nu\int_0^{\tau_\nu} {\rm e}^{-(\tau_\nu-\tau_\nu')} d\tau_\nu' \nonumber \\
                                     I_\nu(\tau_\nu) &=& I_\nu(0) {\rm e}^{-\tau_\nu} +S_\nu \left(1-{\rm e}^{-\tau_\nu}\right) \nonumber \\
@@ -496,9 +496,21 @@
                                 $$
                             
                             </li>
-                            <li><b>Caste-2: </b></li>
-                            <li><b>Caste-3: </b></li>
-                            <li><b>Caste-4: </b></li>
+                            <li><b>Caste-2: </b>
+                            For optically opaque medium, \(\tau_\nu\rightarrow \infty\), 
+                            $$I_\nu (\tau_\nu\rightarrow \infty) =S_\nu$$
+                            </li>
+                            <li><b>Caste-3: </b> For optically transparent medium \(\tau_\nu \rightarrow 0\)
+                                $$I_\nu(0) S_\nu +\left(I_\nu(0)-S_\nu\right) \Rightarrow 0= 0.$$
+                            
+                            </li>
+                            <li><b>Caste-4: </b>
+                                For \(\tau_\nu\ll 1\):
+                                $$
+                                I_\nu(\tau_\nu) &= & S_\nu +\left(I_\nu(0)-S_\nu\right)(1-\tau_\nu) \\
+                                I_\nu(\tau_\nu) -I_\nu(0) & = &\left(S_\nu-I_\nu(0)\right)\tau_\nu
+                                $$
+                            </li>
                         </ol>
 
 
