@@ -167,6 +167,65 @@
 
                     <p>This represents the total number of air molecules above 1 m² of Earth's surface.</p>
 
+                    <div class="grey-box">
+                        <p><b>How Mean Molecular Mass of Air is Calculated?</b></p>
+                        Dry air is mainly composed of:
+
+                        <table border="1" cellpadding="8" cellspacing="0">
+                        <thead>
+                            <tr>
+                            <th>Gas</th>
+                            <th>Fraction</th>
+                            <th>Molecular Mass (g/mol)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td>N₂</td>
+                            <td>78%</td>
+                            <td>28</td>
+                            </tr>
+                            <tr>
+                            <td>O₂</td>
+                            <td>21%</td>
+                            <td>32</td>
+                            </tr>
+                            <tr>
+                            <td>Ar</td>
+                            <td>1%</td>
+                            <td>40</td>
+                            </tr>
+                        </tbody>
+                        </table>
+                        
+                        <p>The mean molecular mass is simply the weighted average:</p>
+
+                        $$M_{\rm air} = \sum (f_i \times M_i)$$
+
+                        Where:
+                        
+                        <ul>
+                            <li>\(f_i \) = = mole fraction</li>
+                            <li>\(f_i \) = molar mass </li>
+                        </ul>
+
+                        From the calculation above:
+
+                        $$M_{\rm air} = 28.96 \text{g/mol}$$
+
+                        <p><b>Convert to Mass per Molecule:</b></p>
+                        For hydrostatic balance we need kg per molecule, not per mole.
+
+                        $$m_{\rm air} = \frac{M_{\rm air}}{N_A}$$
+
+                        where \(N_A= 6.022 \times 10^{23} \) molecules/mol. Therefore:
+
+                        $$m_{\rm air} = \frac{0.02896}{6.022 \times 10^{23}} \approx 4.8\times 10^{-26}$$ kg/molecule
+
+
+
+                    </div>
+
                     <hr>
 
                     <h2>Step 2: Use Realistic Atmospheric CO₂ Mixing Ratio</h2>
