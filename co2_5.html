@@ -242,12 +242,14 @@
 
                   Where:
                   <ul>
-                    <li>\(n_{{\rm CO}_2}(z)\) = CO₂ number density at height </li>
+                    <li>\(n_{{\rm CO}_2}(z)\) = CO₂ number density (molecules per m\(^3\)) at height \(z\). 
+                      At each height \(z\), this tells us, how many CO₂ molecules exist in one cubic meter of air at that height.
+                    </li>
                     <li>\(n_{{\rm dry ~ air}}\) = dry air number density</li>
                     <li>Integral over height gives column amount</li>
                   </ul>
 
-                  So XCO₂ is a ratio of column amounts. 
+                  So XCO₂ is a ratio of column amounts. In above equation, integrals are done from surface \(z=0\), to top of atmosphere.
 
                   <p><b>Why Do We Convert \(n\) to XCO\(_2\)?</b></p>
 
@@ -266,24 +268,78 @@
                     So it is NOT a good quantity to compare globally.
                   </p>
 
-                  <p>Now, when we consider the mixing ratio i.e. <b>XCO₂</b>, it removes pressure dependence. When we divide by total air molecules:</p>
+                  <p>Now, when we consider the mixing ratio i.e. <b>XCO₂</b>, it removes pressure dependence. When we divide by total air molecules, we can calculate local mixing ratio:</p>
 
                   $$
-                  XCO_2 = \frac{n_{{\rm CO}_2}}{n_{\rm air}}
+                  xCO_2 = \frac{n_{{\rm CO}_2}}{n_{\rm air}}
                   $$
 
                   <p>So, pressure cancels out and we get <b>pure mixing ratio</b>. This tells us, What fraction of the atmosphere is CO₂ independent of altitude and pressure.</p> 
                   <p></p>
 
+                  <div class="grey-box">
+                    <p><b>Deriving Column Air Using Hydrostatic Balance:</b></p>
+                    We start from hydrostatic equilibrium:
+                    
+                    $$\frac{dP}{dz}= -\rho ~g$$
+
+                    where:
+                    <ul>
+                      <li>\(P\)=pressure</li>
+                      <li>\(\rho\) = air density (kg/m³)</li>
+                      <li>\(g\) = gravity</li>
+                    </ul>
+
+                    <p>Now, converting mass density to number density:</p>
+
+                    $$\rho = m_{\rm air} n_{\rm air}$$
+
+                    where \(m_{\rm air}\) = mean molecular mass of air and \(n_{\rm air}\) = number density (molecules/m³)
+
+                    <p>Now substituting in the equation:</p>
+
+                    $$\frac{dP}{dz}= -m_{\rm air} n_{\rm air}~g \Rightarrow n_{\rm air} dz= -\frac{1}{m_{\rm air}g} dP$$
+
+                    Total column air can be calculated by integrating this equation:
+
+                    $$ \int_0^\infty n_{\rm air} dz= -\frac{1}{m_{\rm air}g} \int_0^{P_s} dP$$
+
+                    <p>Because pressure decreases upward, we can simplify above equation as:</p>
+
+                    $$N_{\rm air} = \frac{P_s}{m_{\rm air}g}$$
+
+
+
+
+                  </div>
+
 
                   <h4>Why Satellites Retrieve XCO₂ (Not n)?</h4>
+
+                  <p>Define local mixing ratio:</p>
+
+                  $$
+                  xCO_2 = \frac{n_{{\rm CO}_2}}{n_{\rm air}} \Rightarrow n_{{\rm CO}_2 = xCO_2(z) ~n_{\rm air}(z)
+                  $$
+
                   <p>Satellites like: OCO-2, OCO-3, GOSAT measure total column absorption. Absorption depends on:</p>
 
-                  $$\tau = \sigma \int n(z) dz$$
+                  $$\tau = \int \sigma  n_{{\rm CO}_2} (z) dz$$
 
+                  <p>Now substituting \(n_{{\rm CO}_2} = XCO_2~n_{\rm air}\), </p>
+
+                  $$\tau = \int \sigma  XCO_2~n_{\rm air} dz$$
+
+                  But \(XCO_2\) in terms of presure can be derived as:
+
+
+                  
                   So what they retrieve is:
 
-                  $$N_{{\rm CO}_2} = \int n(z) dz $$
+                  $$N_{{\rm CO}_2} = \int n_{{\rm CO}_2}(z) dz $$
+
+
+                  
 
                   <p>Then they normalize by total air column and gives \(XCO_2\).</p>
 
