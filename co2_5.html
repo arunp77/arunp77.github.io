@@ -344,7 +344,30 @@
 
                   $$\tau = \int \sigma  x_{CO_2}(z)~n_{\rm air}(z) dz$$
 
-                  But \(XCO_2\) in terms of presure can be derived as:
+
+                  <p>Convert to pressure coordinate:</p>
+
+                  $$\tau = \frac{\sigma}{m_{\rm air}g}\int_0^{P_s}   x_{CO_2}(P)~dP$$
+
+                  Therefore, 
+
+                  $\tau \propto \int_0^{P_s}   x_{CO_2}(P)~dP$
+
+                  But earlier we derived \(XCO_2\):
+                  
+                  $$\tau \propto P_s XCO_2$$
+
+                  <div class="important-box">
+                    Since from satellite, we measure \(I\) and hence \(\tau \sim \text{column}~\text{CO}_2 \). Using hydrostatic balance:
+
+                    $$\text{column}~\text{CO}_2 \sim P_s XCO_2$$
+
+                    <p>So retrieval algorithm effectively solves:</p>
+
+                    $$\text{Radiance} \rightarrow \tau \rightarrow XCO_2.$$
+
+                    <p>XCO₂ is the pressure-weighted vertical average of CO₂ mixing ratio, derived directly from hydrostatic balance and the radiative transfer equation.</p>
+                  </div>
 
 
                   
