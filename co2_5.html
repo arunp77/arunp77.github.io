@@ -189,7 +189,7 @@
 
                   <p><b>Mathematical Definition:</b></p>
 
-                  $$XCO_2 = \frac{\text{Column CO}_2}{\text{Total dry air column}}$$
+                  $$XCO_2 = \frac{\text{Column CO}_2}{\text{Total air column}}$$
 
                   In simple terms:
 
@@ -237,7 +237,7 @@
                   <p>Real \(\text{XCO}_2\) computed from:</p>
 
                   $$
-                  XCO_2 = \frac{\int_0^\infty n_{{\rm CO}_2}(z) dz}{\int_0^\infty n_{{\rm dry~ air}}(z) dz}
+                  XCO_2 = \frac{\int_0^\infty n_{{\rm CO}_2}(z) dz}{\int_0^\infty n_{{\rm air}}(z) dz}
                   $$
 
                   Where:
@@ -245,7 +245,7 @@
                     <li>\(n_{{\rm CO}_2}(z)\) = CO₂ number density (molecules per m\(^3\)) at height \(z\). 
                       At each height \(z\), this tells us, how many CO₂ molecules exist in one cubic meter of air at that height.
                     </li>
-                    <li>\(n_{{\rm dry ~ air}}\) = dry air number density</li>
+                    <li>\(n_{{\rm air}}\) = dry air number density</li>
                     <li>Integral over height gives column amount</li>
                   </ul>
 
@@ -325,8 +325,8 @@
                   <p>Now global mixing ratio is:</p>
 
                   $$
-                  XCO_2 = \frac{\int_0^\infty n_{{\rm CO}_2}(z) dz}{\int_0^\infty n_{{\rm dry~ air}}(z) dz} 
-                  = \frac{\int_0^\infty x_{{\rm CO}_2}(z) ~ n_{\rm air}(z) dz}{\int_0^\infty n_{{\rm dry~ air}}(z) dz} dP 
+                  XCO_2 = \frac{\int_0^\infty n_{{\rm CO}_2}(z) dz}{\int_0^\infty n_{{\rm air}}(z) dz} 
+                  = \frac{\int_0^\infty x_{{\rm CO}_2}(z) ~ n_{\rm air}(z) dz}{\int_0^\infty n_{{\rm air}}(z) dz} dP 
                   = \frac{\int_0^{P_s} x_{{\rm CO}_2}(P) dP}{- \int_0^{P_s} dP}
                   $$
 
@@ -369,69 +369,29 @@
                     <p>XCO₂ is the pressure-weighted vertical average of CO₂ mixing ratio, derived directly from hydrostatic balance and the radiative transfer equation.</p>
                   </div>
 
-
-                  
                   So what they retrieve is:
 
                   $$N_{{\rm CO}_2} = \int n_{{\rm CO}_2}(z) dz $$
 
-
-                  
-
                   <p>Then they normalize by total air column and gives \(XCO_2\).</p>
 
 
+                  <p></p>
+                  <p></p>
+                  <br>
+                  <h3>Reference</h3>
 
-
-
-
-
-
-
-
-
-
-
-                    
-                    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    <p></p>
-                    <p></p>
-                    <br>
-                    <h3>Reference</h3>
-
-                    <ul>
-                        <li><a href="https://arunp77.github.io/Remote-sensing.html" target="_blank">Fundamentals of Remote sensing</a></li>
-                        <li><a href="https://arunp77.github.io/electromagnetic-waves.html" target="_blank">Relevance of Electromagnetic waves in the context of earth observation</a></li>
-                        <li><a href="https://arunp77.github.io/Remote-sensing-content.html" target="_blank">Concept of the orbits for a satellite (non scientific discussion)</a></li>
-                        <li><a href="https://arunp77.github.io/Ground-segment-systems.html" target="_blank">How various teams works in close collaboration for the ground data processing?</a></li>
-                        <li><a href="https://arunp77.github.io/Satellite-data.html" target="_blank">How raw satellite data is processed to do a level where you do your scientifc research?</a></li>
-                        <li><a href="https://arunp77.github.io/toa-reflectance.html" target="_blank">In depth understandingof the satellite data (op-of-atmosphere reflectance)</a></li>
-                        <li><a href="https://arunp77.github.io/Satellites-sensors.html" target="_blank">Resolution and calibration</a></li>
-                        <li><a href="https://arunp77.github.io/OLCI.html" target="_blank">Understanding how OLCI data is processed</a></li>
-                        <li><a href="https://www.nesdis.noaa.gov/news/transforming-energy-imagery-how-satellite-data-becomes-stunning-views-of-earth" target="_blank">Transforming Energy into Imagery: How Satellite Data Becomes Stunning Views of Earth</a></li>
-                    </ul>  
+                  <ul>
+                      <li><a href="https://arunp77.github.io/Remote-sensing.html" target="_blank">Fundamentals of Remote sensing</a></li>
+                      <li><a href="https://arunp77.github.io/electromagnetic-waves.html" target="_blank">Relevance of Electromagnetic waves in the context of earth observation</a></li>
+                      <li><a href="https://arunp77.github.io/Remote-sensing-content.html" target="_blank">Concept of the orbits for a satellite (non scientific discussion)</a></li>
+                      <li><a href="https://arunp77.github.io/Ground-segment-systems.html" target="_blank">How various teams works in close collaboration for the ground data processing?</a></li>
+                      <li><a href="https://arunp77.github.io/Satellite-data.html" target="_blank">How raw satellite data is processed to do a level where you do your scientifc research?</a></li>
+                      <li><a href="https://arunp77.github.io/toa-reflectance.html" target="_blank">In depth understandingof the satellite data (op-of-atmosphere reflectance)</a></li>
+                      <li><a href="https://arunp77.github.io/Satellites-sensors.html" target="_blank">Resolution and calibration</a></li>
+                      <li><a href="https://arunp77.github.io/OLCI.html" target="_blank">Understanding how OLCI data is processed</a></li>
+                      <li><a href="https://www.nesdis.noaa.gov/news/transforming-energy-imagery-how-satellite-data-becomes-stunning-views-of-earth" target="_blank">Transforming Energy into Imagery: How Satellite Data Becomes Stunning Views of Earth</a></li>
+                  </ul>  
                 </section>             
             </div>
             <a href="project_sst_1.html" class="clickable-box">Go to Content</a>
