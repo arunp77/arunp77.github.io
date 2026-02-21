@@ -189,6 +189,51 @@
 
                   <p><b>Mathematical Definition:</b></p>
 
+                  $$XCO_2 = \frac{\text{Column CO}_2}{\text{Total dry air column}}$$
+
+                  In simple terms:
+
+                  $$XCO_2 = \frac{\text{Column CO}_2 ~\text{Molecules}}{\text{Total air molecules}}$$
+
+                  expressed in ppm. So we must compare CO₂ number density with total air number density.
+
+                  <p><b>What is total air number density?</b> At surface (approximate): \(n_{\rm air} \approx 2.5\times 10^{25} ~\text{molecules}/\text{m}^3\).
+                  This comes from ideal gas law at 1 atm, 288 K.
+                  </p>
+                  <div class="grey-box">
+                    We start from: \(PV = N kT\). Rearranging for number density \( n = N/V\). Therefore, \(n = P / kT\).
+
+                    <p>Now for presure \(P = 1 ~\text{atm} = 1.013\times 10^5~{\rm Pa}\) and temperature: \(T=288 K\) and Boltzman constand \(k = 1.38\times 10^{-23} ~J/K\). Therefore from these values 
+                      we can calculate \(n\):
+
+                      $$n \approx 2.55 \times 10^{25} ~\text{molecules}/\text{m}^3$$
+                    </p>
+                  </div>
+
+                  <p>Therefore the mixing ratio, </p>
+
+                  $$\text{Mixing ratio} = \frac{n_{{\rm CO}_2}}{n_{{\rm air}}} = 4.0 \times 19^{-8}.$$
+
+                  <p>Now convert to ppm: </p>
+
+                  $$1~{\rm ppm} = 10^{-6}$$
+
+                  so:
+
+                  $$XCO_2 = 0.0408 ~\text{ppm}.$$
+
+                  <p>This is far too small compared to real atmospheric CO₂ (~420 ppm). </p>
+
+                  <p>Why?</p> 
+                  <p><b>Because:</b> We used a very simplified path length We did not integrate over full atmospheric column Real retrieval uses column 
+                    integration My earlier shortcut was conceptual, not physically consistent You were absolutely right to question it.
+                  </p>
+
+                  <p>So, how It Is Actually Done?</p>
+
+                  <p>Real \(\text{XCO}_2\) computed from:</p>
+
+
                   $$
                   XCO_2 = \frac{\int_0^\infty n_{{\rm CO}_2}(z) dz}{\int_0^\infty n_{{\rm dry air}_2}(z) dz}
                   $$
@@ -200,7 +245,7 @@
                     <li>Integral over height gives column amount</li>
                   </ul>
 
-                  So XCO₂ is a ratio of column amounts.
+                  So satellites retrieve column density, not surface density. 
 
                   <p><b>Why Do We Convert \(n\) Depends on Pressure & Temperature?</b></p>
                   <p>From ideal gas law: \(n = P/k T\).</p>
