@@ -142,7 +142,6 @@
 
                 <section>
                     
-
                     <p>This example demonstrates how satellite measurements lead to realistic 
                     XCO<sub>2</sub> values (~420 ppm), consistent with modern atmospheric observations.</p>
 
@@ -152,9 +151,7 @@
 
                     <p>The total dry air column is given by:</p>
 
-                    <div class="equation">
-                    N<sub>air</sub> = P<sub>s</sub> / (m<sub>air</sub> g)
-                    </div>
+                    $$N_{\rm air} =\frac{P_s}{m_{\rm air}g}$$
 
                     <p>Using realistic values:</p>
 
@@ -164,9 +161,9 @@
                         <li>Mean molecular mass of air: m<sub>air</sub> = 4.8 × 10<sup>-26</sup> kg/molecule</li>
                     </ul>
 
-                    <div class="box">
-                    N<sub>air</sub> ≈ 2.1 × 10<sup>29</sup> molecules/m²
-                    </div>
+                    $$
+                    N_{\rm air} ≈ 2.1 \times 10^{29} \text{molecules}/\text{m}^2
+                    $$
 
                     <p>This represents the total number of air molecules above 1 m² of Earth's surface.</p>
 
@@ -176,33 +173,33 @@
 
                     <p>Current global average:</p>
 
-                    <div class="equation">
-                    XCO<sub>2</sub> ≈ 420 ppm
-                    </div>
+                    $$
+                    XCO_2 \approx 420 ~\text{ppm}
+                    $$
 
                     <p>Convert ppm to fraction:</p>
 
-                    <div class="equation">
-                    420 ppm = 420 × 10<sup>-6</sup> = 4.2 × 10<sup>-4</sup>
-                    </div>
+                    $$
+                    420 \text{ppm} = 420 \times 10^{-6} = 4.2 \times 10^{-4}
+                    $$
 
                     <hr>
 
                     <h2>Step 3: Compute Total CO₂ Column</h2>
 
-                    <div class="equation">
-                    N<sub>CO2</sub> = XCO<sub>2</sub> × N<sub>air</sub>
-                    </div>
+                    $$
+                    N_{{\rm CO}_2} = XCO_2 \times N_{\rm air}
+                    $$
 
                     <p>Substituting values:</p>
 
-                    <div class="equation">
-                    N<sub>CO2</sub> = (4.2 × 10<sup>-4</sup>) × (2.1 × 10<sup>29</sup>)
-                    </div>
+                    $$
+                    N_{{\rm CO}_2} = (4.2 \times 10^{-4} \times (2.1 \times 10^{29})
+                    $$
 
-                    <div class="box">
-                    N<sub>CO2</sub> ≈ 8.8 × 10<sup>25</sup> molecules/m²
-                    </div>
+                    $$
+                    N_{\rm CO}_2} \approx 8.8 \times 10^{25}~ \text{molecules}/\text{m}^2
+                    $$
 
                     <p>This is the realistic atmospheric CO₂ column sensed by satellites.</p>
 
@@ -212,23 +209,23 @@
 
                     <p>Optical depth is given by:</p>
 
-                    <div class="equation">
-                    τ = σ × N<sub>CO2</sub>
-                    </div>
+                    $$
+                    \tau = \sigma \times N_{{\rm CO}_2}
+                    $$
 
                     <p>Using an effective band-averaged absorption cross-section:</p>
 
-                    <ul>
-                        <li>σ ≈ 2 × 10<sup>-26</sup> m²/molecule</li>
-                    </ul>
+                    $$
+                    \sigma \approx  2 \times  10^{-26}~ \text{m}^2/\text{molecule}
+                    $$
 
-                    <div class="equation">
-                    τ = (2 × 10<sup>-26</sup>) × (8.8 × 10<sup>25</sup>)
-                    </div>
+                    $$
+                    \tau = (2 \times 10^{-26}) \times (8.8 \times 10^{25})
+                    $$
 
-                    <div class="box">
-                    τ ≈ 1.76
-                    </div>
+                    $$
+                    \tau \approx 1.76
+                    $$
 
                     <p>This optical depth is realistic for strong CO₂ absorption bands near 1.6 μm.</p>
 
@@ -238,37 +235,37 @@
 
                     <p>If a satellite measures:</p>
 
-                    <div class="equation">
+                    $$
                     τ ≈ 1.8
-                    </div>
+                    $$
 
                     <p>Then:</p>
 
-                    <div class="equation">
+                    $$
                     N<sub>CO2</sub> = τ / σ
-                    </div>
+                    $$
 
-                    <div class="equation">
+                    $$
                     N<sub>CO2</sub> = 1.8 / (2 × 10<sup>-26</sup>)
-                    </div>
+                    $$
 
                     <div class="box">
                     N<sub>CO2</sub> ≈ 9 × 10<sup>25</sup> molecules/m²
-                    </div>
+                    $$
 
                     <p>Now compute XCO<sub>2</sub>:</p>
 
-                    <div class="equation">
+                    $$
                     XCO<sub>2</sub> = N<sub>CO2</sub> / N<sub>air</sub>
-                    </div>
+                    $$
 
-                    <div class="equation">
+                    $$
                     XCO<sub>2</sub> = (9 × 10<sup>25</sup>) / (2.1 × 10<sup>29</sup>)
-                    </div>
+                    $$
 
                     <div class="box">
                     XCO<sub>2</sub> ≈ 4.3 × 10<sup>-4</sup> = 430 ppm
-                    </div>
+                    $$
 
                     <hr>
 
