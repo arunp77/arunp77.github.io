@@ -146,7 +146,7 @@
                   <p>Satellites like: OCO-2, Sentinel-5P, do not directly measure ppm.</p>
                   <p>They measure:</p>
 
-                  $$\text{Spectral radiance} \(I\)$$
+                  $$\text{Spectral radiance} I$$
 
                   <p>at specific CO₂ absorption wavelengths (~1.6 µm, 2.0 µm).</p>
 
@@ -161,7 +161,7 @@
                     <li>\(I\) = measured radiance</li>
                     <li>\(I_0\) = incoming radiance</li>
                     <li>\(\tau = n\sigma L\) = optical depth</li>
-                    <li>\(\simga\) = absorption cross section</li>
+                    <li>\(\sigma\) = absorption cross section</li>
                     <li>\(n\) = CO₂ number density</li>
                     <li>\(L\) = path length</li>
                   </ul>
@@ -171,7 +171,7 @@
 
                   <p>Now using Beer-Lambert law: \(I= I_0 e^{-\tau}\)</p>
 
-                  $$85 = 100 e^{-\tau} \RIghtarrow \tau = 0.163$$
+                  $$85 = 100 e^{-\tau} \Rightarrow \tau = 0.163$$
 
                   <p><b>Relating Optical Depth to CO₂ Concentration:</b></p>
 
@@ -192,9 +192,44 @@
                   Where:
                   <ul>
                     <li>\(n_{{\rm CO}_2}(z)\) = CO₂ number density at height </li>
-                    <li>\(n_{{\rm dry air}_2\) = dry air number density</li>
+                    <li>\(n_{{\rm dry air}_2}\) = dry air number density</li>
                     <li>Integral over height gives column amount</li>
                   </ul>
+
+                  So XCO₂ is a ratio of column amounts.
+
+                  <p><b>Why Do We Convert \(n\) Depends on Pressure & Temperature?</b></p>
+                  <p>From ideal gas law: \(n = P/k T\).</p>
+
+                  So:
+                  <ul>
+                    <li>At sea level → n is high</li>
+                    <li>At high altitude → n is low</li>
+                    <li>In warm regions → n changes</li>
+                    <li>In cold regions → n changes</li>
+                  </ul>
+
+                  <p>Therefore, \(n\) varies strongly with altitude, pressure, temperature n varies strongly with altitude, pressure, temperature.
+                    So it is NOT a good quantity to compare globally.
+                  </p>
+
+                  <p><b>XCO₂ Removes Pressure Dependence</b></p>
+                  When we divide by total air molecules:
+
+                  $$
+                  XCO_2 = \frac{n_{{\rm CO}_2}}{n_{\rm air}}
+                  $$
+
+                  So, pressure cancels out. Now we get: <b>Pure mixing ratio</b> 
+                  <p>This tells us, What fraction of the atmosphere is CO₂ independent of altitude and pressure.</p>
+
+
+
+
+
+
+
+
 
 
 
