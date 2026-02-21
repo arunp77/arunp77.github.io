@@ -197,9 +197,9 @@
 
                   expressed in ppm. So we must compare CO₂ number density with total air number density.
 
-                  <p><b>What is total air number density?</b> At surface (approximate): \(n_{\rm air} \approx 2.5\times 10^{25} ~\text{molecules}/\text{m}^3\).
-                  This comes from ideal gas law at 1 atm, 288 K.
-                  </p>
+                  <p><b>What is total air number density?</b> </p>
+                  <p> At surface (approximate): \(n_{\rm air} \approx 2.5\times 10^{25} ~\text{molecules}/\text{m}^3\). This comes from ideal gas law at 1 atm, 288 K.</p>
+                  <p></p>
                   <div class="grey-box">
                     We start from: \(PV = N kT\). Rearranging for number density \( n = N/V\). Therefore, \(n = P / kT\).
 
@@ -223,16 +223,18 @@
                   $$XCO_2 = 0.0408 ~\text{ppm}.$$
 
                   <p>This is far too small compared to real atmospheric CO₂ (~420 ppm). </p>
-
                   <p>Why?</p> 
-                  <p><b>Because:</b> We used a very simplified path length We did not integrate over full atmospheric column Real retrieval uses column 
-                    integration My earlier shortcut was conceptual, not physically consistent You were absolutely right to question it.
+                  <p><b>Because:</b> We used a very simplified path length. We did not integrate over full atmospheric column. Real retrieval uses column 
+                    integration. So, whatever, we just calculated, it is just a conceptual, not physically consistent. 
                   </p>
+                
+                  <!-- new heading -->
+                  <h4>What is XCO₂?</h4>
 
-                  <p>So, how It Is Actually Done?</p>
+                  <p>XCO₂ tells us how many CO₂ molecules exist per million dry air molecules in the entire atmospheric column, and 
+                    it is expressed in terms of <b>ppm (parts per million)</b>.</p>
 
                   <p>Real \(\text{XCO}_2\) computed from:</p>
-
 
                   $$
                   XCO_2 = \frac{\int_0^\infty n_{{\rm CO}_2}(z) dz}{\int_0^\infty n_{{\rm dry~ air}}(z) dz}
@@ -245,11 +247,13 @@
                     <li>Integral over height gives column amount</li>
                   </ul>
 
-                  So satellites retrieve column density, not surface density. 
+                  So XCO₂ is a ratio of column amounts. 
 
-                  <p><b>Why Do We Convert \(n\) Depends on Pressure & Temperature?</b></p>
-                  <p>From ideal gas law: \(n = P/k T\).</p>
+                  <p><b>Why Do We Convert \(n\) to XCO\(_2\)?</b></p>
 
+                  <p>Because number density alone is not meaningful globally. Now from ideal gas law:</p>
+
+                  $$n = \frac{P}{k~T}$$
                   So:
                   <ul>
                     <li>At sea level → n is high</li>
@@ -262,15 +266,26 @@
                     So it is NOT a good quantity to compare globally.
                   </p>
 
-                  <p><b>XCO₂ Removes Pressure Dependence</b></p>
-                  When we divide by total air molecules:
+                  <p>Now, when we consider the mixing ratio i.e. <b>XCO₂</b>, it removes pressure dependence. When we divide by total air molecules:</p>
 
                   $$
                   XCO_2 = \frac{n_{{\rm CO}_2}}{n_{\rm air}}
                   $$
 
-                  So, pressure cancels out. Now we get: <b>Pure mixing ratio</b> 
-                  <p>This tells us, What fraction of the atmosphere is CO₂ independent of altitude and pressure.</p>
+                  <p>So, pressure cancels out and we get <b>pure mixing ratio</b>. This tells us, What fraction of the atmosphere is CO₂ independent of altitude and pressure.</p> 
+                  <p></p>
+
+
+                  <h4>Why Satellites Retrieve XCO₂ (Not n)?</h4>
+                  <p>Satellites like: OCO-2, OCO-3, GOSAT measure total column absorption. Absorption depends on:</p>
+
+                  $$\tau = \sigma \int n(z) dz$$
+
+                  So what they retrieve is:
+
+                  $$N_{{\rm CO}_2} = \int n(z) dz $$
+
+                  <p>Then they normalize by total air column and gives \(XCO_2\).</p>
 
 
 
