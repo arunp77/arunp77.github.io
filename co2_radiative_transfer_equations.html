@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radiative Transfer Theory — Full Equation Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<!-- MathJax for proper equation rendering -->
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$','$']],
+    displayMath: [['$$','$$']],
+    packages: {'[+]': ['boldsymbol']},
+    tags: 'none'
+  },
+  options: { skipHtmlTags: ['script','noscript','style','textarea'] },
+  startup: { typeset: false }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-chtml.min.js" crossorigin="anonymous"></script>
+
+<style>
+:root {
+  --bg:      #0a0c10;
+  --surface: #0f1318;
+  --card:    #131920;
+  --border:  #1e2d3d;
+  --border2: #253545;
+  --rte:     #e8c84a;   /* golden — master RTE */
+  --planck:  #f4814a;   /* orange — blackbody */
+  --beer:    #4abfe8;   /* cyan — Beer-Lambert */
+  --scatter: #7b6ef6;   /* violet — scattering */
+  --thermal: #e84a7a;   /* rose — Schwarzschild */
+  --toa:     #4ae8a0;   /* green — TOA radiance */
+  --weight:  #e8a04a;   /* amber — weighting fns */
+  --retriev: #a04ae8;   /* purple — retrieval */
+  --xcco2:   #4ae8e8;   /* teal — XCO2 */
+  --twostr:  #e84ae8;   /* magenta — two-stream */
+  --text:    #c8d8e8;
+  --dim:     #3d5060;
+  --dimmed:  #546070;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Lora', Georgia, serif;
+  font-size: 14px;
+  line-height: 1.65;
+  min-height: 100vh;
+}
+
+/* ── HEADER ─────────────────────────────────────── */
+header {
+  padding: 36px 40px 28px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  backdrop-filter: blur(12px);
+}
+
+header h1 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #ecf4ff;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+header p {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--dim);
+  letter-spacing: 0.08em;
+}
+
+/* ── NAV TABS ────────────────────────────────────── */
+.nav-tabs {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  scrollbar-width: none;
+}
+.nav-tabs::-webkit-scrollbar { display: none; }
+
+.tab-btn {
+  flex-shrink: 0;
+  padding: 11px 18px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--dimmed);
+  letter-spacing: 0.04em;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.tab-btn:hover { color: var(--text); background: #111820; }
+.tab-btn.active {
+  color: #ecf4ff;
+  border-bottom-color: var(--accent-color, #e8c84a);
+  background: #111820;
+}
+
+/* ── MAIN LAYOUT ─────────────────────────────────── */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  min-height: calc(100vh - 140px);
+}
+
+/* ── EQUATION PANELS ─────────────────────────────── */
+.eq-area {
+  padding: 32px 36px;
+  overflow-y: auto;
+}
+
+.eq-section { display: none; }
+.eq-section.active { display: block; }
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.section-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.section-header h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ecf4ff;
+  letter-spacing: -0.01em;
+}
+.section-header .tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  padding: 3px 9px;
+  border-radius: 2px;
+  border: 1px solid currentColor;
+  opacity: 0.7;
+}
+
+/* Equation boxes */
+.eq-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--eq-color, #4488aa);
+  border-radius: 4px;
+  padding: 22px 24px;
+  margin-bottom: 20px;
+  transition: border-color 0.2s;
+  cursor: pointer;
+}
+.eq-box:hover { border-color: var(--eq-color, #4488aa); background: #161e28; }
+.eq-box.expanded { background: #141c26; }
+
+.eq-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--eq-color, #4488aa);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.eq-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.eq-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #dde8f8;
+  margin-bottom: 14px;
+}
+
+.eq-math {
+  background: #0a0d12;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 16px 20px;
+  margin: 12px 0;
+  overflow-x: auto;
+  font-size: 1.05em;
+  line-height: 1.8;
+}
+
+.eq-desc {
+  font-size: 0.82rem;
+  color: #8aA0b8;
+  line-height: 1.7;
+  margin-top: 12px;
+}
+
+/* Term table */
+.terms-grid {
+  margin-top: 16px;
+  display: none;
+}
+.eq-box.expanded .terms-grid { display: block; }
+
+.terms-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 10px;
+  margin-top: 16px;
+}
+
+.term-row {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 0;
+  border-top: 1px solid var(--border);
+  padding: 8px 0;
+  font-size: 0.8rem;
+}
+.term-row:last-child { border-bottom: 1px solid var(--border); }
+.term-symbol {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--eq-color, #4488aa);
+  padding-right: 12px;
+  align-self: start;
+}
+.term-def { color: #8aa0b8; line-height: 1.55; }
+
+.assumptions-box {
+  background: #0c1018;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 14px 16px;
+  margin-top: 14px;
+  display: none;
+  font-size: 0.78rem;
+  color: #6a8090;
+  line-height: 1.7;
+}
+.eq-box.expanded .assumptions-box { display: block; }
+.assumptions-box strong { color: #8a9ab0; font-weight: 600; }
+
+.expand-hint {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--dim);
+  text-align: right;
+  margin-top: 8px;
+}
+
+/* ── RIGHT SIDEBAR ───────────────────────────────── */
+.sidebar {
+  border-left: 1px solid var(--border);
+  background: var(--surface);
+  padding: 24px 20px;
+  overflow-y: auto;
+  position: sticky;
+  top: 140px;
+  height: calc(100vh - 140px);
+}
+
+.sidebar h3 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 16px;
+}
+
+.symbol-list { list-style: none; }
+.symbol-list li {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 0;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.77rem;
+}
+.symbol-list li:last-child { border-bottom: none; }
+.sym { font-family: 'JetBrains Mono', monospace; font-size: 0.73rem; color: #7a9aaa; }
+.sym-def { color: #6a8090; line-height: 1.45; }
+
+.sidebar-section { margin-bottom: 28px; }
+
+/* context diagram */
+.context-diagram {
+  background: #0a0d12;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 14px;
+  margin-top: 16px;
+}
+.context-diagram svg { width: 100%; height: auto; }
+
+/* connection map */
+.conn-map {
+  margin-top: 12px;
+}
+.conn-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 0;
+  font-size: 0.72rem;
+  color: #6a8090;
+  cursor: pointer;
+  border-radius: 2px;
+  padding-left: 4px;
+  transition: background 0.15s;
+}
+.conn-item:hover { background: #111820; color: var(--text); }
+.conn-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+/* ── DERIVATION FLOW ─────────────────────────────── */
+.deriv-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 20px 0;
+}
+.deriv-step {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 14px;
+  align-items: start;
+}
+.deriv-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+.deriv-n {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid var(--eq-color, #4488aa);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--eq-color, #4488aa);
+  flex-shrink: 0;
+}
+.deriv-connector {
+  width: 1px;
+  height: 24px;
+  background: var(--border);
+  margin: 3px 0;
+}
+.deriv-content {
+  padding-bottom: 24px;
+  font-size: 0.8rem;
+  color: #8aa0b8;
+  line-height: 1.6;
+}
+.deriv-content .mini-eq {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: #6a88a0;
+  background: #0a0d12;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 4px 8px;
+  margin: 6px 0;
+  display: inline-block;
+}
+
+/* MathJax overrides */
+mjx-container { overflow-x: auto; }
+
+/* ── RESPONSIVE ──────────────────────────────────── */
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { position: static; height: auto; border-left: none; border-top: 1px solid var(--border); }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Radiative Transfer Theory</h1>
+  <p>COMPLETE EQUATION REFERENCE · ATMOSPHERIC CO₂ REMOTE SENSING · CLICK ANY EQUATION TO EXPAND ALL TERMS</p>
+</header>
+
+<!-- NAV TABS -->
+<nav class="nav-tabs" id="navTabs">
+  <button class="tab-btn active" data-tab="rte"      style="--accent-color:#e8c84a">RTE Master</button>
+  <button class="tab-btn"        data-tab="planck"   style="--accent-color:#f4814a">Planck / Blackbody</button>
+  <button class="tab-btn"        data-tab="beer"     style="--accent-color:#4abfe8">Beer-Lambert</button>
+  <button class="tab-btn"        data-tab="scatter"  style="--accent-color:#7b6ef6">Scattering</button>
+  <button class="tab-btn"        data-tab="schwarz"  style="--accent-color:#e84a7a">Schwarzschild</button>
+  <button class="tab-btn"        data-tab="toa"      style="--accent-color:#4ae8a0">TOA Radiance</button>
+  <button class="tab-btn"        data-tab="twostr"   style="--accent-color:#e84ae8">Two-Stream</button>
+  <button class="tab-btn"        data-tab="weight"   style="--accent-color:#e8a04a">Weighting Fns</button>
+  <button class="tab-btn"        data-tab="retriev"  style="--accent-color:#a04ae8">OE Retrieval</button>
+  <button class="tab-btn"        data-tab="xcco2"    style="--accent-color:#4ae8e8">XCO₂ Column</button>
+</nav>
+
+<div class="layout">
+<div class="eq-area" id="eqArea">
+
+<!-- ════════════════════════════════════════════════
+     TAB 1 — MASTER RTE
+     ════════════════════════════════════════════════ -->
+<div class="eq-section active" id="sec-rte">
+  <div class="section-header">
+    <div class="section-dot" style="background:#e8c84a"></div>
+    <h2>The Radiative Transfer Equation</h2>
+    <span class="tag" style="color:#e8c84a">MASTER EQUATION</span>
+  </div>
+
+  <!-- Full vector RTE -->
+  <div class="eq-box" style="--eq-color:#e8c84a" onclick="toggleExpand(this)">
+    <div class="eq-label">Eq. 1.1 — General vector RTE</div>
+    <div class="eq-title">Full Radiative Transfer Equation (monochromatic, plane-parallel)</div>
+    <div class="eq-math">
+      $$\mu\,\frac{dI_\nu(\tau_\nu,\mu,\phi)}{d\tau_\nu} = I_\nu(\tau_\nu,\mu,\phi) - J_\nu(\tau_\nu,\mu,\phi)$$
+    </div>
+    <div class="eq-desc">
+      Describes how spectral radiance $I_\nu$ changes with optical depth $\tau_\nu$ along a direction
+      $(\mu,\phi)$. The left side is the net change. The right side balances extinction loss against the
+      total source function $J_\nu$ — which combines thermal emission and scattering contributions.
+    </div>
+    <div class="expand-hint">▾ click to expand all terms</div>
+    <div class="terms-grid">
+      <div class="terms-title">Symbol Definitions</div>
+      <div class="term-row"><div class="term-symbol">$I_\nu(\tau_\nu,\mu,\phi)$</div><div class="term-def">Spectral radiance [W m⁻² sr⁻¹ Hz⁻¹] at optical depth $\tau_\nu$, cosine of zenith angle $\mu = \cos\theta$, and azimuth $\phi$</div></div>
+      <div class="term-row"><div class="term-symbol">$\mu = \cos\theta$</div><div class="term-def">Cosine of polar zenith angle $\theta$. $\mu>0$ = upward hemisphere, $\mu<0$ = downward hemisphere</div></div>
+      <div class="term-row"><div class="term-symbol">$\tau_\nu$</div><div class="term-def">Monochromatic optical depth, measured from TOA downward. Dimensionless. $d\tau_\nu = -k_\nu \rho\, dz$ where $z$ increases upward</div></div>
+      <div class="term-row"><div class="term-symbol">$J_\nu(\tau,\mu,\phi)$</div><div class="term-def">Total source function [same units as $I_\nu$]. Sum of thermal emission source $J_\nu^{em}$ and scattering source $J_\nu^{sc}$</div></div>
+      <div class="term-row"><div class="term-symbol">$\phi$</div><div class="term-def">Azimuth angle [rad]. For azimuthally symmetric problems (nadir view, uniform atmosphere) the $\phi$ dependence drops out</div></div>
+    </div>
+    <div class="assumptions-box">
+      <strong>Plane-parallel assumption:</strong> atmosphere is horizontally homogeneous; properties vary only with altitude $z$ (or equivalently $\tau$). Valid when the atmosphere is much thinner than the Earth's radius (~100 km vs 6371 km). <br><br>
+      <strong>Monochromatic:</strong> equation holds at a single frequency $\nu$. Real atmosphere requires integrating over instrument bandpass $\Delta\nu$.
+    </div>
+  </div>
+
+  <!-- Source function expansion -->
+  <div class="eq-box" style="--eq-color:#e8c84a" onclick="toggleExpand(this)">
+    <div class="eq-label">Eq. 1.2 — Source function decomposition</div>
+    <div class="eq-title">Total Source Function $J_\nu$ — All Contributing Terms</div>
+    <div class="eq-math">
+      $$J_\nu(\tau,\mu,\phi) = \underbrace{(1-\omega_\nu)\,B_\nu(T)}_{\text{thermal emission}} + \underbrace{\frac{\omega_\nu}{4\pi}\int_0^{4\pi} p_\nu(\Omega,\Omega')\,I_\nu(\tau,\Omega')\,d\Omega'}_{\text{multiple scattering}} + \underbrace{\frac{\omega_\nu}{4\pi}\,F_0^\nu\,p_\nu(\Omega,\Omega_0)\,e^{-\tau/\mu_0}}_{\text{direct solar scattering}}$$
+    </div>
+    <div class="eq-desc">
+      The source function $J_\nu$ has three contributions: (1) thermal emission weighted by co-albedo $(1-\omega_\nu)$,
+      (2) diffuse multiple-scattering from all directions $\Omega'$, and (3) single scattering of the direct solar beam
+      (attenuated to depth $\tau$ by $e^{-\tau/\mu_0}$).
+    </div>
+    <div class="expand-hint">▾ click to expand</div>
+    <div class="terms-grid">
+      <div class="terms-title">Symbol Definitions</div>
+      <div class="term-row"><div class="term-symbol">$\omega_\nu$</div><div class="term-def">Single scattering albedo. $\omega_\nu = k_s^\nu / k_e^\nu \in [0,1]$. $\omega=0$: pure absorption; $\omega=1$: pure scattering</div></div>
+      <div class="term-row"><div class="term-symbol">$B_\nu(T)$</div><div class="term-def">Planck blackbody function at local temperature $T$ [W m⁻² sr⁻¹ Hz⁻¹]</div></div>
+      <div class="term-row"><div class="term-symbol">$p_\nu(\Omega,\Omega')$</div><div class="term-def">Phase function — probability of photon from direction $\Omega'$ scattered into $\Omega$. Normalized: $\frac{1}{4\pi}\int p\,d\Omega' = 1$</div></div>
+      <div class="term-row"><div class="term-symbol">$\int_0^{4\pi} d\Omega'$</div><div class="term-def">Integration over all $4\pi$ steradians of incoming directions. In plane-parallel: $\int_{-1}^{1}\int_0^{2\pi} d\mu'\,d\phi'$</div></div>
+      <div class="term-row"><div class="term-symbol">$F_0^\nu$</div><div class="term-def">Solar spectral irradiance at TOA [W m⁻² Hz⁻¹]. Extraterrestrial solar flux (Kurucz spectrum)</div></div>
+      <div class="term-row"><div class="term-symbol">$\mu_0 = \cos\theta_0$</div><div class="term-def">Cosine of solar zenith angle. Determines solar beam attenuation rate with optical depth</div></div>
+      <div class="term-row"><div class="term-symbol">$e^{-\tau/\mu_0}$</div><div class="term-def">Attenuation of direct solar beam from TOA to level $\tau$. This is Beer-Lambert applied to the solar path</div></div>
+    </div>
+  </div>
+
+  <!-- Extinction coefficient -->
+  <div class="eq-box" style="--eq-color:#e8c84a" onclick="toggleExpand(this)">
+    <div class="eq-label">Eq. 1.3 — Extinction coefficient decomposition</div>
+    <div class="eq-title">Volume Extinction Coefficient — All Physical Processes</div>
+    <div class="eq-math">
+      $$k_e^\nu = \underbrace{k_a^\nu}_{\text{gas absorption}} + \underbrace{k_R^\nu}_{\text{Rayleigh scatter}} + \underbrace{k_M^\nu}_{\text{Mie/aerosol}} + \underbrace{k_c^\nu}_{\text{cloud droplets}}$$
+    </div>
+    <div class="eq-desc">
+      The total extinction coefficient $k_e^\nu$ [m⁻¹] governs how fast the beam is attenuated per unit path length.
+      It decomposes into absorption by gases (CO₂, H₂O, O₃, O₂, CH₄, N₂O), elastic Rayleigh scattering by molecules,
+      Mie scattering and absorption by aerosol particles, and scattering/absorption by cloud droplets.
+    </div>
+    <div class="expand-hint">▾ click to expand</div>
+    <div class="terms-grid">
+      <div class="terms-title">Symbol Definitions</div>
+      <div class="term-row"><div class="term-symbol">$k_a^\nu$</div><div class="term-def">Gas absorption coefficient [m⁻¹]. $k_a^\nu = \sum_g n_g \sigma_g^\nu$ where $n_g$ is number density [m⁻³] and $\sigma_g^\nu$ is absorption cross-section [m²] for gas $g$</div></div>
+      <div class="term-row"><div class="term-symbol">$k_R^\nu$</div><div class="term-def">Rayleigh scattering coefficient. $k_R^\nu = n_{air}\,\sigma_R^\nu$ where $\sigma_R^\nu \propto \nu^4$ (or $\propto \lambda^{-4}$). Purely scattering: contributes to $\omega_\nu$</div></div>
+      <div class="term-row"><div class="term-symbol">$k_M^\nu$</div><div class="term-def">Aerosol extinction coefficient [m⁻¹]. Complex: depends on particle size distribution $n(r)$, refractive index $m(\nu)$, and Mie efficiency $Q_{ext}(x,m)$ where $x=2\pi r/\lambda$</div></div>
+      <div class="term-row"><div class="term-symbol">$k_c^\nu$</div><div class="term-def">Cloud extinction coefficient [m⁻¹]. Clouds are optically thick ($\tau_c \sim 10$–100) and largely wavelength-independent in VIS/NIR. Strong contaminant for CO₂ retrieval</div></div>
+    </div>
+    <div class="assumptions-box">
+      <strong>Gas absorption cross-sections $\sigma_g^\nu$</strong> come from line-by-line databases (HITRAN, GEISA). Each molecular transition has a central frequency $\nu_0$, line strength $S$, and line shape. The cross-section is:
+      $$\sigma_g^\nu = S \cdot f(\nu - \nu_0; \gamma_L, \gamma_D)$$
+      where $f$ is the Voigt profile combining pressure-broadened Lorentzian ($\gamma_L \propto p$) and Doppler-broadened Gaussian ($\gamma_D \propto \sqrt{T}$) line shapes.
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     TAB 2 — PLANCK
+     ════════════════════════════════════════════════ -->
+<div class="eq-section" id="sec-planck">
+  <div class="section-header">
+    <div class="section-dot" style="background:#f4814a"></div>
+    <h2>Planck Function &amp; Blackbody Radiation</h2>
+    <span class="tag" style="color:#f4814a">EMISSION SOURCE</span>
+  </div>
+
+  <div class="eq-box" style="--eq-color:#f4814a" onclick="toggleExpand(this)">
+    <div class="eq-label">Eq. 2.1 — Planck function (frequency)</div>
+    <div class="eq-title">Spectral Radiance of a Blackbody (Frequency Form)</div>
+    <div class="eq-math">
+      $$B_\nu(T) = \frac{2h\nu^3}{c^2}\,\frac{1}{\exp\!\left(\dfrac{h\nu}{k_B T}\right) - 1}$$
+    </div>
+    <div class="eq-desc">The Planck function gives the spectral radiance [W m⁻² sr⁻¹ Hz⁻¹] emitted by a perfect blackbody at temperature $T$. This is the thermal emission source function $J^{em}_\nu = B_\nu(T)$ used in the RTE for gas molecules and the Earth's surface.</div>
+    <div class="expand-hint">▾ click to expand</div>
+    <div class="terms-grid">
+      <div class="terms-title">Constants &amp; Variables</div>
+      <div class="term-row"><div class="term-symbol">$h = 6.626\times10^{-34}$ J·s</div><div class="term-def">Planck's constant</div></div>
+      <div class="term-row"><div class="term-symbol">$c = 2.998\times10^8$ m/s</div><div class="term-def">Speed of light in vacuum</div></div>
+      <div class="term-row"><div class="term-symbol">$k_B = 1.381\times10^{-23}$ J/K</div><div class="term-def">Boltzmann constant</div></div>
+      <div class="term-row"><div class="term-symbol">$T$ [K]</div><div class="term-def">Absolute temperature of the emitting body. Sun: 5778 K → peak ~0.5 µm. Earth surface: 288 K → peak ~10 µm</div></div>
+      <div class="term-row"><div class="term-symbol">$\nu$ [Hz]</div><div class="term-def">Frequency. Relation to wavelength: $\nu = c/\lambda$. CO₂ 15µm band: $\nu \approx 2\times10^{13}$ Hz</div></div>
+    </div>
+    <div class="assumptions-box">
+      <strong>Wavelength form:</strong> $B_\lambda(T) = \frac{2hc^2}{\lambda^5}\frac{1}{e^{hc/\lambda k_B T}-1}$. Note $B_\nu d\nu = B_\lambda |d\lambda|$ so they are NOT the same function evaluated at the same argument.<br><br>
+      <strong>Wien's displacement law</strong> (peak wavelength): $\lambda_{max} T = 2898\,\mu\text{m}\cdot\text{K}$<br>
+      <strong>Stefan-Boltzmann law</strong> (total emission): $E = \sigma T^4$ where $\sigma = 5.67\times10^{-8}$ W m⁻² K⁻⁴
+    </div>
+  </div>
+
+  <div class="eq-box" style="--eq-color:#f4814a" onclick="toggleExpand(this)">
+    <div class="eq-label">Eq. 2.2 — Brightness temperature</div>
+    <div class="eq-title">Brightness Temperature $T_B$ — Inverse Planck</div>
+    <div class="eq-math">
+      $$T_B(\nu) = \frac{h\nu}{k_B}\,\frac{1}{\ln\!\left(1 + \dfrac{2h\nu^3}{c^2\,I_\nu}\right)}$$
+    </div>
+    <div class="eq-desc">TIR satellites (AIRS, IASI, CrIS) report measured radiance as brightness temperature $T_B$ — the temperature a perfect blackbody would need to emit the observed $I_\nu$. CO₂ absorbs and re-emits at 15 µm. More CO₂ at higher (colder) altitudes → lower $T_B$ at 15 µm → satellite sees colder source.</div>
+    <div class="expand-hint">▾ click to expand</div>
+    <div class="terms-grid">
+      <div class="terms-title">Physical interpretation</div>
+      <div class="term-row"><div class="term-symbol">$T_B < T_{surface}$</div><div class="term-def">In CO₂ absorption bands: satellite "sees" emission from mid-troposphere (~220 K) rather than warm surface (~288 K) → colder = more CO₂</div></div>
+      <div class="term-row"><div class="term-symbol">$\Delta T_B / \Delta[\text{CO}_2]$</div><div class="term-def">Sensitivity: ~0.5 K per 10 ppm CO₂ change in strong TIR bands. Weaker sensitivity than SWIR reflected solar</div></div>
+    </div>
+  </div>
+
+  <div class="eq-box" style="--eq-color:#f4814a" onclick="toggleExpand(this)">
+    <div class="eq-label">Eq. 2.3 — Rayleigh-Jeans &amp; Wien approximations</div>
+    <div class="eq-title">Limiting Forms of the Planck Function</div>
+    <div class="eq-math">
+      $$B_\nu(T) \approx \frac{2\nu^2 k_B T}{c^2} \quad (h\nu \ll k_B T,\;\text{microwave / Rayleigh-Jeans})$$
+      $$B_\nu(T) \approx \frac{2h\nu^3}{c^2}\,e^{-h\nu/k_B T} \quad (h\nu \gg k_B T,\;\text{UV / Wien})$$
+    </div>
+    <div class="eq-desc">The Rayleigh-Jeans limit (microwave, long $\lambda$) gives linear dependence on $T$ — useful for microwave sounders. The Wien limit (short $\lambda$, UV/VIS) gives exponential dependence. SWIR CO₂ bands (~1.6 µm, 12500 cm⁻¹) at 288 K lie in the Wien regime: $h\nu/k_BT \approx 50 \gg 1$, so reflected solar dominates completely over thermal emission.</div>
+    <div class="expand-hint">▾ click to expand</div>
+    <div class="assumptions-box">
+      <strong>Critical for CO₂ satellite mode selection:</strong> At 1.6 µm and 288 K, blackbody thermal emission is $\sim 10^{-8}$ times smaller than reflected solar. Hence daytime SWIR instruments measure purely reflected sunlight. At 4.3 µm, thermal emission starts to be significant. At 15 µm, thermal emission from the atmosphere/surface is the only signal.
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     TAB 3 — BEER-LAMBERT
+     ════════════════════════════════════════════════ -->
+<div class="eq-section" id="sec-beer">
+  <div class="section-header">
+    <div class="section-dot" style="background:#4abfe8"></div>
+    <h2>Beer-Lambert Law &amp; Optical Depth</h2>
+    <span class="tag" style="color:#4abfe8">ABSORPTION PHYSICS</span>
+  </div>
+
+  <div class="eq-box" style="--eq-color:#4abfe8" onclick="toggleExpand(this)">
+    <div class="eq-label">Eq. 3.1 — Beer-Lambert transmittance</div>
+    <div class="eq-title">Monochromatic Beam Transmittance (no scattering)</div>
+    <div class="eq-math">
+      $$\mathcal{T}_\nu(z_1, z_2) = \exp\!\left(-\int_{z_1}^{z_2} k_a^\nu(z)\,\rho(z)\,dz\right) = \exp\!\left(-\int_{z_1}^{z_2} \sum_g n_g(z)\,\sigma_g^\nu(T(z),p(z))\,dz\right)$$
+    </div>
+    <div class="eq-desc">Fraction of monochromatic radiance transmitted between altitudes $z_1$ and $z_2$ (or equivalently any two optical depths). For a slant path at zenith angle $\theta$, replace $dz$ with $dz/\mu = dz/\cos\theta$ (the "air mass factor"). This is the core of CO₂ column retrieval.</div>
+    <div class="expand-hint">▾ click to expand</div>
+    <div class="terms-grid">
+      <div class="terms-title">Symbol Definitions</div>
+      <div class="term-row"><div class="term-symbol">$k_a^\nu(z)$ [m² kg⁻¹]</div><div class="term-def">Mass absorption coefficient at altitude $z$, frequency $\nu$. Pressure- and temperature-dependent via line-shape broadening</div></div>
+      <div class="term-row"><div class="term-symbol">$\rho(z)$ [kg m⁻³]</div><div class="term-def">Air density at altitude $z$. From hydrostatic equation: $dp/dz = -\rho g$</div></div>
+      <div class="term-row"><div class="term-symbol">$n_g(z)$ [m⁻³]</div><div class="term-def">Number density of gas $g$ at altitude $z$. For CO₂: $n_{CO_2}(z) = x_{CO_2}\cdot n_{air}(z)$ where $x_{CO_2}$ is the mole fraction (~420 ppm)</div></div>
+      <div class="term-row"><div class="term-symbol">$\sigma_g^\nu(T,p)$ [m²]</div><div class="term-def">Absorption cross-section. Temperature affects Doppler width ($\gamma_D \propto \sqrt{T}$) and line strength ($S \propto \exp(-E''/k_BT)$). Pressure affects Lorentz width ($\gamma_L \propto p$)</div></div>
+      <div class="term-row"><div class="term-symbol">$\tau_\nu = -\ln\mathcal{T}_\nu$</div><div class="term-def">Optical depth. $\tau=1$: ~63% absorbed. $\tau=3$: ~95% absorbed. CO₂ 4.3µm band: $\tau > 100$</div></div>
+    </div>
+    <div class="assumptions-box">
+      <strong>Air mass factor (AMF):</strong> For a satellite looking at zenith angle $\theta$ and solar illumination at $\theta_0$:
+      $$M = \frac{1}{\mu} + \frac{1}{\mu_0} = \frac{1}{\cos\theta} + \frac{1}{\cos\theta_0}$$
+      The effective CO₂ optical depth is $\tau_{eff} = M \cdot \tau_{nadir}$. CO₂ column sensitivity $\propto M$ — glint observations (small $\theta$) maximize sensitivity.
+    </div>
+  </div>
+
+  <div class="eq-box" style="--eq-color:#4abfe8" onclick="toggleExpand(this)">
+    <div class="eq-label">Eq. 3.2 — Voigt line profile</div>
+    <div class="eq-title">Spectral Line Shape — Voigt Profile (Convolution of Lorentz &amp; Gauss)</div>
+    <div class="eq-math">
+      $$\sigma_g^\nu = S(T)\cdot V(\nu-\nu_0;\,\gamma_D,\gamma_L) = S(T)\cdot \frac{1}{\gamma_D\sqrt{\pi}}\,\mathrm{Re}\!\left[w\!\left(\frac{\nu-\nu_0+i\gamma_L}{\gamma_D}\right)\right]$$
+    </div>
+    <div class="eq-math">
+      $$\gamma_D = \frac{\nu_0}{c}\sqrt{\frac{2k_BT\ln 2}{m}} \quad\text{(Doppler/Gaussian HWHM)}$$
+      $$\gamma_L = \gamma_L^{ref}\left(\frac{T_{ref}}{T}\right)^{n_L}\frac{p}{p_{ref}} \quad\text{(Lorentz/collision HWHM)}$$
+    </div>
+    <div class="eq-desc">$w(z)$ is the Faddeeva (complex error) function. The Voigt profile is exact for an isolated spectral line broadened by both thermal motion (Doppler) and pressure collisions (Lorentz). High altitudes: Doppler-dominated. Troposphere: Lorentz-dominated. The ratio $\gamma_L/\gamma_D$ determines the Voigt shape parameter.</div>
+    <div class="expand-hint">▾ click to expand</div>
+    <div class="terms-grid">
+      <div class="terms-title">Symbol Definitions</div>
+      <div class="term-row"><div class="term-symbol">$S(T)$ [cm molecule⁻¹]</div><div class="term-def">Temperature-dependent line strength. $S(T) = S(T_{ref})\frac{Q(T_{ref})}{Q(T)}\exp\!\left[-\frac{hcE''}{k_B}\!\left(\frac{1}{T}-\frac{1}{T_{ref}}\right)\right]\frac{1-e^{-hc\nu_0/k_BT}}{1-e^{-hc\nu_0/k_BT_{ref}}}$</div></div>
+      <div class="term-row"><div class="term-symbol">$E''$ [cm⁻¹]</div><div class="term-def">Lower state energy of the transition. Determines how line strength changes with temperature</div></div>
+      <div class="term-row"><div class="term-symbol">$Q(T)$</div><div class="term-def">Total internal partition function of the molecule at temperature $T$</div></div>
+      <div class="term-row"><div class="term-symbol">$n_L$</div><div class="term-def">Temperature exponent for Lorentz broadening (~0.5–0.75 for CO₂ lines)</div></div>
+      <div class="term-row"><div class="term-symbol">$m$</div><div class="term-def">Molecular mass of CO₂ = 44 amu = $7.31\times10^{-26}$ kg</div></div>
+    </div>
+  </div>
+
+  <div class="eq-box" style="--eq-color:#4abfe8" onclick="toggleExpand(this)">
+    <div class="eq-label">Eq. 3.3 — Band transmittance &amp; k-distribution</div>
+    <div class="eq-title">Spectrally Averaged Transmittance — k-Distribution Method</div>
+    <div class="eq-math">
+      $$\bar{\mathcal{T}}(\Delta\nu) = \frac{1}{\Delta\nu}\int_{\Delta\nu} e^{-k_\nu u}\,d\nu = \int_0^\infty f(k)\,e^{-ku}\,dk = \int_0^1 e^{-k(g)\,u}\,dg$$
+    </div>
+    <div class="eq-desc">The k-distribution method rearranges the spectral integration: instead of integrating over frequency $\nu$ (rapidly varying), we integrate over the cumulative distribution $g$ of absorption coefficients $k$ (smooth, monotonic). This reduces computation from thousands of line-by-line points to ~16 Gaussian quadrature points per band, enabling fast forward models in retrieval algorithms.</div>
+    <div class="expand-hint">▾ click to expand</div>
+    <div class="terms-grid">
+      <div class="terms-title">Symbol Definitions</div>
+      <div class="term-row"><div class="term-symbol">$u = \int \rho q\,dz$</div><div class="term-def">Gas column amount (absorber path) [kg m⁻² or molec cm⁻²]. For CO₂: $u_{CO_2} = x_{CO_2}\cdot u_{air}$</div></div>
+      <div class="term-row"><div class="term-symbol">$f(k)$</div><div class="term-def">Probability density function of absorption coefficients in band $\Delta\nu$. Smooth function → efficient quadrature</div></div>
+      <div class="term-row"><div class="term-symbol">$g = \int_0^k f(k')\,dk'$</div><div class="term-def">Cumulative distribution function (CDF) of $k$. Monotonically increasing from 0 to 1 → smooth integrand</div></div>
+      <div class="term-row"><div class="term-symbol">$k(g)$</div><div class="term-def">Inverse CDF — the absorption coefficient at CDF value $g$. Used in radiative transfer models (RRTMG, LIDORT)</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     TAB 4 — SCATTERING
+     ════════════════════════════════════════════════ -->
+<div class="eq-section" id="sec-scatter">
+  <div class="section-header">
+    <div class="section-dot" style="background:#7b6ef6"></div>
+    <h2>Scattering Theory</h2>
+    <span class="tag" style="color:#7b6ef6">RAYLEIGH · MIE · PHASE FUNCTION</span>
+  </div>
+
+  <div class="eq-box" style="--eq-color:#7b6ef6" onclick="toggleExpand(this)">
+    <div class="eq-label">Eq. 4.1 — Rayleigh scattering cross-section</div>
+    <div class="eq-title">Rayleigh Scattering Cross-Section (Molecules)</div>
+    <div class="eq-math">
+      $$\sigma_R(\lambda) = \frac{8\pi^3}{3}\,\frac{(n^2-1)^2}{N^2\lambda^4}\,\frac{6+3\delta}{6-7\delta}$$
+    </div>
+    <div class="eq-desc">Rayleigh scattering cross-section per molecule scales as $\lambda^{-4}$. The factor $(6+3\delta)/(6-7\delta)$ is the King correction factor accounting for molecular anisotropy ($\delta$ is the depolarization ratio; $\delta\approx0.0279$ for air). This purely-scattering process has single scattering albedo $\omega_R = 1$ (no absorption).</div>
+    <div class="expand-hint">▾ click to expand</div>
+    <div class="terms-grid">
+      <div class="terms-title">Symbol Definitions</div>
+      <div class="term-row"><div class="term-symbol">$n(\lambda)$</div><div class="term-def">Real refractive index of air. $n-1 \approx 2.9\times10^{-4}$ at STP. Wavelength-dependent (dispersion)</div></div>
+      <div class="term-row"><div class="term-symbol">$N$ [m⁻³]</div><div class="term-def">Molecular number density. At STP: $N_0 = 2.687\times10^{25}$ m⁻³ (Loschmidt number)</div></div>
+      <div class="term-row"><div class="term-symbol">$\delta$</div><div class="term-def">Depolarization ratio (~0.0279 for air). Accounts for non-spherical electron clouds in N₂, O₂</div></div>
+      <div class="term-row"><div class="term-symbol">$\lambda^{-4}$ dependence</div><div class="term-def">Blue (0.45µm) scatters $(0.7/0.45)^4 \approx 5.9\times$ more than red (0.7µm). Makes sky blue, sunsets red</div></div>
+    </div>
+  </div>
+
+  <div class="eq-box" style="--eq-color:#7b6ef6" onclick="toggleExpand(this)">
+    <div class="eq-label">Eq. 4.2 — Phase function</div>
+    <div class="eq-title">Phase Function — Angular Distribution of Scattered Light</div>
+    <div class="eq-math">
+      $$p(\Theta) = \text{normalized angular distribution},\quad \frac{1}{4\pi}\int_0^{4\pi} p(\Theta)\,d\Omega = 1$$
+      $$p_R(\Theta) = \frac{3}{4}(1+\cos^2\Theta) \quad\text{(Rayleigh)}$$
+      $$p_{HG}(\Theta) = \frac{1-g^2}{(1 + g^2 - 2g\cos\Theta)^{3/2}} \quad\text{(Henyey-Greenstein, aerosols)}$$
+    </div>
+    <div class="eq-desc">The Rayleigh phase function $p_R$ is symmetric (equal forward/backward scatter). The Henyey-Greenstein function $p_{HG}$ parameterizes aerosol/cloud scattering by asymmetry factor $g = \langle\cos\Theta\rangle$. For clouds $g\approx0.85$ (strongly forward-scattering). The phase function enters the scattering source integral in the RTE.</div>
+    <div class="expand-hint">▾ click to expand</div>
+    <div class="terms-grid">
+      <div class="terms-title">Symbol Definitions</div>
+      <div class="term-row"><div class="term-symbol">$\Theta$</div><div class="term-def">Scattering angle between incident direction $\hat{\Omega}'$ and scattered direction $\hat{\Omega}$. $\cos\Theta = \hat{\Omega}\cdot\hat{\Omega}'$</div></div>
+      <div class="term-row"><div class="term-symbol">$g = \langle\cos\Theta\rangle$</div><div class="term-def">Asymmetry parameter [−1,1]. $g=0$: isotropic. $g=1$: complete forward scatter. $g=-1$: complete backscatter. Air (Rayleigh): $g=0$. Aerosols: $g\approx0.6$–$0.7$. Clouds: $g\approx0.85$</div></div>
+      <div class="term-row"><div class="term-symbol">Legendre expansion</div><div class="term-def">$p(\cos\Theta) = \sum_{l=0}^{L} (2l+1)\,\chi_l\,P_l(\cos\Theta)$ where $\chi_l$ are expansion coefficients (moments). Used in adding-doubling and discrete ordinates methods</div></div>
+    </div>
+  </div>
+
+  <div class="eq-box" style="--eq-color:#7b6ef6" onclick="toggleExpand(this)">
+    <div class="eq-label">Eq. 4.3 — Mie scattering efficiency</div>
+    <div class="eq-title">Mie Theory — Extinction &amp; Scattering Efficiencies</div>
+    <div class="eq-math">
+      $$Q_{ext}(x,m) = \frac{2}{x^2}\sum_{n=1}^\infty (2n+1)\,\mathrm{Re}(a_n + b_n)$$
+      $$Q_{sca}(x,m) = \frac{2}{x^2}\sum_{n=1}^\infty (2n+1)\,(|a_n|^2 + |b_n|^2)$$
+      $$x = \frac{2\pi r}{\lambda},\qquad k_M^\nu = \int_0^\infty n(r)\,\pi r^2\,Q_{ext}(x,m)\,dr$$
+    </div>
+    <div class="eq-desc">Mie theory gives exact solution for scattering by a sphere of radius $r$, complex refractive index $m=n_r-in_i$, and size parameter $x$. $a_n,b_n$ are Mie coefficients (Ricatti-Bessel functions). The aerosol extinction coefficient $k_M^\nu$ integrates over the particle size distribution $n(r)$. For CO₂ retrieval, aerosol $\{x_{CO_2},\tau_{aer},r_{eff},m\}$ are all retrieved simultaneously.</div>
+    <div class="expand-hint">▾ click to expand</div>
+    <div class="terms-grid">
+      <div class="terms-title">Symbol Definitions</div>
+      <div class="term-row"><div class="term-symbol">$x = 2\pi r/\lambda$</div><div class="term-def">Size parameter. $x\ll1$: Rayleigh regime. $x\sim1$: resonance (strong Mie effects). $x\gg1$: geometric optics</div></div>
+      <div class="term-row"><div class="term-symbol">$m = n_r - in_i$</div><div class="term-def">Complex refractive index. Real part $n_r$: refraction/scattering. Imaginary part $n_i$: absorption. $n_i=0$: non-absorbing aerosol</div></div>
+      <div class="term-row"><div class="term-symbol">$n(r)$ [m⁻⁴]</div><div class="term-def">Aerosol particle size distribution. Often lognormal: $n(r) = \frac{N}{\sqrt{2\pi}\ln\sigma_g}\frac{1}{r}\exp\!\left[-\frac{(\ln r - \ln r_g)^2}{2\ln^2\sigma_g}\right]$</div></div>
+      <div class="term-row"><div class="term-symbol">$\omega_{aer} = Q_{sca}/Q_{ext}$</div><div class="term-def">Aerosol single scattering albedo. Black carbon: $\omega\sim0.2$ (absorbing). Sulfate: $\omega\sim0.99$ (scattering)</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     TAB 5 — SCHWARZSCHILD
+     ════════════════════════════════════════════════ -->
+<div class="eq-section" id="sec-schwarz">
+  <div class="section-header">
+    <div class="section-dot" style="background:#e84a7a"></div>
+    <h2>Schwarzschild Equation (Thermal Emission)</h2>
+    <span class="tag" style="color:#e84a7a">TIR REGIME · NO SCATTERING</span>
+  </div>
+
+  <div class="eq-box" style="--eq-color:#e84a7a" onclick="toggleExpand(this)">
+    <div class="eq-label">Eq. 5.1 — Schwarzschild equation</div>
+    <div class="eq-title">RTE for Thermal IR — No-Scattering Limit ($\omega_\nu=0$)</div>
+    <div class="eq-math">
+      $$\mu\frac{dI_\nu}{d\tau_\nu} = I_\nu - B_\nu(T(\tau_\nu))$$
+    </div>
+    <div class="eq-desc">In the thermal infrared (TIR, 4–100 µm), scattering is negligible compared to absorption/emission for clear-sky conditions. Setting $\omega_\nu = 0$ in the full RTE eliminates the scattering integral. The source function reduces to the Planck function $B_\nu(T)$ at the local temperature — Kirchhoff's law: absorptivity equals emissivity.</div>
+    <div class="expand-hint">▾ click to expand</div>
+    <div class="assumptions-box">
+      <strong>Kirchhoff's law of thermal radiation:</strong> In thermodynamic equilibrium (LTE — Local Thermodynamic Equilibrium), the emissivity $\epsilon_\nu$ equals the absorptivity $\alpha_\nu$ at every frequency: $\epsilon_\nu = \alpha_\nu = 1 - \omega_\nu$. LTE holds throughout the troposphere and stratosphere (up to ~80 km). Above that, non-LTE corrections needed (important for 4.3 µm limb sounders).
+    </div>
+  </div>
+
+  <div class="eq-box" style="--eq-color:#e84a7a" onclick="toggleExpand(this)">
+    <div class="eq-label">Eq. 5.2 — Formal solution of Schwarzschild</div>
+    <div class="eq-title">Upwelling TIR Radiance at Any Level — Formal Integral Solution</div>
+    <div class="eq-math">
+      $$I_\nu(\tau^*,\mu) = \underbrace{\epsilon_s B_\nu(T_s)\,\mathcal{T}_\nu(\tau^*,0;\mu)}_{\text{surface emission term}} + \underbrace{(1-\epsilon_s)\,I_\nu^{\downarrow}(0)\,\mathcal{T}_\nu(\tau^*,0;\mu)}_{\text{surface reflection of downwelling}} + \underbrace{\int_0^{\tau^*} B_\nu(T(\tau'))\,\frac{\partial\mathcal{T}_\nu(\tau^*,\tau';\mu)}{\partial\tau'}\,d\tau'}_{\text{atmospheric emission}}$$
+    </div>
+    <div class="eq-desc">The upwelling radiance at TOA ($\tau^*$) seen by a nadir-viewing TIR satellite is the sum of: (1) surface thermal emission attenuated to TOA, (2) surface reflection of downwelling atmospheric radiation, and (3) the integral of atmospheric emission from all layers, each weighted by the transmittance from that layer to TOA.</div>
+    <div class="expand-hint">▾ click to expand</div>
+    <div class="terms-grid">
+      <div class="terms-title">Symbol Definitions</div>
+      <div class="term-row"><div class="term-symbol">$\epsilon_s$</div><div class="term-def">Surface emissivity in TIR. Ocean: $\epsilon_s\approx0.98$–0.99. Land: 0.90–0.98. Different for each frequency band</div></div>
+      <div class="term-row"><div class="term-symbol">$T_s$</div><div class="term-def">Surface skin temperature [K]. The temperature at the air-surface interface, not the 2 m air temperature</div></div>
+      <div class="term-row"><div class="term-symbol">$\mathcal{T}_\nu(\tau^*,\tau';\mu)$</div><div class="term-def">Transmittance from layer $\tau'$ to TOA $\tau^*$ in direction $\mu$. $= \exp\!\left(-(\tau^*-\tau')/\mu\right)$ for uniform atmosphere</div></div>
+      <div class="term-row"><div class="term-symbol">$\partial\mathcal{T}/\partial\tau'$</div><div class="term-def">Weighting function for layer $\tau'$ — how much that layer contributes to TOA radiance. Peaks where transmittance changes fastest (see Tab 7)</div></div>
+      <div class="term-row"><div class="term-symbol">$I_\nu^{\downarrow}(0)$</div><div class="term-def">Downwelling atmospheric radiance at the surface. Significant in TIR bands; negligible in SWIR (except cloud reflection)</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     TAB 6 — TOA RADIANCE
+     ════════════════════════════════════════════════ -->
+<div class="eq-section" id="sec-toa">
+  <div class="section-header">
+    <div class="section-dot" style="background:#4ae8a0"></div>
+    <h2>TOA Upwelling Radiance (SWIR — Full Solution)</h2>
+    <span class="tag" style="color:#4ae8a0">SATELLITE MEASUREMENT</span>
+  </div>
+
+  <div class="eq-box" style="--eq-color:#4ae8a0" onclick="toggleExpand(this)">
+    <div class="eq-label">Eq. 6.1 — Complete SWIR TOA radiance</div>
+    <div class="eq-title">Top-of-Atmosphere Upwelling Radiance — All Terms (OCO-2 / GOSAT context)</div>
+    <div class="eq-math">
+      $$I_\nu^{TOA}(\mu,\phi) = \underbrace{\frac{\mu_0 F_0^\nu}{\pi}\,a_s(\mu,\mu_0,\phi)\,\mathcal{T}_\nu^2(0,z_s;\mu,\mu_0)}_{\text{(A) surface-reflected solar}} + \underbrace{\int_0^\infty J_\nu^{sc}(z)\,\frac{\partial\mathcal{T}_\nu(z,\infty;\mu)}{\partial z}\,dz}_{\text{(B) atmospheric scattering}} + \underbrace{\text{(TIR emission — negligible at 1.6 µm)}}_{\approx 0}$$
+    </div>
+    <div class="eq-desc">In the SWIR at 1.6 µm and 2.06 µm, term (A) — solar photons reflected off the surface traversing the atmosphere twice — completely dominates. Term (B) is scattered solar light from the atmosphere (aerosol/Rayleigh path radiance). The $\mathcal{T}_\nu^2$ factor shows the two-way absorption: down path × up path.</div>
+    <div class="expand-hint">▾ click to expand</div>
+    <div class="terms-grid">
+      <div class="terms-title">Symbol Definitions</div>
+      <div class="term-row"><div class="term-symbol">$a_s(\mu,\mu_0,\phi)$</div><div class="term-def">Bidirectional reflectance distribution function (BRDF) of the surface [sr⁻¹]. For Lambertian surface: $a_s = A_s/\pi$ where $A_s$ is hemispherical albedo. Ocean glint: sharply peaked BRDF</div></div>
+      <div class="term-row"><div class="term-symbol">$\mathcal{T}_\nu^2$</div><div class="term-def">Two-way transmittance = $\mathcal{T}_\nu(\text{TOA}{\to}z_s;\mu_0)\times\mathcal{T}_\nu(z_s{\to}\text{TOA};\mu)$. For nadir view + vertical sun: $= e^{-2\tau_\nu}$. Encodes the entire CO₂ column absorption</div></div>
+      <div class="term-row"><div class="term-symbol">$J_\nu^{sc}(z)$</div><div class="term-def">Scattering source function at altitude $z$ (aerosol + Rayleigh scattered solar). This "path radiance" contaminates the CO₂ signal by providing photons that bypassed the surface</div></div>
+      <div class="term-row"><div class="term-symbol">$F_0^\nu/\pi$</div><div class="term-def">Converts solar irradiance [W m⁻² Hz⁻¹] to equivalent isotropic radiance [W m⁻² sr⁻¹ Hz⁻¹]. Factor $\mu_0$ gives the projection onto horizontal surface</div></div>
+    </div>
+    <div class="assumptions-box">
+      <strong>Decoupled approximation</strong> used in fast forward models (e.g. XCO2 retrieval in OCO-2 ACOS algorithm): the two-way transmittance separates into sun-path and view-path. This holds when multiple scattering is small. Full vector (polarized) multiple-scattering RT (VLIDORT, LIDORT) is used for accurate aerosol correction.
+    </div>
+  </div>
+
+  <div class="eq-box" style="--eq-color:#4ae8a0" onclick="toggleExpand(this)">
+    <div class="eq-label">Eq. 6.2 — O₂ A-band normalization</div>
+    <div class="eq-title">Ratio Method — Eliminating Geometric &amp; Albedo Uncertainties</div>
+    <div class="eq-math">
+      $$\frac{I_{CO_2}^{obs}(\nu_{CO_2})}{I_{O_2}^{obs}(\nu_{O_2})} = \frac{\mathcal{T}_{CO_2}(\nu_{CO_2})\cdot\mathcal{T}_{H_2O}(\nu_{CO_2})\cdot\mathcal{T}_{aer}(\nu_{CO_2})}{\mathcal{T}_{O_2}(\nu_{O_2})\cdot\mathcal{T}_{aer}(\nu_{O_2})} \cdot f(\text{albedo, geometry})$$
+    </div>
+    <div class="eq-math">
+      $$N_{CO_2} \propto -\mu\mu_0\,\ln\left(\frac{I_{CO_2}^{obs}}{I_{CO_2}^{cont}}\right) \cdot \frac{1}{\sigma_{CO_2}^{eff}},\quad p_s \propto -\mu\mu_0\,\ln\left(\frac{I_{O_2}^{obs}}{I_{O_2}^{cont}}\right)\cdot\frac{1}{\sigma_{O_2}^{eff}}$$
+    </div>
+    <div class="eq-desc">O₂ is 20.946% of dry air — fixed and well-known. Its column amount $N_{O_2} \propto p_s$ (surface pressure). Dividing CO₂ absorption by O₂ absorption cancels: (a) viewing geometry uncertainty, (b) surface albedo, (c) instrumental gain. What remains is the ratio of CO₂ to O₂ column → $x_{CO_2}$ (dry-air mole fraction = XCO₂).</div>
+    <div class="expand-hint">▾ click to expand</div>
+    <div class="terms-grid">
+      <div class="terms-title">Symbol Definitions</div>
+      <div class="term-row"><div class="term-symbol">$I^{cont}$</div><div class="term-def">Continuum radiance — interpolated radiance at a non-absorbing "window" wavelength adjacent to the band. Provides the baseline for computing absorption depth</div></div>
+      <div class="term-row"><div class="term-symbol">$\sigma^{eff}$</div><div class="term-def">Effective cross-section averaged over the instrument spectral response function. Depends on CO₂ amount itself (non-linear: strong lines saturate first)</div></div>
+      <div class="term-row"><div class="term-symbol">$\text{XCO}_2$</div><div class="term-def">$= N_{CO_2} / N_{dry-air}$ in parts per million (ppm). Column-averaged dry-air mole fraction. ~420 ppm globally. OCO-2 target precision: 0.3–1 ppm (0.07–0.25%)</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     TAB 7 — TWO-STREAM
+     ════════════════════════════════════════════════ -->
+<div class="eq-section" id="sec-twostr">
+  <div class="section-header">
+    <div class="section-dot" style="background:#e84ae8"></div>
+    <h2>Two-Stream Approximation</h2>
+    <span class="tag" style="color:#e84ae8">CLIMATE / FAST MODELS</span>
+  </div>
+
+  <div class="eq-box" style="--eq-color:#e84ae8" onclick="toggleExpand(this)">
+    <div class="eq-label">Eq. 7.1 — Two-stream equations</div>
+    <div class="eq-title">Coupled Upward/Downward Flux Equations</div>
+    <div class="eq-math">
+      $$\frac{dF^+}{d\tau} = \gamma_1 F^+ - \gamma_2 F^- - \gamma_3\,\mu_0 F_\odot\,e^{-\tau/\mu_0} - (1-\omega)\,\pi B$$
+      $$\frac{dF^-}{d\tau} = \gamma_2 F^+ - \gamma_1 F^- + \gamma_4\,\mu_0 F_\odot\,e^{-\tau/\mu_0} + (1-\omega)\,\pi B$$
+    </div>
+    <div class="eq-desc">The two-stream approximation collapses the full angular dependence of $I(\mu)$ into two hemispheric fluxes: $F^+$ (upwelling) and $F^-$ (downwelling). The coefficients $\gamma_{1..4}$ depend on the closure scheme. The solar forcing appears as an inhomogeneous source term. This is the basis of climate model radiation schemes (e.g. RRTMG).</div>
+    <div class="expand-hint">▾ click to expand</div>
+    <div class="terms-grid">
+      <div class="terms-title">Closure coefficients (Eddington scheme)</div>
+      <div class="term-row"><div class="term-symbol">$\gamma_1 = \frac{7-\omega(4+3g)}{4}$</div><div class="term-def">Loss from upwelling: extinction − backscattering</div></div>
+      <div class="term-row"><div class="term-symbol">$\gamma_2 = \frac{-(1-\omega(4-3g))}{4}$</div><div class="term-def">Coupling: downwelling backscatter into upwelling</div></div>
+      <div class="term-row"><div class="term-symbol">$\gamma_3 = \frac{2-3g\mu_0}{4}$</div><div class="term-def">Direct solar beam fraction forward-scattered upward</div></div>
+      <div class="term-row"><div class="term-symbol">$\gamma_4 = 1-\gamma_3$</div><div class="term-def">Direct solar beam fraction forward-scattered downward</div></div>
+      <div class="term-row"><div class="term-symbol">$g$ [−1,1]</div><div class="term-def">Asymmetry parameter of the phase function</div></div>
+    </div>
+    <div class="assumptions-box">
+      <strong>Net flux and heating rate:</strong>
+      $$Q(z) = -\frac{\partial(F^+-F^-)}{\partial z} = \rho c_p \frac{\partial T}{\partial t}\bigg|_{rad}$$
+      The atmospheric heating/cooling rate due to CO₂ at 15 µm drives the greenhouse effect: more CO₂ → increased downwelling $F^-$ at surface → warming.
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     TAB 8 — WEIGHTING FUNCTIONS
+     ════════════════════════════════════════════════ -->
+<div class="eq-section" id="sec-weight">
+  <div class="section-header">
+    <div class="section-dot" style="background:#e8a04a"></div>
+    <h2>Weighting Functions &amp; Jacobians</h2>
+    <span class="tag" style="color:#e8a04a">SENSITIVITY / VERTICAL INFORMATION</span>
+  </div>
+
+  <div class="eq-box" style="--eq-color:#e8a04a" onclick="toggleExpand(this)">
+    <div class="eq-label">Eq. 8.1 — Contribution function (TIR)</div>
+    <div class="eq-title">TIR Weighting Function — Where the Satellite "Sees" in the Atmosphere</div>
+    <div class="eq-math">
+      $$W_\nu(z) = \frac{\partial I_\nu^{TOA}}{\partial T(z)} = B_\nu'(T(z))\,\frac{\partial\mathcal{T}_\nu(z,\infty)}{\partial z} = B_\nu'(T(z))\cdot(-k_\nu(z)\,\rho(z)/\mu)\cdot\mathcal{T}_\nu(z,\infty)$$
+    </div>
+    <div class="eq-desc">The TIR weighting function $W_\nu(z)$ tells us which atmospheric level contributes most to the observed TOA radiance at frequency $\nu$. It is the product of the Planck derivative (sensitivity to temperature) and the transmittance gradient (opacity structure). Peak of $W_\nu$ determines the "sounding altitude" of that channel.</div>
+    <div class="expand-hint">▾ click to expand</div>
+    <div class="terms-grid">
+      <div class="terms-title">Symbol Definitions</div>
+      <div class="term-row"><div class="term-symbol">$B_\nu'(T) = \partial B_\nu/\partial T$</div><div class="term-def">Derivative of Planck function with respect to temperature. Maximum in TIR where both $B_\nu$ and its sensitivity to $T$ are significant</div></div>
+      <div class="term-row"><div class="term-symbol">$\partial\mathcal{T}/\partial z$</div><div class="term-def">Transmittance gradient — peaks where opacity transitions from transparent to opaque. For CO₂ at 15µm: peaks at ~10–15 km. Wings of band: peaks lower (more transparent)</div></div>
+      <div class="term-row"><div class="term-symbol">$\int_0^\infty W_\nu(z)\,dz = 1-\mathcal{T}_s$</div><div class="term-def">Normalization: integral of weighting functions equals total atmospheric opacity (1 − surface transmittance)</div></div>
+    </div>
+    <div class="assumptions-box">
+      <strong>Information content (Shannon entropy):</strong>
+      $$H = \frac{1}{2}\ln\det(\mathbf{I} + \mathbf{S}_a^{1/2}\mathbf{K}^T\mathbf{S}_e^{-1}\mathbf{K}\mathbf{S}_a^{1/2})$$
+      Number of independent pieces of information = $\text{tr}(\mathbf{A})$ where $\mathbf{A}$ is the averaging kernel matrix (see Eq. 9.3). TIR sounders typically retrieve 2–5 independent CO₂ layers.
+    </div>
+  </div>
+
+  <div class="eq-box" style="--eq-color:#e8a04a" onclick="toggleExpand(this)">
+    <div class="eq-label">Eq. 8.2 — Jacobian (SWIR)</div>
+    <div class="eq-title">SWIR Jacobian — Radiance Sensitivity to CO₂ Profile</div>
+    <div class="eq-math">
+      $$K_\nu^{(l)} = \frac{\partial I_\nu^{TOA}}{\partial N_{CO_2}^{(l)}} = -\frac{\mu_0 F_0^\nu}{\pi}\,a_s\,e^{-\tau_\nu^{total}/\mu_0}\,e^{-\tau_\nu^{total}/\mu}\cdot\left(\frac{\sigma_{CO_2}^\nu}{\mu_0} + \frac{\sigma_{CO_2}^\nu}{\mu}\right)$$
+    </div>
+    <div class="eq-desc">The SWIR Jacobian $\mathbf{K}$ is the matrix of partial derivatives of the measured spectrum with respect to each atmospheric state variable (CO₂ in each layer, surface albedo, aerosol optical depth, etc.). It linearizes the forward model around a prior state and is the key quantity in the retrieval inverse problem. Each row is a different wavelength; each column is a different state variable.</div>
+    <div class="expand-hint">▾ click to expand</div>
+    <div class="terms-grid">
+      <div class="terms-title">Symbol Definitions</div>
+      <div class="term-row"><div class="term-symbol">$N_{CO_2}^{(l)}$ [mol/m²]</div><div class="term-def">CO₂ column amount in atmospheric layer $l$. The state vector $\mathbf{x}$ contains CO₂ in all $L$ layers plus nuisance parameters</div></div>
+      <div class="term-row"><div class="term-symbol">$\sigma_{CO_2}^\nu/\mu_0 + \sigma_{CO_2}^\nu/\mu$</div><div class="term-def">Two-way path enhancement — CO₂ in any layer absorbs once on the way down ($1/\mu_0$) and once on the way up ($1/\mu$). Greater sensitivity at oblique angles</div></div>
+      <div class="term-row"><div class="term-symbol">$e^{-\tau^{total}}$</div><div class="term-def">Attenuation by all gas + aerosol above layer $l$. Lower layers contribute less (more attenuation above). SWIR weighting functions nearly uniform with altitude — good column sensitivity</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     TAB 9 — OPTIMAL ESTIMATION
+     ════════════════════════════════════════════════ -->
+<div class="eq-section" id="sec-retriev">
+  <div class="section-header">
+    <div class="section-dot" style="background:#a04ae8"></div>
+    <h2>Optimal Estimation Retrieval</h2>
+    <span class="tag" style="color:#a04ae8">RODGERS 2000 · BAYESIAN INVERSION</span>
+  </div>
+
+  <div class="eq-box" style="--eq-color:#a04ae8" onclick="toggleExpand(this)">
+    <div class="eq-label">Eq. 9.1 — Cost function</div>
+    <div class="eq-title">Optimal Estimation Cost Function — Maximum A Posteriori Solution</div>
+    <div class="eq-math">
+      $$\mathcal{J}(\mathbf{x}) = \underbrace{(\mathbf{x}-\mathbf{x}_a)^T \mathbf{S}_a^{-1} (\mathbf{x}-\mathbf{x}_a)}_{\text{prior constraint}} + \underbrace{(\mathbf{y}-\mathbf{F}(\mathbf{x}))^T \mathbf{S}_e^{-1} (\mathbf{y}-\mathbf{F}(\mathbf{x}))}_{\text{measurement fit}} \rightarrow \text{minimise}$$
+    </div>
+    <div class="eq-desc">The retrieved state $\hat{\mathbf{x}}$ minimizes $\mathcal{J}$: a weighted compromise between matching the measurement $\mathbf{y}$ (observed spectrum) via the forward model $\mathbf{F}(\mathbf{x})$ and staying close to the prior $\mathbf{x}_a$. The prior constrains underdetermined aspects (e.g. CO₂ in individual layers when only the column is well-measured).</div>
+    <div class="expand-hint">▾ click to expand</div>
+    <div class="terms-grid">
+      <div class="terms-title">Symbol Definitions</div>
+      <div class="term-row"><div class="term-symbol">$\mathbf{x} \in \mathbb{R}^n$</div><div class="term-def">State vector. Contains: CO₂ profile on $L$ levels, H₂O profile, surface pressure $p_s$, surface albedo $A_s$, aerosol optical depth $\tau_{aer}$, aerosol size parameters, temperature profile, SIF (solar-induced fluorescence), instrument zero level offset. Typically $n \sim 20$–60</div></div>
+      <div class="term-row"><div class="term-symbol">$\mathbf{y} \in \mathbb{R}^m$</div><div class="term-def">Measurement vector: observed spectral radiances at $m$ frequencies across O₂ A-band, 1.6 µm CO₂ band, 2.06 µm CO₂ band. OCO-2: $m\approx3\times1016 = 3048$ spectral points</div></div>
+      <div class="term-row"><div class="term-symbol">$\mathbf{F}(\mathbf{x}) \in \mathbb{R}^m$</div><div class="term-def">Forward model: computes the radiance spectrum that the satellite WOULD see given state $\mathbf{x}$. Calls radiative transfer code (e.g. LIDORT) + instrument model (ILS, noise)</div></div>
+      <div class="term-row"><div class="term-symbol">$\mathbf{S}_a \in \mathbb{R}^{n\times n}$</div><div class="term-def">Prior (a priori) error covariance. Encodes expected variance and correlations in the state variables before measurement. CO₂: $S_a^{CO_2} \sim (3\text{ ppm})^2$ vertically correlated</div></div>
+      <div class="term-row"><div class="term-symbol">$\mathbf{S}_e \in \mathbb{R}^{m\times m}$</div><div class="term-def">Measurement error covariance. Diagonal terms: instrument noise ($\text{SNR}^{-2}$). Off-diagonal: correlated errors from forward model approximations ("model error" $\mathbf{S}_b$). Full: $\mathbf{S}_e = \mathbf{S}_n + \mathbf{K}_b\mathbf{S}_b\mathbf{K}_b^T$</div></div>
+    </div>
+  </div>
+
+  <div class="eq-box" style="--eq-color:#a04ae8" onclick="toggleExpand(this)">
+    <div class="eq-label">Eq. 9.2 — Gauss-Newton iteration</div>
+    <div class="eq-title">Iterative Solution — Gauss-Newton / Levenberg-Marquardt Update</div>
+    <div class="eq-math">
+      $$\mathbf{x}_{i+1} = \mathbf{x}_a + \mathbf{G}_i\left[\mathbf{y} - \mathbf{F}(\mathbf{x}_i) + \mathbf{K}_i(\mathbf{x}_i - \mathbf{x}_a)\right]$$
+      $$\mathbf{G}_i = (\mathbf{K}_i^T\mathbf{S}_e^{-1}\mathbf{K}_i + \mathbf{S}_a^{-1})^{-1}\mathbf{K}_i^T\mathbf{S}_e^{-1} \quad\text{(gain matrix)}$$
+      $$\hat{\mathbf{S}} = (\mathbf{K}^T\mathbf{S}_e^{-1}\mathbf{K} + \mathbf{S}_a^{-1})^{-1} \quad\text{(posterior covariance)}$$
+    </div>
+    <div class="eq-desc">At each iteration, the Jacobian $\mathbf{K}_i = \partial\mathbf{F}/\partial\mathbf{x}|_{\mathbf{x}_i}$ is computed (analytically or via finite difference). The gain matrix $\mathbf{G}$ maps measurement residuals into state updates. Convergence criterion: $(\mathbf{x}_{i+1}-\mathbf{x}_i)^T\hat{\mathbf{S}}^{-1}(\mathbf{x}_{i+1}-\mathbf{x}_i) < \epsilon n$. Typically 3–10 iterations.</div>
+    <div class="expand-hint">▾ click to expand</div>
+    <div class="terms-grid">
+      <div class="terms-title">Symbol Definitions</div>
+      <div class="term-row"><div class="term-symbol">$\mathbf{K}_i = \partial\mathbf{F}/\partial\mathbf{x}$</div><div class="term-def">Jacobian matrix [m×n] evaluated at current iterate $\mathbf{x}_i$. Row $j$, column $k$: sensitivity of radiance at frequency $\nu_j$ to state variable $x_k$</div></div>
+      <div class="term-row"><div class="term-symbol">$\mathbf{G}$ [n×m]</div><div class="term-def">Gain (contribution) matrix. $\hat{\mathbf{x}} = \mathbf{x}_a + \mathbf{G}(\mathbf{y}-\mathbf{F}(\mathbf{x}_a))$ at convergence. Rows show which spectral channels drive each state variable</div></div>
+      <div class="term-row"><div class="term-symbol">$\hat{\mathbf{S}}$ [n×n]</div><div class="term-def">Posterior error covariance. $\hat{\sigma}_{XCO_2} = \sqrt{\mathbf{c}^T\hat{\mathbf{S}}\mathbf{c}}$ where $\mathbf{c}$ is the column operator. Target: $\hat{\sigma}_{XCO_2} < 1$ ppm</div></div>
+    </div>
+    <div class="assumptions-box">
+      <strong>Levenberg-Marquardt damping:</strong> Replace $\mathbf{K}^T\mathbf{S}_e^{-1}\mathbf{K}$ with $\mathbf{K}^T\mathbf{S}_e^{-1}\mathbf{K} + \gamma\mathbf{S}_a^{-1}$ where $\gamma>0$ damps oscillation for highly nonlinear forward models (aerosol retrieval). $\gamma\to0$: pure Gauss-Newton. $\gamma\to\infty$: steepest descent direction.
+    </div>
+  </div>
+
+  <div class="eq-box" style="--eq-color:#a04ae8" onclick="toggleExpand(this)">
+    <div class="eq-label">Eq. 9.3 — Averaging kernel</div>
+    <div class="eq-title">Averaging Kernel Matrix $\mathbf{A}$ — What the Retrieval Actually Measures</div>
+    <div class="eq-math">
+      $$\mathbf{A} = \mathbf{G}\mathbf{K} = \hat{\mathbf{S}}\mathbf{K}^T\mathbf{S}_e^{-1}\mathbf{K} = \mathbf{I} - \hat{\mathbf{S}}\mathbf{S}_a^{-1}$$
+      $$\hat{\mathbf{x}} - \mathbf{x}_a = \mathbf{A}(\mathbf{x}_{true}-\mathbf{x}_a) + \mathbf{G}\boldsymbol{\epsilon}$$
+    </div>
+    <div class="eq-desc">The averaging kernel $\mathbf{A}$ [n×n] tells us: if the true atmosphere deviates from the prior by $(\mathbf{x}_{true}-\mathbf{x}_a)$, how much of that deviation does the retrieval actually see? Row $i$ of $\mathbf{A}$ gives the sensitivity of retrieved $\hat{x}_i$ to the true profile. For XCO₂, the column-averaging kernel (1D) should be ≈1 uniformly from surface to TOA for unbiased column retrieval.</div>
+    <div class="expand-hint">▾ click to expand</div>
+    <div class="terms-grid">
+      <div class="terms-title">Symbol Definitions</div>
+      <div class="term-row"><div class="term-symbol">$\mathbf{A} = \mathbf{I}$</div><div class="term-def">Ideal: perfect retrieval. $A_{ij}=\delta_{ij}$ means retrieved $x_i$ responds only to true $x_i$</div></div>
+      <div class="term-row"><div class="term-symbol">$\mathbf{A} = \mathbf{0}$</div><div class="term-def">No information from measurement — retrieval equals prior. Degrees of freedom for signal: $d_s = \text{tr}(\mathbf{A})$</div></div>
+      <div class="term-row"><div class="term-symbol">$\mathbf{c}^T\mathbf{A}$</div><div class="term-def">Column-averaging kernel for XCO₂. $\mathbf{c}$ is pressure-weighting vector. Should be ~1 at all altitudes for unbiased XCO₂. Deviates near surface (low surface albedo) and above tropopause</div></div>
+      <div class="term-row"><div class="term-symbol">$\mathbf{G}\boldsymbol{\epsilon}$</div><div class="term-def">Noise-induced retrieval error. $\boldsymbol{\epsilon}$ is measurement noise vector. $\hat{\mathbf{S}}_n = \mathbf{G}\mathbf{S}_e\mathbf{G}^T$ is the noise error covariance</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     TAB 10 — XCO2 COLUMN
+     ════════════════════════════════════════════════ -->
+<div class="eq-section" id="sec-xcco2">
+  <div class="section-header">
+    <div class="section-dot" style="background:#4ae8e8"></div>
+    <h2>XCO₂ Column &amp; Flux Inversion</h2>
+    <span class="tag" style="color:#4ae8e8">COLUMN RETRIEVAL · CARBON CYCLE</span>
+  </div>
+
+  <div class="eq-box" style="--eq-color:#4ae8e8" onclick="toggleExpand(this)">
+    <div class="eq-label">Eq. 10.1 — Column-averaged XCO₂</div>
+    <div class="eq-title">Pressure-Weighted Column-Averaged Dry-Air Mole Fraction</div>
+    <div class="eq-math">
+      $$X_{CO_2} = \frac{\int_0^{p_s} x_{CO_2}(p)\,dp}{\int_0^{p_s} dp} = \frac{1}{p_s}\int_0^{p_s} x_{CO_2}(p)\,dp \approx \sum_{l=1}^{L} w_l\,x_{CO_2}^{(l)}$$
+    </div>
+    <div class="eq-math">
+      $$w_l = \frac{\Delta p_l}{p_s},\quad \sum_{l=1}^L w_l = 1$$
+    </div>
+    <div class="eq-desc">XCO₂ is the pressure-weighted vertical average of the CO₂ mole fraction profile $x_{CO_2}(p)$. The weights $w_l = \Delta p_l / p_s$ are proportional to the pressure thickness of each layer. This definition excludes water vapor (dry-air mole fraction). The actual retrieved quantity is the prior profile adjusted by the retrieval: $\hat{x}_{CO_2}(p) = x_a(p) + [\hat{\mathbf{x}}-\mathbf{x}_a]_{CO_2}$.</div>
+    <div class="expand-hint">▾ click to expand</div>
+    <div class="terms-grid">
+      <div class="terms-title">Symbol Definitions</div>
+      <div class="term-row"><div class="term-symbol">$x_{CO_2}(p)$</div><div class="term-def">CO₂ dry-air mole fraction [mol/mol] at pressure level $p$. Ranges from ~420 ppm near surface (NH summer) to ~415 ppm at tropopause, with seasonal ±10 ppm cycle</div></div>
+      <div class="term-row"><div class="term-symbol">$p_s$ [Pa]</div><div class="term-def">Surface pressure. Retrieved from O₂ A-band depth. Standard: ~101325 Pa. Varies ±5000 Pa with terrain and weather. Uncertainty in $p_s$ → XCO₂ bias at ~0.25 ppm/hPa</div></div>
+      <div class="term-row"><div class="term-symbol">$w_l = \Delta p_l/p_s$</div><div class="term-def">Layer pressure weight. Lower atmosphere has larger $\Delta p$ → weighted toward surface CO₂. Important because surface fluxes (fossil fuels, biosphere) affect surface layers first</div></div>
+    </div>
+  </div>
+
+  <div class="eq-box" style="--eq-color:#4ae8e8" onclick="toggleExpand(this)">
+    <div class="eq-label">Eq. 10.2 — Atmospheric transport &amp; flux inversion</div>
+    <div class="eq-title">CO₂ Continuity Equation &amp; Bayesian Flux Inversion</div>
+    <div class="eq-math">
+      $$\frac{\partial c}{\partial t} + \nabla\cdot(\mathbf{u}c) = \nabla\cdot(D\nabla c) + S(\mathbf{x},t)$$
+    </div>
+    <div class="eq-math">
+      $$\mathbf{y}_{XCO_2} = \mathbf{H}\,\mathbf{s} + \boldsymbol{\epsilon},\qquad \hat{\mathbf{s}} = \mathbf{s}_b + (\mathbf{H}^T\mathbf{R}^{-1}\mathbf{H}+\mathbf{B}^{-1})^{-1}\mathbf{H}^T\mathbf{R}^{-1}(\mathbf{y}-\mathbf{H}\mathbf{s}_b)$$
+    </div>
+    <div class="eq-desc">Satellite XCO₂ observations are used in atmospheric inverse modeling to infer surface CO₂ fluxes $\mathbf{s}$ (fossil fuel emissions, biosphere uptake, ocean exchange). The transport operator $\mathbf{H}$ maps surface fluxes to XCO₂ observations via an atmospheric transport model (GEOS-Chem, TM5, etc.). The Bayesian inversion produces optimized fluxes $\hat{\mathbf{s}}$ with uncertainty.</div>
+    <div class="expand-hint">▾ click to expand</div>
+    <div class="terms-grid">
+      <div class="terms-title">Symbol Definitions</div>
+      <div class="term-row"><div class="term-symbol">$c$ [ppm or mol/m³]</div><div class="term-def">CO₂ concentration field in 3D atmosphere + time</div></div>
+      <div class="term-row"><div class="term-symbol">$\mathbf{u}$ [m/s]</div><div class="term-def">Wind velocity field from meteorological reanalysis (ERA5, MERRA-2). Advects CO₂ from source regions</div></div>
+      <div class="term-row"><div class="term-symbol">$S(\mathbf{x},t)$ [mol m⁻³ s⁻¹]</div><div class="term-def">Source/sink term. Positive: fossil fuels, respiration, fires. Negative: photosynthesis, ocean uptake. What we want to infer</div></div>
+      <div class="term-row"><div class="term-symbol">$\mathbf{H}$ [obs×flux]</div><div class="term-def">Transport/observation operator. Maps surface fluxes → XCO₂ at satellite overpass locations. Computed by adjoint of atmospheric transport model</div></div>
+      <div class="term-row"><div class="term-symbol">$\mathbf{B}$ [flux×flux]</div><div class="term-def">Background flux error covariance. Encodes spatial correlations between flux regions (ecosystems, countries)</div></div>
+      <div class="term-row"><div class="term-symbol">$\mathbf{R}$ [obs×obs]</div><div class="term-def">Observation error covariance. Includes retrieval noise + transport model error + representativeness error</div></div>
+    </div>
+    <div class="assumptions-box">
+      <strong>Global carbon budget check:</strong> The global CO₂ growth rate = fossil emissions + land use change − terrestrial uptake − ocean uptake. Satellites constrain the spatial distribution of uptake/emission, resolving where the "missing sink" is.
+    </div>
+  </div>
+
+  <div class="eq-box" style="--eq-color:#4ae8e8" onclick="toggleExpand(this)">
+    <div class="eq-label">Eq. 10.3 — Solar-induced fluorescence (SIF)</div>
+    <div class="eq-title">SIF as a Proxy for Gross Primary Production</div>
+    <div class="eq-math">
+      $$I^{TOA}_{SIF}(\nu) = \frac{1}{\pi}\,\Phi_F(\nu)\cdot\mathbf{F}^{PAR}\cdot f_{green} + \text{surface reflection} + \text{atmospheric scattering}$$
+    </div>
+    <div class="eq-math">
+      $$\text{GPP} \approx \text{LUE} \times \text{APAR} = \text{LUE}\times f_{PAR}\times F^{PAR}$$
+    </div>
+    <div class="eq-desc">Chlorophyll re-emits a fraction of absorbed sunlight as fluorescence at 0.69 and 0.74 µm, overlapping CO₂ retrieval windows. Modern CO₂ satellites (OCO-2, GOSAT, TROPOMI) simultaneously retrieve SIF, which correlates with photosynthesis (GPP). SIF fills Fraunhofer lines in the solar spectrum — detectable as "infilling." This links CO₂ column measurements to the land biosphere carbon sink.</div>
+    <div class="expand-hint">▾ click to expand</div>
+    <div class="terms-grid">
+      <div class="terms-title">Symbol Definitions</div>
+      <div class="term-row"><div class="term-symbol">$\Phi_F(\nu)$</div><div class="term-def">Fluorescence yield spectrum [sr⁻¹]. Ratio of emitted fluorescence photons to absorbed PAR photons. Depends on vegetation type and stress state</div></div>
+      <div class="term-row"><div class="term-symbol">$F^{PAR}$</div><div class="term-def">Photosynthetically active radiation (0.4–0.7 µm) flux [W/m²]</div></div>
+      <div class="term-row"><div class="term-symbol">$f_{green}$</div><div class="term-def">Fraction of pixel covered by photosynthetically active vegetation</div></div>
+      <div class="term-row"><div class="term-symbol">LUE</div><div class="term-def">Light use efficiency [mol CO₂ / mol photon]. Links SIF signal to actual CO₂ uptake rate</div></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end eq-area -->
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-section">
+    <h3>Quick Symbol Reference</h3>
+    <ul class="symbol-list">
+      <li><span class="sym">$I_\nu$</span><span class="sym-def">Spectral radiance [W m⁻² sr⁻¹ Hz⁻¹]</span></li>
+      <li><span class="sym">$B_\nu(T)$</span><span class="sym-def">Planck blackbody function</span></li>
+      <li><span class="sym">$\tau_\nu$</span><span class="sym-def">Optical depth (dimensionless)</span></li>
+      <li><span class="sym">$\mathcal{T}_\nu$</span><span class="sym-def">Transmittance = $e^{-\tau_\nu}$</span></li>
+      <li><span class="sym">$\omega_\nu$</span><span class="sym-def">Single scattering albedo</span></li>
+      <li><span class="sym">$\mu=\cos\theta$</span><span class="sym-def">Zenith angle cosine</span></li>
+      <li><span class="sym">$k_e^\nu$</span><span class="sym-def">Extinction coefficient [m⁻¹]</span></li>
+      <li><span class="sym">$\sigma_g^\nu$</span><span class="sym-def">Absorption cross-section [m²]</span></li>
+      <li><span class="sym">$p(\Theta)$</span><span class="sym-def">Phase function</span></li>
+      <li><span class="sym">$J_\nu$</span><span class="sym-def">Source function</span></li>
+      <li><span class="sym">$\mathbf{x}$</span><span class="sym-def">State vector (retrieval)</span></li>
+      <li><span class="sym">$\mathbf{y}$</span><span class="sym-def">Measurement vector</span></li>
+      <li><span class="sym">$\mathbf{K}$</span><span class="sym-def">Jacobian matrix</span></li>
+      <li><span class="sym">$\mathbf{S}_a$</span><span class="sym-def">Prior covariance</span></li>
+      <li><span class="sym">$\mathbf{S}_e$</span><span class="sym-def">Measurement error covariance</span></li>
+      <li><span class="sym">$\mathbf{A}$</span><span class="sym-def">Averaging kernel matrix</span></li>
+      <li><span class="sym">$\hat{\mathbf{S}}$</span><span class="sym-def">Posterior covariance</span></li>
+      <li><span class="sym">$\text{XCO}_2$</span><span class="sym-def">Col-avg CO₂ mole fraction [ppm]</span></li>
+      <li><span class="sym">$g$</span><span class="sym-def">Scattering asymmetry param.</span></li>
+      <li><span class="sym">$\epsilon_s$</span><span class="sym-def">Surface emissivity</span></li>
+    </ul>
+  </div>
+
+  <div class="sidebar-section">
+    <h3>Equation Map — How They Connect</h3>
+    <div class="conn-map">
+      <div class="conn-item" onclick="switchTab('rte')"><div class="conn-dot" style="background:#e8c84a"></div>RTE → governs all radiation</div>
+      <div class="conn-item" onclick="switchTab('planck')"><div class="conn-dot" style="background:#f4814a"></div>Planck → fills thermal source $J$</div>
+      <div class="conn-item" onclick="switchTab('beer')"><div class="conn-dot" style="background:#4abfe8"></div>Beer-Lambert → gives $\mathcal{T}$ in RTE</div>
+      <div class="conn-item" onclick="switchTab('scatter')"><div class="conn-dot" style="background:#7b6ef6"></div>Scattering → defines $p(\Theta), \omega$</div>
+      <div class="conn-item" onclick="switchTab('schwarz')"><div class="conn-dot" style="background:#e84a7a"></div>Schwarzschild → RTE at TIR, $\omega=0$</div>
+      <div class="conn-item" onclick="switchTab('toa')"><div class="conn-dot" style="background:#4ae8a0"></div>TOA radiance → what satellite measures</div>
+      <div class="conn-item" onclick="switchTab('twostr')"><div class="conn-dot" style="background:#e84ae8"></div>Two-stream → climate flux calculation</div>
+      <div class="conn-item" onclick="switchTab('weight')"><div class="conn-dot" style="background:#e8a04a"></div>Weighting fns → vertical sensitivity</div>
+      <div class="conn-item" onclick="switchTab('retriev')"><div class="conn-dot" style="background:#a04ae8"></div>OE retrieval → inverts measurement→CO₂</div>
+      <div class="conn-item" onclick="switchTab('xcco2')"><div class="conn-dot" style="background:#4ae8e8"></div>XCO₂ → final output + flux inversion</div>
+    </div>
+  </div>
+
+  <div class="sidebar-section">
+    <h3>Key Databases &amp; Models</h3>
+    <ul class="symbol-list">
+      <li><span class="sym" style="font-size:0.65rem">HITRAN</span><span class="sym-def">Molecular spectroscopy database</span></li>
+      <li><span class="sym" style="font-size:0.65rem">GEISA</span><span class="sym-def">European spectroscopy database</span></li>
+      <li><span class="sym" style="font-size:0.65rem">LIDORT</span><span class="sym-def">Linearized discrete ordinates RT</span></li>
+      <li><span class="sym" style="font-size:0.65rem">VLIDORT</span><span class="sym-def">Vector (polarized) RT code</span></li>
+      <li><span class="sym" style="font-size:0.65rem">RRTMG</span><span class="sym-def">Fast climate model RT (k-dist)</span></li>
+      <li><span class="sym" style="font-size:0.65rem">ACOS</span><span class="sym-def">OCO-2 retrieval algorithm</span></li>
+      <li><span class="sym" style="font-size:0.65rem">GEOS-Chem</span><span class="sym-def">Atmospheric transport model</span></li>
+    </ul>
+  </div>
+</aside>
+</div><!-- end layout -->
+
+<script>
+function toggleExpand(box) {
+  box.classList.toggle('expanded');
+  const hint = box.querySelector('.expand-hint');
+  if (hint) hint.textContent = box.classList.contains('expanded') ? '▴ click to collapse' : '▾ click to expand all terms';
+  // Trigger MathJax re-render on newly revealed content
+  if (window.MathJax && window.MathJax.typesetPromise) {
+    MathJax.typesetPromise([box]);
+  }
+}
+
+function switchTab(tabId) {
+  // deactivate all
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.eq-section').forEach(s => s.classList.remove('active'));
+  // activate target
+  const btn = document.querySelector(`[data-tab="${tabId}"]`);
+  const sec = document.getElementById(`sec-${tabId}`);
+  if (btn) btn.classList.add('active');
+  if (sec) sec.classList.add('active');
+  // scroll to top of eq area
+  document.getElementById('eqArea').scrollTop = 0;
+  // typeset math in new section
+  if (window.MathJax && window.MathJax.typesetPromise && sec) {
+    MathJax.typesetPromise([sec]);
+  }
+}
+
+// Tab nav
+document.getElementById('navTabs').addEventListener('click', e => {
+  const btn = e.target.closest('.tab-btn');
+  if (!btn) return;
+  switchTab(btn.dataset.tab);
+});
+
+// Initial MathJax typeset after load
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.MathJax && window.MathJax.typesetPromise) {
+    MathJax.typesetPromise();
+  }
+});
+
+// Also typeset when MathJax is ready
+window.addEventListener('load', () => {
+  if (window.MathJax && window.MathJax.typesetPromise) {
+    MathJax.typesetPromise();
+  }
+});
+</script>
+</body>
+</html>
