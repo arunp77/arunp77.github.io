@@ -4,794 +4,1062 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>How CO₂ Satellites Work — Interactive Explainer</title>
-
 <link href="assets/img/Favicon-1.png" rel="icon">
-<link href="assets/img/Favicon-1.png" rel="apple-touch-icon">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap');
-
 :root {
-  --bg: #0a0c10;
-  --panel: #0d1618;
-  --border: #1c2235;
-  --sun: #ffd84d;
-  --solar: #ffe166;
-  --scatter: #4da6ff;
-  --absorb: #ff4d6d;
-  --reflect: #4dffb8;
-  --emit: #ff8c42;
-  --co2: #ff4d4d;
-  --signal: #b84dff;
-  --text: #ebebeb;
-  --dim: #8fa6bd;
-  --dimemd: #a8bfd6; 
-  --accent: #4da6ff;
-  --earth-surf: #1a3d2b;
-  --atmo: #0d1f3c;
+  --bg:#0a0c10; --panel:#0d1618; --border:#1c2235;
+  --solar:#ffe166; --scatter:#4da6ff; --absorb:#ff4d6d;
+  --reflect:#4dffb8; --emit:#ff8c42; --co2:#ff4d4d;
+  --signal:#b84dff; --text:#ebebeb; --dim:#8fa6bd; --accent:#4da6ff;
 }
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-weight: 300;
-  line-height: 1.6;
-  min-height: 100vh;
-}
-
-header {
-  padding: 28px 32px 20px;
-  border-bottom: 1px solid var(--border);
-}
-header h1 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #e8f0ff;
-  letter-spacing: -0.01em;
-}
-header p {
-  font-size: 0.85rem;
-  color: var(--dim);
-  margin-top: 4px;
-}
-/* Header layout with buttons */
-.header-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 36px 40px 28px;
-  border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: var(--bg);
-  backdrop-filter: blur(12px);
-}
-
-.header-left {
-  display: flex;
-  flex-direction: column;
-}
-
-.header-right {
-  display: flex;
-  gap: 12px;
-}
-
-.nav-btn {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.06em;
-  padding: 8px 14px;
-  border: 1px solid var(--border2);
-  border-radius: 3px;
-  text-decoration: none;
-  color: var(--text);
-  transition: all 0.2s ease;
-  background: var(--surface);
-}
-
-.nav-btn:hover {
-  border-color: #e8c84a;
-  background: #87a7cc;
-  color: #ffffff;
-}
-
-
-.layout {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  height: calc(100vh - 90px);
-}
-
-/* ─── LEFT PANEL: step list ─── */
-.steps-panel {
-  border-right: 1px solid var(--border);
-  overflow-y: auto;
-  padding: 16px 0;
-}
-
-.step-btn {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  width: 100%;
-  padding: 12px 18px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  text-align: left;
-  border-left: 3px solid transparent;
-  transition: all 0.2s;
-}
-.step-btn:hover { background: #0f1420; }
-.step-btn.active {
-  background: #0f1420;
-  border-left-color: var(--accent);
-}
-.step-num {
-  width: 22px; height: 22px;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.65rem;
-  font-weight: 600;
-  flex-shrink: 0;
-  margin-top: 1px;
-  border: 1.5px solid currentColor;
-}
-.step-label {
-  font-size: 0.78rem;
-  color: #8094b8;
-  line-height: 1.4;
-}
-.step-btn.active .step-label { color: #c8d4e8; }
-.step-title {
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: #a0b4d0;
-  display: block;
-  margin-bottom: 2px;
-}
-.step-btn.active .step-title { color: #e0ecff; }
-
-/* ─── RIGHT: diagram + info ─── */
-.main-area {
-  display: grid;
-  grid-template-rows: 1fr 240px;
-  overflow: hidden;
-}
-
-.diagram-area {
-  position: relative;
-  overflow: hidden;
-  background: var(--bg);
-}
-
-svg.main-svg {
-  width: 100%;
-  height: 100%;
-}
-
-/* ─── INFO PANEL ─── */
-.info-panel {
-  border-top: 1px solid var(--border);
-  background: var(--panel);
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 0;
-  overflow: hidden;
-  padding-bottom: 40px;
-  overflow-y: auto;
-}
-.info-col {
-  padding: 18px 20px;
-  border-right: 1px solid var(--border);
-}
-.info-col:last-child { border-right: none; }
-.info-col h4 {
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--dim);
-  margin-bottom: 10px;
-}
-.info-col .main-text {
-  font-size: 0.82rem;
-  color: #a8bcd8;
-  line-height: 1.65;
-}
-.info-col .formula {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.72rem;
-  color: #7090b8;
-  background: #0a0d14;
-  border: 1px solid #1a2535;
-  border-radius: 3px;
-  padding: 8px 10px;
-  margin-top: 10px;
-  line-height: 1.7;
-}
-.tag {
-  display: inline-block;
-  padding: 1px 7px;
-  border-radius: 2px;
-  font-size: 0.68rem;
-  font-family: 'IBM Plex Mono', monospace;
-  font-weight: 600;
-  margin-right: 4px;
-}
-
-/* step color coding */
-.c-solar  { color: var(--solar);   border-color: var(--solar);   }
-.c-scatter{ color: var(--scatter); border-color: var(--scatter); }
-.c-absorb { color: var(--absorb);  border-color: var(--absorb);  }
-.c-reflect{ color: var(--reflect); border-color: var(--reflect); }
-.c-emit   { color: var(--emit);    border-color: var(--emit);    }
-.c-co2    { color: var(--co2);     border-color: var(--co2);     }
-.c-signal { color: var(--signal);  border-color: var(--signal);  }
-
-.highlight { font-weight: 600; }
-
-/* animation classes managed by JS */
-.beam { opacity: 0; transition: opacity 0.5s; }
-.beam.show { opacity: 1; }
-
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;font-weight:300;line-height:1.6;min-height:100vh;}
+.header-bar{display:flex;justify-content:space-between;align-items:center;padding:20px 32px 16px;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;background:var(--bg);}
+.header-left h1{font-size:1.25rem;font-weight:600;color:#e8f0ff;letter-spacing:-0.01em;}
+.header-left p{font-size:0.78rem;color:var(--dim);margin-top:2px;}
+.header-right{display:flex;gap:10px;}
+.nav-btn{font-family:'IBM Plex Mono',monospace;font-size:0.68rem;letter-spacing:0.05em;padding:6px 12px;border:1px solid #2a3550;border-radius:3px;text-decoration:none;color:var(--text);background:transparent;transition:all 0.2s;}
+.nav-btn:hover{border-color:#ffe166;color:#ffe166;}
+.layout{display:grid;grid-template-columns:268px 1fr;height:calc(100vh - 68px);}
+.steps-panel{border-right:1px solid var(--border);overflow-y:auto;padding:10px 0;}
+.step-btn{display:flex;align-items:flex-start;gap:10px;width:100%;padding:10px 16px;background:none;border:none;cursor:pointer;text-align:left;border-left:3px solid transparent;transition:all 0.18s;}
+.step-btn:hover{background:#0f1420;}
+.step-btn.active{background:#0f1420;border-left-color:var(--accent);}
+.step-num{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:0.6rem;font-weight:600;flex-shrink:0;margin-top:2px;border:1.5px solid currentColor;}
+.step-title{font-size:0.78rem;font-weight:600;color:#a0b4d0;display:block;margin-bottom:1px;}
+.step-btn.active .step-title{color:#e0ecff;}
+.step-label{font-size:0.72rem;color:#607090;line-height:1.35;}
+.step-btn.active .step-label{color:#a0b4cc;}
+.main-area{display:grid;grid-template-rows:1fr 230px;overflow:hidden;}
+.diagram-area{position:relative;overflow:hidden;background:var(--bg);}
+svg.main-svg{width:100%;height:100%;}
+.info-panel{border-top:1px solid var(--border);background:var(--panel);display:grid;grid-template-columns:1fr 1fr 1fr;overflow-y:auto;}
+.info-col{padding:16px 18px;border-right:1px solid var(--border);}
+.info-col:last-child{border-right:none;}
+.info-col h4{font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;}
+.info-col .main-text{font-size:0.78rem;color:#a8bcd8;line-height:1.6;}
+.info-col .formula{font-family:'IBM Plex Mono',monospace;font-size:0.68rem;color:#6a88b0;background:#0a0d14;border:1px solid #1a2535;border-radius:3px;padding:7px 9px;margin-top:8px;line-height:1.65;}
+.c-solar  {color:var(--solar);  border-color:var(--solar);}
+.c-scatter{color:var(--scatter);border-color:var(--scatter);}
+.c-absorb {color:var(--absorb); border-color:var(--absorb);}
+.c-reflect{color:var(--reflect);border-color:var(--reflect);}
+.c-emit   {color:var(--emit);   border-color:var(--emit);}
+.c-co2    {color:var(--co2);    border-color:var(--co2);}
+.c-signal {color:var(--signal); border-color:var(--signal);}
+.beam{opacity:0;transition:opacity 0.45s;}
+.beam.show{opacity:1;}
 </style>
 </head>
 <body>
-
-<!-- <header>
-  <h1>How CO₂ Satellites Measure Atmospheric Carbon Dioxide</h1>
-  <p>Follow each step — from sunlight entering the atmosphere to the satellite computing XCO₂</p>
-</header> -->
-
 
 <header class="header-bar">
   <div class="header-left">
     <h1>How CO₂ Satellites Measure Atmospheric Carbon Dioxide</h1>
     <p>Follow each step — from sunlight entering the atmosphere to the satellite computing XCO₂</p>
   </div>
-
   <div class="header-right">
-    <a href="Remote-sensing-content.html" class="nav-btn">
-      <i class="fas fa-arrow-left"></i> Content
-    </a>
-    <a href="index.html#portfolio" class="nav-btn">
-      Home <i class="fas fa-arrow-right"></i>
-    </a>
+    <a href="Remote-sensing-content.html" class="nav-btn">← Content</a>
+    <a href="index.html#portfolio" class="nav-btn">Home →</a>
   </div>
 </header>
 
 <div class="layout">
-
-  <!-- LEFT: Step list -->
-  <div class="steps-panel" id="stepsPanel">
-    <!-- generated by JS -->
-  </div>
-
-  <!-- RIGHT: diagram + info -->
+  <div class="steps-panel" id="stepsPanel"></div>
   <div class="main-area">
     <div class="diagram-area">
-      <svg class="main-svg" viewBox="0 0 800 480" id="mainSvg" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="sg" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#fff8cc"/>
-            <stop offset="60%" stop-color="#ffd84d"/>
-            <stop offset="100%" stop-color="#ff8800" stop-opacity="0"/>
-          </radialGradient>
-          <radialGradient id="satGrad" cx="40%" cy="30%" r="60%">
-            <stop offset="0%" stop-color="#2a4070"/>
-            <stop offset="100%" stop-color="#0d1428"/>
-          </radialGradient>
-          <!-- arrow markers -->
-          <marker id="mSolar"  markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#ffe166"/></marker>
-          <marker id="mScatter" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#4da6ff"/></marker>
-          <marker id="mAbsorb"  markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#ff4d6d"/></marker>
-          <marker id="mReflect" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#4dffb8"/></marker>
-          <marker id="mEmit"    markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#ff8c42"/></marker>
-          <marker id="mCo2"     markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#ff4d4d"/></marker>
-          <marker id="mSignal"  markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#b84dff"/></marker>
-          <filter id="glow">
-            <feGaussianBlur stdDeviation="3" result="blur"/>
-            <feComposite in="SourceGraphic" in2="blur" operator="over"/>
-          </filter>
-        </defs>
 
-        <!-- ═══ STATIC SCENE ═══ -->
+<!--
+  ═══════════════════════════════════════════════════
+  MASTER GEOMETRY (viewBox 0 0 800 480)
+  ───────────────────────────────────────────────────
+  Sun centre        : (80, 55)   body-r=18, glow-r=32
+  Satellite body    : rect(645,28,60,24)  centre≈(675,40)
+  Sensor dome       : ellipse(675,52)
+  Atmosphere band   : y=100 → y=330
+  Earth surface     : y=330+
 
-        <!-- Stars -->
-        <rect width="800" height="480" fill="#08090f"/>
-        <circle cx="50" cy="20" r="1" fill="#ffffff" opacity="0.6"/>
-        <circle cx="150" cy="35" r="0.8" fill="#ffffff" opacity="0.6"/>
-        <circle cx="700" cy="15" r="1" fill="#ffffff" opacity="0.6"/>
-        <circle cx="760" cy="40" r="0.8" fill="#ffffff" opacity="0.6"/>
-        <circle cx="620" cy="10" r="1.2" fill="#ffffff" opacity="0.6"/>
+  MAIN SOLAR BEAM  (Sun→surface, straight)
+    Origin (sun edge): (98, 63)
+    Surface impact  : (420, 330)
+    Slope dx/dy = (420-98)/(330-63) = 322/267 = 1.2060
+    Point at y=100  → x = 98 + 1.206*(100-63) = 143  → (143,100)
+    Point at y=130  → x = 98 + 1.206*(130-63) = 179  → (179,130)
+    Point at y=160  → x = 98 + 1.206*(160-63) = 215  → (215,160)
+    Point at y=190  → x = 98 + 1.206*(190-63) = 251  → (251,190)
+    Point at y=220  → x = 98 + 1.206*(220-63) = 287  → (287,220)
+    Point at y=260  → x = 98 + 1.206*(260-63) = 336  → (336,260)
+    Point at y=300  → x = 98 + 1.206*(300-63) = 384  → (384,300)
 
-        <!-- Atmosphere band -->
-        <!-- <rect x="0" y="100" width="800" height="230" fill="#0d1f3c" opacity="0.7"/> -->
-        <rect x="0" y="100" width="800" height="230" fill="#a2e6fc" opacity="0.3"/>
-        <line x1="0" y1="100" x2="800" y2="100" stroke="#1a3055" stroke-width="1" stroke-dasharray="5,4"/>
-        <line x1="0" y1="330" x2="800" y2="330" stroke="#1a3055" stroke-width="1" stroke-dasharray="5,4"/>
-        <text x="12" y="118" fill="#dae4f2" font-size="9" font-family="IBM Plex Mono" letter-spacing="2">ATMOSPHERE</text>
-        <text x="12" y="346" fill="#f0f5f2" font-size="9" font-family="IBM Plex Mono" letter-spacing="2">EARTH SURFACE</text>
+  REFLECTED BEAM   (surface→satellite)
+    Origin : (420, 330)
+    Target : satellite sensor (675, 52)
+    Slope dx/dy = (675-420)/(52-330) = 255/(-278) = -0.917 (x per y going up)
+    Point at y=100 → t=(100-330)/(52-330)=0.827 → x=420+0.827*255=631 → (631,100)
+    Point at y=160 → t=(160-330)/(52-330)=0.612 → x=420+0.612*255=576 → (576,160)
+    Point at y=200 → t=(200-330)/(52-330)=0.468 → x=420+0.468*255=539 → (539,200)
+    Point at y=230 → t=(230-330)/(52-330)=0.360 → x=420+0.360*255=512 → (512,230)
+  ═══════════════════════════════════════════════════
+-->
 
-        <!-- Earth surface -->
-        <rect x="0" y="330" width="800" height="150" fill="#265c34"/>
-        <!-- surface texture lines -->
-        <line x1="0" y1="340" x2="800" y2="340" stroke="#1a3020" stroke-width="0.5"/>
+<svg class="main-svg" viewBox="0 0 800 480" id="mainSvg" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <radialGradient id="sg" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#fff8cc"/>
+    <stop offset="60%" stop-color="#ffd84d"/>
+    <stop offset="100%" stop-color="#ff8800" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="satGrad" cx="40%" cy="30%" r="60%">
+    <stop offset="0%" stop-color="#2a4070"/>
+    <stop offset="100%" stop-color="#0d1428"/>
+  </radialGradient>
+  <linearGradient id="specG" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%"   stop-color="#9b30ff"/>
+    <stop offset="14%"  stop-color="#4488ff"/>
+    <stop offset="33%"  stop-color="#44dd88"/>
+    <stop offset="50%"  stop-color="#ffe040"/>
+    <stop offset="65%"  stop-color="#ff6644"/>
+    <stop offset="82%"  stop-color="#cc3300"/>
+    <stop offset="100%" stop-color="#880000"/>
+  </linearGradient>
+  <!-- arrow markers -->
+  <marker id="mSolar"   markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#ffe166"/></marker>
+  <marker id="mScatter" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#4da6ff"/></marker>
+  <marker id="mReflect" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#4dffb8"/></marker>
+  <marker id="mEmit"    markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#ff8c42"/></marker>
+  <marker id="mCo2"     markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#ff4d4d"/></marker>
+  <marker id="mSignal"  markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#b84dff"/></marker>
+  <marker id="mGreenDown" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#4dff88"/></marker>
+  <!-- dim solar beam gradient — beam gets dimmer as it descends -->
+  <linearGradient id="beamFade" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%"   stop-color="#ffe166" stop-opacity="0.9"/>
+    <stop offset="100%" stop-color="#ffe166" stop-opacity="0.3"/>
+  </linearGradient>
+</defs>
 
-        <!-- Molecule labels in atmosphere (static) -->
-        <text x="120" y="175" fill="#6791c9" font-size="8" font-family="IBM Plex Mono">O₃</text>
-        <text x="200" y="220" fill="#6791c9" font-size="8" font-family="IBM Plex Mono">N₂ O₂</text>
-        <text x="350" y="185" fill="#6c9de0" font-size="8" font-family="IBM Plex Mono">CO₂</text>
-        <text x="460" y="240" fill="#6c9de0" font-size="8" font-family="IBM Plex Mono">H₂O</text>
-        <text x="560" y="195" fill="#6c9de0" font-size="8" font-family="IBM Plex Mono">CO₂</text>
-        <text x="300" y="290" fill="#6c9de0" font-size="8" font-family="IBM Plex Mono">aerosols</text>
+<!-- ═══════════════ STATIC SCENE (always visible) ═══════════════ -->
 
-        <!-- SUN -->
-        <circle cx="80" cy="55" r="32" fill="url(#sg)" opacity="0.85"/>
-        <circle cx="80" cy="55" r="18" fill="#fffce0"/>
-        <text x="80" y="59" fill="#8a6010" font-size="8" text-anchor="middle" font-weight="700" font-family="IBM Plex Mono">SUN</text>
+<!-- Deep space background -->
+<rect width="800" height="480" fill="#06070d"/>
+<!-- Stars -->
+<circle cx="40"  cy="18" r="0.8" fill="#fff" opacity="0.7"/>
+<circle cx="160" cy="32" r="0.6" fill="#fff" opacity="0.5"/>
+<circle cx="330" cy="14" r="1"   fill="#fff" opacity="0.6"/>
+<circle cx="500" cy="22" r="0.7" fill="#fff" opacity="0.5"/>
+<circle cx="720" cy="12" r="1"   fill="#fff" opacity="0.7"/>
+<circle cx="780" cy="38" r="0.6" fill="#fff" opacity="0.4"/>
+<circle cx="620" cy="8"  r="0.9" fill="#fff" opacity="0.6"/>
 
-        <!-- SATELLITE body -->
-        <rect x="645" y="28" width="60" height="24" rx="3" fill="url(#satGrad)" stroke="#3a6090" stroke-width="1.5"/>
-        <!-- solar panels -->
-        <rect x="605" y="36" width="40" height="10" rx="1" fill="#1a3060" stroke="#4da6ff" stroke-width="1"/>
-        <rect x="705" y="36" width="40" height="10" rx="1" fill="#1a3060" stroke="#4da6ff" stroke-width="1"/>
+<!-- Atmosphere band with subtle gradient -->
+<rect x="0" y="100" width="800" height="230" fill="#91d8f7" opacity="0.22"/>
+<!-- Upper stratosphere (slightly different shade, top 40px of atmo) -->
+<rect x="0" y="100" width="800" height="40" fill="#b8e8ff" opacity="0.10"/>
+<line x1="0" y1="100" x2="800" y2="100" stroke="#2a4060" stroke-width="1" stroke-dasharray="5,4"/>
+<line x1="0" y1="330" x2="800" y2="330" stroke="#2a4060" stroke-width="1" stroke-dasharray="5,4"/>
 
-        <!-- sensor dome -->
-        <ellipse cx="675" cy="52" rx="8" ry="4" fill="#0a1628" stroke="#b84dff" stroke-width="1.2"/>
-        <text x="675" y="74" fill="#fafafa" font-size="8" text-anchor="middle" font-family="IBM Plex Mono">SATELLITE</text>
-        <text x="675" y="84" fill="#02d9f5" font-size="7" text-anchor="middle" font-family="IBM Plex Mono">sensor ↓</text>
+<!-- Zone labels -->
+<text x="10" y="116" fill="#c8daf0" font-size="8" font-family="IBM Plex Mono" letter-spacing="2" opacity="0.8">STRATOSPHERE</text>
+<text x="10" y="175" fill="#c8daf0" font-size="8" font-family="IBM Plex Mono" letter-spacing="2" opacity="0.5">TROPOSPHERE</text>
+<text x="10" y="348" fill="#d0ead8" font-size="8" font-family="IBM Plex Mono" letter-spacing="2" opacity="0.8">EARTH SURFACE</text>
+<!-- Tropo/strato divider (approx 12 km, ~y=140) -->
+<line x1="0" y1="140" x2="800" y2="140" stroke="#1a3050" stroke-width="0.6" stroke-dasharray="3,5" opacity="0.5"/>
+<text x="10" y="138" fill="#4a7090" font-size="6.5" font-family="IBM Plex Mono" opacity="0.6">tropopause ~12km</text>
 
-        <!-- Wavelength spectrum bar (top right) -->
-        <defs>
-          <linearGradient id="specG" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#9b30ff"/>
-            <stop offset="15%" stop-color="#4488ff"/>
-            <stop offset="35%" stop-color="#44dd88"/>
-            <stop offset="50%" stop-color="#ffe040"/>
-            <stop offset="65%" stop-color="#ff6644"/>
-            <stop offset="80%" stop-color="#cc3300"/>
-            <stop offset="100%" stop-color="#ff8800"/>
-          </linearGradient>
-        </defs>
-        <rect x="420" y="88" width="370" height="8" rx="1" fill="url(#specG)" opacity="0.7"/>
-        <text x="420" y="106" fill="#f2f4f7" font-size="6.5" font-family="IBM Plex Mono">UV</text>
-        <text x="460" y="106" fill="#f2f4f7" font-size="6.5" font-family="IBM Plex Mono">VIS</text>
-        <text x="530" y="106" fill="#f2f4f7" font-size="6.5" font-family="IBM Plex Mono">NIR</text>
-        <text x="590" y="106" fill="#f2f4f7" font-size="6.5" font-family="IBM Plex Mono">SWIR</text>
-        <text x="660" y="106" fill="#f2f4f7" font-size="6.5" font-family="IBM Plex Mono">MIR</text>
-        <text x="730" y="106" fill="#f2f4f7" font-size="6.5" font-family="IBM Plex Mono">TIR</text>
-        <!-- CO2 bands markers on spectrum -->
-        <rect x="547" y="88" width="5" height="8" fill="#ff4d4d" opacity="0.8"/>
-        <rect x="563" y="88" width="5" height="8" fill="#ff4d4d" opacity="0.8"/>
-        <rect x="648" y="88" width="7" height="8" fill="#ff4d4d" opacity="0.9"/>
-        <rect x="765" y="88" width="8" height="8" fill="#ff4d4d" opacity="0.9"/>
-        <text x="549" y="83" fill="#ff6666" font-size="5.5" font-family="IBM Plex Mono" text-anchor="middle">1.6</text>
-        <text x="565" y="83" fill="#ff6666" font-size="5.5" font-family="IBM Plex Mono" text-anchor="middle">2.1</text>
-        <text x="651" y="83" fill="#ff6666" font-size="5.5" font-family="IBM Plex Mono" text-anchor="middle">4.3</text>
-        <text x="769" y="83" fill="#ff6666" font-size="5.5" font-family="IBM Plex Mono" text-anchor="middle">15µm</text>
+<!-- Earth surface -->
+<rect x="0" y="330" width="800" height="150" fill="#1e4d28"/>
+<rect x="0" y="330" width="800" height="6"   fill="#265c30" opacity="0.6"/>
 
-        <!-- ═══ BEAMS — shown/hidden per step ═══ -->
-        <!-- Group IDs: g0..g8 -->
+<!-- Molecule labels — static atmospheric context -->
+<text x="118" y="130" fill="#7a9fcf" font-size="7.5" font-family="IBM Plex Mono" opacity="0.7">O₃</text>
+<text x="300" y="122" fill="#7a9fcf" font-size="7.5" font-family="IBM Plex Mono" opacity="0.5">O₃</text>
+<text x="200" y="195" fill="#7a9fcf" font-size="7.5" font-family="IBM Plex Mono" opacity="0.5">N₂  O₂</text>
+<text x="355" y="182" fill="#7abde8" font-size="7.5" font-family="IBM Plex Mono" opacity="0.7">CO₂</text>
+<text x="460" y="240" fill="#7abde8" font-size="7.5" font-family="IBM Plex Mono" opacity="0.6">H₂O</text>
+<text x="555" y="190" fill="#7abde8" font-size="7.5" font-family="IBM Plex Mono" opacity="0.7">CO₂</text>
+<text x="290" y="295" fill="#7abde8" font-size="7.5" font-family="IBM Plex Mono" opacity="0.5">aerosols</text>
+<text x="450" y="305" fill="#7abde8" font-size="7.5" font-family="IBM Plex Mono" opacity="0.4">aerosols</text>
 
-        <!-- STEP 0: overview — show everything dimly -->
-        <g id="g0" class="beam">
-          <!-- solar incoming -->
-          <line x1="98" y1="63" x2="380" y2="280" stroke="#ffe166" stroke-width="2" marker-end="url(#mSolar)" opacity="0.5"/>
-          <!-- scattered up -->
-          <path d="M220,190 Q170,140 150,100" stroke="#4da6ff" stroke-width="1.5" fill="none" marker-end="url(#mScatter)" opacity="0.5"/>
-          <!-- surface reflect -->
-          <line x1="380" y1="330" x2="580" y2="150" stroke="#4dffb8" stroke-width="1.5" marker-end="url(#mReflect)" opacity="0.5" stroke-dasharray="5,3"/>
-          <!-- thermal emit -->
-          <line x1="480" y1="330" x2="560" y2="150" stroke="#ff8c42" stroke-width="1.5" marker-end="url(#mEmit)" opacity="0.5" stroke-dasharray="3,3"/>
-          <!-- to satellite -->
-          <line x1="580" y1="150" x2="655" y2="52" stroke="#b84dff" stroke-width="1.5" marker-end="url(#mSignal)" opacity="0.5"/>
-        </g>
+<!-- SUN -->
+<circle cx="80" cy="55" r="34" fill="url(#sg)" opacity="0.75"/>
+<circle cx="80" cy="55" r="18" fill="#fffce0"/>
+<text x="80" y="59" fill="#7a5a08" font-size="7.5" text-anchor="middle" font-weight="700" font-family="IBM Plex Mono">SUN</text>
 
-        <!-- STEP 1: Solar beam hits atmosphere top -->
-        <g id="g1" class="beam">
-          <line x1="98" y1="63" x2="310" y2="105" stroke="#ffe166" stroke-width="3" marker-end="url(#mSolar)"/>
-          <text x="175" y="77" fill="#ffe166" font-size="9" font-family="IBM Plex Mono" transform="rotate(20,175,77)">broadband solar</text>
-          <text x="180" y="88" fill="#aa8820" font-size="7.5" font-family="IBM Plex Mono" transform="rotate(20,180,88)">0.25 – 4 µm</text>
-          <!-- annotation bubble -->
-          <rect x="290" y="108" width="220" height="42" rx="3" fill="#0d1528" stroke="#ffe16655" stroke-width="1"/>
-          <text x="300" y="122" fill="#ffe166" font-size="8" font-family="IBM Plex Mono">Sun ~5778 K → Planck curve peaks</text>
-          <text x="300" y="133" fill="#ffe166" font-size="8" font-family="IBM Plex Mono">at 0.5 µm (green-yellow visible)</text>
-          <text x="300" y="144" fill="#6a7a90" font-size="7.5" font-family="IBM Plex Mono">UV 9% | Visible 40% | NIR 51%</text>
-        </g>
+<!-- SATELLITE body -->
+<rect  x="645" y="28" width="60" height="24" rx="3" fill="url(#satGrad)" stroke="#3a6090" stroke-width="1.5"/>
+<rect  x="604" y="35" width="41" height="9"  rx="1" fill="#1a3060" stroke="#4488aa" stroke-width="1"/>
+<rect  x="705" y="35" width="41" height="9"  rx="1" fill="#1a3060" stroke="#4488aa" stroke-width="1"/>
+<ellipse cx="675" cy="52" rx="8" ry="4" fill="#08101e" stroke="#b84dff" stroke-width="1.2"/>
+<text x="675" y="72"  fill="#e0ecff" font-size="7.5" text-anchor="middle" font-family="IBM Plex Mono">SATELLITE</text>
+<text x="675" y="81"  fill="#02cce8" font-size="6.5" text-anchor="middle" font-family="IBM Plex Mono">sensor ↓</text>
 
-        <!-- STEP 2: Absorption in upper atmosphere (O3, etc.) -->
-        <g id="g2" class="beam">
-          <!-- incoming beam -->
-          <line x1="98" y1="63" x2="280" y2="155" stroke="#ffe166" stroke-width="3" marker-end="url(#mSolar)" opacity="0.7"/>
-          <!-- O3 absorption circle -->
-          <circle cx="175" cy="135" r="18" fill="#1a0830" stroke="#9b30ff" stroke-width="2" opacity="0.9"/>
-          <text x="175" y="132" fill="#cc88ff" font-size="8" text-anchor="middle" font-family="IBM Plex Mono">O₃</text>
-          <text x="175" y="143" fill="#7744aa" font-size="7" text-anchor="middle" font-family="IBM Plex Mono">absorbs</text>
-          <!-- absorbed UV squiggle -->
-          <path d="M158,128 Q140,115 130,105" stroke="#9b30ff" stroke-width="1.5" fill="none" stroke-dasharray="3,2"/>
-          <text x="112" y="103" fill="#9b30ff" font-size="7" font-family="IBM Plex Mono">UV lost</text>
-          <text x="112" y="112" fill="#7744aa" font-size="7" font-family="IBM Plex Mono">&lt;0.31µm</text>
-          <!-- beam continues (depleted UV) -->
-          <line x1="190" y1="140" x2="290" y2="200" stroke="#ffe166" stroke-width="2" marker-end="url(#mSolar)" opacity="0.6"/>
-          <!-- annotation -->
-          <rect x="295" y="160" width="260" height="60" rx="3" fill="#0d1528" stroke="#9b30ff55" stroke-width="1"/>
-          <text x="305" y="174" fill="#cc88ff" font-size="8" font-family="IBM Plex Mono">Ozone (O₃) in stratosphere</text>
-          <text x="305" y="185" fill="#8a6aaa" font-size="7.5" font-family="IBM Plex Mono">absorbs nearly all UV &lt; 0.31 µm</text>
-          <text x="305" y="196" fill="#8a6aaa" font-size="7.5" font-family="IBM Plex Mono">Hartley band → ozone heats up</text>
-          <text x="305" y="207" fill="#6a5a8a" font-size="7.5" font-family="IBM Plex Mono">Beam continues: VIS + NIR remain</text>
-        </g>
+<!-- Wavelength spectrum bar -->
+<rect x="420" y="86" width="368" height="7" rx="1" fill="url(#specG)" opacity="0.65"/>
+<text x="422" y="103" fill="#d0d8e8" font-size="6" font-family="IBM Plex Mono">UV</text>
+<text x="458" y="103" fill="#d0d8e8" font-size="6" font-family="IBM Plex Mono">VIS</text>
+<text x="524" y="103" fill="#d0d8e8" font-size="6" font-family="IBM Plex Mono">NIR</text>
+<text x="587" y="103" fill="#d0d8e8" font-size="6" font-family="IBM Plex Mono">SWIR</text>
+<text x="653" y="103" fill="#d0d8e8" font-size="6" font-family="IBM Plex Mono">MIR</text>
+<text x="726" y="103" fill="#d0d8e8" font-size="6" font-family="IBM Plex Mono">TIR</text>
+<!-- CO₂ band markers on spectrum -->
+<rect x="545" y="86" width="4" height="7" fill="#ff4d4d" opacity="0.85"/>
+<rect x="561" y="86" width="4" height="7" fill="#ff4d4d" opacity="0.85"/>
+<rect x="646" y="86" width="6" height="7" fill="#ff4d4d" opacity="0.9"/>
+<rect x="762" y="86" width="8" height="7" fill="#ff4d4d" opacity="0.9"/>
+<text x="547" y="81"  fill="#ff7777" font-size="5" font-family="IBM Plex Mono" text-anchor="middle">1.6</text>
+<text x="563" y="81"  fill="#ff7777" font-size="5" font-family="IBM Plex Mono" text-anchor="middle">2.1</text>
+<text x="649" y="81"  fill="#ff7777" font-size="5" font-family="IBM Plex Mono" text-anchor="middle">4.3</text>
+<text x="766" y="81"  fill="#ff7777" font-size="5" font-family="IBM Plex Mono" text-anchor="middle">15µm</text>
 
-        <!-- STEP 3: Scattering (Rayleigh + Mie) -->
-        <g id="g3" class="beam">
-          <!-- incoming -->
-          <line x1="98" y1="63" x2="260" y2="210" stroke="#ffe166" stroke-width="2.5" opacity="0.6"/>
-          <!-- scatter node -->
-          <circle cx="200" cy="195" r="10" fill="#0a1428" stroke="#4da6ff" stroke-width="2"/>
-          <text x="200" y="199" fill="#4da6ff" font-size="7" text-anchor="middle" font-family="IBM Plex Mono">R</text>
-          <!-- scattered blue up to space -->
-          <path d="M196,185 Q170,150 155,100" stroke="#4da6ff" stroke-width="2" fill="none" marker-end="url(#mScatter)"/>
-          <text x="150" y="148" fill="#4da6ff" font-size="8" font-family="IBM Plex Mono">Blue ↑</text>
-          <text x="150" y="158" fill="#2a5090" font-size="7" font-family="IBM Plex Mono">0.45µm</text>
 
-          <!-- Mie scatter node -->
-          <circle cx="310" cy="270" r="10" fill="#0a1428" stroke="#88bbff" stroke-width="1.8"/>
-          <text x="310" y="274" fill="#88bbff" font-size="7" text-anchor="middle" font-family="IBM Plex Mono">M</text>
-          <!-- mie scatter upward -->
-          <path d="M310,260 Q280,210 265,100" stroke="#88bbff" stroke-width="1.5" fill="none" stroke-dasharray="4,3" marker-end="url(#mScatter)"/>
-          <text x="250" y="175" fill="#558899" font-size="8" font-family="IBM Plex Mono">All λ ↑</text>
+<!-- ═══════════════════════════════════════════════════════════════
+     STEP 0 — OVERVIEW
+     Shows all 5 main processes numbered with a clear legend.
+     Scientific accuracy: all arrows on correct geometric paths.
+     ① Solar beam (yellow): Sun → surface  (full path)
+     ② Rayleigh scatter (blue): branches off beam, exits to space
+     ③ Surface reflection (teal): surface → up through atmo → satellite
+     ④ Thermal emission (orange dashed): surface → satellite (separate from reflected)
+     ⑤ CO₂ absorption markers (red dashes) on both beam passes
+══════════════════════════════════════════════════════════════════ -->
+<g id="g0" class="beam">
 
-          <!-- beam continues down -->
-          <line x1="210" y1="200" x2="370" y2="325" stroke="#ffe166" stroke-width="2" marker-end="url(#mSolar)" opacity="0.5"/>
+  <!-- ① Solar beam: Sun edge (98,63) → surface (420,330) -->
+  <line x1="98" y1="65" x2="418" y2="328"
+        stroke="#ffe166" stroke-width="2.5" marker-end="url(#mSolar)" opacity="0.75"/>
+  <!-- number label -->
+  <circle cx="175" cy="133" r="8" fill="#0d1528" stroke="#ffe166" stroke-width="1.2"/>
+  <text x="175" y="137" fill="#ffe166" font-size="7.5" font-weight="700" text-anchor="middle" font-family="IBM Plex Mono">①</text>
 
-          <!-- annotation -->
-          <rect x="380" y="140" width="300" height="90" rx="3" fill="#0d1528" stroke="#4da6ff55" stroke-width="1"/>
-          <text x="390" y="155" fill="#4da6ff" font-size="8" font-family="IBM Plex Mono">Rayleigh Scattering (molecules)</text>
-          <text x="390" y="166" fill="#3a6090" font-size="7.5" font-family="IBM Plex Mono">• Intensity ∝ 1/λ⁴ → blue scatters 5× red</text>
-          <text x="390" y="177" fill="#3a6090" font-size="7.5" font-family="IBM Plex Mono">• Blue goes in ALL directions → blue sky</text>
-          <text x="390" y="192" fill="#7799bb" font-size="8" font-family="IBM Plex Mono">Mie Scattering (aerosols/dust/cloud)</text>
-          <text x="390" y="203" fill="#3a6090" font-size="7.5" font-family="IBM Plex Mono">• Wavelength-independent → white haze</text>
-          <text x="390" y="214" fill="#3a6090" font-size="7.5" font-family="IBM Plex Mono">• Both scatter BACK to space → lost signal</text>
-          <text x="390" y="222" fill="#3a6090" font-size="7" font-family="IBM Plex Mono">  ~30% of solar reflected by clouds/aerosols</text>
-        </g>
+  <!-- ② Rayleigh scatter: node at beam y=165 → (216,163), exits upper-left to space -->
+  <!-- Tiny scatter node ON the beam -->
+  <circle cx="216" cy="163" r="5" fill="#0a1428" stroke="#4da6ff" stroke-width="1.5"/>
+  <!-- Scattered ray exits atmosphere upper-left -->
+  <line x1="212" y1="157" x2="152" y2="101"
+        stroke="#4da6ff" stroke-width="2" marker-end="url(#mScatter)" opacity="0.8"/>
+  <circle cx="162" cy="115" r="8" fill="#0d1528" stroke="#4da6ff" stroke-width="1.2"/>
+  <text x="162" y="119" fill="#4da6ff" font-size="7.5" font-weight="700" text-anchor="middle" font-family="IBM Plex Mono">②</text>
 
-        <!-- STEP 4: CO2/H2O Absorption mid-atmosphere -->
-        <g id="g4" class="beam">
-          <!-- beam from above -->
-          <line x1="98" y1="63" x2="260" y2="210" stroke="#ffe166" stroke-width="2" opacity="0.4"/>
-          <line x1="260" y1="210" x2="350" y2="285" stroke="#ffe166" stroke-width="2.5" opacity="0.7"/>
+  <!-- ③ Reflected beam: surface (420,330) → atmo top (631,100) → satellite (675,52) -->
+  <line x1="420" y1="330" x2="629" y2="102"
+        stroke="#4dffb8" stroke-width="2" opacity="0.75"/>
+  <line x1="631" y1="100" x2="671" y2="55"
+        stroke="#4dffb8" stroke-width="2" marker-end="url(#mReflect)" opacity="0.75"/>
+  <!-- Surface reflection dot -->
+  <circle cx="420" cy="332" r="4" fill="#0f2018" stroke="#4dffb8" stroke-width="1.5"/>
+  <circle cx="565" cy="188" r="8" fill="#0d1528" stroke="#4dffb8" stroke-width="1.2"/>
+  <text x="565" y="192" fill="#4dffb8" font-size="7.5" font-weight="700" text-anchor="middle" font-family="IBM Plex Mono">③</text>
 
-          <!-- CO2 absorption event -->
-          <circle cx="350" cy="215" r="14" fill="#1a0808" stroke="#ff4d4d" stroke-width="2.2"/>
-          <text x="350" y="212" fill="#ff4d4d" font-size="8" text-anchor="middle" font-family="IBM Plex Mono">CO₂</text>
-          <text x="350" y="222" fill="#993333" font-size="7" text-anchor="middle" font-family="IBM Plex Mono">absorb</text>
-          <!-- absorbed band lines going off -->
-          <line x1="340" y1="203" x2="310" y2="175" stroke="#ff4d4d" stroke-width="1.5" stroke-dasharray="3,2"/>
-          <text x="290" y="170" fill="#ff4d4d" font-size="7" font-family="IBM Plex Mono">1.6µm</text>
-          <line x1="364" y1="203" x2="380" y2="170" stroke="#ff4d4d" stroke-width="1.5" stroke-dasharray="3,2"/>
-          <text x="375" y="165" fill="#ff4d4d" font-size="7" font-family="IBM Plex Mono">2.06µm</text>
+  <!-- ④ Thermal emission: surface (490,330) → satellite, separate path -->
+  <line x1="490" y1="328" x2="665" y2="60"
+        stroke="#ff8c42" stroke-width="2" stroke-dasharray="6,3"
+        marker-end="url(#mEmit)" opacity="0.7"/>
+  <circle cx="577" cy="195" r="8" fill="#0d1528" stroke="#ff8c42" stroke-width="1.2"/>
+  <text x="577" y="199" fill="#ff8c42" font-size="7.5" font-weight="700" text-anchor="middle" font-family="IBM Plex Mono">④</text>
 
-          <!-- H2O absorption -->
-          <circle cx="420" cy="255" r="12" fill="#0a1428" stroke="#4488ff" stroke-width="1.8"/>
-          <text x="420" y="252" fill="#6699cc" font-size="7" text-anchor="middle" font-family="IBM Plex Mono">H₂O</text>
-          <text x="420" y="261" fill="#335577" font-size="6.5" text-anchor="middle" font-family="IBM Plex Mono">absorb</text>
+  <!-- ⑤ CO₂ absorption — small red tick marks on both beam legs -->
+  <!-- On downward beam at y=220 (287,220) -->
+  <line x1="280" y1="213" x2="294" y2="227"
+        stroke="#ff4d4d" stroke-width="1.8" opacity="0.9"/>
+  <line x1="294" y1="213" x2="280" y2="227"
+        stroke="#ff4d4d" stroke-width="1.8" opacity="0.9"/>
+  <!-- On upward reflected beam at (539,200) -->
+  <line x1="532" y1="193" x2="546" y2="207"
+        stroke="#ff4d4d" stroke-width="1.8" opacity="0.9"/>
+  <line x1="546" y1="193" x2="532" y2="207"
+        stroke="#ff4d4d" stroke-width="1.8" opacity="0.9"/>
+  <circle cx="287" cy="245" r="8" fill="#0d1528" stroke="#ff4d4d" stroke-width="1.2"/>
+  <text x="287" y="249" fill="#ff4d4d" font-size="7.5" font-weight="700" text-anchor="middle" font-family="IBM Plex Mono">⑤</text>
 
-          <!-- beam continues weakened -->
-          <line x1="360" y1="228" x2="430" y2="325" stroke="#ffe166" stroke-width="1.8" marker-end="url(#mSolar)" opacity="0.4"/>
+  <!-- LEGEND box -->
+  <rect x="398" y="335" width="385" height="118" rx="3"
+        fill="#080c14" stroke="#2a3a55" stroke-width="1"/>
+  <text x="408" y="350" fill="#a0b4d0" font-size="8" font-family="IBM Plex Mono" font-weight="600">OVERVIEW — all key processes</text>
+  <line x1="408" y1="354" x2="776" y2="354" stroke="#1e2e44" stroke-width="0.7"/>
+  <line x1="410" y1="362" x2="428" y2="362" stroke="#ffe166" stroke-width="2.5"/>
+  <text x="433" y="366" fill="#ffe16699" font-size="7.5" font-family="IBM Plex Mono">① Solar beam (broadband, 0.25–4 µm)</text>
+  <line x1="410" y1="376" x2="428" y2="376" stroke="#4da6ff" stroke-width="2"/>
+  <text x="433" y="380" fill="#4da6ff99" font-size="7.5" font-family="IBM Plex Mono">② Rayleigh/Mie scatter back to space</text>
+  <line x1="410" y1="390" x2="428" y2="390" stroke="#4dffb8" stroke-width="2"/>
+  <text x="433" y="394" fill="#4dffb899" font-size="7.5" font-family="IBM Plex Mono">③ Reflected solar (VIS+NIR) → satellite</text>
+  <line x1="410" y1="404" x2="428" y2="404" stroke="#ff8c42" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="433" y="408" fill="#ff8c4299" font-size="7.5" font-family="IBM Plex Mono">④ Thermal IR emission (8–15 µm)</text>
+  <line x1="410" y1="418" x2="418" y2="426" stroke="#ff4d4d" stroke-width="1.8"/>
+  <line x1="418" y1="418" x2="410" y2="426" stroke="#ff4d4d" stroke-width="1.8"/>
+  <text x="433" y="425" fill="#ff4d4d99" font-size="7.5" font-family="IBM Plex Mono">⑤ CO₂ absorption bands (1.6, 2.06, 15 µm)</text>
+</g>
 
-          <!-- annotation -->
-          <rect x="460" y="160" width="310" height="110" rx="3" fill="#0d1528" stroke="#ff4d4d55" stroke-width="1"/>
-          <text x="470" y="175" fill="#ff6666" font-size="8" font-family="IBM Plex Mono">Molecular Absorption (Beer-Lambert)</text>
-          <text x="470" y="187" fill="#884444" font-size="7.5" font-family="IBM Plex Mono">CO₂ absorbs specific wavelengths:</text>
-          <text x="470" y="198" fill="#884444" font-size="7.5" font-family="IBM Plex Mono">  NIR: 1.6 µm, 2.06 µm (overtones)</text>
-          <text x="470" y="209" fill="#884444" font-size="7.5" font-family="IBM Plex Mono">  MIR: 4.3 µm (strong fundamental)</text>
-          <text x="470" y="220" fill="#884444" font-size="7.5" font-family="IBM Plex Mono">  TIR: 15 µm (bending mode)</text>
-          <text x="470" y="234" fill="#557799" font-size="7.5" font-family="IBM Plex Mono">H₂O absorbs: 1.37, 1.87, 2.7, 6.3 µm</text>
-          <text x="470" y="246" fill="#3a5570" font-size="7.5" font-family="IBM Plex Mono">More CO₂ → deeper absorption dips</text>
-          <text x="470" y="258" fill="#3a5570" font-size="7.5" font-family="IBM Plex Mono">in the spectrum (key for retrieval!)</text>
-        </g>
 
-        <!-- STEP 5: Surface reflection -->
-        <g id="g5" class="beam">
-          <!-- incoming depleted beam hits surface -->
-          <line x1="150" y1="100" x2="370" y2="328" stroke="#ffe166" stroke-width="2" marker-end="url(#mSolar)" opacity="0.5"/>
-          <!-- surface dot -->
-          <circle cx="370" cy="335" r="6" fill="#102010" stroke="#4dffb8" stroke-width="1.8"/>
-          <!-- reflected up - VIS+NIR -->
-          <path d="M376,330 Q430,280 500,220 Q550,175 620,105" stroke="#4dffb8" stroke-width="2.5" fill="none" marker-end="url(#mReflect)"/>
-          <text x="500" y="210" fill="#4dffb8" font-size="8.5" font-family="IBM Plex Mono" transform="rotate(-45,500,210)">VIS+NIR</text>
-          <text x="510" y="222" fill="#2a7050" font-size="7.5" font-family="IBM Plex Mono" transform="rotate(-45,510,222)">0.4–2.5µm</text>
+<!-- ═══════════════════════════════════════════════════════════════
+     STEP 1 — SOLAR RADIATION ENTERS
+     Shows: (a) beam from Sun reaching atmo top,
+            (b) it enters the atmosphere (arrow continues into atmo),
+            (c) spectrum bar highlighted showing what wavelengths arrive.
+     Scientific note: beam shown full-width, broadband label.
+══════════════════════════════════════════════════════════════════ -->
+<g id="g1" class="beam">
 
-          <!-- annotation -->
-          <rect x="30" y="340" width="290" height="110" rx="3" fill="#0d1528" stroke="#4dffb855" stroke-width="1"/>
-          <text x="40" y="356" fill="#4dffb8" font-size="8" font-family="IBM Plex Mono">Surface Reflection (Albedo)</text>
-          <text x="40" y="368" fill="#2a7050" font-size="7.5" font-family="IBM Plex Mono">• Different surfaces reflect differently:</text>
-          <text x="40" y="379" fill="#2a7050" font-size="7.5" font-family="IBM Plex Mono">  Ocean: albedo ~0.06 (dark)</text>
-          <text x="40" y="390" fill="#2a7050" font-size="7.5" font-family="IBM Plex Mono">  Forest: albedo ~0.10–0.15</text>
-          <text x="40" y="401" fill="#2a7050" font-size="7.5" font-family="IBM Plex Mono">  Desert: albedo ~0.30–0.40</text>
-          <text x="40" y="412" fill="#2a7050" font-size="7.5" font-family="IBM Plex Mono">  Snow/ice: albedo ~0.80–0.90</text>
-          <text x="40" y="427" fill="#3a5a48" font-size="7.5" font-family="IBM Plex Mono">Reflected signal carries CO₂ fingerprint</text>
-          <text x="40" y="438" fill="#3a5a48" font-size="7.5" font-family="IBM Plex Mono">from TWO passes (down + back up)</text>
-        </g>
+  <!-- Full solar beam from sun to surface (shows the complete pathway) -->
+  <!-- Segment 1: Sun to atmo top — bright, full width -->
+  <line x1="98" y1="65" x2="141" y2="99"
+        stroke="#ffe166" stroke-width="3.5" marker-end="url(#mSolar)"/>
 
-        <!-- STEP 6: Earth thermal emission -->
-        <g id="g6" class="beam">
-          <!-- Earth surface emitter -->
-          <circle cx="500" cy="335" r="6" fill="#1a1000" stroke="#ff8c42" stroke-width="1.8"/>
-          <!-- thermal emission arrows going up -->
-          <path d="M500,330 Q510,280 530,230 Q550,185 580,105" stroke="#ff8c42" stroke-width="2.5" fill="none" stroke-dasharray="7,4" marker-end="url(#mEmit)"/>
-          <text x="550" y="235" fill="#ff8c42" font-size="8" font-family="IBM Plex Mono">Thermal IR</text>
-          <text x="550" y="246" fill="#995500" font-size="7.5" font-family="IBM Plex Mono">8–15 µm</text>
+  <!-- Label on the vacuum segment -->
+  <text x="108" y="68" fill="#ffe166" font-size="8.5" font-family="IBM Plex Mono"
+        transform="rotate(22,108,68)" font-weight="600">Broadband solar</text>
+  <text x="113" y="79" fill="#bb9922" font-size="7.5" font-family="IBM Plex Mono"
+        transform="rotate(22,113,79)">0.25 – 4 µm</text>
 
-          <!-- CO2 re-absorbs part of it -->
-          <circle cx="540" cy="200" r="12" fill="#1a0808" stroke="#ff4d4d" stroke-width="1.8"/>
-          <text x="540" y="197" fill="#ff6666" font-size="7" text-anchor="middle" font-family="IBM Plex Mono">CO₂</text>
-          <text x="540" y="207" fill="#883333" font-size="6.5" text-anchor="middle" font-family="IBM Plex Mono">absorbs</text>
-          <text x="540" y="215" fill="#883333" font-size="6.5" text-anchor="middle" font-family="IBM Plex Mono">+re-emits</text>
+  <!-- Segment 2: inside atmosphere (slightly dimmer to show entering) -->
+  <line x1="143" y1="101" x2="418" y2="328"
+        stroke="#ffe166" stroke-width="2.5" opacity="0.5" stroke-dasharray="10,0"/>
 
-          <!-- re-emit upward -->
-          <path d="M545,188 Q560,160 580,105" stroke="#ff4d4d" stroke-width="1.8" fill="none" stroke-dasharray="4,3" marker-end="url(#mCo2)"/>
+  <!-- Atmosphere top entry annotation arrow + callout -->
+  <circle cx="143" cy="100" r="5" fill="#ffe166" opacity="0.9"/>
+  <line x1="148" y1="98" x2="240" y2="78" stroke="#ffe16688" stroke-width="0.8"/>
+  <rect x="242" y="64" width="180" height="28" rx="2" fill="#0c1220" stroke="#ffe16644" stroke-width="1"/>
+  <text x="252" y="76" fill="#ffe166" font-size="7.5" font-family="IBM Plex Mono">Top of Atmosphere (TOA)</text>
+  <text x="252" y="86" fill="#886622" font-size="7"   font-family="IBM Plex Mono">1361 W/m² solar constant</text>
 
-          <!-- annotation -->
-          <rect x="30" y="340" width="320" height="120" rx="3" fill="#0d1528" stroke="#ff8c4255" stroke-width="1"/>
-          <text x="40" y="356" fill="#ff8c42" font-size="8" font-family="IBM Plex Mono">Earth Thermal Emission</text>
-          <text x="40" y="368" fill="#995500" font-size="7.5" font-family="IBM Plex Mono">Earth surface ~288 K (15°C) emits like</text>
-          <text x="40" y="379" fill="#995500" font-size="7.5" font-family="IBM Plex Mono">a blackbody → peak at ~10 µm (TIR)</text>
-          <text x="40" y="394" fill="#cc6600" font-size="8" font-family="IBM Plex Mono">CO₂ Greenhouse Effect:</text>
-          <text x="40" y="405" fill="#995500" font-size="7.5" font-family="IBM Plex Mono">CO₂ absorbs 15µm radiation from surface</text>
-          <text x="40" y="416" fill="#995500" font-size="7.5" font-family="IBM Plex Mono">then re-emits in ALL directions</text>
-          <text x="40" y="427" fill="#664400" font-size="7.5" font-family="IBM Plex Mono">→ some goes back to surface (warming)</text>
-          <text x="40" y="438" fill="#664400" font-size="7.5" font-family="IBM Plex Mono">→ some escapes upward to satellite</text>
-          <text x="40" y="452" fill="#885533" font-size="7" font-family="IBM Plex Mono">Satellite sees this as emission signature</text>
-        </g>
+  <!-- Annotation box: spectrum breakdown -->
+  <rect x="230" y="110" width="280" height="80" rx="3"
+        fill="#0c1220" stroke="#ffe16644" stroke-width="1"/>
+  <text x="240" y="125" fill="#ffe166" font-size="8" font-family="IBM Plex Mono" font-weight="600">Solar spectrum at TOA</text>
+  <!-- UV bar -->
+  <rect x="240" y="132" width="16" height="7" rx="1" fill="#9b30ff" opacity="0.8"/>
+  <text x="260" y="140" fill="#aa88cc" font-size="7" font-family="IBM Plex Mono">UV  ~9%  (&lt;0.4 µm)</text>
+  <!-- VIS bar -->
+  <rect x="240" y="143" width="30" height="7" rx="1" fill="#44cc88" opacity="0.8"/>
+  <text x="274" y="151" fill="#88ccaa" font-size="7" font-family="IBM Plex Mono">VIS  ~40%  (0.4–0.7 µm)</text>
+  <!-- NIR/SWIR bar -->
+  <rect x="240" y="154" width="39" height="7" rx="1" fill="#ff8840" opacity="0.8"/>
+  <text x="283" y="162" fill="#cc9966" font-size="7" font-family="IBM Plex Mono">NIR/SWIR  ~51%  (0.7–4 µm)</text>
+  <!-- CO2 window markers -->
+  <line x1="240" y1="172" x2="508" y2="172" stroke="#1a2535" stroke-width="0.5"/>
+  <text x="240" y="183" fill="#ff7777" font-size="7" font-family="IBM Plex Mono">CO₂ absorption windows: 1.6 µm · 2.06 µm (NIR/SWIR used by satellites)</text>
 
-        <!-- STEP 7: Signal path to satellite -->
-        <g id="g7" class="beam">
-          <!-- path A: reflected solar through atmosphere to satellite -->
-          <path d="M370,330 Q440,270 510,200 Q560,155 620,105" stroke="#4dffb8" stroke-width="2" fill="none" marker-end="url(#mReflect)" opacity="0.8"/>
-          <!-- CO2 absorption on return path -->
-          <circle cx="490" cy="220" r="12" fill="#1a0808" stroke="#ff4d4d" stroke-width="1.8"/>
-          <text x="490" y="217" fill="#ff6666" font-size="7" text-anchor="middle" font-family="IBM Plex Mono">CO₂</text>
-          <text x="490" y="226" fill="#883333" font-size="6.5" text-anchor="middle" font-family="IBM Plex Mono">2nd pass</text>
-          <!-- from that CO2 node up -->
-          <path d="M495,208 Q540,165 620,105" stroke="#4dffb8" stroke-width="1.8" fill="none" marker-end="url(#mReflect)" stroke-dasharray="5,3"/>
+  <!-- Planck formula box -->
+  <rect x="230" y="200" width="280" height="44" rx="3"
+        fill="#0a0d16" stroke="#ffe16633" stroke-width="1"/>
+  <text x="240" y="214" fill="#aa9940" font-size="7.5" font-family="IBM Plex Mono">Planck: B(λ,T)=(2hc²/λ⁵)·1/(e^(hc/λkT)−1)</text>
+  <text x="240" y="226" fill="#7a7a50" font-size="7"   font-family="IBM Plex Mono">Sun T=5778K → peak λ=2898/5778≈0.50 µm</text>
+  <text x="240" y="237" fill="#7a7a50" font-size="7"   font-family="IBM Plex Mono">Earth T=288K → peak λ=2898/288≈10 µm (TIR)</text>
 
-          <!-- path B: thermal -->
-          <path d="M530,330 Q555,250 570,150 Q580,110 640,70" stroke="#ff8c42" stroke-width="2" fill="none" stroke-dasharray="6,3" marker-end="url(#mEmit)" opacity="0.7"/>
+  <!-- Spectrum bar: highlight the relevant CO2 NIR bands -->
+  <!-- Re-use the static spectrum bar but add arrows pointing to CO2 bands -->
+  <line x1="547" y1="93" x2="547" y2="108" stroke="#ff4d4d" stroke-width="1.2" opacity="0.8"/>
+  <line x1="563" y1="93" x2="563" y2="108" stroke="#ff4d4d" stroke-width="1.2" opacity="0.8"/>
+  <text x="555" y="116" fill="#ff7777" font-size="6" text-anchor="middle" font-family="IBM Plex Mono">CO₂ windows</text>
+</g>
 
-          <!-- path C: scattered -->
-          <path d="M200,195 Q350,130 640,65" stroke="#4da6ff" stroke-width="1.5" fill="none" stroke-dasharray="4,4" marker-end="url(#mScatter)" opacity="0.6"/>
 
-          <!-- satellite receive box -->
-          <rect x="415" y="20" width="200" height="62" rx="3" fill="#090f1a" stroke="#b84dff" stroke-width="1.5"/>
-          <text x="425" y="35" fill="#b84dff" font-size="8" font-family="IBM Plex Mono">Satellite receives mixed signal:</text>
-          <text x="425" y="47" fill="#4dffb8" font-size="7.5" font-family="IBM Plex Mono">■ Reflected solar (1.6, 2.06µm)</text>
-          <text x="425" y="57" fill="#ff8c42" font-size="7.5" font-family="IBM Plex Mono">■ Earth thermal (4.3, 15µm)</text>
-          <text x="425" y="67" fill="#4da6ff" font-size="7.5" font-family="IBM Plex Mono">■ Scattered light (VIS)</text>
-          <text x="425" y="77" fill="#6a7090" font-size="7.5" font-family="IBM Plex Mono">■ O₂ A-band ref (0.76µm)</text>
+<!-- ═══════════════════════════════════════════════════════════════
+     STEP 2 — O₃ ABSORBS UV (STRATOSPHERE)
+     Scientific accuracy:
+     • O₃ is in the stratosphere → node at y≈125 (above tropopause y=140)
+     • UV is absorbed (not scattered) → show it dissipating sideways
+       as heat, NOT bouncing back upward in a clean arrow
+     • The beam continues into troposphere minus the UV component
+     • Show the Hartley/Huggins band labels
+══════════════════════════════════════════════════════════════════ -->
+<g id="g2" class="beam">
 
-          <!-- annotation at bottom -->
-          <rect x="30" y="340" width="340" height="110" rx="3" fill="#0d1528" stroke="#b84dff55" stroke-width="1"/>
-          <text x="40" y="356" fill="#b84dff" font-size="8" font-family="IBM Plex Mono">Signal reaching the satellite</text>
-          <text x="40" y="370" fill="#7755aa" font-size="7.5" font-family="IBM Plex Mono">The upwelling radiance is a sum of:</text>
-          <text x="40" y="381" fill="#4dffb8" font-size="7.5" font-family="IBM Plex Mono">1. Reflected solar backscatter (SWIR)</text>
-          <text x="40" y="392" fill="#ff8c42" font-size="7.5" font-family="IBM Plex Mono">2. Thermal emission (CO₂, H₂O, surface)</text>
-          <text x="40" y="403" fill="#4da6ff" font-size="7.5" font-family="IBM Plex Mono">3. Scattered solar light (VIS/UV)</text>
-          <text x="40" y="418" fill="#5a6080" font-size="7.5" font-family="IBM Plex Mono">CO₂ leaves absorption "dips" in the</text>
-          <text x="40" y="429" fill="#5a6080" font-size="7.5" font-family="IBM Plex Mono">spectrum that grow deeper with more CO₂</text>
-          <text x="40" y="443" fill="#5a6080" font-size="7.5" font-family="IBM Plex Mono">The satellite disperses light spectrally</text>
-          <text x="40" y="454" fill="#5a6080" font-size="7.5" font-family="IBM Plex Mono">and measures these dips precisely</text>
-        </g>
+  <!-- Incoming beam from Sun to O3 node in stratosphere -->
+  <!-- O3 node is ON the beam at y=125: x=98+1.206*(125-63)=98+74=172 → (172,125) -->
+  <line x1="98" y1="65" x2="166" y2="120"
+        stroke="#ffe166" stroke-width="3.5" marker-end="url(#mSolar)"/>
 
-        <!-- STEP 8: How XCO2 is retrieved -->
-        <g id="g8" class="beam">
-          <!-- spectrum diagram inside SVG -->
-          <!-- "what satellite sees" spectrum plot -->
-          <rect x="40" y="120" width="320" height="160" rx="3" fill="#090f1a" stroke="#b84dff" stroke-width="1.5"/>
-          <text x="200" y="137" fill="#b84dff" font-size="8.5" text-anchor="middle" font-family="IBM Plex Mono">Measured Spectrum at Satellite</text>
-          <!-- Axes -->
-          <line x1="65" y1="260" x2="340" y2="260" stroke="#f2f4f7" stroke-width="1"/>
-          <line x1="65" y1="260" x2="65" y2="145" stroke="#f2f4f7" stroke-width="1"/>
-          <text x="200" y="274" fill="#f2f4f7" font-size="7" text-anchor="middle" font-family="IBM Plex Mono">Wavelength →</text>
-          <text x="52" y="210" fill="#f2f4f7" font-size="7" text-anchor="middle" font-family="IBM Plex Mono" transform="rotate(-90,52,210)">Radiance</text>
-          <!-- continuum line -->
-          <path d="M70,180 Q130,175 200,180 Q270,185 335,180" stroke="#ffe16640" stroke-width="1.5" fill="none" stroke-dasharray="4,3"/>
-          <!-- observed spectrum with CO2 dips -->
-          <path d="M70,180 Q100,178 115,175 Q120,170 125,175 Q130,178 140,177
-                   Q160,175 175,173 Q180,163 184,155 Q186,148 188,155 Q190,163 195,173
-                   Q210,178 230,177 Q248,175 255,168 Q260,158 264,152 Q266,148 268,155
-                   Q272,163 278,175 Q290,178 310,177 Q325,175 335,178"
-                stroke="#4dffb8" stroke-width="2" fill="none"/>
-          <!-- CO2 dip markers -->
-          <line x1="186" y1="148" x2="186" y2="265" stroke="#ff4d4d" stroke-width="1" stroke-dasharray="2,2" opacity="0.6"/>
-          <line x1="265" y1="148" x2="265" y2="265" stroke="#ff4d4d" stroke-width="1" stroke-dasharray="2,2" opacity="0.6"/>
-          <text x="186" y="278" fill="#ff4d4d" font-size="6.5" text-anchor="middle" font-family="IBM Plex Mono">1.6µm</text>
-          <text x="265" y="278" fill="#ff4d4d" font-size="6.5" text-anchor="middle" font-family="IBM Plex Mono">2.06µm</text>
-          <!-- arrow to dip -->
-          <text x="186" y="143" fill="#ff4d4d" font-size="6.5" text-anchor="middle" font-family="IBM Plex Mono">CO₂ dip</text>
-          <text x="265" y="143" fill="#ff4d4d" font-size="6.5" text-anchor="middle" font-family="IBM Plex Mono">CO₂ dip</text>
-          <!-- O2 band label -->
-          <text x="112" y="143" fill="#ffe166" font-size="6.5" text-anchor="middle" font-family="IBM Plex Mono">O₂</text>
-          <line x1="112" y1="145" x2="120" y2="175" stroke="#ffe16660" stroke-width="0.8"/>
+  <!-- O₃ absorption circle — in stratosphere (above tropopause line y=140) -->
+  <circle cx="172" cy="125" r="19" fill="#180826" stroke="#9b30ff" stroke-width="2.2" opacity="0.95"/>
+  <text x="172" y="121" fill="#cc88ff" font-size="8"  text-anchor="middle" font-family="IBM Plex Mono" font-weight="600">O₃</text>
+  <text x="172" y="131" fill="#8844cc" font-size="6.5" text-anchor="middle" font-family="IBM Plex Mono">absorbs UV</text>
+  <text x="172" y="139" fill="#6633aa" font-size="6"  text-anchor="middle" font-family="IBM Plex Mono">Hartley band</text>
 
-          <!-- retrieval pipeline box -->
-          <rect x="400" y="110" width="360" height="280" rx="3" fill="#090f1a" stroke="#b84dff66" stroke-width="1"/>
-          <text x="580" y="128" fill="#b84dff" font-size="9" text-anchor="middle" font-family="IBM Plex Mono">XCO₂ Retrieval Pipeline</text>
-          <line x1="410" y1="133" x2="750" y2="133" stroke="#1a2535" stroke-width="0.8"/>
+  <!-- UV energy dissipates as heat (wiggly / multi-directional lines — NOT a clean bounce) -->
+  <!-- Short wavy lines radiating from the O3 node in multiple directions -->
+  <!-- Up-left: lost to space -->
+  <path d="M160,113 Q148,106 138,100" stroke="#9b30ff" stroke-width="1.5" fill="none"
+        stroke-dasharray="2,2" opacity="0.75"/>
+  <text x="115" y="98" fill="#9b30ff" font-size="7" font-family="IBM Plex Mono">UV lost (&lt;0.31µm)</text>
+  <text x="115" y="108" fill="#6633aa" font-size="6.5" font-family="IBM Plex Mono">→ heats stratosphere</text>
+  <!-- Left dissipation -->
+  <path d="M154,122 Q142,120 133,118" stroke="#9b30ff" stroke-width="1.2" fill="none"
+        stroke-dasharray="2,2" opacity="0.55"/>
+  <!-- Up-right dissipation -->
+  <path d="M186,112 Q196,106 204,101" stroke="#9b30ff" stroke-width="1.2" fill="none"
+        stroke-dasharray="2,2" opacity="0.55"/>
 
-          <text x="415" y="147" fill="#4da6ff" font-size="7.5" font-family="IBM Plex Mono">① Measure spectrum (observed radiance)</text>
-          <text x="415" y="159" fill="#3a5a80" font-size="7" font-family="IBM Plex Mono">   Spectrometer disperses light, detector records Iobs(λ)</text>
+  <!-- Beam continues — depleted of UV — from O3 node edge toward surface -->
+  <!-- Continue from node edge at ~(187,130) to surface (420,330) -->
+  <line x1="188" y1="133" x2="418" y2="328"
+        stroke="#ffe166" stroke-width="2.5" marker-end="url(#mSolar)" opacity="0.65"/>
 
-          <text x="415" y="174" fill="#4dffb8" font-size="7.5" font-family="IBM Plex Mono">② Measure O₂ A-band (0.76 µm)</text>
-          <text x="415" y="186" fill="#2a5a40" font-size="7" font-family="IBM Plex Mono">   O₂ is fixed (20.95% of air) → gives path length</text>
-          <text x="415" y="197" fill="#2a5a40" font-size="7" font-family="IBM Plex Mono">   and surface pressure → removes geometry errors</text>
+  <!-- "UV removed" annotation on the continuing beam -->
+  <text x="232" y="175" fill="#886622" font-size="7.5" font-family="IBM Plex Mono"
+        transform="rotate(22,232,175)">VIS + NIR only</text>
 
-          <text x="415" y="212" fill="#ff8c42" font-size="7.5" font-family="IBM Plex Mono">③ Forward radiative transfer model</text>
-          <text x="415" y="224" fill="#664400" font-size="7" font-family="IBM Plex Mono">   Simulate what satellite SHOULD see for</text>
-          <text x="415" y="235" fill="#664400" font-size="7" font-family="IBM Plex Mono">   a given XCO₂, surface albedo, aerosols...</text>
+  <!-- Tropopause label callout -->
+  <line x1="195" y1="140" x2="310" y2="140" stroke="#1a3050" stroke-width="0.6" stroke-dasharray="3,4" opacity="0.7"/>
 
-          <text x="415" y="250" fill="#ff4d4d" font-size="7.5" font-family="IBM Plex Mono">④ Optimal estimation / inversion</text>
-          <text x="415" y="262" fill="#882222" font-size="7" font-family="IBM Plex Mono">   Adjust XCO₂ until modeled Imod(λ) ≈ Iobs(λ)</text>
-          <text x="415" y="273" fill="#882222" font-size="7" font-family="IBM Plex Mono">   Minimize χ² = Σ (Iobs - Imod)² / σ²</text>
+  <!-- Annotation box -->
+  <rect x="310" y="108" width="300" height="100" rx="3"
+        fill="#0c1020" stroke="#9b30ff44" stroke-width="1"/>
+  <text x="320" y="124" fill="#bb88ff" font-size="8"   font-family="IBM Plex Mono" font-weight="600">Ozone Layer (stratosphere)</text>
+  <text x="320" y="136" fill="#7755aa" font-size="7.5" font-family="IBM Plex Mono">O₃ absorbs UV &lt; 0.31 µm completely</text>
+  <text x="320" y="147" fill="#7755aa" font-size="7.5" font-family="IBM Plex Mono">Hartley band: 0.20–0.31 µm (strong)</text>
+  <text x="320" y="158" fill="#7755aa" font-size="7.5" font-family="IBM Plex Mono">Huggins band: 0.31–0.36 µm (weak)</text>
+  <text x="320" y="169" fill="#553388" font-size="7.5" font-family="IBM Plex Mono">Energy → heats the stratosphere</text>
+  <text x="320" y="180" fill="#443377" font-size="7"   font-family="IBM Plex Mono">Chappuis band 0.45–0.75µm (VIS, weak)</text>
+  <text x="320" y="192" fill="#3a2a60" font-size="7"   font-family="IBM Plex Mono">Beam entering troposphere: VIS + NIR intact</text>
+  <text x="320" y="203" fill="#3a2a60" font-size="7"   font-family="IBM Plex Mono">~300 DU ozone column (Dobson Units)</text>
+</g>
 
-          <text x="415" y="288" fill="#ffe166" font-size="7.5" font-family="IBM Plex Mono">⑤ Output: XCO₂ (ppm)</text>
-          <text x="415" y="300" fill="#886600" font-size="7" font-family="IBM Plex Mono">   Column-avg dry-air CO₂ mole fraction</text>
-          <text x="415" y="311" fill="#886600" font-size="7" font-family="IBM Plex Mono">   e.g. 420 ppm ± 0.5 ppm precision</text>
 
-          <rect x="415" y="320" width="320" height="58" rx="2" fill="#0d1020" stroke="#ffe16633" stroke-width="1"/>
-          <text x="425" y="334" fill="#ffe16699" font-size="7.5" font-family="IBM Plex Mono">Key insight: Beer-Lambert Law</text>
-          <text x="425" y="346" fill="#886600" font-size="7" font-family="IBM Plex Mono">I(λ) = I₀(λ) · exp(-∫ n·σ(λ)·dz)</text>
-          <text x="425" y="358" fill="#4a5a70" font-size="7" font-family="IBM Plex Mono">n = CO₂ number density (what we want)</text>
-          <text x="425" y="369" fill="#4a5a70" font-size="7" font-family="IBM Plex Mono">σ(λ) = absorption cross-section (known)</text>
-          <text x="425" y="380" fill="#4a5a70" font-size="7" font-family="IBM Plex Mono">Ratio of dip depth at 1.6µm → n → XCO₂</text>
-        </g>
+<!-- ═══════════════════════════════════════════════════════════════
+     STEP 3 — RAYLEIGH + MIE SCATTERING
+     Scientific accuracy:
+     • Rayleigh scattering: occurs THROUGHOUT the atmosphere (whole column)
+       but stronger higher up (less air mass). Node placed upper-mid atmo.
+     • Mie scattering (aerosols): concentrated in LOWER troposphere (boundary layer)
+       Node placed low in atmo (~y=290).
+     • Scattered rays go in multiple directions — show one going to space
+       (backward scatter) and one downward (forward scatter).
+     • Blue light (0.45µm) scatters 5.5x more than red (Rayleigh).
+     • Mie is wavelength-independent → white haze.
+══════════════════════════════════════════════════════════════════ -->
+<g id="g3" class="beam">
 
-      </svg>
+  <!-- Main solar beam (faded, full path shown as context) -->
+  <line x1="98" y1="65" x2="418" y2="328"
+        stroke="#ffe166" stroke-width="2" opacity="0.3"/>
+
+  <!-- ── RAYLEIGH SCATTER NODE ──
+       On beam at y=160: x=215 → (215,160)  [mid-upper troposphere]  -->
+  <circle cx="215" cy="160" r="11" fill="#08101e" stroke="#4da6ff" stroke-width="2"/>
+  <text x="215" y="157" fill="#4da6ff" font-size="7.5" text-anchor="middle" font-family="IBM Plex Mono" font-weight="600">R</text>
+  <text x="215" y="166" fill="#2a5090" font-size="6"   text-anchor="middle" font-family="IBM Plex Mono">Rayleigh</text>
+
+  <!-- Rayleigh backward scatter → exits to space (upper-left, away from sun) -->
+  <!-- From node edge (206,152) → exits atmo at (154,101) -->
+  <line x1="206" y1="152" x2="156" y2="103"
+        stroke="#4da6ff" stroke-width="2" marker-end="url(#mScatter)"/>
+  <text x="133" y="136" fill="#4da6ff" font-size="7.5" font-family="IBM Plex Mono">Blue ↑</text>
+  <text x="133" y="146" fill="#2a5090" font-size="7"   font-family="IBM Plex Mono">0.45 µm</text>
+  <text x="133" y="156" fill="#2a5090" font-size="6.5" font-family="IBM Plex Mono">∝ 1/λ⁴</text>
+
+  <!-- Rayleigh forward scatter sideways (illustrate isotropic nature) -->
+  <line x1="226" y1="160" x2="270" y2="163"
+        stroke="#4da6ff" stroke-width="1.2" stroke-dasharray="3,2" opacity="0.5"/>
+
+  <!-- ── MIE SCATTER NODE ──
+       On beam at y=285: x=98+1.206*(285-63)=98+268=366 → (366,285)
+       [low troposphere/boundary layer — aerosols near surface]  -->
+  <circle cx="366" cy="285" r="11" fill="#08101e" stroke="#99ccff" stroke-width="1.8"/>
+  <text x="366" y="282" fill="#99ccff" font-size="7.5" text-anchor="middle" font-family="IBM Plex Mono" font-weight="600">M</text>
+  <text x="366" y="291" fill="#4a6a99" font-size="6"   text-anchor="middle" font-family="IBM Plex Mono">Mie</text>
+
+  <!-- Mie backward scatter → exits to space (up and slightly left) -->
+  <!-- From node (366,285), scatter up toward (310,103) -->
+  <line x1="360" y1="274" x2="310" y2="105"
+        stroke="#99ccff" stroke-width="1.8" stroke-dasharray="4,3" marker-end="url(#mScatter)"/>
+  <text x="295" y="190" fill="#6688aa" font-size="7.5" font-family="IBM Plex Mono">All λ ↑</text>
+  <text x="295" y="200" fill="#446688" font-size="7"   font-family="IBM Plex Mono">white haze</text>
+
+  <!-- Mie forward scatter (continue downward) -->
+  <line x1="371" y1="296" x2="418" y2="328"
+        stroke="#ffe166" stroke-width="1.8" marker-end="url(#mSolar)" opacity="0.45"/>
+
+  <!-- Dimmed main beam above Mie node -->
+  <line x1="98" y1="65" x2="355" y2="278"
+        stroke="#ffe166" stroke-width="2.5" opacity="0.5"/>
+
+  <!-- Annotation box (right side, clear of diagram) -->
+  <rect x="420" y="128" width="358" height="150" rx="3"
+        fill="#08101e" stroke="#4da6ff44" stroke-width="1"/>
+  <text x="430" y="143" fill="#5599dd" font-size="8" font-family="IBM Plex Mono" font-weight="600">Rayleigh Scattering (whole column)</text>
+  <text x="430" y="154" fill="#3a5a80" font-size="7.5" font-family="IBM Plex Mono">• Molecules (N₂, O₂) scatter elastically</text>
+  <text x="430" y="164" fill="#3a5a80" font-size="7.5" font-family="IBM Plex Mono">• Intensity ∝ 1/λ⁴ → blue (0.45µm) scatters</text>
+  <text x="430" y="174" fill="#3a5a80" font-size="7.5" font-family="IBM Plex Mono">  5.5× more than red (0.70µm)</text>
+  <text x="430" y="184" fill="#3a5a80" font-size="7.5" font-family="IBM Plex Mono">• Scattered in ALL directions → blue sky</text>
+
+  <line x1="430" y1="193" x2="772" y2="193" stroke="#1a2535" stroke-width="0.6"/>
+  <text x="430" y="205" fill="#6688bb" font-size="8" font-family="IBM Plex Mono" font-weight="600">Mie Scattering (boundary layer)</text>
+  <text x="430" y="216" fill="#3a5070" font-size="7.5" font-family="IBM Plex Mono">• Aerosols, dust, cloud droplets (r &gt; 0.1µm)</text>
+  <text x="430" y="226" fill="#3a5070" font-size="7.5" font-family="IBM Plex Mono">• Wavelength-independent → white appearance</text>
+  <text x="430" y="236" fill="#3a5070" font-size="7.5" font-family="IBM Plex Mono">• Forward-dominated scattering phase function</text>
+  <text x="430" y="250" fill="#ff6644" font-size="7.5" font-family="IBM Plex Mono">⚠ Aerosols = #1 error in CO₂ retrievals</text>
+  <text x="430" y="261" fill="#883322" font-size="7"   font-family="IBM Plex Mono">  ~30% solar reflected by clouds/aerosols total</text>
+  <text x="430" y="272" fill="#883322" font-size="7"   font-family="IBM Plex Mono">  OCO-2 rejects cloudy/hazy scenes (&lt;0.3 AOD)</text>
+</g>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     STEP 4 — CO₂ & H₂O ABSORPTION (DOWNWARD BEAM)
+     Scientific accuracy:
+     • CO₂ absorbs at 1.6, 2.06 µm (NIR/SWIR) — in troposphere
+     • H₂O absorbs at 1.37, 1.87, 2.7, 6.3 µm — lower troposphere
+     • Absorbed energy is re-emitted in random directions (NOT directional)
+       → show as small radiating lines from the node, not a directed arrow
+     • Beam becomes progressively dimmer/thinner after each absorption
+     • Beer-Lambert law governs the attenuation
+══════════════════════════════════════════════════════════════════ -->
+<g id="g4" class="beam">
+
+  <!-- Segment 1: Sun to CO2 node (full brightness) -->
+  <!-- CO2 node on beam at y=205: x=98+1.206*(205-63)=98+171=269 → (269,205) -->
+  <line x1="98" y1="65" x2="263" y2="200"
+        stroke="#ffe166" stroke-width="3" marker-end="url(#mSolar)" opacity="0.85"/>
+
+  <!-- CO₂ absorption node -->
+  <circle cx="269" cy="206" r="15" fill="#1a0808" stroke="#ff4d4d" stroke-width="2.2"/>
+  <text x="269" y="203" fill="#ff6666" font-size="8"  text-anchor="middle" font-family="IBM Plex Mono" font-weight="600">CO₂</text>
+  <text x="269" y="212" fill="#882222" font-size="6.5" text-anchor="middle" font-family="IBM Plex Mono">1.6 µm</text>
+  <text x="269" y="220" fill="#882222" font-size="6"  text-anchor="middle" font-family="IBM Plex Mono">2.06 µm</text>
+
+  <!-- Absorbed energy re-emitted isotropically (random directions) -->
+  <!-- Small radiating dashes — NOT directional arrows — from node -->
+  <line x1="258" y1="194" x2="244" y2="180" stroke="#ff4d4d" stroke-width="1.2" stroke-dasharray="2,2" opacity="0.7"/>
+  <line x1="268" y1="191" x2="268" y2="175" stroke="#ff4d4d" stroke-width="1.2" stroke-dasharray="2,2" opacity="0.7"/>
+  <line x1="280" y1="194" x2="294" y2="180" stroke="#ff4d4d" stroke-width="1.2" stroke-dasharray="2,2" opacity="0.7"/>
+  <line x1="255" y1="205" x2="239" y2="205" stroke="#ff4d4d" stroke-width="1.2" stroke-dasharray="2,2" opacity="0.5"/>
+  <line x1="283" y1="205" x2="299" y2="205" stroke="#ff4d4d" stroke-width="1.2" stroke-dasharray="2,2" opacity="0.5"/>
+  <!-- label for random re-emission -->
+  <text x="248" y="172" fill="#ff4d4d" font-size="6.5" font-family="IBM Plex Mono" opacity="0.8">re-emit (random)</text>
+
+  <!-- Segment 2: CO2 node to H2O node (attenuated, thinner line) -->
+  <!-- H2O node on beam at y=270: x=98+1.206*(270-63)=98+250=348 → (348,270) -->
+  <line x1="280" y1="218" x2="342" y2="265"
+        stroke="#ffe166" stroke-width="2" opacity="0.6"/>
+
+  <!-- H₂O absorption node -->
+  <circle cx="348" cy="271" r="13" fill="#081420" stroke="#4488ff" stroke-width="2"/>
+  <text x="348" y="268" fill="#6699dd" font-size="8"   text-anchor="middle" font-family="IBM Plex Mono" font-weight="600">H₂O</text>
+  <text x="348" y="277" fill="#334488" font-size="6.5" text-anchor="middle" font-family="IBM Plex Mono">1.87µm</text>
+  <text x="348" y="284" fill="#334488" font-size="6"   text-anchor="middle" font-family="IBM Plex Mono">2.7µm</text>
+
+  <!-- H2O isotropic re-emission -->
+  <line x1="337" y1="260" x2="325" y2="248" stroke="#4488ff" stroke-width="1.2" stroke-dasharray="2,2" opacity="0.6"/>
+  <line x1="348" y1="258" x2="348" y2="244" stroke="#4488ff" stroke-width="1.2" stroke-dasharray="2,2" opacity="0.6"/>
+  <line x1="359" y1="260" x2="371" y2="248" stroke="#4488ff" stroke-width="1.2" stroke-dasharray="2,2" opacity="0.6"/>
+
+  <!-- Segment 3: H2O to surface (further attenuated) -->
+  <line x1="357" y1="281" x2="418" y2="328"
+        stroke="#ffe166" stroke-width="1.5" marker-end="url(#mSolar)" opacity="0.35"/>
+
+  <!-- Beam attenuation indicator arrows (Beer-Lambert) -->
+  <text x="422" y="318" fill="#886622" font-size="7" font-family="IBM Plex Mono" opacity="0.7">attenuated</text>
+
+  <!-- Annotation box (right) -->
+  <rect x="400" y="138" width="375" height="165" rx="3"
+        fill="#0c0a08" stroke="#ff4d4d44" stroke-width="1"/>
+  <text x="410" y="154" fill="#ff6666" font-size="8" font-family="IBM Plex Mono" font-weight="600">Molecular Absorption (Beer-Lambert Law)</text>
+  <text x="410" y="166" fill="#773333" font-size="7.5" font-family="IBM Plex Mono">I(λ) = I₀(λ) · exp(−σ(λ) · N · L)</text>
+  <text x="410" y="177" fill="#553333" font-size="7"   font-family="IBM Plex Mono">σ=cross-section, N=column density, L=path length</text>
+
+  <line x1="410" y1="184" x2="769" y2="184" stroke="#1e1010" stroke-width="0.7"/>
+  <text x="410" y="196" fill="#ff6666" font-size="7.5" font-family="IBM Plex Mono">CO₂ absorption bands (troposphere):</text>
+  <text x="410" y="207" fill="#884444" font-size="7.5" font-family="IBM Plex Mono">  1.6 µm — weak NIR overtone</text>
+  <text x="410" y="218" fill="#884444" font-size="7.5" font-family="IBM Plex Mono">  2.06 µm — stronger NIR overtone ← satellites use</text>
+  <text x="410" y="229" fill="#884444" font-size="7.5" font-family="IBM Plex Mono">  4.3 µm — very strong MIR fundamental</text>
+  <text x="410" y="240" fill="#884444" font-size="7.5" font-family="IBM Plex Mono">  15 µm  — bending mode (TIR)</text>
+
+  <line x1="410" y1="248" x2="769" y2="248" stroke="#1e1010" stroke-width="0.7"/>
+  <text x="410" y="260" fill="#5577aa" font-size="7.5" font-family="IBM Plex Mono">H₂O bands: 1.37, 1.87, 2.7, 6.3 µm</text>
+  <text x="410" y="271" fill="#335577" font-size="7.5" font-family="IBM Plex Mono">H₂O retrieved simultaneously to avoid bias</text>
+
+  <text x="410" y="287" fill="#cc5500" font-size="7.5" font-family="IBM Plex Mono">More CO₂ → deeper dips → stronger satellite signal</text>
+  <text x="410" y="298" fill="#884422" font-size="7"   font-family="IBM Plex Mono">This downward traversal is pass 1-of-2 through the column</text>
+</g>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     STEP 5 — SURFACE REFLECTION
+     Scientific accuracy:
+     • Show the FULL two-pass concept clearly:
+       - Pass 1 (down): beam arrives attenuated at surface
+       - Surface reflects fraction = albedo
+       - Pass 2 (up): reflected beam passes THROUGH atmosphere again
+         → CO₂ absorbs AGAIN at 1.6, 2.06µm on upward path
+         → dips are now DOUBLED relative to single-pass
+     • Reflected path geometry: (420,330)→(631,100)→satellite (675,52)
+     • CO₂ absorption node on upward path at (539,200)
+══════════════════════════════════════════════════════════════════ -->
+<g id="g5" class="beam">
+
+  <!-- Pass 1 — downward solar beam (faded, context) -->
+  <line x1="98" y1="65" x2="418" y2="328"
+        stroke="#ffe166" stroke-width="2" opacity="0.35" stroke-dasharray="8,3"/>
+  <!-- Pass 1 label -->
+  <text x="190" y="183" fill="#886622" font-size="7" font-family="IBM Plex Mono"
+        transform="rotate(22,190,183)" opacity="0.7">pass 1↓ (CO₂ absorbs)</text>
+
+  <!-- Surface reflection dot + albedo label -->
+  <circle cx="420" cy="333" r="7" fill="#0d1e0e" stroke="#4dffb8" stroke-width="2"/>
+  <!-- Multiple small reflection vectors from the surface dot (Lambertian reflector) -->
+  <line x1="418" y1="326" x2="395" y2="308" stroke="#4dffb8" stroke-width="1"   opacity="0.4"/>
+  <line x1="420" y1="326" x2="420" y2="302" stroke="#4dffb8" stroke-width="1"   opacity="0.4"/>
+  <line x1="422" y1="326" x2="445" y2="308" stroke="#4dffb8" stroke-width="1"   opacity="0.4"/>
+
+  <!-- Albedo annotation -->
+  <rect x="340" y="336" width="255" height="90" rx="2" fill="#08140a" stroke="#4dffb855" stroke-width="1"/>
+  <text x="350" y="350" fill="#4dffb8" font-size="7.5" font-family="IBM Plex Mono" font-weight="600">Surface Albedo</text>
+  <text x="350" y="362" fill="#2a7050" font-size="7.5" font-family="IBM Plex Mono">Ocean   ~0.06 (very dark)</text>
+  <text x="350" y="373" fill="#2a7050" font-size="7.5" font-family="IBM Plex Mono">Forest  ~0.10–0.15</text>
+  <text x="350" y="384" fill="#2a7050" font-size="7.5" font-family="IBM Plex Mono">Desert  ~0.30–0.40 ← good for OCO-2</text>
+  <text x="350" y="395" fill="#2a7050" font-size="7.5" font-family="IBM Plex Mono">Snow    ~0.80–0.90 ← strongest signal</text>
+  <text x="350" y="408" fill="#1a5035" font-size="7"   font-family="IBM Plex Mono">High albedo → stronger CO₂ dip signal</text>
+  <text x="350" y="418" fill="#1a5035" font-size="7"   font-family="IBM Plex Mono">Dark ocean → too dim for SWIR retrieval</text>
+
+  <!-- Pass 2 — upward reflected beam -->
+  <!-- Surface → CO₂ absorption node on reflected path at y=200: (539,200) -->
+  <line x1="420" y1="330" x2="532" y2="205"
+        stroke="#4dffb8" stroke-width="2.5"/>
+  <!-- CO₂ 2nd-pass absorption node ON the reflected beam at (539,200) -->
+  <circle cx="539" cy="200" r="13" fill="#1a0808" stroke="#ff4d4d" stroke-width="2"/>
+  <text x="539" y="197" fill="#ff6666" font-size="7.5" text-anchor="middle" font-family="IBM Plex Mono" font-weight="600">CO₂</text>
+  <text x="539" y="206" fill="#882222" font-size="6"   text-anchor="middle" font-family="IBM Plex Mono">pass 2↑</text>
+  <text x="539" y="213" fill="#882222" font-size="6"   text-anchor="middle" font-family="IBM Plex Mono">absorbs again</text>
+
+  <!-- Isotropic re-emission from 2nd pass CO2 node -->
+  <line x1="529" y1="189" x2="519" y2="177" stroke="#ff4d4d" stroke-width="1.2" stroke-dasharray="2,2" opacity="0.65"/>
+  <line x1="539" y1="187" x2="539" y2="174" stroke="#ff4d4d" stroke-width="1.2" stroke-dasharray="2,2" opacity="0.65"/>
+  <line x1="549" y1="189" x2="559" y2="177" stroke="#ff4d4d" stroke-width="1.2" stroke-dasharray="2,2" opacity="0.65"/>
+
+  <!-- Reflected beam continues: CO2 node → atmo top → satellite -->
+  <line x1="546" y1="189" x2="629" y2="103"
+        stroke="#4dffb8" stroke-width="2.5" stroke-dasharray="7,2"/>
+  <line x1="631" y1="101" x2="671" y2="55"
+        stroke="#4dffb8" stroke-width="2.5" marker-end="url(#mReflect)"/>
+
+  <!-- Pass 2 label mid-beam -->
+  <text x="572" y="155" fill="#2a8060" font-size="7" font-family="IBM Plex Mono"
+        transform="rotate(-48,572,155)">pass 2↑ (CO₂ absorbs again)</text>
+
+  <!-- TWO-WAY PATH callout -->
+  <rect x="30" y="336" width="305" height="115" rx="3"
+        fill="#08100c" stroke="#4dffb855" stroke-width="1"/>
+  <text x="40" y="352" fill="#4dffb8" font-size="8" font-family="IBM Plex Mono" font-weight="600">Two-Way Path — Key Advantage</text>
+  <text x="40" y="365" fill="#2a6040" font-size="7.5" font-family="IBM Plex Mono">Reflected solar passes through the CO₂</text>
+  <text x="40" y="376" fill="#2a6040" font-size="7.5" font-family="IBM Plex Mono">column TWICE (down + back up).</text>
+  <text x="40" y="390" fill="#cc8800" font-size="7.5" font-family="IBM Plex Mono">τ_total = 2 × τ_one-way</text>
+  <text x="40" y="401" fill="#886622" font-size="7.5" font-family="IBM Plex Mono">Dip depth is DOUBLED vs single pass.</text>
+  <text x="40" y="415" fill="#444444" font-size="7"   font-family="IBM Plex Mono">This is why SWIR passive remote sensing</text>
+  <text x="40" y="426" fill="#444444" font-size="7"   font-family="IBM Plex Mono">works for trace-gas column retrieval.</text>
+  <text x="40" y="440" fill="#444444" font-size="7"   font-family="IBM Plex Mono">OCO-2/GOSAT exploit this two-pass geometry.</text>
+  <text x="40" y="450" fill="#333" font-size="6.5" font-family="IBM Plex Mono">albedo: a = reflected / incident flux</text>
+</g>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     STEP 6 — EARTH THERMAL EMISSION (TIR)
+     Scientific accuracy:
+     • Surface emits as ~288K blackbody → peak ~10 µm (TIR)
+     • This is SEPARATE from reflected sunlight
+     • CO₂ absorbs at 15 µm and re-emits in ALL directions:
+       - Some back DOWN to surface → greenhouse warming
+       - Some UP toward satellite
+     • Show BOTH downward and upward re-emission from CO₂ node
+     • The greenhouse effect arrow MUST point back down
+     • TIR path is straight upward (nadir viewing geometry)
+     • Thermal path does NOT follow the oblique solar beam geometry
+══════════════════════════════════════════════════════════════════ -->
+<g id="g6" class="beam">
+
+  <!-- Surface emitter (point ~x=500, separate from reflected beam impact at 420) -->
+  <circle cx="500" cy="333" r="7" fill="#1a1000" stroke="#ff8c42" stroke-width="2"/>
+  <!-- Wavy TIR emission lines from surface — multiple upward going arrows -->
+  <!-- Main upward path to CO2 node -->
+  <line x1="500" y1="326" x2="504" y2="225"
+        stroke="#ff8c42" stroke-width="2.5" stroke-dasharray="7,4"
+        marker-end="url(#mEmit)"/>
+
+  <!-- TIR label -->
+  <text x="512" y="285" fill="#ff8c42" font-size="8"   font-family="IBM Plex Mono">Thermal IR</text>
+  <text x="512" y="295" fill="#885500" font-size="7.5" font-family="IBM Plex Mono">peak ~10 µm</text>
+  <text x="512" y="305" fill="#885500" font-size="7"   font-family="IBM Plex Mono">288 K surface</text>
+
+  <!-- Additional faint TIR arrows to show isotropic emission from surface -->
+  <line x1="485" y1="329" x2="462" y2="310" stroke="#ff8c42" stroke-width="1"   opacity="0.35" stroke-dasharray="4,3"/>
+  <line x1="515" y1="329" x2="538" y2="310" stroke="#ff8c42" stroke-width="1"   opacity="0.35" stroke-dasharray="4,3"/>
+
+  <!-- CO₂ absorption node at 15µm — ON the upward TIR path, y≈215 -->
+  <circle cx="504" cy="218" r="14" fill="#1a0808" stroke="#ff4d4d" stroke-width="2"/>
+  <text x="504" y="215" fill="#ff6666" font-size="8"  text-anchor="middle" font-family="IBM Plex Mono" font-weight="600">CO₂</text>
+  <text x="504" y="224" fill="#882222" font-size="6.5" text-anchor="middle" font-family="IBM Plex Mono">abs 15µm</text>
+  <text x="504" y="231" fill="#662222" font-size="6"  text-anchor="middle" font-family="IBM Plex Mono">re-emits all dir.</text>
+
+  <!-- Re-emission UPWARD toward satellite -->
+  <line x1="504" y1="204" x2="656" y2="60"
+        stroke="#ff4d4d" stroke-width="2" stroke-dasharray="5,3"
+        marker-end="url(#mCo2)"/>
+  <text x="575" y="148" fill="#ff4d4d" font-size="7.5" font-family="IBM Plex Mono"
+        transform="rotate(-44,575,148)">emits up → satellite</text>
+
+  <!-- Re-emission DOWNWARD (GREENHOUSE EFFECT) — MUST show this -->
+  <line x1="504" y1="232" x2="500" y2="326"
+        stroke="#ff6600" stroke-width="2" stroke-dasharray="4,3"
+        marker-end="url(#mGreenDown)"/>
+  <!-- Arrow tip marker for downward (green arrow) -->
+  <text x="464" y="280" fill="#ff6600" font-size="7.5" font-family="IBM Plex Mono">greenhouse</text>
+  <text x="464" y="290" fill="#cc4400" font-size="7.5" font-family="IBM Plex Mono">↓ back to</text>
+  <text x="464" y="300" fill="#cc4400" font-size="7.5" font-family="IBM Plex Mono">surface</text>
+
+  <!-- Annotation box (left) -->
+  <rect x="25" y="336" width="330" height="130" rx="3"
+        fill="#0e0800" stroke="#ff8c4244" stroke-width="1"/>
+  <text x="35" y="352" fill="#ff8c42" font-size="8" font-family="IBM Plex Mono" font-weight="600">Earth Thermal Emission (Blackbody)</text>
+  <text x="35" y="365" fill="#886622" font-size="7.5" font-family="IBM Plex Mono">Surface T≈288K → peak ~10µm (Planck)</text>
+  <text x="35" y="376" fill="#664400" font-size="7.5" font-family="IBM Plex Mono">Emitted day and night (no sun needed)</text>
+  <line x1="35" y1="384" x2="349" y2="384" stroke="#1e1000" stroke-width="0.7"/>
+  <text x="35" y="396" fill="#ff6600" font-size="8" font-family="IBM Plex Mono" font-weight="600">CO₂ Greenhouse Effect (15µm band):</text>
+  <text x="35" y="408" fill="#884422" font-size="7.5" font-family="IBM Plex Mono">1. Surface emits TIR upward</text>
+  <text x="35" y="419" fill="#884422" font-size="7.5" font-family="IBM Plex Mono">2. CO₂ absorbs at 15µm in troposphere</text>
+  <text x="35" y="430" fill="#884422" font-size="7.5" font-family="IBM Plex Mono">3. CO₂ re-emits: some ↑ to space, some ↓</text>
+  <text x="35" y="441" fill="#664422" font-size="7.5" font-family="IBM Plex Mono">4. Downward re-emission → warms surface</text>
+  <text x="35" y="455" fill="#556688" font-size="7"   font-family="IBM Plex Mono">Satellite (TIR mode): more CO₂→ emission from</text>
+  <text x="35" y="465" fill="#445566" font-size="7"   font-family="IBM Plex Mono">higher/colder level → less radiance at 15µm</text>
+
+  <!-- Annotation: TIR vs SWIR instruments note (right side) -->
+  <rect x="370" y="336" width="305" height="100" rx="3"
+        fill="#0e0808" stroke="#ff8c4244" stroke-width="1"/>
+  <text x="380" y="352" fill="#ff8c42" font-size="7.5" font-family="IBM Plex Mono" font-weight="600">TIR vs SWIR Satellite Modes</text>
+  <text x="380" y="365" fill="#664400" font-size="7.5" font-family="IBM Plex Mono">TIR (AIRS, IASI, CrIS): thermal emission</text>
+  <text x="380" y="376" fill="#664400" font-size="7.5" font-family="IBM Plex Mono">  → sensitive to mid/upper troposphere</text>
+  <text x="380" y="387" fill="#664400" font-size="7.5" font-family="IBM Plex Mono">  → works day AND night</text>
+  <text x="380" y="401" fill="#446688" font-size="7.5" font-family="IBM Plex Mono">SWIR (OCO-2, GOSAT): reflected solar</text>
+  <text x="380" y="412" fill="#446688" font-size="7.5" font-family="IBM Plex Mono">  → sensitive full column (near-surface CO₂)</text>
+  <text x="380" y="423" fill="#446688" font-size="7.5" font-family="IBM Plex Mono">  → daytime only (needs sunlight)</text>
+  <text x="380" y="435" fill="#334455" font-size="7"   font-family="IBM Plex Mono">Combined: complementary vertical sensitivity</text>
+</g>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     STEP 7 — MIXED SIGNAL AT SATELLITE
+     Scientific accuracy:
+     • THREE physically distinct paths arrive at satellite:
+       A. Reflected solar (green): surface→ CO₂ 2nd-pass → satellite
+          Geometry: (420,330)→(539,200)→(631,100)→(675,52)
+       B. Thermal emission (orange dashed): upward from ~(500,330)
+          CO₂ absorbs/re-emits at 15µm, rest reaches satellite
+       C. Scattered light (blue): Rayleigh/Mie node at (215,160)
+          A portion scattered TOWARD the satellite direction
+     • Path B should NOT originate from near the reflected impact point
+       — it originates from the whole surface and is a different process
+     • The info box must NOT overlap the satellite itself
+══════════════════════════════════════════════════════════════════ -->
+<g id="g7" class="beam">
+
+  <!-- ── PATH A: Reflected solar (teal) with CO₂ 2nd pass ── -->
+  <!-- Surface impact → CO2 2nd-pass node at (539,200) -->
+  <line x1="420" y1="330" x2="532" y2="206"
+        stroke="#4dffb8" stroke-width="2.5" opacity="0.9"/>
+  <!-- CO₂ 2nd-pass node ON reflected beam (539,200) -->
+  <circle cx="539" cy="200" r="12" fill="#1a0808" stroke="#ff4d4d" stroke-width="2"/>
+  <text x="539" y="197" fill="#ff6666" font-size="7"  text-anchor="middle" font-family="IBM Plex Mono" font-weight="600">CO₂</text>
+  <text x="539" y="206" fill="#882222" font-size="6"  text-anchor="middle" font-family="IBM Plex Mono">2nd pass</text>
+  <text x="539" y="213" fill="#882222" font-size="5.5" text-anchor="middle" font-family="IBM Plex Mono">1.6+2.06µm</text>
+  <!-- CO2 node → atmo top exit (631,100) → satellite -->
+  <line x1="546" y1="190" x2="629" y2="103"
+        stroke="#4dffb8" stroke-width="2" stroke-dasharray="6,2"/>
+  <line x1="631" y1="101" x2="670" y2="55"
+        stroke="#4dffb8" stroke-width="2.5" marker-end="url(#mReflect)"/>
+
+  <!-- ── PATH B: Thermal TIR emission (orange) ── -->
+  <!-- Originates from surface at x=560 (separate from reflection impact at 420) -->
+  <!-- CO₂ absorbs/re-emits at y≈220 on this path -->
+  <circle cx="560" cy="333" r="4" fill="#1a1000" stroke="#ff8c42" stroke-width="1.5"/>
+  <line x1="560" y1="328" x2="562" y2="222"
+        stroke="#ff8c42" stroke-width="2" stroke-dasharray="6,3" opacity="0.8"/>
+  <!-- CO₂ 15µm absorption on TIR path -->
+  <circle cx="562" cy="218" r="9" fill="#1a0808" stroke="#ff4d4d" stroke-width="1.5"/>
+  <text x="562" y="215" fill="#ff6666" font-size="6"  text-anchor="middle" font-family="IBM Plex Mono">CO₂</text>
+  <text x="562" y="222" fill="#882222" font-size="5.5" text-anchor="middle" font-family="IBM Plex Mono">15µm</text>
+  <!-- TIR continues to satellite -->
+  <line x1="563" y1="209" x2="666" y2="58"
+        stroke="#ff8c42" stroke-width="2" stroke-dasharray="5,3"
+        marker-end="url(#mEmit)" opacity="0.8"/>
+
+  <!-- ── PATH C: Rayleigh-scattered VIS light toward satellite ── -->
+  <!-- Scatter node at (215,160) on main solar beam — scatter event already shown;
+       a portion of scattered light travels TOWARD satellite direction -->
+  <circle cx="215" cy="160" r="7" fill="#0a1020" stroke="#4da6ff" stroke-width="1.5"/>
+  <!-- Scattered fraction toward satellite -->
+  <line x1="221" y1="154" x2="662" y2="57"
+        stroke="#4da6ff" stroke-width="1.8" stroke-dasharray="4,4"
+        marker-end="url(#mScatter)" opacity="0.7"/>
+  <!-- Label mid-path -->
+  <text x="430" y="115" fill="#4da6ff" font-size="7" font-family="IBM Plex Mono" opacity="0.8">VIS scattered</text>
+
+  <!-- ── Incoming solar beam (context, faded) ── -->
+  <line x1="98" y1="65" x2="418" y2="328"
+        stroke="#ffe166" stroke-width="1.5" opacity="0.2" stroke-dasharray="6,4"/>
+
+  <!-- Satellite legend box — placed LEFT of satellite, NOT overlapping it -->
+  <rect x="390" y="14" width="240" height="80" rx="3"
+        fill="#06080f" stroke="#b84dff" stroke-width="1.5"/>
+  <text x="400" y="29" fill="#b84dff" font-size="7.5" font-family="IBM Plex Mono" font-weight="600">Satellite receives mixed signal:</text>
+  <line x1="400" y1="33" x2="624" y2="33" stroke="#1e1e35" stroke-width="0.7"/>
+  <text x="402" y="45" fill="#4dffb8"  font-size="7" font-family="IBM Plex Mono">■ Reflected solar  (1.6, 2.06 µm dips)</text>
+  <text x="402" y="56" fill="#ff8c42"  font-size="7" font-family="IBM Plex Mono">■ Thermal TIR      (4.3, 15 µm)</text>
+  <text x="402" y="67" fill="#4da6ff"  font-size="7" font-family="IBM Plex Mono">■ Scattered VIS    (0.4–0.7 µm)</text>
+  <text x="402" y="78" fill="#a0a0c0"  font-size="7" font-family="IBM Plex Mono">■ O₂ A-band ref   (0.76 µm)</text>
+  <text x="402" y="89" fill="#606080"  font-size="7" font-family="IBM Plex Mono">■ Fluorescence     (0.76, 0.77 µm, weak)</text>
+
+  <!-- Annotation box (bottom-left) -->
+  <rect x="25" y="336" width="360" height="130" rx="3"
+        fill="#060810" stroke="#b84dff44" stroke-width="1"/>
+  <text x="35" y="352" fill="#b84dff" font-size="8" font-family="IBM Plex Mono" font-weight="600">Upwelling Radiance at Satellite</text>
+  <text x="35" y="365" fill="#5544aa" font-size="7.5" font-family="IBM Plex Mono">L_obs(λ) = L_reflect(λ) + L_scatter(λ)</text>
+  <text x="35" y="376" fill="#5544aa" font-size="7.5" font-family="IBM Plex Mono">         + L_thermal(λ) + L_fluor(λ)</text>
+  <line x1="35" y1="384" x2="379" y2="384" stroke="#141420" stroke-width="0.7"/>
+  <text x="35" y="396" fill="#4dffb8" font-size="7.5" font-family="IBM Plex Mono">At 1.6 &amp; 2.06µm: reflected solar dips</text>
+  <text x="35" y="407" fill="#2a6040" font-size="7.5" font-family="IBM Plex Mono">  depth ∝ CO₂ column amount (2-way)</text>
+  <text x="35" y="421" fill="#ff8c42" font-size="7.5" font-family="IBM Plex Mono">At 15µm: emission bump from CO₂ layer</text>
+  <text x="35" y="432" fill="#884422" font-size="7.5" font-family="IBM Plex Mono">  shape reveals vertical CO₂ profile</text>
+  <text x="35" y="446" fill="#5a6080" font-size="7"   font-family="IBM Plex Mono">Spectrometer resolves individual spectral lines</text>
+  <text x="35" y="457" fill="#404860" font-size="7"   font-family="IBM Plex Mono">R~20,000 needed to see CO₂ line structure</text>
+  <text x="35" y="468" fill="#404860" font-size="7"   font-family="IBM Plex Mono">Different lines → different altitude sensitivities</text>
+</g>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     STEP 8 — XCO₂ RETRIEVAL
+     Scientific accuracy:
+     • Spectrum plot must show THREE dip features:
+       1. O₂ A-band at 0.76µm (leftmost, yellow/orange)
+       2. CO₂ 1.6µm dip (middle, red)
+       3. CO₂ 2.06µm dip (rightmost, red)
+     • Continuum line should be above all dips
+     • O₂ A-band is the reference used to normalize geometry
+     • Retrieval steps: measure → forward model → inversion → output
+     • XCO₂ definition: pressure-weighted column average
+══════════════════════════════════════════════════════════════════ -->
+<g id="g8" class="beam">
+
+  <!-- === LEFT: Measured spectrum plot === -->
+  <rect x="30" y="108" width="340" height="185" rx="3"
+        fill="#06080f" stroke="#b84dff" stroke-width="1.5"/>
+  <text x="200" y="124" fill="#b84dff" font-size="8.5" text-anchor="middle"
+        font-family="IBM Plex Mono" font-weight="600">Measured Spectrum at Satellite Sensor</text>
+
+  <!-- Plot axes -->
+  <line x1="60" y1="272" x2="352" y2="272" stroke="#c8d8f0" stroke-width="1"/>
+  <line x1="60" y1="272" x2="60"  y2="136" stroke="#c8d8f0" stroke-width="1"/>
+  <!-- Axis labels -->
+  <text x="205" y="284" fill="#c8d8f0" font-size="7" text-anchor="middle" font-family="IBM Plex Mono">Wavelength (µm)   →</text>
+  <text x="46"  y="208" fill="#c8d8f0" font-size="7" text-anchor="middle" font-family="IBM Plex Mono"
+        transform="rotate(-90,46,208)">Radiance →</text>
+
+  <!-- Wavelength tick marks and labels on x-axis -->
+  <!-- 0.76µm at x≈100, 1.6µm at x≈188, 2.06µm at x≈272  (rough linear mapping) -->
+  <line x1="100" y1="272" x2="100" y2="276" stroke="#c8d8f0" stroke-width="0.8"/>
+  <text x="100" y="283" fill="#c8d8f0" font-size="6" text-anchor="middle" font-family="IBM Plex Mono">0.76</text>
+  <line x1="188" y1="272" x2="188" y2="276" stroke="#c8d8f0" stroke-width="0.8"/>
+  <text x="188" y="283" fill="#c8d8f0" font-size="6" text-anchor="middle" font-family="IBM Plex Mono">1.6</text>
+  <line x1="272" y1="272" x2="272" y2="276" stroke="#c8d8f0" stroke-width="0.8"/>
+  <text x="272" y="283" fill="#c8d8f0" font-size="6" text-anchor="middle" font-family="IBM Plex Mono">2.06</text>
+
+  <!-- Continuum line (what we'd see with NO absorption) -->
+  <path d="M65,185 Q150,182 205,185 Q270,189 348,185"
+        stroke="#ffe16650" stroke-width="1.5" fill="none" stroke-dasharray="5,3"/>
+  <text x="316" y="180" fill="#ffe16660" font-size="6.5" font-family="IBM Plex Mono">continuum</text>
+
+  <!-- Measured spectrum — three absorption features:
+       1. O₂ A-band dip at x≈100 (narrow, deep, orange/yellow)
+       2. CO₂ 1.6µm dip at x≈188 (moderate depth, red)
+       3. CO₂ 2.06µm dip at x≈272 (deepest SWIR feature, red)
+       Spectrum is GREEN (teal = satellite measured signal)
+  -->
+  <path d="M65,185
+           Q78,184 87,184 Q93,182 97,172 Q100,160 103,172 Q107,182 114,183
+           Q130,183 145,183 Q160,182 168,181 Q175,179 180,172
+           Q185,163 188,154 Q190,163 193,172 Q198,179 210,182
+           Q230,184 248,183 Q258,181 264,174 Q269,164 272,155
+           Q275,164 278,174 Q284,182 298,183 Q322,184 348,184"
+        stroke="#4dffb8" stroke-width="2.2" fill="none"/>
+
+  <!-- O₂ A-band dip annotation (yellow) -->
+  <line x1="100" y1="160" x2="100" y2="274" stroke="#ffe166" stroke-width="1" stroke-dasharray="2,2" opacity="0.65"/>
+  <text x="100" y="139" fill="#ffe166" font-size="6.5" text-anchor="middle" font-family="IBM Plex Mono">O₂ A</text>
+  <text x="100" y="148" fill="#ffe166" font-size="6"   text-anchor="middle" font-family="IBM Plex Mono">0.76µm</text>
+  <!-- Arrow from O2 label down to dip -->
+  <line x1="100" y1="150" x2="100" y2="158" stroke="#ffe16688" stroke-width="0.8"/>
+
+  <!-- CO₂ dip #1 annotation (1.6µm) -->
+  <line x1="188" y1="154" x2="188" y2="274" stroke="#ff4d4d" stroke-width="1" stroke-dasharray="2,2" opacity="0.65"/>
+  <text x="188" y="140" fill="#ff4d4d" font-size="6.5" text-anchor="middle" font-family="IBM Plex Mono">CO₂ dip</text>
+  <text x="188" y="149" fill="#ff4d4d" font-size="6"   text-anchor="middle" font-family="IBM Plex Mono">1.6 µm</text>
+  <line x1="188" y1="151" x2="188" y2="152" stroke="#ff4d4d88" stroke-width="0.8"/>
+
+  <!-- CO₂ dip #2 annotation (2.06µm) — deeper dip -->
+  <line x1="272" y1="155" x2="272" y2="274" stroke="#ff4d4d" stroke-width="1" stroke-dasharray="2,2" opacity="0.65"/>
+  <text x="272" y="140" fill="#ff4d4d" font-size="6.5" text-anchor="middle" font-family="IBM Plex Mono">CO₂ dip</text>
+  <text x="272" y="149" fill="#ff4d4d" font-size="6"   text-anchor="middle" font-family="IBM Plex Mono">2.06 µm</text>
+
+  <!-- Dip depth arrows to illustrate "depth ∝ XCO₂" -->
+  <!-- For CO2 1.6µm: continuum at y=184, dip at y=154 → depth=30 -->
+  <line x1="178" y1="184" x2="178" y2="156" stroke="#ff4d4d88" stroke-width="1.2"
+        marker-end="url(#mCo2)" opacity="0.7"/>
+  <text x="157" y="170" fill="#cc3333" font-size="6" font-family="IBM Plex Mono">depth</text>
+  <text x="157" y="178" fill="#cc3333" font-size="6" font-family="IBM Plex Mono">∝ XCO₂</text>
+
+  <!-- === RIGHT: Retrieval pipeline box === -->
+  <rect x="388" y="105" width="395" height="295" rx="3"
+        fill="#060810" stroke="#b84dff55" stroke-width="1"/>
+  <text x="585" y="122" fill="#b84dff" font-size="9" text-anchor="middle"
+        font-family="IBM Plex Mono" font-weight="600">XCO₂ Retrieval Pipeline</text>
+  <line x1="396" y1="127" x2="776" y2="127" stroke="#1a1a30" stroke-width="0.8"/>
+
+  <!-- Step ①: Measure -->
+  <text x="398" y="142" fill="#4da6ff" font-size="8" font-family="IBM Plex Mono" font-weight="600">① Measure spectrum I_obs(λ)</text>
+  <text x="398" y="153" fill="#2a4a70" font-size="7" font-family="IBM Plex Mono">   Spectrometer (R~20,000) disperses light onto detector array</text>
+  <text x="398" y="163" fill="#2a4a70" font-size="7" font-family="IBM Plex Mono">   Records radiance at each wavelength simultaneously</text>
+
+  <!-- Step ②: O2 normalization -->
+  <text x="398" y="178" fill="#4dffb8" font-size="8" font-family="IBM Plex Mono" font-weight="600">② O₂ A-band reference (0.76 µm)</text>
+  <text x="398" y="189" fill="#2a5a40" font-size="7" font-family="IBM Plex Mono">   O₂ = 20.95% of air (fixed, well-known)</text>
+  <text x="398" y="199" fill="#2a5a40" font-size="7" font-family="IBM Plex Mono">   O₂ dip depth → path length + surface pressure</text>
+  <text x="398" y="209" fill="#2a5a40" font-size="7" font-family="IBM Plex Mono">   Dividing CO₂/O₂ cancels viewing-angle geometry</text>
+
+  <!-- Step ③: Forward model -->
+  <text x="398" y="224" fill="#ff8c42" font-size="8" font-family="IBM Plex Mono" font-weight="600">③ Forward Radiative Transfer Model (RTM)</text>
+  <text x="398" y="235" fill="#664400" font-size="7" font-family="IBM Plex Mono">   Simulate I_mod(λ) for a trial state vector:</text>
+  <text x="398" y="245" fill="#664400" font-size="7" font-family="IBM Plex Mono">   x = [XCO₂, H₂O, T(z), aerosol, albedo, ...]</text>
+  <text x="398" y="255" fill="#664400" font-size="7" font-family="IBM Plex Mono">   HITRAN spectral database → σ(λ,T,p) for each gas</text>
+
+  <!-- Step ④: Inversion -->
+  <text x="398" y="270" fill="#ff4d4d" font-size="8" font-family="IBM Plex Mono" font-weight="600">④ Optimal Estimation Inversion</text>
+  <text x="398" y="281" fill="#882222" font-size="7" font-family="IBM Plex Mono">   Iterate x until I_mod(λ) ≈ I_obs(λ)</text>
+  <text x="398" y="291" fill="#882222" font-size="7" font-family="IBM Plex Mono">   Cost fn: J = (x−xₐ)ᵀSₐ⁻¹(x−xₐ) + (y−F(x))ᵀSₑ⁻¹(y−F(x))</text>
+  <text x="398" y="301" fill="#882222" font-size="7" font-family="IBM Plex Mono">   xₐ = prior, Sₐ = prior covariance, Sₑ = obs error</text>
+
+  <!-- Step ⑤: Output -->
+  <text x="398" y="316" fill="#ffe166" font-size="8" font-family="IBM Plex Mono" font-weight="600">⑤ Output: XCO₂ (ppm)</text>
+  <text x="398" y="327" fill="#886600" font-size="7" font-family="IBM Plex Mono">   XCO₂ = ∫ x_CO₂(z)·p(z)dz / ∫ p(z)dz</text>
+  <text x="398" y="337" fill="#886600" font-size="7" font-family="IBM Plex Mono">   Pressure-weighted column average dry-air mole fraction</text>
+  <text x="398" y="347" fill="#886600" font-size="7" font-family="IBM Plex Mono">   e.g.  421.5 ± 0.5 ppm  (OCO-2 target precision)</text>
+
+  <!-- Beer-Lambert key formula box -->
+  <rect x="396" y="355" width="376" height="36" rx="2"
+        fill="#0a0c14" stroke="#ffe16633" stroke-width="1"/>
+  <text x="403" y="369" fill="#ffe16680" font-size="7.5" font-family="IBM Plex Mono">Beer-Lambert:  I(λ) = I₀(λ) · exp(−∫ n_CO₂(z) · σ(λ,T,p) · dz)</text>
+  <text x="403" y="382" fill="#556680"  font-size="7"   font-family="IBM Plex Mono">σ(λ) known from HITRAN;  n_CO₂(z) is what we retrieve → XCO₂</text>
+
+  <!-- Bottom note: spectrum diagram link -->
+  <text x="30" y="302" fill="#336644" font-size="7" font-family="IBM Plex Mono">← Deeper dips = more CO₂ in column</text>
+  <text x="30" y="312" fill="#336644" font-size="7" font-family="IBM Plex Mono">← O₂ dip normalises path length &amp; pressure</text>
+</g>
+
+</svg>
     </div>
 
     <!-- INFO PANEL -->
-    <div class="info-panel" id="infoPanel">
-      <!-- filled by JS -->
-    </div>
+    <div class="info-panel" id="infoPanel"></div>
   </div>
 </div>
 
 <script>
 const steps = [
   {
-    id: 0,
-    color: '#ffe166',
-    cls: 'c-solar',
-    label: 'Overview',
-    title: 'Full Picture',
+    id: 0, color: '#ffe166', cls: 'c-solar',
+    label: 'Overview', title: 'Full Picture',
     col1h: 'The Journey',
-    col1: 'Sunlight enters the atmosphere and undergoes multiple transformations before any signal reaches a satellite. Some is scattered back to space. Some is absorbed by gases. Some reaches the surface, reflects, and travels back up. The satellite captures all of this — a mixed signal that scientists must decode.',
+    col1: 'Sunlight enters the atmosphere and undergoes five key transformations before any signal reaches a CO₂ satellite. The overview diagram labels each process with a circled number ①–⑤ so you can see how they relate spatially. Click any numbered step on the left to zoom into that process.',
     col2h: 'Why CO₂ is Special',
-    col2: 'CO₂ absorbs light at very specific wavelengths — it acts like a "spectral fingerprint." By measuring how much light is missing at those exact wavelengths, satellites can calculate how much CO₂ is in the air column below.',
-    col3h: 'What this explainer covers',
-    col3: 'Click each step on the left to walk through: (1) solar input → (2) UV absorption → (3) scattering → (4) CO₂ absorption → (5) surface reflection → (6) thermal emission → (7) mixed signal → (8) how XCO₂ is retrieved.',
+    col2: 'CO₂ absorbs light at very specific wavelengths (1.6, 2.06, 4.3, 15 µm) — acting like a "spectral fingerprint." By measuring how deep the absorption dips are, satellites can calculate how much CO₂ exists in the entire atmospheric column below.',
+    col3h: 'Five Key Processes',
+    col3: '① Solar beam enters (0.25–4 µm). ② Scattering (Rayleigh/Mie) reflects some back to space. ③ Surface reflects remainder upward toward satellite. ④ Earth also emits thermal IR (8–15 µm). ⑤ CO₂ absorbs at specific wavelengths on both beam passes — leaving measurable dips.',
     formula: ''
   },
   {
-    id: 1,
-    color: '#ffe166',
-    cls: 'c-solar',
-    label: 'Step 1',
-    title: 'Solar Radiation Enters',
+    id: 1, color: '#ffe166', cls: 'c-solar',
+    label: 'Step 1', title: 'Solar Radiation Enters',
     col1h: 'What enters the atmosphere',
-    col1: 'The Sun emits a broadband spectrum peaking near 0.5 µm (green-yellow). By the time it reaches the top of the atmosphere, it spans roughly 0.25 µm (UV) to 4 µm (SWIR). This is the starting signal — everything that follows is this beam being filtered, scattered, or re-emitted.',
+    col1: 'The Sun emits a broadband Planck spectrum peaking near 0.5 µm (green-yellow). At the top of atmosphere (TOA) it spans ~0.25 µm (UV) to 4 µm (SWIR) at 1361 W/m². This is the starting illumination — everything that follows is this beam being filtered, scattered, or re-emitted.',
     col2h: 'Energy distribution',
-    col2: 'About 9% is UV (below 0.4 µm), 40% is visible (0.4–0.7 µm), and 51% is near-infrared (0.7–4 µm). The UV matters for ozone chemistry. The NIR/SWIR region is where CO₂ leaves its strongest fingerprints in the reflected solar signal.',
-    col3h: 'Solar constant',
-    col3: 'The total solar irradiance at top-of-atmosphere is about 1361 W/m². This is the "baseline" the satellite implicitly uses when comparing observed spectra to models. Any reduction at specific wavelengths is caused by absorption along the path.',
-    formula: 'Planck: B(λ,T) = (2hc²/λ⁵) · 1/(e^(hc/λkT)-1)\nSun T=5778 K → peak λ = 2898/5778 ≈ 0.5 µm'
+    col2: 'About 9% is UV (below 0.4 µm), 40% is visible (0.4–0.7 µm), and 51% is near-infrared and SWIR (0.7–4 µm). The NIR/SWIR region is critical — this is where CO₂ leaves its two strongest satellite-accessible fingerprints at 1.6 and 2.06 µm.',
+    col3h: 'Why two blackbody curves matter',
+    col3: 'Sun T≈5778 K → peak 0.5 µm (visible). Earth T≈288 K → peak 10 µm (TIR). These two curves define two completely different measurement regimes: reflected solar (SWIR, daytime only) and thermal emission (TIR, day and night). Satellites can exploit both.',
+    formula: 'Planck: B(λ,T) = (2hc²/λ⁵)·1/(e^(hc/λkT)−1)\nSun 5778K → peak 0.50 µm\nEarth 288K → peak 10.0 µm\nSolar constant at TOA: ~1361 W/m²'
   },
   {
-    id: 2,
-    color: '#9b30ff',
-    cls: 'c-absorb',
-    label: 'Step 2',
-    title: 'O₃ Absorbs UV (Stratosphere)',
+    id: 2, color: '#9b30ff', cls: 'c-absorb',
+    label: 'Step 2', title: 'O₃ Absorbs UV (Stratosphere)',
     col1h: 'Where this happens',
-    col1: 'In the stratosphere, roughly 15–50 km altitude, ozone (O₃) absorbs nearly all ultraviolet radiation below 0.31 µm (Hartley band) and partially absorbs UV from 0.31–0.36 µm (Huggins band). By the time sunlight enters the troposphere, almost no harmful UV remains.',
+    col1: 'In the stratosphere (15–50 km), ozone (O₃) absorbs nearly all UV below 0.31 µm via the Hartley band (0.20–0.31 µm) and the Huggins bands (0.31–0.36 µm). The absorbed UV energy heats the stratosphere — it is NOT reflected back to space, it dissipates thermally.',
     col2h: 'Why it matters for CO₂ satellites',
-    col2: 'UV loss is mostly irrelevant for CO₂ retrieval — satellites use NIR and SWIR where CO₂ absorbs. But ozone itself is a contaminant that must be accounted for in retrieval models, especially since it absorbs weakly in the visible (Chappuis band, 0.45–0.75 µm).',
-    col3h: 'What passes through',
-    col3: 'After the stratosphere, the beam carries: all visible light (0.4–0.7 µm), all NIR (0.7–4 µm), plus a small tail of near-UV. These continue downward into the troposphere where CO₂ and H₂O do their work.',
-    formula: 'Ozone column measured in Dobson Units (DU)\nTypical: ~300 DU (3mm if compressed to surface)'
+    col2: 'The UV removal itself is irrelevant for CO₂ retrieval (satellites use NIR/SWIR). However ozone absorbs weakly in the visible (Chappuis band, 0.45–0.75 µm), which slightly contaminates the signal and must be modelled. Ozone column is typically ~300 Dobson Units.',
+    col3h: 'What passes through into troposphere',
+    col3: 'After the stratospheric ozone layer, the beam is stripped of all UV below 0.31 µm but retains full visible and NIR/SWIR intensity. This depleted beam then continues into the troposphere where CO₂ and H₂O begin to leave their absorption fingerprints.',
+    formula: 'Hartley band: 0.20–0.31 µm (very strong)\nHuggins band: 0.31–0.36 µm (moderate)\nChappuis band: 0.45–0.75 µm (weak, VIS)\nTypical column: ~300 DU (Dobson Units)'
   },
   {
-    id: 3,
-    color: '#4da6ff',
-    cls: 'c-scatter',
-    label: 'Step 3',
-    title: 'Scattering (Rayleigh + Mie)',
-    col1h: 'Rayleigh Scattering',
-    col1: 'Gas molecules (N₂, O₂) scatter light elastically. The intensity scales as 1/λ⁴ — so blue light (0.45 µm) scatters about 5.5× more than red (0.7 µm). This scattered light goes in all directions, including back to space. This is why the sky is blue and why sunsets are red (blue scattered away).',
-    col2h: 'Mie Scattering (Aerosols)',
-    col2: 'Larger particles — dust, sea salt, smoke, cloud droplets — scatter in a wavelength-independent way. This is why clouds look white. Aerosols can scatter 20–40% of sunlight back to space. Satellites must model aerosol scattering very carefully because it contaminates the CO₂ signal.',
+    id: 3, color: '#4da6ff', cls: 'c-scatter',
+    label: 'Step 3', title: 'Scattering (Rayleigh + Mie)',
+    col1h: 'Rayleigh Scattering (whole column)',
+    col1: 'Gas molecules (N₂, O₂) scatter sunlight elastically throughout the whole atmospheric column. Intensity scales as 1/λ⁴, so blue light (0.45 µm) scatters ~5.5× more than red (0.70 µm). The sky is blue because blue scatter reaches your eyes from all angles. This affects satellite signals at all wavelengths.',
+    col2h: 'Mie Scattering (lower troposphere)',
+    col2: 'Larger particles — dust, sea salt, smoke, and cloud droplets — scatter in a wavelength-independent way concentrated in the boundary layer (0–2 km). This is why clouds look white and haze reduces visibility. Aerosols can reflect 20–40% of solar radiation globally and cause the biggest errors in CO₂ retrievals.',
     col3h: 'Impact on CO₂ retrieval',
-    col3: 'Scattered light that goes back to space is "lost" — it never samples the full atmospheric column. Aerosols are the #1 error source in CO₂ satellite retrievals. OCO-2 screens out cloudy/hazy scenes and uses aerosol parameters as retrieval variables alongside CO₂.',
-    formula: 'Rayleigh: σ_R ∝ λ⁻⁴\nMie: σ_M ~ wavelength-independent\nOptical depth τ = ∫ n·σ dz'
+    col3: 'Scattered light returning to space never samples the full atmospheric CO₂ column, biasing the measurement. Aerosol optical depth (AOD) must be co-retrieved. OCO-2 rejects scenes with AOD > 0.3 and uses aerosol parameters as part of its state vector alongside XCO₂.',
+    formula: 'Rayleigh: σ_R ∝ λ⁻⁴  (molecular)\nMie: σ_M ≈ const  (particles r>0.1µm)\nOptical depth: τ = ∫ n(z)·σ dz\nτ_Rayleigh(0.76µm) ≈ 0.05 (whole column)'
   },
   {
-    id: 4,
-    color: '#ff4d6d',
-    cls: 'c-absorb',
-    label: 'Step 4',
-    title: 'CO₂ & H₂O Absorption (Downward)',
+    id: 4, color: '#ff4d6d', cls: 'c-absorb',
+    label: 'Step 4', title: 'CO₂ & H₂O Absorption (Downward)',
     col1h: 'CO₂ absorption bands',
-    col1: 'As sunlight travels down through the troposphere, CO₂ molecules absorb at very specific wavelengths. The main bands used by satellites are: 1.6 µm (weak overtone), 2.06 µm (stronger overtone), 4.3 µm (very strong fundamental stretch), and 15 µm (bending mode). At each band, photons are absorbed and re-emitted in random directions.',
-    col2h: 'H₂O interference',
-    col2: 'Water vapor absorbs at 1.37, 1.87, 2.7, and 6.3 µm — bands that overlap with CO₂ windows. Satellites must retrieve H₂O simultaneously with CO₂. H₂O is highly variable in space and time, making it a major source of retrieval error.',
-    col3h: 'The key physics',
-    col3: 'More CO₂ = more photons absorbed at 1.6 and 2.06 µm = deeper "dips" in the spectrum when measured from space. The satellite measures the depth of these dips. This downward pass is the FIRST of two atmospheric traversals — reflected sunlight must pass through again on the way back up.',
-    formula: 'Beer-Lambert: I = I₀ · exp(-σ · N · L)\nN = CO₂ column density (molecules/cm²)\nL = path length\nσ = absorption cross-section (known spec.)'
+    col1: 'As sunlight descends through the troposphere, CO₂ absorbs at 1.6 µm (weak NIR overtone), 2.06 µm (stronger NIR overtone), 4.3 µm (very strong MIR fundamental), and 15 µm (TIR bending mode). Each absorbed photon is re-emitted in a random direction — it is NOT reflected back. The forward beam is progressively attenuated.',
+    col2h: 'H₂O interference and co-retrieval',
+    col2: 'Water vapour absorbs strongly at 1.37, 1.87, 2.7, and 6.3 µm — overlapping with CO₂ retrieval windows. Satellites must retrieve H₂O profiles simultaneously with CO₂ to avoid systematic bias. H₂O varies hugely in space and time, making it one of the largest retrieval error sources after aerosols.',
+    col3h: 'Beer-Lambert attenuation',
+    col3: 'The beam intensity decreases exponentially with CO₂ column amount (Beer-Lambert law): I=I₀·exp(−σNL). More CO₂ means deeper absorption dips in the spectrum reaching the satellite. This downward pass is the first of two traversals — the reflected beam will pass through the same column again on the way up, doubling the signal.',
+    formula: 'Beer-Lambert: I = I₀ · exp(−σ · N · L)\nσ = absorption cross-section [cm²/molecule]\nN = CO₂ column [molecules/cm²]\nL = path length [cm]\nσ from HITRAN database (T,p-dependent)'
   },
   {
-    id: 5,
-    color: '#4dffb8',
-    cls: 'c-reflect',
-    label: 'Step 5',
-    title: 'Surface Reflection',
-    col1h: 'What reflects back',
-    col1: 'Light that reaches the surface (mostly visible and NIR, since UV is blocked and some NIR is absorbed) partially reflects back upward. The fraction reflected is the albedo. Different surfaces have very different albedos: oceans reflect ~6%, forests ~12%, deserts ~35%, snow ~85%.',
-    col2h: 'Why high albedo is good for satellites',
-    col2: 'CO₂ satellites prefer bright scenes (deserts, snow) because more reflected signal means a stronger, cleaner measurement. Over dark oceans, the signal is so weak that noise overwhelms the CO₂ dips. OCO-2 has three observation modes to cope with this (nadir, glint, and target modes).',
-    col3h: 'The reflected beam carries information',
-    col3: 'The reflected solar beam now heads back upward carrying the spectral "imprint" of the atmosphere it already passed through — CO₂ dips from the downward pass. It will pass through the atmosphere AGAIN on the way up, doubling the CO₂ absorption signal (two-way path). This is what makes passive SWIR CO₂ retrieval possible.',
-    formula: 'Surface albedo: a = reflected / incident\nTwo-way optical depth: τ_total = 2 × τ_one-way\nStronger absorption dip → easier retrieval'
+    id: 5, color: '#4dffb8', cls: 'c-reflect',
+    label: 'Step 5', title: 'Surface Reflection (Two-Way Path)',
+    col1h: 'Surface albedo',
+    col1: 'Light reaching the surface is partially reflected upward; the fraction reflected is the albedo. Ocean ≈ 0.06 (very dark), forest ≈ 0.12, desert ≈ 0.35, snow/ice ≈ 0.85. CO₂ satellites strongly prefer bright surfaces (desert, snow) because the reflected signal-to-noise ratio is much higher and CO₂ dips are more visible.',
+    col2h: 'The critical two-way path geometry',
+    col2: 'The reflected beam must traverse the CO₂ column TWICE: once going down and once going back up. Each traversal leaves absorption dips at 1.6 and 2.06 µm. The total optical depth seen by the satellite is τ_total = 2 × τ_one-way. This doubling is what makes passive SWIR CO₂ retrieval sensitive enough to detect ~0.1% changes in column CO₂.',
+    col3h: 'OCO-2 observation modes',
+    col3: 'Precisely because surface brightness matters so much, OCO-2 uses three modes: (1) Nadir — looks straight down at land surfaces; (2) Glint — looks at specular reflection off the ocean to boost signal over dark water; (3) Target — stares at a fixed ground site for calibration. Each mode optimises the two-way path for different scenes.',
+    formula: 'τ_total = 2 × τ_one-way (two-way path)\nAlbedo: a = F_reflected / F_incident\nOCO-2 needs a > 0.05 for valid retrieval\nGlint angle: θ_glint ≈ solar zenith angle'
   },
   {
-    id: 6,
-    color: '#ff8c42',
-    cls: 'c-emit',
-    label: 'Step 6',
-    title: 'Earth Thermal Emission',
-    col1h: 'Earth as a blackbody',
-    col1: 'The Earth surface (avg ~288 K / 15°C) emits thermal radiation peaking at about 10 µm — in the thermal infrared (TIR). This is entirely separate from reflected sunlight. It\'s emitted continuously, day and night. This is the greenhouse effect\'s mechanism: CO₂ intercepts this outgoing radiation.',
-    col2h: 'CO₂ and the greenhouse effect',
-    col2: 'CO₂ absorbs outgoing TIR at 15 µm and 4.3 µm. It re-emits in all directions — some back downward (warming the surface), some upward toward space. The satellite measures the upward-emitted TIR from the CO₂ layer. Higher CO₂ → more emission from higher, colder levels → satellite sees less radiance at 15 µm.',
-    col3h: 'TIR vs SWIR for satellites',
-    col3: 'TIR instruments (AIRS, IASI, CrIS) measure this thermal emission and are sensitive to CO₂ in the mid-to-upper troposphere. They work at night. SWIR instruments (OCO-2, GOSAT) measure reflected sunlight and are sensitive to the full column including near-surface CO₂. Together they provide complementary information.',
-    formula: 'Planck: B(λ,288K) → peaks ~10 µm\nCO₂ 15µm band: strong absorption\nWeighting fn → sensitivity vs altitude\nBrightness temp. Tb vs CO₂ amount'
+    id: 6, color: '#ff8c42', cls: 'c-emit',
+    label: 'Step 6', title: 'Earth Thermal Emission (TIR)',
+    col1h: 'Earth as a 288 K blackbody',
+    col1: 'The Earth surface (mean ~288 K / 15°C) emits thermal radiation peaking near 10 µm — entirely separate from reflected sunlight. This emission is continuous, day and night. CO₂ intercepts this outgoing infrared at the 15 µm bending-mode band, creating the primary greenhouse mechanism.',
+    col2h: 'The greenhouse effect mechanism',
+    col2: 'CO₂ absorbs upwelling TIR at 15 µm in the troposphere, then re-emits in ALL directions: some upward (eventually reaching space and the satellite), and critically, some BACK DOWNWARD toward the surface. This downward re-emission is the greenhouse warming mechanism — it reduces the net radiative cooling of the surface.',
+    col3h: 'TIR satellite measurements',
+    col3: 'Instruments like AIRS, IASI, and CrIS measure the upward TIR emission from CO₂. Higher CO₂ concentrations push the emission level higher in the atmosphere (where it is colder), reducing the brightness temperature at 15 µm seen from space. TIR retrievals are most sensitive to the mid and upper troposphere (~500–200 hPa).',
+    formula: 'Planck peak: λ_max = 2898/T µm\nT=288K → peak ≈ 10.1 µm\nCO₂ 15µm band: bending mode (ν₂)\nTb(15µm) decreases as [CO₂] increases\nWeighting fn W(z) = ∂τ/∂z·exp(−τ)'
   },
   {
-    id: 7,
-    color: '#b84dff',
-    cls: 'c-signal',
-    label: 'Step 7',
-    title: 'Mixed Signal at Satellite',
-    col1h: 'What the satellite actually receives',
-    col1: 'The satellite\'s detector receives a mixture of: (A) reflected solar light that passed through CO₂ twice (SWIR, 1.6 & 2.06 µm), (B) thermal emission from CO₂ and the surface (TIR, 4.3 & 15 µm), (C) scattered solar light (visible), and (D) direct solar/lunar glint. Each component carries different CO₂ information.',
-    col2h: 'The CO₂ fingerprint in the spectrum',
-    col2: 'At 1.6 and 2.06 µm, the reflected spectrum shows absorption dips. The depth of these dips is proportional to the total CO₂ in the column. At 15 µm, the thermal spectrum shows a "bump" from CO₂ emission — but the shape tells us the vertical distribution (profile) of CO₂.',
-    col3h: 'Separating the components',
-    col3: 'Modern satellites use high-resolution spectrometers to resolve thousands of individual spectral lines within each CO₂ band. Different lines have different sensitivities to altitude. By analyzing the pattern of line depths, retrieval algorithms can separate surface CO₂ from upper-troposphere CO₂ and correct for clouds and aerosols.',
-    formula: 'L_obs(λ) = L_surface_reflect(λ)\n        + L_atm_scatter(λ)\n        + L_thermal_emit(λ)\n        - L_absorbed_by_CO2(λ)\nAll terms function of CO₂ column'
+    id: 7, color: '#b84dff', cls: 'c-signal',
+    label: 'Step 7', title: 'Mixed Signal at Satellite',
+    col1h: 'Three physically distinct signal paths',
+    col1: 'The satellite sensor receives: (A) reflected solar radiation (teal path) — carries CO₂ absorption dips at 1.6 and 2.06 µm from the two-way path; (B) Earth thermal emission (orange dashed) — carries CO₂ emission signature at 15 µm; (C) Rayleigh/Mie scattered sunlight (blue) — carries VIS radiance with less CO₂ information.',
+    col2h: 'The CO₂ spectral fingerprint',
+    col2: 'In the reflected solar spectrum, CO₂ leaves narrow absorption dips at 1.6 and 2.06 µm. The depth of these dips is proportional to the total CO₂ column (two-way Beer-Lambert). An O₂ A-band dip at 0.76 µm is also present — used as a reference to normalise path length and surface pressure.',
+    col3h: 'Spectral resolution requirement',
+    col3: 'CO₂ absorption is NOT a broad smooth dip — it consists of thousands of individual spectral lines a few tenths of a nanometre wide. A spectral resolving power of R~20,000 is needed to resolve individual CO₂ lines. The line pattern also encodes altitude sensitivity, allowing profile information to be extracted.',
+    formula: 'L_obs(λ) = L_reflect(λ) + L_scatter(λ)\n         + L_thermal(λ) + L_fluor(λ)\nResolving power: R = λ/Δλ > 20,000\nOCO-2: R≈20,000 at 1.6 and 2.06 µm'
   },
   {
-    id: 8,
-    color: '#ffe166',
-    cls: 'c-solar',
-    label: 'Step 8',
-    title: 'Retrieving XCO₂',
-    col1h: 'The retrieval problem',
-    col1: 'The satellite measures a spectrum I_obs(λ). We want to find the CO₂ amount (XCO₂) that would produce exactly this spectrum. This is an inverse problem — we run a forward radiative transfer model many times, adjusting CO₂ (and aerosols, albedo, water vapor...) until the modeled spectrum matches the observed one.',
-    col2h: 'O₂ A-band normalization',
-    col2: 'Crucially, the O₂ A-band at 0.76 µm is measured simultaneously. O₂ is 20.95% of the atmosphere — a known, stable concentration. Its absorption depth tells us the path length and surface pressure. Dividing the CO₂ absorption by the O₂ signal cancels out geometric errors from viewing angle, cloud height, etc.',
-    col3h: 'Precision and validation',
-    col3: 'OCO-2 achieves ~0.5 ppm precision on a background of ~420 ppm — that\'s 0.1% accuracy needed to detect regional CO₂ fluxes. The retrieved XCO₂ fields are validated against ground-based TCCON spectrometers and used to infer CO₂ sources (power plants, cities) and sinks (forests, oceans) via inverse modeling.',
-    formula: 'XCO₂ = ∫ x_CO2(z)·p(z) dz / ∫ p(z) dz\nOptimal est: minimize J = (x-xa)ᵀSa⁻¹(x-xa)\n                      + (y-F(x))ᵀSe⁻¹(y-F(x))\nx=state vector, y=measured spectrum\nF(x)=forward model, Sa=prior covariance'
+    id: 8, color: '#ffe166', cls: 'c-solar',
+    label: 'Step 8', title: 'Retrieving XCO₂',
+    col1h: 'The inverse retrieval problem',
+    col1: 'The satellite measures spectrum I_obs(λ). We want the CO₂ column amount XCO₂ that would produce this spectrum. This is solved iteratively: run a forward radiative transfer model (RTM) with a trial XCO₂, compare modelled vs observed spectrum, adjust XCO₂, repeat until they match.',
+    col2h: 'O₂ A-band normalisation',
+    col2: 'The O₂ A-band at 0.76 µm is observed simultaneously. O₂ is 20.95% of the dry atmosphere — a known, stable fraction. Its absorption depth provides the photon path length and surface pressure. Dividing CO₂ absorption by O₂ absorption cancels geometric errors (viewing angle, cloud height, topography).',
+    col3h: 'Precision achieved and validation',
+    col3: 'OCO-2 achieves ~0.5 ppm single-sounding precision on a background of ~420 ppm — 0.12% relative accuracy. Retrievals are validated against the global TCCON network of ground-based Fourier-transform spectrometers. These XCO₂ maps then feed atmospheric inversion models that locate CO₂ sources and sinks globally.',
+    formula: 'XCO₂ = ∫ x(z)·h(z)·p(z)dz / ∫ h(z)·p(z)dz\nh(z) = averaging kernel (sensitivity vs alt)\nCost fn: J = (x−xₐ)ᵀSₐ⁻¹(x−xₐ)\n           + (y−F(x))ᵀSₑ⁻¹(y−F(x))\nOCO-2 precision: ~0.5 ppm (target: <1ppm)'
   }
 ];
 
-// Build step buttons
 const panel = document.getElementById('stepsPanel');
 steps.forEach((s, i) => {
   const btn = document.createElement('button');
@@ -801,7 +1069,7 @@ steps.forEach((s, i) => {
     <div class="step-num ${s.cls}">${s.id}</div>
     <div>
       <span class="step-title ${s.cls}">${s.label}: ${s.title}</span>
-      <span class="step-label">${s.col1.substring(0,60)}...</span>
+      <span class="step-label">${s.col1.substring(0,64)}...</span>
     </div>
   `;
   btn.addEventListener('click', () => activate(i));
@@ -809,16 +1077,11 @@ steps.forEach((s, i) => {
 });
 
 function activate(idx) {
-  // update buttons
-  document.querySelectorAll('.step-btn').forEach((b,i) => {
-    b.classList.toggle('active', i === idx);
-  });
-  // show/hide beams
+  document.querySelectorAll('.step-btn').forEach((b, i) => b.classList.toggle('active', i === idx));
   for (let i = 0; i <= 8; i++) {
     const g = document.getElementById('g' + i);
     if (g) g.classList.toggle('show', i === idx);
   }
-  // update info panel
   const s = steps[idx];
   document.getElementById('infoPanel').innerHTML = `
     <div class="info-col">
@@ -837,7 +1100,6 @@ function activate(idx) {
   `;
 }
 
-// init
 activate(0);
 </script>
 </body>
