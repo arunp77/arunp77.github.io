@@ -59,6 +59,51 @@
     padding: 0 20px;
     gap: 16px;
   }
+  /* ADD THIS */
+  .header-right {
+    margin-left: auto;   /* pushes to right */
+    display: flex;
+    gap: 10px;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 6px 12px;
+    font-size: 11px;
+    font-weight: 500;
+
+    color: var(--text);
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+
+    text-decoration: none;
+    cursor: pointer;
+
+    transition: all 0.15s ease;
+  }
+
+  /* Hover effect */
+  .nav-btn:hover {
+    background: #58a6ff15;
+    border-color: #58a6ff55;
+    color: var(--solar);
+  }
+
+  /* Active click */
+  .nav-btn:active {
+    transform: translateY(1px);
+    background: #58a6ff25;
+  }  
+
+  .nav-btn:first-child {
+    border-color: var(--solar);
+    color: var(--solar);
+  }  
+
   #header h1 {
     font-size: 13px; font-weight: 600; letter-spacing: 0.02em;
     color: var(--text);
@@ -230,7 +275,7 @@
       <a href="Remote-sensing-content.html" class="nav-btn">◀️ Content</a>
       <a href="co2_radiative_transfer_equations.html" class="nav-btn">🌍 RTE 🌍</a>
       <a href="index.html#portfolio" class="nav-btn">Home ▶️</a>
-  </div>
+    </div>
   </div>
 
   <!-- Sidebar -->
