@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TOA Radiance Decomposition Explorer</title>
+<link href="assets/img/Favicon-1.png" rel="icon">
+<link href="assets/img/Favicon-1.png" rel="apple-touch-icon">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
@@ -212,6 +215,7 @@
   }
   .leg-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); }
   .leg-sq { width: 10px; height: 10px; border-radius: 2px; }
+  .header-right{display:flex;gap:10px;}
 </style>
 </head>
 <body>
@@ -222,6 +226,11 @@
     <div class="dot" style="background:var(--solar)"></div>
     <h1>TOA Radiance Decomposition Explorer</h1>
     <div class="eq">I_TOA = I_solar + I_surf + I_atm + I_cloud</div>
+    <div class="header-right">
+      <a href="Remote-sensing-content.html" class="nav-btn">◀️ Content</a>
+      <a href="co2_radiative_transfer_equations.html" class="nav-btn">🌍 RTE 🌍</a>
+      <a href="index.html#portfolio" class="nav-btn">Home ▶️</a>
+  </div>
   </div>
 
   <!-- Sidebar -->
