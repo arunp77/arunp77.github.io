@@ -141,13 +141,208 @@
                     
 
                 <section>
-                    <h2>The Setup</h2>
-                    We have a nonlinear forward model:
-                    $$F(x) = x^2$$
-
-
-
                     
+                <h1>MCMC vs Optimal Estimation — Nonlinear Example</h1>
+
+                <p><strong>Goal:</strong> Build a clean, self-contained mathematical example (no physics).</p>
+
+                <hr>
+
+                <h2>1. The Setup</h2>
+
+                <p><strong>Nonlinear forward model:</strong></p>
+                <pre>F(x) = x²</pre>
+
+                <p><strong>Observation:</strong></p>
+                <pre>y = 9.5  (true value is x_true = 3, but measurement has noise)</pre>
+
+                <p><strong>Measurement noise:</strong></p>
+                <pre>σ_ε = 0.5</pre>
+
+                <p><strong>Prior:</strong></p>
+                <pre>x_a = 2.0, σ_a = 2.0</pre>
+
+                <hr>
+
+                <h2>2. Posterior</h2>
+
+                <pre>
+                P(x|y) ∝ P(y|x) · P(x)
+
+                = exp(−(y − F(x))² / 2σ_ε²) · exp(−(x − x_a)² / 2σ_a²)
+                </pre>
+
+                <p>Plugging in F(x) = x²:</p>
+
+                <pre>
+                P(x|y) ∝ exp(−(9.5 − x²)² / 0.5) · exp(−(x − 2)² / 8)
+                </pre>
+
+                <p><strong>Key point:</strong> Not Gaussian due to x² → nonlinear model.</p>
+
+                <hr>
+
+                <h2>3. Cost Function J(x)</h2>
+
+                <pre>
+                J(x) = (9.5 − x²)² / 0.25 + (x − 2)² / 4
+                </pre>
+
+                <p>Derivative:</p>
+
+                <pre>
+                dJ/dx = −16x(9.5 − x²) + 0.5(x − 2) = 0
+                </pre>
+
+                <p>This is a <strong>cubic equation</strong> → must solve iteratively.</p>
+
+                <hr>
+
+                <h2>4. Gauss-Newton Iteration</h2>
+
+                <p><strong>Linearisation:</strong></p>
+                <pre>
+                F(x) ≈ F(x_i) + K_i (x − x_i)
+                K_i = 2x_i
+                </pre>
+
+                <p><strong>Update formula:</strong></p>
+                <pre>
+                x_{i+1} = x_a + (K²/σ_ε² + 1/σ_a²)⁻¹ · K/σ_ε² · [y − F(x_i) + K(x_i − x_a)]
+                </pre>
+
+                <h3>Iteration 1</h3>
+                <pre>
+                x_i = 2.0
+                F = 4.0
+                K = 4.0
+                residual = 5.5
+
+                Hessian = 64.25
+                rhs = 88.0
+
+                x = 3.370
+                </pre>
+
+                <h3>Iteration 2</h3>
+                <pre>
+                x_i = 3.370
+                F = 11.357
+                K = 6.740
+                residual = −1.857
+
+                x = 3.094
+                </pre>
+
+                <h3>Iteration 3</h3>
+                <pre>
+                x_i = 3.094
+                F = 9.573
+                residual = −0.073
+
+                x ≈ 3.081
+                </pre>
+
+                <h3>Iteration 4</h3>
+                <pre>
+                x = 3.080 (converged)
+                </pre>
+
+                <hr>
+
+                <h2>5. Posterior Covariance</h2>
+
+                <pre>
+                Sx = (K²/σ_ε² + 1/σ_a²)⁻¹
+
+                = (151.9 + 0.25)⁻¹
+                = 0.00657
+                </pre>
+
+                <p><strong>Standard deviation:</strong></p>
+                <pre>σ_post = 0.081</pre>
+
+                <p><strong>Result:</strong></p>
+                <pre>x̂ = 3.080 ± 0.081</pre>
+
+                <hr>
+
+                <h2>6. Averaging Kernel</h2>
+
+                <pre>
+                A = Sx · K²/σ_ε² = 0.998
+                </pre>
+
+                <p>→ Measurement dominates, prior is weak.</p>
+
+                <hr>
+
+                <h2>7. True Posterior Shape</h2>
+
+                <pre>
+                J(x) = (9.5 − x²)²/0.25 + (x − 2)²/4
+                </pre>
+
+                <table border="1" cellpadding="6">
+                <tr><th>x</th><th>J(x)</th></tr>
+                <tr><td>2.8</td><td>6.76</td></tr>
+                <tr><td>3.0</td><td>3.06</td></tr>
+                <tr><td><b>3.080</b></td><td><b>2.78</b></td></tr>
+                <tr><td>3.2</td><td>3.91</td></tr>
+                <tr><td>3.4</td><td>12.1</td></tr>
+                <tr><td><b>−3.080</b></td><td><b>3.67</b></td></tr>
+                </table>
+
+                <p><strong>Important:</strong></p>
+                <ul>
+                <li>Second mode exists at x ≈ −3.08</li>
+                <li>Posterior is asymmetric</li>
+                <li>OE misses this completely</li>
+                </ul>
+
+                <hr>
+
+                <h2>8. What MCMC Finds</h2>
+
+                <pre>
+                Mode 1: x ≈ +3.08
+                Mode 2: x ≈ −3.08
+                Asymmetry: non-symmetric tails
+                </pre>
+
+                <hr>
+
+                <h2>9. Visual Summary</h2>
+
+                <pre>
+                TRUE POSTERIOR          OE APPROXIMATION
+
+                    │                       │
+                    │  *                    │    *
+                    │ ***   *               │   ***
+                    │*****  **              │  *****
+                ────┼──────────── x     ────┼──────────── x
+                -3.08  +3.08            only +3.08
+                </pre>
+
+                <ul>
+                <li>Bimodal + asymmetric</li>
+                <li>OE assumes single Gaussian</li>
+                </ul>
+
+                <hr>
+
+                <h2>10. Final Insight</h2>
+
+                <p>The nonlinear model <strong>F(x) = x²</strong> causes:</p>
+
+                <ul>
+                <li>Non-Gaussian posterior</li>
+                <li>Multiple solutions</li>
+                <li>Asymmetry</li>
+                </ul>
+
+                <p>This is exactly what happens in real CO₂ retrieval problems when degeneracies exist.</p>
 
 
 
