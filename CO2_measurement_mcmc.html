@@ -316,43 +316,12 @@
 
                 We can preare a table as:
 
-                <table style="border-collapse: collapse; text-align: center;">
-                    <thead>
-                        <tr>
-                        <th style="border: 1px solid black; padding: 6px;">x</th>
-                        <th style="border: 1px solid black; padding: 6px;">J(x)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="border: 1px solid black; padding: 6px;">2.8</td>
-                            <td style="border: 1px solid black; padding: 6px;">6.76</td>
-                        </tr>
-                        <tr>
-                            <td style="border: 1px solid black; padding: 6px;">3.0</td>
-                            <td style="border: 1px solid black; padding: 6px;">3.06</td>
-                        </tr>
-                        <tr>
-                            <td style="border: 1px solid black; padding: 6px;"><b>3.080</b></td>
-                            <td style="border: 1px solid black; padding: 6px;"><b>2.78</b></td>
-                        </tr>
-                        <tr>
-                            <td style="border: 1px solid black; padding: 6px;">3.2</td>
-                            <td style="border: 1px solid black; padding: 6px;">3.91</td>
-                        </tr>
-                        <tr>
-                            <td style="border: 1px solid black; padding: 6px;">3.4</td>
-                            <td style="border: 1px solid black; padding: 6px;">12.1</td>
-                        </tr>
-                        <tr>
-                            <td style="border: 1px solid black; padding: 6px;"><b>−3.080</b></td>
-                            <td style="border: 1px solid black; padding: 6px;"><b>3.67</b></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <p>There is a second mode near \(x = -3.08\) because \(F(x) =x^2\) is symmetric. OE completely misses this -- it 
+                    found the positive solution.  MCMC  would find both.
+                </p>
 
-                <p>There is a second mode near \(x = -3.08\) because \(F{x} =x^2\) is symmetric. OE completely misses this -- it found the positive solution.  MCMC
-                    would find both.
+                <p>Also \(J(x)\) rises much faster on the right \(x> 3.08\) than on the left -- the posterior is asymmetric. OE's symmetric \(\pm 0.081\)
+                    is therefore an approximation.
                 </p>
 
                 <p><strong>Important:</strong></p>
@@ -364,13 +333,15 @@
 
                 <hr>
 
-                <h2>8. What MCMC Finds</h2>
+                <h2>8. What MCMC Would Do Differently?</h2>
 
-                $$
-                Mode 1: x ≈ +3.08
-                Mode 2: x ≈ −3.08
-                Asymmetry: non-symmetric tails
-                $$
+                <p>MCMC samples \(P(x|y) \propto \exp(\left -\frac{J(x)}{2}\right)\) directly. It would reveal:</p>
+
+                <pre>
+                Mode 1: \(x \approx +3.08 \)       (positive root) 
+                Mode 2: \(x \approx -3.08 \)       (negative root - missed by OE!) 
+                Asymmetry: Longer tail on left side of each mode
+                </pre>>
 
                 <hr>
 
