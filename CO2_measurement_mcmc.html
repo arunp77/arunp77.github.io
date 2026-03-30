@@ -144,6 +144,20 @@
                     
                 <h1>MCMC vs Optimal Estimation — Nonlinear Example</h1>
 
+                    <div class="box-background1">
+                        <p><b>Some important notations and defintion:</b></p>
+                        <p><b>Kernel:</b></p>
+                        $$A = \frac{\partial \hat{x}}{\partial x^{\text{true}}} = \left(K^T S_\epsilon^{-1} K + S_a^{-1}\right) K^T S_\epsilon^{-1}K$$
+                        <p><b>Gain Matrix:</b></p>
+                        $$\hat{S} K^T S_\epsilon^{-1}$$
+                        Therefore the 
+                        $$\hat{x} = x_a + G (y-Kx)$$
+
+                        <p><b>Posterior error covariance:</b></p>
+
+                        $$\hat{S} = \left(K^T S_\epsilon^{-1} K + S_a^{-1}\right)^{-1}$$
+                    </div>
+
                 <p><strong>Goal:</strong> Build a clean, self-contained mathematical example (no physics).</p>
 
                 <hr>
@@ -154,7 +168,7 @@
                 $$F(x) = x^2$$
 
                 <p><strong>Observation:</strong></p>
-                $$y = 9.5  (\text{true value is} x_\text{true} = 3, \text{but measurement has noise})$$
+                $$y = 9.5  ~~(\text{true value is}~~ x_\text{true} = 3, ~~\text{but measurement has noise})$$
 
                 <p><strong>Measurement noise:</strong></p>
                 $$σ_\epsilon  = 0.5$$
