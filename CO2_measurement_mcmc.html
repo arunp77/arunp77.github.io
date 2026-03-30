@@ -290,28 +290,70 @@
                 <h2>6. Averaging Kernel</h2>
 
                 $$
-                A = Sx · K²/σ_ε² = 0.998
+                A = S_x \frac{K^2}{\sigma_\epsilon^2} = 0.998
                 $$
 
                 <p>→ Measurement dominates, prior is weak.</p>
+                <p>\(A\approx 1.0\) means the retrieval is almost entirely driven by the measurement, not the prior. 
+                    The prior $\sigma_a =2.0$ was broad, so the measurement dominates.</p>
 
                 <hr>
 
-                <h2>7. True Posterior Shape</h2>
+                <h2>7. NOW See Why the Gaussian Assumption is Wrong : True Posterior Shape</h2>
+
+                <p>OE gave us \(\hat{x} = 3.080 \pm 0.081\) -- a symmetric Gaussian.</p> 
+
+                But look at the true posteriro shape. The cost function is:
 
                 $$
-                J(x) = (9.5 − x²)²/0.25 + (x − 2)²/4
+                J(x) = \frac{(9.5 - x²)^2}{0.25} + \frac{(x − 2)^2}{4}
                 $$
 
-                <table border="1" cellpadding="6">
-                <tr><th>x</th><th>J(x)</th></tr>
-                <tr><td>2.8</td><td>6.76</td></tr>
-                <tr><td>3.0</td><td>3.06</td></tr>
-                <tr><td><b>3.080</b></td><td><b>2.78</b></td></tr>
-                <tr><td>3.2</td><td>3.91</td></tr>
-                <tr><td>3.4</td><td>12.1</td></tr>
-                <tr><td><b>−3.080</b></td><td><b>3.67</b></td></tr>
+                We can draw a graph for this function as:
+
+                jacobian_x.png
+                <img src="assets/img/remote-sensing/jacobian_x.png" alt="Cost function plot">
+
+                We can preare a table as:
+
+                <table style="border-collapse: collapse; text-align: center;">
+                    <thead>
+                        <tr>
+                        <th style="border: 1px solid black; padding: 6px;">x</th>
+                        <th style="border: 1px solid black; padding: 6px;">J(x)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="border: 1px solid black; padding: 6px;">2.8</td>
+                            <td style="border: 1px solid black; padding: 6px;">6.76</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black; padding: 6px;">3.0</td>
+                            <td style="border: 1px solid black; padding: 6px;">3.06</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black; padding: 6px;"><b>3.080</b></td>
+                            <td style="border: 1px solid black; padding: 6px;"><b>2.78</b></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black; padding: 6px;">3.2</td>
+                            <td style="border: 1px solid black; padding: 6px;">3.91</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black; padding: 6px;">3.4</td>
+                            <td style="border: 1px solid black; padding: 6px;">12.1</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black; padding: 6px;"><b>−3.080</b></td>
+                            <td style="border: 1px solid black; padding: 6px;"><b>3.67</b></td>
+                        </tr>
+                    </tbody>
                 </table>
+
+                <p>There is a second mode near \(x = -3.08\) because \(F{x} =x^2\) is symmetric. OE completely misses this -- it found the positive solution.  MCMC
+                    would find both.
+                </p>
 
                 <p><strong>Important:</strong></p>
                 <ul>
