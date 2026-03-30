@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>MCMC — Complete Mathematical Walkthrough</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap');
+
+  :root {
+    --bg:       #313754;
+    --surface:  #111520;
+    --card:     #161b28;
+    --border:   #222840;
+    --accent:   #5b8dee;
+    --accent2:  #e8735a;
+    --accent3:  #5dbd8a;
+    --accent4:  #c97de8;
+    --text:     #dde3f0;
+    --muted:    #7a85a3;
+    --code-bg:  #000000;
+    --serif:    'DM Serif Display', serif;
+    --mono:     'DM Mono', monospace;
+    --sans:     'Outfit', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.75;
+    padding: 0 0 6rem;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    background: linear-gradient(160deg, #0d1222 0%, #0b0e17 60%);
+    border-bottom: 1px solid var(--border);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(91,141,238,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    border: 1px solid rgba(91,141,238,0.35);
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  .hero h1 em { color: var(--accent); font-style: italic; }
+  .hero p {
+    color: var(--muted);
+    max-width: 580px;
+    margin: 0 auto;
+    font-size: 15px;
+  }
+
+  /* ── Layout ── */
+  .wrap { width: 100%; max-width: 100%; margin: 0; padding: 0 3vw; }
+
+  /* ── Section ── */
+  .section {
+    margin: 3.5rem 0;
+    padding: 2rem 2rem 2rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    position: relative;
+  }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.4rem;
+  }
+  .section h2 {
+    font-family: var(--serif);
+    font-size: 1.55rem;
+    color: #fff;
+    margin-bottom: 1.2rem;
+    line-height: 1.3;
+  }
+  .section p { color: var(--muted); margin-bottom: 0.9rem; }
+  .section p strong { color: var(--text); font-weight: 500; }
+
+  /* ── Math blocks ── */
+  .math-block {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 1.1rem 1.4rem;
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.9;
+    color: #c8d6f5;
+    overflow-x: auto;
+    margin: 1.2rem 0;
+  }
+  .math-block .comment { color: #4a5a7a; }
+  .math-block .hi      { color: var(--accent); font-weight: 500; }
+  .math-block .hi2     { color: var(--accent2); }
+  .math-block .hi3     { color: var(--accent3); }
+  .math-block .hi4     { color: var(--accent4); }
+
+  /* ── Callout ── */
+  .callout {
+    background: rgba(91,141,238,0.07);
+    border: 1px solid rgba(91,141,238,0.22);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin: 1.2rem 0;
+    color: #a8bcee;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .callout strong { color: var(--accent); }
+
+  .callout-warn {
+    background: rgba(232,115,90,0.07);
+    border-color: rgba(232,115,90,0.25);
+    color: #e8b5a8;
+  }
+  .callout-warn strong { color: var(--accent2); }
+
+  .callout-ok {
+    background: rgba(93,189,138,0.07);
+    border-color: rgba(93,189,138,0.25);
+    color: #a0d9bc;
+  }
+  .callout-ok strong { color: var(--accent3); }
+
+  /* ── Table ── */
+  .tbl-wrap { overflow-x: auto; margin: 1.2rem 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: var(--surface);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 9px 14px;
+    border-bottom: 1px solid rgba(34,40,64,0.6);
+    color: var(--muted);
+    vertical-align: top;
+  }
+  td strong { color: var(--text); font-weight: 500; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+  td.hl { color: var(--accent3); font-family: var(--mono); font-size: 13px; }
+
+  /* ── Iteration stepper ── */
+  .stepper { margin: 1.5rem 0; }
+  .step-nav {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1rem;
+  }
+  .step-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .step-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .step-btn.active {
+    background: rgba(91,141,238,0.15);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .step-panel { display: none; }
+  .step-panel.active { display: block; }
+
+  /* ── Canvas charts ── */
+  .chart-wrap {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem;
+    margin: 1.5rem 0;
+  }
+  canvas { max-width: 100%; }
+
+  /* ── Interactive MCMC demo ── */
+  .demo-controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1.2rem 0;
+  }
+  .ctrl-group label {
+    display: block;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .ctrl-group input[type=range] { width: 100%; }
+  .ctrl-val {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+  }
+
+  .run-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 22px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    margin: 0.8rem 0;
+  }
+  .run-btn:hover { opacity: 0.88; }
+  .run-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+  /* ── Stats row ── */
+  .stats-row {
+    display: flex; gap: 12px; flex-wrap: wrap; margin: 1rem 0;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.8rem 1.1rem;
+    min-width: 130px;
+    flex: 1;
+  }
+  .stat-card .slabel {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.07em;
+    margin-bottom: 4px;
+  }
+  .stat-card .sval {
+    font-family: var(--mono);
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  /* ── Progress bar ── */
+  .prog-wrap { background: var(--surface); border-radius: 4px; height: 6px; margin: 0.5rem 0; overflow: hidden; }
+  .prog-bar  { height: 6px; background: var(--accent); border-radius: 4px; width: 0%; transition: width 0.1s; }
+
+  /* ── Divider ── */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+  /* ── Summary box ── */
+  .summary {
+    background: linear-gradient(135deg, rgba(91,141,238,0.08), rgba(93,189,138,0.05));
+    border: 1px solid rgba(91,141,238,0.25);
+    border-radius: 14px;
+    padding: 2rem;
+    margin: 3rem 0;
+  }
+  .summary h3 {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  .summary ul { list-style: none; padding: 0; }
+  .summary ul li {
+    display: flex; gap: 10px;
+    color: var(--muted);
+    font-size: 14px;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .summary ul li:last-child { border: none; }
+  .summary ul li::before { content: '→'; color: var(--accent); flex-shrink: 0; }
+  .summary ul li strong { color: var(--text); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-tag">MCMC · Bayesian Inference · Complete Derivation</div>
+  <h1>Markov Chain Monte Carlo<br/><em>mathematically</em>, step by step</h1>
+  <p>Same toy problem: F(x) = x², y = 9.5. We solve it three ways — posterior geometry, Metropolis-Hastings by hand, then live interactive sampling.</p>
+</div>
+
+<div class="wrap">
+
+<!-- ════════════════════════════════════════════════════════ SECTION 1 -->
+<div class="section">
+  <div class="section-num">SECTION 01</div>
+  <h2>The problem — posterior we want to sample</h2>
+
+  <p>We have a nonlinear forward model <strong>F(x) = x²</strong>, one observation <strong>y = 9.5</strong>, measurement noise σ_ε = 0.5, and a Gaussian prior x_a = 2, σ_a = 2.</p>
+
+  <p>From Bayes' theorem:</p>
+
+  <div class="math-block">
+<span class="comment">── Bayes' theorem ───────────────────────────────────────────────</span>
+<p></p>
+
+<span class="hi">P(x | y)</span>  ∝  <span class="hi2">P(y | x)</span>  ·  <span class="hi3">P(x)</span>
+
+         ∝  exp(−(y − F(x))² / 2σ_ε²)  ·  exp(−(x − x_a)² / 2σ_a²)
+         
+  <p></p>
+
+<span class="comment">── Plug in numbers ──────────────────────────────────────────────</span>
+<p></p>
+
+         ∝  exp(−(9.5 − x²)² / 0.50)  ·  exp(−(x − 2)² / 8)
+  </div>
+
+  <p>This is <strong>not Gaussian in x</strong> because x appears as x² inside the exponential. We cannot evaluate the normalising constant ∫P(x|y)dx analytically. This is exactly where MCMC becomes necessary.</p>
+
+  <div class="callout-warn callout">
+    <strong>Why OE fails here:</strong> OE linearises F(x) ≈ F(x_a) + K(x−x_a) and assumes the posterior is Gaussian. But F(x) = x² is symmetric — there are <strong>two solutions</strong> near x ≈ +3.08 and x ≈ −3.08. OE finds only one. MCMC finds both.
+  </div>
+
+  <p>We define the <strong>cost function</strong> J(x) = −2 log P(x|y), which we minimise in OE but only <em>evaluate</em> in MCMC:</p>
+
+  <div class="math-block">
+<span class="hi">J(x)</span>  =  (9.5 − x²)² / 0.25   +   (x − 2)² / 4
+<p></p>
+           <span class="comment">──────────────────────     ────────────────</span>
+           <p></p>
+           <span class="comment">  measurement term           prior term    </span>
+          <p></p>
+<span class="comment">── Evaluate at key points ───────────────────────────────────────</span>
+<p></p>
+
+   x = −3.08  →  J = 3.67     (second mode — OE misses this!)
+   <p></p>
+   x =  0.00  →  J = 362.25   (very unlikely)<p></p>
+   x = +2.00  →  J = 70.57    (prior mean — moderate)<p></p>
+   x = +3.08  →  J = 2.78     (primary minimum — OE solution)<p></p>
+   x = +3.50  →  J = 12.1     (falling away fast)<p></p>
+  </div>
+
+  <div class="chart-wrap">
+    <canvas id="posteriorChart" height="200"></canvas>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════ SECTION 2 -->
+<div class="section">
+  <div class="section-num">SECTION 02</div>
+  <h2>What is a Markov chain?</h2>
+
+  <p>A <strong>Markov chain</strong> is a sequence of random variables x_0, x_1, x_2, ... where the next state depends only on the current state — not the full history:</p>
+
+  <div class="math-block">
+P(x_{i+1} | x_i, x_{i-1}, ..., x_0)  =  <span class="hi">P(x_{i+1} | x_i)</span>
+<p></p>
+
+<span class="comment">This is the Markov property — memoryless given the present state.</span>
+  </div>
+
+  <p>The transition kernel T(x_{i+1} | x_i) defines how we move from one state to the next. The magic of MCMC: we <strong>design T</strong> so that the chain's stationary distribution equals our posterior P(x|y).</p>
+
+  <p>The condition that guarantees this is called <strong>detailed balance</strong>:</p>
+
+  <div class="math-block">
+<span class="comment">── Detailed balance (sufficient condition for correct stationary dist.) ──</span>
+<p></p>
+
+<span class="hi">P(x | y)</span> · T(x* | x)  =  <span class="hi">P(x* | y)</span> · T(x | x*)
+<p></p>
+
+<span class="comment">Interpretation: the probability flux from x→x* equals flux from x*→x.</span>
+<p></p>
+<span class="comment">If this holds, the chain cannot drift — it is in equilibrium.</span>
+<p></p>
+  </div>
+
+  <div class="callout">
+    <strong>Key insight:</strong> We never need to compute the normalising constant Z = ∫P(x|y)dx. In any ratio P(x*|y) / P(x|y), the Z cancels. MCMC exploits this completely.
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════ SECTION 3 -->
+<div class="section">
+  <div class="section-num">SECTION 03</div>
+  <h2>Metropolis-Hastings algorithm — full derivation</h2>
+
+  <p>We use a <strong>symmetric Gaussian proposal</strong>: x* ~ N(x_i, σ_prop²). 
+  This means q(x*|x_i) = q(x_i|x*), which simplifies the acceptance ratio.</p>
+
+  <div class="math-block">
+<span class="comment">── Algorithm ────────────────────────────────────────────────────</span>
+<p></p>
+<span class="hi">Initialise:</span>   x_0 = any starting point  (we use x_0 = 0.0)
+<p></p>
+<span class="hi">Proposal σ:</span>   σ_prop = 1.0
+<p></p>
+For i = 0, 1, 2, ..., N:
+<p></p>
+   1. <span class="hi2">Propose:</span>    x*  ~  N(x_i, σ_prop²)
+   <p></p>
+     <span class="comment">← draw from Gaussian centred on current x</span>
+<p></p>
+   2. <span class="hi3">Compute ratio:</span>
+        <pre>
+                       P(x* | y)
+         α  =  min(1, ─────────)
+                       P(x  | y)
+            =  min(1,  exp(−J(x*)/2) / exp(−J(x_i)/2))
+            =  min(1,  exp(−[J(x*) − J(x_i)] / 2))
+        </pre>
+        <p></p>
+        <span class="comment">← only need DIFFERENCE of J — Z cancels!</span>
+        <p></p>
+        
+   3. <span class="hi4">Accept/Reject:</span>
+   <p></p>
+         <pre>u  ~  Uniform(0, 1)</pre>
+<p></p>
+            <pre>if u ≤ α:   x_{i+1} = x* <span class="comment">(accept)</span></pre>    
+         <p></p>
+            <pre>else:       x_{i+1} = x_i   <span class="comment">(reject — stay put)</span></pre> 
+         <p></p>
+  </div>
+
+  <div class="callout-ok callout">
+    <strong>Why this works:</strong> If x* is more probable than x_i (α=1), always accept. If less probable, accept with probability equal to the probability ratio — giving the chain a chance to explore lower-probability regions. Over many steps, the fraction of time spent at any x equals P(x|y).
+  </div>
+
+  <hr class="divider"/>
+
+  <h2 style="font-family:var(--serif);font-size:1.3rem;color:#fff;margin-bottom:1.2rem;">Hand calculation — first 5 steps</h2>
+
+  <p>Starting at x_0 = 0.0, σ_prop = 1.0. We pre-fix the random draws for reproducibility.</p>
+
+  <div class="stepper">
+    <div class="step-nav" id="stepNav"></div>
+    <div id="stepPanels"></div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════ SECTION 4 -->
+<div class="section">
+  <div class="section-num">SECTION 04</div>
+  <h2>Diagnostics — how do we know if the chain is good?</h2>
+
+  <div class="tbl-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Diagnostic</th>
+        <th>What it measures</th>
+        <th>Good value</th>
+        <th>Formula / method</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Trace plot</strong></td>
+        <td>Looks like a "hairy caterpillar"? Chain is mixing well.</td>
+        <td>No drifts or sticking</td>
+        <td>Plot x_i vs i</td>
+      </tr>
+      <tr>
+        <td><strong>Acceptance rate</strong></td>
+        <td>Fraction of proposals accepted</td>
+        <td class="hl">~23–44%</td>
+        <td>N_accepted / N_total</td>
+      </tr>
+      <tr>
+        <td><strong>Autocorrelation τ</strong></td>
+        <td>How many steps until samples are independent</td>
+        <td class="hl">τ as small as possible</td>
+        <td>τ = 1 + 2Σ ρ_k</td>
+      </tr>
+      <tr>
+        <td><strong>Effective sample size</strong></td>
+        <td>Number of "independent" samples</td>
+        <td class="hl">ESS > 200</td>
+        <td>ESS = N / τ</td>
+      </tr>
+      <tr>
+        <td><strong>Gelman-Rubin R̂</strong></td>
+        <td>Multiple chains agree? (between-chain vs within-chain variance)</td>
+        <td class="hl">R̂ &lt; 1.01</td>
+        <td>R̂ = √(V̂/W) where V̂ = pooled, W = within-chain</td>
+      </tr>
+      <tr>
+        <td><strong>Burn-in</strong></td>
+        <td>Initial transient before chain reaches typical set</td>
+        <td>Discard first ~20%</td>
+        <td>Visual inspection of trace plot</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="math-block">
+<span class="comment">── Autocorrelation at lag k ──────────────────────────────────────</span>
+<pre>
+         Σ (x_i − x̄)(x_{i+k} − x̄)
+ρ_k  =  ─────────────────────────────
+              Σ (x_i − x̄)²
+</pre>
+<span class="comment">── Integrated autocorrelation time ──────────────────────────────</span>
+
+<pre>
+τ  =  1  +  2 Σ_{k=1}^{∞} ρ_k         <span class="comment">← sum until ρ_k ≈ 0</span>
+</pre>
+
+<span class="comment">── Effective sample size ─────────────────────────────────────────</span>
+
+<pre>
+ESS  =  N / τ                         <span class="comment">← independent draws equivalent</span>
+</pre>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════ SECTION 5 -->
+<div class="section">
+  <div class="section-num">SECTION 05</div>
+  <h2>Live MCMC simulation — interact</h2>
+
+  <p>Run Metropolis-Hastings on our problem F(x) = x², y = 9.5. Adjust the proposal width and see how it affects mixing and the recovered posterior shape.</p>
+
+  <div class="demo-controls">
+    <div class="ctrl-group">
+      <label>PROPOSAL WIDTH σ_prop</label>
+      <input type="range" id="sigProp" min="0.1" max="4.0" step="0.1" value="1.0"/>
+      <span class="ctrl-val" id="sigPropVal">1.0</span>
+    </div>
+    <div class="ctrl-group">
+      <label>CHAIN LENGTH N</label>
+      <input type="range" id="chainLen" min="500" max="20000" step="500" value="5000"/>
+      <span class="ctrl-val" id="chainLenVal">5000</span>
+    </div>
+    <div class="ctrl-group">
+      <label>BURN-IN FRACTION</label>
+      <input type="range" id="burnin" min="0.05" max="0.5" step="0.05" value="0.2"/>
+      <span class="ctrl-val" id="burninVal">20%</span>
+    </div>
+  </div>
+
+  <button class="run-btn" id="runBtn">Run MCMC</button>
+
+  <div class="prog-wrap"><div class="prog-bar" id="progBar"></div></div>
+
+  <div class="stats-row" id="statsRow" style="display:none">
+    <div class="stat-card"><div class="slabel">MEAN x̂</div><div class="sval" id="statMean">—</div></div>
+    <div class="stat-card"><div class="slabel">STD σ_post</div><div class="sval" id="statStd">—</div></div>
+    <div class="stat-card"><div class="slabel">ACCEPT RATE</div><div class="sval" id="statAcc">—</div></div>
+    <div class="stat-card"><div class="slabel">ESS (approx)</div><div class="sval" id="statESS">—</div></div>
+  </div>
+
+  <div class="chart-wrap" id="traceWrap" style="display:none">
+    <canvas id="traceChart" height="140"></canvas>
+  </div>
+  <div class="chart-wrap" id="histWrap" style="display:none">
+    <canvas id="histChart" height="200"></canvas>
+  </div>
+
+  <div class="callout" id="interpBox" style="display:none">
+    <strong>Interpretation will appear here after running MCMC.</strong>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════ SECTION 6 -->
+<div class="section">
+  <div class="section-num">SECTION 06</div>
+  <h2>OE vs MCMC — what each gives you</h2>
+
+  <div class="tbl-wrap">
+  <table>
+    <thead>
+      <tr><th>Aspect</th><th>Optimal Estimation (OE)</th><th>MCMC (M-H)</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Output</strong></td>
+        <td>Single point x̂ + Gaussian Sx</td>
+        <td>Samples from true P(x|y)</td>
+      </tr>
+      <tr>
+        <td><strong>Posterior shape</strong></td>
+        <td>Always Gaussian (assumption)</td>
+        <td>Any shape — multimodal, skewed</td>
+      </tr>
+      <tr>
+        <td><strong>Modes found</strong></td>
+        <td>Only 1 (nearest to start)</td>
+        <td>All modes (if chain mixes)</td>
+      </tr>
+      <tr>
+        <td><strong>Speed</strong></td>
+        <td class="hl">~5 iterations → seconds</td>
+        <td>10⁴–10⁶ samples → minutes</td>
+      </tr>
+      <tr>
+        <td><strong>Nonlinearity</strong></td>
+        <td>Linearises F(x) — fails badly if curved</td>
+        <td>Handles full nonlinearity exactly</td>
+      </tr>
+      <tr>
+        <td><strong>Key formula</strong></td>
+        <td>Sx = (KᵀSε⁻¹K + Sa⁻¹)⁻¹</td>
+        <td>α = min(1, P(x*|y)/P(x|y))</td>
+      </tr>
+      <tr>
+        <td><strong>Used in practice for CO₂</strong></td>
+        <td>Operational (millions of soundings/day)</td>
+        <td>Algorithm development, difficult scenes</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════ SUMMARY -->
+<div class="summary">
+  <h3>Key equations to remember</h3>
+  <ul>
+    <li><strong>Posterior:</strong> P(x|y) ∝ exp(−J(x)/2), where J = measurement misfit + prior misfit</li>
+    <li><strong>Proposal step:</strong> x* ~ N(x_i, σ_prop²) — Gaussian random walk</li>
+    <li><strong>Acceptance ratio:</strong> α = min(1, exp(−ΔJ/2)) where ΔJ = J(x*) − J(x_i)</li>
+    <li><strong>Detailed balance:</strong> P(x|y)·T(x*|x) = P(x*|y)·T(x|x*) — guarantees correct stationary distribution</li>
+    <li><strong>ESS:</strong> N_eff = N / τ where τ is integrated autocorrelation time</li>
+    <li><strong>Proposal tuning:</strong> too narrow → high acceptance but slow mixing; too wide → low acceptance and slow mixing; sweet spot ≈ 23% acceptance for 1D</li>
+    <li><strong>Burn-in:</strong> discard early samples before chain reaches typical set of the posterior</li>
+  </ul>
+</div>
+
+</div><!-- /wrap -->
+
+<script>
+const J = x => Math.pow(9.5 - x*x, 2)/0.25 + Math.pow(x - 2, 2)/4;
+const logP = x => -J(x)/2;
+
+const DARK = '#0b0e17';
+const SURFACE = '#161b28';
+const BORDER = '#222840';
+const ACCENT  = '#5b8dee';
+const ACCENT2 = '#e8735a';
+const ACCENT3 = '#5dbd8a';
+const MUTED   = '#7a85a3';
+const TEXT    = '#dde3f0';
+
+Chart.defaults.color = MUTED;
+Chart.defaults.borderColor = BORDER;
+Chart.defaults.font.family = "'DM Mono', monospace";
+Chart.defaults.font.size = 11;
+
+/* ── Posterior shape chart ───────────────────────────────────── */
+(function(){
+  const xs = [], trueP = [], jVals = [];
+  for(let x=-5; x<=5; x+=0.05){
+    xs.push(+x.toFixed(2));
+    const j = J(x);
+    jVals.push(+j.toFixed(3));
+    trueP.push(+(Math.exp(-j/2)).toFixed(6));
+  }
+  const maxP = Math.max(...trueP);
+  const normP = trueP.map(v => +(v/maxP).toFixed(5));
+
+  new Chart(document.getElementById('posteriorChart'), {
+    type: 'line',
+    data: {
+      labels: xs,
+      datasets: [
+        { label: 'True posterior P(x|y)  [normalised]',
+          data: normP, borderColor: ACCENT3, borderWidth: 2,
+          fill: true, backgroundColor: 'rgba(93,189,138,0.08)', pointRadius: 0, tension: 0.3 },
+        { label: 'Cost J(x) / 100',
+          data: jVals.map(v=>+(v/100).toFixed(4)), borderColor: ACCENT2,
+          borderWidth: 1.5, borderDash: [4,3], fill: false, pointRadius: 0, tension: 0.3 }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { labels: { color: MUTED, font: { size: 11 } } },
+                 tooltip: { mode: 'index', intersect: false } },
+      scales: {
+        x: { title: { display: true, text: 'x', color: MUTED },
+             grid: { color: BORDER },
+             ticks: { maxTicksLimit: 11 } },
+        y: { title: { display: true, text: 'Normalised value', color: MUTED },
+             grid: { color: BORDER } }
+      }
+    }
+  });
+})();
+
+/* ── Hand-calculation steps ──────────────────────────────────── */
+(function(){
+  const steps = [
+    { title:'Step 0 — Initialise',
+      x_curr: 0.0, x_prop: null, u: null, accepted: null,
+      body:`<div class="math-block">x_0     =  0.0       <span class="comment">(starting point — deliberately bad)</span>
+      <p></p>
+      <pre>
+      J(x_0)  =  J(0)  =  (9.5)²/0.25 + (0−2)²/4
+                       =  361.0  +  1.0
+                       =  <span class="hi">362.0</span>
+      </pre>
+
+σ_prop  =  1.0    <span class="comment">(proposal width)</span></div>
+<div class="callout">We start far from the mode. The chain will rapidly move toward the high-probability region.</div>` },
+
+    { title:'Step 1',
+      x_curr: 0.0, x_prop: 0.47, u: 0.001, accepted: true,
+      body:`<div class="math-block"><span class="comment">─── Current state ───────────────────────────────────────────</span>
+<pre>x_i     =  0.0,     J(x_i) = 362.0</pre>
+
+<span class="comment">─── Proposal ────────────────────────────────────────────────</span>
+<pre>x*      ~  N(0.0, 1.0²)  →  x* = <span class="hi2">0.47</span>  <span class="comment">(random draw)</span></pre>
+<pre>
+J(x*)   =  (9.5 − 0.47²)² / 0.25  +  (0.47−2)² / 4
+        =  (9.5 − 0.221)² / 0.25  +  (−1.53)² / 4
+        =  345.2  +  0.586  =  <span class="hi2">345.8</span>
+</pre>
+
+
+<span class="comment">─── Acceptance ratio ────────────────────────────────────────</span>
+<pre>ΔJ      =  J(x*) − J(x_i)  =  345.8 − 362.0  =  −16.2</pre>
+<pre>
+α       =  min(1,  exp(−ΔJ/2))
+        =  min(1,  exp(+8.1))
+        =  min(1,  3280)
+        =  <span class="hi3">1.0</span>   <span class="comment">(always accept — x* is much more probable)</span>
+
+</pre>
+
+
+<pre></pre>
+
+
+
+<span class="comment">─── Decision ────────────────────────────────────────────────</span>
+<pre>u  ~  Uniform(0,1)  →  u = 0.001</pre>
+
+
+u ≤ α  →  <span class="hi3">ACCEPT</span>   →   x_1 = 0.47</div>` },
+
+    { title:'Step 2',
+      x_curr: 0.47, x_prop: 1.71, u: 0.002, accepted: true,
+      body:`<div class="math-block"><span class="comment">─── Current state ───────────────────────────────────────────</span>
+x_i     =  0.47,    J(x_i) = 345.8
+
+<span class="comment">─── Proposal ────────────────────────────────────────────────</span>
+<pre>x*      ~  N(0.47, 1.0²)  →  x* = <span class="hi2">1.71</span></pre>
+<pre>
+J(x*)   =  (9.5 − 1.71²)² / 0.25  +  (1.71−2)² / 4
+        =  (9.5 − 2.924)² / 0.25  +  0.084 / 4
+        =  173.0  +  0.021  =  <span class="hi2">173.0</span>
+</pre>
+<pre>ΔJ      =  173.0 − 345.8  =  −172.8</pre>
+<pre>α       =  min(1, exp(86.4))  =  <span class="hi3">1.0</span>   <span class="comment">(accept — still climbing toward mode)</span></pre>
+
+<span class="hi3">ACCEPT</span>   →   x_2 = 1.71</div>` },
+
+    { title:'Step 3',
+      x_curr: 1.71, x_prop: 2.89, u: 0.003, accepted: true,
+      body:`<div class="math-block"><span class="comment">─── Current state ───────────────────────────────────────────</span>
+x_i     =  1.71,    J(x_i) = 173.0
+
+<span class="comment">─── Proposal ────────────────────────────────────────────────</span>
+<pre>x*      ~  N(1.71, 1.0²)  →  x* = <span class="hi2">2.89</span></pre>
+<pre>
+J(x*)   =  (9.5 − 2.89²)² / 0.25  +  (2.89−2)² / 4
+        =  (9.5 − 8.352)² / 0.25  +  0.792 / 4
+        =  5.265  +  0.198  =  <span class="hi2">5.46</span>
+</pre>
+<pre>ΔJ      =  5.46 − 173.0  =  −167.5</pre>
+<pre>α       =  1.0    <span class="hi3">ACCEPT</span>   →   x_3 = 2.89</pre>
+
+
+
+
+
+<span class="comment">(Chain is now near the mode — burn-in essentially over)</span></div>` },
+
+    { title:'Step 4  (first possible rejection)',
+      x_curr: 2.89, x_prop: 3.54, u: 0.61, accepted: false,
+      body:`<div class="math-block"><span class="comment">─── Current state ───────────────────────────────────────────</span>
+x_i     =  2.89,    J(x_i) = 5.46
+
+<span class="comment">─── Proposal ────────────────────────────────────────────────</span>
+<pre>x*      ~  N(2.89, 1.0²)  →  x* = <span class="hi2">3.54</span></pre>
+<pre>
+J(x*)   =  (9.5 − 3.54²)² / 0.25  +  (3.54−2)² / 4
+        =  (9.5 − 12.53)² / 0.25  +  2.372 / 4
+        =  36.72  +  0.593  =  <span class="hi2">37.31</span>
+</pre>
+<span class="comment">─── Acceptance ratio ────────────────────────────────────────</span>
+<pre>ΔJ      =  37.31 − 5.46  =  +31.85    <span class="comment">(x* is LESS probable)</span></pre>
+<pre>
+α       =  min(1,  exp(−31.85/2))
+        =  min(1,  exp(−15.92))
+        =  min(1,  1.21 × 10⁻⁷)
+        ≈  <span class="hi2">0.000</span>
+</pre>
+
+<pre>u  ~  Uniform(0,1)  →  u = 0.61</pre>
+u > α  →  <span class="hi2">REJECT</span>   →   x_4 = x_3 = 2.89  <span class="comment">(stay put)</span></div>
+<div class="callout-warn callout"><strong>First rejection:</strong> x* = 3.54 is far from the mode. MCMC correctly rejects it with near-certainty. The chain stays at x = 2.89. This rejection is not a failure — it is MCMC working correctly.</div>` },
+
+    { title:'Step 5',
+      x_curr: 2.89, x_prop: 3.14, u: 0.08, accepted: true,
+      body:`<div class="math-block"><span class="comment">─── Current state ───────────────────────────────────────────</span>
+x_i     =  2.89,    J(x_i) = 5.46
+
+<span class="comment">─── Proposal ────────────────────────────────────────────────</span>
+<pre>x*      ~  N(2.89, 1.0²)  →  x* = <span class="hi2">3.14</span></pre>
+<pre>
+J(x*)   =  (9.5 − 3.14²)² / 0.25  +  (3.14−2)² / 4
+        =  (9.5 − 9.860)² / 0.25  +  1.300 / 4
+        =  0.518  +  0.325  =  <span class="hi2">0.843</span>
+</pre>
+<pre>ΔJ      =  0.843 − 5.46  =  −4.617</pre>
+<pre>
+α       =  min(1, exp(2.31))  =  1.0
+<span class="hi3">ACCEPT</span>   →   x_5 = 3.14
+</pre>
+
+
+
+
+
+
+<span class="comment">────────────────────────────────────────────────────────────</span>
+<span class="comment">After burn-in, the chain explores the region around x ≈ 3.08.</span>
+<span class="comment">Over 10⁴+ steps, the histogram of samples → P(x|y).</span></div>
+<div class="callout-ok callout"><strong>After burn-in:</strong> the chain is now in the typical set of the posterior. Each subsequent sample is a draw from P(x|y). Run many thousands of steps to get good statistics.</div>` }
+  ];
+
+  const nav = document.getElementById('stepNav');
+  const panels = document.getElementById('stepPanels');
+
+  steps.forEach((s, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'step-btn' + (i===0?' active':'');
+    btn.textContent = i===0 ? 'Init' : `Iter ${i}`;
+    btn.onclick = () => {
+      document.querySelectorAll('.step-btn').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.step-panel').forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('sp'+i).classList.add('active');
+    };
+    nav.appendChild(btn);
+
+    const panel = document.createElement('div');
+    panel.className = 'step-panel' + (i===0?' active':'');
+    panel.id = 'sp'+i;
+
+    let statusBadge = '';
+    if(s.accepted === true)  statusBadge = `<span style="color:var(--accent3);font-family:var(--mono);font-size:12px;margin-left:12px;">✓ ACCEPTED</span>`;
+    if(s.accepted === false) statusBadge = `<span style="color:var(--accent2);font-family:var(--mono);font-size:12px;margin-left:12px;">✗ REJECTED</span>`;
+
+    panel.innerHTML = `<p style="margin-bottom:0.8rem;font-size:14px;color:var(--text);font-weight:500;">${s.title}${statusBadge}</p>${s.body}`;
+    panels.appendChild(panel);
+  });
+})();
+
+/* ── Live MCMC ───────────────────────────────────────────────── */
+let traceChartInst = null, histChartInst = null;
+
+document.getElementById('sigProp').addEventListener('input', function(){
+  document.getElementById('sigPropVal').textContent = parseFloat(this.value).toFixed(1);
+});
+document.getElementById('chainLen').addEventListener('input', function(){
+  document.getElementById('chainLenVal').textContent = parseInt(this.value).toLocaleString();
+});
+document.getElementById('burnin').addEventListener('input', function(){
+  document.getElementById('burninVal').textContent = Math.round(parseFloat(this.value)*100)+'%';
+});
+
+function randn() {
+  let u=0,v=0;
+  while(u===0) u=Math.random();
+  while(v===0) v=Math.random();
+  return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);
+}
+
+document.getElementById('runBtn').addEventListener('click', function(){
+  const sigP    = parseFloat(document.getElementById('sigProp').value);
+  const N       = parseInt(document.getElementById('chainLen').value);
+  const burnFrac= parseFloat(document.getElementById('burnin').value);
+  const burnN   = Math.floor(N * burnFrac);
+
+  this.disabled = true;
+  const progBar = document.getElementById('progBar');
+  progBar.style.width = '0%';
+
+  setTimeout(() => {
+    const chain = new Float64Array(N);
+    let x = 0.0;
+    let nAccept = 0;
+
+    for(let i=0; i<N; i++){
+      const xStar = x + sigP * randn();
+      const dJ = J(xStar) - J(x);
+      const alpha = Math.min(1, Math.exp(-dJ/2));
+      if(Math.random() < alpha){ x = xStar; nAccept++; }
+      chain[i] = x;
+      if(i % 1000 === 0) progBar.style.width = Math.round(i/N*100)+'%';
+    }
+    progBar.style.width = '100%';
+
+    const postChain = Array.from(chain.slice(burnN));
+    const mean = postChain.reduce((a,b)=>a+b,0)/postChain.length;
+    const std  = Math.sqrt(postChain.reduce((a,b)=>a+(b-mean)**2,0)/postChain.length);
+    const accRate = nAccept/N;
+
+    /* ESS via autocorrelation */
+    let tau = 1;
+    for(let k=1; k<Math.min(500, postChain.length/4); k++){
+      let num=0, den=0;
+      for(let i=0; i<postChain.length-k; i++){
+        num += (postChain[i]-mean)*(postChain[i+k]-mean);
+        den += (postChain[i]-mean)**2;
+      }
+      const rho = num/den;
+      if(rho < 0.05) break;
+      tau += 2*rho;
+    }
+    const ess = Math.round(postChain.length / tau);
+
+    document.getElementById('statMean').textContent = mean.toFixed(3);
+    document.getElementById('statStd').textContent  = std.toFixed(3);
+    document.getElementById('statAcc').textContent  = (accRate*100).toFixed(1)+'%';
+    document.getElementById('statESS').textContent  = ess.toLocaleString();
+    document.getElementById('statsRow').style.display = 'flex';
+
+    /* trace plot — subsample 1000 pts */
+    const tracePts = [];
+    const stride = Math.max(1, Math.floor(postChain.length/1000));
+    for(let i=0; i<postChain.length; i+=stride) tracePts.push({x:burnN+i,y:+postChain[i].toFixed(4)});
+
+    document.getElementById('traceWrap').style.display = 'block';
+    if(traceChartInst) traceChartInst.destroy();
+    traceChartInst = new Chart(document.getElementById('traceChart'),{
+      type:'line',
+      data:{ datasets:[
+        { label:'Chain trace (post burn-in)', data: tracePts,
+          borderColor: ACCENT, borderWidth: 0.8, pointRadius: 0, tension: 0 },
+        { label:`True x = +3.08`, data: tracePts.map(p=>({x:p.x,y:3.08})),
+          borderColor: ACCENT3, borderWidth: 1.5, borderDash:[5,4], pointRadius:0 },
+        { label:`True x = -3.08`, data: tracePts.map(p=>({x:p.x,y:-3.08})),
+          borderColor: ACCENT2, borderWidth: 1.5, borderDash:[5,4], pointRadius:0 }
+      ]},
+      options:{ responsive:true, animation:false,
+        plugins:{ legend:{ labels:{ color: MUTED, font:{size:10} } } },
+        scales:{
+          x:{ type:'linear', title:{display:true,text:'Sample index',color:MUTED}, grid:{color:BORDER} },
+          y:{ title:{display:true,text:'x',color:MUTED}, grid:{color:BORDER} }
+        }
+      }
+    });
+
+    /* histogram */
+    const bins = 80, minX=-5, maxX=5, bw=(maxX-minX)/bins;
+    const counts = new Array(bins).fill(0);
+    for(const v of postChain){
+      const b = Math.floor((v-minX)/bw);
+      if(b>=0 && b<bins) counts[b]++;
+    }
+    const maxCount = Math.max(...counts);
+    const binCenters = counts.map((_,i)=>+(minX+(i+0.5)*bw).toFixed(3));
+
+    /* true posterior curve normalised to histogram */
+    const trueCurve = binCenters.map(x=>{
+      const p = Math.exp(-J(x)/2);
+      return p;
+    });
+    const maxTrueP = Math.max(...trueCurve);
+    const trueCurveNorm = trueCurve.map(v=>+(v/maxTrueP*maxCount).toFixed(2));
+
+    document.getElementById('histWrap').style.display = 'block';
+    if(histChartInst) histChartInst.destroy();
+    histChartInst = new Chart(document.getElementById('histChart'),{
+      type:'bar',
+      data:{
+        labels: binCenters,
+        datasets:[
+          { label:'MCMC samples (histogram)',
+            data: counts, backgroundColor:'rgba(91,141,238,0.45)',
+            borderColor: ACCENT, borderWidth:0.5 },
+          { label:'True P(x|y) [scaled]',
+            data: trueCurveNorm, type:'line', borderColor: ACCENT3,
+            borderWidth:2, pointRadius:0, fill:false, tension:0.3 }
+        ]
+      },
+      options:{ responsive:true, animation:false,
+        plugins:{ legend:{ labels:{ color:MUTED, font:{size:10} } } },
+        scales:{
+          x:{ title:{display:true,text:'x',color:MUTED}, grid:{color:BORDER},
+              ticks:{ maxTicksLimit:11, callback: v => parseFloat(binCenters[v]).toFixed(1) } },
+          y:{ title:{display:true,text:'Count',color:MUTED}, grid:{color:BORDER} }
+        }
+      }
+    });
+
+    /* interpretation */
+    const bothModes = postChain.some(v=>v<-1) && postChain.some(v=>v>1);
+    const accOk = accRate > 0.15 && accRate < 0.60;
+    let interp = `<strong>Results:</strong> Mean = ${mean.toFixed(3)}, σ = ${std.toFixed(3)}, acceptance = ${(accRate*100).toFixed(1)}%, ESS ≈ ${ess}. `;
+    if(bothModes) interp += `Both modes (x ≈ +3.08 and x ≈ −3.08) were found — OE would have missed the negative mode. `;
+    else interp += `Only one mode was found — try a wider σ_prop to allow the chain to cross x=0 and discover the negative mode at x ≈ −3.08. `;
+    if(!accOk && accRate < 0.15) interp += `Acceptance rate is low (σ_prop too wide — proposals land in low-probability regions).`;
+    else if(!accOk && accRate > 0.60) interp += `Acceptance rate is high (σ_prop too narrow — chain barely moves, high autocorrelation).`;
+    else interp += `Acceptance rate is in the healthy 15–60% range.`;
+    document.getElementById('interpBox').innerHTML = interp;
+    document.getElementById('interpBox').style.display = 'block';
+
+    document.getElementById('runBtn').disabled = false;
+  }, 30);
+});
+</script>
+</body>
+</html>
