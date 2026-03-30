@@ -151,32 +151,32 @@
                 <h2>1. The Setup</h2>
 
                 <p><strong>Nonlinear forward model:</strong></p>
-                <pre>F(x) = x²</pre>
+                $$F(x) = x²$$
 
                 <p><strong>Observation:</strong></p>
-                <pre>y = 9.5  (true value is x_true = 3, but measurement has noise)</pre>
+                $$y = 9.5  (true value is x_true = 3, but measurement has noise)$$
 
                 <p><strong>Measurement noise:</strong></p>
-                <pre>σ_ε = 0.5</pre>
+                $$σ_ε = 0.5$$
 
                 <p><strong>Prior:</strong></p>
-                <pre>x_a = 2.0, σ_a = 2.0</pre>
+                $$x_a = 2.0, σ_a = 2.0$$
 
                 <hr>
 
                 <h2>2. Posterior</h2>
 
-                <pre>
+                $$
                 P(x|y) ∝ P(y|x) · P(x)
 
                 = exp(−(y − F(x))² / 2σ_ε²) · exp(−(x − x_a)² / 2σ_a²)
-                </pre>
+                $$
 
                 <p>Plugging in F(x) = x²:</p>
 
-                <pre>
+                $$
                 P(x|y) ∝ exp(−(9.5 − x²)² / 0.5) · exp(−(x − 2)² / 8)
-                </pre>
+                $$
 
                 <p><strong>Key point:</strong> Not Gaussian due to x² → nonlinear model.</p>
 
@@ -184,15 +184,15 @@
 
                 <h2>3. Cost Function J(x)</h2>
 
-                <pre>
+                $$
                 J(x) = (9.5 − x²)² / 0.25 + (x − 2)² / 4
-                </pre>
+                $$
 
                 <p>Derivative:</p>
 
-                <pre>
+                $$
                 dJ/dx = −16x(9.5 − x²) + 0.5(x − 2) = 0
-                </pre>
+                $$
 
                 <p>This is a <strong>cubic equation</strong> → must solve iteratively.</p>
 
@@ -200,19 +200,21 @@
 
                 <h2>4. Gauss-Newton Iteration</h2>
 
-                <p><strong>Linearisation:</strong></p>
-                <pre>
-                F(x) ≈ F(x_i) + K_i (x − x_i)
-                K_i = 2x_i
-                </pre>
+                <p><strong>Linearisation:</strong> Linearisation around $x_i$</p>
+                $$
+                F(x) \approx F(x_i) + K_i \, (x - x_i)\\
+                \text{where } \quad K_i = \left.\frac{dF}{dx}\right|_{x_i} = 2x_i ~~~~~~~~~~ \leftarrow \text{the Jacobian}
+                $$
 
-                <p><strong>Update formula:</strong></p>
-                <pre>
-                x_{i+1} = x_a + (K²/σ_ε² + 1/σ_a²)⁻¹ · K/σ_ε² · [y − F(x_i) + K(x_i − x_a)]
-                </pre>
+                <p><strong>Gauss-Newton update formula:</strong></p>
+                $$
+                x_{i+1} = x_a + \left( \frac{K_i^2}{\sigma_\epsilon^2} + \frac{1}{\sigma_a^2} \right)^{-1}
+                \cdot \frac{K_i}{\sigma_\epsilon^2}
+                \cdot \left[ y - F(x_i) + K_i (x_i - x_a) \right]
+                $$
 
                 <h3>Iteration 1</h3>
-                <pre>
+                $$
                 x_i = 2.0
                 F = 4.0
                 K = 4.0
@@ -222,56 +224,56 @@
                 rhs = 88.0
 
                 x = 3.370
-                </pre>
+                $$
 
                 <h3>Iteration 2</h3>
-                <pre>
+                $$
                 x_i = 3.370
                 F = 11.357
                 K = 6.740
                 residual = −1.857
 
                 x = 3.094
-                </pre>
+                $$
 
                 <h3>Iteration 3</h3>
-                <pre>
+                $$
                 x_i = 3.094
                 F = 9.573
                 residual = −0.073
 
                 x ≈ 3.081
-                </pre>
+                $$
 
                 <h3>Iteration 4</h3>
-                <pre>
+                $$
                 x = 3.080 (converged)
-                </pre>
+                $$
 
                 <hr>
 
                 <h2>5. Posterior Covariance</h2>
 
-                <pre>
+                $$
                 Sx = (K²/σ_ε² + 1/σ_a²)⁻¹
 
                 = (151.9 + 0.25)⁻¹
                 = 0.00657
-                </pre>
+                $$
 
                 <p><strong>Standard deviation:</strong></p>
-                <pre>σ_post = 0.081</pre>
+                $$σ_post = 0.081$$
 
                 <p><strong>Result:</strong></p>
-                <pre>x̂ = 3.080 ± 0.081</pre>
+                $$x̂ = 3.080 ± 0.081$$
 
                 <hr>
 
                 <h2>6. Averaging Kernel</h2>
 
-                <pre>
+                $$
                 A = Sx · K²/σ_ε² = 0.998
-                </pre>
+                $$
 
                 <p>→ Measurement dominates, prior is weak.</p>
 
@@ -279,9 +281,9 @@
 
                 <h2>7. True Posterior Shape</h2>
 
-                <pre>
+                $$
                 J(x) = (9.5 − x²)²/0.25 + (x − 2)²/4
-                </pre>
+                $$
 
                 <table border="1" cellpadding="6">
                 <tr><th>x</th><th>J(x)</th></tr>
@@ -304,17 +306,17 @@
 
                 <h2>8. What MCMC Finds</h2>
 
-                <pre>
+                $$
                 Mode 1: x ≈ +3.08
                 Mode 2: x ≈ −3.08
                 Asymmetry: non-symmetric tails
-                </pre>
+                $$
 
                 <hr>
 
                 <h2>9. Visual Summary</h2>
 
-                <pre>
+                $$
                 TRUE POSTERIOR          OE APPROXIMATION
 
                     │                       │
@@ -323,7 +325,7 @@
                     │*****  **              │  *****
                 ────┼──────────── x     ────┼──────────── x
                 -3.08  +3.08            only +3.08
-                </pre>
+                $$
 
                 <ul>
                 <li>Bimodal + asymmetric</li>
