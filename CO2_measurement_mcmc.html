@@ -151,34 +151,34 @@
                 <h2>1. The Setup</h2>
 
                 <p><strong>Nonlinear forward model:</strong></p>
-                $$F(x) = x²$$
+                $$F(x) = x^2$$
 
                 <p><strong>Observation:</strong></p>
-                $$y = 9.5  (true value is x_true = 3, but measurement has noise)$$
+                $$y = 9.5  (\text{true value is} x_\text{true} = 3, \text{but measurement has noise})$$
 
                 <p><strong>Measurement noise:</strong></p>
-                $$σ_ε = 0.5$$
+                $$σ_\epsilon  = 0.5$$
 
                 <p><strong>Prior:</strong></p>
-                $$x_a = 2.0, σ_a = 2.0$$
+                $$x_a = 2.0, \sigma_a = 2.0$$
 
                 <hr>
 
                 <h2>2. Posterior</h2>
 
                 $$
-                P(x|y) ∝ P(y|x) · P(x)
+                P(x|y) \propto P(y|x) · P(x)
 
-                = exp(−(y − F(x))² / 2σ_ε²) · exp(−(x − x_a)² / 2σ_a²)
+                = exp(−(y − F(x))^2 / 2σ_ε^2) · exp(−(x − x_a)^2 / 2σ_a^2)
                 $$
 
-                <p>Plugging in F(x) = x²:</p>
+                <p>Plugging in \(F(x) = x^2\):</p>
 
                 $$
-                P(x|y) ∝ exp(−(9.5 − x²)² / 0.5) · exp(−(x − 2)² / 8)
+                P(x|y) \propto exp(−(9.5 − x^2)^2 / 0.5) · exp(−(x − 2)^2 / 8)
                 $$
 
-                <p><strong>Key point:</strong> Not Gaussian due to x² → nonlinear model.</p>
+                <p><strong>Key point:</strong> Not Gaussian due to \(x^2\) → nonlinear model.</p>
 
                 <hr>
 
@@ -200,7 +200,7 @@
 
                 <h2>4. Gauss-Newton Iteration</h2>
 
-                <p><strong>Linearisation:</strong> Linearisation around $x_i$</p>
+                <p><strong>Linearisation:</strong> Linearisation around \(x_i\)</p>
                 $$
                 F(x) \approx F(x_i) + K_i \, (x - x_i)\\
                 \text{where } \quad K_i = \left.\frac{dF}{dx}\right|_{x_i} = 2x_i ~~~~~~~~~~ \leftarrow \text{the Jacobian}
@@ -213,7 +213,7 @@
                 \cdot \left[ y - F(x_i) + K_i (x_i - x_a) \right]
                 $$
 
-                <p>Let's iterate numerically, starting from prior $x_0 = 2.0$:</p>
+                <p>Let's iterate numerically, starting from prior \(x_0 = 2.0\):</p>
                 <h5>Iteration 1</h5>
                 
                 $$
@@ -255,7 +255,7 @@
                 <h2>5. Posterior Covariance</h2>
                 At the solution:
                 
-                \(\hat{x} = 3.080$, $K=2\times 3.080 = 6.160\)
+                \(\hat{x} = 3.080\), \(K=2\times 3.080 = 6.160\)
 
                 $$
                 S_x = (K²/σ_ε² + 1/σ_a²)⁻¹
@@ -265,10 +265,11 @@
                 $$
 
                 <p><strong>Standard deviation:</strong></p>
-                $$σ_{post} = 0.081$$
+                $$σ_{post} = \sqrt{0.00657} = 0.081$$
 
                 <p><strong>Result:</strong></p>
-                $$x̂ = 3.080 ± 0.081$$
+
+                $$\hat{x} = 3.080 ± 0.081$$
 
                 <hr>
 
