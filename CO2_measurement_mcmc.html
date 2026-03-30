@@ -217,33 +217,31 @@
                 <h5>Iteration 1</h5>
                 
                 $$
-                x_i = 2.0
-                F = 4.0
-                K = 4.0
-                residual = 5.5
+                x_i = 2.0 \\
+                F(2.0) = 4.0 \\
+                K_i  = 2 x_i = 4.0 \\
+                \text{residual} = y - F(x_i) = 9.5 -4.0 = 5.5 \\
+                \text{Hessian} = \frac{K^2}{\sigma_\epsilon^2} + \frac{1}{\sigma_a^2} = \frac{16}{0.25} + \frac{1}{4} =  64.25 \\
+                \text{rhs} = \frac{K}{\sigma_\epsilon^2} \times [\text{residual} + K(x_i - x_a)] = \frac{4}{0.35} \times [5.5 + 4\times (2-2)] +=88.0 \\
 
-                Hessian = 64.25
-                rhs = 88.0
-
-                x = 3.370
+                x_{i+1} = x_a + \text{rhs}/\text{Hessian}  = 2.0 + 88.0/64.25  =  2.0 + 1.370  =  3.370
                 $$
 
                 <h5>Iteration 2</h5>
                 $$
-                x_i = 3.370
-                F = 11.357
-                K = 6.740
-                residual = −1.857
-
-                x = 3.094
+                F(3.370)  = 11.357 \\
+                K_i       = 2 \times 3.370 = 6.740 \\ 
+                \text{residual}   = 9.5 - 11.357 = -1.857\\
+                \text{Hessian}    = 6.74^2/0.25 + 0.25 = 181.8\\
+                \text{rhs}       = 6.74/0.25 \times [-1.857 + 6.74\times(3.370-2)] = 26.96 \times [-1.857 + 9.232] = 26.96 \times  7.375  =  198.8 \\
+                x_{i+1}  = 2.0 + 198.8/181.8  =  2.0 + 1.094  =  3.094
                 $$
 
                 <h5>Iteration 3</h5>
                 $$
-                x_i = 3.094
-                F = 9.573
-                residual = −0.073
-
+                x_i = 3.094 \\
+                F = 9.573 \\
+                \text{residual} = −0.073
                 x ≈ 3.081
                 $$
 
