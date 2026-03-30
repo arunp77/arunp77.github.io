@@ -311,7 +311,6 @@
 
                 We can draw a graph for this function as:
 
-                jacobian_x.png
                 <img src="assets/img/remote-sensing/jacobian_x.png" alt="Cost function plot">
 
                 We can preare a table as:
@@ -326,9 +325,9 @@
 
                 <p><strong>Important:</strong></p>
                 <ul>
-                <li>Second mode exists at x ≈ −3.08</li>
-                <li>Posterior is asymmetric</li>
-                <li>OE misses this completely</li>
+                    <li>Second mode exists at x ≈ −3.08</li>
+                    <li>Posterior is asymmetric</li>
+                    <li>OE misses this completely</li>
                 </ul>
 
                 <hr>
@@ -345,10 +344,11 @@
 
                 <hr>
 
-                <h2>9. Visual Summary</h2>
+                <h2>9. Summary — The Two Assumptions Visualised</h2>
 
-                $$
-                TRUE POSTERIOR          OE APPROXIMATION
+                <pre>
+                TRUE POSTERIOR           OE APPROXIMATION
+                (what MCMC finds)        (what OE assumes)
 
                     │                       │
                     │  *                    │    *
@@ -356,11 +356,12 @@
                     │*****  **              │  *****
                 ────┼──────────── x     ────┼──────────── x
                 -3.08  +3.08            only +3.08
-                $$
+                Bimodal + asymmetric     single Gaussian
+                </pre>
 
                 <ul>
-                <li>Bimodal + asymmetric</li>
-                <li>OE assumes single Gaussian</li>
+                    <li>Bimodal + asymmetric</li>
+                    <li>OE assumes single Gaussian</li>
                 </ul>
 
                 <hr>
