@@ -14,7 +14,12 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15
 .header-tag{font-family:var(--mono);font-size:11px;letter-spacing:0.15em;color:rgba(255,255,255,0.55);margin-bottom:0.8rem;}
 .header h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:600;line-height:1.2;margin-bottom:0.8rem;}
 .header p{color:rgba(255,255,255,0.72);max-width:560px;font-size:14px;}
-.wrap{max-width:900px;margin:0 auto;padding:0 1.5rem;}
+.wrap{
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0 3vw;
+}
 .toc{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.5rem 1.8rem;margin:2.5rem 0;}
 .toc h3{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;color:var(--muted);margin-bottom:0.8rem;}
 .toc ol{padding-left:1.4rem;}
@@ -332,11 +337,37 @@ key = full_hash[:<span class="num">16</span>]
             m    = data[<span class="str">'meta'</span>].item()
             print(m[<span class="str">'key'</span>], m[<span class="str">'computed_at'</span>], m[<span class="str">'duration_s'</span>], m[<span class="str">'params'</span>])</pre>
 
-  <div class="output">
-Key                Computed at          Duration  Params
-<span class="val">535049cbf0ad6e34</span>  2026-03-31 07:08:26  <span class="tm">2.00s</span>     {"snr": 500, "n_scenes": 1000 ...}
-<span class="val">6bf98e1fe60a10c9</span>  2026-03-31 07:08:29  <span class="tm">3.00s</span>     {"snr_list": [100, 200, ...] ...}
-<span class="val">75163166b943ab9c</span>  2026-03-31 07:08:24  <span class="tm">2.02s</span>     {"snr": 300, "n_scenes": 1000 ...}</div>
+<div class="output">
+  <table style="width:100%; border-collapse: collapse; font-family: monospace;">
+    <thead>
+      <tr>
+        <th style="text-align:left; padding:6px;">Key</th>
+        <th style="text-align:left; padding:6px;">Computed at</th>
+        <th style="text-align:left; padding:6px;">Duration</th>
+        <th style="text-align:left; padding:6px;">Params</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="val">535049cbf0ad6e34</td>
+        <td>2026-03-31 07:08:26</td>
+        <td class="tm">2.00s</td>
+        <td>{"snr": 500, "n_scenes": 1000 ...}</td>
+      </tr>
+      <tr>
+        <td class="val">6bf98e1fe60a10c9</td>
+        <td>2026-03-31 07:08:29</td>
+        <td class="tm">3.00s</td>
+        <td>{"snr_list": [100, 200, ...] ...}</td>
+      </tr>
+      <tr>
+        <td class="val">75163166b943ab9c</td>
+        <td>2026-03-31 07:08:24</td>
+        <td class="tm">2.02s</td>
+        <td>{"snr": 300, "n_scenes": 1000 ...}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <!-- ═══ SECTION 6 ═══ -->
@@ -383,7 +414,12 @@ r = run_monte_carlo(snr=<span class="num">500</span>, n_scenes=<span class="num"
 r = run_monte_carlo(snr=<span class="num">500</span>, n_scenes=<span class="num">1000</span>)  <span class="cm"># again:       0.002s</span></pre>
 
   <div class="callout-ok callout">
-    <strong>How inspect works here:</strong> <code>inspect.signature(fn)</code> reads the parameter names at definition time. <code>sig.bind(*args, **kwargs)</code> maps the actual call values to those names. <code>apply_defaults()</code> fills in any missing optional arguments. The result is a dict like <code>{'snr': 300, 'n_scenes': 1000, 'seed': 42}</code> &mdash; exactly what gets hashed. This means even if you call the function positionally or with keywords, the same inputs always produce the same cache key.
+    <p><strong>How inspect works here:</strong> </p>
+    <p><code>inspect.signature(fn)</code> reads the parameter names at definition time. </p>
+    <p><code>sig.bind(*args, **kwargs)</code> maps the actual call values to those names. </p>
+    <p><code>apply_defaults()</code> fills in any missing optional arguments. The result is a dict like </p>
+    <p><code>{'snr': 300, 'n_scenes': 1000, 'seed': 42}</code>  </p>
+    <p> &mdash;          exactly what gets hashed. This means even if you call the function positionally or with keywords, the same inputs always produce the same cache key.</p>
   </div>
 </div>
 
@@ -423,15 +459,9 @@ r = run_monte_carlo(snr=<span class="num">500</span>, n_scenes=<span class="num"
   </div>
 </div>
 
-<!-- ═══ INTERVIEW BOX ═══ -->
-<div class="interview" id="interview">
-  <h3>INTERVIEW ANSWER &mdash; "How did you implement the caching pipeline?"</h3>
-  <blockquote>
-    "The Monte Carlo simulations &mdash; 1000+ scenes with full Voigt profile computation and OE iteration &mdash; took around 5 minutes per run. During development I was running the same notebook many times, so I implemented a cache-or-run pattern. The key idea is to compute a SHA-256 hash of all input parameters &mdash; SNR, number of scenes, random seed, spectroscopic version &mdash; and use that hash as the cache filename. If the file exists, load it; if not, compute it and save it. This ensures each unique combination of inputs has its own file, so changing any single parameter automatically triggers recomputation &mdash; there is no stale-result bug. I wrapped this logic in a Python decorator so any slow function gets caching with one line added above it. I also included a version field in the hash so bumping the version number after a code change invalidates all old caches globally with no manual cleanup. The result was notebook re-execution going from around 5 minutes to under 5 seconds for exploratory work."
-  </blockquote>
 </div>
-
+<div class="footer">cache-or-run &nbsp;&middot;&nbsp; sha-256 &nbsp;&middot;&nbsp; python &nbsp;&middot;&nbsp; scientific computing &nbsp;&middot;&nbsp; 
+Arun Kumar Pandey 
 </div>
-<div class="footer">cache-or-run &nbsp;&middot;&nbsp; sha-256 &nbsp;&middot;&nbsp; python &nbsp;&middot;&nbsp; scientific computing</div>
 </body>
 </html>
