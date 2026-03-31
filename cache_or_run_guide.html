@@ -20,6 +20,38 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15
   margin: 0;
   padding: 0 3vw;
 }
+
+
+.home-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+
+  color: #fff;
+  text-decoration: none;
+
+  padding: 6px 14px;
+  border-radius: 999px;
+
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(6px);
+
+  transition: all 0.2s ease;
+}
+.home-btn:hover {
+  background: #fff;
+  color: var(--accent);
+  border-color: #fff;
+  transform: translateY(-1px);
+}
+
+
+
 .toc{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.5rem 1.8rem;margin:2.5rem 0;}
 .toc h3{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;color:var(--muted);margin-bottom:0.8rem;}
 .toc ol{padding-left:1.4rem;}
@@ -79,7 +111,9 @@ tr:last-child td{border-bottom:none;}
 
 <div class="header">
   <div class="wrap">
+    <a href="index.html" class="home-btn">🏠 Home</a>
     <div class="header-tag">SCIENTIFIC COMPUTING PATTERN</div>
+    
     <h1>Cache-or-Run Pipeline<br/>Complete Guide with Examples</h1>
     <p>How to turn a 5-minute notebook into a 5-second one using SHA-256 hashing, a CacheManager class, and a Python decorator.</p>
   </div>
@@ -461,7 +495,7 @@ r = run_monte_carlo(snr=<span class="num">500</span>, n_scenes=<span class="num"
 
 </div>
 <div class="footer">cache-or-run &nbsp;&middot;&nbsp; sha-256 &nbsp;&middot;&nbsp; python &nbsp;&middot;&nbsp; scientific computing &nbsp;&middot;&nbsp; 
-Arun Kumar Pandey 
+Arun Kumar Pandey
 </div>
 </body>
 </html>
