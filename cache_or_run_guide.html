@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Cache-or-Run Pipeline</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+:root{--bg:#f7f5f0;--surface:#ffffff;--card:#fafaf8;--border:#e2ddd6;--border2:#ccc8c0;--accent:#1a4f8a;--accent2:#c45c2a;--accent3:#2a7a4b;--muted:#6a6660;--text:#1a1a18;--code-bg:#1e1e2e;--code-text:#cdd6f4;--sans:'IBM Plex Sans',sans-serif;--mono:'IBM Plex Mono',monospace;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.75;}
+.header{background:var(--accent);color:#fff;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden;}
+.header::after{content:'{ }';position:absolute;right:2rem;top:1.5rem;font-family:var(--mono);font-size:5rem;color:rgba(255,255,255,0.07);line-height:1;}
+.header-tag{font-family:var(--mono);font-size:11px;letter-spacing:0.15em;color:rgba(255,255,255,0.55);margin-bottom:0.8rem;}
+.header h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:600;line-height:1.2;margin-bottom:0.8rem;}
+.header p{color:rgba(255,255,255,0.72);max-width:560px;font-size:14px;}
+.wrap{max-width:900px;margin:0 auto;padding:0 1.5rem;}
+.toc{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.5rem 1.8rem;margin:2.5rem 0;}
+.toc h3{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;color:var(--muted);margin-bottom:0.8rem;}
+.toc ol{padding-left:1.4rem;}
+.toc li{margin:0.35rem 0;}
+.toc a{color:var(--accent);text-decoration:none;font-size:14px;}
+.section{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2rem;margin:2rem 0;}
+.sec-label{font-family:var(--mono);font-size:10px;letter-spacing:0.15em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;}
+.section h2{font-size:1.35rem;font-weight:600;color:var(--text);margin-bottom:1.2rem;padding-bottom:0.7rem;border-bottom:2px solid var(--border);}
+.section h3{font-size:1rem;font-weight:600;color:var(--text);margin:1.4rem 0 0.5rem;}
+.section p{color:var(--muted);margin-bottom:0.8rem;font-size:14.5px;}
+.section p strong{color:var(--text);}
+.code-label{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;color:var(--muted);padding:0.5rem 1rem;background:#17172a;border-radius:8px 8px 0 0;border:1px solid #2a2a3e;border-bottom:none;display:flex;justify-content:space-between;}
+pre{background:var(--code-bg);border:1px solid #2a2a3e;border-radius:0 0 8px 8px;padding:1.2rem 1.3rem;overflow-x:auto;font-family:var(--mono);font-size:12.5px;line-height:1.8;color:var(--code-text);margin-bottom:1.2rem;}
+.kw{color:#cba6f7;}.fn{color:#89b4fa;}.str{color:#a6e3a1;}.cm{color:#585b70;font-style:italic;}.num{color:#fab387;}.cls{color:#f9e2af;}.dec{color:#f38ba8;}
+.callout{border-left:3px solid var(--accent);background:#eef3fa;padding:0.9rem 1.1rem;border-radius:0 8px 8px 0;margin:1.1rem 0;font-size:14px;color:#2a3a55;}
+.callout strong{color:var(--accent);}
+.callout-warn{border-color:var(--accent2);background:#fdf0e8;color:#5a2a15;}
+.callout-warn strong{color:var(--accent2);}
+.callout-ok{border-color:var(--accent3);background:#eaf5ee;color:#1a3a25;}
+.callout-ok strong{color:var(--accent3);}
+.tbl-wrap{overflow-x:auto;margin:1.2rem 0;}
+table{width:100%;border-collapse:collapse;font-size:13.5px;}
+th{background:#f0ede8;color:var(--muted);font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;padding:9px 14px;text-align:left;border-bottom:1.5px solid var(--border2);}
+td{padding:8px 14px;border-bottom:1px solid var(--border);color:var(--muted);vertical-align:top;font-size:13.5px;}
+td strong{color:var(--text);}
+td.mono{font-family:var(--mono);font-size:12px;color:var(--accent);}
+tr:last-child td{border-bottom:none;}
+.flow{display:flex;align-items:center;margin:1.5rem 0;flex-wrap:wrap;font-family:var(--mono);font-size:12px;gap:4px;}
+.flow-box{background:var(--card);border:1.5px solid var(--border2);border-radius:8px;padding:0.65rem 1rem;text-align:center;min-width:120px;flex:1;}
+.fbl{color:var(--muted);font-size:10px;margin-bottom:3px;}
+.fbv{color:var(--text);font-weight:500;font-size:12px;}
+.flow-arrow{color:var(--muted);font-size:1.2rem;padding:0 4px;flex-shrink:0;}
+.flow-box.hit{background:#eaf5ee;border-color:#2a7a4b;}
+.flow-box.hit .fbv{color:#2a7a4b;}
+.flow-box.miss{background:#fdf0e8;border-color:#c45c2a;}
+.flow-box.miss .fbv{color:#c45c2a;}
+.hash-demo{margin:1.5rem 0;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.hash-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0.65rem 1rem;border-bottom:1px solid var(--border);font-family:var(--mono);font-size:12px;gap:1rem;}
+.hash-row:last-child{border-bottom:none;}
+.hash-row:nth-child(odd){background:var(--card);}
+.hash-params{color:var(--muted);}
+.hash-params em{color:var(--accent2);font-style:normal;}
+.hash-arrow{color:var(--border2);font-size:1rem;text-align:center;}
+.hash-key{color:var(--accent);font-weight:500;}
+.output{background:#0d0d1a;border:1px solid #2a2a3e;border-radius:8px;padding:1rem 1.2rem;font-family:var(--mono);font-size:12px;line-height:1.9;color:#888;margin:1rem 0;}
+.output .hit{color:#a6e3a1;}
+.output .miss{color:#fab387;}
+.output .val{color:#cdd6f4;}
+.output .tm{color:#f9e2af;}
+.interview{background:linear-gradient(135deg,rgba(26,79,138,0.05),rgba(196,92,42,0.03));border:1.5px solid var(--accent);border-radius:12px;padding:1.8rem;margin:2.5rem 0;}
+.interview h3{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;color:var(--accent);margin-bottom:1rem;}
+.interview blockquote{font-size:14.5px;color:var(--text);line-height:1.8;padding-left:1rem;border-left:2px solid var(--accent);}
+.footer{text-align:center;padding:3rem 1rem;color:var(--muted);font-family:var(--mono);font-size:11px;letter-spacing:0.08em;}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="wrap">
+    <div class="header-tag">SCIENTIFIC COMPUTING PATTERN</div>
+    <h1>Cache-or-Run Pipeline<br/>Complete Guide with Examples</h1>
+    <p>How to turn a 5-minute notebook into a 5-second one using SHA-256 hashing, a CacheManager class, and a Python decorator.</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+<div class="toc">
+  <h3>Contents</h3>
+  <ol>
+    <li><a href="#why">Why do we need this?</a></li>
+    <li><a href="#naive">Step 1 &mdash; Naive version and its fatal bug</a></li>
+    <li><a href="#hashing">Step 2 &mdash; Hash-based caching (the fix)</a></li>
+    <li><a href="#how-hash">How SHA-256 hashing works internally</a></li>
+    <li><a href="#manager">Step 3 &mdash; CacheManager class</a></li>
+    <li><a href="#decorator">Step 4 &mdash; @cacheable decorator</a></li>
+    <li><a href="#invalidation">Cache invalidation and versioning</a></li>
+    <li><a href="#interview">Interview answer</a></li>
+  </ol>
+</div>
+
+<!-- ═══ SECTION 1 ═══ -->
+<div class="section" id="why">
+  <div class="sec-label">Section 01</div>
+  <h2>Why do we need this?</h2>
+  <p>In scientific computing you often have a <strong>slow computation</strong> &mdash; a Monte Carlo simulation, a radiative transfer run, a full OE retrieval over 1000 scenes. This can take minutes. During development you run the same notebook dozens of times. Without caching, you pay the full cost every single time.</p>
+  <p>The cache-or-run pattern solves this with one runtime decision:</p>
+  <div class="flow">
+    <div class="flow-box"><div class="fbl">Call function</div><div class="fbv">run_monte_carlo(snr=300)</div></div>
+    <div class="flow-arrow">&rarr;</div>
+    <div class="flow-box"><div class="fbl">Result on disk?</div><div class="fbv">Check hash key</div></div>
+    <div class="flow-arrow">&rarr;</div>
+    <div class="flow-box hit"><div class="fbl">YES &rarr; Cache hit</div><div class="fbv">Load in 0.002s</div></div>
+  </div>
+  <div class="flow" style="margin-top:4px;">
+    <div class="flow-box" style="visibility:hidden;"></div>
+    <div class="flow-arrow" style="visibility:hidden;"></div>
+    <div class="flow-box miss"><div class="fbl">NO &rarr; Cache miss</div><div class="fbv">Compute + save</div></div>
+  </div>
+  <div class="callout">
+    <strong>Key principle:</strong> a pure function &mdash; same inputs always produce same outputs &mdash; can be stored permanently. There is no reason to ever recompute it unless the inputs change.
+  </div>
+</div>
+
+<!-- ═══ SECTION 2 ═══ -->
+<div class="section" id="naive">
+  <div class="sec-label">Section 02</div>
+  <h2>Step 1 &mdash; Naive version and its fatal bug</h2>
+  <p>The simplest approach: just check if a single fixed file exists.</p>
+
+  <div class="code-label">step1_naive.py <span>Python</span></div>
+<pre>CACHE_FILE = <span class="str">'cache/result.npz'</span>
+
+<span class="kw">def</span> <span class="fn">cache_or_run_naive</span>(snr, n_scenes):
+    <span class="kw">if</span> os.path.exists(CACHE_FILE):
+        <span class="cm"># Load from disk -- but is this actually the right result?</span>
+        data = np.load(CACHE_FILE, allow_pickle=<span class="kw">True</span>)
+        <span class="kw">return</span> data[<span class="str">'result'</span>].item()
+    <span class="kw">else</span>:
+        <span class="cm"># Compute and save</span>
+        result = expensive_computation(snr, n_scenes)
+        np.savez(CACHE_FILE, result=result)
+        <span class="kw">return</span> result</pre>
+
+  <div class="callout-warn callout">
+    <strong>Fatal bug:</strong> call with snr=300 &mdash; saves the result. Then call with snr=500 &mdash; finds the file and returns the snr=300 result silently, with no error, no warning. Wrong result every time after the first.
+  </div>
+
+  <div class="output">
+RUN 1 -- snr=300  -->  <span class="miss">[CACHE MISS]</span>  <span class="val">precision=0.00326</span>  <span class="tm">2.05s</span>
+RUN 2 -- snr=300  -->  <span class="hit">[CACHE HIT ]</span>  <span class="val">precision=0.00326</span>  <span class="tm">0.00s</span>   OK
+RUN 3 -- snr=500  -->  <span class="hit">[CACHE HIT ]</span>  <span class="val">precision=0.00326</span>  <span class="tm">0.00s</span>   BUG -- snr=300 result returned!</div>
+
+  <p>The fix: make the cache filename <strong>depend on the inputs</strong>. If inputs change, the filename changes, the old file is not found, and recomputation happens automatically. This is done with hashing.</p>
+</div>
+
+<!-- ═══ SECTION 3 ═══ -->
+<div class="section" id="hashing">
+  <div class="sec-label">Section 03</div>
+  <h2>Step 2 &mdash; Hash-based caching (the fix)</h2>
+  <p>Instead of one fixed filename, compute a <strong>unique fingerprint</strong> of all input parameters and use that as the filename. Different inputs &rarr; different fingerprint &rarr; different file.</p>
+
+  <div class="code-label">step2_hashing.py <span>Python</span></div>
+<pre><span class="kw">import</span> hashlib, json
+
+<span class="kw">def</span> <span class="fn">make_cache_key</span>(params: <span class="cls">dict</span>) -&gt; <span class="cls">str</span>:
+    canonical = json.dumps(params, sort_keys=<span class="kw">True</span>)   <span class="cm"># deterministic order</span>
+    hash_hex  = hashlib.sha256(canonical.encode()).hexdigest()
+    <span class="kw">return</span> hash_hex[:<span class="num">16</span>]                              <span class="cm"># first 16 chars</span>
+
+<span class="kw">def</span> <span class="fn">cache_or_run</span>(snr, n_scenes, seed=<span class="num">42</span>):
+    params = {<span class="str">'snr'</span>: snr, <span class="str">'n_scenes'</span>: n_scenes,
+              <span class="str">'seed'</span>: seed, <span class="str">'version'</span>: <span class="num">1</span>}
+
+    key        = make_cache_key(params)           <span class="cm"># e.g. 'c66f1de772e87e1f'</span>
+    cache_path = <span class="fn">f</span><span class="str">'cache/result_{key}.npz'</span>       <span class="cm"># unique filename per input set</span>
+
+    <span class="kw">if</span> os.path.exists(cache_path):
+        data = np.load(cache_path, allow_pickle=<span class="kw">True</span>)
+        <span class="kw">return</span> data[<span class="str">'result'</span>].item()
+    <span class="kw">else</span>:
+        result = expensive_computation(snr, n_scenes, seed)
+        np.savez(cache_path, result=result)
+        <span class="kw">return</span> result</pre>
+
+  <div class="output">
+RUN 1  snr=300  key=<span class="val">c66f1de772e87e1f</span>  -->  <span class="miss">[CACHE MISS]</span>  <span class="tm">2.04s</span>
+RUN 2  snr=300  key=<span class="val">c66f1de772e87e1f</span>  -->  <span class="hit">[CACHE HIT ]</span>  <span class="tm">0.00s</span>   correct
+RUN 3  snr=500  key=<span class="val">9285575b7463bb49</span>  -->  <span class="miss">[CACHE MISS]</span>  <span class="tm">2.00s</span>   different hash!
+RUN 4  snr=500  key=<span class="val">9285575b7463bb49</span>  -->  <span class="hit">[CACHE HIT ]</span>  <span class="tm">0.00s</span>   correct</div>
+
+  <p>Each unique combination of inputs gets its own cache file. Changing any single parameter produces a different hash and therefore a different filename &mdash; the old cache is never accidentally returned.</p>
+</div>
+
+<!-- ═══ SECTION 4 ═══ -->
+<div class="section" id="how-hash">
+  <div class="sec-label">Section 04</div>
+  <h2>How SHA-256 hashing works internally</h2>
+  <p>SHA-256 is a cryptographic hash function. It takes any input and produces a fixed 64-hex-character output called a digest. Three properties make it ideal for caching:</p>
+
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>Property</th><th>Meaning</th><th>Why it matters for caching</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Deterministic</strong></td><td>Same input always gives same hash</td><td>Same params &rarr; same filename &rarr; cache hit</td></tr>
+      <tr><td><strong>Avalanche effect</strong></td><td>Tiny input change &rarr; completely different hash</td><td>snr=300 vs snr=301 &rarr; different files, no collision</td></tr>
+      <tr><td><strong>Fixed output size</strong></td><td>Always 64 hex chars regardless of input size</td><td>Filenames are always short and uniform</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Step-by-step: params dict &rarr; cache key</h3>
+
+  <div class="code-label">internal steps <span>Python</span></div>
+<pre><span class="cm"># Step 1: dict --&gt; canonical JSON string (sort_keys is critical!)</span>
+params    = {<span class="str">'snr'</span>: <span class="num">300</span>, <span class="str">'n_scenes'</span>: <span class="num">100</span>, <span class="str">'seed'</span>: <span class="num">42</span>}
+canonical = json.dumps(params, sort_keys=<span class="kw">True</span>)
+<span class="cm"># result: '{"n_scenes": 100, "seed": 42, "snr": 300}'</span>
+
+<span class="cm"># Step 2: string --&gt; bytes</span>
+raw_bytes = canonical.encode()
+<span class="cm"># result: b'{"n_scenes": 100, "seed": 42, "snr": 300}'</span>
+
+<span class="cm"># Step 3: bytes --&gt; SHA-256 digest (64 hex chars)</span>
+full_hash = hashlib.sha256(raw_bytes).hexdigest()
+<span class="cm"># result: 'c66f1de772e87e1f3a8b9c2d...'  (64 chars total)</span>
+
+<span class="cm"># Step 4: take first 16 chars (sufficient for uniqueness)</span>
+key = full_hash[:<span class="num">16</span>]
+<span class="cm"># result: 'c66f1de772e87e1f'</span>
+
+<span class="cm"># WHY sort_keys=True?</span>
+<span class="cm"># {'snr':300,'n':100} and {'n':100,'snr':300} are identical dicts</span>
+<span class="cm"># but produce different JSON strings without sorting!</span>
+<span class="cm"># sort_keys ensures both always produce the same canonical string.</span></pre>
+
+  <h3>Avalanche effect &mdash; one changed value, completely different hash</h3>
+
+  <div class="hash-demo">
+    <div class="hash-row" style="background:#f0ede8;font-size:10px;letter-spacing:0.08em;color:var(--muted);">
+      <div>PARAMETERS</div><div></div><div>SHA-256 KEY (first 16 chars)</div>
+    </div>
+    <div class="hash-row">
+      <div class="hash-params">snr=300, n=100, seed=42, v=1</div>
+      <div class="hash-arrow">&rarr;</div>
+      <div class="hash-key">c66f1de772e87e1f</div>
+    </div>
+    <div class="hash-row">
+      <div class="hash-params">snr=<em>500</em>, n=100, seed=42, v=1</div>
+      <div class="hash-arrow">&rarr;</div>
+      <div class="hash-key">9285575b7463bb49</div>
+    </div>
+    <div class="hash-row">
+      <div class="hash-params">snr=300, n=<em>500</em>, seed=42, v=1</div>
+      <div class="hash-arrow">&rarr;</div>
+      <div class="hash-key">6fac88a9a7f15806</div>
+    </div>
+    <div class="hash-row">
+      <div class="hash-params">snr=300, n=100, seed=<em>99</em>, v=1</div>
+      <div class="hash-arrow">&rarr;</div>
+      <div class="hash-key">016ca99823aed73b</div>
+    </div>
+    <div class="hash-row">
+      <div class="hash-params">snr=300, n=100, seed=42, v=<em>2</em></div>
+      <div class="hash-arrow">&rarr;</div>
+      <div class="hash-key">c8a86fc5d05a0dc8</div>
+    </div>
+  </div>
+
+  <p>Every single change &mdash; even bumping the version by 1 &mdash; produces a completely different 16-character key. This is the avalanche effect guaranteeing no accidental cache collisions.</p>
+</div>
+
+<!-- ═══ SECTION 5 ═══ -->
+<div class="section" id="manager">
+  <div class="sec-label">Section 05</div>
+  <h2>Step 3 &mdash; CacheManager class</h2>
+  <p>In a real pipeline, wrap all the logic into a class that also stores metadata &mdash; when the result was computed, how long it took, and what parameters produced it. This makes the cache auditable and manageable.</p>
+
+  <div class="code-label">CacheManager &mdash; full implementation <span>Python</span></div>
+<pre><span class="kw">class</span> <span class="cls">CacheManager</span>:
+
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, cache_dir=<span class="str">'cache'</span>, verbose=<span class="kw">True</span>):
+        self.cache_dir = cache_dir
+        self.verbose   = verbose
+        os.makedirs(cache_dir, exist_ok=<span class="kw">True</span>)
+
+    <span class="kw">def</span> <span class="fn">_make_key</span>(self, params: <span class="cls">dict</span>) -&gt; <span class="cls">str</span>:
+        canonical = json.dumps(params, sort_keys=<span class="kw">True</span>, default=<span class="cls">str</span>)
+        <span class="kw">return</span> hashlib.sha256(canonical.encode()).hexdigest()[:<span class="num">16</span>]
+
+    <span class="kw">def</span> <span class="fn">_path</span>(self, key: <span class="cls">str</span>) -&gt; <span class="cls">str</span>:
+        <span class="kw">return</span> os.path.join(self.cache_dir, <span class="fn">f</span><span class="str">'{key}.npz'</span>)
+
+    <span class="kw">def</span> <span class="fn">run_or_load</span>(self, params, compute_fn, *args, **kwargs):
+        <span class="cm">"""Core cache-or-run logic."""</span>
+        key  = self._make_key(params)
+        path = self._path(key)
+
+        <span class="kw">if</span> os.path.exists(path):                       <span class="cm"># cache HIT</span>
+            data = np.load(path, allow_pickle=<span class="kw">True</span>)
+            <span class="kw">if</span> self.verbose:
+                meta = data[<span class="str">'meta'</span>].item()
+                print(<span class="fn">f</span><span class="str">"[HIT] key={key}  was computed on {meta['computed_at']}"</span>)
+            <span class="kw">return</span> data[<span class="str">'result'</span>].item()
+
+        <span class="kw">if</span> self.verbose:                               <span class="cm"># cache MISS</span>
+            print(<span class="fn">f</span><span class="str">"[MISS] key={key}  computing..."</span>)
+        t0     = time.time()
+        result = compute_fn(*args, **kwargs)
+        dur    = time.time() - t0
+        meta   = {<span class="str">'key'</span>:         key,
+                  <span class="str">'computed_at'</span>: datetime.now().isoformat(),
+                  <span class="str">'duration_s'</span>:  round(dur, <span class="num">3</span>),
+                  <span class="str">'params'</span>:      params}
+        np.savez(path, result=result, meta=meta)
+        <span class="kw">return</span> result
+
+    <span class="kw">def</span> <span class="fn">invalidate</span>(self, params: <span class="cls">dict</span>):
+        <span class="cm">"""Delete the cache file for a specific set of params."""</span>
+        path = self._path(self._make_key(params))
+        <span class="kw">if</span> os.path.exists(path):
+            os.remove(path)
+            print(<span class="fn">f</span><span class="str">"[INVALIDATED] {path}"</span>)
+
+    <span class="kw">def</span> <span class="fn">clear_all</span>(self):
+        <span class="cm">"""Delete all .npz files in the cache directory."""</span>
+        <span class="kw">for</span> f <span class="kw">in</span> os.listdir(self.cache_dir):
+            <span class="kw">if</span> f.endswith(<span class="str">'.npz'</span>):
+                os.remove(os.path.join(self.cache_dir, f))
+
+    <span class="kw">def</span> <span class="fn">list_cache</span>(self):
+        <span class="cm">"""Print a table of all cached results with their metadata."""</span>
+        <span class="kw">for</span> f <span class="kw">in</span> os.listdir(self.cache_dir):
+            data = np.load(os.path.join(self.cache_dir, f), allow_pickle=<span class="kw">True</span>)
+            m    = data[<span class="str">'meta'</span>].item()
+            print(m[<span class="str">'key'</span>], m[<span class="str">'computed_at'</span>], m[<span class="str">'duration_s'</span>], m[<span class="str">'params'</span>])</pre>
+
+  <div class="output">
+Key                Computed at          Duration  Params
+<span class="val">535049cbf0ad6e34</span>  2026-03-31 07:08:26  <span class="tm">2.00s</span>     {"snr": 500, "n_scenes": 1000 ...}
+<span class="val">6bf98e1fe60a10c9</span>  2026-03-31 07:08:29  <span class="tm">3.00s</span>     {"snr_list": [100, 200, ...] ...}
+<span class="val">75163166b943ab9c</span>  2026-03-31 07:08:24  <span class="tm">2.02s</span>     {"snr": 300, "n_scenes": 1000 ...}</div>
+</div>
+
+<!-- ═══ SECTION 6 ═══ -->
+<div class="section" id="decorator">
+  <div class="sec-label">Section 06</div>
+  <h2>Step 4 &mdash; @cacheable decorator</h2>
+  <p>A Python decorator adds caching to any function with <strong>one line</strong>, without touching the function body. This is the cleanest production pattern for a scientific notebook or pipeline.</p>
+
+  <div class="code-label">decorator definition <span>Python</span></div>
+<pre><span class="kw">def</span> <span class="fn">cacheable</span>(version=<span class="num">1</span>, cache=_default_cache):
+    <span class="kw">def</span> <span class="fn">decorator</span>(fn):
+        @functools.wraps(fn)
+        <span class="kw">def</span> <span class="fn">wrapper</span>(*args, **kwargs):
+            <span class="cm"># Introspect: get all argument names and their values</span>
+            sig   = inspect.signature(fn)
+            bound = sig.bind(*args, **kwargs)
+            bound.apply_defaults()               <span class="cm"># include default args too</span>
+            params = dict(bound.arguments)
+            <span class="cm"># {'snr': 300, 'n_scenes': 1000, 'seed': 42}</span>
+
+            params[<span class="str">'__fn__'</span>]      = fn.__name__ <span class="cm"># avoid cross-function collisions</span>
+            params[<span class="str">'__version__'</span>] = version
+
+            <span class="kw">return</span> cache.run_or_load(
+                params=params, compute_fn=fn, *args, **kwargs)
+        <span class="kw">return</span> wrapper
+    <span class="kw">return</span> decorator</pre>
+
+  <h3>Usage &mdash; add one line above any slow function</h3>
+
+  <div class="code-label">applying the decorator <span>Python</span></div>
+<pre><span class="dec">@cacheable(version=1)</span>                 <span class="cm"># &lt;-- this one line adds full caching</span>
+<span class="kw">def</span> <span class="fn">run_monte_carlo</span>(snr, n_scenes, seed=<span class="num">42</span>):
+    <span class="cm">"""Slow Monte Carlo CO2 retrieval validation. Function unchanged."""</span>
+    np.random.seed(seed)
+    errors = np.random.normal(<span class="num">0</span>, <span class="num">1.0</span>/snr, size=n_scenes)
+    <span class="kw">return</span> {<span class="str">'errors'</span>: errors,
+            <span class="str">'precision'</span>: float(np.std(errors)),
+            <span class="str">'bias'</span>:      float(np.mean(errors))}
+
+r = run_monte_carlo(snr=<span class="num">300</span>, n_scenes=<span class="num">1000</span>)  <span class="cm"># first call:  2.05s</span>
+r = run_monte_carlo(snr=<span class="num">300</span>, n_scenes=<span class="num">1000</span>)  <span class="cm"># second call: 0.002s</span>
+r = run_monte_carlo(snr=<span class="num">500</span>, n_scenes=<span class="num">1000</span>)  <span class="cm"># new snr:     2.00s (new hash)</span>
+r = run_monte_carlo(snr=<span class="num">500</span>, n_scenes=<span class="num">1000</span>)  <span class="cm"># again:       0.002s</span></pre>
+
+  <div class="callout-ok callout">
+    <strong>How inspect works here:</strong> <code>inspect.signature(fn)</code> reads the parameter names at definition time. <code>sig.bind(*args, **kwargs)</code> maps the actual call values to those names. <code>apply_defaults()</code> fills in any missing optional arguments. The result is a dict like <code>{'snr': 300, 'n_scenes': 1000, 'seed': 42}</code> &mdash; exactly what gets hashed. This means even if you call the function positionally or with keywords, the same inputs always produce the same cache key.
+  </div>
+</div>
+
+<!-- ═══ SECTION 7 ═══ -->
+<div class="section" id="invalidation">
+  <div class="sec-label">Section 07</div>
+  <h2>Cache invalidation and versioning</h2>
+  <p>Sometimes you need to force recomputation even when inputs have not changed &mdash; for example after fixing a bug in the algorithm. There are three strategies:</p>
+
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>Situation</th><th>Strategy</th><th>Code</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Fixed a bug in the computation</strong></td><td>Bump version in decorator</td><td class="mono">@cacheable(version=2)</td></tr>
+      <tr><td><strong>One specific result is stale</strong></td><td>Selective invalidation</td><td class="mono">cache.invalidate({'snr':300,...})</td></tr>
+      <tr><td><strong>Wipe everything and restart</strong></td><td>Clear all</td><td class="mono">cache.clear_all()</td></tr>
+      <tr><td><strong>External data updated (HITRAN, NWP)</strong></td><td>Add data version to params</td><td class="mono">'hitran_ver': '2020'</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="code-label">version bump forces global recomputation <span>Python</span></div>
+<pre><span class="cm"># Before finding the bug -- all results cached at version=1</span>
+<span class="dec">@cacheable(version=1)</span>
+<span class="kw">def</span> <span class="fn">run_monte_carlo</span>(snr, n_scenes): ...
+
+<span class="cm"># After fixing a bug in the forward model, bump the version:</span>
+<span class="dec">@cacheable(version=2)</span>   <span class="cm"># all version=1 hashes are now different</span>
+<span class="kw">def</span> <span class="fn">run_monte_carlo</span>(snr, n_scenes): ...
+
+<span class="cm"># On next call -- old .npz files remain on disk but are never found</span>
+<span class="cm"># because the hash now includes version=2 instead of version=1.</span>
+<span class="cm"># All results are recomputed automatically. Zero manual cleanup needed.</span></pre>
+
+  <div class="callout">
+    <strong>Rule of thumb:</strong> always include a <code>version</code> key in your params. Treat it like a migration number in a database. Bump it whenever you change the algorithm, fix a bug, or update any upstream dependency &mdash; spectroscopic database version, NWP reanalysis vintage, instrument calibration version, etc.
+  </div>
+</div>
+
+<!-- ═══ INTERVIEW BOX ═══ -->
+<div class="interview" id="interview">
+  <h3>INTERVIEW ANSWER &mdash; "How did you implement the caching pipeline?"</h3>
+  <blockquote>
+    "The Monte Carlo simulations &mdash; 1000+ scenes with full Voigt profile computation and OE iteration &mdash; took around 5 minutes per run. During development I was running the same notebook many times, so I implemented a cache-or-run pattern. The key idea is to compute a SHA-256 hash of all input parameters &mdash; SNR, number of scenes, random seed, spectroscopic version &mdash; and use that hash as the cache filename. If the file exists, load it; if not, compute it and save it. This ensures each unique combination of inputs has its own file, so changing any single parameter automatically triggers recomputation &mdash; there is no stale-result bug. I wrapped this logic in a Python decorator so any slow function gets caching with one line added above it. I also included a version field in the hash so bumping the version number after a code change invalidates all old caches globally with no manual cleanup. The result was notebook re-execution going from around 5 minutes to under 5 seconds for exploratory work."
+  </blockquote>
+</div>
+
+</div>
+<div class="footer">cache-or-run &nbsp;&middot;&nbsp; sha-256 &nbsp;&middot;&nbsp; python &nbsp;&middot;&nbsp; scientific computing</div>
+</body>
+</html>
