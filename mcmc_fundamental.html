@@ -7,9 +7,7 @@
     <script type="text/javascript" async
             src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
     </script>
-    <!-- Favicons -->
-    <link href="assets/img/Favicon-1.png" rel="icon">
-    <link href="assets/img/Favicon-1.png" rel="apple-touch-icon">
+    
     <style>
         * {
             margin: 0;
@@ -41,6 +39,7 @@
             color: white;
             padding: 3rem 2rem;
             text-align: center;
+            position: relative;
         }
         
         header h1 {
@@ -329,42 +328,47 @@
         }
 
         .top-nav {
-            position: absolute;
-            top: 18px;
-            right: 24px;
+            position: relative;
+            top: 1rem;
+            right: 2rem;
             display: flex;
-            gap: 10px;
-            z-index: 10;
+            gap: 12px;
+            z-index: 100;
         }
 
         .top-nav a {
             text-decoration: none;
-            background: #ffffff;
+            background: white;
             color: #667eea;
-            border: 1px solid #e0e0e0;
-            padding: 8px 14px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1.5px solid #667eea;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .top-nav a:hover {
             background: #667eea;
             color: white;
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
         }
 
         @media (max-width: 600px) {
             .top-nav {
-                top: 10px;
-                right: 10px;
-                gap: 6px;
+                top: 12px;
+                right: 12px;
+                gap: 8px;
             }
 
             .top-nav a {
-                padding: 6px 10px;
+                padding: 8px 12px;
                 font-size: 12px;
             }
         }
@@ -373,7 +377,12 @@
 </head>
 <body>
     <div class="container">
+        
         <header>
+			<div class="top-nav">
+				<a href="index.html">🏠 Home</a>
+				<a href="Remote-sensing-content.html">☰ Contents</a>
+			</div>
             <h1>Markov Chain Monte Carlo (MCMC)</h1>
             <p>Comprehensive Mathematical Theory with Applications to CO₂ Retrieval</p>
         </header>
@@ -391,6 +400,20 @@
         </nav>
         
         <main>
+            <section class="toc">
+                <h3>Table of Contents</h3>
+                <ol>
+                    <li>Mathematical Fundamentals</li>
+                    <li>Probability Theory and Distributions</li>
+                    <li>Markov Chains and Stationarity</li>
+                    <li>MCMC: Theoretical Framework</li>
+                    <li>MCMC Algorithms (Metropolis-Hastings, Gibbs)</li>
+                    <li>Application to CO₂ Retrieval from Remote Sensing</li>
+                    <li>Convergence Diagnostics and Validation</li>
+                    <li>Computational Considerations</li>
+                </ol>
+            </section>
+
             <!-- SECTION 1: FUNDAMENTALS -->
             <section id="fundamentals">
                 <h2>1. Mathematical Fundamentals</h2>
