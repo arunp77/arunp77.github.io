@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MCMC Theory: Comprehensive Mathematical Framework</title>
-    <!-- Favicons -->
-    <link href="assets/img/Favicon-1.png" rel="icon">
-    <link href="assets/img/Favicon-1.png" rel="apple-touch-icon">
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    
     <style>
         * {
             margin: 0;
@@ -81,8 +82,6 @@
         }
         
         main {
-			
-			
             padding: 3rem 2rem;
             max-width: 1500px;
             width: 100%;
@@ -152,8 +151,6 @@
             background: #fafafa;
             margin: 1.5rem 0;
             border-radius: 4px;
-            font-family: 'Times New Roman', serif;
-            font-size: 1.1em;
             line-height: 1.8;
         }
         
@@ -310,19 +307,18 @@
             font-style: italic;
         }
 
-        /* Footer */
         .site-footer {
             margin-top: 4rem;
             padding: 1.5rem 1rem;
             text-align: center;
             font-size: 13px;
-            color: var(--muted);
-            border-top: 1px solid var(--border);
+            color: #666;
+            border-top: 1px solid #e0e0e0;
             background: rgba(255,255,255,0.45);
         }
 
         .site-footer a {
-            color: var(--accent);
+            color: #667eea;
             text-decoration: none;
         }
 
@@ -330,55 +326,51 @@
             text-decoration: underline;
         }
 
-        /* Top-right nav buttons */
         .top-nav {
-        position: absolute;
-        top: 18px;
-        right: 24px;
-        display: flex;
-        gap: 10px;
-        z-index: 10;
+            position: absolute;
+            top: 18px;
+            right: 24px;
+            display: flex;
+            gap: 10px;
+            z-index: 10;
         }
 
         .top-nav a {
-        text-decoration: none;
-        background: #ffffff;
-        color: var(--accent);
-        border: 1px solid var(--border);
-        padding: 8px 14px;
-        border-radius: 8px;
-        font-size: 13px;
-        font-weight: 500;
-        font-family: var(--sans);
-        transition: all 0.2s ease;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-decoration: none;
+            background: #ffffff;
+            color: #667eea;
+            border: 1px solid #e0e0e0;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
         .top-nav a:hover {
-        background: var(--accent);
-        color: white;
-        transform: translateY(-1px);
+            background: #667eea;
+            color: white;
+            transform: translateY(-1px);
         }
 
         @media (max-width: 600px) {
-        .top-nav {
-            top: 10px;
-            right: 10px;
-            gap: 6px;
-        }
+            .top-nav {
+                top: 10px;
+                right: 10px;
+                gap: 6px;
+            }
 
-        .top-nav a {
-            padding: 6px 10px;
-            font-size: 12px;
-        }
+            .top-nav a {
+                padding: 6px 10px;
+                font-size: 12px;
+            }
         }
 
     </style>
 </head>
 <body>
     <div class="container">
-        <a href="index.html">🏠 Home</a>
-        <a href="Remote-sensing-content.html">☰ Contents</a>
         <header>
             <h1>Markov Chain Monte Carlo (MCMC)</h1>
             <p>Comprehensive Mathematical Theory with Applications to CO₂ Retrieval</p>
@@ -416,64 +408,43 @@
                 <h2>1. Mathematical Fundamentals</h2>
                 
                 <h3>1.1 Probability Measure and Sample Spaces</h3>
-                <p>A probability measure is a function P: ℱ → [0,1] defined on a σ-algebra ℱ of subsets of a sample space Ω, satisfying:</p>
+                <p>A probability measure is a function \(P: \mathcal{F} \rightarrow [0,1]\) defined on a \(\sigma\)-algebra \(\mathcal{F}\) of subsets of a sample space \(\Omega\), satisfying:</p>
                 
-                <div class="equation">
-                    P(Ω) = 1 (Normalization)<br>
-                    P(∪ᵢ Aᵢ) = Σᵢ P(Aᵢ) for disjoint sets Aᵢ (Countable additivity)
-                </div>
-                
+                $$\begin{eqnarray}
+                    P(\Omega) & = & 1 \quad \text{(Normalization)} \\
+                    P(\cup_i A_i) & = & \sum_i P(A_i) \quad \text{for disjoint sets } A_i \text{ (Countable additivity)}
+                \end{eqnarray}$$
+
                 <h3>1.2 Random Variables and Distributions</h3>
-                <p>A random variable X is a measurable function X: Ω → ℝ. The probability distribution of X is characterized by:</p>
+                <p>A random variable \(X\) is a measurable function \(X:\Omega \rightarrow \mathbb{R}\). The probability distribution of \(X\) is characterized by:</p>
                 
                 <div class="box definition">
                     <strong>Cumulative Distribution Function (CDF):</strong><br>
-                    F(x) = P(X ≤ x)
+                    $$F(x) = P(X \leq x)$$
                 </div>
                 
                 <p>For continuous distributions, the probability density function (PDF) is:</p>
-                
-                <div class="equation">
-                    f(x) = dF(x)/dx
-                </div>
-                
+                $$f(x) = \frac{dF(x)}{dx}$$
+
                 <h3>1.3 Expectation and Moments</h3>
-                <p>The expectation (mean) of a random variable X with PDF f(x) is:</p>
-                
-                <div class="equation">
-                    E[X] = ∫ x f(x) dx
-                </div>
+                <p>The expectation (mean) of a random variable \(X\) with PDF \(f(x)\) is:</p>
+                $$\mathbb{E}[X] = \int x f(x) dx$$
                 
                 <p>The variance quantifies spread around the mean:</p>
-                
-                <div class="equation">
-                    Var(X) = E[(X - E[X])²] = E[X²] - (E[X])²
-                </div>
-                
-                <p>The covariance between two random variables X and Y is:</p>
-                
-                <div class="equation">
-                    Cov(X,Y) = E[(X - E[X])(Y - E[Y])] = E[XY] - E[X]E[Y]
-                </div>
+                $$\text{Var}(X) = \mathbb{E}[(X - \mathbb{E}[X])^2] = \mathbb{E}[X^2] - (\mathbb{E}[X])^2$$
+
+                <p>The covariance between two random variables \(X\) and \(Y\) is:</p>
+                $$\text{Cov}(X,Y) = \mathbb{E}[(X - \mathbb{E}[X])(Y - \mathbb{E}[Y])] = \mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y]$$
 
                 <h3>1.4 Conditional Probability and Independence</h3>
-                <p>The conditional probability of event A given event B (where P(B) > 0) is:</p>
-                
-                <div class="equation">
-                    P(A|B) = P(A ∩ B) / P(B)
-                </div>
+                <p>The conditional probability of event \(A\) given event \(B\) (where \(P(B) > 0\)) is:</p>
+                $$P(A|B) = \frac{P(A \cap B)}{P(B)}$$
                 
                 <p>For random variables, the conditional density is:</p>
+                $$f(x|y) = \frac{f(x,y)}{f(y)}$$
                 
-                <div class="equation">
-                    f(x|y) = f(x,y) / f(y)
-                </div>
-                
-                <p>X and Y are conditionally independent given Z if:</p>
-                
-                <div class="equation">
-                    f(x,y|z) = f(x|z)f(y|z)
-                </div>
+                <p>\(X\) and \(Y\) are conditionally independent given \(Z\) if:</p>
+                $$f(x,y|z) = f(x|z)f(y|z)$$
             </section>
 
             <!-- SECTION 2: PROBABILITY THEORY -->
@@ -481,32 +452,26 @@
                 <h2>2. Probability Theory and Distributions</h2>
                 
                 <h3>2.1 Joint, Marginal, and Conditional Distributions</h3>
-                <p>For a multivariate distribution with density f(x₁, x₂, ..., xₙ):</p>
-                
+                <p>For a multivariate distribution with density \(f(x_1, x_2, \ldots, x_n)\):</p>
+
                 <div class="box definition">
-                    <strong>Marginal distribution of X₁:</strong><br>
-                    f(x₁) = ∫∫...∫ f(x₁, x₂, ..., xₙ) dx₂ dx₃ ... dxₙ
+                    <strong>Marginal distribution of \(X_1\):</strong><br>
+                    $$f(x_1) = \int\int\cdots\int f(x_1, x_2, \ldots, x_n) dx_2 dx_3 \cdots dx_n$$
                 </div>
                 
                 <h3>2.2 Bayes' Theorem</h3>
                 <p>The foundational theorem for Bayesian inference is:</p>
-                
-                <div class="equation">
-                    P(θ|y) = P(y|θ) P(θ) / P(y)
-                </div>
+                $$P(\theta|y) = \frac{P(y|\theta) P(\theta)}{P(y)}$$
                 
                 <p>Or in terms of densities:</p>
-                
-                <div class="equation">
-                    π(θ|y) = L(y|θ) π(θ) / ∫ L(y|θ) π(θ) dθ
-                </div>
-                
+                $$\pi(\theta|y) = \frac{L(y|\theta) \pi(\theta)}{\int L(y|\theta) \pi(\theta) d\theta}$$
+
                 <p>Where:</p>
                 <ul style="margin-left: 2rem; margin-bottom: 1rem;">
-                    <li><strong>π(θ|y)</strong> = Posterior distribution</li>
-                    <li><strong>L(y|θ)</strong> = Likelihood function</li>
-                    <li><strong>π(θ)</strong> = Prior distribution</li>
-                    <li><strong>∫ L(y|θ) π(θ) dθ</strong> = Normalizing constant (evidence)</li>
+                    <li><strong>\(\pi(\theta|y)\)</strong> = Posterior distribution</li>
+                    <li><strong>\(L(y|\theta)\)</strong> = Likelihood function</li>
+                    <li><strong>\(\pi(\theta)\)</strong> = Prior distribution</li>
+                    <li><strong>\(\int L(y|\theta) \pi(\theta) d\theta\)</strong> = Normalizing constant (evidence)</li>
                 </ul>
                 
                 <h3>2.3 Important Distributions</h3>
@@ -519,57 +484,48 @@
                         <th>Variance</th>
                     </tr>
                     <tr>
-                        <td>Normal(μ, σ²)</td>
-                        <td>1/(σ√(2π)) exp(-(x-μ)²/(2σ²))</td>
-                        <td>μ</td>
-                        <td>σ²</td>
+                        <td>\(\mathcal{N}(\mu, \sigma^2)\)</td>
+                        <td>\(\frac{1}{\sigma\sqrt{2\pi}} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)\)</td>
+                        <td>\(\mu\)</td>
+                        <td>\(\sigma^2\)</td>
                     </tr>
                     <tr>
-                        <td>Uniform(a,b)</td>
-                        <td>1/(b-a) for x∈[a,b]</td>
-                        <td>(a+b)/2</td>
-                        <td>(b-a)²/12</td>
+                        <td>\(\text{Uniform}(a,b)\)</td>
+                        <td>\(\frac{1}{b-a}\) for \(x \in [a,b]\)</td>
+                        <td>\(\frac{a+b}{2}\)</td>
+                        <td>\(\frac{(b-a)^2}{12}\)</td>
                     </tr>
                     <tr>
-                        <td>Exponential(λ)</td>
-                        <td>λ exp(-λx)</td>
-                        <td>1/λ</td>
-                        <td>1/λ²</td>
+                        <td>\(\text{Exponential}(\lambda)\)</td>
+                        <td>\(\lambda \exp(-\lambda x)\)</td>
+                        <td>\(\frac{1}{\lambda}\)</td>
+                        <td>\(\frac{1}{\lambda^2}\)</td>
                     </tr>
                     <tr>
-                        <td>Beta(α,β)</td>
-                        <td>Γ(α+β)/(Γ(α)Γ(β)) x^(α-1)(1-x)^(β-1)</td>
-                        <td>α/(α+β)</td>
-                        <td>αβ/((α+β)²(α+β+1))</td>
+                        <td>\(\text{Beta}(\alpha,\beta)\)</td>
+                        <td>\(\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)} x^{\alpha-1}(1-x)^{\beta-1}\)</td>
+                        <td>\(\frac{\alpha}{\alpha+\beta}\)</td>
+                        <td>\(\frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}\)</td>
                     </tr>
                 </table>
 
                 <h3>2.4 Multivariate Normal Distribution</h3>
-                <p>The n-dimensional multivariate normal distribution has PDF:</p>
-                
-                <div class="equation">
-                    N(x|μ, Σ) = (2π)^(-n/2) |Σ|^(-1/2) exp(-½(x-μ)ᵀΣ⁻¹(x-μ))
-                </div>
+                <p>The \(n\)-dimensional multivariate normal distribution has PDF:</p>
+                $$\mathcal{N}(\mathbf{x}|\boldsymbol{\mu}, \boldsymbol{\Sigma}) = (2\pi)^{-n/2} |\boldsymbol{\Sigma}|^{-1/2} \exp\left(-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^T\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})\right)$$
                 
                 <p>Where:</p>
                 <ul style="margin-left: 2rem; margin-bottom: 1rem;">
-                    <li><strong>μ ∈ ℝⁿ</strong> = Mean vector</li>
-                    <li><strong>Σ ∈ ℝⁿˣⁿ</strong> = Covariance matrix (positive definite)</li>
-                    <li><strong>|Σ|</strong> = Determinant of Σ</li>
+                    <li><strong>\(\boldsymbol{\mu} \in \mathbb{R}^n\)</strong> = Mean vector</li>
+                    <li><strong>\(\boldsymbol{\Sigma} \in \mathbb{R}^{n \times n}\)</strong> = Covariance matrix (positive definite)</li>
+                    <li><strong>\(|\boldsymbol{\Sigma}|\)</strong> = Determinant of \(\boldsymbol{\Sigma}\)</li>
                 </ul>
 
                 <h3>2.5 Log-Probability and Numerical Stability</h3>
                 <p>In computational applications, we work with log-probabilities to avoid underflow:</p>
-                
-                <div class="equation">
-                    log π(θ|y) = log L(y|θ) + log π(θ) - log p(y)
-                </div>
+                $$\log \pi(\theta|y) = \log L(y|\theta) + \log \pi(\theta) - \log p(y)$$
                 
                 <p>For optimization, we often work with the unnormalized log-posterior:</p>
-                
-                <div class="equation">
-                    ℓ(θ) ∝ log π(θ|y) = log L(y|θ) + log π(θ)
-                </div>
+                $$\ell(\theta) \propto \log \pi(\theta|y) = \log L(y|\theta) + \log \pi(\theta)$$
             </section>
 
             <!-- SECTION 3: MARKOV CHAINS -->
@@ -577,78 +533,51 @@
                 <h2>3. Markov Chains and Stationarity</h2>
                 
                 <h3>3.1 Markov Property</h3>
-                <p>A sequence of random variables {Xₜ}ₜ₌₀^∞ forms a Markov chain if:</p>
-                
-                <div class="equation">
-                    P(Xₜ₊₁ = x_{t+1} | X₀ = x₀, ..., Xₜ = xₜ) = P(Xₜ₊₁ = x_{t+1} | Xₜ = xₜ)
-                </div>
+                <p>A sequence of random variables \(\{X_t\}_{t=0}^{\infty}\) forms a Markov chain if:</p>
+                $$P(X_{t+1} = x_{t+1} \mid X_0 = x_0, \ldots, X_t = x_t) = P(X_{t+1} = x_{t+1} \mid X_t = x_t)$$
                 
                 <p>The future depends only on the current state, not the history. This is called the <span class="highlight">memoryless property</span>.</p>
                 
                 <h3>3.2 Transition Kernels</h3>
-                <p>The transition kernel K(x, x') specifies the probability of moving from state x to state x':</p>
+                <p>The transition kernel \(K(x, x')\) specifies the probability of moving from state \(x\) to state \(x'\):</p>
+                $$K(x, x') = P(X_{t+1} \in dx' \mid X_t = x)$$
                 
-                <div class="equation">
-                    K(x, x') = P(Xₜ₊₁ ∈ dx' | Xₜ = x)
-                </div>
-                
-                <p>For a discrete state space, this is the transition probability matrix P with elements:</p>
-                
-                <div class="equation">
-                    Pᵢⱼ = P(Xₜ₊₁ = j | Xₜ = i)
-                </div>
+                <p>For a discrete state space, this is the transition probability matrix \(\mathbf{P}\) with elements:</p>
+                $$P_{ij} = P(X_{t+1} = j \mid X_t = i)$$
                 
                 <p>The transition matrix must satisfy row-stochasticity:</p>
-                
-                <div class="equation">
-                    Σⱼ Pᵢⱼ = 1 for all i
-                </div>
+                $$\sum_j P_{ij} = 1 \quad \text{for all } i$$
 
                 <h3>3.3 Stationary Distribution</h3>
-                <p>A probability distribution π is stationary (or invariant) for a Markov chain with transition kernel K if:</p>
-                
-                <div class="equation">
-                    π(x') = ∫ π(x) K(x, x') dx
-                </div>
+                <p>A probability distribution \(\pi\) is stationary (or invariant) for a Markov chain with transition kernel \(K\) if:</p>
+                $$\pi(x') = \int \pi(x) K(x, x') dx$$
                 
                 <p>In matrix form for discrete chains:</p>
-                
-                <div class="equation">
-                    π = πP    (π is a left eigenvector of P with eigenvalue 1)
-                </div>
+                $$\boldsymbol{\pi} = \boldsymbol{\pi} \mathbf{P} \quad \text{(\(\boldsymbol{\pi}\) is a left eigenvector of \(\mathbf{P}\) with eigenvalue 1)}$$
                 
                 <div class="box important">
-                    <strong>Key Insight:</strong> If a Markov chain has a stationary distribution π and satisfies certain ergodicity conditions, then samples from the chain converge to π regardless of the starting distribution.
+                    <strong>Key Insight:</strong> If a Markov chain has a stationary distribution \(\pi\) and satisfies certain ergodicity conditions, then samples from the chain converge to \(\pi\) regardless of the starting distribution.
                 </div>
 
                 <h3>3.4 Detailed Balance (Reversibility)</h3>
-                <p>A chain satisfies detailed balance with respect to π if:</p>
+                <p>A chain satisfies detailed balance with respect to \(\pi\) if:</p>
+                $$\pi(x) K(x, x') = \pi(x') K(x', x)$$
                 
-                <div class="equation">
-                    π(x) K(x, x') = π(x') K(x', x)
-                </div>
-                
-                <p>Detailed balance is a sufficient (but not necessary) condition for π to be the stationary distribution.</p>
+                <p>Detailed balance is a sufficient (but not necessary) condition for \(\pi\) to be the stationary distribution.</p>
                 
                 <h3>3.5 Ergodicity and Convergence</h3>
                 <p>A chain is ergodic if it satisfies:</p>
                 <ol style="margin-left: 2rem; margin-bottom: 1rem;">
                     <li><strong>Irreducibility:</strong> From any state, we can reach any other state in a finite number of steps</li>
-                    <li><strong>Aperiodicity:</strong> The chain does not return to states in cycles of fixed length > 1</li>
+                    <li><strong>Aperiodicity:</strong> The chain does not return to states in cycles of fixed length \(> 1\)</li>
                 </ol>
                 
-                <p>For an ergodic chain with stationary distribution π:</p>
-                
-                <div class="equation">
-                    lim_{t→∞} P(Xₜ ∈ A | X₀ = x) = π(A)  for all x and measurable sets A
-                </div>
+                <p>For an ergodic chain with stationary distribution \(\pi\):</p>
+                $$\lim_{t \to \infty} P(X_t \in A \mid X_0 = x) = \pi(A) \quad \text{for all } x \text{ and measurable sets } A$$
 
                 <h3>3.6 Law of Large Numbers for Markov Chains</h3>
-                <p>Under ergodicity, empirical averages converge to expectations under π:</p>
-                
-                <div class="equation">
-                    (1/T) Σₜ₌₁ᵀ f(Xₜ) → ∫ f(x) π(x) dx    as T → ∞
-                </div>
+                <p>Under ergodicity, empirical averages converge to expectations under \(\pi\):</p>
+                $$\frac{1}{T} \sum_{t=1}^{T} f(X_t) \to \int f(x) \pi(x) dx \quad \text{as } T \to \infty$$
                 
                 <p>This is the basis for MCMC inference: we can estimate posterior expectations by averaging over sampled chains.</p>
             </section>
@@ -658,69 +587,54 @@
                 <h2>4. MCMC: Theoretical Framework</h2>
                 
                 <h3>4.1 The Core Principle</h3>
-                <p>MCMC constructs a Markov chain whose stationary distribution is a target distribution π (e.g., a posterior). We then sample from this chain and use the samples to estimate quantities of interest.</p>
+                <p>MCMC constructs a Markov chain whose stationary distribution is a target distribution \(\pi\) (e.g., a posterior). We then sample from this chain and use the samples to estimate quantities of interest.</p>
                 
                 <div class="box definition">
                     <strong>Bayesian Inference with MCMC:</strong><br>
-                    Given observed data y and a model with parameters θ:<br>
+                    Given observed data \(y\) and a model with parameters \(\theta\):<br>
                     <br>
-                    1. Define likelihood: L(y|θ)<br>
-                    2. Choose prior: π(θ)<br>
-                    3. Posterior: π(θ|y) ∝ L(y|θ) π(θ)<br>
-                    4. Design Markov chain with π(θ|y) as stationary distribution<br>
-                    5. Sample: θ⁽¹⁾, θ⁽²⁾, ..., θ⁽ⁿ⁾<br>
-                    6. Estimate: E[g(θ)|y] ≈ (1/N) Σᵢ g(θ⁽ⁱ⁾)
+                    1. Define likelihood: \(L(y|\theta)\)<br>
+                    2. Choose prior: \(\pi(\theta)\)<br>
+                    3. Posterior: \(\pi(\theta|y) \propto L(y|\theta) \pi(\theta)\)<br>
+                    4. Design Markov chain with \(\pi(\theta|y)\) as stationary distribution<br>
+                    5. Sample: \(\theta^{(1)}, \theta^{(2)}, \ldots, \theta^{(n)}\)<br>
+                    6. Estimate: \(\mathbb{E}[g(\theta)|y] \approx \frac{1}{N} \sum_{i} g(\theta^{(i)})\)
                 </div>
 
                 <h3>4.2 Why MCMC Works</h3>
-                <p>MCMC solves a fundamental problem: we want to sample from π but can only evaluate it up to a normalizing constant.</p>
+                <p>MCMC solves a fundamental problem: we want to sample from \(\pi\) but can only evaluate it up to a normalizing constant.</p>
                 
-                <p>If we construct a chain with transition kernel K such that:</p>
+                <p>If we construct a chain with transition kernel \(K\) such that:</p>
                 <ul style="margin-left: 2rem; margin-bottom: 1rem;">
-                    <li>π is the stationary distribution of K</li>
+                    <li>\(\pi\) is the stationary distribution of \(K\)</li>
                     <li>The chain is irreducible and aperiodic</li>
                 </ul>
                 
-                <p>Then for large enough t, Xₜ ~ π (approximately).</p>
+                <p>Then for large enough \(t\), \(X_t \sim \pi\) (approximately).</p>
                 
                 <h3>4.3 Acceptance-Rejection Framework</h3>
-                <p>Many MCMC algorithms use an accept-reject mechanism. Proposed move from x to x' is accepted with probability:</p>
+                <p>Many MCMC algorithms use an accept-reject mechanism. Proposed move from \(x\) to \(x'\) is accepted with probability:</p>
+                $$\alpha(x, x') = \min(1, r(x, x'))$$
                 
-                <div class="equation">
-                    α(x, x') = min(1, r(x, x'))
-                </div>
+                <p>Where \(r(x, x')\) depends on the algorithm. With this mechanism:</p>
+                $$K(x, x') = \alpha(x, x') q(x, x') + \left(1 - \int \alpha(x, z) q(x, z) dz\right) \delta(x)(x')$$
                 
-                <p>Where r(x, x') depends on the algorithm. With this mechanism:</p>
-                
-                <div class="equation">
-                    K(x, x') = α(x, x') q(x, x') + (1 - ∫ α(x, z) q(x, z) dz) δ(x)(x')
-                </div>
-                
-                <p>Where q(x, x') is the proposal distribution and δ(x)(x') is the point mass at x (stay in place if rejected).</p>
+                <p>Where \(q(x, x')\) is the proposal distribution and \(\delta(x)(x')\) is the point mass at \(x\) (stay in place if rejected).</p>
 
                 <h3>4.4 Metropolis-Hastings Condition</h3>
-                <p>To ensure detailed balance (and thus π as the stationary distribution), we need:</p>
-                
-                <div class="equation">
-                    π(x) q(x, x') α(x, x') = π(x') q(x', x) α(x', x)
-                </div>
+                <p>To ensure detailed balance (and thus \(\pi\) as the stationary distribution), we need:</p>
+                $$\pi(x) q(x, x') \alpha(x, x') = \pi(x') q(x', x) \alpha(x', x)$$
                 
                 <p>The Metropolis-Hastings ratio ensures this:</p>
+                $$r(x, x') = \frac{\pi(x') q(x', x)}{\pi(x) q(x, x')}$$
                 
-                <div class="equation">
-                    r(x, x') = π(x') q(x', x) / [π(x) q(x, x')]
-                </div>
-                
-                <p>With acceptance probability α(x, x') = min(1, r(x, x')), detailed balance is automatically satisfied.</p>
+                <p>With acceptance probability \(\alpha(x, x') = \min(1, r(x, x'))\), detailed balance is automatically satisfied.</p>
 
                 <h3>4.5 Burn-in and Mixing</h3>
                 <p>Due to dependence on initial conditions, early samples are discarded (burn-in phase). After burn-in, we approximate:</p>
+                $$\pi(\theta|y) \approx \frac{1}{N-B} \sum_{t=B+1}^{N} \delta(\theta^{(t)})$$
                 
-                <div class="equation">
-                    π(θ|y) ≈ (1/(N-B)) Σₜ₌ᵦ₊₁ᴺ δ(θ⁽ᵗ⁾)
-                </div>
-                
-                <p>Where B is the burn-in period. <span class="highlight">Mixing</span> refers to how quickly the chain explores the posterior—faster mixing means faster convergence.</p>
+                <p>Where \(B\) is the burn-in period. <span class="highlight">Mixing</span> refers to how quickly the chain explores the posterior—faster mixing means faster convergence.</p>
             </section>
 
             <!-- SECTION 5: ALGORITHMS -->
@@ -728,46 +642,38 @@
                 <h2>5. MCMC Algorithms</h2>
                 
                 <h3>5.1 Metropolis-Hastings Algorithm</h3>
-                <p>The most general MCMC algorithm. Given target π and proposal q:</p>
+                <p>The most general MCMC algorithm. Given target \(\pi\) and proposal \(q\):</p>
                 
                 <div class="algo-box">
                     <h4>Metropolis-Hastings Algorithm</h4>
                     <div class="algo-step">
-                        <strong>Initialize:</strong> Start with θ⁽⁰⁾
+                        <strong>Initialize:</strong> Start with \(\theta^{(0)}\)
                     </div>
                     <div class="algo-step">
-                        <strong>For t = 0, 1, 2, ..., N-1:</strong>
+                        <strong>For \(t = 0, 1, 2, \ldots, N-1\):</strong>
                     </div>
                     <div style="margin-left: 2rem;">
                         <div class="algo-step">
-                            <strong>1. Propose:</strong> θ* ~ q(·|θ⁽ᵗ⁾)
+                            <strong>1. Propose:</strong> \(\theta^* \sim q(\cdot|\theta^{(t)})\)
                         </div>
                         <div class="algo-step">
                             <strong>2. Compute acceptance ratio:</strong>
-                            <div class="equation" style="margin: 0.5rem 0;">
-                                r = [π(θ*) q(θ⁽ᵗ⁾|θ*)] / [π(θ⁽ᵗ⁾) q(θ*|θ⁽ᵗ⁾)]
-                            </div>
+                            $$r = \frac{\pi(\theta^*) q(\theta^{(t)}|\theta^*)}{\pi(\theta^{(t)}) q(\theta^*|\theta^{(t)})}$$
                         </div>
                         <div class="algo-step">
-                            <strong>3. Accept/Reject:</strong> With probability min(1, r) accept θ* and set θ⁽ᵗ⁺¹⁾ = θ*, otherwise θ⁽ᵗ⁺¹⁾ = θ⁽ᵗ⁾
+                            <strong>3. Accept/Reject:</strong> With probability \(\min(1, r)\) accept \(\theta^*\) and set \(\theta^{(t+1)} = \theta^*\), otherwise \(\theta^{(t+1)} = \theta^{(t)}\)
                         </div>
                     </div>
                 </div>
 
                 <h3>5.2 Random Walk Metropolis</h3>
                 <p>A simple proposal using a symmetric random walk:</p>
+                $$q(\theta^*|\theta^{(t)}) = \mathcal{N}(\theta^*|\theta^{(t)}, \sigma^2 \mathbf{I})$$
                 
-                <div class="equation">
-                    q(θ*|θ⁽ᵗ⁾) = N(θ*|θ⁽ᵗ⁾, σ²I)
-                </div>
+                <p>This is symmetric, so \(q(\theta^{(t)}|\theta^*) = q(\theta^*|\theta^{(t)})\), and the acceptance ratio simplifies to:</p>
+                $$r = \frac{\pi(\theta^*)}{\pi(\theta^{(t)})}$$
                 
-                <p>This is symmetric, so q(θ⁽ᵗ⁾|θ*) = q(θ*|θ⁽ᵗ⁾), and the acceptance ratio simplifies to:</p>
-                
-                <div class="equation">
-                    r = π(θ*) / π(θ⁽ᵗ⁾)
-                </div>
-                
-                <p>The proposal variance σ² controls step size—tuning it is critical for efficiency.</p>
+                <p>The proposal variance \(\sigma^2\) controls step size—tuning it is critical for efficiency.</p>
 
                 <h3>5.3 Gibbs Sampling</h3>
                 <p>For multivariate targets, Gibbs sampling updates one component at a time from its full conditional:</p>
@@ -775,18 +681,18 @@
                 <div class="algo-box">
                     <h4>Gibbs Sampling</h4>
                     <div class="algo-step">
-                        <strong>Initialize:</strong> θ⁽⁰⁾ = (θ₁⁽⁰⁾, ..., θₚ⁽⁰⁾)
+                        <strong>Initialize:</strong> \(\theta^{(0)} = (\theta_1^{(0)}, \ldots, \theta_p^{(0)})\)
                     </div>
                     <div class="algo-step">
-                        <strong>For t = 0, 1, ..., N-1:</strong>
+                        <strong>For \(t = 0, 1, \ldots, N-1\):</strong>
                     </div>
                     <div style="margin-left: 2rem;">
                         <div class="algo-step">
-                            <strong>For j = 1, 2, ..., p:</strong>
+                            <strong>For \(j = 1, 2, \ldots, p\):</strong>
                         </div>
                         <div style="margin-left: 2rem;">
                             <div class="algo-step">
-                                Sample θⱼ⁽ᵗ⁺¹⁾ ~ π(θⱼ | θ₁⁽ᵗ⁺¹⁾, ..., θⱼ₋₁⁽ᵗ⁺¹⁾, θⱼ₊₁⁽ᵗ⁾, ..., θₚ⁽ᵗ⁾)
+                                Sample \(\theta_j^{(t+1)} \sim \pi(\theta_j \mid \theta_1^{(t+1)}, \ldots, \theta_{j-1}^{(t+1)}, \theta_{j+1}^{(t)}, \ldots, \theta_p^{(t)})\)
                             </div>
                         </div>
                     </div>
@@ -795,35 +701,23 @@
                 <p>Gibbs sampling always accepts moves (acceptance rate = 100%) when full conditionals are tractable.</p>
 
                 <h3>5.4 Adaptive Metropolis</h3>
-                <p>Adapt proposal covariance online to improve mixing. At iteration t, use estimated posterior covariance:</p>
-                
-                <div class="equation">
-                    Σ⁽ᵗ⁾ = Cov(θ⁽¹⁾, ..., θ⁽ᵗ⁾) + εI
-                </div>
+                <p>Adapt proposal covariance online to improve mixing. At iteration \(t\), use estimated posterior covariance:</p>
+                $$\boldsymbol{\Sigma}^{(t)} = \text{Cov}(\theta^{(1)}, \ldots, \theta^{(t)}) + \varepsilon \mathbf{I}$$
                 
                 <p>And propose:</p>
+                $$\theta^* \sim \mathcal{N}\left(\theta^{(t)}, \frac{2.38^2}{p} \boldsymbol{\Sigma}^{(t)}\right)$$
                 
-                <div class="equation">
-                    θ* ~ N(θ⁽ᵗ⁾, 2.38²/p × Σ⁽ᵗ⁾)
-                </div>
-                
-                <p>The constant 2.38²/p is optimal for high-dimensional Gaussians (Gelman et al., 1997).</p>
+                <p>The constant \(\frac{2.38^2}{p}\) is optimal for high-dimensional Gaussians (Gelman et al., 1997).</p>
 
                 <h3>5.5 Hamiltonian Monte Carlo (HMC)</h3>
                 <p>Uses gradient information to propose moves that are less likely to be rejected.</p>
                 
-                <p>Augment parameter space with auxiliary momentum variables p ~ N(0, M):</p>
-                
-                <div class="equation">
-                    H(θ, p) = -log π(θ) + ½ pᵀM⁻¹p
-                </div>
+                <p>Augment parameter space with auxiliary momentum variables \(\mathbf{p} \sim \mathcal{N}(0, \mathbf{M})\):</p>
+                $$H(\theta, \mathbf{p}) = -\log \pi(\theta) + \frac{1}{2} \mathbf{p}^T \mathbf{M}^{-1} \mathbf{p}$$
                 
                 <p>Proposal follows Hamiltonian dynamics:</p>
-                
-                <div class="equation">
-                    dθ/dt = ∇ₚ H = M⁻¹p<br>
-                    dp/dt = -∇θ H = ∇ log π(θ)
-                </div>
+                $$\frac{d\theta}{dt} = \nabla_{\mathbf{p}} H = \mathbf{M}^{-1} \mathbf{p}$$
+                $$\frac{d\mathbf{p}}{dt} = -\nabla_{\theta} H = \nabla \log \pi(\theta)$$
                 
                 <p>HMC typically has much higher acceptance rates and better mixing than random walk methods, especially in high dimensions.</p>
 
@@ -839,37 +733,25 @@
                 
                 <h3>6.1 Remote Sensing Inverse Problem</h3>
                 <p>Estimating atmospheric CO₂ from satellite measurements is an inverse problem:</p>
-                
-                <div class="equation">
-                    y = f(θ) + ε
-                </div>
+                $$\mathbf{y} = \mathbf{f}(\theta) + \varepsilon$$
                 
                 <p>Where:</p>
                 <ul style="margin-left: 2rem; margin-bottom: 1rem;">
-                    <li><strong>y</strong> = Observed spectral radiances (measurements)</li>
-                    <li><strong>f(θ)</strong> = Forward radiative transfer model</li>
-                    <li><strong>θ</strong> = Parameters (CO₂ column, temperature profile, surface albedo, aerosols, ...)</li>
-                    <li><strong>ε</strong> = Measurement error ~ N(0, Σ_noise)</li>
+                    <li><strong>\(\mathbf{y}\)</strong> = Observed spectral radiances (measurements)</li>
+                    <li><strong>\(\mathbf{f}(\theta)\)</strong> = Forward radiative transfer model</li>
+                    <li><strong>\(\theta\)</strong> = Parameters (CO₂ column, temperature profile, surface albedo, aerosols, ...)</li>
+                    <li><strong>\(\varepsilon \sim \mathcal{N}(0, \boldsymbol{\Sigma}_{\text{noise}})\)</strong> = Measurement error</li>
                 </ul>
 
                 <h3>6.2 Bayesian Formulation</h3>
                 <p>Define the likelihood assuming Gaussian errors:</p>
+                $$L(\mathbf{y}|\theta) = (2\pi)^{-m/2} |\boldsymbol{\Sigma}_{\text{noise}}|^{-1/2} \exp\left(-\frac{1}{2}(\mathbf{y} - \mathbf{f}(\theta))^T \boldsymbol{\Sigma}_{\text{noise}}^{-1}(\mathbf{y} - \mathbf{f}(\theta))\right)$$
                 
-                <div class="equation">
-                    L(y|θ) = (2π)^(-m/2) |Σ_noise|^(-1/2) exp(-½(y - f(θ))ᵀΣ_noise⁻¹(y - f(θ)))
-                </div>
-                
-                <p>The prior π(θ) encodes information from climatology, seasonality, and physical constraints. For CO₂:</p>
-                
-                <div class="equation">
-                    π(θ) = N(θ|μ_prior, Σ_prior) × Indicator(physical_bounds)
-                </div>
+                <p>The prior \(\pi(\theta)\) encodes information from climatology, seasonality, and physical constraints. For CO₂:</p>
+                $$\pi(\theta) = \mathcal{N}(\theta|\boldsymbol{\mu}_{\text{prior}}, \boldsymbol{\Sigma}_{\text{prior}}) \times \mathbb{I}(\text{physical\_bounds})$$
 
                 <p>The posterior combines likelihood and prior:</p>
-                
-                <div class="equation">
-                    π(θ|y) ∝ L(y|θ) π(θ)
-                </div>
+                $$\pi(\theta|y) \propto L(\mathbf{y}|\theta) \pi(\theta)$$
 
                 <h3>6.3 Parameter Space for CO₂ Retrieval</h3>
                 <p>In CO₂ retrieval problems, parameters typically include:</p>
@@ -881,29 +763,29 @@
                         <th>Typical Range</th>
                     </tr>
                     <tr>
-                        <td>XCO₂</td>
+                        <td>\(X_{\text{CO}_2}\)</td>
                         <td>CO₂ column-averaged mole fraction</td>
-                        <td>380-420 ppm</td>
+                        <td>380–420 ppm</td>
                     </tr>
                     <tr>
-                        <td>T(z)</td>
+                        <td>\(T(z)\)</td>
                         <td>Temperature profile</td>
-                        <td>200-300 K</td>
+                        <td>200–300 K</td>
                     </tr>
                     <tr>
-                        <td>P_surface</td>
+                        <td>\(P_{\text{surface}}\)</td>
                         <td>Surface pressure</td>
-                        <td>900-1050 hPa</td>
+                        <td>900–1050 hPa</td>
                     </tr>
                     <tr>
-                        <td>Albedo</td>
+                        <td>\(\text{Albedo}\)</td>
                         <td>Surface reflectivity</td>
-                        <td>0.01-0.6</td>
+                        <td>0.01–0.6</td>
                     </tr>
                     <tr>
-                        <td>Aerosol</td>
+                        <td>\(\text{Aerosol}\)</td>
                         <td>Optical depth & properties</td>
-                        <td>0-2</td>
+                        <td>0–2</td>
                     </tr>
                 </table>
 
@@ -927,36 +809,28 @@
                 <div class="algo-box">
                     <h4>CO₂ Retrieval with MCMC</h4>
                     <div class="algo-step">
-                        <strong>1. Prepare data:</strong> Spectral measurements y, measurement covariance Σ_noise, prior θ₀ and Σ_prior
+                        <strong>1. Prepare data:</strong> Spectral measurements \(\mathbf{y}\), measurement covariance \(\boldsymbol{\Sigma}_{\text{noise}}\), prior \(\theta_0\) and \(\boldsymbol{\Sigma}_{\text{prior}}\)
                     </div>
                     <div class="algo-step">
                         <strong>2. Define log-posterior:</strong>
-                        <div class="math-block" style="margin: 0.5rem 0;">
-log π(θ|y) = -½(y - f(θ))ᵀΣ_noise⁻¹(y - f(θ)) 
-           - ½(θ - θ₀)ᵀΣ_prior⁻¹(θ - θ₀) 
-           - ½ log|Σ_noise| - ½ log|Σ_prior| + const
-                        </div>
+                        $$\log \pi(\theta|y) = -\frac{1}{2}(\mathbf{y} - \mathbf{f}(\theta))^T \boldsymbol{\Sigma}_{\text{noise}}^{-1}(\mathbf{y} - \mathbf{f}(\theta)) - \frac{1}{2}(\theta - \theta_0)^T \boldsymbol{\Sigma}_{\text{prior}}^{-1}(\theta - \theta_0) - \frac{1}{2} \log|\boldsymbol{\Sigma}_{\text{noise}}| - \frac{1}{2} \log|\boldsymbol{\Sigma}_{\text{prior}}| + \text{const}$$
                     </div>
                     <div class="algo-step">
-                        <strong>3. Initialize:</strong> θ⁽⁰⁾ from prior or optimization
+                        <strong>3. Initialize:</strong> \(\theta^{(0)}\) from prior or optimization
                     </div>
                     <div class="algo-step">
-                        <strong>4. Run M parallel chains</strong> with HMC or Adaptive Metropolis for N_iter iterations
+                        <strong>4. Run M parallel chains</strong> with HMC or Adaptive Metropolis for \(N_{\text{iter}}\) iterations
                     </div>
                     <div class="algo-step">
-                        <strong>5. Discard burn-in:</strong> Keep samples θ⁽ᵇ⁾, ..., θ⁽ᴺ⁾ where b = 0.3N
+                        <strong>5. Discard burn-in:</strong> Keep samples \(\theta^{(b)}, \ldots, \theta^{(N)}\) where \(b = 0.3N\)
                     </div>
                     <div class="algo-step">
                         <strong>6. Retrieve CO₂:</strong> 
-                        <div class="math-block" style="margin: 0.5rem 0;">
-XCO₂ = ∫ XCO₂(θ) π(θ|y) dθ ≈ (1/(N-b)) Σ_{t=b}^N XCO₂(θ⁽ᵗ⁾)
-                        </div>
+                        $$X_{\text{CO}_2} = \int X_{\text{CO}_2}(\theta) \pi(\theta|y) d\theta \approx \frac{1}{N-b} \sum_{t=b}^{N} X_{\text{CO}_2}(\theta^{(t)})$$
                     </div>
                     <div class="algo-step">
                         <strong>7. Uncertainty quantification:</strong> 
-                        <div class="math-block" style="margin: 0.5rem 0;">
-σ_XCO₂ = √[ Var(XCO₂(θ)) + E[(∇_θ f · Cov(θ))ᵀ] ]
-                        </div>
+                        $$\sigma_{X_{\text{CO}_2}} = \sqrt{\text{Var}(X_{\text{CO}_2}(\theta)) + \mathbb{E}[(\nabla_{\theta} \mathbf{f} \cdot \text{Cov}(\theta))^T]}$$
                     </div>
                 </div>
 
@@ -979,93 +853,63 @@ XCO₂ = ∫ XCO₂(θ) π(θ|y) dθ ≈ (1/(N-b)) Σ_{t=b}^N XCO₂(θ⁽ᵗ⁾
                 <p>We don't know when the chain has converged to the stationary distribution. Diagnostics help assess convergence.</p>
 
                 <h3>7.2 Trace Plots and Visual Inspection</h3>
-                <p>Plot θ⁽ᵗ⁾ vs. iteration t. Look for:</p>
+                <p>Plot \(\theta^{(t)}\) vs. iteration \(t\). Look for:</p>
                 <ul style="margin-left: 2rem; margin-bottom: 1rem;">
                     <li><strong>Stationarity:</strong> No obvious trends</li>
                     <li><strong>Mixing:</strong> Random fluctuation around mean</li>
                     <li><strong>No stuck chains:</strong> Chain explores full posterior</li>
                 </ul>
 
-                <h3>7.3 Potential Scale Reduction Factor (PSRF) / R̂</h3>
-                <p>Run M independent chains. Compute within-chain (W) and between-chain (B) variances:</p>
+                <h3>7.3 Potential Scale Reduction Factor (PSRF) / \(\hat{R}\)</h3>
+                <p>Run \(M\) independent chains. Compute within-chain (\(W\)) and between-chain (\(B\)) variances:</p>
+                $$W = \frac{1}{M} \sum_{m=1}^{M} s_m^2$$
                 
-                <div class="equation">
-                    W = (1/M) Σₘ₌₁ᴹ sₘ²
-                </div>
+                $$B = \frac{n}{M-1} \sum_{m=1}^{M} (\bar{\theta}_m - \bar{\theta})^2$$
                 
-                <div class="equation">
-                    B = [n/(M-1)] Σₘ₌₁ᴹ (θ̄ₘ - θ̄)²
-                </div>
-                
-                <p>Where θ̄ₘ is the mean of chain m, θ̄ is the overall mean, and n is chain length.</p>
+                <p>Where \(\bar{\theta}_m\) is the mean of chain \(m\), \(\bar{\theta}\) is the overall mean, and \(n\) is chain length.</p>
                 
                 <p>The PSRF is:</p>
-                
-                <div class="equation">
-                    R̂ = √{ [(n-1)/n × W + (1/n) × B] / W }
-                </div>
+                $$\hat{R} = \sqrt{\frac{(n-1)W + B}{nW}}$$
                 
                 <div class="box definition">
-                    <strong>Convergence criterion:</strong> R̂ < 1.01 (or R̂ < 1.05) indicates convergence
+                    <strong>Convergence criterion:</strong> \(\hat{R} < 1.01\) (or \(\hat{R} < 1.05\)) indicates convergence
                 </div>
 
                 <h3>7.4 Effective Sample Size (ESS)</h3>
                 <p>Due to autocorrelation, MCMC samples are not independent. The effective sample size is:</p>
+                $$\text{ESS} = \frac{N}{\tau}$$
                 
-                <div class="equation">
-                    ESS = N / τ
-                </div>
+                <p>Where \(\tau\) is the integrated autocorrelation time:</p>
+                $$\tau = 1 + 2 \sum_{k=1}^{\infty} \rho(k)$$
                 
-                <p>Where τ is the integrated autocorrelation time:</p>
-                
-                <div class="equation">
-                    τ = 1 + 2 Σₖ₌₁^∞ ρ(k)
-                </div>
-                
-                <p>And ρ(k) is the autocorrelation at lag k. Rule of thumb: ESS > 400 per parameter.</p>
+                <p>And \(\rho(k)\) is the autocorrelation at lag \(k\). Rule of thumb: ESS > 400 per parameter.</p>
 
                 <h3>7.5 Autocorrelation Function</h3>
-                <p>The autocorrelation at lag k is:</p>
+                <p>The autocorrelation at lag \(k\) is:</p>
+                $$\rho(k) = \frac{\text{Cov}(\theta^{(t)}, \theta^{(t+k)})}{\text{Var}(\theta)}$$
                 
-                <div class="equation">
-                    ρ(k) = Cov(θ⁽ᵗ⁾, θ⁽ᵗ⁺ᵏ⁾) / Var(θ)
-                </div>
-                
-                <p>Plot ρ(k) vs. k. Should decay quickly to 0. Slow decay → poor mixing, need longer chains.</p>
+                <p>Plot \(\rho(k)\) vs. \(k\). Should decay quickly to 0. Slow decay → poor mixing, need longer chains.</p>
 
                 <h3>7.6 Posterior Predictive Checks</h3>
                 <p>Generate predictions from posterior samples:</p>
+                $$\mathbf{y}_{\text{rep}}^{(t)} \sim p(\mathbf{y} \mid \theta^{(t)})$$
                 
-                <div class="equation">
-                    y_rep ⁽ᵗ⁾ ~ p(y | θ⁽ᵗ⁾)
-                </div>
+                <p>Compare posterior predictive distribution with observed data \(\mathbf{y}\):</p>
+                $$p(\mathbf{y}_{\text{rep}} \mid \mathbf{y}) = \int p(\mathbf{y}_{\text{rep}} \mid \theta) \pi(\theta|\mathbf{y}) d\theta \approx \frac{1}{N} \sum_{t} p(\mathbf{y}_{\text{rep}} \mid \theta^{(t)})$$
                 
-                <p>Compare posterior predictive distribution with observed data y:</p>
-                
-                <div class="equation">
-                    p(y_rep | y) = ∫ p(y_rep | θ) π(θ|y) dθ ≈ (1/N) Σₜ p(y_rep | θ⁽ᵗ⁾)
-                </div>
-                
-                <p>If model is well-calibrated, y should look like draws from p(y_rep | y).</p>
+                <p>If model is well-calibrated, \(\mathbf{y}\) should look like draws from \(p(\mathbf{y}_{\text{rep}} \mid \mathbf{y})\).</p>
 
                 <h3>7.7 Validation Against Reference Data</h3>
                 <p>For CO₂ retrieval, validate against ground truth:</p>
+                $$\text{RMSE} = \sqrt{\frac{1}{n} \sum_{i} (X_{\text{CO}_2, \text{retrieved}, i} - X_{\text{CO}_2, \text{true}, i})^2}$$
                 
-                <div class="equation">
-                    RMSE = √{ (1/n) Σᵢ (XCO₂_retrieved,i - XCO₂_true,i)² }
-                </div>
+                $$\text{Bias} = \frac{1}{n} \sum_{i} (X_{\text{CO}_2, \text{retrieved}, i} - X_{\text{CO}_2, \text{true}, i})$$
                 
-                <div class="equation">
-                    Bias = (1/n) Σᵢ (XCO₂_retrieved,i - XCO₂_true,i)
-                </div>
-                
-                <div class="equation">
-                    Coverage = P(XCO₂_true ∈ [XCO₂_retrieved ± 2σ]) ≈ 0.95
-                </div>
+                $$\text{Coverage} = P(X_{\text{CO}_2, \text{true}} \in [X_{\text{CO}_2, \text{retrieved}} \pm 2\sigma]) \approx 0.95$$
             </section>
 
             <!-- SECTION 8: COMPUTATIONAL CONSIDERATIONS -->
-            <section id="convergence">
+            <section id="computational">
                 <h2>8. Computational Considerations and Advanced Topics</h2>
                 
                 <h3>8.1 Tuning Proposal Distributions</h3>
@@ -1079,44 +923,29 @@ XCO₂ = ∫ XCO₂(θ) π(θ|y) dθ ≈ (1/(N-b)) Σ_{t=b}^N XCO₂(θ⁽ᵗ⁾
                 </div>
 
                 <h3>8.2 Parallel Tempering</h3>
-                <p>Run M chains at different "temperatures":</p>
-                
-                <div class="equation">
-                    π_τₘ(θ) ∝ [π(θ)]^(1/τₘ)    where 1 = τ₁ < τ₂ < ... < τₘ
-                </div>
+                <p>Run \(M\) chains at different "temperatures":</p>
+                $$\pi_{\tau_m}(\theta) \propto [\pi(\theta)]^{1/\tau_m} \quad \text{where } 1 = \tau_1 < \tau_2 < \ldots < \tau_m$$
                 
                 <p>Hotter chains explore more, and they occasionally swap states with cooler chains. This helps escape local modes.</p>
 
                 <h3>8.3 Variational Inference as Approximation</h3>
                 <p>For large-scale problems, variational inference provides a fast approximation to the posterior:</p>
-                
-                <div class="equation">
-                    q*(φ) = argmin_{q∈Q} KL(q||π) = argmax_q ∫ q(θ) log π(θ|y) dθ - ∫ q(θ) log q(θ) dθ
-                </div>
+                $$q^*(\varphi) = \arg\min_{q \in \mathcal{Q}} \text{KL}(q||\pi) = \arg\max_{q} \int q(\theta) \log \pi(\theta|\mathbf{y}) d\theta - \int q(\theta) \log q(\theta) d\theta$$
                 
                 <p>The advantage: no burn-in, no convergence diagnostics. The disadvantage: approximation error, biased uncertainty estimates.</p>
 
                 <h3>8.4 Emulators and Surrogate Models</h3>
                 <p>When the forward model is expensive, train a surrogate:</p>
-                
-                <div class="equation">
-                    f̂(θ) ≈ f(θ)    where f̂ is fast to evaluate
-                </div>
+                $$\hat{\mathbf{f}}(\theta) \approx \mathbf{f}(\theta) \quad \text{where } \hat{\mathbf{f}} \text{ is fast to evaluate}$$
                 
                 <p>Options: Gaussian processes, neural networks, polynomial chaos. Use true model for final refinement.</p>
 
                 <h3>8.5 Importance Sampling and Reweighting</h3>
-                <p>If you have samples from q(θ), estimate integrals under π(θ):</p>
-                
-                <div class="equation">
-                    E_π[g(θ)] = ∫ g(θ) π(θ) dθ ≈ Σᵢ w_i g(θᵢ)
-                </div>
+                <p>If you have samples from \(q(\theta)\), estimate integrals under \(\pi(\theta)\):</p>
+                $$\mathbb{E}_{\pi}[g(\theta)] = \int g(\theta) \pi(\theta) d\theta \approx \sum_{i} w_i g(\theta_i)$$
                 
                 <p>Where weights are:</p>
-                
-                <div class="equation">
-                    w_i = π(θᵢ) / q(θᵢ)    (normalized to sum to 1)
-                </div>
+                $$w_i = \frac{\pi(\theta_i)}{q(\theta_i)} \quad \text{(normalized to sum to 1)}$$
                 
                 <p>Useful for re-weighting existing MCMC samples without re-running the chain.</p>
 
@@ -1173,7 +1002,7 @@ XCO₂ = ∫ XCO₂(θ) π(θ|y) dθ ≈ (1/(N-b)) Σ_{t=b}^N XCO₂(θ⁽ᵗ⁾
                         <li><strong>Metropolis-Hastings</strong> is the most general algorithm; acceptance ratio ensures correct stationary distribution</li>
                         <li><strong>Gibbs sampling</strong> is efficient when full conditionals are tractable</li>
                         <li><strong>HMC/NUTS</strong> use gradients for better mixing and higher acceptance rates</li>
-                        <li><strong>Convergence diagnostics</strong> (R̂, ESS, trace plots) assess chain behavior</li>
+                        <li><strong>Convergence diagnostics</strong> (\(\hat{R}\), ESS, trace plots) assess chain behavior</li>
                         <li><strong>Uncertainty quantification</strong> is automatic from posterior samples</li>
                         <li><strong>CO₂ retrieval</strong> benefits from MCMC's ability to handle high-dimensional correlated parameters</li>
                     </ol>
@@ -1184,7 +1013,7 @@ XCO₂ = ∫ XCO₂(θ) π(θ|y) dθ ≈ (1/(N-b)) Σ_{t=b}^N XCO₂(θ⁽ᵗ⁾
                     <li>Formulate Bayesian model: likelihood from radiative transfer, prior from climatology</li>
                     <li>Implement (or use existing) MCMC sampler with efficient proposals</li>
                     <li>Run parallel chains from dispersed starting points</li>
-                    <li>Monitor convergence (R̂, ESS, mixing time)</li>
+                    <li>Monitor convergence (\(\hat{R}\), ESS, mixing time)</li>
                     <li>Discard burn-in; keep post-convergence samples</li>
                     <li>Estimate CO₂ and uncertainties from posterior samples</li>
                     <li>Validate with ground truth data (TCCON, aircraft)</li>
@@ -1216,869 +1045,8 @@ XCO₂ = ∫ XCO₂(θ) π(θ|y) dθ ≈ (1/(N-b)) Σ_{t=b}^N XCO₂(θ⁽ᵗ⁾
             </ul>
         </footer>
     </div>
-    <script>
-        document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
     <footer class="site-footer">
-        © 2026 Arun Kumar Pandey · Darmstadt, Germany ·
-        <a href="mailto:arunp77@gmail.com">Contact</a>
-    </footer>
-</body>
-</html>
-</head>
-<body>
-    <div class="container">
-        <a href="index.html">🏠 Home</a>
-        <a href="Remote-sensing-content.html">☰ Contents</a>
-        <header>
-            <h1>Markov Chain Monte Carlo (MCMC)</h1>
-            <p>Comprehensive Mathematical Theory with Applications to CO₂ Retrieval</p>
-        </header>
-        
-        <nav>
-            <ul>
-                <li><a href="#fundamentals">Fundamentals</a></li>
-                <li><a href="#probability">Probability Theory</a></li>
-                <li><a href="#markov">Markov Chains</a></li>
-                <li><a href="#mcmc-theory">MCMC Theory</a></li>
-                <li><a href="#algorithms">Algorithms</a></li>
-                <li><a href="#co2">CO₂ Application</a></li>
-                <li><a href="#convergence">Convergence</a></li>
-            </ul>
-        </nav>
-        
-        <main>
-            <section class="toc">
-                <h3>Table of Contents</h3>
-                <ol>
-                    <li>Mathematical Fundamentals</li>
-                    <li>Probability Theory and Distributions</li>
-                    <li>Markov Chains and Stationarity</li>
-                    <li>MCMC: Theoretical Framework</li>
-                    <li>MCMC Algorithms (Metropolis-Hastings, Gibbs)</li>
-                    <li>Application to CO₂ Retrieval from Remote Sensing</li>
-                    <li>Convergence Diagnostics and Validation</li>
-                    <li>Computational Considerations</li>
-                </ol>
-            </section>
-
-            <!-- SECTION 1: FUNDAMENTALS -->
-            <section id="fundamentals">
-                <h2>1. Mathematical Fundamentals</h2>
-                
-                <h3>1.1 Probability Measure and Sample Spaces</h3>
-                <p>A probability measure is a function P: ℱ → [0,1] defined on a σ-algebra ℱ of subsets of a sample space Ω, satisfying:</p>
-                
-                <div class="equation">
-                    P(Ω) = 1 (Normalization)<br>
-                    P(∪ᵢ Aᵢ) = Σᵢ P(Aᵢ) for disjoint sets Aᵢ (Countable additivity)
-                </div>
-
-                <p>(
-                    For more details on Random Variables, Probability distributions, check <a href="Descriptive-statistics.html" target="_blank">my page on this topic link</a>
-                    For sample space check <a href="statistics.html" target="_blank">link</a>.
-                    )
-                </p>
-                
-                <h3>1.2 Random Variables and Distributions</h3>
-                <p>A random variable X is a measurable function X: Ω → ℝ. The probability distribution of X is characterized by:</p>
-                
-                <div class="box definition">
-                    <strong>Cumulative Distribution Function (CDF):</strong><br>
-                    F(x) = P(X ≤ x)
-                </div>
-                
-                <p>For continuous distributions, the probability density function (PDF) is:</p>
-                
-                <div class="equation">
-                    f(x) = dF(x)/dx
-                </div>
-                
-                <h3>1.3 Expectation and Moments</h3>
-                <p>The expectation (mean) of a random variable X with PDF f(x) is:</p>
-                
-                <div class="equation">
-                    E[X] = ∫ x f(x) dx
-                </div>
-                
-                <p>The variance quantifies spread around the mean:</p>
-                
-                <div class="equation">
-                    Var(X) = E[(X - E[X])²] = E[X²] - (E[X])²
-                </div>
-                
-                <p>The covariance between two random variables X and Y is:</p>
-                
-                <div class="equation">
-                    Cov(X,Y) = E[(X - E[X])(Y - E[Y])] = E[XY] - E[X]E[Y]
-                </div>
-
-                <h3>1.4 Conditional Probability and Independence</h3>
-                <p>The conditional probability of event A given event B (where P(B) > 0) is:</p>
-                
-                <div class="equation">
-                    P(A|B) = P(A ∩ B) / P(B)
-                </div>
-                
-                <p>For random variables, the conditional density is:</p>
-                
-                <div class="equation">
-                    f(x|y) = f(x,y) / f(y)
-                </div>
-                
-                <p>X and Y are conditionally independent given Z if:</p>
-                
-                <div class="equation">
-                    f(x,y|z) = f(x|z)f(y|z)
-                </div>
-            </section>
-
-            <!-- SECTION 2: PROBABILITY THEORY -->
-            <section id="probability">
-                <h2>2. Probability Theory and Distributions</h2>
-                
-                <h3>2.1 Joint, Marginal, and Conditional Distributions</h3>
-                <p>For a multivariate distribution with density f(x₁, x₂, ..., xₙ):</p>
-                
-                <div class="box definition">
-                    <strong>Marginal distribution of X₁:</strong><br>
-                    f(x₁) = ∫∫...∫ f(x₁, x₂, ..., xₙ) dx₂ dx₃ ... dxₙ
-                </div>
-                
-                <h3>2.2 Bayes' Theorem</h3>
-                <p>The foundational theorem for Bayesian inference is:</p>
-                
-                <div class="equation">
-                    P(θ|y) = P(y|θ) P(θ) / P(y)
-                </div>
-                
-                <p>Or in terms of densities:</p>
-                
-                <div class="equation">
-                    π(θ|y) = L(y|θ) π(θ) / ∫ L(y|θ) π(θ) dθ
-                </div>
-                
-                <p>Where:</p>
-                <ul style="margin-left: 2rem; margin-bottom: 1rem;">
-                    <li><strong>π(θ|y)</strong> = Posterior distribution</li>
-                    <li><strong>L(y|θ)</strong> = Likelihood function</li>
-                    <li><strong>π(θ)</strong> = Prior distribution</li>
-                    <li><strong>∫ L(y|θ) π(θ) dθ</strong> = Normalizing constant (evidence)</li>
-                </ul>
-                
-                <h3>2.3 Important Distributions</h3>
-                
-                <table>
-                    <tr>
-                        <th>Distribution</th>
-                        <th>PDF/PMF</th>
-                        <th>Mean</th>
-                        <th>Variance</th>
-                    </tr>
-                    <tr>
-                        <td>Normal(μ, σ²)</td>
-                        <td>1/(σ√(2π)) exp(-(x-μ)²/(2σ²))</td>
-                        <td>μ</td>
-                        <td>σ²</td>
-                    </tr>
-                    <tr>
-                        <td>Uniform(a,b)</td>
-                        <td>1/(b-a) for x∈[a,b]</td>
-                        <td>(a+b)/2</td>
-                        <td>(b-a)²/12</td>
-                    </tr>
-                    <tr>
-                        <td>Exponential(λ)</td>
-                        <td>λ exp(-λx)</td>
-                        <td>1/λ</td>
-                        <td>1/λ²</td>
-                    </tr>
-                    <tr>
-                        <td>Beta(α,β)</td>
-                        <td>Γ(α+β)/(Γ(α)Γ(β)) x^(α-1)(1-x)^(β-1)</td>
-                        <td>α/(α+β)</td>
-                        <td>αβ/((α+β)²(α+β+1))</td>
-                    </tr>
-                </table>
-
-                <h3>2.4 Multivariate Normal Distribution</h3>
-                <p>The n-dimensional multivariate normal distribution has PDF:</p>
-                
-                <div class="equation">
-                    N(x|μ, Σ) = (2π)^(-n/2) |Σ|^(-1/2) exp(-½(x-μ)ᵀΣ⁻¹(x-μ))
-                </div>
-                
-                <p>Where:</p>
-                <ul style="margin-left: 2rem; margin-bottom: 1rem;">
-                    <li><strong>μ ∈ ℝⁿ</strong> = Mean vector</li>
-                    <li><strong>Σ ∈ ℝⁿˣⁿ</strong> = Covariance matrix (positive definite)</li>
-                    <li><strong>|Σ|</strong> = Determinant of Σ</li>
-                </ul>
-
-                <h3>2.5 Log-Probability and Numerical Stability</h3>
-                <p>In computational applications, we work with log-probabilities to avoid underflow:</p>
-                
-                <div class="equation">
-                    log π(θ|y) = log L(y|θ) + log π(θ) - log p(y)
-                </div>
-                
-                <p>For optimization, we often work with the unnormalized log-posterior:</p>
-                
-                <div class="equation">
-                    ℓ(θ) ∝ log π(θ|y) = log L(y|θ) + log π(θ)
-                </div>
-            </section>
-
-            <!-- SECTION 3: MARKOV CHAINS -->
-            <section id="markov">
-                <h2>3. Markov Chains and Stationarity</h2>
-                
-                <h3>3.1 Markov Property</h3>
-                <p>A sequence of random variables {Xₜ}ₜ₌₀^∞ forms a Markov chain if:</p>
-                
-                <div class="equation">
-                    P(Xₜ₊₁ = x_{t+1} | X₀ = x₀, ..., Xₜ = xₜ) = P(Xₜ₊₁ = x_{t+1} | Xₜ = xₜ)
-                </div>
-                
-                <p>The future depends only on the current state, not the history. This is called the <span class="highlight">memoryless property</span>.</p>
-                
-                <h3>3.2 Transition Kernels</h3>
-                <p>The transition kernel K(x, x') specifies the probability of moving from state x to state x':</p>
-                
-                <div class="equation">
-                    K(x, x') = P(Xₜ₊₁ ∈ dx' | Xₜ = x)
-                </div>
-                
-                <p>For a discrete state space, this is the transition probability matrix P with elements:</p>
-                
-                <div class="equation">
-                    Pᵢⱼ = P(Xₜ₊₁ = j | Xₜ = i)
-                </div>
-                
-                <p>The transition matrix must satisfy row-stochasticity:</p>
-                
-                <div class="equation">
-                    Σⱼ Pᵢⱼ = 1 for all i
-                </div>
-
-                <h3>3.3 Stationary Distribution</h3>
-                <p>A probability distribution π is stationary (or invariant) for a Markov chain with transition kernel K if:</p>
-                
-                <div class="equation">
-                    π(x') = ∫ π(x) K(x, x') dx
-                </div>
-                
-                <p>In matrix form for discrete chains:</p>
-                
-                <div class="equation">
-                    π = πP    (π is a left eigenvector of P with eigenvalue 1)
-                </div>
-                
-                <div class="box important">
-                    <strong>Key Insight:</strong> If a Markov chain has a stationary distribution π and satisfies certain ergodicity conditions, then samples from the chain converge to π regardless of the starting distribution.
-                </div>
-
-                <h3>3.4 Detailed Balance (Reversibility)</h3>
-                <p>A chain satisfies detailed balance with respect to π if:</p>
-                
-                <div class="equation">
-                    π(x) K(x, x') = π(x') K(x', x)
-                </div>
-                
-                <p>Detailed balance is a sufficient (but not necessary) condition for π to be the stationary distribution.</p>
-                
-                <h3>3.5 Ergodicity and Convergence</h3>
-                <p>A chain is ergodic if it satisfies:</p>
-                <ol style="margin-left: 2rem; margin-bottom: 1rem;">
-                    <li><strong>Irreducibility:</strong> From any state, we can reach any other state in a finite number of steps</li>
-                    <li><strong>Aperiodicity:</strong> The chain does not return to states in cycles of fixed length > 1</li>
-                </ol>
-                
-                <p>For an ergodic chain with stationary distribution π:</p>
-                
-                <div class="equation">
-                    lim_{t→∞} P(Xₜ ∈ A | X₀ = x) = π(A)  for all x and measurable sets A
-                </div>
-
-                <h3>3.6 Law of Large Numbers for Markov Chains</h3>
-                <p>Under ergodicity, empirical averages converge to expectations under π:</p>
-                
-                <div class="equation">
-                    (1/T) Σₜ₌₁ᵀ f(Xₜ) → ∫ f(x) π(x) dx    as T → ∞
-                </div>
-                
-                <p>This is the basis for MCMC inference: we can estimate posterior expectations by averaging over sampled chains.</p>
-            </section>
-
-            <!-- SECTION 4: MCMC THEORY -->
-            <section id="mcmc-theory">
-                <h2>4. MCMC: Theoretical Framework</h2>
-                
-                <h3>4.1 The Core Principle</h3>
-                <p>MCMC constructs a Markov chain whose stationary distribution is a target distribution π (e.g., a posterior). We then sample from this chain and use the samples to estimate quantities of interest.</p>
-                
-                <div class="box definition">
-                    <strong>Bayesian Inference with MCMC:</strong><br>
-                    Given observed data y and a model with parameters θ:<br>
-                    <br>
-                    1. Define likelihood: L(y|θ)<br>
-                    2. Choose prior: π(θ)<br>
-                    3. Posterior: π(θ|y) ∝ L(y|θ) π(θ)<br>
-                    4. Design Markov chain with π(θ|y) as stationary distribution<br>
-                    5. Sample: θ⁽¹⁾, θ⁽²⁾, ..., θ⁽ⁿ⁾<br>
-                    6. Estimate: E[g(θ)|y] ≈ (1/N) Σᵢ g(θ⁽ⁱ⁾)
-                </div>
-
-                <h3>4.2 Why MCMC Works</h3>
-                <p>MCMC solves a fundamental problem: we want to sample from π but can only evaluate it up to a normalizing constant.</p>
-                
-                <p>If we construct a chain with transition kernel K such that:</p>
-                <ul style="margin-left: 2rem; margin-bottom: 1rem;">
-                    <li>π is the stationary distribution of K</li>
-                    <li>The chain is irreducible and aperiodic</li>
-                </ul>
-                
-                <p>Then for large enough t, Xₜ ~ π (approximately).</p>
-                
-                <h3>4.3 Acceptance-Rejection Framework</h3>
-                <p>Many MCMC algorithms use an accept-reject mechanism. Proposed move from x to x' is accepted with probability:</p>
-                
-                <div class="equation">
-                    α(x, x') = min(1, r(x, x'))
-                </div>
-                
-                <p>Where r(x, x') depends on the algorithm. With this mechanism:</p>
-                
-                <div class="equation">
-                    K(x, x') = α(x, x') q(x, x') + (1 - ∫ α(x, z) q(x, z) dz) δ(x)(x')
-                </div>
-                
-                <p>Where q(x, x') is the proposal distribution and δ(x)(x') is the point mass at x (stay in place if rejected).</p>
-
-                <h3>4.4 Metropolis-Hastings Condition</h3>
-                <p>To ensure detailed balance (and thus π as the stationary distribution), we need:</p>
-                
-                <div class="equation">
-                    π(x) q(x, x') α(x, x') = π(x') q(x', x) α(x', x)
-                </div>
-                
-                <p>The Metropolis-Hastings ratio ensures this:</p>
-                
-                <div class="equation">
-                    r(x, x') = π(x') q(x', x) / [π(x) q(x, x')]
-                </div>
-                
-                <p>With acceptance probability α(x, x') = min(1, r(x, x')), detailed balance is automatically satisfied.</p>
-
-                <h3>4.5 Burn-in and Mixing</h3>
-                <p>Due to dependence on initial conditions, early samples are discarded (burn-in phase). After burn-in, we approximate:</p>
-                
-                <div class="equation">
-                    π(θ|y) ≈ (1/(N-B)) Σₜ₌ᵦ₊₁ᴺ δ(θ⁽ᵗ⁾)
-                </div>
-                
-                <p>Where B is the burn-in period. <span class="highlight">Mixing</span> refers to how quickly the chain explores the posterior—faster mixing means faster convergence.</p>
-            </section>
-
-            <!-- SECTION 5: ALGORITHMS -->
-            <section id="algorithms">
-                <h2>5. MCMC Algorithms</h2>
-                
-                <h3>5.1 Metropolis-Hastings Algorithm</h3>
-                <p>The most general MCMC algorithm. Given target π and proposal q:</p>
-                
-                <div class="algo-box">
-                    <h4>Metropolis-Hastings Algorithm</h4>
-                    <div class="algo-step">
-                        <strong>Initialize:</strong> Start with θ⁽⁰⁾
-                    </div>
-                    <div class="algo-step">
-                        <strong>For t = 0, 1, 2, ..., N-1:</strong>
-                    </div>
-                    <div style="margin-left: 2rem;">
-                        <div class="algo-step">
-                            <strong>1. Propose:</strong> θ* ~ q(·|θ⁽ᵗ⁾)
-                        </div>
-                        <div class="algo-step">
-                            <strong>2. Compute acceptance ratio:</strong>
-                            <div class="equation" style="margin: 0.5rem 0;">
-                                r = [π(θ*) q(θ⁽ᵗ⁾|θ*)] / [π(θ⁽ᵗ⁾) q(θ*|θ⁽ᵗ⁾)]
-                            </div>
-                        </div>
-                        <div class="algo-step">
-                            <strong>3. Accept/Reject:</strong> With probability min(1, r) accept θ* and set θ⁽ᵗ⁺¹⁾ = θ*, otherwise θ⁽ᵗ⁺¹⁾ = θ⁽ᵗ⁾
-                        </div>
-                    </div>
-                </div>
-
-                <h3>5.2 Random Walk Metropolis</h3>
-                <p>A simple proposal using a symmetric random walk:</p>
-                
-                <div class="equation">
-                    q(θ*|θ⁽ᵗ⁾) = N(θ*|θ⁽ᵗ⁾, σ²I)
-                </div>
-                
-                <p>This is symmetric, so q(θ⁽ᵗ⁾|θ*) = q(θ*|θ⁽ᵗ⁾), and the acceptance ratio simplifies to:</p>
-                
-                <div class="equation">
-                    r = π(θ*) / π(θ⁽ᵗ⁾)
-                </div>
-                
-                <p>The proposal variance σ² controls step size—tuning it is critical for efficiency.</p>
-
-                <h3>5.3 Gibbs Sampling</h3>
-                <p>For multivariate targets, Gibbs sampling updates one component at a time from its full conditional:</p>
-                
-                <div class="algo-box">
-                    <h4>Gibbs Sampling</h4>
-                    <div class="algo-step">
-                        <strong>Initialize:</strong> θ⁽⁰⁾ = (θ₁⁽⁰⁾, ..., θₚ⁽⁰⁾)
-                    </div>
-                    <div class="algo-step">
-                        <strong>For t = 0, 1, ..., N-1:</strong>
-                    </div>
-                    <div style="margin-left: 2rem;">
-                        <div class="algo-step">
-                            <strong>For j = 1, 2, ..., p:</strong>
-                        </div>
-                        <div style="margin-left: 2rem;">
-                            <div class="algo-step">
-                                Sample θⱼ⁽ᵗ⁺¹⁾ ~ π(θⱼ | θ₁⁽ᵗ⁺¹⁾, ..., θⱼ₋₁⁽ᵗ⁺¹⁾, θⱼ₊₁⁽ᵗ⁾, ..., θₚ⁽ᵗ⁾)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <p>Gibbs sampling always accepts moves (acceptance rate = 100%) when full conditionals are tractable.</p>
-
-                <h3>5.4 Adaptive Metropolis</h3>
-                <p>Adapt proposal covariance online to improve mixing. At iteration t, use estimated posterior covariance:</p>
-                
-                <div class="equation">
-                    Σ⁽ᵗ⁾ = Cov(θ⁽¹⁾, ..., θ⁽ᵗ⁾) + εI
-                </div>
-                
-                <p>And propose:</p>
-                
-                <div class="equation">
-                    θ* ~ N(θ⁽ᵗ⁾, 2.38²/p × Σ⁽ᵗ⁾)
-                </div>
-                
-                <p>The constant 2.38²/p is optimal for high-dimensional Gaussians (Gelman et al., 1997).</p>
-
-                <h3>5.5 Hamiltonian Monte Carlo (HMC)</h3>
-                <p>Uses gradient information to propose moves that are less likely to be rejected.</p>
-                
-                <p>Augment parameter space with auxiliary momentum variables p ~ N(0, M):</p>
-                
-                <div class="equation">
-                    H(θ, p) = -log π(θ) + ½ pᵀM⁻¹p
-                </div>
-                
-                <p>Proposal follows Hamiltonian dynamics:</p>
-                
-                <div class="equation">
-                    dθ/dt = ∇ₚ H = M⁻¹p<br>
-                    dp/dt = -∇θ H = ∇ log π(θ)
-                </div>
-                
-                <p>HMC typically has much higher acceptance rates and better mixing than random walk methods, especially in high dimensions.</p>
-
-                <h3>5.6 No-U-Turn Sampler (NUTS)</h3>
-                <p>An extension of HMC that automatically determines trajectory length by detecting when the chain starts doubling back (U-turn).</p>
-                
-                <p>This reduces manual tuning and improves efficiency for complex posteriors.</p>
-            </section>
-
-            <!-- SECTION 6: CO2 APPLICATION -->
-            <section id="co2">
-                <h2>6. Application to CO₂ Retrieval from Remote Sensing</h2>
-                
-                <h3>6.1 Remote Sensing Inverse Problem</h3>
-                <p>Estimating atmospheric CO₂ from satellite measurements is an inverse problem:</p>
-                
-                <div class="equation">
-                    y = f(θ) + ε
-                </div>
-                
-                <p>Where:</p>
-                <ul style="margin-left: 2rem; margin-bottom: 1rem;">
-                    <li><strong>y</strong> = Observed spectral radiances (measurements)</li>
-                    <li><strong>f(θ)</strong> = Forward radiative transfer model</li>
-                    <li><strong>θ</strong> = Parameters (CO₂ column, temperature profile, surface albedo, aerosols, ...)</li>
-                    <li><strong>ε</strong> = Measurement error ~ N(0, Σ_noise)</li>
-                </ul>
-
-                <h3>6.2 Bayesian Formulation</h3>
-                <p>Define the likelihood assuming Gaussian errors:</p>
-                
-                <div class="equation">
-                    L(y|θ) = (2π)^(-m/2) |Σ_noise|^(-1/2) exp(-½(y - f(θ))ᵀΣ_noise⁻¹(y - f(θ)))
-                </div>
-                
-                <p>The prior π(θ) encodes information from climatology, seasonality, and physical constraints. For CO₂:</p>
-                
-                <div class="equation">
-                    π(θ) = N(θ|μ_prior, Σ_prior) × Indicator(physical_bounds)
-                </div>
-
-                <p>The posterior combines likelihood and prior:</p>
-                
-                <div class="equation">
-                    π(θ|y) ∝ L(y|θ) π(θ)
-                </div>
-
-                <h3>6.3 Parameter Space for CO₂ Retrieval</h3>
-                <p>In CO₂ retrieval problems, parameters typically include:</p>
-                
-                <table>
-                    <tr>
-                        <th>Parameter</th>
-                        <th>Physical Meaning</th>
-                        <th>Typical Range</th>
-                    </tr>
-                    <tr>
-                        <td>XCO₂</td>
-                        <td>CO₂ column-averaged mole fraction</td>
-                        <td>380-420 ppm</td>
-                    </tr>
-                    <tr>
-                        <td>T(z)</td>
-                        <td>Temperature profile</td>
-                        <td>200-300 K</td>
-                    </tr>
-                    <tr>
-                        <td>P_surface</td>
-                        <td>Surface pressure</td>
-                        <td>900-1050 hPa</td>
-                    </tr>
-                    <tr>
-                        <td>Albedo</td>
-                        <td>Surface reflectivity</td>
-                        <td>0.01-0.6</td>
-                    </tr>
-                    <tr>
-                        <td>Aerosol</td>
-                        <td>Optical depth & properties</td>
-                        <td>0-2</td>
-                    </tr>
-                </table>
-
-                <h3>6.4 Advantages of MCMC for CO₂ Retrieval</h3>
-                
-                <div class="box">
-                    <strong>Why MCMC is ideal for CO₂ retrieval:</strong>
-                    <ul style="margin-left: 1rem;">
-                        <li>Handles <strong>high-dimensional parameter spaces</strong> (temperature profile, aerosols)</li>
-                        <li>Quantifies <strong>full posterior distributions</strong>, not just point estimates</li>
-                        <li>Accounts for <strong>correlated uncertainties</strong> via covariance matrices</li>
-                        <li>Scales to <strong>large datasets</strong> when using parallel chains</li>
-                        <li>Provides <strong>uncertainty propagation</strong> through forward model</li>
-                        <li>Naturally handles <strong>nuisance parameters</strong> via marginalization</li>
-                    </ul>
-                </div>
-
-                <h3>6.5 MCMC Implementation for CO₂</h3>
-                <p>A practical workflow:</p>
-                
-                <div class="algo-box">
-                    <h4>CO₂ Retrieval with MCMC</h4>
-                    <div class="algo-step">
-                        <strong>1. Prepare data:</strong> Spectral measurements y, measurement covariance Σ_noise, prior θ₀ and Σ_prior
-                    </div>
-                    <div class="algo-step">
-                        <strong>2. Define log-posterior:</strong>
-                        <div class="math-block" style="margin: 0.5rem 0;">
-log π(θ|y) = -½(y - f(θ))ᵀΣ_noise⁻¹(y - f(θ)) 
-           - ½(θ - θ₀)ᵀΣ_prior⁻¹(θ - θ₀) 
-           - ½ log|Σ_noise| - ½ log|Σ_prior| + const
-                        </div>
-                    </div>
-                    <div class="algo-step">
-                        <strong>3. Initialize:</strong> θ⁽⁰⁾ from prior or optimization
-                    </div>
-                    <div class="algo-step">
-                        <strong>4. Run M parallel chains</strong> with HMC or Adaptive Metropolis for N_iter iterations
-                    </div>
-                    <div class="algo-step">
-                        <strong>5. Discard burn-in:</strong> Keep samples θ⁽ᵇ⁾, ..., θ⁽ᴺ⁾ where b = 0.3N
-                    </div>
-                    <div class="algo-step">
-                        <strong>6. Retrieve CO₂:</strong> 
-                        <div class="math-block" style="margin: 0.5rem 0;">
-XCO₂ = ∫ XCO₂(θ) π(θ|y) dθ ≈ (1/(N-b)) Σ_{t=b}^N XCO₂(θ⁽ᵗ⁾)
-                        </div>
-                    </div>
-                    <div class="algo-step">
-                        <strong>7. Uncertainty quantification:</strong> 
-                        <div class="math-block" style="margin: 0.5rem 0;">
-σ_XCO₂ = √[ Var(XCO₂(θ)) + E[(∇_θ f · Cov(θ))ᵀ] ]
-                        </div>
-                    </div>
-                </div>
-
-                <h3>6.6 Computational Considerations</h3>
-                <p>For operational CO₂ retrieval:</p>
-                
-                <ul style="margin-left: 2rem; margin-bottom: 1rem;">
-                    <li>Forward model evaluation is expensive (radiative transfer) → use emulators or surrogates</li>
-                    <li>Parameter correlations are strong → adaptive methods essential</li>
-                    <li>Real-time processing demands → parallel chains, GPU acceleration</li>
-                    <li>Validation requires reference data (TCCON, in-situ) → posterior predictive checks</li>
-                </ul>
-            </section>
-
-            <!-- SECTION 7: CONVERGENCE -->
-            <section id="convergence">
-                <h2>7. Convergence Diagnostics and Validation</h2>
-                
-                <h3>7.1 The Convergence Problem</h3>
-                <p>We don't know when the chain has converged to the stationary distribution. Diagnostics help assess convergence.</p>
-
-                <h3>7.2 Trace Plots and Visual Inspection</h3>
-                <p>Plot θ⁽ᵗ⁾ vs. iteration t. Look for:</p>
-                <ul style="margin-left: 2rem; margin-bottom: 1rem;">
-                    <li><strong>Stationarity:</strong> No obvious trends</li>
-                    <li><strong>Mixing:</strong> Random fluctuation around mean</li>
-                    <li><strong>No stuck chains:</strong> Chain explores full posterior</li>
-                </ul>
-
-                <h3>7.3 Potential Scale Reduction Factor (PSRF) / R̂</h3>
-                <p>Run M independent chains. Compute within-chain (W) and between-chain (B) variances:</p>
-                
-                <div class="equation">
-                    W = (1/M) Σₘ₌₁ᴹ sₘ²
-                </div>
-                
-                <div class="equation">
-                    B = [n/(M-1)] Σₘ₌₁ᴹ (θ̄ₘ - θ̄)²
-                </div>
-                
-                <p>Where θ̄ₘ is the mean of chain m, θ̄ is the overall mean, and n is chain length.</p>
-                
-                <p>The PSRF is:</p>
-                
-                <div class="equation">
-                    R̂ = √{ [(n-1)/n × W + (1/n) × B] / W }
-                </div>
-                
-                <div class="box definition">
-                    <strong>Convergence criterion:</strong> R̂ < 1.01 (or R̂ < 1.05) indicates convergence
-                </div>
-
-                <h3>7.4 Effective Sample Size (ESS)</h3>
-                <p>Due to autocorrelation, MCMC samples are not independent. The effective sample size is:</p>
-                
-                <div class="equation">
-                    ESS = N / τ
-                </div>
-                
-                <p>Where τ is the integrated autocorrelation time:</p>
-                
-                <div class="equation">
-                    τ = 1 + 2 Σₖ₌₁^∞ ρ(k)
-                </div>
-                
-                <p>And ρ(k) is the autocorrelation at lag k. Rule of thumb: ESS > 400 per parameter.</p>
-
-                <h3>7.5 Autocorrelation Function</h3>
-                <p>The autocorrelation at lag k is:</p>
-                
-                <div class="equation">
-                    ρ(k) = Cov(θ⁽ᵗ⁾, θ⁽ᵗ⁺ᵏ⁾) / Var(θ)
-                </div>
-                
-                <p>Plot ρ(k) vs. k. Should decay quickly to 0. Slow decay → poor mixing, need longer chains.</p>
-
-                <h3>7.6 Posterior Predictive Checks</h3>
-                <p>Generate predictions from posterior samples:</p>
-                
-                <div class="equation">
-                    y_rep ⁽ᵗ⁾ ~ p(y | θ⁽ᵗ⁾)
-                </div>
-                
-                <p>Compare posterior predictive distribution with observed data y:</p>
-                
-                <div class="equation">
-                    p(y_rep | y) = ∫ p(y_rep | θ) π(θ|y) dθ ≈ (1/N) Σₜ p(y_rep | θ⁽ᵗ⁾)
-                </div>
-                
-                <p>If model is well-calibrated, y should look like draws from p(y_rep | y).</p>
-
-                <h3>7.7 Validation Against Reference Data</h3>
-                <p>For CO₂ retrieval, validate against ground truth:</p>
-                
-                <div class="equation">
-                    RMSE = √{ (1/n) Σᵢ (XCO₂_retrieved,i - XCO₂_true,i)² }
-                </div>
-                
-                <div class="equation">
-                    Bias = (1/n) Σᵢ (XCO₂_retrieved,i - XCO₂_true,i)
-                </div>
-                
-                <div class="equation">
-                    Coverage = P(XCO₂_true ∈ [XCO₂_retrieved ± 2σ]) ≈ 0.95
-                </div>
-            </section>
-
-            <!-- SECTION 8: COMPUTATIONAL CONSIDERATIONS -->
-            <section id="convergence">
-                <h2>8. Computational Considerations and Advanced Topics</h2>
-                
-                <h3>8.1 Tuning Proposal Distributions</h3>
-                <p>For random walk proposals, optimal acceptance rate is ~0.234 in high dimensions (Gelman et al., 1997):</p>
-                
-                <div class="box definition">
-                    <strong>Tuning procedure:</strong><br>
-                    If acceptance rate < 0.2, reduce proposal variance<br>
-                    If acceptance rate > 0.3, increase proposal variance<br>
-                    Target: acceptance rate ≈ 0.234
-                </div>
-
-                <h3>8.2 Parallel Tempering</h3>
-                <p>Run M chains at different "temperatures":</p>
-                
-                <div class="equation">
-                    π_τₘ(θ) ∝ [π(θ)]^(1/τₘ)    where 1 = τ₁ < τ₂ < ... < τₘ
-                </div>
-                
-                <p>Hotter chains explore more, and they occasionally swap states with cooler chains. This helps escape local modes.</p>
-
-                <h3>8.3 Variational Inference as Approximation</h3>
-                <p>For large-scale problems, variational inference provides a fast approximation to the posterior:</p>
-                
-                <div class="equation">
-                    q*(φ) = argmin_{q∈Q} KL(q||π) = argmax_q ∫ q(θ) log π(θ|y) dθ - ∫ q(θ) log q(θ) dθ
-                </div>
-                
-                <p>The advantage: no burn-in, no convergence diagnostics. The disadvantage: approximation error, biased uncertainty estimates.</p>
-
-                <h3>8.4 Emulators and Surrogate Models</h3>
-                <p>When the forward model is expensive, train a surrogate:</p>
-                
-                <div class="equation">
-                    f̂(θ) ≈ f(θ)    where f̂ is fast to evaluate
-                </div>
-                
-                <p>Options: Gaussian processes, neural networks, polynomial chaos. Use true model for final refinement.</p>
-
-                <h3>8.5 Importance Sampling and Reweighting</h3>
-                <p>If you have samples from q(θ), estimate integrals under π(θ):</p>
-                
-                <div class="equation">
-                    E_π[g(θ)] = ∫ g(θ) π(θ) dθ ≈ Σᵢ w_i g(θᵢ)
-                </div>
-                
-                <p>Where weights are:</p>
-                
-                <div class="equation">
-                    w_i = π(θᵢ) / q(θᵢ)    (normalized to sum to 1)
-                </div>
-                
-                <p>Useful for re-weighting existing MCMC samples without re-running the chain.</p>
-
-                <h3>8.6 Software Implementations</h3>
-                <table>
-                    <tr>
-                        <th>Software</th>
-                        <th>Language</th>
-                        <th>Algorithms</th>
-                        <th>Best For</th>
-                    </tr>
-                    <tr>
-                        <td>Stan</td>
-                        <td>C++/R/Python</td>
-                        <td>HMC, NUTS</td>
-                        <td>General Bayesian inference</td>
-                    </tr>
-                    <tr>
-                        <td>PyMC3/PyMC</td>
-                        <td>Python</td>
-                        <td>NUTS, Gibbs, custom</td>
-                        <td>Flexible modeling</td>
-                    </tr>
-                    <tr>
-                        <td>JAGS</td>
-                        <td>C++/R</td>
-                        <td>Gibbs, slice sampling</td>
-                        <td>Hierarchical models</td>
-                    </tr>
-                    <tr>
-                        <td>Emcee</td>
-                        <td>Python</td>
-                        <td>Affine invariant ensemble</td>
-                        <td>High-dimensional posteriors</td>
-                    </tr>
-                    <tr>
-                        <td>Julia (Turing.jl)</td>
-                        <td>Julia</td>
-                        <td>HMC, Gibbs, custom</td>
-                        <td>Scientific computing, speed</td>
-                    </tr>
-                </table>
-            </section>
-
-            <!-- SECTION 9: SUMMARY -->
-            <section id="summary">
-                <h2>Summary: Key Takeaways</h2>
-                
-                <div class="box important">
-                    <h3 style="margin-top: 0;">Essential Concepts</h3>
-                    <ol style="margin-left: 1.5rem;">
-                        <li><strong>MCMC constructs a Markov chain</strong> whose stationary distribution equals the target posterior</li>
-                        <li><strong>Bayesian inference</strong> combines likelihood and prior to form a posterior</li>
-                        <li><strong>Metropolis-Hastings</strong> is the most general algorithm; acceptance ratio ensures correct stationary distribution</li>
-                        <li><strong>Gibbs sampling</strong> is efficient when full conditionals are tractable</li>
-                        <li><strong>HMC/NUTS</strong> use gradients for better mixing and higher acceptance rates</li>
-                        <li><strong>Convergence diagnostics</strong> (R̂, ESS, trace plots) assess chain behavior</li>
-                        <li><strong>Uncertainty quantification</strong> is automatic from posterior samples</li>
-                        <li><strong>CO₂ retrieval</strong> benefits from MCMC's ability to handle high-dimensional correlated parameters</li>
-                    </ol>
-                </div>
-
-                <h3>The MCMC Workflow for CO₂ Retrieval</h3>
-                <ol style="margin-left: 2rem; margin-bottom: 1rem;">
-                    <li>Formulate Bayesian model: likelihood from radiative transfer, prior from climatology</li>
-                    <li>Implement (or use existing) MCMC sampler with efficient proposals</li>
-                    <li>Run parallel chains from dispersed starting points</li>
-                    <li>Monitor convergence (R̂, ESS, mixing time)</li>
-                    <li>Discard burn-in; keep post-convergence samples</li>
-                    <li>Estimate CO₂ and uncertainties from posterior samples</li>
-                    <li>Validate with ground truth data (TCCON, aircraft)</li>
-                    <li>Quantify systematic errors via posterior predictive checks</li>
-                </ol>
-
-                <h3>Why MCMC is Ideal for Remote Sensing Inverse Problems</h3>
-                <ul style="margin-left: 2rem; margin-bottom: 1rem;">
-                    <li>✓ Handles ill-posed problems with strong prior information</li>
-                    <li>✓ Propagates uncertainty through expensive forward models</li>
-                    <li>✓ Natural accounting for correlated measurement errors</li>
-                    <li>✓ Scales to many simultaneous unknown parameters</li>
-                    <li>✓ Marginalizes nuisance parameters automatically</li>
-                    <li>✓ Provides full posterior, not just point estimates</li>
-                </ul>
-            </section>
-
-        </main>
-
-        <footer>
-            <p>This document provides a self-contained treatment of MCMC theory with emphasis on applications to atmospheric remote sensing and CO₂ retrieval.</p>
-            <p><strong>Key References:</strong></p>
-            <ul style="text-align: left; max-width: 600px; margin: 1rem auto; line-height: 1.8;">
-                <li>Gelman, A., et al. (2013). <em>Bayesian Data Analysis</em>. Chapman and Hall/CRC. (3rd edition)</li>
-                <li>Brooks, S. P., & Gelman, A. (1998). General methods for monitoring convergence of iterative simulations. <em>Journal of Computational and Graphical Statistics</em>, 7(4), 434-455.</li>
-                <li>Neal, R. M. (2011). MCMC using Hamiltonian dynamics. In <em>Handbook of Markov Chain Monte Carlo</em>, pp. 113-162.</li>
-                <li>Hoffman, M. D., & Gelman, A. (2014). The No-U-Turn Sampler: adaptively setting path lengths in Hamiltonian Monte Carlo. <em>JMLR</em>, 15(1), 1593-1623.</li>
-                <li>Rodgers, C. D. (2000). <em>Inverse Methods for Atmospheric Sounding: Theory and Practice</em>. World Scientific.</li>
-            </ul>
-        </footer>
-    </div>
-    <script>
-        document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
-    <footer class="site-footer">
-        © 2026 Arun Kumar Pandey · Darmstadt, Germany ·
-        <a href="mailto:arunp77@gmail.com">Contact</a>
+        © 2026 Arun Kumar Pandey · Darmstadt, Germany
     </footer>
 </body>
 </html>
