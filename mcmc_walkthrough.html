@@ -1,1143 +1,1063 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>MCMC — Complete Mathematical Walkthrough</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCMC Theory: Comprehensive Mathematical Framework</title>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.9;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 2rem;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1550px;
+			width: 96%;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5rem;
+        }
+        
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        nav {
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            max-width: 1200px;
+			width: 100%;
+            margin: 0 auto;
+        }
+        
+        nav a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #764ba2;
+        }
+        
+        main {
+            padding: 3rem 2rem;
+            max-width: 1500px;
+            width: 100%;
+			margin: 0 auto;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+            scroll-margin-top: 100px;
+        }
+        
+        section h2 {
+            color: #667eea;
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 2em;
+        }
+        
+        section h3 {
+            color: #764ba2;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.4em;
+        }
+        
+        section h4 {
+            color: #555;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.15em;
+        }
+        
+        .box {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+        
+        .box.important {
+            background: #fff3cd;
+            border-left-color: #ff9800;
+        }
+        
+        .box.definition {
+            background: #e8f5e9;
+            border-left-color: #4caf50;
+        }
+        
+        .math-block {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            line-height: 1.8;
+        }
+        
+        .equation {
+            text-align: center;
+            padding: 1rem 0;
+            border: 1px solid #e0e0e0;
+            background: #fafafa;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+            line-height: 1.8;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        table th {
+            background: #667eea;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        table td {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 1rem;
+        }
+        
+        table tr:hover {
+            background: #f9f9f9;
+        }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .algo-box {
+            background: #f0f4ff;
+            border: 1px solid #667eea;
+            border-radius: 4px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .algo-box h4 {
+            color: #667eea;
+            margin-top: 0;
+        }
+        
+        .algo-step {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+            border-left: 2px solid #764ba2;
+        }
+        
+        .algo-step strong {
+            color: #764ba2;
+        }
+        
+        figure {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #f9f9f9;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        figure figcaption {
+            margin-top: 1rem;
+            font-size: 0.95em;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .code {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 1.5rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+        }
+        
+        a {
+            color: #667eea;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s;
+        }
+        
+        a:hover {
+            border-bottom-color: #667eea;
+        }
+        
+        .toc {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .toc h3 {
+            margin-top: 0;
+        }
+        
+        .toc ol {
+            padding-left: 2rem;
+        }
+        
+        .toc li {
+            margin: 0.5rem 0;
+        }
+        
+        footer {
+            background: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
+            padding: 2rem;
+            text-align: center;
+            color: #666;
+        }
+        
+        .subsection {
+            margin-left: 1rem;
+            padding-left: 1rem;
+            border-left: 2px solid #e0e0e0;
+        }
+        
+        svg {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 1.5rem auto;
+        }
+        
+        .citation {
+            font-size: 0.9em;
+            color: #888;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
 
-  <!-- Favicons -->
-  <link href="assets/img/Favicon-1.png" rel="icon">
-  <link href="assets/img/Favicon-1.png" rel="apple-touch-icon">
+        .site-footer {
+            margin-top: 4rem;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            font-size: 13px;
+            color: #666;
+            border-top: 1px solid #e0e0e0;
+            background: rgba(255,255,255,0.45);
+        }
 
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap');
+        .site-footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
 
-  :root {
-    --bg:       #bfcfe4;   /* page background */
-    --surface:  #ffe3e3;   /* tables / panels */
-    --card:     #ffffff;   /* section cards */
-    --border:   #d9e2f0;   /* soft border */
-    --accent:   #3b6edc;
-    --accent2:  #e8735a;
-    --accent3:  #3ca46a;
-    --accent4:  #9a63d8;
-    --text:     #1d2433;   /* main text dark */
-    --muted:    #5f6b85;   /* secondary text */
-    --code-bg:  #0c1018;   /* keep dark code blocks */
-    --serif:    'DM Serif Display', serif;
-    --mono:     'DM Mono', monospace;
-    --sans:     'Outfit', sans-serif; 
-  }
+        .site-footer a:hover {
+            text-decoration: underline;
+        }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+        .top-nav {
+            position: relative;
+            top: 1rem;
+            right: 2rem;
+            display: flex;
+            gap: 12px;
+            z-index: 100;
+        }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    font-size: 15px;
-    line-height: 1.75;
-    padding: 0 0 6rem;
-  }
+        .top-nav a {
+            text-decoration: none;
+            background: white;
+            color: #667eea;
+            border: 1.5px solid #667eea;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
 
-  /* ── Hero ── */
-  .hero {
-    background: linear-gradient(160deg, #eef4ff 0%, #f8fbff 60%);
-    border-bottom: 1px solid var(--border);
-    padding: 4rem 2rem 3rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(91,141,238,0.12) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero-tag {
-    display: inline-block;
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    color: var(--accent);
-    border: 1px solid rgba(91,141,238,0.35);
-    padding: 4px 12px;
-    border-radius: 20px;
-    margin-bottom: 1.5rem;
-  }
-  .hero h1 {
-    font-family: var(--serif);
-    font-size: clamp(2rem, 5vw, 3.2rem);
-    line-height: 1.2;
-    color: #b0bb11;
-    margin-bottom: 1rem;
-  }
-  .hero h1 em { color: var(--accent); font-style: italic; }
-  .hero p {
-    color: var(--muted);
-    max-width: 580px;
-    margin: 0 auto;
-    font-size: 15px;
-  }
+        .top-nav a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
 
-  /* Top-right nav buttons */
-  .top-nav {
-    position: absolute;
-    top: 18px;
-    right: 24px;
-    display: flex;
-    gap: 10px;
-    z-index: 10;
-  }
+        @media (max-width: 600px) {
+            .top-nav {
+                top: 12px;
+                right: 12px;
+                gap: 8px;
+            }
 
-  .top-nav a {
-    text-decoration: none;
-    background: #ffffff;
-    color: var(--accent);
-    border: 1px solid var(--border);
-    padding: 8px 14px;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 500;
-    font-family: var(--sans);
-    transition: all 0.2s ease;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  }
+            .top-nav a {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+        }
 
-  .top-nav a:hover {
-    background: var(--accent);
-    color: white;
-    transform: translateY(-1px);
-  }
-
-  @media (max-width: 600px) {
-    .top-nav {
-      top: 10px;
-      right: 10px;
-      gap: 6px;
-    }
-
-    .top-nav a {
-      padding: 6px 10px;
-      font-size: 12px;
-    }
-  }  
-
-
-  /* ── Layout ── */
-  .wrap { width: 100%; max-width: 100%; margin: 0; padding: 0 3vw; }
-
-  /* ── Section ── */
-  .section {
-    margin: 3.5rem 0;
-    padding: 2rem 2rem 2rem;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    position: relative;
-  }
-  .section-num {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-    margin-bottom: 0.4rem;
-  }
-  .section h2 {
-    font-family: var(--serif);
-    font-size: 1.55rem;
-    color: #fff;
-    margin-bottom: 1.2rem;
-    line-height: 1.3;
-  }
-  .section p { color: var(--muted); margin-bottom: 0.9rem; }
-  .section p strong { color: var(--text); font-weight: 500; }
-
-  /* ── Math blocks ── */
-  .math-block {
-    background: var(--code-bg);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--accent);
-    border-radius: 8px;
-    padding: 1.1rem 1.4rem;
-    font-family: var(--mono);
-    font-size: 13px;
-    line-height: 1.9;
-    color: #c8d6f5;
-    overflow-x: auto;
-    margin: 1.2rem 0;
-  }
-  .math-block .comment { color: #4a5a7a; }
-  .math-block .hi      { color: var(--accent); font-weight: 500; }
-  .math-block .hi2     { color: var(--accent2); }
-  .math-block .hi3     { color: var(--accent3); }
-  .math-block .hi4     { color: var(--accent4); }
-
-  /* ── Callout ── */
-  .callout {
-    background: rgba(91,141,238,0.07);
-    border: 1px solid rgba(91,141,238,0.22);
-    border-radius: 10px;
-    padding: 1rem 1.25rem;
-    margin: 1.2rem 0;
-    color: #a8bcee;
-    font-size: 14px;
-    line-height: 1.7;
-  }
-  .callout strong { color: var(--accent); }
-
-  .callout-warn {
-    background: rgba(232,115,90,0.07);
-    border-color: rgba(232,115,90,0.25);
-    color: #e8b5a8;
-  }
-  .callout-warn strong { color: var(--accent2); }
-
-  .callout-ok {
-    background: rgba(93,189,138,0.07);
-    border-color: rgba(93,189,138,0.25);
-    color: #a0d9bc;
-  }
-  .callout-ok strong { color: var(--accent3); }
-
-  /* ── Table ── */
-  .tbl-wrap { overflow-x: auto; margin: 1.2rem 0; }
-  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
-  th {
-    background: var(--surface);
-    color: var(--accent);
-    font-family: var(--mono);
-    font-weight: 500;
-    font-size: 11px;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    padding: 10px 14px;
-    text-align: left;
-    border-bottom: 1px solid var(--border);
-  }
-  td {
-    padding: 9px 14px;
-    border-bottom: 1px solid rgba(34,40,64,0.6);
-    color: var(--muted);
-    vertical-align: top;
-  }
-  td strong { color: var(--text); font-weight: 500; }
-  tr:last-child td { border-bottom: none; }
-  tr:hover td { background: rgba(255,255,255,0.02); }
-  td.hl { color: var(--accent3); font-family: var(--mono); font-size: 13px; }
-
-  /* Footer */
-  .site-footer {
-    margin-top: 4rem;
-    padding: 1.5rem 1rem;
-    text-align: center;
-    font-size: 13px;
-    color: var(--muted);
-    border-top: 1px solid var(--border);
-    background: rgba(255,255,255,0.45);
-  }
-
-  .site-footer a {
-    color: var(--accent);
-    text-decoration: none;
-  }
-
-  .site-footer a:hover {
-    text-decoration: underline;
-  }
-
-  
-  /* ── Iteration stepper ── */
-  .stepper { margin: 1.5rem 0; }
-  .step-nav {
-    display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1rem;
-  }
-  .step-btn {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    color: var(--muted);
-    font-family: var(--mono);
-    font-size: 12px;
-    padding: 6px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.15s;
-  }
-  .step-btn:hover { border-color: var(--accent); color: var(--accent); }
-  .step-btn.active {
-    background: rgba(91,141,238,0.15);
-    border-color: var(--accent);
-    color: var(--accent);
-  }
-  .step-panel { display: none; }
-  .step-panel.active { display: block; }
-
-  /* ── Canvas charts ── */
-  .chart-wrap {
-    background: var(--code-bg);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1rem;
-    margin: 1.5rem 0;
-  }
-  canvas { max-width: 100%; }
-
-  /* ── Interactive MCMC demo ── */
-  .demo-controls {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    margin: 1.2rem 0;
-  }
-  .ctrl-group label {
-    display: block;
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.08em;
-    margin-bottom: 6px;
-  }
-  .ctrl-group input[type=range] { width: 100%; }
-  .ctrl-val {
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--accent);
-  }
-
-  .run-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--accent);
-    color: #fff;
-    border: none;
-    font-family: var(--sans);
-    font-size: 14px;
-    font-weight: 500;
-    padding: 10px 22px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: opacity 0.15s;
-    margin: 0.8rem 0;
-  }
-  .run-btn:hover { opacity: 0.88; }
-  .run-btn:disabled { opacity: 0.45; cursor: not-allowed; }
-
-  /* ── Stats row ── */
-  .stats-row {
-    display: flex; gap: 12px; flex-wrap: wrap; margin: 1rem 0;
-  }
-  .stat-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 0.8rem 1.1rem;
-    min-width: 130px;
-    flex: 1;
-  }
-  .stat-card .slabel {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.07em;
-    margin-bottom: 4px;
-  }
-  .stat-card .sval {
-    font-family: var(--mono);
-    font-size: 1.3rem;
-    font-weight: 500;
-    color: var(--accent);
-  }
-
-  /* ── Progress bar ── */
-  .prog-wrap { background: var(--surface); border-radius: 4px; height: 6px; margin: 0.5rem 0; overflow: hidden; }
-  .prog-bar  { height: 6px; background: var(--accent); border-radius: 4px; width: 0%; transition: width 0.1s; }
-
-  /* ── Divider ── */
-  .divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
-
-  /* ── Summary box ── */
-  .summary {
-    background: linear-gradient(135deg, rgba(91,141,238,0.08), rgba(93,189,138,0.05));
-    border: 1px solid rgba(91,141,238,0.25);
-    border-radius: 14px;
-    padding: 2rem;
-    margin: 3rem 0;
-  }
-  .summary h3 {
-    font-family: var(--serif);
-    font-size: 1.3rem;
-    color: #fff;
-    margin-bottom: 1rem;
-  }
-  .summary ul { list-style: none; padding: 0; }
-  .summary ul li {
-    display: flex; gap: 10px;
-    color: var(--muted);
-    font-size: 14px;
-    padding: 5px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-  }
-  .summary ul li:last-child { border: none; }
-  .summary ul li::before { content: '→'; color: var(--accent); flex-shrink: 0; }
-  .summary ul li strong { color: var(--text); }
-</style>
+    </style>
 </head>
 <body>
-
-<div class="hero">
-  <div class="top-nav">
-    <a href="index.html">🏠 Home</a>
-    <a href="Remote-sensing-content.html">☰ Contents</a>
-  </div>
-  <div class="hero-tag">MCMC · Bayesian Inference · Complete Derivation </div>
-  <h1>Markov Chain Monte Carlo<br/><em>mathematically</em>, step by step</h1>
-  <p>Same toy problem: F(x) = x², y = 9.5. We solve it three ways — posterior geometry, Metropolis-Hastings by hand, then live interactive sampling.</p>
-</div>
-
-<div class="wrap">
-
-<!-- ════════════════════════════════════════════════════════ SECTION 1 -->
-<div class="section">
-  <div class="section-num">SECTION 01</div>
-  <h2>The problem — posterior we want to sample</h2>
-
-  <p>We have a nonlinear forward model <strong>F(x) = x²</strong>, one observation <strong>y = 9.5</strong>, measurement noise σ_ε = 0.5, and a Gaussian prior x_a = 2, σ_a = 2.</p>
-
-  <p>From Bayes' theorem:</p>
-
-  <div class="math-block">
-<span class="comment">── Bayes' theorem ───────────────────────────────────────────────</span>
-<p></p>
-
-<span class="hi">P(x | y)</span>  ∝  <span class="hi2">P(y | x)</span>  ·  <span class="hi3">P(x)</span>
-
-         ∝  exp(−(y − F(x))² / 2σ_ε²)  ·  exp(−(x − x_a)² / 2σ_a²)
-         
-  <p></p>
-
-<span class="comment">── Plug in numbers ──────────────────────────────────────────────</span>
-<p></p>
-
-         ∝  exp(−(9.5 − x²)² / 0.50)  ·  exp(−(x − 2)² / 8)
-  </div>
-
-  <p>This is <strong>not Gaussian in x</strong> because x appears as x² inside the exponential. We cannot evaluate the normalising constant ∫P(x|y)dx analytically. This is exactly where MCMC becomes necessary.</p>
-
-  <div class="callout-warn callout">
-    <strong>Why OE fails here:</strong> OE linearises F(x) ≈ F(x_a) + K(x−x_a) and assumes the posterior is Gaussian. But F(x) = x² is symmetric — there are <strong>two solutions</strong> near x ≈ +3.08 and x ≈ −3.08. OE finds only one. MCMC finds both.
-  </div>
-
-  <p>We define the <strong>cost function</strong> J(x) = −2 log P(x|y), which we minimise in OE but only <em>evaluate</em> in MCMC:</p>
-
-  <div class="math-block">
-<span class="hi">J(x)</span>  =  (9.5 − x²)² / 0.25   +   (x − 2)² / 4
-<p></p>
-           <span class="comment">──────────────────────     ────────────────</span>
-           <p></p>
-           <span class="comment">  measurement term           prior term    </span>
-          <p></p>
-<span class="comment">── Evaluate at key points ───────────────────────────────────────</span>
-<p></p>
-
-   x = −3.08  →  J = 3.67     (second mode — OE misses this!)
-   <p></p>
-   x =  0.00  →  J = 362.25   (very unlikely)<p></p>
-   x = +2.00  →  J = 70.57    (prior mean — moderate)<p></p>
-   x = +3.08  →  J = 2.78     (primary minimum — OE solution)<p></p>
-   x = +3.50  →  J = 12.1     (falling away fast)<p></p>
-  </div>
-
-  <div class="chart-wrap">
-    <canvas id="posteriorChart" height="200"></canvas>
-  </div>
-</div>
-
-
-<!-- ════════════════════════════════════════════════════════ SECTION 2 -->
-<div class="section">
-  <div class="section-num">SECTION 02</div>
-  <h2>What is a Markov chain?</h2>
-
-  <p>A <strong>Markov chain</strong> is a sequence of random variables x_0, x_1, x_2, ... where the next state depends only on the current state — not the full history:</p>
-
-  <div class="math-block">
-P(x_{i+1} | x_i, x_{i-1}, ..., x_0)  =  <span class="hi">P(x_{i+1} | x_i)</span>
-<p></p>
-
-<span class="comment">This is the Markov property — memoryless given the present state.</span>
-  </div>
-
-  <p>The transition kernel T(x_{i+1} | x_i) defines how we move from one state to the next. The magic of MCMC: we <strong>design T</strong> so that the chain's stationary distribution equals our posterior P(x|y).</p>
-
-  <p>The condition that guarantees this is called <strong>detailed balance</strong>:</p>
-
-  <div class="math-block">
-<span class="comment">── Detailed balance (sufficient condition for correct stationary dist.) ──</span>
-<p></p>
-
-<span class="hi">P(x | y)</span> · T(x* | x)  =  <span class="hi">P(x* | y)</span> · T(x | x*)
-<p></p>
-
-<span class="comment">Interpretation: the probability flux from x→x* equals flux from x*→x.</span>
-<p></p>
-<span class="comment">If this holds, the chain cannot drift — it is in equilibrium.</span>
-<p></p>
-  </div>
-
-  <div class="callout">
-    <strong>Key insight:</strong> We never need to compute the normalising constant Z = ∫P(x|y)dx. In any ratio P(x*|y) / P(x|y), the Z cancels. MCMC exploits this completely.
-  </div>
-</div>
-
-
-<!-- ════════════════════════════════════════════════════════ SECTION 3 -->
-<div class="section">
-  <div class="section-num">SECTION 03</div>
-  <h2>Metropolis-Hastings algorithm — full derivation</h2>
-
-  <p>We use a <strong>symmetric Gaussian proposal</strong>: x* ~ N(x_i, σ_prop²). 
-  This means q(x*|x_i) = q(x_i|x*), which simplifies the acceptance ratio.</p>
-
-  <div class="math-block">
-<span class="comment">── Algorithm ────────────────────────────────────────────────────</span>
-<p></p>
-<span class="hi">Initialise:</span>   x_0 = any starting point  (we use x_0 = 0.0)
-<p></p>
-<span class="hi">Proposal σ:</span>   σ_prop = 1.0
-<p></p>
-For i = 0, 1, 2, ..., N:
-<p></p>
-   1. <span class="hi2">Propose:</span>    x*  ~  N(x_i, σ_prop²)
-   <p></p>
-     <span class="comment">← draw from Gaussian centred on current x</span>
-<p></p>
-   2. <span class="hi3">Compute ratio:</span>
-        <pre>
-                       P(x* | y)
-         α  =  min(1, ─────────)
-                       P(x  | y)
-            =  min(1,  exp(−J(x*)/2) / exp(−J(x_i)/2))
-            =  min(1,  exp(−[J(x*) − J(x_i)] / 2))
-        </pre>
-        <p></p>
-        <span class="comment">← only need DIFFERENCE of J — Z cancels!</span>
-        <p></p>
+    <div class="container">
         
-   3. <span class="hi4">Accept/Reject:</span>
-   <p></p>
-         <pre>u  ~  Uniform(0, 1)</pre>
-<p></p>
-            <pre>if u ≤ α:   x_{i+1} = x* <span class="comment">(accept)</span></pre>    
-         <p></p>
-            <pre>else:       x_{i+1} = x_i   <span class="comment">(reject — stay put)</span></pre> 
-         <p></p>
-  </div>
+        <header>
+			<div class="top-nav">
+				<a href="index.html">🏠 Home</a>
+				<a href="Remote-sensing-content.html">☰ Contents</a>
+			</div>
+            <h1>Markov Chain Monte Carlo (MCMC)</h1>
+            <p>Comprehensive Mathematical Theory with Applications to CO₂ Retrieval</p>
+        </header>
+        
+        <nav>
+            <ul>
+                <li><a href="#fundamentals">Fundamentals</a></li>
+                <li><a href="#probability">Probability Theory</a></li>
+                <li><a href="#markov">Markov Chains</a></li>
+                <li><a href="#mcmc-theory">MCMC Theory</a></li>
+                <li><a href="#algorithms">Algorithms</a></li>
+                <li><a href="#co2">CO₂ Application</a></li>
+                <li><a href="#convergence">Convergence</a></li>
+            </ul>
+        </nav>
+        
+        <main>
+            <section class="toc">
+                <h3>Table of Contents</h3>
+                <ol>
+                    <li>Mathematical Fundamentals</li>
+                    <li>Probability Theory and Distributions</li>
+                    <li>Markov Chains and Stationarity</li>
+                    <li>MCMC: Theoretical Framework</li>
+                    <li>MCMC Algorithms (Metropolis-Hastings, Gibbs)</li>
+                    <li>Application to CO₂ Retrieval from Remote Sensing</li>
+                    <li>Convergence Diagnostics and Validation</li>
+                    <li>Computational Considerations</li>
+                </ol>
+            </section>
 
-  <div class="callout-ok callout">
-    <strong>Why this works:</strong> If x* is more probable than x_i (α=1), always accept. If less probable, accept with probability equal to the probability ratio — giving the chain a chance to explore lower-probability regions. Over many steps, the fraction of time spent at any x equals P(x|y).
-  </div>
+            <!-- SECTION 1: FUNDAMENTALS -->
+            <section id="fundamentals">
+                <h2>1. Mathematical Fundamentals</h2>
+                
+                <h3>1.1 Probability Measure and Sample Spaces</h3>
+                <p>A probability measure is a function \(P: \mathcal{F} \rightarrow [0,1]\) defined on a \(\sigma\)-algebra \(\mathcal{F}\) of subsets of a sample space \(\Omega\), satisfying:</p>
+                
+                $$\begin{eqnarray}
+                    P(\Omega) & = & 1 \quad \text{(Normalization)} \\
+                    P(\cup_i A_i) & = & \sum_i P(A_i) \quad \text{for disjoint sets } A_i \text{ (Countable additivity)}
+                \end{eqnarray}$$
 
-  <hr class="divider"/>
+                <h3>1.2 Random Variables and Distributions</h3>
+                <p>A random variable \(X\) is a measurable function \(X:\Omega \rightarrow \mathbb{R}\). The probability distribution of \(X\) is characterized by:</p>
+                
+                <div class="box definition">
+                    <strong>Cumulative Distribution Function (CDF):</strong><br>
+                    $$F(x) = P(X \leq x)$$
+                </div>
+                
+                <p>For continuous distributions, the probability density function (PDF) is:</p>
+                $$f(x) = \frac{dF(x)}{dx}$$
 
-  <h2 style="font-family:var(--serif);font-size:1.3rem;color:#fff;margin-bottom:1.2rem;">Hand calculation — first 5 steps</h2>
+                <h3>1.3 Expectation and Moments</h3>
+                <p>The expectation (mean) of a random variable \(X\) with PDF \(f(x)\) is:</p>
+                $$\mathbb{E}[X] = \int x f(x) dx$$
+                
+                <p>The variance quantifies spread around the mean:</p>
+                $$\text{Var}(X) = \mathbb{E}[(X - \mathbb{E}[X])^2] = \mathbb{E}[X^2] - (\mathbb{E}[X])^2$$
 
-  <p>Starting at x_0 = 0.0, σ_prop = 1.0. We pre-fix the random draws for reproducibility.</p>
+                <p>The covariance between two random variables \(X\) and \(Y\) is:</p>
+                $$\text{Cov}(X,Y) = \mathbb{E}[(X - \mathbb{E}[X])(Y - \mathbb{E}[Y])] = \mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y]$$
 
-  <div class="stepper">
-    <div class="step-nav" id="stepNav"></div>
-    <div id="stepPanels"></div>
-  </div>
-</div>
+                <h3>1.4 Conditional Probability and Independence</h3>
+                <p>The conditional probability of event \(A\) given event \(B\) (where \(P(B) > 0\)) is:</p>
+                $$P(A|B) = \frac{P(A \cap B)}{P(B)}$$
+                
+                <p>For random variables, the conditional density is:</p>
+                $$f(x|y) = \frac{f(x,y)}{f(y)}$$
+                
+                <p>\(X\) and \(Y\) are conditionally independent given \(Z\) if:</p>
+                $$f(x,y|z) = f(x|z)f(y|z)$$
+            </section>
 
+            <!-- SECTION 2: PROBABILITY THEORY -->
+            <section id="probability">
+                <h2>2. Probability Theory and Distributions</h2>
+                
+                <h3>2.1 Joint, Marginal, and Conditional Distributions</h3>
+                <p>For a multivariate distribution with density \(f(x_1, x_2, \ldots, x_n)\):</p>
 
-<!-- ════════════════════════════════════════════════════════ SECTION 4 -->
-<div class="section">
-  <div class="section-num">SECTION 04</div>
-  <h2>Diagnostics — how do we know if the chain is good?</h2>
+                <div class="box definition">
+                    <strong>Marginal distribution of \(X_1\):</strong><br>
+                    $$f(x_1) = \int\int\cdots\int f(x_1, x_2, \ldots, x_n) dx_2 dx_3 \cdots dx_n$$
+                </div>
+                
+                <h3>2.2 Bayes' Theorem</h3>
+                <p>The foundational theorem for Bayesian inference is:</p>
+                $$P(\theta|y) = \frac{P(y|\theta) P(\theta)}{P(y)}$$
+                
+                <p>Or in terms of densities:</p>
+                $$\pi(\theta|y) = \frac{L(y|\theta) \pi(\theta)}{\int L(y|\theta) \pi(\theta) d\theta}$$
 
-  <div class="tbl-wrap">
-  <table>
-    <thead>
-      <tr>
-        <th>Diagnostic</th>
-        <th>What it measures</th>
-        <th>Good value</th>
-        <th>Formula / method</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>Trace plot</strong></td>
-        <td>Looks like a "hairy caterpillar"? Chain is mixing well.</td>
-        <td>No drifts or sticking</td>
-        <td>Plot x_i vs i</td>
-      </tr>
-      <tr>
-        <td><strong>Acceptance rate</strong></td>
-        <td>Fraction of proposals accepted</td>
-        <td class="hl">~23–44%</td>
-        <td>N_accepted / N_total</td>
-      </tr>
-      <tr>
-        <td><strong>Autocorrelation τ</strong></td>
-        <td>How many steps until samples are independent</td>
-        <td class="hl">τ as small as possible</td>
-        <td>τ = 1 + 2Σ ρ_k</td>
-      </tr>
-      <tr>
-        <td><strong>Effective sample size</strong></td>
-        <td>Number of "independent" samples</td>
-        <td class="hl">ESS > 200</td>
-        <td>ESS = N / τ</td>
-      </tr>
-      <tr>
-        <td><strong>Gelman-Rubin R̂</strong></td>
-        <td>Multiple chains agree? (between-chain vs within-chain variance)</td>
-        <td class="hl">R̂ &lt; 1.01</td>
-        <td>R̂ = √(V̂/W) where V̂ = pooled, W = within-chain</td>
-      </tr>
-      <tr>
-        <td><strong>Burn-in</strong></td>
-        <td>Initial transient before chain reaches typical set</td>
-        <td>Discard first ~20%</td>
-        <td>Visual inspection of trace plot</td>
-      </tr>
-    </tbody>
-  </table>
-  </div>
+                <p>Where:</p>
+                <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+                    <li><strong>\(\pi(\theta|y)\)</strong> = Posterior distribution</li>
+                    <li><strong>\(L(y|\theta)\)</strong> = Likelihood function</li>
+                    <li><strong>\(\pi(\theta)\)</strong> = Prior distribution</li>
+                    <li><strong>\(\int L(y|\theta) \pi(\theta) d\theta\)</strong> = Normalizing constant (evidence)</li>
+                </ul>
+                
+                <h3>2.3 Important Distributions</h3>
+                
+                <table>
+                    <tr>
+                        <th>Distribution</th>
+                        <th>PDF/PMF</th>
+                        <th>Mean</th>
+                        <th>Variance</th>
+                    </tr>
+                    <tr>
+                        <td>\(\mathcal{N}(\mu, \sigma^2)\)</td>
+                        <td>\(\frac{1}{\sigma\sqrt{2\pi}} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)\)</td>
+                        <td>\(\mu\)</td>
+                        <td>\(\sigma^2\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(\text{Uniform}(a,b)\)</td>
+                        <td>\(\frac{1}{b-a}\) for \(x \in [a,b]\)</td>
+                        <td>\(\frac{a+b}{2}\)</td>
+                        <td>\(\frac{(b-a)^2}{12}\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(\text{Exponential}(\lambda)\)</td>
+                        <td>\(\lambda \exp(-\lambda x)\)</td>
+                        <td>\(\frac{1}{\lambda}\)</td>
+                        <td>\(\frac{1}{\lambda^2}\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(\text{Beta}(\alpha,\beta)\)</td>
+                        <td>\(\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)} x^{\alpha-1}(1-x)^{\beta-1}\)</td>
+                        <td>\(\frac{\alpha}{\alpha+\beta}\)</td>
+                        <td>\(\frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}\)</td>
+                    </tr>
+                </table>
 
-  <div class="math-block">
-<span class="comment">── Autocorrelation at lag k ──────────────────────────────────────</span>
-<pre>
-         Σ (x_i − x̄)(x_{i+k} − x̄)
-ρ_k  =  ─────────────────────────────
-              Σ (x_i − x̄)²
-</pre>
-<span class="comment">── Integrated autocorrelation time ──────────────────────────────</span>
+                <h3>2.4 Multivariate Normal Distribution</h3>
+                <p>The \(n\)-dimensional multivariate normal distribution has PDF:</p>
+                $$\mathcal{N}(\mathbf{x}|\boldsymbol{\mu}, \boldsymbol{\Sigma}) = (2\pi)^{-n/2} |\boldsymbol{\Sigma}|^{-1/2} \exp\left(-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^T\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})\right)$$
+                
+                <p>Where:</p>
+                <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+                    <li><strong>\(\boldsymbol{\mu} \in \mathbb{R}^n\)</strong> = Mean vector</li>
+                    <li><strong>\(\boldsymbol{\Sigma} \in \mathbb{R}^{n \times n}\)</strong> = Covariance matrix (positive definite)</li>
+                    <li><strong>\(|\boldsymbol{\Sigma}|\)</strong> = Determinant of \(\boldsymbol{\Sigma}\)</li>
+                </ul>
 
-<pre>
-τ  =  1  +  2 Σ_{k=1}^{∞} ρ_k         <span class="comment">← sum until ρ_k ≈ 0</span>
-</pre>
+                <h3>2.5 Log-Probability and Numerical Stability</h3>
+                <p>In computational applications, we work with log-probabilities to avoid underflow:</p>
+                $$\log \pi(\theta|y) = \log L(y|\theta) + \log \pi(\theta) - \log p(y)$$
+                
+                <p>For optimization, we often work with the unnormalized log-posterior:</p>
+                $$\ell(\theta) \propto \log \pi(\theta|y) = \log L(y|\theta) + \log \pi(\theta)$$
+            </section>
 
-<span class="comment">── Effective sample size ─────────────────────────────────────────</span>
+            <!-- SECTION 3: MARKOV CHAINS -->
+            <section id="markov">
+                <h2>3. Markov Chains and Stationarity</h2>
+                
+                <h3>3.1 Markov Property</h3>
+                <p>A sequence of random variables \(\{X_t\}_{t=0}^{\infty}\) forms a Markov chain if:</p>
+                $$P(X_{t+1} = x_{t+1} \mid X_0 = x_0, \ldots, X_t = x_t) = P(X_{t+1} = x_{t+1} \mid X_t = x_t)$$
+                
+                <p>The future depends only on the current state, not the history. This is called the <span class="highlight">memoryless property</span>.</p>
+                
+                <h3>3.2 Transition Kernels</h3>
+                <p>The transition kernel \(K(x, x')\) specifies the probability of moving from state \(x\) to state \(x'\):</p>
+                $$K(x, x') = P(X_{t+1} \in dx' \mid X_t = x)$$
+                
+                <p>For a discrete state space, this is the transition probability matrix \(\mathbf{P}\) with elements:</p>
+                $$P_{ij} = P(X_{t+1} = j \mid X_t = i)$$
+                
+                <p>The transition matrix must satisfy row-stochasticity:</p>
+                $$\sum_j P_{ij} = 1 \quad \text{for all } i$$
 
-<pre>
-ESS  =  N / τ                         <span class="comment">← independent draws equivalent</span>
-</pre>
-  </div>
-</div>
+                <h3>3.3 Stationary Distribution</h3>
+                <p>A probability distribution \(\pi\) is stationary (or invariant) for a Markov chain with transition kernel \(K\) if:</p>
+                $$\pi(x') = \int \pi(x) K(x, x') dx$$
+                
+                <p>In matrix form for discrete chains:</p>
+                $$\boldsymbol{\pi} = \boldsymbol{\pi} \mathbf{P} \quad \text{(\(\boldsymbol{\pi}\) is a left eigenvector of \(\mathbf{P}\) with eigenvalue 1)}$$
+                
+                <div class="box important">
+                    <strong>Key Insight:</strong> If a Markov chain has a stationary distribution \(\pi\) and satisfies certain ergodicity conditions, then samples from the chain converge to \(\pi\) regardless of the starting distribution.
+                </div>
 
+                <h3>3.4 Detailed Balance (Reversibility)</h3>
+                <p>A chain satisfies detailed balance with respect to \(\pi\) if:</p>
+                $$\pi(x) K(x, x') = \pi(x') K(x', x)$$
+                
+                <p>Detailed balance is a sufficient (but not necessary) condition for \(\pi\) to be the stationary distribution.</p>
+                
+                <h3>3.5 Ergodicity and Convergence</h3>
+                <p>A chain is ergodic if it satisfies:</p>
+                <ol style="margin-left: 2rem; margin-bottom: 1rem;">
+                    <li><strong>Irreducibility:</strong> From any state, we can reach any other state in a finite number of steps</li>
+                    <li><strong>Aperiodicity:</strong> The chain does not return to states in cycles of fixed length \(> 1\)</li>
+                </ol>
+                
+                <p>For an ergodic chain with stationary distribution \(\pi\):</p>
+                $$\lim_{t \to \infty} P(X_t \in A \mid X_0 = x) = \pi(A) \quad \text{for all } x \text{ and measurable sets } A$$
 
-<!-- ════════════════════════════════════════════════════════ SECTION 5 -->
-<div class="section">
-  <div class="section-num">SECTION 05</div>
-  <h2>Live MCMC simulation — interact</h2>
+                <h3>3.6 Law of Large Numbers for Markov Chains</h3>
+                <p>Under ergodicity, empirical averages converge to expectations under \(\pi\):</p>
+                $$\frac{1}{T} \sum_{t=1}^{T} f(X_t) \to \int f(x) \pi(x) dx \quad \text{as } T \to \infty$$
+                
+                <p>This is the basis for MCMC inference: we can estimate posterior expectations by averaging over sampled chains.</p>
+            </section>
 
-  <p>Run Metropolis-Hastings on our problem F(x) = x², y = 9.5. Adjust the proposal width and see how it affects mixing and the recovered posterior shape.</p>
+            <!-- SECTION 4: MCMC THEORY -->
+            <section id="mcmc-theory">
+                <h2>4. MCMC: Theoretical Framework</h2>
+                
+                <h3>4.1 The Core Principle</h3>
+                <p>MCMC constructs a Markov chain whose stationary distribution is a target distribution \(\pi\) (e.g., a posterior). We then sample from this chain and use the samples to estimate quantities of interest.</p>
+                
+                <div class="box definition">
+                    <strong>Bayesian Inference with MCMC:</strong><br>
+                    Given observed data \(y\) and a model with parameters \(\theta\):<br>
+                    <br>
+                    1. Define likelihood: \(L(y|\theta)\)<br>
+                    2. Choose prior: \(\pi(\theta)\)<br>
+                    3. Posterior: \(\pi(\theta|y) \propto L(y|\theta) \pi(\theta)\)<br>
+                    4. Design Markov chain with \(\pi(\theta|y)\) as stationary distribution<br>
+                    5. Sample: \(\theta^{(1)}, \theta^{(2)}, \ldots, \theta^{(n)}\)<br>
+                    6. Estimate: \(\mathbb{E}[g(\theta)|y] \approx \frac{1}{N} \sum_{i} g(\theta^{(i)})\)
+                </div>
 
-  <div class="demo-controls">
-    <div class="ctrl-group">
-      <label>PROPOSAL WIDTH σ_prop</label>
-      <input type="range" id="sigProp" min="0.1" max="4.0" step="0.1" value="1.0"/>
-      <span class="ctrl-val" id="sigPropVal">1.0</span>
+                <h3>4.2 Why MCMC Works</h3>
+                <p>MCMC solves a fundamental problem: we want to sample from \(\pi\) but can only evaluate it up to a normalizing constant.</p>
+                
+                <p>If we construct a chain with transition kernel \(K\) such that:</p>
+                <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+                    <li>\(\pi\) is the stationary distribution of \(K\)</li>
+                    <li>The chain is irreducible and aperiodic</li>
+                </ul>
+                
+                <p>Then for large enough \(t\), \(X_t \sim \pi\) (approximately).</p>
+                
+                <h3>4.3 Acceptance-Rejection Framework</h3>
+                <p>Many MCMC algorithms use an accept-reject mechanism. Proposed move from \(x\) to \(x'\) is accepted with probability:</p>
+                $$\alpha(x, x') = \min(1, r(x, x'))$$
+                
+                <p>Where \(r(x, x')\) depends on the algorithm. With this mechanism:</p>
+                $$K(x, x') = \alpha(x, x') q(x, x') + \left(1 - \int \alpha(x, z) q(x, z) dz\right) \delta(x)(x')$$
+                
+                <p>Where \(q(x, x')\) is the proposal distribution and \(\delta(x)(x')\) is the point mass at \(x\) (stay in place if rejected).</p>
+
+                <h3>4.4 Metropolis-Hastings Condition</h3>
+                <p>To ensure detailed balance (and thus \(\pi\) as the stationary distribution), we need:</p>
+                $$\pi(x) q(x, x') \alpha(x, x') = \pi(x') q(x', x) \alpha(x', x)$$
+                
+                <p>The Metropolis-Hastings ratio ensures this:</p>
+                $$r(x, x') = \frac{\pi(x') q(x', x)}{\pi(x) q(x, x')}$$
+                
+                <p>With acceptance probability \(\alpha(x, x') = \min(1, r(x, x'))\), detailed balance is automatically satisfied.</p>
+
+                <h3>4.5 Burn-in and Mixing</h3>
+                <p>Due to dependence on initial conditions, early samples are discarded (burn-in phase). After burn-in, we approximate:</p>
+                $$\pi(\theta|y) \approx \frac{1}{N-B} \sum_{t=B+1}^{N} \delta(\theta^{(t)})$$
+                
+                <p>Where \(B\) is the burn-in period. <span class="highlight">Mixing</span> refers to how quickly the chain explores the posterior—faster mixing means faster convergence.</p>
+            </section>
+
+            <!-- SECTION 5: ALGORITHMS -->
+            <section id="algorithms">
+                <h2>5. MCMC Algorithms</h2>
+                
+                <h3>5.1 Metropolis-Hastings Algorithm</h3>
+                <p>The most general MCMC algorithm. Given target \(\pi\) and proposal \(q\):</p>
+                
+                <div class="algo-box">
+                    <h4>Metropolis-Hastings Algorithm</h4>
+                    <div class="algo-step">
+                        <strong>Initialize:</strong> Start with \(\theta^{(0)}\)
+                    </div>
+                    <div class="algo-step">
+                        <strong>For \(t = 0, 1, 2, \ldots, N-1\):</strong>
+                    </div>
+                    <div style="margin-left: 2rem;">
+                        <div class="algo-step">
+                            <strong>1. Propose:</strong> \(\theta^* \sim q(\cdot|\theta^{(t)})\)
+                        </div>
+                        <div class="algo-step">
+                            <strong>2. Compute acceptance ratio:</strong>
+                            $$r = \frac{\pi(\theta^*) q(\theta^{(t)}|\theta^*)}{\pi(\theta^{(t)}) q(\theta^*|\theta^{(t)})}$$
+                        </div>
+                        <div class="algo-step">
+                            <strong>3. Accept/Reject:</strong> With probability \(\min(1, r)\) accept \(\theta^*\) and set \(\theta^{(t+1)} = \theta^*\), otherwise \(\theta^{(t+1)} = \theta^{(t)}\)
+                        </div>
+                    </div>
+                </div>
+
+                <h3>5.2 Random Walk Metropolis</h3>
+                <p>A simple proposal using a symmetric random walk:</p>
+                $$q(\theta^*|\theta^{(t)}) = \mathcal{N}(\theta^*|\theta^{(t)}, \sigma^2 \mathbf{I})$$
+                
+                <p>This is symmetric, so \(q(\theta^{(t)}|\theta^*) = q(\theta^*|\theta^{(t)})\), and the acceptance ratio simplifies to:</p>
+                $$r = \frac{\pi(\theta^*)}{\pi(\theta^{(t)})}$$
+                
+                <p>The proposal variance \(\sigma^2\) controls step size—tuning it is critical for efficiency.</p>
+
+                <h3>5.3 Gibbs Sampling</h3>
+                <p>For multivariate targets, Gibbs sampling updates one component at a time from its full conditional:</p>
+                
+                <div class="algo-box">
+                    <h4>Gibbs Sampling</h4>
+                    <div class="algo-step">
+                        <strong>Initialize:</strong> \(\theta^{(0)} = (\theta_1^{(0)}, \ldots, \theta_p^{(0)})\)
+                    </div>
+                    <div class="algo-step">
+                        <strong>For \(t = 0, 1, \ldots, N-1\):</strong>
+                    </div>
+                    <div style="margin-left: 2rem;">
+                        <div class="algo-step">
+                            <strong>For \(j = 1, 2, \ldots, p\):</strong>
+                        </div>
+                        <div style="margin-left: 2rem;">
+                            <div class="algo-step">
+                                Sample \(\theta_j^{(t+1)} \sim \pi(\theta_j \mid \theta_1^{(t+1)}, \ldots, \theta_{j-1}^{(t+1)}, \theta_{j+1}^{(t)}, \ldots, \theta_p^{(t)})\)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p>Gibbs sampling always accepts moves (acceptance rate = 100%) when full conditionals are tractable.</p>
+
+                <h3>5.4 Adaptive Metropolis</h3>
+                <p>Adapt proposal covariance online to improve mixing. At iteration \(t\), use estimated posterior covariance:</p>
+                $$\boldsymbol{\Sigma}^{(t)} = \text{Cov}(\theta^{(1)}, \ldots, \theta^{(t)}) + \varepsilon \mathbf{I}$$
+                
+                <p>And propose:</p>
+                $$\theta^* \sim \mathcal{N}\left(\theta^{(t)}, \frac{2.38^2}{p} \boldsymbol{\Sigma}^{(t)}\right)$$
+                
+                <p>The constant \(\frac{2.38^2}{p}\) is optimal for high-dimensional Gaussians (Gelman et al., 1997).</p>
+
+                <h3>5.5 Hamiltonian Monte Carlo (HMC)</h3>
+                <p>Uses gradient information to propose moves that are less likely to be rejected.</p>
+                
+                <p>Augment parameter space with auxiliary momentum variables \(\mathbf{p} \sim \mathcal{N}(0, \mathbf{M})\):</p>
+                $$H(\theta, \mathbf{p}) = -\log \pi(\theta) + \frac{1}{2} \mathbf{p}^T \mathbf{M}^{-1} \mathbf{p}$$
+                
+                <p>Proposal follows Hamiltonian dynamics:</p>
+                $$\frac{d\theta}{dt} = \nabla_{\mathbf{p}} H = \mathbf{M}^{-1} \mathbf{p}$$
+                $$\frac{d\mathbf{p}}{dt} = -\nabla_{\theta} H = \nabla \log \pi(\theta)$$
+                
+                <p>HMC typically has much higher acceptance rates and better mixing than random walk methods, especially in high dimensions.</p>
+
+                <h3>5.6 No-U-Turn Sampler (NUTS)</h3>
+                <p>An extension of HMC that automatically determines trajectory length by detecting when the chain starts doubling back (U-turn).</p>
+                
+                <p>This reduces manual tuning and improves efficiency for complex posteriors.</p>
+            </section>
+
+            <!-- SECTION 6: CO2 APPLICATION -->
+            <section id="co2">
+                <h2>6. Application to CO₂ Retrieval from Remote Sensing</h2>
+                
+                <h3>6.1 Remote Sensing Inverse Problem</h3>
+                <p>Estimating atmospheric CO₂ from satellite measurements is an inverse problem:</p>
+                $$\mathbf{y} = \mathbf{f}(\theta) + \varepsilon$$
+                
+                <p>Where:</p>
+                <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+                    <li><strong>\(\mathbf{y}\)</strong> = Observed spectral radiances (measurements)</li>
+                    <li><strong>\(\mathbf{f}(\theta)\)</strong> = Forward radiative transfer model</li>
+                    <li><strong>\(\theta\)</strong> = Parameters (CO₂ column, temperature profile, surface albedo, aerosols, ...)</li>
+                    <li><strong>\(\varepsilon \sim \mathcal{N}(0, \boldsymbol{\Sigma}_{\text{noise}})\)</strong> = Measurement error</li>
+                </ul>
+
+                <h3>6.2 Bayesian Formulation</h3>
+                <p>Define the likelihood assuming Gaussian errors:</p>
+                $$L(\mathbf{y}|\theta) = (2\pi)^{-m/2} |\boldsymbol{\Sigma}_{\text{noise}}|^{-1/2} \exp\left(-\frac{1}{2}(\mathbf{y} - \mathbf{f}(\theta))^T \boldsymbol{\Sigma}_{\text{noise}}^{-1}(\mathbf{y} - \mathbf{f}(\theta))\right)$$
+                
+                <p>The prior \(\pi(\theta)\) encodes information from climatology, seasonality, and physical constraints. For CO₂:</p>
+                $$\pi(\theta) = \mathcal{N}(\theta|\boldsymbol{\mu}_{\text{prior}}, \boldsymbol{\Sigma}_{\text{prior}}) \times \mathbb{I}(\text{physical\_bounds})$$
+
+                <p>The posterior combines likelihood and prior:</p>
+                $$\pi(\theta|y) \propto L(\mathbf{y}|\theta) \pi(\theta)$$
+
+                <h3>6.3 Parameter Space for CO₂ Retrieval</h3>
+                <p>In CO₂ retrieval problems, parameters typically include:</p>
+                
+                <table>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Physical Meaning</th>
+                        <th>Typical Range</th>
+                    </tr>
+                    <tr>
+                        <td>\(X_{\text{CO}_2}\)</td>
+                        <td>CO₂ column-averaged mole fraction</td>
+                        <td>380–420 ppm</td>
+                    </tr>
+                    <tr>
+                        <td>\(T(z)\)</td>
+                        <td>Temperature profile</td>
+                        <td>200–300 K</td>
+                    </tr>
+                    <tr>
+                        <td>\(P_{\text{surface}}\)</td>
+                        <td>Surface pressure</td>
+                        <td>900–1050 hPa</td>
+                    </tr>
+                    <tr>
+                        <td>\(\text{Albedo}\)</td>
+                        <td>Surface reflectivity</td>
+                        <td>0.01–0.6</td>
+                    </tr>
+                    <tr>
+                        <td>\(\text{Aerosol}\)</td>
+                        <td>Optical depth & properties</td>
+                        <td>0–2</td>
+                    </tr>
+                </table>
+
+                <h3>6.4 Advantages of MCMC for CO₂ Retrieval</h3>
+                
+                <div class="box">
+                    <strong>Why MCMC is ideal for CO₂ retrieval:</strong>
+                    <ul style="margin-left: 1rem;">
+                        <li>Handles <strong>high-dimensional parameter spaces</strong> (temperature profile, aerosols)</li>
+                        <li>Quantifies <strong>full posterior distributions</strong>, not just point estimates</li>
+                        <li>Accounts for <strong>correlated uncertainties</strong> via covariance matrices</li>
+                        <li>Scales to <strong>large datasets</strong> when using parallel chains</li>
+                        <li>Provides <strong>uncertainty propagation</strong> through forward model</li>
+                        <li>Naturally handles <strong>nuisance parameters</strong> via marginalization</li>
+                    </ul>
+                </div>
+
+                <h3>6.5 MCMC Implementation for CO₂</h3>
+                <p>A practical workflow:</p>
+                
+                <div class="algo-box">
+                    <h4>CO₂ Retrieval with MCMC</h4>
+                    <div class="algo-step">
+                        <strong>1. Prepare data:</strong> Spectral measurements \(\mathbf{y}\), measurement covariance \(\boldsymbol{\Sigma}_{\text{noise}}\), prior \(\theta_0\) and \(\boldsymbol{\Sigma}_{\text{prior}}\)
+                    </div>
+                    <div class="algo-step">
+                        <strong>2. Define log-posterior:</strong>
+                        $$\log \pi(\theta|y) = -\frac{1}{2}(\mathbf{y} - \mathbf{f}(\theta))^T \boldsymbol{\Sigma}_{\text{noise}}^{-1}(\mathbf{y} - \mathbf{f}(\theta)) - \frac{1}{2}(\theta - \theta_0)^T \boldsymbol{\Sigma}_{\text{prior}}^{-1}(\theta - \theta_0) - \frac{1}{2} \log|\boldsymbol{\Sigma}_{\text{noise}}| - \frac{1}{2} \log|\boldsymbol{\Sigma}_{\text{prior}}| + \text{const}$$
+                    </div>
+                    <div class="algo-step">
+                        <strong>3. Initialize:</strong> \(\theta^{(0)}\) from prior or optimization
+                    </div>
+                    <div class="algo-step">
+                        <strong>4. Run M parallel chains</strong> with HMC or Adaptive Metropolis for \(N_{\text{iter}}\) iterations
+                    </div>
+                    <div class="algo-step">
+                        <strong>5. Discard burn-in:</strong> Keep samples \(\theta^{(b)}, \ldots, \theta^{(N)}\) where \(b = 0.3N\)
+                    </div>
+                    <div class="algo-step">
+                        <strong>6. Retrieve CO₂:</strong> 
+                        $$X_{\text{CO}_2} = \int X_{\text{CO}_2}(\theta) \pi(\theta|y) d\theta \approx \frac{1}{N-b} \sum_{t=b}^{N} X_{\text{CO}_2}(\theta^{(t)})$$
+                    </div>
+                    <div class="algo-step">
+                        <strong>7. Uncertainty quantification:</strong> 
+                        $$\sigma_{X_{\text{CO}_2}} = \sqrt{\text{Var}(X_{\text{CO}_2}(\theta)) + \mathbb{E}[(\nabla_{\theta} \mathbf{f} \cdot \text{Cov}(\theta))^T]}$$
+                    </div>
+                </div>
+
+                <h3>6.6 Computational Considerations</h3>
+                <p>For operational CO₂ retrieval:</p>
+                
+                <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+                    <li>Forward model evaluation is expensive (radiative transfer) → use emulators or surrogates</li>
+                    <li>Parameter correlations are strong → adaptive methods essential</li>
+                    <li>Real-time processing demands → parallel chains, GPU acceleration</li>
+                    <li>Validation requires reference data (TCCON, in-situ) → posterior predictive checks</li>
+                </ul>
+            </section>
+
+            <!-- SECTION 7: CONVERGENCE -->
+            <section id="convergence">
+                <h2>7. Convergence Diagnostics and Validation</h2>
+                
+                <h3>7.1 The Convergence Problem</h3>
+                <p>We don't know when the chain has converged to the stationary distribution. Diagnostics help assess convergence.</p>
+
+                <h3>7.2 Trace Plots and Visual Inspection</h3>
+                <p>Plot \(\theta^{(t)}\) vs. iteration \(t\). Look for:</p>
+                <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+                    <li><strong>Stationarity:</strong> No obvious trends</li>
+                    <li><strong>Mixing:</strong> Random fluctuation around mean</li>
+                    <li><strong>No stuck chains:</strong> Chain explores full posterior</li>
+                </ul>
+
+                <h3>7.3 Potential Scale Reduction Factor (PSRF) / \(\hat{R}\)</h3>
+                <p>Run \(M\) independent chains. Compute within-chain (\(W\)) and between-chain (\(B\)) variances:</p>
+                $$W = \frac{1}{M} \sum_{m=1}^{M} s_m^2$$
+                
+                $$B = \frac{n}{M-1} \sum_{m=1}^{M} (\bar{\theta}_m - \bar{\theta})^2$$
+                
+                <p>Where \(\bar{\theta}_m\) is the mean of chain \(m\), \(\bar{\theta}\) is the overall mean, and \(n\) is chain length.</p>
+                
+                <p>The PSRF is:</p>
+                $$\hat{R} = \sqrt{\frac{(n-1)W + B}{nW}}$$
+                
+                <div class="box definition">
+                    <strong>Convergence criterion:</strong> \(\hat{R} < 1.01\) (or \(\hat{R} < 1.05\)) indicates convergence
+                </div>
+
+                <h3>7.4 Effective Sample Size (ESS)</h3>
+                <p>Due to autocorrelation, MCMC samples are not independent. The effective sample size is:</p>
+                $$\text{ESS} = \frac{N}{\tau}$$
+                
+                <p>Where \(\tau\) is the integrated autocorrelation time:</p>
+                $$\tau = 1 + 2 \sum_{k=1}^{\infty} \rho(k)$$
+                
+                <p>And \(\rho(k)\) is the autocorrelation at lag \(k\). Rule of thumb: ESS > 400 per parameter.</p>
+
+                <h3>7.5 Autocorrelation Function</h3>
+                <p>The autocorrelation at lag \(k\) is:</p>
+                $$\rho(k) = \frac{\text{Cov}(\theta^{(t)}, \theta^{(t+k)})}{\text{Var}(\theta)}$$
+                
+                <p>Plot \(\rho(k)\) vs. \(k\). Should decay quickly to 0. Slow decay → poor mixing, need longer chains.</p>
+
+                <h3>7.6 Posterior Predictive Checks</h3>
+                <p>Generate predictions from posterior samples:</p>
+                $$\mathbf{y}_{\text{rep}}^{(t)} \sim p(\mathbf{y} \mid \theta^{(t)})$$
+                
+                <p>Compare posterior predictive distribution with observed data \(\mathbf{y}\):</p>
+                $$p(\mathbf{y}_{\text{rep}} \mid \mathbf{y}) = \int p(\mathbf{y}_{\text{rep}} \mid \theta) \pi(\theta|\mathbf{y}) d\theta \approx \frac{1}{N} \sum_{t} p(\mathbf{y}_{\text{rep}} \mid \theta^{(t)})$$
+                
+                <p>If model is well-calibrated, \(\mathbf{y}\) should look like draws from \(p(\mathbf{y}_{\text{rep}} \mid \mathbf{y})\).</p>
+
+                <h3>7.7 Validation Against Reference Data</h3>
+                <p>For CO₂ retrieval, validate against ground truth:</p>
+                $$\text{RMSE} = \sqrt{\frac{1}{n} \sum_{i} (X_{\text{CO}_2, \text{retrieved}, i} - X_{\text{CO}_2, \text{true}, i})^2}$$
+                
+                $$\text{Bias} = \frac{1}{n} \sum_{i} (X_{\text{CO}_2, \text{retrieved}, i} - X_{\text{CO}_2, \text{true}, i})$$
+                
+                $$\text{Coverage} = P(X_{\text{CO}_2, \text{true}} \in [X_{\text{CO}_2, \text{retrieved}} \pm 2\sigma]) \approx 0.95$$
+            </section>
+
+            <!-- SECTION 8: COMPUTATIONAL CONSIDERATIONS -->
+            <section id="computational">
+                <h2>8. Computational Considerations and Advanced Topics</h2>
+                
+                <h3>8.1 Tuning Proposal Distributions</h3>
+                <p>For random walk proposals, optimal acceptance rate is ~0.234 in high dimensions (Gelman et al., 1997):</p>
+                
+                <div class="box definition">
+                    <strong>Tuning procedure:</strong><br>
+                    If acceptance rate < 0.2, reduce proposal variance<br>
+                    If acceptance rate > 0.3, increase proposal variance<br>
+                    Target: acceptance rate ≈ 0.234
+                </div>
+
+                <h3>8.2 Parallel Tempering</h3>
+                <p>Run \(M\) chains at different "temperatures":</p>
+                $$\pi_{\tau_m}(\theta) \propto [\pi(\theta)]^{1/\tau_m} \quad \text{where } 1 = \tau_1 < \tau_2 < \ldots < \tau_m$$
+                
+                <p>Hotter chains explore more, and they occasionally swap states with cooler chains. This helps escape local modes.</p>
+
+                <h3>8.3 Variational Inference as Approximation</h3>
+                <p>For large-scale problems, variational inference provides a fast approximation to the posterior:</p>
+                $$q^*(\varphi) = \arg\min_{q \in \mathcal{Q}} \text{KL}(q||\pi) = \arg\max_{q} \int q(\theta) \log \pi(\theta|\mathbf{y}) d\theta - \int q(\theta) \log q(\theta) d\theta$$
+                
+                <p>The advantage: no burn-in, no convergence diagnostics. The disadvantage: approximation error, biased uncertainty estimates.</p>
+
+                <h3>8.4 Emulators and Surrogate Models</h3>
+                <p>When the forward model is expensive, train a surrogate:</p>
+                $$\hat{\mathbf{f}}(\theta) \approx \mathbf{f}(\theta) \quad \text{where } \hat{\mathbf{f}} \text{ is fast to evaluate}$$
+                
+                <p>Options: Gaussian processes, neural networks, polynomial chaos. Use true model for final refinement.</p>
+
+                <h3>8.5 Importance Sampling and Reweighting</h3>
+                <p>If you have samples from \(q(\theta)\), estimate integrals under \(\pi(\theta)\):</p>
+                $$\mathbb{E}_{\pi}[g(\theta)] = \int g(\theta) \pi(\theta) d\theta \approx \sum_{i} w_i g(\theta_i)$$
+                
+                <p>Where weights are:</p>
+                $$w_i = \frac{\pi(\theta_i)}{q(\theta_i)} \quad \text{(normalized to sum to 1)}$$
+                
+                <p>Useful for re-weighting existing MCMC samples without re-running the chain.</p>
+
+                <h3>8.6 Software Implementations</h3>
+                <table>
+                    <tr>
+                        <th>Software</th>
+                        <th>Language</th>
+                        <th>Algorithms</th>
+                        <th>Best For</th>
+                    </tr>
+                    <tr>
+                        <td>Stan</td>
+                        <td>C++/R/Python</td>
+                        <td>HMC, NUTS</td>
+                        <td>General Bayesian inference</td>
+                    </tr>
+                    <tr>
+                        <td>PyMC3/PyMC</td>
+                        <td>Python</td>
+                        <td>NUTS, Gibbs, custom</td>
+                        <td>Flexible modeling</td>
+                    </tr>
+                    <tr>
+                        <td>JAGS</td>
+                        <td>C++/R</td>
+                        <td>Gibbs, slice sampling</td>
+                        <td>Hierarchical models</td>
+                    </tr>
+                    <tr>
+                        <td>Emcee</td>
+                        <td>Python</td>
+                        <td>Affine invariant ensemble</td>
+                        <td>High-dimensional posteriors</td>
+                    </tr>
+                    <tr>
+                        <td>Julia (Turing.jl)</td>
+                        <td>Julia</td>
+                        <td>HMC, Gibbs, custom</td>
+                        <td>Scientific computing, speed</td>
+                    </tr>
+                </table>
+            </section>
+
+            <!-- SECTION 9: SUMMARY -->
+            <section id="summary">
+                <h2>Summary: Key Takeaways</h2>
+                
+                <div class="box important">
+                    <h3 style="margin-top: 0;">Essential Concepts</h3>
+                    <ol style="margin-left: 1.5rem;">
+                        <li><strong>MCMC constructs a Markov chain</strong> whose stationary distribution equals the target posterior</li>
+                        <li><strong>Bayesian inference</strong> combines likelihood and prior to form a posterior</li>
+                        <li><strong>Metropolis-Hastings</strong> is the most general algorithm; acceptance ratio ensures correct stationary distribution</li>
+                        <li><strong>Gibbs sampling</strong> is efficient when full conditionals are tractable</li>
+                        <li><strong>HMC/NUTS</strong> use gradients for better mixing and higher acceptance rates</li>
+                        <li><strong>Convergence diagnostics</strong> (\(\hat{R}\), ESS, trace plots) assess chain behavior</li>
+                        <li><strong>Uncertainty quantification</strong> is automatic from posterior samples</li>
+                        <li><strong>CO₂ retrieval</strong> benefits from MCMC's ability to handle high-dimensional correlated parameters</li>
+                    </ol>
+                </div>
+
+                <h3>The MCMC Workflow for CO₂ Retrieval</h3>
+                <ol style="margin-left: 2rem; margin-bottom: 1rem;">
+                    <li>Formulate Bayesian model: likelihood from radiative transfer, prior from climatology</li>
+                    <li>Implement (or use existing) MCMC sampler with efficient proposals</li>
+                    <li>Run parallel chains from dispersed starting points</li>
+                    <li>Monitor convergence (\(\hat{R}\), ESS, mixing time)</li>
+                    <li>Discard burn-in; keep post-convergence samples</li>
+                    <li>Estimate CO₂ and uncertainties from posterior samples</li>
+                    <li>Validate with ground truth data (TCCON, aircraft)</li>
+                    <li>Quantify systematic errors via posterior predictive checks</li>
+                </ol>
+
+                <h3>Why MCMC is Ideal for Remote Sensing Inverse Problems</h3>
+                <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+                    <li>✓ Handles ill-posed problems with strong prior information</li>
+                    <li>✓ Propagates uncertainty through expensive forward models</li>
+                    <li>✓ Natural accounting for correlated measurement errors</li>
+                    <li>✓ Scales to many simultaneous unknown parameters</li>
+                    <li>✓ Marginalizes nuisance parameters automatically</li>
+                    <li>✓ Provides full posterior, not just point estimates</li>
+                </ul>
+            </section>
+
+        </main>
+
+        <footer>
+            <p>This document provides a self-contained treatment of MCMC theory with emphasis on applications to atmospheric remote sensing and CO₂ retrieval.</p>
+            <p><strong>Key References:</strong></p>
+            <ul style="text-align: left; max-width: 1200px; width:98%; margin: 1rem auto; line-height: 1.8;">
+                <li>Gelman, A., et al. (2013). <em>Bayesian Data Analysis</em>. Chapman and Hall/CRC. (3rd edition)</li>
+                <li>Brooks, S. P., & Gelman, A. (1998). General methods for monitoring convergence of iterative simulations. <em>Journal of Computational and Graphical Statistics</em>, 7(4), 434-455.</li>
+                <li>Neal, R. M. (2011). MCMC using Hamiltonian dynamics. In <em>Handbook of Markov Chain Monte Carlo</em>, pp. 113-162.</li>
+                <li>Hoffman, M. D., & Gelman, A. (2014). The No-U-Turn Sampler: adaptively setting path lengths in Hamiltonian Monte Carlo. <em>JMLR</em>, 15(1), 1593-1623.</li>
+                <li>Rodgers, C. D. (2000). <em>Inverse Methods for Atmospheric Sounding: Theory and Practice</em>. World Scientific.</li>
+            </ul>
+        </footer>
     </div>
-    <div class="ctrl-group">
-      <label>CHAIN LENGTH N</label>
-      <input type="range" id="chainLen" min="500" max="20000" step="500" value="5000"/>
-      <span class="ctrl-val" id="chainLenVal">5000</span>
-    </div>
-    <div class="ctrl-group">
-      <label>BURN-IN FRACTION</label>
-      <input type="range" id="burnin" min="0.05" max="0.5" step="0.05" value="0.2"/>
-      <span class="ctrl-val" id="burninVal">20%</span>
-    </div>
-  </div>
-
-  <button class="run-btn" id="runBtn">Run MCMC</button>
-
-  <div class="prog-wrap"><div class="prog-bar" id="progBar"></div></div>
-
-  <div class="stats-row" id="statsRow" style="display:none">
-    <div class="stat-card"><div class="slabel">MEAN x̂</div><div class="sval" id="statMean">—</div></div>
-    <div class="stat-card"><div class="slabel">STD σ_post</div><div class="sval" id="statStd">—</div></div>
-    <div class="stat-card"><div class="slabel">ACCEPT RATE</div><div class="sval" id="statAcc">—</div></div>
-    <div class="stat-card"><div class="slabel">ESS (approx)</div><div class="sval" id="statESS">—</div></div>
-  </div>
-
-  <div class="chart-wrap" id="traceWrap" style="display:none">
-    <canvas id="traceChart" height="140"></canvas>
-  </div>
-  <div class="chart-wrap" id="histWrap" style="display:none">
-    <canvas id="histChart" height="200"></canvas>
-  </div>
-
-  <div class="callout" id="interpBox" style="display:none">
-    <strong>Interpretation will appear here after running MCMC.</strong>
-  </div>
-</div>
-
-
-<!-- ════════════════════════════════════════════════════════ SECTION 6 -->
-<div class="section">
-  <div class="section-num">SECTION 06</div>
-  <h2>OE vs MCMC — what each gives you</h2>
-
-  <div class="tbl-wrap">
-  <table>
-    <thead>
-      <tr><th>Aspect</th><th>Optimal Estimation (OE)</th><th>MCMC (M-H)</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>Output</strong></td>
-        <td>Single point x̂ + Gaussian Sx</td>
-        <td>Samples from true P(x|y)</td>
-      </tr>
-      <tr>
-        <td><strong>Posterior shape</strong></td>
-        <td>Always Gaussian (assumption)</td>
-        <td>Any shape — multimodal, skewed</td>
-      </tr>
-      <tr>
-        <td><strong>Modes found</strong></td>
-        <td>Only 1 (nearest to start)</td>
-        <td>All modes (if chain mixes)</td>
-      </tr>
-      <tr>
-        <td><strong>Speed</strong></td>
-        <td class="hl">~5 iterations → seconds</td>
-        <td>10⁴–10⁶ samples → minutes</td>
-      </tr>
-      <tr>
-        <td><strong>Nonlinearity</strong></td>
-        <td>Linearises F(x) — fails badly if curved</td>
-        <td>Handles full nonlinearity exactly</td>
-      </tr>
-      <tr>
-        <td><strong>Key formula</strong></td>
-        <td>Sx = (KᵀSε⁻¹K + Sa⁻¹)⁻¹</td>
-        <td>α = min(1, P(x*|y)/P(x|y))</td>
-      </tr>
-      <tr>
-        <td><strong>Used in practice for CO₂</strong></td>
-        <td>Operational (millions of soundings/day)</td>
-        <td>Algorithm development, difficult scenes</td>
-      </tr>
-    </tbody>
-  </table>
-  </div>
-</div>
-
-
-<!-- ════════════════════════════════════════════════════════ SUMMARY -->
-<div class="summary">
-  <h3>Key equations to remember</h3>
-  <ul>
-    <li><strong>Posterior:</strong> P(x|y) ∝ exp(−J(x)/2), where J = measurement misfit + prior misfit</li>
-    <li><strong>Proposal step:</strong> x* ~ N(x_i, σ_prop²) — Gaussian random walk</li>
-    <li><strong>Acceptance ratio:</strong> α = min(1, exp(−ΔJ/2)) where ΔJ = J(x*) − J(x_i)</li>
-    <li><strong>Detailed balance:</strong> P(x|y)·T(x*|x) = P(x*|y)·T(x|x*) — guarantees correct stationary distribution</li>
-    <li><strong>ESS:</strong> N_eff = N / τ where τ is integrated autocorrelation time</li>
-    <li><strong>Proposal tuning:</strong> too narrow → high acceptance but slow mixing; too wide → low acceptance and slow mixing; sweet spot ≈ 23% acceptance for 1D</li>
-    <li><strong>Burn-in:</strong> discard early samples before chain reaches typical set of the posterior</li>
-  </ul>
-</div>
-
-</div><!-- /wrap -->
-
-<script>
-const J = x => Math.pow(9.5 - x*x, 2)/0.25 + Math.pow(x - 2, 2)/4;
-const logP = x => -J(x)/2;
-
-const DARK = '#0b0e17';
-const SURFACE = '#161b28';
-const BORDER = '#222840';
-const ACCENT  = '#5b8dee';
-const ACCENT2 = '#e8735a';
-const ACCENT3 = '#5dbd8a';
-const MUTED   = '#7a85a3';
-const TEXT    = '#dde3f0';
-
-Chart.defaults.color = MUTED;
-Chart.defaults.borderColor = BORDER;
-Chart.defaults.font.family = "'DM Mono', monospace";
-Chart.defaults.font.size = 11;
-
-/* ── Posterior shape chart ───────────────────────────────────── */
-(function(){
-  const xs = [], trueP = [], jVals = [];
-  for(let x=-5; x<=5; x+=0.05){
-    xs.push(+x.toFixed(2));
-    const j = J(x);
-    jVals.push(+j.toFixed(3));
-    trueP.push(+(Math.exp(-j/2)).toFixed(6));
-  }
-  const maxP = Math.max(...trueP);
-  const normP = trueP.map(v => +(v/maxP).toFixed(5));
-
-  new Chart(document.getElementById('posteriorChart'), {
-    type: 'line',
-    data: {
-      labels: xs,
-      datasets: [
-        { label: 'True posterior P(x|y)  [normalised]',
-          data: normP, borderColor: ACCENT3, borderWidth: 2,
-          fill: true, backgroundColor: 'rgba(93,189,138,0.08)', pointRadius: 0, tension: 0.3 },
-        { label: 'Cost J(x) / 100',
-          data: jVals.map(v=>+(v/100).toFixed(4)), borderColor: ACCENT2,
-          borderWidth: 1.5, borderDash: [4,3], fill: false, pointRadius: 0, tension: 0.3 }
-      ]
-    },
-    options: {
-      responsive: true,
-      plugins: { legend: { labels: { color: MUTED, font: { size: 11 } } },
-                 tooltip: { mode: 'index', intersect: false } },
-      scales: {
-        x: { title: { display: true, text: 'x', color: MUTED },
-             grid: { color: BORDER },
-             ticks: { maxTicksLimit: 11 } },
-        y: { title: { display: true, text: 'Normalised value', color: MUTED },
-             grid: { color: BORDER } }
-      }
-    }
-  });
-})();
-
-/* ── Hand-calculation steps ──────────────────────────────────── */
-(function(){
-  const steps = [
-    { title:'Step 0 — Initialise',
-      x_curr: 0.0, x_prop: null, u: null, accepted: null,
-      body:`<div class="math-block">x_0     =  0.0       <span class="comment">(starting point — deliberately bad)</span>
-      <p></p>
-      <pre>
-      J(x_0)  =  J(0)  =  (9.5)²/0.25 + (0−2)²/4
-                       =  361.0  +  1.0
-                       =  <span class="hi">362.0</span>
-      </pre>
-
-σ_prop  =  1.0    <span class="comment">(proposal width)</span></div>
-<div class="callout">We start far from the mode. The chain will rapidly move toward the high-probability region.</div>` },
-
-    { title:'Step 1',
-      x_curr: 0.0, x_prop: 0.47, u: 0.001, accepted: true,
-      body:`<div class="math-block"><span class="comment">─── Current state ───────────────────────────────────────────</span>
-<pre>x_i     =  0.0,     J(x_i) = 362.0</pre>
-
-<span class="comment">─── Proposal ────────────────────────────────────────────────</span>
-<pre>x*      ~  N(0.0, 1.0²)  →  x* = <span class="hi2">0.47</span>  <span class="comment">(random draw)</span></pre>
-<pre>
-J(x*)   =  (9.5 − 0.47²)² / 0.25  +  (0.47−2)² / 4
-        =  (9.5 − 0.221)² / 0.25  +  (−1.53)² / 4
-        =  345.2  +  0.586  =  <span class="hi2">345.8</span>
-</pre>
-
-
-<span class="comment">─── Acceptance ratio ────────────────────────────────────────</span>
-<pre>ΔJ      =  J(x*) − J(x_i)  =  345.8 − 362.0  =  −16.2</pre>
-<pre>
-α       =  min(1,  exp(−ΔJ/2))
-        =  min(1,  exp(+8.1))
-        =  min(1,  3280)
-        =  <span class="hi3">1.0</span>   <span class="comment">(always accept — x* is much more probable)</span>
-
-</pre>
-
-
-<pre></pre>
-
-
-
-<span class="comment">─── Decision ────────────────────────────────────────────────</span>
-<pre>u  ~  Uniform(0,1)  →  u = 0.001</pre>
-
-
-u ≤ α  →  <span class="hi3">ACCEPT</span>   →   x_1 = 0.47</div>` },
-
-    { title:'Step 2',
-      x_curr: 0.47, x_prop: 1.71, u: 0.002, accepted: true,
-      body:`<div class="math-block"><span class="comment">─── Current state ───────────────────────────────────────────</span>
-x_i     =  0.47,    J(x_i) = 345.8
-
-<span class="comment">─── Proposal ────────────────────────────────────────────────</span>
-<pre>x*      ~  N(0.47, 1.0²)  →  x* = <span class="hi2">1.71</span></pre>
-<pre>
-J(x*)   =  (9.5 − 1.71²)² / 0.25  +  (1.71−2)² / 4
-        =  (9.5 − 2.924)² / 0.25  +  0.084 / 4
-        =  173.0  +  0.021  =  <span class="hi2">173.0</span>
-</pre>
-<pre>ΔJ      =  173.0 − 345.8  =  −172.8</pre>
-<pre>α       =  min(1, exp(86.4))  =  <span class="hi3">1.0</span>   <span class="comment">(accept — still climbing toward mode)</span></pre>
-
-<span class="hi3">ACCEPT</span>   →   x_2 = 1.71</div>` },
-
-    { title:'Step 3',
-      x_curr: 1.71, x_prop: 2.89, u: 0.003, accepted: true,
-      body:`<div class="math-block"><span class="comment">─── Current state ───────────────────────────────────────────</span>
-x_i     =  1.71,    J(x_i) = 173.0
-
-<span class="comment">─── Proposal ────────────────────────────────────────────────</span>
-<pre>x*      ~  N(1.71, 1.0²)  →  x* = <span class="hi2">2.89</span></pre>
-<pre>
-J(x*)   =  (9.5 − 2.89²)² / 0.25  +  (2.89−2)² / 4
-        =  (9.5 − 8.352)² / 0.25  +  0.792 / 4
-        =  5.265  +  0.198  =  <span class="hi2">5.46</span>
-</pre>
-<pre>ΔJ      =  5.46 − 173.0  =  −167.5</pre>
-<pre>α       =  1.0    <span class="hi3">ACCEPT</span>   →   x_3 = 2.89</pre>
-
-
-
-
-
-<span class="comment">(Chain is now near the mode — burn-in essentially over)</span></div>` },
-
-    { title:'Step 4  (first possible rejection)',
-      x_curr: 2.89, x_prop: 3.54, u: 0.61, accepted: false,
-      body:`<div class="math-block"><span class="comment">─── Current state ───────────────────────────────────────────</span>
-x_i     =  2.89,    J(x_i) = 5.46
-
-<span class="comment">─── Proposal ────────────────────────────────────────────────</span>
-<pre>x*      ~  N(2.89, 1.0²)  →  x* = <span class="hi2">3.54</span></pre>
-<pre>
-J(x*)   =  (9.5 − 3.54²)² / 0.25  +  (3.54−2)² / 4
-        =  (9.5 − 12.53)² / 0.25  +  2.372 / 4
-        =  36.72  +  0.593  =  <span class="hi2">37.31</span>
-</pre>
-<span class="comment">─── Acceptance ratio ────────────────────────────────────────</span>
-<pre>ΔJ      =  37.31 − 5.46  =  +31.85    <span class="comment">(x* is LESS probable)</span></pre>
-<pre>
-α       =  min(1,  exp(−31.85/2))
-        =  min(1,  exp(−15.92))
-        =  min(1,  1.21 × 10⁻⁷)
-        ≈  <span class="hi2">0.000</span>
-</pre>
-
-<pre>u  ~  Uniform(0,1)  →  u = 0.61</pre>
-u > α  →  <span class="hi2">REJECT</span>   →   x_4 = x_3 = 2.89  <span class="comment">(stay put)</span></div>
-<div class="callout-warn callout"><strong>First rejection:</strong> x* = 3.54 is far from the mode. MCMC correctly rejects it with near-certainty. The chain stays at x = 2.89. This rejection is not a failure — it is MCMC working correctly.</div>` },
-
-    { title:'Step 5',
-      x_curr: 2.89, x_prop: 3.14, u: 0.08, accepted: true,
-      body:`<div class="math-block"><span class="comment">─── Current state ───────────────────────────────────────────</span>
-x_i     =  2.89,    J(x_i) = 5.46
-
-<span class="comment">─── Proposal ────────────────────────────────────────────────</span>
-<pre>x*      ~  N(2.89, 1.0²)  →  x* = <span class="hi2">3.14</span></pre>
-<pre>
-J(x*)   =  (9.5 − 3.14²)² / 0.25  +  (3.14−2)² / 4
-        =  (9.5 − 9.860)² / 0.25  +  1.300 / 4
-        =  0.518  +  0.325  =  <span class="hi2">0.843</span>
-</pre>
-<pre>ΔJ      =  0.843 − 5.46  =  −4.617</pre>
-<pre>
-α       =  min(1, exp(2.31))  =  1.0
-<span class="hi3">ACCEPT</span>   →   x_5 = 3.14
-</pre>
-
-
-
-
-
-
-<span class="comment">────────────────────────────────────────────────────────────</span>
-<span class="comment">After burn-in, the chain explores the region around x ≈ 3.08.</span>
-<span class="comment">Over 10⁴+ steps, the histogram of samples → P(x|y).</span></div>
-<div class="callout-ok callout"><strong>After burn-in:</strong> the chain is now in the typical set of the posterior. Each subsequent sample is a draw from P(x|y). Run many thousands of steps to get good statistics.</div>` }
-  ];
-
-  const nav = document.getElementById('stepNav');
-  const panels = document.getElementById('stepPanels');
-
-  steps.forEach((s, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'step-btn' + (i===0?' active':'');
-    btn.textContent = i===0 ? 'Init' : `Iter ${i}`;
-    btn.onclick = () => {
-      document.querySelectorAll('.step-btn').forEach(b=>b.classList.remove('active'));
-      document.querySelectorAll('.step-panel').forEach(p=>p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById('sp'+i).classList.add('active');
-    };
-    nav.appendChild(btn);
-
-    const panel = document.createElement('div');
-    panel.className = 'step-panel' + (i===0?' active':'');
-    panel.id = 'sp'+i;
-
-    let statusBadge = '';
-    if(s.accepted === true)  statusBadge = `<span style="color:var(--accent3);font-family:var(--mono);font-size:12px;margin-left:12px;">✓ ACCEPTED</span>`;
-    if(s.accepted === false) statusBadge = `<span style="color:var(--accent2);font-family:var(--mono);font-size:12px;margin-left:12px;">✗ REJECTED</span>`;
-
-    panel.innerHTML = `<p style="margin-bottom:0.8rem;font-size:14px;color:var(--text);font-weight:500;">${s.title}${statusBadge}</p>${s.body}`;
-    panels.appendChild(panel);
-  });
-})();
-
-/* ── Live MCMC ───────────────────────────────────────────────── */
-let traceChartInst = null, histChartInst = null;
-
-document.getElementById('sigProp').addEventListener('input', function(){
-  document.getElementById('sigPropVal').textContent = parseFloat(this.value).toFixed(1);
-});
-document.getElementById('chainLen').addEventListener('input', function(){
-  document.getElementById('chainLenVal').textContent = parseInt(this.value).toLocaleString();
-});
-document.getElementById('burnin').addEventListener('input', function(){
-  document.getElementById('burninVal').textContent = Math.round(parseFloat(this.value)*100)+'%';
-});
-
-function randn() {
-  let u=0,v=0;
-  while(u===0) u=Math.random();
-  while(v===0) v=Math.random();
-  return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);
-}
-
-document.getElementById('runBtn').addEventListener('click', function(){
-  const sigP    = parseFloat(document.getElementById('sigProp').value);
-  const N       = parseInt(document.getElementById('chainLen').value);
-  const burnFrac= parseFloat(document.getElementById('burnin').value);
-  const burnN   = Math.floor(N * burnFrac);
-
-  this.disabled = true;
-  const progBar = document.getElementById('progBar');
-  progBar.style.width = '0%';
-
-  setTimeout(() => {
-    const chain = new Float64Array(N);
-    let x = 0.0;
-    let nAccept = 0;
-
-    for(let i=0; i<N; i++){
-      const xStar = x + sigP * randn();
-      const dJ = J(xStar) - J(x);
-      const alpha = Math.min(1, Math.exp(-dJ/2));
-      if(Math.random() < alpha){ x = xStar; nAccept++; }
-      chain[i] = x;
-      if(i % 1000 === 0) progBar.style.width = Math.round(i/N*100)+'%';
-    }
-    progBar.style.width = '100%';
-
-    const postChain = Array.from(chain.slice(burnN));
-    const mean = postChain.reduce((a,b)=>a+b,0)/postChain.length;
-    const std  = Math.sqrt(postChain.reduce((a,b)=>a+(b-mean)**2,0)/postChain.length);
-    const accRate = nAccept/N;
-
-    /* ESS via autocorrelation */
-    let tau = 1;
-    for(let k=1; k<Math.min(500, postChain.length/4); k++){
-      let num=0, den=0;
-      for(let i=0; i<postChain.length-k; i++){
-        num += (postChain[i]-mean)*(postChain[i+k]-mean);
-        den += (postChain[i]-mean)**2;
-      }
-      const rho = num/den;
-      if(rho < 0.05) break;
-      tau += 2*rho;
-    }
-    const ess = Math.round(postChain.length / tau);
-
-    document.getElementById('statMean').textContent = mean.toFixed(3);
-    document.getElementById('statStd').textContent  = std.toFixed(3);
-    document.getElementById('statAcc').textContent  = (accRate*100).toFixed(1)+'%';
-    document.getElementById('statESS').textContent  = ess.toLocaleString();
-    document.getElementById('statsRow').style.display = 'flex';
-
-    /* trace plot — subsample 1000 pts */
-    const tracePts = [];
-    const stride = Math.max(1, Math.floor(postChain.length/1000));
-    for(let i=0; i<postChain.length; i+=stride) tracePts.push({x:burnN+i,y:+postChain[i].toFixed(4)});
-
-    document.getElementById('traceWrap').style.display = 'block';
-    if(traceChartInst) traceChartInst.destroy();
-    traceChartInst = new Chart(document.getElementById('traceChart'),{
-      type:'line',
-      data:{ datasets:[
-        { label:'Chain trace (post burn-in)', data: tracePts,
-          borderColor: ACCENT, borderWidth: 0.8, pointRadius: 0, tension: 0 },
-        { label:`True x = +3.08`, data: tracePts.map(p=>({x:p.x,y:3.08})),
-          borderColor: ACCENT3, borderWidth: 1.5, borderDash:[5,4], pointRadius:0 },
-        { label:`True x = -3.08`, data: tracePts.map(p=>({x:p.x,y:-3.08})),
-          borderColor: ACCENT2, borderWidth: 1.5, borderDash:[5,4], pointRadius:0 }
-      ]},
-      options:{ responsive:true, animation:false,
-        plugins:{ legend:{ labels:{ color: MUTED, font:{size:10} } } },
-        scales:{
-          x:{ type:'linear', title:{display:true,text:'Sample index',color:MUTED}, grid:{color:BORDER} },
-          y:{ title:{display:true,text:'x',color:MUTED}, grid:{color:BORDER} }
-        }
-      }
-    });
-
-    /* histogram */
-    const bins = 80, minX=-5, maxX=5, bw=(maxX-minX)/bins;
-    const counts = new Array(bins).fill(0);
-    for(const v of postChain){
-      const b = Math.floor((v-minX)/bw);
-      if(b>=0 && b<bins) counts[b]++;
-    }
-    const maxCount = Math.max(...counts);
-    const binCenters = counts.map((_,i)=>+(minX+(i+0.5)*bw).toFixed(3));
-
-    /* true posterior curve normalised to histogram */
-    const trueCurve = binCenters.map(x=>{
-      const p = Math.exp(-J(x)/2);
-      return p;
-    });
-    const maxTrueP = Math.max(...trueCurve);
-    const trueCurveNorm = trueCurve.map(v=>+(v/maxTrueP*maxCount).toFixed(2));
-
-    document.getElementById('histWrap').style.display = 'block';
-    if(histChartInst) histChartInst.destroy();
-    histChartInst = new Chart(document.getElementById('histChart'),{
-      type:'bar',
-      data:{
-        labels: binCenters,
-        datasets:[
-          { label:'MCMC samples (histogram)',
-            data: counts, backgroundColor:'rgba(91,141,238,0.45)',
-            borderColor: ACCENT, borderWidth:0.5 },
-          { label:'True P(x|y) [scaled]',
-            data: trueCurveNorm, type:'line', borderColor: ACCENT3,
-            borderWidth:2, pointRadius:0, fill:false, tension:0.3 }
-        ]
-      },
-      options:{ responsive:true, animation:false,
-        plugins:{ legend:{ labels:{ color:MUTED, font:{size:10} } } },
-        scales:{
-          x:{ title:{display:true,text:'x',color:MUTED}, grid:{color:BORDER},
-              ticks:{ maxTicksLimit:11, callback: v => parseFloat(binCenters[v]).toFixed(1) } },
-          y:{ title:{display:true,text:'Count',color:MUTED}, grid:{color:BORDER} }
-        }
-      }
-    });
-
-    /* interpretation */
-    const bothModes = postChain.some(v=>v<-1) && postChain.some(v=>v>1);
-    const accOk = accRate > 0.15 && accRate < 0.60;
-    let interp = `<strong>Results:</strong> Mean = ${mean.toFixed(3)}, σ = ${std.toFixed(3)}, acceptance = ${(accRate*100).toFixed(1)}%, ESS ≈ ${ess}. `;
-    if(bothModes) interp += `Both modes (x ≈ +3.08 and x ≈ −3.08) were found — OE would have missed the negative mode. `;
-    else interp += `Only one mode was found — try a wider σ_prop to allow the chain to cross x=0 and discover the negative mode at x ≈ −3.08. `;
-    if(!accOk && accRate < 0.15) interp += `Acceptance rate is low (σ_prop too wide — proposals land in low-probability regions).`;
-    else if(!accOk && accRate > 0.60) interp += `Acceptance rate is high (σ_prop too narrow — chain barely moves, high autocorrelation).`;
-    else interp += `Acceptance rate is in the healthy 15–60% range.`;
-    document.getElementById('interpBox').innerHTML = interp;
-    document.getElementById('interpBox').style.display = 'block';
-
-    document.getElementById('runBtn').disabled = false;
-  }, 30);
-});
-</script>
-<script>
-document.getElementById("year").textContent = new Date().getFullYear();
-</script>
-<footer class="site-footer">
-  © 2026 Arun Kumar Pandey · Darmstadt, Germany ·
-  <a href="mailto:arunp77@gmail.com">Contact</a>
-</footer>
+    <footer class="site-footer">
+        © 2026 Arun Kumar Pandey · Darmstadt, Germany
+    </footer>
 </body>
 </html>
