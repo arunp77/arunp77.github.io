@@ -347,6 +347,19 @@
   .summary ul li:last-child { border: none; }
   .summary ul li::before { content: '→'; color: var(--accent); flex-shrink: 0; }
   .summary ul li strong { color: var(--text); }
+
+  @media (max-width: 600px) {
+    .top-nav {
+      top: 10px;
+      right: 10px;
+      gap: 6px;
+    }
+
+    .top-nav a {
+      padding: 6px 10px;
+      font-size: 12px;
+    }
+  }  
 </style>
 </head>
 <body>
@@ -356,7 +369,7 @@
     <a href="index.html">🏠 Home</a>
     <a href="Remote-sensing-content.html">☰ Contents</a>
   </div>
-  <div class="hero-tag">MCMC · Bayesian Inference · Complete Derivation · <a href="index.html">Arun Kumar Pandey</a></div>
+  <div class="hero-tag">MCMC · Bayesian Inference · Complete Derivation </div>
   <h1>Markov Chain Monte Carlo<br/><em>mathematically</em>, step by step</h1>
   <p>Same toy problem: F(x) = x², y = 9.5. We solve it three ways — posterior geometry, Metropolis-Hastings by hand, then live interactive sampling.</p>
 </div>
