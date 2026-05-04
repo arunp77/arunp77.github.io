@@ -181,7 +181,7 @@
     <section>
     <h3 id="introdction">Introduction</h3>
     We are familiar with <a href="Linear-reg.html" target="_blank">Gradient decent method</a> earlier,
-    a method to minimize a loss function $L(\theta)$ by iteratively updating the model parameters $\theta$ 
+    a method to minimize a loss function \(L(\theta)\) by iteratively updating the model parameters \(\theta\) 
     in the direction opposite to the gradient:
 
     $$
@@ -190,16 +190,16 @@
 
     Where:
     <ul>
-        <li>$\theta_t$ = parameters at step $t$</li>
-        <li>$\eta$ = learning rate (step size)</li>
-        <li>$\nabla_\theta L(\theta_t)$ = gradient of the loss w.r.t. parameters</li>
+        <li>\(\theta_t\) = parameters at step \(t\)</li>
+        <li>\(\eta\) = learning rate (step size)</li>
+        <li>\(\nabla_\theta L(\theta_t)\) = gradient of the loss w.r.t. parameters</li>
     </ul>
 
     <b>The key idea:</b> Move parameters in the direction that most reduces the loss.
 
     <p><b>Example: Linear Regression with MSE:</b></p>
 
-    Given data $\{(x_i, y_i)\}_{i=1}^{n}$, model $\hat{y} = \theta^T x$, and loss:
+    Given data \(\{(x_i, y_i)\}_{i=1}^{n}\), model \(\hat{y} = \theta^T x\), and loss:
 
     $$L(\theta) = \frac{1}{n} \sum_{i=1}^{n} (y_i - \theta^T x_i)^2$$
     
@@ -207,14 +207,14 @@
     
     $$\nabla_\theta L = -\frac{2}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i) x_i$$
     
-    We update $\theta$ repeatedly until convergence. This works perfectly when your model is parameterized (linear models, neural networks, etc.).
+    We update \(\theta\) repeatedly until convergence. This works perfectly when your model is parameterized (linear models, neural networks, etc.).
 
 
     <h4>The Problem: What if You Can't Parameterize Your Model?</h4>
 
-    Gradient descent updates numbers (parameters $\theta$). But what if your model is a decision tree?
+    Gradient descent updates numbers (parameters \(\theta\)). But what if your model is a decision tree?
     
-    Decision trees are not easily differentiable with respect to their structure. You can't write $\nabla_\theta L$ for "which split to make at which node." The model structure is discrete and combinatorial.
+    Decision trees are not easily differentiable with respect to their structure. You can't write \(\nabla_\theta L$ for "which split to make at which node." The model structure is discrete and combinatorial.
     
     <div class="box">
         So the question becomes: 
@@ -243,7 +243,7 @@
 
     $$F(x) = \sum_{m=1}^{M} \alpha_m h_m(x)$$
 
-    Where $h_m(x)$ is the $m$-th weak learner and $\alpha_m$ is its weight based on accuracy.
+    Where \(h_m(x)\) is the \(m\)-th weak learner and \(\alpha_m\) is its weight based on accuracy.
     
     AdaBoost was powerful, but it was designed specifically for classification with exponential loss. We need something more general.
 
@@ -253,26 +253,26 @@
 
     <p><b>The setup:</b></p>
 
-    e want to find a function $F(x)$ that minimizes:
+    We want to find a function \(F(x)\) that minimizes:
 
     $$\mathcal{L} = \sum_{i=1}^{n} L(y_i, F(x_i))$$
 
 Where:
 <ul>
-    <li>$y_i$ = true label</li>
-    <li>$F(x_i)$ = model prediction</li>
-    <li>$L$ = any differentiable loss (MSE, log-loss, etc.)</li>
+    <li>\(y_i\) = true label</li>
+    <li>\(F(x_i)\) = model prediction</li>
+    <li>\(L\) = any differentiable loss (MSE, log-loss, etc.)</li>
 </ul>
 
-We build $F(x)$ additively, one tree at a time:
+We build \(F(x)\) additively, one tree at a time:
 
 $$F_m(x) = F_{m-1}(x) + \nu \cdot h_m(x)$$
 
 Where:
 <ul>
-    <li>$F_{m-1}(x)$ = current ensemble</li>
-    <li>$h_m(x)$ = new weak learner (tree) added at step $m$</li>
-    <li>$\nu$ = shrinkage/learning rate (typically 0.01–0.3)</li>
+    <li>\(F_{m-1}(x)\) = current ensemble</li>
+    <li>\(h_m(x)\) = new weak learner (tree) added at step $m$</li>
+    <li>\(\nu\)= shrinkage/learning rate (typically 0.01–0.3)</li>
 </ul>
 - 
 - 
