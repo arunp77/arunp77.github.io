@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>LightGBM: Decision Trees — Building Blocks</title>
+    <meta content="A complete tutorial on LightGBM and Decision Trees from scratch" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="assets/img/Favicon-1.png" rel="icon">
+    <link href="assets/img/Favicon-1.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Creating a python code section-->
+    <link rel="stylesheet" href="assets/css/prism.css">
+    <script src="assets/js/prism.js"></script>
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/5d25c1efd3.js" crossorigin="anonymous"></script>
+
+    <!-- MathJax for LaTeX rendering -->
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <style>
+        /* additional custom styles for tutorial content */
+        .equation {
+            background: #f4f4f4;
+            padding: 10px 15px;
+            border-left: 4px solid #149ddd;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: monospace;
+            font-size: 1.05rem;
+        }
+        .tree-algorithm {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 20px 0;
+        }
+        table.hyperparam-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table.hyperparam-table th, table.hyperparam-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        table.hyperparam-table th {
+            background-color: #149ddd;
+            color: white;
+        }
+        .grey-box {
+            background-color: #f9f9f9;
+            border-left: 4px solid #149ddd;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .important-box {
+            background-color: #e7f3fe;
+            border-left: 6px solid #2196F3;
+            padding: 10px 15px;
+            margin: 20px 0;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Mobile nav toggle button -->
+<i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+<!-- Header -->
+<header id="header">
+    <div class="d-flex flex-column">
+        <div class="profile">
+            <img src="assets/img/myphoto.jpeg" alt="" class="img-fluid rounded-circle">
+            <h1 class="text-light"><a href="index.html">Arun</a></h1>
+            <div class="social-links mt-3 text-center">
+                <a href="https://www.linkedin.com/in/arunp77/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                <a href="https://github.com/arunp77" target="_blank" class="github"><i class="bx bxl-github"></i></a>
+                <a href="https://twitter.com/arunp77_" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="https://www.instagram.com/arunp77/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="https://arunp77.medium.com/" target="_blank" class="medium"><i class="bx bxl-medium"></i></a>
+            </div>
+        </div>
+        <nav id="navbar" class="nav-menu navbar">
+            <ul>
+                <li><a href="index.html#hero" class="nav-link scrollto"><i class="bx bx-home"></i> <span>Home</span></a></li>
+                <li><a href="index.html#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
+                <li><a href="index.html#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+                <li><a href="index.html#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+                <li><a href="index.html#skills-and-tools" class="nav-link scrollto"><i class="bx bx-wrench"></i> <span>Skills and Tools</span></a></li>
+                <li><a href="index.html#language" class="nav-link scrollto"><i class="bi bi-menu-up"></i> <span>Languages</span></a></li>
+                <li><a href="index.html#awards" class="nav-link scrollto"><i class="bi bi-award-fill"></i> <span>Awards</span></a></li>
+                <li><a href="index.html#professionalcourses" class="nav-link scrollto"><i class="bx bx-book-alt"></i> <span>Professional Certification</span></a></li>
+                <li><a href="index.html#publications" class="nav-link scrollto"><i class="bx bx-news"></i> <span>Publications</span></a></li>
+                <li><a href="index.html#extra-curricular" class="nav-link scrollto"><i class="bx bx-rocket"></i> <span>Extra-Curricular Activities</span></a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main id="main">
+
+    <!-- Breadcrumbs -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>LightGBM: From Scratch — Decision Trees</h2>
+                <ol>
+                    <li><a href="machine-learning.html" class="clickable-box">Machine Learning</a></li>
+                    <li><a href="index.html#portfolio" class="clickable-box">Portfolio</a></li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <!-- Right dropdown shortcuts -->
+    <div class="right-side-list">
+        <div class="dropdown">
+            <button class="dropbtn"><strong>Shortcuts:</strong></button>
+            <div class="dropdown-content">
+                <ul>
+                    <li><a href="cloud-compute.html"><i class="fas fa-cloud"></i> Cloud</a></li>
+                    <li><a href="AWS-GCP.html"><i class="fas fa-cloud"></i> AWS-GCP</a></li>
+                    <li><a href="amazon-s3.html"><i class="fas fa-cloud"></i> AWS S3</a></li>
+                    <li><a href="ec2-confi.html"><i class="fas fa-server"></i> EC2</a></li>
+                    <li><a href="Docker-Container.html"><i class="fab fa-docker"></i> Docker</a></li>
+                    <li><a href="Jupyter-nifi.html"><i class="fab fa-python"></i> Jupyter-nifi</a></li>
+                    <li><a href="snowflake-task-stream.html"><i class="fas fa-snowflake"></i> Snowflake</a></li>
+                    <li><a href="data-model.html"><i class="fas fa-database"></i> Data modeling</a></li>
+                    <li><a href="sql-basics.html"><i class="fas fa-table"></i> SQL basics</a></li>
+                    <li><a href="sql-basic-details.html"><i class="fas fa-database"></i> SQL details</a></li>
+                    <li><a href="Bigquerry-sql.html"><i class="fas fa-database"></i> BigQuery</a></li>
+                    <li><a href="scd.html"><i class="fas fa-archive"></i> SCD</a></li>
+                    <li><a href="sql-project.html"><i class="fas fa-database"></i> SQL project</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main tutorial content -->
+    <section id="portfolio-details" class="portfolio-details">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-8">
+                    <div class="portfolio-details-slider swiper">
+                        <div class="swiper-wrapper align-items-center">
+                            <div class="swiper-slide">
+                                <figure>
+                                    <img src="assets/img/machine-ln/lightgbm.png" alt="LightGBM and Decision Trees" style="max-width: 90%; max-height: auto;">
+                                    <figcaption style="text-align: center;">Decision Trees: The Building Blocks of LightGBM</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 grey-box">
+                    <div class="section-title">
+                        <h3>Chapter Contents</h3>
+                        <ol>
+                            <li><a href="#what-is-decision-tree">2.1 What is a Decision Tree?</a></li>
+                            <li><a href="#splitting-criterion">2.2 How a Tree is Built: Splitting Criterion</a></li>
+                            <li><a href="#leaf-values">2.3 Leaf Values</a></li>
+                            <li><a href="#tree-algorithm">2.4 Tree Building Algorithm</a></li>
+                            <li><a href="#overfitting">2.5 Overfitting & Regularization in Trees</a></li>
+                            <li><a href="#why-trees-in-boosting">2.6 Why Trees in Gradient Boosting?</a></li>
+                            <li><a href="#next-chapter">Next Chapter Preview</a></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2.1 What is a Decision Tree? -->
+            <section id="what-is-decision-tree">
+                <h2>2.1 What is a Decision Tree?</h2>
+                <p>A <strong>decision tree</strong> partitions the feature space into rectangular regions through a series of binary splits, and assigns a constant prediction to each region (leaf).</p>
+                <p>Given input \( x = (x^{(1)}, x^{(2)}, \ldots, x^{(d)}) \), a tree makes a prediction by routing \( x \) from the <strong>root</strong> node down through a series of decisions to a <strong>leaf</strong> node.</p>
+                <p>Each internal node asks: <em>"Is \( x^{(k)} \leq s \)?"</em> — a threshold \( s \) on feature \( k \).</p>
+                
+                <div class="grey-box">
+                    <strong>Structure Formally</strong><br>
+                    A regression tree with \( J \) leaves partitions the input space into regions \( R_1, \ldots, R_J \):
+                    \[
+                    h(x) = \sum_{j=1}^{J} w_j \cdot \mathbf{1}[x \in R_j]
+                    \]
+                    Where \( w_j \) is the <strong>leaf weight</strong> (constant prediction) for leaf \( j \).
+                </div>
+            </section>
+
+            <!-- 2.2 Splitting Criterion -->
+            <section id="splitting-criterion">
+                <h2>2.2 How a Tree is Built: Splitting Criterion</h2>
+                <p>To build a tree, we greedily choose the <strong>best split</strong> at each node. "Best" means the split that most reduces the <strong>impurity</strong> (loss on training data).</p>
+                
+                <h4>Regression: Sum of Squared Errors (SSE)</h4>
+                <p>For a node containing data points \( S = \{(x_i, y_i)\} \), the SSE is:</p>
+                <div class="equation">
+                    \[
+                    \text{SSE}(S) = \sum_{i \in S} (y_i - \bar{y}_S)^2, \quad \bar{y}_S = \frac{1}{|S|}\sum_{i \in S} y_i
+                    \]
+                </div>
+                <p>For a candidate split \( (k, s) \) that divides \( S \) into \( S_L \) (left: \( x^{(k)} \leq s \)) and \( S_R \) (right: \( x^{(k)} > s \)):</p>
+                <div class="equation">
+                    \[
+                    \text{Gain}(k, s) = \text{SSE}(S) - \text{SSE}(S_L) - \text{SSE}(S_R)
+                    \]
+                </div>
+                <p>We choose:</p>
+                <div class="equation">
+                    \[
+                    k^*, s^* = \arg\max_{k, s} \; \text{Gain}(k, s)
+                    \]
+                </div>
+                
+                <h4>Equivalent Formulation (faster computation)</h4>
+                <div class="equation">
+                    \[
+                    \text{SSE}(S) = \sum_{i \in S} y_i^2 - \frac{1}{|S|}\left(\sum_{i \in S} y_i\right)^2
+                    \]
+                </div>
+                <p>So the gain simplifies to:</p>
+                <div class="equation">
+                    \[
+                    \text{Gain}(k, s) = \frac{\left(\sum_{i \in S_L} y_i\right)^2}{|S_L|} + \frac{\left(\sum_{i \in S_R} y_i\right)^2}{|S_R|} - \frac{\left(\sum_{i \in S} y_i\right)^2}{|S|}
+                    \]
+                </div>
+            </section>
+
+            <!-- 2.3 Leaf Values -->
+            <section id="leaf-values">
+                <h2>2.3 Leaf Values</h2>
+                <p>After the tree structure is determined, the leaf value is:</p>
+                <div class="equation">
+                    \[
+                    w_j = \frac{1}{|R_j|} \sum_{i \in R_j} y_i \quad \text{(for MSE loss)}
+                    \]
+                </div>
+                <p>Or more generally for any loss \( L \):</p>
+                <div class="equation">
+                    \[
+                    w_j = \arg\min_w \sum_{i \in R_j} L(y_i, F_{m-1}(x_i) + w)
+                    \]
+                </div>
+            </section>
+
+            <!-- 2.4 Tree Building Algorithm -->
+            <section id="tree-algorithm">
+                <h2>2.4 Tree Building Algorithm</h2>
+                <div class="tree-algorithm">
+                    <pre>
+BuildTree(S, depth, max_depth):
+  if depth == max_depth or |S| < min_samples:
+    return Leaf(mean(y for (x,y) in S))
+  
+  best_gain = -∞
+  for each feature k:
+    for each threshold s in sorted unique values of x^(k):
+      S_L = {(x,y) : x^(k) ≤ s}
+      S_R = {(x,y) : x^(k) > s}
+      gain = Gain(S, S_L, S_R)
+      if gain > best_gain:
+        best_gain = gain
+        best_split = (k, s)
+  
+  S_L, S_R = split S by best_split
+  return Node(best_split,
+              left  = BuildTree(S_L, depth+1, max_depth),
+              right = BuildTree(S_R, depth+1, max_depth))
+                    </pre>
+                </div>
+                <p><strong>Complexity:</strong> For \( n \) samples and \( d \) features, each split evaluation costs \( O(n \cdot d) \), and a full tree of depth \( D \) costs \( O(n \cdot d \cdot D) \). For large datasets, this is expensive — which is why LightGBM introduces major optimizations (Chapter 5).</p>
+            </section>
+
+            <!-- 2.5 Overfitting & Regularization -->
+            <section id="overfitting">
+                <h2>2.5 Overfitting & Regularization in Trees</h2>
+                <p>A fully grown tree <strong>memorizes</strong> training data. To prevent overfitting:</p>
+                <table class="hyperparam-table">
+                    <thead>
+                        <tr><th>Hyperparameter</th><th>Effect</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>max_depth</code></td><td>Limits tree depth</td></tr>
+                        <tr><td><code>min_samples_leaf</code></td><td>Minimum samples per leaf</td></tr>
+                        <tr><td><code>min_gain_to_split</code></td><td>Only split if gain exceeds threshold</td></tr>
+                        <tr><td><code>max_leaves</code></td><td>Limits total leaves (leaf-wise growth)</td></tr>
+                    </tbody>
+                </table>
+                <p>In gradient boosting, trees are intentionally <strong>kept shallow</strong> (depth 3–8). The ensemble of many shallow trees does the heavy lifting.</p>
+            </section>
+
+            <!-- 2.6 Why Trees in Gradient Boosting? -->
+            <section id="why-trees-in-boosting">
+                <h2>2.6 Why Trees in Gradient Boosting?</h2>
+                <p>Trees have unique advantages as base learners:</p>
+                <ol>
+                    <li><strong>Handle mixed data types</strong> — numerical and categorical features naturally</li>
+                    <li><strong>No feature scaling needed</strong> — splits are threshold-based, not distance-based</li>
+                    <li><strong>Automatic interaction detection</strong> — a split on feature A then B captures the A×B interaction</li>
+                    <li><strong>Fast prediction</strong> — \( O(D) \) per sample where \( D \) = depth</li>
+                    <li><strong>Interpretable</strong> — you can visualize and understand individual trees</li>
+                </ol>
+            </section>
+
+            <!-- Next Chapter Preview -->
+            <section id="next-chapter">
+                <div class="important-box">
+                    <strong>📘 Next Chapter:</strong> XGBoost — Second-Order Gradient Boosting
+                </div>
+            </section>
+
+            <!-- Additional references -->
+            <section id="reference">
+                <h2>References & Further Reading</h2>
+                <ul>
+                    <li>My GitHub repositories on Machine Learning: <a href="https://github.com/arunp77/Machine-Learning/" target="_blank">github.com/arunp77/Machine-Learning</a></li>
+                    <li><a href="https://mlu-explain.github.io/linear-regression/" target="_blank">A Visual Introduction To Linear Regression</a></li>
+                    <li>Book: <a href="https://avehtari.github.io/ROS-Examples/" target="_blank">Regression and Other Stories</a></li>
+                    <li><a href="https://hastie.su.domains/Papers/ESLII.pdf" target="_blank">The Elements of Statistical Learning</a></li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <div style="background-color: #f0f0f0; padding: 15px; border-radius: 5px; margin: 20px 0;">
+                <h3>📌 Other interesting topics:</h3>
+                <ul>
+                    <li><a href="sql-project.html">Data, Big Data, Data Modeling, Datawarehouse, SQL, Cloud Computing</a></li>
+                    <li><a href="Data-engineering.html">Data Engineering</a></li>
+                </ul>
+            </div>
+
+            <div class="navigation" style="display: flex; justify-content: space-between; margin-top: 30px;">
+                <a href="index.html#portfolio" class="clickable-box">
+                    <span class="arrow-left">← Portfolio Section</span>
+                </a>
+                <a href="machine-learning.html" class="clickable-box">
+                    <span class="arrow-right">ML Content →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+    <div class="container">
+        <div class="copyright">
+            &copy; Copyright <strong><span>Arun</span></strong>
+        </div>
+    </div>
+</footer>
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="assets/vendor/typed.js/typed.umd.js"></script>
+<script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        if (typeof hljs !== 'undefined') {
+            hljs.initHighlightingOnLoad();
+        }
+    });
+</script>
+
+</body>
+</html>
