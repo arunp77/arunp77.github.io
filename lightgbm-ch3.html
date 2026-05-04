@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>LightGBM: XGBoost — Second-Order Gradient Boosting</title>
+    <meta content="Complete tutorial on XGBoost second-order gradient boosting: Newton's method, regularized objective, Hessians, split gain formula, and tree algorithm." name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="assets/img/Favicon-1.png" rel="icon">
+    <link href="assets/img/Favicon-1.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/prism.css">
+    <script src="assets/js/prism.js"></script>
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/5d25c1efd3.js" crossorigin="anonymous"></script>
+
+    <!-- MathJax for LaTeX rendering -->
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <style>
+        .equation {
+            background: #f4f4f4;
+            padding: 10px 15px;
+            border-left: 4px solid #149ddd;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: monospace;
+            font-size: 1.05rem;
+        }
+        .tree-algorithm {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        table.hyperparam-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table.hyperparam-table th, table.hyperparam-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        table.hyperparam-table th {
+            background-color: #149ddd;
+            color: white;
+        }
+        .grey-box {
+            background-color: #f9f9f9;
+            border-left: 4px solid #149ddd;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .important-box {
+            background-color: #e7f3fe;
+            border-left: 6px solid #2196F3;
+            padding: 10px 15px;
+            margin: 20px 0;
+            font-weight: 500;
+        }
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 20px;
+        }
+        .nav-btn {
+            display: inline-block;
+            background-color: #149ddd;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+        .nav-btn:hover {
+            background-color: #0f6f8c;
+            color: white;
+        }
+        .nav-btn i {
+            margin-right: 8px;
+        }
+        .clickable-box {
+            background-color: #149ddd;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+        .clickable-box:hover {
+            background-color: #0f6f8c;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Mobile nav toggle button -->
+<i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+<!-- Header -->
+<header id="header">
+    <div class="d-flex flex-column">
+        <div class="profile">
+            <img src="assets/img/myphoto.jpeg" alt="" class="img-fluid rounded-circle">
+            <h1 class="text-light"><a href="index.html">Arun</a></h1>
+            <div class="social-links mt-3 text-center">
+                <a href="https://www.linkedin.com/in/arunp77/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                <a href="https://github.com/arunp77" target="_blank" class="github"><i class="bx bxl-github"></i></a>
+                <a href="https://twitter.com/arunp77_" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="https://www.instagram.com/arunp77/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="https://arunp77.medium.com/" target="_blank" class="medium"><i class="bx bxl-medium"></i></a>
+            </div>
+        </div>
+        <nav id="navbar" class="nav-menu navbar">
+            <ul>
+                <li><a href="index.html#hero" class="nav-link scrollto"><i class="bx bx-home"></i> <span>Home</span></a></li>
+                <li><a href="index.html#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
+                <li><a href="index.html#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+                <li><a href="index.html#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+                <li><a href="index.html#skills-and-tools" class="nav-link scrollto"><i class="bx bx-wrench"></i> <span>Skills and Tools</span></a></li>
+                <li><a href="index.html#language" class="nav-link scrollto"><i class="bi bi-menu-up"></i> <span>Languages</span></a></li>
+                <li><a href="index.html#awards" class="nav-link scrollto"><i class="bi bi-award-fill"></i> <span>Awards</span></a></li>
+                <li><a href="index.html#professionalcourses" class="nav-link scrollto"><i class="bx bx-book-alt"></i> <span>Professional Certification</span></a></li>
+                <li><a href="index.html#publications" class="nav-link scrollto"><i class="bx bx-news"></i> <span>Publications</span></a></li>
+                <li><a href="index.html#extra-curricular" class="nav-link scrollto"><i class="bx bx-rocket"></i> <span>Extra-Curricular Activities</span></a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main id="main">
+
+    <!-- Breadcrumbs -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>LightGBM: XGBoost — Second-Order Gradient Boosting</h2>
+                <ol>
+                    <li><a href="machine-learning.html" class="clickable-box">Machine Learning</a></li>
+                    <li><a href="index.html#portfolio" class="clickable-box">Portfolio</a></li>
+                    <li><a href="ch2-lightgbm.html" class="clickable-box">Prev: Decision Trees</a></li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <!-- Right dropdown shortcuts -->
+    <div class="right-side-list">
+        <div class="dropdown">
+            <button class="dropbtn"><strong>Shortcuts:</strong></button>
+            <div class="dropdown-content">
+                <ul>
+                    <li><a href="cloud-compute.html"><i class="fas fa-cloud"></i> Cloud</a></li>
+                    <li><a href="AWS-GCP.html"><i class="fas fa-cloud"></i> AWS-GCP</a></li>
+                    <li><a href="amazon-s3.html"><i class="fas fa-cloud"></i> AWS S3</a></li>
+                    <li><a href="ec2-confi.html"><i class="fas fa-server"></i> EC2</a></li>
+                    <li><a href="Docker-Container.html"><i class="fab fa-docker"></i> Docker</a></li>
+                    <li><a href="Jupyter-nifi.html"><i class="fab fa-python"></i> Jupyter-nifi</a></li>
+                    <li><a href="snowflake-task-stream.html"><i class="fas fa-snowflake"></i> Snowflake</a></li>
+                    <li><a href="data-model.html"><i class="fas fa-database"></i> Data modeling</a></li>
+                    <li><a href="sql-basics.html"><i class="fas fa-table"></i> SQL basics</a></li>
+                    <li><a href="sql-basic-details.html"><i class="fas fa-database"></i> SQL details</a></li>
+                    <li><a href="Bigquerry-sql.html"><i class="fas fa-database"></i> BigQuery</a></li>
+                    <li><a href="scd.html"><i class="fas fa-archive"></i> SCD</a></li>
+                    <li><a href="sql-project.html"><i class="fas fa-database"></i> SQL project</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main tutorial content -->
+    <section id="portfolio-details" class="portfolio-details">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-8">
+                    <div class="portfolio-details-slider swiper">
+                        <div class="swiper-wrapper align-items-center">
+                            <div class="swiper-slide">
+                                <figure>
+                                    <img src="assets/img/machine-ln/lightgbm.png" alt="XGBoost second-order gradient boosting" style="max-width: 50%; max-height: auto;">
+                                    <figcaption style="text-align: center;">XGBoost: Newton's method in gradient boosting</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 grey-box">
+                    <div class="section-title">
+                        <h3>Chapter 3 Contents</h3>
+                        <ol>
+                            <li><a href="#why-second-order">3.1 Why Go Second-Order?</a> — Newton's method recap</li>
+                            <li><a href="#regularized-objective">3.2 The Regularized Objective</a> — \( \Omega(h_m) = \gamma J + \frac{1}{2}\lambda \sum w_j^2 \)</li>
+                            <li><a href="#second-order-taylor">3.3 Second-Order Taylor Approximation</a> — gradients \( g_i \) and Hessians \( h_i \)</li>
+                            <li><a href="#reformulating-leaves">3.4 Reformulating in Terms of Leaves</a> — \( G_j, H_j \) aggregation</li>
+                            <li><a href="#optimal-leaf-weights">3.5 Optimal Leaf Weights</a> — \( w_j^* = -G_j/(H_j + \lambda) \)</li>
+                            <li><a href="#optimal-tree-score">3.6 Optimal Tree Score</a> — \( \tilde{\mathcal{L}}^*_{tree} = -\frac12 \sum \frac{G_j^2}{H_j+\lambda} + \gamma J \)</li>
+                            <li><a href="#split-gain-formula">3.7 Split Gain Formula</a> — with \( -\gamma \) regularization penalty</li>
+                            <li><a href="#common-losses">3.8 Gradient & Hessian for Common Losses</a> — MSE, Log-loss, MAE, Huber</li>
+                            <li><a href="#xgboost-algorithm">3.9 The Full XGBoost Tree-Building Algorithm</a></li>
+                            <li><a href="#hessian-importance">3.10 Why is the Hessian Important?</a> — cautious vs. confident updates</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3.1 Why Go Second-Order? -->
+            <section id="why-second-order">
+                <h2>3.1 Why Go Second-Order?</h2>
+                <p>Standard gradient boosting uses only the <strong>first derivative</strong> (gradient) of the loss. This is like gradient descent — it tells us <em>which direction</em> to move, but not <em>how far</em>.</p>
+                <p><strong>Newton's method</strong> uses both first and second derivatives for faster, more accurate optimization. XGBoost (Chen & Guestrin, 2016) brought this idea to gradient boosting, giving a principled framework that LightGBM extends.</p>
+                
+                <h4>Recap: Newton's Method</h4>
+                <p>For minimizing \( f(\theta) \):</p>
+                <div class="equation">
+                    \[
+                    \theta \leftarrow \theta - \frac{f'(\theta)}{f''(\theta)}
+                    \]
+                </div>
+                <p>The second derivative \( f'' \) (curvature) tells us whether to take a large or small step. High curvature → smaller step, more precision.</p>
+            </section>
+
+            <!-- 3.2 Regularized Objective -->
+            <section id="regularized-objective">
+                <h2>3.2 The Regularized Objective</h2>
+                <p>At step \( m \), the <strong>exact objective</strong> for the new tree \( h_m \) is:</p>
+                <div class="equation">
+                    \[
+                    \mathcal{L}^{(m)} = \sum_{i=1}^{n} L\left(y_i,\ F_{m-1}(x_i) + h_m(x_i)\right) + \Omega(h_m)
+                    \]
+                </div>
+                <p>Where the <strong>regularization term</strong> \( \Omega(h_m) \) penalizes complexity:</p>
+                <div class="equation">
+                    \[
+                    \Omega(h_m) = \gamma J + \frac{1}{2} \lambda \sum_{j=1}^{J} w_j^2
+                    \]
+                </div>
+                <ul>
+                    <li>\( J \) = number of leaves (penalizes having too many leaves, controlled by \( \gamma \))</li>
+                    <li>\( w_j \) = leaf weight (penalizes large weights, controlled by \( \lambda \))</li>
+                    <li>\( \gamma \geq 0 \) and \( \lambda \geq 0 \) are regularization hyperparameters</li>
+                </ul>
+            </section>
+
+            <!-- 3.3 Second-Order Taylor Approximation -->
+            <section id="second-order-taylor">
+                <h2>3.3 Second-Order Taylor Approximation</h2>
+                <p>We approximate the loss for each sample with a <strong>Taylor expansion</strong> around the current prediction \( F_{m-1}(x_i) \):</p>
+                <p>Let \( \hat{y}_i^{(m-1)} = F_{m-1}(x_i) \), and \( f = h_m(x_i) \) be the new tree's output.</p>
+                <div class="equation">
+                    \[
+                    L(y_i, \hat{y}_i^{(m-1)} + f) \approx L(y_i, \hat{y}_i^{(m-1)}) + g_i f + \frac{1}{2} h_i f^2
+                    \]
+                </div>
+                <p>Where:</p>
+                <div class="equation">
+                    \[
+                    g_i = \frac{\partial L(y_i, \hat{y})}{\partial \hat{y}}\bigg|_{\hat{y} = \hat{y}_i^{(m-1)}} \quad \text{(first derivative / gradient)}
+                    \]
+                </div>
+                <div class="equation">
+                    \[
+                    h_i = \frac{\partial^2 L(y_i, \hat{y})}{\partial \hat{y}^2}\bigg|_{\hat{y} = \hat{y}_i^{(m-1)}} \quad \text{(second derivative / Hessian)}
+                    \]
+                </div>
+                <p><em>Note: \( h_i \) here is the Hessian (curvature), not to be confused with \( h_m \) (the tree). Standard notation — context will clarify.</em></p>
+                <p><strong>Dropping constant terms</strong> (the \( L(y_i, \hat{y}_i^{(m-1)}) \) doesn't depend on the new tree), the objective becomes:</p>
+                <div class="equation">
+                    \[
+                    \tilde{\mathcal{L}}^{(m)} = \sum_{i=1}^{n} \left[g_i h_m(x_i) + \frac{1}{2} h_i h_m(x_i)^2\right] + \Omega(h_m)
+                    \]
+                </div>
+            </section>
+
+            <!-- 3.4 Reformulating in Terms of Leaves -->
+            <section id="reformulating-leaves">
+                <h2>3.4 Reformulating in Terms of Leaves</h2>
+                <p>Since the tree \( h_m \) assigns leaf weight \( w_j \) to all samples \( x_i \) in leaf \( j \), we can group by leaves. Let \( I_j = \{i : x_i \in R_j\} \) be the set of sample indices in leaf \( j \):</p>
+                <div class="equation">
+                    \[
+                    \tilde{\mathcal{L}}^{(m)} = \sum_{j=1}^{J} \left[\left(\sum_{i \in I_j} g_i\right) w_j + \frac{1}{2}\left(\sum_{i \in I_j} h_i + \lambda\right) w_j^2\right] + \gamma J
+                    \]
+                </div>
+                <p>Define:</p>
+                <div class="equation">
+                    \[
+                    G_j = \sum_{i \in I_j} g_i \quad \text{(sum of gradients in leaf } j\text{)}
+                    \]
+                    \[
+                    H_j = \sum_{i \in I_j} h_i \quad \text{(sum of Hessians in leaf } j\text{)}
+                    \]
+                </div>
+                <p>Then:</p>
+                <div class="equation">
+                    \[
+                    \tilde{\mathcal{L}}^{(m)} = \sum_{j=1}^{J} \left[G_j w_j + \frac{1}{2}(H_j + \lambda) w_j^2\right] + \gamma J
+                    \]
+                </div>
+            </section>
+
+            <!-- 3.5 Optimal Leaf Weights -->
+            <section id="optimal-leaf-weights">
+                <h2>3.5 Optimal Leaf Weights</h2>
+                <p>For a <strong>fixed tree structure</strong>, the objective is a quadratic in each \( w_j \), and the leaves are <strong>independent</strong> (each sample goes to exactly one leaf). We minimize each leaf separately:</p>
+                <div class="equation">
+                    \[
+                    \frac{\partial \tilde{\mathcal{L}}}{\partial w_j} = G_j + (H_j + \lambda) w_j = 0
+                    \]
+                </div>
+                <div class="equation" style="background: #e0f7fa; font-size: 1.1rem;">
+                    \[
+                    \boxed{w_j^* = -\frac{G_j}{H_j + \lambda}}
+                    \]
+                </div>
+                <p>This is the <strong>Newton step</strong>: gradient \( G_j \) divided by curvature \( H_j \), with \( \lambda \) stabilizing the denominator (like a regularized Newton step).</p>
+            </section>
+
+            <!-- 3.6 Optimal Tree Score -->
+            <section id="optimal-tree-score">
+                <h2>3.6 Optimal Tree Score</h2>
+                <p>Substituting \( w_j^* \) back into the objective gives the <strong>minimum loss for a given tree structure</strong>:</p>
+                <div class="equation">
+                    \[
+                    \tilde{\mathcal{L}}^*_{tree} = -\frac{1}{2}\sum_{j=1}^{J} \frac{G_j^2}{H_j + \lambda} + \gamma J
+                    \]
+                </div>
+                <p>This score tells us how good this particular tree structure is. A lower (more negative) score = better tree.</p>
+            </section>
+
+            <!-- 3.7 Split Gain Formula -->
+            <section id="split-gain-formula">
+                <h2>3.7 Split Gain Formula</h2>
+                <p>When evaluating a candidate split that divides leaf with \( (G, H) \) into left \( (G_L, H_L) \) and right \( (G_R, H_R) \) children:</p>
+                <p><strong>Before split</strong> (single leaf score): \( -\frac{G^2}{H + \lambda} \)</p>
+                <p><strong>After split</strong> (two leaf scores): \( -\frac{G_L^2}{H_L + \lambda} - \frac{G_R^2}{H_R + \lambda} \)</p>
+                <div class="equation" style="background: #fff3e0;">
+                    \[
+                    \boxed{\text{Gain} = \frac{1}{2}\left[\frac{G_L^2}{H_L + \lambda} + \frac{G_R^2}{H_R + \lambda} - \frac{G^2}{H + \lambda}\right] - \gamma}
+                    \]
+                </div>
+                <p>We split only if \( \text{Gain} > 0 \).</p>
+                <ul>
+                    <li>The \( -\gamma \) term means a split must overcome the regularization penalty on an extra leaf.</li>
+                    <li>Higher \( \lambda \) shrinks the scores, making splits less attractive (more regularization).</li>
+                </ul>
+            </section>
+
+            <!-- 3.8 Gradient & Hessian for Common Losses -->
+            <section id="common-losses">
+                <h2>3.8 Gradient &amp; Hessian for Common Loss Functions</h2>
+                <table class="hyperparam-table">
+                    <thead>
+                        <tr><th>Loss</th><th>\( L(y, \hat{y}) \)</th><th>Gradient \( g_i \)</th><th>Hessian \( h_i \)</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>MSE</td><td>\( \frac{1}{2}(y - \hat{y})^2 \)</td><td>\( \hat{y}_i - y_i \)</td><td>\( 1 \)</td></tr>
+                        <tr><td>Log-loss (binary)</td><td>\( -y\log p - (1-y)\log(1-p) \)</td><td>\( p_i - y_i \)</td><td>\( p_i(1 - p_i) \)</td></tr>
+                        <tr><td>MAE</td><td>\( |y - \hat{y}| \)</td><td>\( \text{sign}(\hat{y}_i - y_i) \)</td><td>\( 0 \) (special handling needed)</td></tr>
+                        <tr><td>Huber</td><td>Smooth MAE</td><td>Piecewise</td><td>Piecewise</td></tr>
+                    </tbody>
+                </table>
+                <p>Where \( p_i = \sigma(F(x_i)) = 1/(1 + e^{-F(x_i)}) \) for log-loss.</p>
+            </section>
+
+            <!-- 3.9 Full XGBoost Tree-Building Algorithm -->
+            <section id="xgboost-algorithm">
+                <h2>3.9 The Full XGBoost Tree-Building Algorithm</h2>
+                <p>At each boosting round \( m \):</p>
+                <ol>
+                    <li>Compute \( g_i \) and \( h_i \) for all samples using current predictions \( F_{m-1}(x_i) \)</li>
+                    <li>Start with a single leaf containing all samples</li>
+                    <li>For each leaf, try all candidate splits \( (k, s) \):
+                        <ul><li>Compute \( G_L, H_L, G_R, H_R \)</li><li>Compute Gain using the formula above</li></ul>
+                    </li>
+                    <li>Apply the best split if Gain > 0</li>
+                    <li>Repeat step 3-4 for child nodes (up to <code>max_depth</code>)</li>
+                    <li>Compute optimal weights \( w_j^* = -G_j / (H_j + \lambda) \) for all leaves</li>
+                    <li>Update: \( F_m(x) = F_{m-1}(x) + \nu \cdot h_m(x) \)</li>
+                </ol>
+            </section>
+
+            <!-- 3.10 Why is the Hessian Important? -->
+            <section id="hessian-importance">
+                <h2>3.10 Why is the Hessian Important?</h2>
+                <p>Consider two leaves with the same gradient sum \( G_j = 10 \):</p>
+                <ul>
+                    <li><strong>Leaf A:</strong> \( H_j = 100 \) (many samples, high curvature)</li>
+                    <li><strong>Leaf B:</strong> \( H_j = 1 \) (few samples, low curvature)</li>
+                </ul>
+                <p>Without Hessian: \( w_A = w_B = -10 \) (same weight!)</p>
+                <p>With Hessian: \( w_A = -10/101 \approx -0.099 \) and \( w_B = -10/2 = -5 \)</p>
+                <div class="important-box">
+                    Leaf A has many samples with conflicting predictions — the Hessian correctly gives it a <strong>smaller, more cautious</strong> update. Leaf B has a confident signal — it gets a larger update.<br><br>
+                    This is exactly why second-order methods are more sample-efficient and faster to converge.
+                </div>
+            </section>
+
+            <!-- Next Chapter Preview -->
+            <section id="next-chapter-preview">
+                <div class="important-box" style="background: #d1ecf1;">
+                    <strong>📘 Next Chapter:</strong> LightGBM — Speed, Scale, and Innovation
+                </div>
+            </section>
+
+            <!-- Navigation Buttons: Previous (Chapter 2) and Next (Chapter 4) -->
+            <div class="navigation-buttons">
+                <a href="ch2-lightgbm.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Chapter 2: Decision Trees</a>
+                <a href="ch4-lightgbm.html" class="nav-btn"><i class="fas fa-arrow-right"></i> Chapter 4: LightGBM — Speed & Scale</a>
+            </div>
+
+            <!-- Additional resources -->
+            <section id="reference">
+                <h2>References & Further Reading</h2>
+                <ul>
+                    <li>Chen, T., & Guestrin, C. (2016). XGBoost: A Scalable Tree Boosting System. <em>KDD 2016</em>.</li>
+                    <li>My GitHub: <a href="https://github.com/arunp77/Machine-Learning/" target="_blank">Machine Learning repository</a></li>
+                    <li><a href="https://hastie.su.domains/Papers/ESLII.pdf" target="_blank">The Elements of Statistical Learning</a> (Chapter on Boosting)</li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <div style="background-color: #f0f0f0; padding: 15px; border-radius: 5px; margin: 20px 0;">
+                <h3>📌 Other interesting topics:</h3>
+                <ul>
+                    <li><a href="sql-project.html">Data, Big Data, Data Modeling, Datawarehouse, SQL, Cloud Computing</a></li>
+                    <li><a href="Data-engineering.html">Data Engineering</a></li>
+                </ul>
+            </div>
+
+            <div class="navigation" style="display: flex; justify-content: space-between; margin-top: 20px;">
+                <a href="index.html#portfolio" class="clickable-box">← Portfolio Section</a>
+                <a href="machine-learning.html" class="clickable-box">ML Content →</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="container">
+        <div class="copyright">
+            &copy; Copyright <strong><span>Arun</span></strong>
+        </div>
+    </div>
+</footer>
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="assets/vendor/typed.js/typed.umd.js"></script>
+<script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        if (typeof hljs !== 'undefined') {
+            hljs.initHighlightingOnLoad();
+        }
+    });
+</script>
+
+</body>
+</html>
