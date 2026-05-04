@@ -169,8 +169,8 @@
                 <h2>LightGBM: XGBoost — Second-Order Gradient Boosting</h2>
                 <ol>
                     <li><a href="machine-learning.html" class="clickable-box">Machine Learning</a></li>
-                    <li><a href="index.html#portfolio" class="clickable-box">Portfolio</a></li>
-                    <li><a href="ch2-lightgbm.html" class="clickable-box">Prev: Decision Trees</a></li>
+                    <li><a href="lightgbm.html" class="clickable-box">LightGBM content</a></li>
+                    <li><a href="lightgbm-ch2.html" class="clickable-box">Prev: Decision Trees</a></li>
                 </ol>
             </div>
         </div>
@@ -221,16 +221,16 @@
                     <div class="section-title">
                         <h3>Chapter 3 Contents</h3>
                         <ol>
-                            <li><a href="#why-second-order">3.1 Why Go Second-Order?</a> — Newton's method recap</li>
-                            <li><a href="#regularized-objective">3.2 The Regularized Objective</a> — \( \Omega(h_m) = \gamma J + \frac{1}{2}\lambda \sum w_j^2 \)</li>
-                            <li><a href="#second-order-taylor">3.3 Second-Order Taylor Approximation</a> — gradients \( g_i \) and Hessians \( h_i \)</li>
-                            <li><a href="#reformulating-leaves">3.4 Reformulating in Terms of Leaves</a> — \( G_j, H_j \) aggregation</li>
-                            <li><a href="#optimal-leaf-weights">3.5 Optimal Leaf Weights</a> — \( w_j^* = -G_j/(H_j + \lambda) \)</li>
-                            <li><a href="#optimal-tree-score">3.6 Optimal Tree Score</a> — \( \tilde{\mathcal{L}}^*_{tree} = -\frac12 \sum \frac{G_j^2}{H_j+\lambda} + \gamma J \)</li>
-                            <li><a href="#split-gain-formula">3.7 Split Gain Formula</a> — with \( -\gamma \) regularization penalty</li>
-                            <li><a href="#common-losses">3.8 Gradient & Hessian for Common Losses</a> — MSE, Log-loss, MAE, Huber</li>
+                            <li><a href="#why-second-order">3.1 Why Go Second-Order?</a></li>
+                            <li><a href="#regularized-objective">3.2 The Regularized Objective</a></li>
+                            <li><a href="#second-order-taylor">3.3 Second-Order Taylor Approximation</a></li>
+                            <li><a href="#reformulating-leaves">3.4 Reformulating in Terms of Leaves</a></li>
+                            <li><a href="#optimal-leaf-weights">3.5 Optimal Leaf Weights</a></li>
+                            <li><a href="#optimal-tree-score">3.6 Optimal Tree Score</a></li>
+                            <li><a href="#split-gain-formula">3.7 Split Gain Formula</a></li>
+                            <li><a href="#common-losses">3.8 Gradient & Hessian for Common Losses</a></li>
                             <li><a href="#xgboost-algorithm">3.9 The Full XGBoost Tree-Building Algorithm</a></li>
-                            <li><a href="#hessian-importance">3.10 Why is the Hessian Important?</a> — cautious vs. confident updates</li>
+                            <li><a href="#hessian-importance">3.10 Why is the Hessian Important?</a></li>
                         </ol>
                     </div>
                 </div>
@@ -434,12 +434,6 @@
                 </div>
             </section>
 
-            <!-- Navigation Buttons: Previous (Chapter 2) and Next (Chapter 4) -->
-            <div class="navigation-buttons">
-                <a href="ch2-lightgbm.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Chapter 2: Decision Trees</a>
-                <a href="ch4-lightgbm.html" class="nav-btn"><i class="fas fa-arrow-right"></i> Chapter 4: LightGBM — Speed & Scale</a>
-            </div>
-
             <!-- Additional resources -->
             <section id="reference">
                 <h2>References & Further Reading</h2>
@@ -460,9 +454,10 @@
                 </ul>
             </div>
 
-            <div class="navigation" style="display: flex; justify-content: space-between; margin-top: 20px;">
-                <a href="index.html#portfolio" class="clickable-box">← Portfolio Section</a>
-                <a href="machine-learning.html" class="clickable-box">ML Content →</a>
+            <!-- Navigation Buttons: Previous (Chapter 2) and Next (Chapter 4) -->
+            <div class="navigation-buttons">
+                <a href="lightgbm-ch2.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Chapter 2: Decision Trees</a>
+                <a href="lightgbm-ch4.html" class="nav-btn"><i class="fas fa-arrow-right"></i> Chapter 4: LightGBM - Speed & Scale</a>
             </div>
         </div>
     </section>
