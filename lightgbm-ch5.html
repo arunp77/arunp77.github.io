@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>LightGBM: In Practice — Parameters, Training &amp; Tuning</title>
+    <meta content="Complete practical guide to LightGBM: parameters reference, bias-variance tradeoff, early stopping, categorical features, hyperparameter tuning with Optuna, cross-validation, and common pitfalls." name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="assets/img/Favicon-1.png" rel="icon">
+    <link href="assets/img/Favicon-1.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/prism.css">
+    <script src="assets/js/prism.js"></script>
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/5d25c1efd3.js" crossorigin="anonymous"></script>
+
+    <!-- MathJax for LaTeX rendering -->
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <style>
+        .equation {
+            background: #f4f4f4;
+            padding: 10px 15px;
+            border-left: 4px solid #149ddd;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: monospace;
+            font-size: 1.05rem;
+        }
+        .param-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+        .param-table th, .param-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+        .param-table th {
+            background-color: #149ddd;
+            color: white;
+        }
+        .param-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .grey-box {
+            background-color: #f9f9f9;
+            border-left: 4px solid #149ddd;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .important-box {
+            background-color: #e7f3fe;
+            border-left: 6px solid #2196F3;
+            padding: 10px 15px;
+            margin: 20px 0;
+            font-weight: 500;
+        }
+        .tip-box {
+            background-color: #e8f5e9;
+            border-left: 6px solid #4caf50;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        .warning-box {
+            background-color: #fff3e0;
+            border-left: 6px solid #ff9800;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        .code-block {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 20px;
+        }
+        .nav-btn {
+            display: inline-block;
+            background-color: #149ddd;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+        .nav-btn:hover {
+            background-color: #0f6f8c;
+            color: white;
+        }
+        .nav-btn i {
+            margin-right: 8px;
+        }
+        .clickable-box {
+            background-color: #149ddd;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+        .clickable-box:hover {
+            background-color: #0f6f8c;
+            color: white;
+        }
+        .two-column {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .two-column > div {
+            flex: 1;
+        }
+        @media (max-width: 768px) {
+            .two-column {
+                flex-direction: column;
+            }
+        }
+        .badge {
+            display: inline-block;
+            background-color: #149ddd;
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Mobile nav toggle button -->
+<i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+<!-- Header -->
+<header id="header">
+    <div class="d-flex flex-column">
+        <div class="profile">
+            <img src="assets/img/myphoto.jpeg" alt="" class="img-fluid rounded-circle">
+            <h1 class="text-light"><a href="index.html">Arun</a></h1>
+            <div class="social-links mt-3 text-center">
+                <a href="https://www.linkedin.com/in/arunp77/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                <a href="https://github.com/arunp77" target="_blank" class="github"><i class="bx bxl-github"></i></a>
+                <a href="https://twitter.com/arunp77_" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="https://www.instagram.com/arunp77/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="https://arunp77.medium.com/" target="_blank" class="medium"><i class="bx bxl-medium"></i></a>
+            </div>
+        </div>
+        <nav id="navbar" class="nav-menu navbar">
+            <ul>
+                <li><a href="index.html#hero" class="nav-link scrollto"><i class="bx bx-home"></i> <span>Home</span></a></li>
+                <li><a href="index.html#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
+                <li><a href="index.html#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+                <li><a href="index.html#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+                <li><a href="index.html#skills-and-tools" class="nav-link scrollto"><i class="bx bx-wrench"></i> <span>Skills and Tools</span></a></li>
+                <li><a href="index.html#language" class="nav-link scrollto"><i class="bi bi-menu-up"></i> <span>Languages</span></a></li>
+                <li><a href="index.html#awards" class="nav-link scrollto"><i class="bi bi-award-fill"></i> <span>Awards</span></a></li>
+                <li><a href="index.html#professionalcourses" class="nav-link scrollto"><i class="bx bx-book-alt"></i> <span>Professional Certification</span></a></li>
+                <li><a href="index.html#publications" class="nav-link scrollto"><i class="bx bx-news"></i> <span>Publications</span></a></li>
+                <li><a href="index.html#extra-curricular" class="nav-link scrollto"><i class="bx bx-rocket"></i> <span>Extra-Curricular Activities</span></a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main id="main">
+
+    <!-- Breadcrumbs -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>LightGBM: In Practice — Parameters, Training &amp; Tuning</h2>
+                <ol>
+                    <li><a href="machine-learning.html" class="clickable-box">Machine Learning</a></li>
+                    <li><a href="index.html#portfolio" class="clickable-box">Portfolio</a></li>
+                    <li><a href="ch4-lightgbm.html" class="clickable-box">Prev: Core Innovations</a></li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <!-- Right dropdown shortcuts -->
+    <div class="right-side-list">
+        <div class="dropdown">
+            <button class="dropbtn"><strong>Shortcuts:</strong></button>
+            <div class="dropdown-content">
+                <ul>
+                    <li><a href="cloud-compute.html"><i class="fas fa-cloud"></i> Cloud</a></li>
+                    <li><a href="AWS-GCP.html"><i class="fas fa-cloud"></i> AWS-GCP</a></li>
+                    <li><a href="amazon-s3.html"><i class="fas fa-cloud"></i> AWS S3</a></li>
+                    <li><a href="ec2-confi.html"><i class="fas fa-server"></i> EC2</a></li>
+                    <li><a href="Docker-Container.html"><i class="fab fa-docker"></i> Docker</a></li>
+                    <li><a href="Jupyter-nifi.html"><i class="fab fa-python"></i> Jupyter-nifi</a></li>
+                    <li><a href="snowflake-task-stream.html"><i class="fas fa-snowflake"></i> Snowflake</a></li>
+                    <li><a href="data-model.html"><i class="fas fa-database"></i> Data modeling</a></li>
+                    <li><a href="sql-basics.html"><i class="fas fa-table"></i> SQL basics</a></li>
+                    <li><a href="sql-basic-details.html"><i class="fas fa-database"></i> SQL details</a></li>
+                    <li><a href="Bigquerry-sql.html"><i class="fas fa-database"></i> BigQuery</a></li>
+                    <li><a href="scd.html"><i class="fas fa-archive"></i> SCD</a></li>
+                    <li><a href="sql-project.html"><i class="fas fa-database"></i> SQL project</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main tutorial content -->
+    <section id="portfolio-details" class="portfolio-details">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-8">
+                    <div class="portfolio-details-slider swiper">
+                        <div class="swiper-wrapper align-items-center">
+                            <div class="swiper-slide">
+                                <figure>
+                                    <img src="assets/img/machine-ln/lightgbm.png" alt="LightGBM Practical Guide" style="max-width: 50%; max-height: auto;">
+                                    <figcaption style="text-align: center;">LightGBM in Practice: Parameters, Training &amp; Tuning</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 grey-box">
+                    <div class="section-title">
+                        <h3>Chapter 5: Contents</h3>
+                        <ol>
+                            <li><a href="#install-quickstart">5.1 Installation &amp; Quick Start</a></li>
+                            <li><a href="#core-parameters">5.2 Core Parameters — Complete Reference</a></li>
+                            <li><a href="#bias-variance">5.3 The Bias-Variance Tradeoff in LightGBM</a></li>
+                            <li><a href="#early-stopping">5.4 Early Stopping — The Key to Optimal M</a></li>
+                            <li><a href="#categorical-features">5.5 Categorical Feature Handling</a></li>
+                            <li><a href="#feature-importance">5.6 Feature Importance</a></li>
+                            <li><a href="#tuning-strategy">5.7 Hyperparameter Tuning Strategy</a></li>
+                            <li><a href="#cross-validation">5.8 Cross-Validation</a></li>
+                            <li><a href="#sklearn-api">5.9 sklearn API</a></li>
+                            <li><a href="#saving-loading">5.10 Saving and Loading Models</a></li>
+                            <li><a href="#pitfalls">5.11 Common Pitfalls &amp; Fixes</a></li>
+                            <li><a href="#cheatsheet">5.12 Complete Parameter Cheat Sheet</a></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5.1 Installation & Quick Start -->
+            <section id="install-quickstart">
+                <h2>5.1 Installation &amp; Quick Start</h2>
+                <div class="code-block">
+                    <pre style="margin:0; color:#f8f8f2;">pip install lightgbm</pre>
+                </div>
+                <div class="code-block">
+                    <pre style="margin:0; color:#f8f8f2;">
+import lightgbm as lgb
+import numpy as np
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+# Load data
+X, y = load_breast_cancer(return_X_y=True)
+X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# LightGBM Dataset format (memory-efficient, stores histograms)
+train_data = lgb.Dataset(X_train, label=y_train)
+val_data   = lgb.Dataset(X_val,   label=y_val, reference=train_data)
+
+# Parameters
+params = {
+    'objective':    'binary',
+    'metric':       'binary_logloss',
+    'num_leaves':   31,
+    'learning_rate': 0.05,
+    'n_estimators': 100,
+    'verbose':      -1
+}
+
+# Train
+model = lgb.train(
+    params,
+    train_data,
+    valid_sets=[val_data],
+    callbacks=[lgb.early_stopping(stopping_rounds=20)]
+)
+
+# Predict
+y_pred = (model.predict(X_val) > 0.5).astype(int)
+print(f"Accuracy: {accuracy_score(y_val, y_pred):.4f}")</pre>
+                </div>
+            </section>
+
+            <!-- 5.2 Core Parameters -->
+            <section id="core-parameters">
+                <h2>5.2 Core Parameters — Complete Reference</h2>
+                
+                <h4>Task / Objective</h4>
+                <table class="param-table">
+                    <thead><tr><th>Parameter</th><th>Value</th><th>Use Case</th></tr></thead>
+                    <tbody>
+                        <tr><td rowspan="5"><code>objective</code></td><td><code>'regression'</code></td><td>Regression (MSE loss)</td></tr>
+                        <tr><td><code>'regression_l1'</code></td><td>Regression (MAE loss)</td></tr>
+                        <tr><td><code>'binary'</code></td><td>Binary classification</td></tr>
+                        <tr><td><code>'multiclass'</code></td><td>Multi-class classification</td></tr>
+                        <tr><td><code>'lambdarank'</code></td><td>Learning to rank</td></tr>
+                        <tr><td><code>num_class</code></td><td>integer</td><td>Required for <code>multiclass</code></td></tr>
+                    </tbody>
+                </table>
+
+                <h4>Tree Structure</h4>
+                <table class="param-table">
+                    <thead><tr><th>Parameter</th><th>Default</th><th>Meaning</th><th>Tuning Advice</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>num_leaves</code></td><td>31</td><td>Max leaves per tree</td><td>Primary complexity control. ≤ 2^{max_depth}. Start at 31.</td></tr>
+                        <tr><td><code>max_depth</code></td><td>-1 (no limit)</td><td>Max tree depth</td><td>Set if <code>num_leaves</code> is too permissive.</td></tr>
+                        <tr><td><code>min_data_in_leaf</code></td><td>20</td><td>Min samples in a leaf</td><td>Increase for large datasets or noisy data.</td></tr>
+                        <tr><td><code>min_sum_hessian_in_leaf</code></td><td>1e-3</td><td>Min sum of H_j in a leaf</td><td>Equivalent to min sample weight.</td></tr>
+                        <tr><td><code>max_bin</code></td><td>255</td><td>Histogram bins B</td><td>Higher = more accurate splits, slower.</td></tr>
+                        <tr><td><code>min_gain_to_split</code></td><td>0</td><td>γ in gain formula</td><td>Increase to prune low-gain splits.</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>Learning</h4>
+                <table class="param-table">
+                    <thead><tr><th>Parameter</th><th>Default</th><th>Meaning</th><th>Tuning Advice</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>learning_rate</code> ν</td><td>0.1</td><td>Shrinkage per tree</td><td>Lower = better generalization, needs more trees.</td></tr>
+                        <tr><td><code>n_estimators</code></td><td>100</td><td>Number of trees M</td><td>Use early stopping instead of fixed value.</td></tr>
+                        <tr><td><code>early_stopping_rounds</code></td><td>—</td><td>Stop if no improvement for k rounds</td><td>Set to ~50–100.</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>Regularization</h4>
+                <table class="param-table">
+                    <thead><tr><th>Parameter</th><th>Default</th><th>Meaning</th><th>Effect</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>lambda_l1</code></td><td>0</td><td>L1 regularization on weights</td><td>Sparse leaf weights</td></tr>
+                        <tr><td><code>lambda_l2</code></td><td>0</td><td>L2 regularization (λ)</td><td>Smooths leaf weights, reduces overfitting</td></tr>
+                        <tr><td><code>min_gain_to_split</code> γ</td><td>0</td><td>Minimum split gain</td><td>Prunes unprofitable splits</td></tr>
+                        <tr><td><code>num_leaves</code></td><td>31</td><td>—</td><td>Lower = simpler model</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>Sampling (GOSS &amp; Bagging)</h4>
+                <table class="param-table">
+                    <thead><tr><th>Parameter</th><th>Default</th><th>Meaning</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>bagging_fraction</code></td><td>1.0</td><td>Fraction of data sampled per tree (like random forest)</td></tr>
+                        <tr><td><code>bagging_freq</code></td><td>0</td><td>Bagging frequency (0 = disabled)</td></tr>
+                        <tr><td><code>feature_fraction</code></td><td>1.0</td><td>Fraction of features per tree (column subsampling)</td></tr>
+                        <tr><td><code>top_rate</code></td><td>0.2</td><td>GOSS a: top gradient fraction kept</td></tr>
+                        <tr><td><code>other_rate</code></td><td>0.1</td><td>GOSS b: random fraction from the rest</td></tr>
+                        <tr><td><code>boosting</code></td><td><code>'gbdt'</code></td><td>Set to <code>'goss'</code> to enable GOSS</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- 5.3 Bias-Variance Tradeoff -->
+            <section id="bias-variance">
+                <h2>5.3 The Bias-Variance Tradeoff in LightGBM</h2>
+                <div class="two-column">
+                    <div class="warning-box">
+                        <strong>🔧 To reduce <u>overfitting</u> (high variance):</strong>
+                        <ul>
+                            <li>Decrease <code>num_leaves</code></li>
+                            <li>Increase <code>min_data_in_leaf</code></li>
+                            <li>Decrease <code>learning_rate</code> + increase <code>n_estimators</code></li>
+                            <li>Increase <code>lambda_l1</code>, <code>lambda_l2</code></li>
+                            <li>Decrease <code>feature_fraction</code>, <code>bagging_fraction</code></li>
+                        </ul>
+                    </div>
+                    <div class="tip-box">
+                        <strong>🚀 To reduce <u>underfitting</u> (high bias):</strong>
+                        <ul>
+                            <li>Increase <code>num_leaves</code></li>
+                            <li>Decrease <code>min_data_in_leaf</code></li>
+                            <li>Increase <code>learning_rate</code></li>
+                            <li>Decrease regularization</li>
+                            <li>Increase <code>feature_fraction</code>, <code>bagging_fraction</code> to 1.0</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5.4 Early Stopping -->
+            <section id="early-stopping">
+                <h2>5.4 Early Stopping — The Key to Optimal M</h2>
+                <p>Choosing the number of trees M is critical: Too few → underfitting, Too many → overfitting.</p>
+                <div class="code-block">
+                    <pre style="margin:0;">
+model = lgb.train(
+    params,
+    train_data,
+    num_boost_round=2000,           # Upper bound on trees
+    valid_sets=[train_data, val_data],
+    valid_names=['train', 'val'],
+    callbacks=[
+        lgb.early_stopping(stopping_rounds=50),  # Stop after 50 rounds without improvement
+        lgb.log_evaluation(period=50)             # Print every 50 rounds
+    ]
+)
+
+print(f"Best iteration: {model.best_iteration}")
+print(f"Best val score: {model.best_score}")</pre>
+                </div>
+                <div class="important-box">
+                    The optimal M is <code>model.best_iteration</code>. This is <strong>the most important practical trick</strong> for LightGBM.
+                </div>
+            </section>
+
+            <!-- 5.5 Categorical Features -->
+            <section id="categorical-features">
+                <h2>5.5 Categorical Feature Handling</h2>
+                <div class="code-block">
+                    <pre style="margin:0;">
+# Specify categorical columns
+train_data = lgb.Dataset(X_train, label=y_train,
+                          categorical_feature=[0, 3, 7])  # column indices
+
+# Or with pandas DataFrames
+import pandas as pd
+df = pd.DataFrame(X_train)
+df[0] = df[0].astype('category')  # Mark as categorical type
+train_data = lgb.Dataset(df, label=y_train)</pre>
+                </div>
+                <div class="grey-box">
+                    <strong>Internally</strong>, LightGBM uses an optimal split for categoricals. Instead of thresholding (feature ≤ s), it groups categories C ⊆ {0,1,...,K-1} into left vs right:
+                    <div class="equation">
+                        \[
+                        \text{Gain}(C) = \frac{G_L^2}{H_L + \lambda} + \frac{G_R^2}{H_R + \lambda} - \frac{G^2}{H + \lambda}
+                        \]
+                    </div>
+                    LightGBM finds the optimal C using a sorted-gradient heuristic in O(K log K) time.
+                </div>
+            </section>
+
+            <!-- 5.6 Feature Importance -->
+            <section id="feature-importance">
+                <h2>5.6 Feature Importance</h2>
+                <div class="code-block">
+                    <pre style="margin:0;">
+# 'split': how many times feature was used to split
+# 'gain': total gain from all splits using this feature
+importance_split = model.feature_importance(importance_type='split')
+importance_gain  = model.feature_importance(importance_type='gain')
+
+# Plot
+lgb.plot_importance(model, importance_type='gain', max_num_features=20)</pre>
+                </div>
+                <div class="tip-box">
+                    <strong>Prefer <code>gain</code> importance</strong> — it weights features by how much they improve the objective, not just how often they're used (split counts can favor low-cardinality features).
+                </div>
+            </section>
+
+            <!-- 5.7 Tuning Strategy -->
+            <section id="tuning-strategy">
+                <h2>5.7 Hyperparameter Tuning Strategy</h2>
+                <p><strong>Phase 1 — Set learning rate high, find rough M:</strong> learning_rate=0.1, use early stopping.</p>
+                <p><strong>Phase 2 — Tune tree structure:</strong> num_leaves ∈ [15,31,63,127], min_data_in_leaf ∈ [10,20,50,100]</p>
+                <p><strong>Phase 3 — Tune regularization:</strong> lambda_l2 ∈ [0,0.1,1,10], lambda_l1 ∈ [0,0.1,1], min_gain_to_split ∈ [0,0.1,1]</p>
+                <p><strong>Phase 4 — Tune sampling:</strong> feature_fraction, bagging_fraction, bagging_freq</p>
+                <p><strong>Phase 5 — Lower learning rate, retrain:</strong> learning_rate=0.01 or 0.05</p>
+                
+                <h4>Using Optuna for Automated Tuning</h4>
+                <div class="code-block">
+                    <pre style="margin:0;">
+import optuna
+optuna.logging.set_verbosity(optuna.logging.WARNING)
+
+def objective(trial):
+    params = {
+        'objective':          'binary',
+        'metric':             'auc',
+        'num_leaves':         trial.suggest_int('num_leaves', 20, 300),
+        'min_data_in_leaf':   trial.suggest_int('min_data_in_leaf', 10, 100),
+        'learning_rate':      trial.suggest_float('learning_rate', 0.01, 0.3, log=True),
+        'lambda_l2':          trial.suggest_float('lambda_l2', 1e-3, 10.0, log=True),
+        'feature_fraction':   trial.suggest_float('feature_fraction', 0.5, 1.0),
+        'bagging_fraction':   trial.suggest_float('bagging_fraction', 0.5, 1.0),
+        'bagging_freq':       trial.suggest_int('bagging_freq', 1, 10),
+        'verbose':            -1
+    }
+    model = lgb.train(params, train_data,
+                      valid_sets=[val_data],
+                      callbacks=[lgb.early_stopping(50), lgb.log_evaluation(-1)])
+    return model.best_score['valid_0']['auc']
+
+study = optuna.create_study(direction='maximize')
+study.optimize(objective, n_trials=100)
+print(study.best_params)</pre>
+                </div>
+            </section>
+
+            <!-- 5.8 Cross-Validation -->
+            <section id="cross-validation">
+                <h2>5.8 Cross-Validation</h2>
+                <div class="code-block">
+                    <pre style="margin:0;">
+cv_results = lgb.cv(
+    params,
+    train_data,
+    num_boost_round=1000,
+    nfold=5,
+    stratified=True,        # For classification
+    callbacks=[lgb.early_stopping(50)]
+)
+
+best_rounds = len(cv_results['valid binary_logloss-mean'])
+print(f"Best rounds: {best_rounds}")
+print(f"CV score: {cv_results['valid binary_logloss-mean'][-1]:.4f} "
+      f"± {cv_results['valid binary_logloss-stdv'][-1]:.4f}")</pre>
+                </div>
+            </section>
+
+            <!-- 5.9 sklearn API -->
+            <section id="sklearn-api">
+                <h2>5.9 sklearn API</h2>
+                <div class="code-block">
+                    <pre style="margin:0;">
+from lightgbm import LGBMClassifier, LGBMRegressor
+
+clf = LGBMClassifier(
+    n_estimators=1000,
+    learning_rate=0.05,
+    num_leaves=31,
+    early_stopping_rounds=50,
+    verbose=-1
+)
+clf.fit(X_train, y_train,
+        eval_set=[(X_val, y_val)])
+
+y_pred = clf.predict(X_val)
+y_prob = clf.predict_proba(X_val)[:, 1]</pre>
+                </div>
+            </section>
+
+            <!-- 5.10 Saving and Loading -->
+            <section id="saving-loading">
+                <h2>5.10 Saving and Loading Models</h2>
+                <div class="code-block">
+                    <pre style="margin:0;">
+# Save
+model.save_model('model.lgb')
+
+# Load
+model_loaded = lgb.Booster(model_file='model.lgb')
+y_pred = model_loaded.predict(X_val)
+
+# Convert to JSON (human-readable, useful for inspection)
+model.dump_model('model.json')</pre>
+                </div>
+            </section>
+
+            <!-- 5.11 Common Pitfalls -->
+            <section id="pitfalls">
+                <h2>5.11 Common Pitfalls &amp; Fixes</h2>
+                <table class="param-table">
+                    <thead><tr><th>Problem</th><th>Symptom</th><th>Fix</th></tr></thead>
+                    <tbody>
+                        <tr><td>Overfitting</td><td>Train loss ↓, val loss ↑</td><td>Reduce `num_leaves`, increase `min_data_in_leaf`, add regularization</td></tr>
+                        <tr><td>Underfitting</td><td>Both losses high</td><td>Increase `num_leaves`, more trees, decrease regularization</td></tr>
+                        <tr><td>Slow training</td><td>Long wall time</td><td>Enable GOSS, reduce `max_bin`, use `feature_fraction < 1`</td></tr>
+                        <tr><td>Memory error</td><td>OOM</td><td>Reduce `max_bin`, use `two_round_loading=True` for large files</td></tr>
+                        <tr><td>Categoricals not working</td><td>High error on cat features</td><td>Ensure `categorical_feature` param set, or use pandas category dtype</td></tr>
+                        <tr><td>NaN predictions</td><td>NaN in output</td><td>Check for NaN in input features; LightGBM treats NaN as a separate bin</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- 5.12 Complete Cheat Sheet -->
+            <section id="cheatsheet">
+                <h2>5.12 Complete Parameter Cheat Sheet</h2>
+                <div class="code-block">
+                    <pre style="margin:0;">
+params = {
+    # Task
+    'objective':             'binary',      # or 'regression', 'multiclass'
+    'metric':                'auc',         # or 'rmse', 'logloss', 'multi_logloss'
+    'num_class':             1,             # only for multiclass
+
+    # Tree structure
+    'num_leaves':            31,            # ↑ more complex, ↑ overfit risk
+    'max_depth':             -1,            # -1 = no limit
+    'min_data_in_leaf':      20,            # ↑ more regularization
+    'min_sum_hessian_in_leaf': 1e-3,
+
+    # Learning
+    'learning_rate':         0.05,          # ↓ = better generalization
+    'n_estimators':          1000,          # use early stopping
+    'early_stopping_rounds': 50,
+
+    # Regularization
+    'lambda_l1':             0.0,           # L1 on leaf weights
+    'lambda_l2':             0.0,           # L2 on leaf weights
+    'min_gain_to_split':     0.0,           # γ: minimum gain to split
+
+    # Sampling
+    'feature_fraction':      0.8,           # column subsampling per tree
+    'bagging_fraction':      0.8,           # row subsampling
+    'bagging_freq':          5,             # bagging every 5 iterations
+
+    # Speed & hardware
+    'max_bin':               255,           # histogram bins
+    'num_threads':           -1,            # -1 = use all cores
+    'device_type':           'gpu',         # 'cpu' or 'gpu'
+    'boosting':              'gbdt',        # 'gbdt', 'goss', 'dart', 'rf'
+
+    # Output
+    'verbose':               -1,            # suppress output
+    'seed':                  42,
+}</pre>
+                </div>
+            </section>
+
+            <!-- Next Chapter Preview -->
+            <section id="next-chapter-preview">
+                <div class="important-box" style="background: #d1ecf1;">
+                    <strong>📘 Next Chapter:</strong> Mathematical Appendix &amp; Summary
+                </div>
+            </section>
+
+            <!-- References -->
+            <section id="reference">
+                <h2>References &amp; Further Reading</h2>
+                <ul>
+                    <li>Ke, G., et al. (2017). LightGBM: A Highly Efficient Gradient Boosting Decision Tree. <em>NeurIPS 2017</em>.</li>
+                    <li><a href="https://lightgbm.readthedocs.io/" target="_blank">LightGBM Official Documentation</a></li>
+                    <li><a href="https://optuna.org/" target="_blank">Optuna: Hyperparameter Optimization Framework</a></li>
+                    <li>My GitHub: <a href="https://github.com/arunp77/Machine-Learning/" target="_blank">Machine Learning repository</a></li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <div style="background-color: #f0f0f0; padding: 15px; border-radius: 5px; margin: 20px 0;">
+                <h3>📌 Other interesting topics:</h3>
+                <ul>
+                    <li><a href="sql-project.html">Data, Big Data, Data Modeling, Datawarehouse, SQL, Cloud Computing</a></li>
+                    <li><a href="Data-engineering.html">Data Engineering</a></li>
+                </ul>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="navigation-buttons">
+                <a href="lightgbm-ch4.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Chapter 4: Core Innovations</a>
+                <a href="lightgbm-ch6.html" class="nav-btn"><i class="fas fa-arrow-right"></i> Chapter 6: Appendix &amp; Summary</a>
+            </div>
+
+        
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="container">
+        <div class="copyright">
+            &copy; Copyright <strong><span>Arun</span></strong>
+        </div>
+    </div>
+</footer>
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="assets/vendor/typed.js/typed.umd.js"></script>
+<script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        if (typeof hljs !== 'undefined') {
+            hljs.initHighlightingOnLoad();
+        }
+    });
+</script>
+
+</body>
+</html>
