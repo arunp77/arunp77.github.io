@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>LightGBM: XGBoost — Second-Order Gradient Boosting</title>
-    <meta content="Complete tutorial on XGBoost second-order gradient boosting: Newton's method, regularized objective, Hessians, split gain formula, and tree algorithm." name="description">
+    <title>LightGBM: Core Innovations — GOSS, EFB, Histogram, Leaf-wise</title>
+    <meta content="Complete tutorial on LightGBM innovations: histogram-based splitting, leaf-wise tree growth, GOSS (Gradient-based One-Side Sampling), and EFB (Exclusive Feature Bundling)." name="description">
     <meta content="" name="keywords">
 
     <!-- Favicons -->
@@ -47,27 +47,24 @@
             font-family: monospace;
             font-size: 1.05rem;
         }
-        .tree-algorithm {
-            background-color: #2d2d2d;
-            color: #f8f8f2;
-            padding: 15px;
+        .innovation-box {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+            border-left: 6px solid #149ddd;
+            padding: 18px;
+            margin: 25px 0;
             border-radius: 8px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-            margin: 20px 0;
-            overflow-x: auto;
         }
-        table.hyperparam-table {
+        .comparison-table {
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
         }
-        table.hyperparam-table th, table.hyperparam-table td {
+        .comparison-table th, .comparison-table td {
             border: 1px solid #ddd;
             padding: 10px;
             text-align: left;
         }
-        table.hyperparam-table th {
+        .comparison-table th {
             background-color: #149ddd;
             color: white;
         }
@@ -99,8 +96,6 @@
             text-decoration: none;
             font-weight: bold;
             transition: background-color 0.3s;
-            border: none;
-            cursor: pointer;
             text-align: center;
         }
         .nav-btn:hover {
@@ -120,6 +115,42 @@
         .clickable-box:hover {
             background-color: #0f6f8c;
             color: white;
+        }
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .feature-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .feature-list li:before {
+            content: "🚀 ";
+            margin-right: 8px;
+        }
+        .tree-diagram {
+            font-family: monospace;
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.85rem;
+            margin: 15px 0;
+        }
+        .badge-innovation {
+            display: inline-block;
+            background-color: #149ddd;
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-right: 10px;
+        }
+        .highlight {
+            background-color: #fff3e0;
+            padding: 2px 4px;
+            border-radius: 3px;
         }
     </style>
 </head>
@@ -166,11 +197,11 @@
     <section id="breadcrumbs" class="breadcrumbs">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
-                <h2>LightGBM: XGBoost — Second-Order Gradient Boosting</h2>
+                <h2>LightGBM: Core Innovations</h2>
                 <ol>
                     <li><a href="machine-learning.html" class="clickable-box">Machine Learning</a></li>
                     <li><a href="index.html#portfolio" class="clickable-box">Portfolio</a></li>
-                    <li><a href="ch2-lightgbm.html" class="clickable-box">Prev: Decision Trees</a></li>
+                    <li><a href="ch3-lightgbm.html" class="clickable-box">Prev: XGBoost</a></li>
                 </ol>
             </div>
         </div>
@@ -209,8 +240,8 @@
                         <div class="swiper-wrapper align-items-center">
                             <div class="swiper-slide">
                                 <figure>
-                                    <img src="assets/img/machine-ln/lightgbm.png" alt="XGBoost second-order gradient boosting" style="max-width: 90%; max-height: auto;">
-                                    <figcaption style="text-align: center;">XGBoost: Newton's method in gradient boosting</figcaption>
+                                    <img src="assets/img/machine-ln/lightgbm.png" alt="LightGBM Core Innovations" style="max-width: 90%; max-height: auto;">
+                                    <figcaption style="text-align: center;">LightGBM: GOSS, EFB, Histogram, and Leaf-wise Growth</figcaption>
                                 </figure>
                             </div>
                         </div>
@@ -219,234 +250,281 @@
 
                 <div class="col-lg-4 grey-box">
                     <div class="section-title">
-                        <h3>Chapter 3 Contents</h3>
+                        <h3>Chapter 4: Contents</h3>
                         <ol>
-                            <li><a href="#why-second-order">3.1 Why Go Second-Order?</a> — Newton's method recap</li>
-                            <li><a href="#regularized-objective">3.2 The Regularized Objective</a> — \( \Omega(h_m) = \gamma J + \frac{1}{2}\lambda \sum w_j^2 \)</li>
-                            <li><a href="#second-order-taylor">3.3 Second-Order Taylor Approximation</a> — gradients \( g_i \) and Hessians \( h_i \)</li>
-                            <li><a href="#reformulating-leaves">3.4 Reformulating in Terms of Leaves</a> — \( G_j, H_j \) aggregation</li>
-                            <li><a href="#optimal-leaf-weights">3.5 Optimal Leaf Weights</a> — \( w_j^* = -G_j/(H_j + \lambda) \)</li>
-                            <li><a href="#optimal-tree-score">3.6 Optimal Tree Score</a> — \( \tilde{\mathcal{L}}^*_{tree} = -\frac12 \sum \frac{G_j^2}{H_j+\lambda} + \gamma J \)</li>
-                            <li><a href="#split-gain-formula">3.7 Split Gain Formula</a> — with \( -\gamma \) regularization penalty</li>
-                            <li><a href="#common-losses">3.8 Gradient & Hessian for Common Losses</a> — MSE, Log-loss, MAE, Huber</li>
-                            <li><a href="#xgboost-algorithm">3.9 The Full XGBoost Tree-Building Algorithm</a></li>
-                            <li><a href="#hessian-importance">3.10 Why is the Hessian Important?</a> — cautious vs. confident updates</li>
+                            <li><a href="#why-lightgbm">4.1 Why LightGBM?</a> — XGBoost bottleneck & four innovations overview</li>
+                            <li><a href="#histogram">4.2 Innovation 1: Histogram-Based Splitting</a> — discretization, histogram sub&subtraction, memory efficiency</li>
+                            <li><a href="#leaf-wise">4.3 Innovation 2: Leaf-Wise Tree Growth</a> — level-wise vs leaf-wise, why better, risk control</li>
+                            <li><a href="#goss">4.4 Innovation 3: GOSS — Gradient-based One-Side Sampling</a> — large vs small gradients, amplification, formal guarantee</li>
+                            <li><a href="#efb">4.5 Innovation 4: EFB — Exclusive Feature Bundling</a> — conflict graph, greedy bundling, offset merging</li>
+                            <li><a href="#comparison-summary">4.6 Putting It All Together: LightGBM vs XGBoost</a> — speed, memory, accuracy comparison</li>
                         </ol>
                     </div>
                 </div>
             </div>
 
-            <!-- 3.1 Why Go Second-Order? -->
-            <section id="why-second-order">
-                <h2>3.1 Why Go Second-Order?</h2>
-                <p>Standard gradient boosting uses only the <strong>first derivative</strong> (gradient) of the loss. This is like gradient descent — it tells us <em>which direction</em> to move, but not <em>how far</em>.</p>
-                <p><strong>Newton's method</strong> uses both first and second derivatives for faster, more accurate optimization. XGBoost (Chen & Guestrin, 2016) brought this idea to gradient boosting, giving a principled framework that LightGBM extends.</p>
+            <!-- 4.1 Why LightGBM? -->
+            <section id="why-lightgbm">
+                <h2>4.1 Why LightGBM?</h2>
+                <p>XGBoost was a breakthrough, but it has a critical bottleneck: <strong>finding the best split</strong>.</p>
+                <p>For each node, XGBoost must:</p>
+                <ul>
+                    <li>For each feature \( k \) (of \( d \) features)</li>
+                    <li>Sort all \( n \) samples by feature value</li>
+                    <li>Scan through all possible thresholds</li>
+                </ul>
+                <p><strong>Total cost per tree:</strong> \( O(n \cdot d \cdot D) \) where \( D \) = depth</p>
+                <p>For \( n = 10^6 \) samples and \( d = 1000 \) features, this is <strong>extremely slow</strong>.</p>
+                <p><strong>LightGBM</strong> (Ke et al., Microsoft Research, 2017) introduced four major innovations:</p>
                 
-                <h4>Recap: Newton's Method</h4>
-                <p>For minimizing \( f(\theta) \):</p>
-                <div class="equation">
-                    \[
-                    \theta \leftarrow \theta - \frac{f'(\theta)}{f''(\theta)}
-                    \]
-                </div>
-                <p>The second derivative \( f'' \) (curvature) tells us whether to take a large or small step. High curvature → smaller step, more precision.</p>
-            </section>
-
-            <!-- 3.2 Regularized Objective -->
-            <section id="regularized-objective">
-                <h2>3.2 The Regularized Objective</h2>
-                <p>At step \( m \), the <strong>exact objective</strong> for the new tree \( h_m \) is:</p>
-                <div class="equation">
-                    \[
-                    \mathcal{L}^{(m)} = \sum_{i=1}^{n} L\left(y_i,\ F_{m-1}(x_i) + h_m(x_i)\right) + \Omega(h_m)
-                    \]
-                </div>
-                <p>Where the <strong>regularization term</strong> \( \Omega(h_m) \) penalizes complexity:</p>
-                <div class="equation">
-                    \[
-                    \Omega(h_m) = \gamma J + \frac{1}{2} \lambda \sum_{j=1}^{J} w_j^2
-                    \]
-                </div>
-                <ul>
-                    <li>\( J \) = number of leaves (penalizes having too many leaves, controlled by \( \gamma \))</li>
-                    <li>\( w_j \) = leaf weight (penalizes large weights, controlled by \( \lambda \))</li>
-                    <li>\( \gamma \geq 0 \) and \( \lambda \geq 0 \) are regularization hyperparameters</li>
-                </ul>
-            </section>
-
-            <!-- 3.3 Second-Order Taylor Approximation -->
-            <section id="second-order-taylor">
-                <h2>3.3 Second-Order Taylor Approximation</h2>
-                <p>We approximate the loss for each sample with a <strong>Taylor expansion</strong> around the current prediction \( F_{m-1}(x_i) \):</p>
-                <p>Let \( \hat{y}_i^{(m-1)} = F_{m-1}(x_i) \), and \( f = h_m(x_i) \) be the new tree's output.</p>
-                <div class="equation">
-                    \[
-                    L(y_i, \hat{y}_i^{(m-1)} + f) \approx L(y_i, \hat{y}_i^{(m-1)}) + g_i f + \frac{1}{2} h_i f^2
-                    \]
-                </div>
-                <p>Where:</p>
-                <div class="equation">
-                    \[
-                    g_i = \frac{\partial L(y_i, \hat{y})}{\partial \hat{y}}\bigg|_{\hat{y} = \hat{y}_i^{(m-1)}} \quad \text{(first derivative / gradient)}
-                    \]
-                </div>
-                <div class="equation">
-                    \[
-                    h_i = \frac{\partial^2 L(y_i, \hat{y})}{\partial \hat{y}^2}\bigg|_{\hat{y} = \hat{y}_i^{(m-1)}} \quad \text{(second derivative / Hessian)}
-                    \]
-                </div>
-                <p><em>Note: \( h_i \) here is the Hessian (curvature), not to be confused with \( h_m \) (the tree). Standard notation — context will clarify.</em></p>
-                <p><strong>Dropping constant terms</strong> (the \( L(y_i, \hat{y}_i^{(m-1)}) \) doesn't depend on the new tree), the objective becomes:</p>
-                <div class="equation">
-                    \[
-                    \tilde{\mathcal{L}}^{(m)} = \sum_{i=1}^{n} \left[g_i h_m(x_i) + \frac{1}{2} h_i h_m(x_i)^2\right] + \Omega(h_m)
-                    \]
-                </div>
-            </section>
-
-            <!-- 3.4 Reformulating in Terms of Leaves -->
-            <section id="reformulating-leaves">
-                <h2>3.4 Reformulating in Terms of Leaves</h2>
-                <p>Since the tree \( h_m \) assigns leaf weight \( w_j \) to all samples \( x_i \) in leaf \( j \), we can group by leaves. Let \( I_j = \{i : x_i \in R_j\} \) be the set of sample indices in leaf \( j \):</p>
-                <div class="equation">
-                    \[
-                    \tilde{\mathcal{L}}^{(m)} = \sum_{j=1}^{J} \left[\left(\sum_{i \in I_j} g_i\right) w_j + \frac{1}{2}\left(\sum_{i \in I_j} h_i + \lambda\right) w_j^2\right] + \gamma J
-                    \]
-                </div>
-                <p>Define:</p>
-                <div class="equation">
-                    \[
-                    G_j = \sum_{i \in I_j} g_i \quad \text{(sum of gradients in leaf } j\text{)}
-                    \]
-                    \[
-                    H_j = \sum_{i \in I_j} h_i \quad \text{(sum of Hessians in leaf } j\text{)}
-                    \]
-                </div>
-                <p>Then:</p>
-                <div class="equation">
-                    \[
-                    \tilde{\mathcal{L}}^{(m)} = \sum_{j=1}^{J} \left[G_j w_j + \frac{1}{2}(H_j + \lambda) w_j^2\right] + \gamma J
-                    \]
-                </div>
-            </section>
-
-            <!-- 3.5 Optimal Leaf Weights -->
-            <section id="optimal-leaf-weights">
-                <h2>3.5 Optimal Leaf Weights</h2>
-                <p>For a <strong>fixed tree structure</strong>, the objective is a quadratic in each \( w_j \), and the leaves are <strong>independent</strong> (each sample goes to exactly one leaf). We minimize each leaf separately:</p>
-                <div class="equation">
-                    \[
-                    \frac{\partial \tilde{\mathcal{L}}}{\partial w_j} = G_j + (H_j + \lambda) w_j = 0
-                    \]
-                </div>
-                <div class="equation" style="background: #e0f7fa; font-size: 1.1rem;">
-                    \[
-                    \boxed{w_j^* = -\frac{G_j}{H_j + \lambda}}
-                    \]
-                </div>
-                <p>This is the <strong>Newton step</strong>: gradient \( G_j \) divided by curvature \( H_j \), with \( \lambda \) stabilizing the denominator (like a regularized Newton step).</p>
-            </section>
-
-            <!-- 3.6 Optimal Tree Score -->
-            <section id="optimal-tree-score">
-                <h2>3.6 Optimal Tree Score</h2>
-                <p>Substituting \( w_j^* \) back into the objective gives the <strong>minimum loss for a given tree structure</strong>:</p>
-                <div class="equation">
-                    \[
-                    \tilde{\mathcal{L}}^*_{tree} = -\frac{1}{2}\sum_{j=1}^{J} \frac{G_j^2}{H_j + \lambda} + \gamma J
-                    \]
-                </div>
-                <p>This score tells us how good this particular tree structure is. A lower (more negative) score = better tree.</p>
-            </section>
-
-            <!-- 3.7 Split Gain Formula -->
-            <section id="split-gain-formula">
-                <h2>3.7 Split Gain Formula</h2>
-                <p>When evaluating a candidate split that divides leaf with \( (G, H) \) into left \( (G_L, H_L) \) and right \( (G_R, H_R) \) children:</p>
-                <p><strong>Before split</strong> (single leaf score): \( -\frac{G^2}{H + \lambda} \)</p>
-                <p><strong>After split</strong> (two leaf scores): \( -\frac{G_L^2}{H_L + \lambda} - \frac{G_R^2}{H_R + \lambda} \)</p>
-                <div class="equation" style="background: #fff3e0;">
-                    \[
-                    \boxed{\text{Gain} = \frac{1}{2}\left[\frac{G_L^2}{H_L + \lambda} + \frac{G_R^2}{H_R + \lambda} - \frac{G^2}{H + \lambda}\right] - \gamma}
-                    \]
-                </div>
-                <p>We split only if \( \text{Gain} > 0 \).</p>
-                <ul>
-                    <li>The \( -\gamma \) term means a split must overcome the regularization penalty on an extra leaf.</li>
-                    <li>Higher \( \lambda \) shrinks the scores, making splits less attractive (more regularization).</li>
-                </ul>
-            </section>
-
-            <!-- 3.8 Gradient & Hessian for Common Losses -->
-            <section id="common-losses">
-                <h2>3.8 Gradient &amp; Hessian for Common Loss Functions</h2>
-                <table class="hyperparam-table">
+                <table class="comparison-table">
                     <thead>
-                        <tr><th>Loss</th><th>\( L(y, \hat{y}) \)</th><th>Gradient \( g_i \)</th><th>Hessian \( h_i \)</th></tr>
+                        <tr><th>Innovation</th><th>Problem Solved</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>MSE</td><td>\( \frac{1}{2}(y - \hat{y})^2 \)</td><td>\( \hat{y}_i - y_i \)</td><td>\( 1 \)</td></tr>
-                        <tr><td>Log-loss (binary)</td><td>\( -y\log p - (1-y)\log(1-p) \)</td><td>\( p_i - y_i \)</td><td>\( p_i(1 - p_i) \)</td></tr>
-                        <tr><td>MAE</td><td>\( |y - \hat{y}| \)</td><td>\( \text{sign}(\hat{y}_i - y_i) \)</td><td>\( 0 \) (special handling needed)</td></tr>
-                        <tr><td>Huber</td><td>Smooth MAE</td><td>Piecewise</td><td>Piecewise</td></tr>
+                        <tr><td><strong>GOSS</strong> (Gradient-based One-Side Sampling)</td><td>Reduce number of samples</td></tr>
+                        <tr><td><strong>EFB</strong> (Exclusive Feature Bundling)</td><td>Reduce number of features</td></tr>
+                        <tr><td><strong>Histogram-based splitting</strong></td><td>Faster split finding</td></tr>
+                        <tr><td><strong>Leaf-wise growth</strong></td><td>Better accuracy per tree</td></tr>
                     </tbody>
                 </table>
-                <p>Where \( p_i = \sigma(F(x_i)) = 1/(1 + e^{-F(x_i)}) \) for log-loss.</p>
             </section>
 
-            <!-- 3.9 Full XGBoost Tree-Building Algorithm -->
-            <section id="xgboost-algorithm">
-                <h2>3.9 The Full XGBoost Tree-Building Algorithm</h2>
-                <p>At each boosting round \( m \):</p>
-                <ol>
-                    <li>Compute \( g_i \) and \( h_i \) for all samples using current predictions \( F_{m-1}(x_i) \)</li>
-                    <li>Start with a single leaf containing all samples</li>
-                    <li>For each leaf, try all candidate splits \( (k, s) \):
-                        <ul><li>Compute \( G_L, H_L, G_R, H_R \)</li><li>Compute Gain using the formula above</li></ul>
-                    </li>
-                    <li>Apply the best split if Gain > 0</li>
-                    <li>Repeat step 3-4 for child nodes (up to <code>max_depth</code>)</li>
-                    <li>Compute optimal weights \( w_j^* = -G_j / (H_j + \lambda) \) for all leaves</li>
-                    <li>Update: \( F_m(x) = F_{m-1}(x) + \nu \cdot h_m(x) \)</li>
-                </ol>
-            </section>
-
-            <!-- 3.10 Why is the Hessian Important? -->
-            <section id="hessian-importance">
-                <h2>3.10 Why is the Hessian Important?</h2>
-                <p>Consider two leaves with the same gradient sum \( G_j = 10 \):</p>
-                <ul>
-                    <li><strong>Leaf A:</strong> \( H_j = 100 \) (many samples, high curvature)</li>
-                    <li><strong>Leaf B:</strong> \( H_j = 1 \) (few samples, low curvature)</li>
-                </ul>
-                <p>Without Hessian: \( w_A = w_B = -10 \) (same weight!)</p>
-                <p>With Hessian: \( w_A = -10/101 \approx -0.099 \) and \( w_B = -10/2 = -5 \)</p>
-                <div class="important-box">
-                    Leaf A has many samples with conflicting predictions — the Hessian correctly gives it a <strong>smaller, more cautious</strong> update. Leaf B has a confident signal — it gets a larger update.<br><br>
-                    This is exactly why second-order methods are more sample-efficient and faster to converge.
+            <!-- 4.2 Innovation 1: Histogram-Based Splitting -->
+            <section id="histogram">
+                <h2>4.2 Innovation 1: Histogram-Based Splitting</h2>
+                
+                <h4>The Problem with Exact Splits</h4>
+                <p>XGBoost's exact split algorithm sorts all values for each feature at each node. For large \( n \), this is \( O(n \log n) \) per feature per split.</p>
+                
+                <h4>The Histogram Idea</h4>
+                <p>Instead of examining every unique value, LightGBM <strong>discretizes</strong> continuous features into \( B \) bins (typically \( B = 255 \)):</p>
+                <div class="equation">
+                    \[
+                    x^{(k)} \rightarrow \tilde{x}^{(k)} = \text{bin}(x^{(k)}) \in \{0, 1, \ldots, B-1\}
+                    \]
                 </div>
+                <p>For each bin \( b \) and feature \( k \), we accumulate:</p>
+                <div class="equation">
+                    \[
+                    G_{k,b} = \sum_{i: \tilde{x}_i^{(k)} = b} g_i \quad \text{(sum of gradients in bin } b\text{)}
+                    \]
+                    \[
+                    H_{k,b} = \sum_{i: \tilde{x}_i^{(k)} = b} h_i \quad \text{(sum of Hessians in bin } b\text{)}
+                    \]
+                </div>
+                <p>Building the histogram costs \( O(n \cdot d) \).</p>
+                
+                <h4>Finding the Best Split from a Histogram</h4>
+                <p>We scan \( B \) thresholds (bins) instead of \( n \) thresholds. For threshold \( b \):</p>
+                <div class="equation">
+                    \[
+                    G_L = \sum_{b'=0}^{b} G_{k,b'}, \quad H_L = \sum_{b'=0}^{b} H_{k,b'}
+                    \]
+                </div>
+                <p>Using the XGBoost gain formula:</p>
+                <div class="equation">
+                    \[
+                    \text{Gain}(k, b) = \frac{1}{2}\left[\frac{G_L^2}{H_L + \lambda} + \frac{G_R^2}{H_R + \lambda} - \frac{G^2}{H + \lambda}\right] - \gamma
+                    \]
+                </div>
+                <p><strong>Split-finding cost:</strong> \( O(B \cdot d) \) per node (instead of \( O(n \cdot d) \))</p>
+                <div class="important-box">
+                    Since \( B \ll n \) (e.g., \( B = 255 \), \( n = 10^6 \)), this is a <strong>~4000× speedup</strong>.
+                </div>
+                
+                <h4>Histogram Subtraction Trick</h4>
+                <p>For a parent node histogram \( H_P \) and left child histogram \( H_L \), the right child histogram is:</p>
+                <div class="equation">
+                    \[
+                    H_R = H_P - H_L
+                    \]
+                </div>
+                <p>We only need to build the histogram for the <strong>smaller</strong> child — the larger one is derived by subtraction. This halves the work when building sibling nodes.</p>
+                
+                <h4>Memory Efficiency</h4>
+                <p>Histograms store \( B \cdot d \) values (instead of \( n \cdot d \) raw values). For \( B=255 \), \( d=1000 \), \( n=10^6 \):</p>
+                <ul>
+                    <li>Raw data: \( 10^6 \times 1000 \times 4 \) bytes = <strong>4 GB</strong></li>
+                    <li>Histogram: \( 255 \times 1000 \times 2 \times 4 \) bytes = <strong>2 MB</strong></li>
+                </ul>
+            </section>
+
+            <!-- 4.3 Innovation 2: Leaf-Wise Tree Growth -->
+            <section id="leaf-wise">
+                <h2>4.3 Innovation 2: Leaf-Wise Tree Growth</h2>
+                
+                <h4>Level-Wise Growth (XGBoost style)</h4>
+                <p>Grows the tree <strong>level by level</strong> — splits all leaves at depth \( d \) before any leaf at depth \( d+1 \):</p>
+                <div class="tree-diagram">
+                    Depth 1:        [Root]<br>
+                                    /    \<br>
+                    Depth 2:      [L1]   [R1]<br>
+                                / \     / \<br>
+                    Depth 3:   [LL][LR] [RL][RR]
+                </div>
+                <p>All leaves at depth 2 are split before moving to depth 3. This creates <strong>balanced</strong> trees.</p>
+                
+                <h4>Leaf-Wise Growth (LightGBM default)</h4>
+                <p>Always split the <strong>leaf with the highest loss reduction</strong> (best Gain), regardless of depth:</p>
+                <div class="tree-diagram">
+                    Round 1: Split Root → best gain<br>
+                    Round 2: Split whichever child has higher gain<br>
+                    Round 3: Split whichever leaf now has highest gain<br>
+                    ...
+                </div>
+                <p>This creates <strong>unbalanced, deeper on one side</strong> trees.</p>
+                
+                <h4>Why Leaf-Wise is Better</h4>
+                <p>Given a fixed number of leaves \( J \), leaf-wise growth achieves a <strong>lower training loss</strong> because it always makes the single best split available — it never wastes a split on a low-gain node just to maintain balance.</p>
+                <div class="equation">
+                    \[
+                    \mathcal{L}_K = \text{Loss after } K \text{ best splits}
+                    \]
+                </div>
+                
+                <h4>Risk of Leaf-Wise</h4>
+                <p>It can overfit on small datasets because it grows very deep asymmetrically. Control this with <code>num_leaves</code> (LightGBM's primary depth control) and <code>min_data_in_leaf</code>.</p>
+                <div class="grey-box">
+                    <strong>Key parameter:</strong> <code>num_leaves</code> — the maximum number of leaves in one tree. Setting <code>num_leaves = 2^max_depth</code> gives similar capacity to level-wise at depth <code>max_depth</code>.
+                </div>
+            </section>
+
+            <!-- 4.4 Innovation 3: GOSS -->
+            <section id="goss">
+                <h2>4.4 Innovation 3: GOSS — Gradient-based One-Side Sampling</h2>
+                
+                <h4>Motivation</h4>
+                <p>For large datasets, even building histograms over all \( n \) samples is expensive. Can we use <strong>fewer samples</strong> without losing accuracy?</p>
+                <div class="important-box">
+                    <strong>Key insight from gradient boosting:</strong><br>
+                    • Samples with <strong>large gradients</strong> \( |g_i| \) have large errors — they're the most informative.<br>
+                    • Samples with <strong>small gradients</strong> \( |g_i| \) are already well-predicted — they contribute less to learning.
+                </div>
+                
+                <h4>The GOSS Algorithm</h4>
+                <p><strong>Input:</strong> Data \( \{(x_i, y_i, g_i)\} \), top fraction \( a \), random fraction \( b \), amplification factor \( \frac{1-a}{b} \)</p>
+                <ol>
+                    <li>Sort samples by \( |g_i| \) in <strong>descending order</strong></li>
+                    <li>Keep the top \( a \times 100\% \) samples with largest gradients → set \( A \)</li>
+                    <li>From the remaining \( (1-a) \times 100\% \) samples, randomly sample \( b \times 100\% \) → set \( B \)</li>
+                    <li>Use \( A \cup B \) for histogram construction</li>
+                    <li><strong>Amplify</strong> the gradients of \( B \) by factor \( \frac{1-a}{b} \) to correct for undersampling</li>
+                </ol>
+                
+                <h4>Why Amplification?</h4>
+                <p>Samples in \( B \) represent the small-gradient portion. If we sample \( b \) fraction of them, each sampled point represents \( \frac{1}{b} \) points in reality. But we already kept \( A \) (top \( a \)), so:</p>
+                <div class="equation">
+                    \[
+                    \text{Weight of each sample in } B = \frac{1-a}{b}
+                    \]
+                </div>
+                <p>In the histogram, contributions from set \( B \) become:</p>
+                <div class="equation">
+                    \[
+                    G_{k,b}^{GOSS} = \sum_{i \in A, \tilde{x}_i^{(k)}=b} g_i + \frac{1-a}{b}\sum_{i \in B, \tilde{x}_i^{(k)}=b} g_i
+                    \]
+                </div>
+                <p>This gives an <strong>unbiased estimate</strong> of the full-data histogram.</p>
+                
+                <h4>GOSS Formal Guarantee</h4>
+                <p>The authors prove that the variance of the GOSS gain estimate is bounded by:</p>
+                <div class="equation">
+                    \[
+                    \mathcal{V}_{GOSS} = \frac{1-a}{b} \cdot O\left(\frac{1}{\sqrt{n}}\right)
+                    \]
+                </div>
+                <p>As long as \( a + b \) is not too small and the top-\( a \) gradients dominate, GOSS introduces negligible approximation error while using only \( (a + b) \times 100\% \) of the data.</p>
+                <div class="grey-box">
+                    <strong>Typical values:</strong> \( a = 0.2 \) (top 20%), \( b = 0.1 \) (random 10%), so we use only <strong>30% of data</strong> with nearly full accuracy.
+                </div>
+            </section>
+
+            <!-- 4.5 Innovation 4: EFB -->
+            <section id="efb">
+                <h2>4.5 Innovation 4: EFB — Exclusive Feature Bundling</h2>
+                
+                <h4>Motivation</h4>
+                <p>Real-world datasets (especially from one-hot encoding) are often <strong>very sparse</strong> — most feature values are zero. Features that are "mutually exclusive" (rarely non-zero simultaneously) can be <strong>bundled into one feature</strong> without information loss.</p>
+                
+                <h4>Definition: Exclusivity</h4>
+                <p>Two features \( f_1 \) and \( f_2 \) are <strong>exclusive</strong> if they rarely take non-zero values simultaneously:</p>
+                <div class="equation">
+                    \[
+                    \Pr[f_1 \neq 0 \land f_2 \neq 0] \leq \epsilon
+                    \]
+                </div>
+                <p>For truly exclusive features (\( \epsilon = 0 \)), we can losslessly merge them.</p>
+                
+                <h4>The Bundling Process</h4>
+                <p><strong>Step 1: Build a conflict graph</strong></p>
+                <ul>
+                    <li>Nodes = features</li>
+                    <li>Edge weight between \( f_i \) and \( f_j \) = number of samples where both are non-zero</li>
+                </ul>
+                <p><strong>Step 2: Solve the graph coloring problem</strong></p>
+                <p>Finding the optimal bundles is equivalent to <strong>graph coloring</strong> (NP-hard). LightGBM uses a greedy approximation: sort features by degree, assign each feature to an existing bundle if it doesn't exceed conflict threshold, otherwise create a new bundle.</p>
+                
+                <p><strong>Step 3: Merge features within a bundle</strong></p>
+                <p>For features \( f_1 \in [0, B_1] \) and \( f_2 \in [0, B_2] \) in a bundle:</p>
+                <div class="equation">
+                    \[
+                    f_{bundle} = f_1 + (f_2 + B_1)
+                    \]
+                </div>
+                <p>This uses <strong>offset</strong> so the two features occupy different ranges of the merged histogram — they can be distinguished when needed.</p>
+                
+                <div class="grey-box">
+                    <strong>Example:</strong> \( f_1 \in \{0, 1\} \) and \( f_2 \in \{0, 1\} \) (two binary features):<br>
+                    • \( f_1 = 0 \) → bundle value 0 or 1<br>
+                    • \( f_2 = 0 \) → bundle value \( 0 + 1 = 1 \) or \( 1 + 1 = 2 \)<br>
+                    Since they're exclusive (never both non-zero), bundle \( \in \{0, 1, 2\} \) uniquely encodes both.
+                </div>
+                
+                <h4>EFB Gain</h4>
+                <p>If the original dataset has \( d \) features with \( s \) non-zero values per feature (sparsity), the effective feature count after bundling is:</p>
+                <div class="equation">
+                    \[
+                    d_{eff} = d \cdot (1 - \text{bundle ratio}) \ll d
+                    \]
+                </div>
+                <p><strong>Typical speedup:</strong> 8× on sparse data with aggressive bundling.</p>
+            </section>
+
+            <!-- 4.6 Putting It All Together -->
+            <section id="comparison-summary">
+                <h2>4.6 Putting It All Together: LightGBM vs XGBoost</h2>
+                
+                <table class="comparison-table">
+                    <thead>
+                        <tr><th>Feature</th><th>XGBoost</th><th>LightGBM</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Split finding</td><td>Exact (all thresholds)</td><td>Histogram (B=255 bins)</td></tr>
+                        <tr><td>Tree growth</td><td>Level-wise</td><td>Leaf-wise</td></tr>
+                        <tr><td>Sample reduction</td><td>—</td><td>GOSS</td></tr>
+                        <tr><td>Feature reduction</td><td>—</td><td>EFB</td></tr>
+                        <tr><td>Memory</td><td>\( O(n \cdot d) \)</td><td>\( O(B \cdot d) \)</td></tr>
+                        <tr><td>Training speed</td><td>1×</td><td>~10–20× faster</td></tr>
+                        <tr><td>Accuracy</td><td>Slightly higher on small data</td><td>Comparable or better on large data</td></tr>
+                        <tr><td>Categorical features</td><td>Requires encoding</td><td>Native support</td></tr>
+                    </tbody>
+                </table>
             </section>
 
             <!-- Next Chapter Preview -->
             <section id="next-chapter-preview">
                 <div class="important-box" style="background: #d1ecf1;">
-                    <strong>📘 Next Chapter:</strong> LightGBM — Speed, Scale, and Innovation
+                    <strong>📘 Next Chapter:</strong> LightGBM in Practice — Parameters, Training, and Tuning
                 </div>
             </section>
 
-            <!-- Navigation Buttons: Previous (Chapter 2) and Next (Chapter 4) -->
-            <div class="navigation-buttons">
-                <a href="ch2-lightgbm.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Chapter 2: Decision Trees</a>
-                <a href="ch4-lightgbm.html" class="nav-btn"><i class="fas fa-arrow-right"></i> Chapter 4: LightGBM — Speed & Scale</a>
-            </div>
-
-            <!-- Additional resources -->
             <section id="reference">
                 <h2>References & Further Reading</h2>
                 <ul>
-                    <li>Chen, T., & Guestrin, C. (2016). XGBoost: A Scalable Tree Boosting System. <em>KDD 2016</em>.</li>
+                    <li>Ke, G., Meng, Q., Finley, T., Wang, T., Chen, W., Ma, W., ... & Liu, T. Y. (2017). LightGBM: A Highly Efficient Gradient Boosting Decision Tree. <em>NeurIPS 2017</em>.</li>
                     <li>My GitHub: <a href="https://github.com/arunp77/Machine-Learning/" target="_blank">Machine Learning repository</a></li>
-                    <li><a href="https://hastie.su.domains/Papers/ESLII.pdf" target="_blank">The Elements of Statistical Learning</a> (Chapter on Boosting)</li>
+                    <li><a href="https://lightgbm.readthedocs.io/" target="_blank">LightGBM Official Documentation</a></li>
                 </ul>
             </section>
 
@@ -464,6 +542,13 @@
                 <a href="index.html#portfolio" class="clickable-box">← Portfolio Section</a>
                 <a href="machine-learning.html" class="clickable-box">ML Content →</a>
             </div>
+
+            <!-- Navigation Buttons -->
+            <div class="navigation-buttons">
+                <a href="ch3-lightgbm.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Chapter 3: XGBoost</a>
+                <a href="ch5-lightgbm-practice.html" class="nav-btn"><i class="fas fa-arrow-right"></i> Chapter 5: LightGBM in Practice</a>
+            </div>
+
         </div>
     </section>
 </main>
