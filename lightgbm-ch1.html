@@ -225,7 +225,7 @@
                         <div class="swiper-wrapper align-items-center">
                             <div class="swiper-slide">
                                 <figure>
-                                    <img src="assets/img/machine-ln/lightgbm.png" alt="Gradient Descent to Gradient Boosting" style="max-width: 90%; max-height: auto;">
+                                    <img src="assets/img/machine-ln/lightgbm.png" alt="Gradient Descent to Gradient Boosting" style="max-width: 50%; max-height: auto;">
                                     <figcaption style="text-align: center;">From Parameter Space to Function Space: The Journey to Gradient Boosting</figcaption>
                                 </figure>
                             </div>
@@ -237,17 +237,17 @@
                     <div class="section-title">
                         <h3>Chapter 1: Contents</h3>
                         <ol class="content-list">
-                            <li><a href="#what-you-know">1.1 What You Already Know: Gradient Descent</a> — parameters, learning rate, MSE example</li>
-                            <li><a href="#the-problem">1.2 The Problem: What if You Can't Parameterize Your Model?</a> — discrete trees vs differentiable parameters</li>
-                            <li><a href="#core-idea">1.3 The Core Idea: Boosting</a> — weak learners → strong learner</li>
-                            <li><a href="#adaboost">1.4 AdaBoost: The Predecessor</a> — sample weights and exponential loss</li>
-                            <li><a href="#gradient-boosting-framework">1.5 Gradient Boosting: The Unifying Framework</a> — functional gradient descent</li>
-                            <li><a href="#functional-gd">1.6 Functional Gradient Descent — The Key Insight</a> — pseudo-residuals</li>
-                            <li><a href="#algorithm">1.7 Gradient Boosting Algorithm — Step by Step</a> — full pseudocode</li>
-                            <li><a href="#mse-example">1.8 Worked Example: MSE Loss</a> — residuals and leaf means</li>
-                            <li><a href="#logloss-example">1.9 Worked Example: Log-Loss (Binary Classification)</a> — probability residuals</li>
+                            <li><a href="#what-you-know">1.1 What we already Know: Gradient Descent</a></li>
+                            <li><a href="#the-problem">1.2 The Problem: What if You Can't Parameterize Your Model?</a></li>
+                            <li><a href="#core-idea">1.3 The Core Idea: Boosting</a></li>
+                            <li><a href="#adaboost">1.4 AdaBoost: The Predecessor</a></li>
+                            <li><a href="#gradient-boosting-framework">1.5 Gradient Boosting: The Unifying Framework</a></li>
+                            <li><a href="#functional-gd">1.6 Functional Gradient Descent — The Key Insight</a></li>
+                            <li><a href="#algorithm">1.7 Gradient Boosting Algorithm — Step by Step</a></li>
+                            <li><a href="#mse-example">1.8 Worked Example: MSE Loss</a></li>
+                            <li><a href="#logloss-example">1.9 Worked Example: Log-Loss (Binary Classification)</a></li>
                             <li><a href="#comparison">1.10 Gradient Boosting vs Gradient Descent — Summary Table</a></li>
-                            <li><a href="#why-not-big-tree">1.11 Why Not Just Use One Big Tree?</a> — bias-variance, regularization</li>
+                            <li><a href="#why-not-big-tree">1.11 Why Not Just Use One Big Tree?</a></li>
                         </ol>
                     </div>
                 </div>
@@ -256,7 +256,8 @@
             <!-- 1.1 What You Already Know: Gradient Descent -->
             <section id="what-you-know">
                 <h2>1.1 What You Already Know: Gradient Descent</h2>
-                <p>You're familiar with <strong>gradient descent</strong> — a method to minimize a loss function \( L(\theta) \) by iteratively updating the model <em>parameters</em> \( \theta \) in the direction opposite to the gradient:</p>
+                <p>We are familiar with <strong>gradient descent</strong> (can be found in <a href="Linear-reg.html" target="_blank">Grdient descent page</a>),
+                    a method to minimize a loss function \( L(\theta) \) by iteratively updating the model <em>parameters</em> \( \theta \) in the direction opposite to the gradient:</p>
                 <div class="equation">
                     \[
                     \theta_{t+1} = \theta_t - \eta \cdot \nabla_\theta L(\theta_t)
@@ -533,7 +534,7 @@
             <!-- Navigation Buttons: Previous (Portfolio) and Next (Chapter 2) -->
             <div class="navigation-buttons">
                 <a href="index.html#portfolio" class="nav-btn"><i class="fas fa-arrow-left"></i> Portfolio Section</a>
-                <a href="ch2-lightgbm.html" class="nav-btn"><i class="fas fa-arrow-right"></i> Chapter 2: Decision Trees</a>
+                <a href="lightgbm-ch2.html" class="nav-btn"><i class="fas fa-arrow-right"></i> Chapter 2: Decision Trees</a>
             </div>
 
         
