@@ -179,104 +179,197 @@
     </div>
 
     <section>
-    <h3 id="introdction">Introduction</h3>
-    We are familiar with <a href="Linear-reg.html" target="_blank">Gradient decent method</a> earlier,
-    a method to minimize a loss function \(L(\theta)\) by iteratively updating the model parameters \(\theta\) 
-    in the direction opposite to the gradient:
+        <h3 id="introdction">Introduction</h3>
+        We are familiar with <a href="Linear-reg.html" target="_blank">Gradient decent method</a> earlier,
+        a method to minimize a loss function \(L(\theta)\) by iteratively updating the model parameters \(\theta\) 
+        in the direction opposite to the gradient:
 
-    $$
-    \theta_{t+1} = \theta_t - \eta \cdot \nabla_\theta L(\theta_t)
-    $$
+        $$
+        \theta_{t+1} = \theta_t - \eta \cdot \nabla_\theta L(\theta_t)
+        $$
 
-    Where:
-    <ul>
-        <li>\(\theta_t\) = parameters at step \(t\)</li>
-        <li>\(\eta\) = learning rate (step size)</li>
-        <li>\(\nabla_\theta L(\theta_t)\) = gradient of the loss w.r.t. parameters</li>
-    </ul>
+        Where:
+        <ul>
+            <li>\(\theta_t\) = parameters at step \(t\)</li>
+            <li>\(\eta\) = learning rate (step size)</li>
+            <li>\(\nabla_\theta L(\theta_t)\) = gradient of the loss w.r.t. parameters</li>
+        </ul>
 
-    <b>The key idea:</b> Move parameters in the direction that most reduces the loss.
+        <b>The key idea:</b> Move parameters in the direction that most reduces the loss.
 
-    <p><b>Example: Linear Regression with MSE:</b></p>
+        <p><b>Example: Linear Regression with MSE:</b></p>
 
-    Given data \(\{(x_i, y_i)\}_{i=1}^{n}\), model \(\hat{y} = \theta^T x\), and loss:
+        Given data \(\{(x_i, y_i)\}_{i=1}^{n}\), model \(\hat{y} = \theta^T x\), and loss:
 
-    $$L(\theta) = \frac{1}{n} \sum_{i=1}^{n} (y_i - \theta^T x_i)^2$$
-    
-    The gradient is:
-    
-    $$\nabla_\theta L = -\frac{2}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i) x_i$$
-    
-    We update \(\theta\) repeatedly until convergence. This works perfectly when your model is parameterized (linear models, neural networks, etc.).
-
-
-    <h4>The Problem: What if You Can't Parameterize Your Model?</h4>
-
-    Gradient descent updates numbers (parameters \(\theta\)). But what if your model is a decision tree?
-    
-    Decision trees are not easily differentiable with respect to their structure. You can't write \(\nabla_\theta L$ for "which split to make at which node." The model structure is discrete and combinatorial.
-    
-    <div class="box">
-        So the question becomes: 
-    
-        "Can we do something gradient-descent-like, but instead of updating parameters, we add new models?"
-    </div>
-    
-    The answer is yes — and that's called <b>Gradient Boosting</b>.
-
-    <h3>The Core Idea: Boosting</h3>
-
-    Boosting is an ensemble technique that combines many weak learners (models only slightly better than random) into a single strong learner.
-    
-    The word weak typically means a decision tree with very few splits (called a stump or shallow tree).
+        $$L(\theta) = \frac{1}{n} \sum_{i=1}^{n} (y_i - \theta^T x_i)^2$$
+        
+        The gradient is:
+        
+        $$\nabla_\theta L = -\frac{2}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i) x_i$$
+        
+        We update \(\theta\) repeatedly until convergence. This works perfectly when your model is parameterized (linear models, neural networks, etc.).
 
 
-    <p><b>Why Combine Weak Learners?</b></p>
+        <h4>The Problem: What if You Can't Parameterize Your Model?</h4>
 
-    A shallow tree underfits — it can't capture complex patterns. But if we fit many of them sequentially, each one correcting the mistakes of the previous, the ensemble can become very powerful.
-    
-    <p><b>Analogy:</b> Imagine learning a skill. After each practice session, you identify your weakest area and focus specifically on that. Over many sessions, you improve dramatically — even if each session only gives a tiny improvement.</p>
+        Gradient descent updates numbers (parameters \(\theta\)). But what if your model is a decision tree?
+        
+        Decision trees are not easily differentiable with respect to their structure. You can't write \(\nabla_\theta L$ for "which split to make at which node." The model structure is discrete and combinatorial.
+        
+        <div class="box">
+            So the question becomes: 
+        
+            "Can we do something gradient-descent-like, but instead of updating parameters, we add new models?"
+        </div>
+        
+        The answer is yes — and that's called <b>Gradient Boosting</b>.
+
+        <h3>The Core Idea: Boosting</h3>
+
+        Boosting is an ensemble technique that combines many weak learners (models only slightly better than random) into a single strong learner.
+        
+        The word weak typically means a decision tree with very few splits (called a stump or shallow tree).
 
 
-    <h3>AdaBoost: The Predecessor</h3>
-    Before Gradient Boosting, there was AdaBoost (1996). It fits weak learners sequentially, giving higher sample weights to misclassified points so the next learner focuses on them.
+        <p><b>Why Combine Weak Learners?</b></p>
 
-    $$F(x) = \sum_{m=1}^{M} \alpha_m h_m(x)$$
-
-    Where \(h_m(x)\) is the \(m\)-th weak learner and \(\alpha_m\) is its weight based on accuracy.
-    
-    AdaBoost was powerful, but it was designed specifically for classification with exponential loss. We need something more general.
+        A shallow tree underfits — it can't capture complex patterns. But if we fit many of them sequentially, each one correcting the mistakes of the previous, the ensemble can become very powerful.
+        
+        <p><b>Analogy:</b> Imagine learning a skill. After each practice session, you identify your weakest area and focus specifically on that. Over many sessions, you improve dramatically — even if each session only gives a tiny improvement.</p>
 
 
-    <h3>Gradient Boosting: The Unifying Framework</h3>
-    Gradient Boosting (Friedman, 1999–2001) generalizes AdaBoost to work with any differentiable loss function by viewing boosting through the lens of functional gradient descent.
+        <h3>AdaBoost: The Predecessor</h3>
+        Before Gradient Boosting, there was AdaBoost (1996). It fits weak learners sequentially, giving higher sample weights to misclassified points so the next learner focuses on them.
 
-    <p><b>The setup:</b></p>
+        $$F(x) = \sum_{m=1}^{M} \alpha_m h_m(x)$$
 
-    We want to find a function \(F(x)\) that minimizes:
+        Where \(h_m(x)\) is the \(m\)-th weak learner and \(\alpha_m\) is its weight based on accuracy.
+        
+        AdaBoost was powerful, but it was designed specifically for classification with exponential loss. We need something more general.
 
-    $$\mathcal{L} = \sum_{i=1}^{n} L(y_i, F(x_i))$$
 
-Where:
-<ul>
-    <li>\(y_i\) = true label</li>
-    <li>\(F(x_i)\) = model prediction</li>
-    <li>\(L\) = any differentiable loss (MSE, log-loss, etc.)</li>
-</ul>
+        <h3>Gradient Boosting: The Unifying Framework</h3>
+        Gradient Boosting (Friedman, 1999–2001) generalizes AdaBoost to work with any differentiable loss function by viewing boosting through the lens of functional gradient descent.
 
-We build \(F(x)\) additively, one tree at a time:
+        <p><b>The setup:</b></p>
 
-$$F_m(x) = F_{m-1}(x) + \nu \cdot h_m(x)$$
+        We want to find a function \(F(x)\) that minimizes:
 
-Where:
-<ul>
-    <li>\(F_{m-1}(x)\) = current ensemble</li>
-    <li>\(h_m(x)\) = new weak learner (tree) added at step $m$</li>
-    <li>\(\nu\)= shrinkage/learning rate (typically 0.01–0.3)</li>
-</ul>
-- 
-- 
-- 
+        $$\mathcal{L} = \sum_{i=1}^{n} L(y_i, F(x_i))$$
+
+        Where:
+        <ul>
+            <li>\(y_i\) = true label</li>
+            <li>\(F(x_i)\) = model prediction</li>
+            <li>\(L\) = any differentiable loss (MSE, log-loss, etc.)</li>
+        </ul>
+
+        We build \(F(x)\) additively, one tree at a time:
+
+        $$F_m(x) = F_{m-1}(x) + \nu \cdot h_m(x)$$
+
+        Where:
+        <ul>
+            <li>\(F_{m-1}(x)\) = current ensemble</li>
+            <li>\(h_m(x)\) = new weak learner (tree) added at step $m$</li>
+            <li>\(\nu\)= shrinkage/learning rate (typically 0.01–0.3)</li>
+        </ul>
+
+        <h3>Functional Gradient Descent — The Key Insight</h3>
+        Instead of updating parameters, we update the prediction function itself:
+        
+        $$F_m(x) = F_{m-1}(x) - \eta \cdot \nabla_{F} \mathcal{L}$$
+        
+        The gradient of the loss w.r.t. the function's output at each training point \(x_i\) is:
+        
+        $$g_i = \frac{\partial L(y_i, F(x_i))}{\partial F(x_i)} \bigg|_{F = F_{m-1}}$$
+        
+        We call \(-g_i\) the pseudo-residual (negative gradient). This is the "error signal" the next tree must try to correct.
+        
+        <p>
+            <div class="grey-box">
+                <b>The critical connection:</b> Just as gradient descent moves parameters in the direction \(-\nabla_\theta L\), gradient boosting moves the prediction function in the direction \(-\nabla_F L\) by fitting a tree to the pseudo-residuals.
+            </div>
+        </p>
+
+        <h3>Gradient Boosting Algorithm</h3>
+
+        <p><b>Input:</b> Training data \(\{(x_i, y_i)\}_{i=1}^{n}\), loss function \(L\), number of trees \(M\), learning rate \(\nu\).</p>
+ 
+        <p><b>For \(m=1\) to \(M\):</b></p>
+        <ul>
+            <li><b>Step 0: </b>Initialize with the best constant prediction:
+                $$F_0(x) = \arg\min_\gamma \sum_{i=1}^{n} L(y_i, \gamma)$$
+                For MSE loss, this is simply \(F_0(x) = \bar{y}\) (the mean of \(y\)).
+            </li>
+            <li><b>Step 1: Compute pseudo-residuals (negative gradients):</b> 
+            $$r_{im} = -\left[\frac{\partial L(y_i, F(x_i))}{\partial F(x_i)}\right]_{F = F_{m-1}}, \quad i = 1, \ldots, n$$
+            </li>
+            <li><b>Step 2: Fit a regression tree:</b> \(h_m(x)\) to the pseudo-residuals \(\{(x_i, r_{im})\}\).
+            Let the tree have $J$ leaf regions \(R_{1m}, \ldots, R_{Jm}\).
+            </li>
+            <li><b>Step 3: Find optimal leaf values (line search per leaf):</b>
+            $$\gamma_{jm} = \arg\min_\gamma \sum_{x_i \in R_{jm}} L(y_i, F_{m-1}(x_i) + \gamma)$$
+            </li>
+            <li><b>Step 4: Update the ensemble:</b>
+            $$F_m(x) = F_{m-1}(x) + \nu \sum_{j=1}^{J} \gamma_{jm} \cdot \mathbf{1}[x \in R_{jm}]$$
+            </li>
+            <li><b>Step 5: </b> </li>
+        </ul>
+
+        <p><b>OUTPUT:</b> \(F_M(x)\).</p>
+
+        <div class="important-box">
+            <h4>Worked Example: MSE Loss</h4>
+
+            <p>Let \(L(y, F) = \frac{1}{2}(y - F)^2\)</p>
+ 
+            <p><b>Pseudo-residual:</b></p>
+            
+            $$r_i = -\frac{\partial L}{\partial F} = -\frac{\partial}{\partial F}\left[\frac{1}{2}(y_i - F)^2\right] = y_i - F(x_i)$$
+            
+            So for MSE, the pseudo-residuals are literally the ordinary residuals \(y_i - \hat{y}_i\). Each new tree fits the remaining error!
+            
+            <p><b>Optimal leaf value (line search):</b></p>
+            
+            $$\gamma_j = \arg\min_\gamma \sum_{x_i \in R_j} \frac{1}{2}(y_i - F_{m-1}(x_i) - \gamma)^2$$
+            
+            Taking derivative and setting to zero:
+
+            $$\sum_{x_i \in R_j} -(y_i - F_{m-1}(x_i) - \gamma) = 0$$
+
+            $$\sum_{x_i \in R_j} r_i = n_j \cdot \gamma$$
+
+            $$\boxed{\gamma_j = \frac{1}{n_j} \sum_{x_i \in R_j} r_i}$$
+            
+            The leaf value is just the mean of residuals in that leaf. Simple and elegant.
+
+            <h4>Worked Example: Log-Loss (Binary Classification)</h4>
+
+            For binary classification with $y \in \{0, 1\}$, using log-loss:
+            
+            $$L(y, F) = -\left[y \log p + (1-y)\log(1-p)\right], \quad p = \sigma(F) = \frac{1}{1 + e^{-F}}$$
+            
+            <p><b>Pseudo-residual:</b></p>
+            
+            $$r_i = -\frac{\partial L}{\partial F} = y_i - \sigma(F(x_i)) = y_i - p_i$$
+            
+            The residual is the difference between the true label and the predicted probability — intuitively clear!
+            
+            <p><b>Optimal leaf value (approximate — no closed form):</b></p>
+            
+            $$\gamma_j \approx \frac{\sum_{x_i \in R_j} r_i}{\sum_{x_i \in R_j} p_i(1 - p_i)}$$
+            
+            This uses a Newton step approximation (second-order), which brings us to XGBoost-style methods.
+            
+
+        </div>
+
+
+
+
+
+
 
 
 
