@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>LightGBM: Mathematical Appendix &amp; The Full Picture</title>
+    <meta content="Complete mathematical appendix for LightGBM: unified algorithm, loss derivations (MSE, log-loss, softmax), complexity analysis, DART, conceptual hierarchy, and quick reference card." name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="assets/img/Favicon-1.png" rel="icon">
+    <link href="assets/img/Favicon-1.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/prism.css">
+    <script src="assets/js/prism.js"></script>
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/5d25c1efd3.js" crossorigin="anonymous"></script>
+
+    <!-- MathJax for LaTeX rendering -->
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <style>
+        .equation {
+            background: #f4f4f4;
+            padding: 10px 15px;
+            border-left: 4px solid #149ddd;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: monospace;
+            font-size: 1.05rem;
+        }
+        .highlight-box {
+            background-color: #e7f3fe;
+            border-left: 6px solid #2196F3;
+            padding: 10px 15px;
+            margin: 20px 0;
+            font-weight: 500;
+        }
+        .algorithm-box {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        .quick-ref-card {
+            background-color: #fff8e1;
+            border: 2px solid #ffc107;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .quick-ref-card h4 {
+            color: #e65100;
+            margin-top: 0;
+        }
+        .hierarchy-box {
+            background-color: #f3e5f5;
+            border-left: 6px solid #9c27b0;
+            padding: 15px;
+            margin: 20px 0;
+            font-family: monospace;
+            line-height: 1.6;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+        .comparison-table th {
+            background-color: #149ddd;
+            color: white;
+        }
+        .grey-box {
+            background-color: #f9f9f9;
+            border-left: 4px solid #149ddd;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 20px;
+        }
+        .nav-btn {
+            display: inline-block;
+            background-color: #149ddd;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+        .nav-btn:hover {
+            background-color: #0f6f8c;
+            color: white;
+        }
+        .nav-btn i {
+            margin-right: 8px;
+        }
+        .clickable-box {
+            background-color: #149ddd;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+        .clickable-box:hover {
+            background-color: #0f6f8c;
+            color: white;
+        }
+        .two-column {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        @media (max-width: 768px) {
+            .two-column {
+                flex-direction: column;
+            }
+        }
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+        .checklist li:before {
+            content: "✅ ";
+            margin-right: 8px;
+        }
+        .badge {
+            display: inline-block;
+            background-color: #4caf50;
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Mobile nav toggle button -->
+<i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+<!-- Header -->
+<header id="header">
+    <div class="d-flex flex-column">
+        <div class="profile">
+            <img src="assets/img/myphoto.jpeg" alt="" class="img-fluid rounded-circle">
+            <h1 class="text-light"><a href="index.html">Arun</a></h1>
+            <div class="social-links mt-3 text-center">
+                <a href="https://www.linkedin.com/in/arunp77/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                <a href="https://github.com/arunp77" target="_blank" class="github"><i class="bx bxl-github"></i></a>
+                <a href="https://twitter.com/arunp77_" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="https://www.instagram.com/arunp77/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="https://arunp77.medium.com/" target="_blank" class="medium"><i class="bx bxl-medium"></i></a>
+            </div>
+        </div>
+        <nav id="navbar" class="nav-menu navbar">
+            <ul>
+                <li><a href="index.html#hero" class="nav-link scrollto"><i class="bx bx-home"></i> <span>Home</span></a></li>
+                <li><a href="index.html#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
+                <li><a href="index.html#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+                <li><a href="index.html#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+                <li><a href="index.html#skills-and-tools" class="nav-link scrollto"><i class="bx bx-wrench"></i> <span>Skills and Tools</span></a></li>
+                <li><a href="index.html#language" class="nav-link scrollto"><i class="bi bi-menu-up"></i> <span>Languages</span></a></li>
+                <li><a href="index.html#awards" class="nav-link scrollto"><i class="bi bi-award-fill"></i> <span>Awards</span></a></li>
+                <li><a href="index.html#professionalcourses" class="nav-link scrollto"><i class="bx bx-book-alt"></i> <span>Professional Certification</span></a></li>
+                <li><a href="index.html#publications" class="nav-link scrollto"><i class="bx bx-news"></i> <span>Publications</span></a></li>
+                <li><a href="index.html#extra-curricular" class="nav-link scrollto"><i class="bx bx-rocket"></i> <span>Extra-Curricular Activities</span></a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main id="main">
+
+    <!-- Breadcrumbs -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>LightGBM: Mathematical Appendix &amp; The Full Picture</h2>
+                <ol>
+                    <li><a href="machine-learning.html" class="clickable-box">Machine Learning content</a></li>
+                    <li><a href="lightgbm.html" class="clickable-box">LightGBM content</a></li>
+                    <li><a href="lightgbm-ch5.html" class="clickable-box">Chapter-5</a></li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <!-- Right dropdown shortcuts -->
+    <div class="right-side-list">
+        <div class="dropdown">
+            <button class="dropbtn"><strong>Shortcuts:</strong></button>
+            <div class="dropdown-content">
+                <ul>
+                    <li><a href="cloud-compute.html"><i class="fas fa-cloud"></i> Cloud</a></li>
+                    <li><a href="AWS-GCP.html"><i class="fas fa-cloud"></i> AWS-GCP</a></li>
+                    <li><a href="amazon-s3.html"><i class="fas fa-cloud"></i> AWS S3</a></li>
+                    <li><a href="ec2-confi.html"><i class="fas fa-server"></i> EC2</a></li>
+                    <li><a href="Docker-Container.html"><i class="fab fa-docker"></i> Docker</a></li>
+                    <li><a href="Jupyter-nifi.html"><i class="fab fa-python"></i> Jupyter-nifi</a></li>
+                    <li><a href="snowflake-task-stream.html"><i class="fas fa-snowflake"></i> Snowflake</a></li>
+                    <li><a href="data-model.html"><i class="fas fa-database"></i> Data modeling</a></li>
+                    <li><a href="sql-basics.html"><i class="fas fa-table"></i> SQL basics</a></li>
+                    <li><a href="sql-basic-details.html"><i class="fas fa-database"></i> SQL details</a></li>
+                    <li><a href="Bigquerry-sql.html"><i class="fas fa-database"></i> BigQuery</a></li>
+                    <li><a href="scd.html"><i class="fas fa-archive"></i> SCD</a></li>
+                    <li><a href="sql-project.html"><i class="fas fa-database"></i> SQL project</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main tutorial content -->
+    <section id="portfolio-details" class="portfolio-details">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-8">
+                    <div class="portfolio-details-slider swiper">
+                        <div class="swiper-wrapper align-items-center">
+                            <div class="swiper-slide">
+                                <figure>
+                                    <img src="assets/img/machine-ln/lightgbm.png" alt="LightGBM Mathematical Appendix" style="max-width: 50%; max-height: auto;">
+                                    <figcaption style="text-align: center;">The Full Picture: From First Principles to Production</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 grey-box">
+                    <div class="section-title">
+                        <h3>Chapter 6: Contents</h3>
+                        <ol>
+                            <li><a href="#unified-algorithm">6.1 The Complete Gradient Boosting Framework (Unified View)</a></li>
+                            <li><a href="#loss-derivations">6.2 Loss Functions — Derivations in Detail</a></li>
+                            <li><a href="#complexity">6.3 Complexity Analysis</a></li>
+                            <li><a href="#dart">6.4 DART — Dropouts Meet Multiple Additive Regression Trees</a></li>
+                            <li><a href="#hierarchy">6.5 The Full Picture — Conceptual Hierarchy</a></li>
+                            <li><a href="#when-to-use">6.6 When to Use LightGBM vs Alternatives</a></li>
+                            <li><a href="#quick-reference">6.7 Key Equations — Quick Reference Card</a></li>
+                            <li><a href="#learning-path">6.8 Recommended Learning Path &amp; Further Reading</a></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6.1 Unified Algorithm -->
+            <section id="unified-algorithm">
+                <h2>6.1 The Complete Gradient Boosting Framework (Unified View)</h2>
+                <p>We now have all pieces. Here is the <strong>complete algorithm</strong> as implemented in LightGBM:</p>
+                
+                <div class="algorithm-box">
+                    <pre style="margin:0; color:#f8f8f2;">
+<strong>Input:</strong>  
+- Training data D = {(x_i, y_i)} for i=1..n  
+- Loss function L(y, ŷ) with gradient g_i and Hessian h_i  
+- Hyperparameters: M, ν (learning rate), J (max leaves), λ, γ, B (bins)
+
+<strong>Initialization:</strong>
+F₀(x) = argmin_c Σ L(y_i, c)
+(e.g., F₀ = ȳ for MSE, F₀ = log( p̄/(1-p̄) ) for log-loss)
+
+<strong>For</strong> m = 1 to M:
+
+  ① Compute statistics for all samples:
+     g_i = ∂L/∂ŷ_i |_{ŷ_i = F_{m-1}(x_i)},   h_i = ∂²L/∂ŷ_i² |_{ŷ_i = F_{m-1}(x_i)}
+
+  ② [GOSS] Sample selection:
+     - Keep set A: top a·n samples by |g_i|
+     - Randomly sample set B: b·(1-a)·n samples from the rest
+     - Amplify B gradients by (1-a)/b
+
+  ③ [EFB] Bundle features:
+     - Find mutually exclusive feature groups
+     - Merge into bundles with bin offsets
+
+  ④ Build histograms for each feature/bundle k:
+     G_{k,b} = Σ_{i∈A∪B, x̃_i^(k)=b} g̃_i,   H_{k,b} = Σ_{i∈A∪B, x̃_i^(k)=b} h̃_i
+
+  ⑤ Leaf-wise tree construction with at most J leaves:
+     Repeat until J leaves:
+       - For each leaf ℓ, each feature k, scan bins to find:
+           Gain = ½[ G_L²/(H_L+λ) + G_R²/(H_R+λ) - G_ℓ²/(H_ℓ+λ) ] - γ
+       - Apply global best split
+       - Use histogram subtraction for larger sibling
+
+  ⑥ Compute leaf weights:
+     w_j* = -G_j / (H_j + λ),   j = 1,...,J
+
+  ⑦ Update model:
+     F_m(x) = F_{m-1}(x) + ν · Σ w_j* · 1[x ∈ R_j]
+
+<strong>Output:</strong> F_M(x) (for regression) or σ(F_M(x)) (for binary classification)</pre>
+                </div>
+            </section>
+
+            <!-- 6.2 Loss Derivations -->
+            <section id="loss-derivations">
+                <h2>6.2 Loss Functions — Derivations in Detail</h2>
+                
+                <h4>6.2.1 Mean Squared Error (Regression)</h4>
+                <div class="equation">
+                    \[
+                    L(y, \hat{y}) = \frac{1}{2}(y - \hat{y})^2
+                    \]
+                </div>
+                <div class="equation">
+                    \[
+                    g_i = \frac{\partial L}{\partial \hat{y}_i} = \hat{y}_i - y_i, \quad h_i = \frac{\partial^2 L}{\partial \hat{y}_i^2} = 1
+                    \]
+                </div>
+                <p>Optimal leaf weight: \( w_j^* = -\frac{\sum_{i \in R_j}(\hat{y}_i - y_i)}{\sum_{i \in R_j} 1 + \lambda} = \frac{\sum_{i \in R_j}(y_i - \hat{y}_i)}{n_j + \lambda} \)</p>
+                <p>This is the <strong>mean residual</strong> (with L2 shrinkage) — exact same intuition as basic gradient boosting.</p>
+
+                <h4>6.2.2 Binary Cross-Entropy (Log-Loss)</h4>
+                <div class="equation">
+                    \[
+                    L(y, \hat{y}) = -y \log \sigma(\hat{y}) - (1-y)\log(1 - \sigma(\hat{y})), \quad \sigma(z) = \frac{1}{1 + e^{-z}}
+                    \]
+                </div>
+                <div class="equation">
+                    \[
+                    g_i = p_i - y_i, \quad p_i = \sigma(F_{m-1}(x_i))
+                    \]
+                </div>
+                <div class="equation">
+                    \[
+                    h_i = p_i(1 - p_i)
+                    \]
+                </div>
+                <p>The Hessian is the <strong>variance of a Bernoulli(p_i)</strong> random variable — maximum at p_i = 0.5 (maximum uncertainty) and minimum near 0 or 1 (confident predictions).</p>
+
+                <h4>6.2.3 Softmax for Multi-class (K classes)</h4>
+                <p>For class k and sample i with true class y_i:</p>
+                <div class="equation">
+                    \[
+                    g_{i,k} = p_{i,k} - \mathbf{1}[y_i = k], \quad p_{i,k} = \frac{e^{F_k(x_i)}}{\sum_{k'} e^{F_{k'}(x_i)}}
+                    \]
+                </div>
+                <div class="equation">
+                    \[
+                    h_{i,k} = p_{i,k}(1 - p_{i,k})
+                    \]
+                </div>
+                <p>One tree per class is built at each round (K trees per boosting iteration).</p>
+            </section>
+
+            <!-- 6.3 Complexity Analysis -->
+            <section id="complexity">
+                <h2>6.3 Complexity Analysis</h2>
+                <table class="comparison-table">
+                    <thead><tr><th>Operation</th><th>Naive (XGBoost)</th><th>LightGBM</th></tr></thead>
+                    <tbody>
+                        <tr><td>Histogram build</td><td>\(O(n \cdot d)\) per tree</td><td>\(O(n' \cdot d')\) where \(n' = (a+b)n\), \(d' \ll d\)</td></tr>
+                        <tr><td>Split finding</td><td>\(O(n \cdot d)\) per node</td><td>\(O(B \cdot d')\) per node</td></tr>
+                        <tr><td>Per-tree total</td><td>\(O(n \cdot d \cdot D \cdot 2^D)\)</td><td>\(O(B \cdot d' \cdot J)\)</td></tr>
+                        <tr><td>Memory</td><td>\(O(n \cdot d)\)</td><td>\(O(B \cdot d')\)</td></tr>
+                    </tbody>
+                </table>
+                <p>With \(B=255\), \(n=10^6\), \(d'=0.1d\) (EFB), \(n'=0.3n\) (GOSS):</p>
+                <div class="equation">
+                    \[
+                    \text{LightGBM speedup} \approx \frac{n \cdot d}{B \cdot d' \cdot n'/(n)} = \frac{10^6 \cdot d}{255 \cdot 0.1d \cdot 0.3} \approx 130,000 \times
+                    \]
+                </div>
+                <p>In practice, the actual speedup is 10–50× due to overhead, cache effects, and sequential tree building.</p>
+            </section>
+
+            <!-- 6.4 DART -->
+            <section id="dart">
+                <h2>6.4 DART — Dropouts Meet Multiple Additive Regression Trees</h2>
+                <p>LightGBM also supports <strong>DART</strong> (<code>boosting='dart'</code>), which randomly drops trees during training (analogous to dropout in neural networks):</p>
+                <ol>
+                    <li>Randomly drop a fraction ρ of existing trees from the ensemble</li>
+                    <li>Train new tree h_m to fit residuals of the <strong>reduced</strong> ensemble</li>
+                    <li>Add h_m back with normalized weights to maintain scale</li>
+                </ol>
+                <div class="highlight-box">
+                    <strong>Effect:</strong> DART significantly reduces overfitting and often improves generalization on noisy datasets, at the cost of slower prediction (must run all trees in a specific order).
+                </div>
+            </section>
+
+            <!-- 6.5 Conceptual Hierarchy -->
+            <section id="hierarchy">
+                <h2>6.5 The Full Picture — Conceptual Hierarchy</h2>
+                <div class="hierarchy-box">
+                    <pre style="margin:0; background:transparent; color:#4a148c;">
+GRADIENT BOOSTING FAMILY
+│
+├── Base Concept: Functional Gradient Descent
+│   └── Build ensemble F_M(x) = Σ ν·h_m(x) to minimize Σ L(y_i, F(x_i))
+│
+├── First-Order Methods (fit gradients)
+│   └── Classic Gradient Boosting (Friedman 2001)
+│       └── Pseudo-residuals r_i = -∂L/∂F
+│
+├── Second-Order Methods (fit gradients + Hessians)
+│   ├── XGBoost (Chen 2016): Exact splits, level-wise
+│   └── LightGBM (Ke 2017): Histogram splits, leaf-wise
+│       ├── GOSS: Sample by gradient magnitude
+│       ├── EFB: Bundle exclusive features
+│       ├── Histograms: Discretize → B bins
+│       └── Leaf-wise growth: Always best split globally
+│
+└── Variants
+    ├── DART: Dropout regularization
+    └── Random Forest mode: Independent trees
+</pre>
+                </div>
+            </section>
+
+            <!-- 6.6 When to Use LightGBM -->
+            <section id="when-to-use">
+                <h2>6.6 When to Use LightGBM vs Alternatives</h2>
+                <table class="comparison-table">
+                    <thead><tr><th>Situation</th><th>Recommendation</th></tr></thead>
+                    <tbody>
+                        <tr><td>Tabular data, any size</td><td><strong>LightGBM</strong> — first choice</td></tr>
+                        <tr><td>Very large data (>1M rows)</td><td><strong>LightGBM</strong> — GOSS/EFB shine here</td></tr>
+                        <tr><td>Small dataset (<1000 rows)</td><td>Consider XGBoost (exact splits) or Ridge/Lasso</td></tr>
+                        <tr><td>Image / audio / text</td><td>Deep learning (CNNs, Transformers)</td></tr>
+                        <tr><td>Need full interpretability</td><td>Linear models or shallow single trees</td></tr>
+                        <tr><td>Time series (temporal)</td><td>LightGBM with careful feature engineering, or Prophet/ARIMA</td></tr>
+                        <tr><td>Ranking problems</td><td>LightGBM LambdaRank</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- 6.7 Quick Reference Card -->
+            <section id="quick-reference">
+                <h2>6.7 Key Equations — Quick Reference Card</h2>
+                <div class="quick-ref-card">
+                    <h4>📐 LightGBM / XGBoost Quick Reference</h4>
+                    <div class="two-column">
+                        <div>
+                            <p><strong>Model:</strong></p>
+                            <div class="equation" style="margin:5px 0; padding:5px;">\(F_M(x) = F_0(x) + \sum_{m=1}^M \nu \cdot h_m(x)\)</div>
+                            <p><strong>Gradient (1st order):</strong></p>
+                            <div class="equation" style="margin:5px 0; padding:5px;">\(g_i = \partial L(y_i, \hat{y}_i) / \partial \hat{y}_i\)</div>
+                            <p><strong>Hessian (2nd order):</strong></p>
+                            <div class="equation" style="margin:5px 0; padding:5px;">\(h_i = \partial^2 L(y_i, \hat{y}_i) / \partial \hat{y}_i^2\)</div>
+                        </div>
+                        <div>
+                            <p><strong>Leaf sums:</strong></p>
+                            <div class="equation" style="margin:5px 0; padding:5px;">\(G_j = \sum_{i \in I_j} g_i,\; H_j = \sum_{i \in I_j} h_i\)</div>
+                            <p><strong>Optimal leaf weight:</strong></p>
+                            <div class="equation" style="margin:5px 0; padding:5px;">\(w_j^* = -G_j / (H_j + \lambda)\)</div>
+                            <p><strong>Split gain:</strong></p>
+                            <div class="equation" style="margin:5px 0; padding:5px;">\(\frac{1}{2}\left[\frac{G_L^2}{H_L+\lambda} + \frac{G_R^2}{H_R+\lambda} - \frac{G^2}{H+\lambda}\right] - \gamma\)</div>
+                        </div>
+                    </div>
+                    <p><strong>Tree score:</strong> \(-\frac{1}{2}\sum_j \frac{G_j^2}{H_j + \lambda} + \gamma J\) &nbsp;&nbsp;|&nbsp;&nbsp; <strong>GOSS amplification:</strong> Weight of set B: \(\frac{1-a}{b}\)</p>
+                </div>
+            </section>
+
+            <!-- 6.8 Learning Path -->
+            <section id="learning-path">
+                <h2>6.8 Recommended Learning Path &amp; Further Reading</h2>
+                <ul class="checklist">
+                    <li>✅ Chapter 1 — Gradient Descent → Gradient Boosting conceptual bridge</li>
+                    <li>✅ Chapter 2 — Decision trees as building blocks</li>
+                    <li>✅ Chapter 3 — XGBoost: second-order framework, gain formula derivation</li>
+                    <li>✅ Chapter 4 — LightGBM innovations: histograms, leaf-wise, GOSS, EFB</li>
+                    <li>✅ Chapter 5 — Practical guide: parameters, tuning, code</li>
+                    <li>✅ Chapter 6 — Unified view and mathematical summary</li>
+                </ul>
+                
+                <h4>Further Reading</h4>
+                <ul>
+                    <li><strong>Original papers:</strong>
+                        <ul>
+                            <li>Friedman (2001) — <em>Greedy Function Approximation: A Gradient Boosting Machine</em></li>
+                            <li>Chen & Guestrin (2016) — <em>XGBoost: A Scalable Tree Boosting System</em></li>
+                            <li>Ke et al. (2017) — <em>LightGBM: A Highly Efficient Gradient Boosting Decision Tree</em></li>
+                        </ul>
+                    </li>
+                    <li><strong>Practice:</strong>
+                        <ul>
+                            <li>Kaggle competitions (LightGBM dominates tabular competitions)</li>
+                            <li>LightGBM official docs: <a href="https://lightgbm.readthedocs.io" target="_blank">https://lightgbm.readthedocs.io</a></li>
+                        </ul>
+                    </li>
+                    <li>My GitHub: <a href="https://github.com/arunp77/Machine-Learning/" target="_blank">Machine Learning repository</a></li>
+                </ul>
+                
+                <div class="highlight-box" style="background: #e8f5e9; border-left-color: #4caf50;">
+                    <strong>🏁 End of Tutorial — You now know LightGBM from first principles to production use.</strong>
+                </div>
+            </section>
+
+            <!-- Navigation Buttons -->
+            <div class="navigation-buttons">
+                <a href="ch5-lightgbm-practice.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Chapter 5: In Practice</a>
+                <a href="machine-learning.html" class="nav-btn"><i class="fas fa-book"></i> Back to ML Content</a>
+            </div>
+
+            <!-- References -->
+            <section id="reference">
+                <h2>References</h2>
+                <ul>
+                    <li>Friedman, J. H. (2001). Greedy Function Approximation: A Gradient Boosting Machine. <em>The Annals of Statistics</em>, 29(5), 1189-1232.</li>
+                    <li>Chen, T., & Guestrin, C. (2016). XGBoost: A Scalable Tree Boosting System. <em>Proceedings of the 22nd ACM SIGKDD</em>.</li>
+                    <li>Ke, G., Meng, Q., Finley, T., Wang, T., Chen, W., Ma, W., ... & Liu, T. Y. (2017). LightGBM: A Highly Efficient Gradient Boosting Decision Tree. <em>NeurIPS 2017</em>.</li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <div style="background-color: #f0f0f0; padding: 15px; border-radius: 5px; margin: 20px 0;">
+                <h3>📌 Other interesting topics:</h3>
+                <ul>
+                    <li><a href="sql-project.html">Data, Big Data, Data Modeling, Datawarehouse, SQL, Cloud Computing</a></li>
+                    <li><a href="Data-engineering.html">Data Engineering</a></li>
+                </ul>
+            </div>
+
+            <div class="navigation" style="display: flex; justify-content: space-between; margin-top: 20px;">
+                <a href="lightgbm-ch5.html" class="clickable-box">← Chapter 5: In Practice<</a>
+                <a href="lightgbm.html" class="clickable-box">LightGBM Content →</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="container">
+        <div class="copyright">
+            &copy; Copyright <strong><span>Arun</span></strong>
+        </div>
+    </div>
+</footer>
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="assets/vendor/typed.js/typed.umd.js"></script>
+<script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        if (typeof hljs !== 'undefined') {
+            hljs.initHighlightingOnLoad();
+        }
+    });
+</script>
+
+</body>
+</html>
