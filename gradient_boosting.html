@@ -261,7 +261,7 @@
                 <h2>1.1 What We Already Know: Gradient Descent</h2>
 
                 <p>
-                    Before jumping into Gradient Boosting, let us quickly revisit <strong>Gradient Descent</strong>, a topic you are already familiar with. 
+                    Before jumping into Gradient Boosting, let us quickly revisit <strong>Gradient Descent</strong>. 
                     In classical machine learning, we have a model \( f(\mathbf{x}; \boldsymbol{\theta}) \) parameterized by a vector 
                     \( \boldsymbol{\theta} \in \mathbb{R}^p \). We define a <strong>loss function</strong> that measures how wrong our predictions are:
                 </p>
@@ -1087,7 +1087,7 @@ print(f"Test RMSE: {np.sqrt(mean_squared_error(y_test, y_pred)):.4f}")</code></p
                     For binary classification with log-loss, you would modify the pseudo-residual computation and initialization:
                 </p>
 
-                <pre><code class="language-python">class GradientBoostingClassifier:
+                <pre>class GradientBoostingClassifier:
     """Gradient Boosting for binary classification with log-loss."""
     
     def __init__(self, n_estimators=100, learning_rate=0.1, max_depth=3):
@@ -1129,7 +1129,7 @@ print(f"Test RMSE: {np.sqrt(mean_squared_error(y_test, y_pred)):.4f}")</code></p
         return self._sigmoid(F)
     
     def predict(self, X, threshold=0.5):
-        return (self.predict_proba(X) >= threshold).astype(int)</code></pre>
+        return (self.predict_proba(X) >= threshold).astype(int)</pre>
             </section>
 
             <!-- Next Chapter Preview -->
