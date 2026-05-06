@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Gradient Boosting</title>
+    <meta content="Complete tutorial on Gradient Boosting fundamentals: from gradient descent to functional gradient boosting, pseudo-residuals, and the unified boosting framework." name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="assets/img/Favicon-1.png" rel="icon">
+    <link href="assets/img/Favicon-1.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/prism.css">
+    <script src="assets/js/prism.js"></script>
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/5d25c1efd3.js" crossorigin="anonymous"></script>
+
+    <!-- MathJax for LaTeX rendering -->
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <style>
+        /* ── Core layout helpers ── */
+        .equation {
+            background: #f4f4f4;
+            padding: 10px 20px;
+            border-left: 4px solid #149ddd;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: monospace;
+            font-size: 1.05rem;
+            border-radius: 0 4px 4px 0;
+        }
+        .algorithm-box {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 18px 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.88rem;
+            margin: 20px 0;
+            overflow-x: auto;
+            line-height: 1.7;
+        }
+        .algorithm-box .kw   { color: #66d9e8; font-weight: bold; }
+        .algorithm-box .cmt  { color: #75715e; font-style: italic; }
+        .algorithm-box .num  { color: #ae81ff; }
+        .algorithm-box .fn   { color: #a6e22e; }
+        .algorithm-box .var  { color: #f92672; }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 10px 14px;
+            text-align: left;
+            vertical-align: top;
+        }
+        .comparison-table th {
+            background-color: #149ddd;
+            color: white;
+        }
+        .comparison-table tr:nth-child(even) td {
+            background-color: #f7fbff;
+        }
+
+        .grey-box {
+            background-color: #f9f9f9;
+            border-left: 4px solid #149ddd;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .important-box {
+            background-color: #e7f3fe;
+            border-left: 6px solid #2196F3;
+            padding: 12px 18px;
+            margin: 20px 0;
+            font-weight: 500;
+            border-radius: 0 6px 6px 0;
+        }
+        .warning-box {
+            background-color: #fff8e1;
+            border-left: 6px solid #ffc107;
+            padding: 12px 18px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .success-box {
+            background-color: #e8f5e9;
+            border-left: 6px solid #4caf50;
+            padding: 12px 18px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 20px;
+        }
+        .nav-btn {
+            display: inline-block;
+            background-color: #149ddd;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+        .nav-btn:hover { background-color: #0f6f8c; color: white; }
+
+        .clickable-box {
+            background-color: #149ddd;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+        .clickable-box:hover { background-color: #0f6f8c; color: white; }
+
+        .highlight {
+            background-color: #fff3e0;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        .content-list {
+            column-count: 2;
+            column-gap: 30px;
+            padding-left: 1.2rem;
+        }
+        .content-list li {
+            break-inside: avoid;
+            margin-bottom: 8px;
+            font-size: 0.93rem;
+        }
+        @media (max-width: 768px) {
+            .content-list { column-count: 1; }
+        }
+
+        /* Section headings */
+        .section-heading {
+            color: #149ddd;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 8px;
+            margin-top: 45px;
+            margin-bottom: 18px;
+        }
+        .subsection-heading {
+            color: #0d7fb5;
+            margin-top: 30px;
+            margin-bottom: 12px;
+        }
+
+        /* Proof / derivation block */
+        .derivation-block {
+            background: #fafcff;
+            border: 1px solid #c9e4f5;
+            border-radius: 6px;
+            padding: 16px 20px;
+            margin: 18px 0;
+        }
+        .derivation-block .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+        .derivation-block .step-num {
+            background: #149ddd;
+            color: white;
+            border-radius: 50%;
+            width: 26px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.78rem;
+            font-weight: bold;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* Loss function cards */
+        .loss-card {
+            border: 1px solid #dde;
+            border-radius: 8px;
+            padding: 16px 18px;
+            margin-bottom: 18px;
+            background: #fff;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        .loss-card h5 {
+            color: #149ddd;
+            margin-bottom: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        /* Inline math display helper */
+        .math-line {
+            display: block;
+            text-align: center;
+            margin: 10px 0;
+            font-size: 1rem;
+        }
+
+        /* Proof box */
+        .proof-box {
+            background: #f5f0ff;
+            border-left: 4px solid #7c4dff;
+            border-radius: 0 6px 6px 0;
+            padding: 14px 18px;
+            margin: 16px 0;
+        }
+        .proof-box strong { color: #5c35cc; }
+
+        /* Quick ref table */
+        .ref-table { font-size: 0.92rem; }
+        .ref-table td:first-child { font-weight: 600; color: #333; white-space: nowrap; }
+        .ref-table td:last-child  { font-family: 'Courier New', monospace; color: #0d5c8a; }
+    </style>
+</head>
+
+<body>
+
+<!-- ═══════════════════════════════════ MOBILE TOGGLE ═══════════════════════════════════ -->
+<i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+<!-- ═══════════════════════════════════ HEADER / SIDEBAR ════════════════════════════════ -->
+<header id="header">
+    <div class="d-flex flex-column">
+        <div class="profile">
+            <img src="assets/img/myphoto.jpeg" alt="" class="img-fluid rounded-circle">
+            <h1 class="text-light"><a href="index.html">Arun</a></h1>
+            <div class="social-links mt-3 text-center">
+                <a href="https://www.linkedin.com/in/arunp77/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                <a href="https://github.com/arunp77" target="_blank" class="github"><i class="bx bxl-github"></i></a>
+                <a href="https://twitter.com/arunp77_" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="https://www.instagram.com/arunp77/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="https://arunp77.medium.com/" target="_blank" class="medium"><i class="bx bxl-medium"></i></a>
+            </div>
+        </div>
+        <nav id="navbar" class="nav-menu navbar">
+            <ul>
+                <li><a href="index.html#hero"               class="nav-link scrollto"><i class="bx bx-home"></i>       <span>Home</span></a></li>
+                <li><a href="index.html#about"              class="nav-link scrollto"><i class="bx bx-user"></i>       <span>About</span></a></li>
+                <li><a href="index.html#resume"             class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+                <li><a href="index.html#portfolio"          class="nav-link scrollto"><i class="bx bx-book-content"></i><span>Portfolio</span></a></li>
+                <li><a href="index.html#skills-and-tools"  class="nav-link scrollto"><i class="bx bx-wrench"></i>      <span>Skills and Tools</span></a></li>
+                <li><a href="index.html#language"           class="nav-link scrollto"><i class="bi bi-menu-up"></i>    <span>Languages</span></a></li>
+                <li><a href="index.html#awards"             class="nav-link scrollto"><i class="bi bi-award-fill"></i> <span>Awards</span></a></li>
+                <li><a href="index.html#professionalcourses" class="nav-link scrollto"><i class="bx bx-book-alt"></i>  <span>Professional Certification</span></a></li>
+                <li><a href="index.html#publications"       class="nav-link scrollto"><i class="bx bx-news"></i>       <span>Publications</span></a></li>
+                <li><a href="index.html#extra-curricular"   class="nav-link scrollto"><i class="bx bx-rocket"></i>     <span>Extra-Curricular Activities</span></a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- ═══════════════════════════════════ MAIN CONTENT ════════════════════════════════════ -->
+<main id="main">
+
+    <!-- Breadcrumbs -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Gradient Boosting in ML</h2>
+                <ol>
+                    <li><a href="lightgbm.html"    class="clickable-box">LightGBM Content</a></li>
+                    <li><a href="lightgbm-ch2.html" class="clickable-box">Chapter-2: Decision Tree</a></li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <!-- Right dropdown shortcuts -->
+    <div class="right-side-list">
+        <div class="dropdown">
+            <button class="dropbtn"><strong>Shortcuts:</strong></button>
+            <div class="dropdown-content">
+                <ul>
+                    <li><a href="cloud-compute.html"><i class="fas fa-cloud"></i> Cloud</a></li>
+                    <li><a href="AWS-GCP.html"><i class="fas fa-cloud"></i> AWS-GCP</a></li>
+                    <li><a href="amazon-s3.html"><i class="fas fa-cloud"></i> AWS S3</a></li>
+                    <li><a href="ec2-confi.html"><i class="fas fa-server"></i> EC2</a></li>
+                    <li><a href="Docker-Container.html"><i class="fab fa-docker"></i> Docker</a></li>
+                    <li><a href="Jupyter-nifi.html"><i class="fab fa-python"></i> Jupyter-nifi</a></li>
+                    <li><a href="snowflake-task-stream.html"><i class="fas fa-snowflake"></i> Snowflake</a></li>
+                    <li><a href="data-model.html"><i class="fas fa-database"></i> Data modeling</a></li>
+                    <li><a href="sql-basics.html"><i class="fas fa-table"></i> SQL basics</a></li>
+                    <li><a href="sql-basic-details.html"><i class="fas fa-database"></i> SQL details</a></li>
+                    <li><a href="Bigquerry-sql.html"><i class="fas fa-database"></i> BigQuery</a></li>
+                    <li><a href="scd.html"><i class="fas fa-archive"></i> SCD</a></li>
+                    <li><a href="sql-project.html"><i class="fas fa-database"></i> SQL project</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─────────────────────────── PORTFOLIO DETAILS SECTION ─────────────────────────── -->
+    <section id="portfolio-details" class="portfolio-details">
+        <div class="container">
+
+            <!-- Hero image + Table of Contents -->
+            <div class="row gy-4 mb-4">
+                <div class="col-lg-8">
+                    <div class="portfolio-details-slider swiper">
+                        <div class="swiper-wrapper align-items-center">
+                            <div class="swiper-slide">
+                                <figure>
+                                    <img src="assets/img/machine-ln/lightgbm.png"
+                                         alt="Gradient Descent to Gradient Boosting"
+                                         style="max-width:55%;height:auto;display:block;margin:0 auto;">
+                                    <figcaption style="text-align:center;margin-top:8px;color:#666;">
+                                        From Parameter Space to Function Space: The Journey to Gradient Boosting
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Table of Contents -->
+                <div class="col-lg-4">
+                    <div class="grey-box">
+                        <div class="section-title">
+                            <h3 style="color:#149ddd;margin-bottom:14px;">📚 Contents</h3>
+                            <ol class="content-list">
+                                <li><a href="#sec-problem-statement">Problem Statement</a></li>
+                                <li><a href="#sec-stat-decision">Statistical Decision Theory</a></li>
+                                <li><a href="#sec-erm">Empirical Risk Minimization</a></li>
+                                <li><a href="#sec-functional-gd">From GD to Functional GD</a></li>
+                                <li><a href="#sec-additive-model">The Additive Model</a></li>
+                                <li><a href="#sec-algorithm">General Algorithm</a></li>
+                                <li><a href="#sec-losses">Loss Functions &amp; Derivations</a></li>
+                                <li><a href="#sec-weak-learners">Weak Learners</a></li>
+                                <li><a href="#sec-line-search">Line Search &amp; Step Size</a></li>
+                                <li><a href="#sec-regularization">Regularization</a></li>
+                                <li><a href="#sec-newton">Second-Order / Newton Boosting</a></li>
+                                <li><a href="#sec-stochastic">Stochastic Gradient Boosting</a></li>
+                                <li><a href="#sec-convergence">Convergence &amp; Bias-Variance</a></li>
+                                <li><a href="#sec-tasks">Boosting for Different Tasks</a></li>
+                                <li><a href="#sec-connections">Connections to Other Methods</a></li>
+                                <li><a href="#sec-summary">Master Equation Summary</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /row -->
+
+
+            <!-- ══════════════════════════════════════════════════════════════════
+                 SECTION 1 — PROBLEM STATEMENT
+            ══════════════════════════════════════════════════════════════════ -->
+            <section id="sec-problem-statement">
+                <h2 class="section-heading">1. The Problem Statement</h2>
+
+                <h4 class="subsection-heading">1.1 Supervised Learning Setup</h4>
+                <p>
+                    Let the input space be \(\mathcal{X} \subseteq \mathbb{R}^d\) and the output space be
+                    \(\mathcal{Y}\) (e.g.\ \(\mathcal{Y}=\mathbb{R}\) for regression, \(\mathcal{Y}=\{0,1\}\)
+                    for binary classification). We assume an unknown <strong>joint distribution</strong>
+                    \(P(X,Y)\) over \(\mathcal{X}\times\mathcal{Y}\) from which data are drawn i.i.d.:
+                </p>
+                <div class="equation">
+                    $$(x_i, y_i) \overset{\text{i.i.d.}}{\sim} P(X,Y), \quad i=1,\ldots,n$$
+                </div>
+                <p>Our goal is to find a <strong>prediction function</strong> \(F:\mathcal{X}\to\mathbb{R}\) that minimises the <strong>expected loss</strong> (risk):</p>
+                <div class="equation">
+                    $$\mathcal{R}[F] = \mathbb{E}_{(X,Y)\sim P}\bigl[L(Y,\,F(X))\bigr]$$
+                </div>
+                <p>
+                    where \(L:\mathcal{Y}\times\mathbb{R}\to\mathbb{R}_{\ge 0}\) is a loss function
+                    measuring how wrong prediction \(F(x)\) is compared to true label \(y\).
+                </p>
+
+                <h4 class="subsection-heading">1.2 Why This Is Hard</h4>
+                <p>
+                    The distribution \(P(X,Y)\) is unknown; we only have a finite sample
+                    \(\mathcal{D}=\{(x_i,y_i)\}_{i=1}^n\). We cannot compute \(\mathbb{E}[L]\) — only
+                    estimate it. Gradient Boosting addresses this by constructing the hypothesis class
+                    \(\mathcal{H}\) as an <strong>additive ensemble</strong> and optimising empirically.
+                </p>
+            </section>
+
+
+            <!-- ══════════════════════════════════════════════════════════════════
+                 SECTION 2 — STATISTICAL DECISION THEORY
+            ══════════════════════════════════════════════════════════════════ -->
+            <section id="sec-stat-decision">
+                <h2 class="section-heading">2. Statistical Decision Theory</h2>
+
+                <h4 class="subsection-heading">2.1 The Optimal Predictor</h4>
+                <p>The <em>theoretically optimal</em> predictor minimises the true risk:</p>
+                <div class="equation">
+                    $$F^*(x) = \arg\min_{F}\;\mathbb{E}_{Y|X=x}\bigl[L(Y,\,F(x))\bigr]$$
+                </div>
+                <p>For different loss functions \(F^*\) takes different forms:</p>
+
+                <!-- Squared Error -->
+                <div class="loss-card">
+                    <h5>📐 Squared Error Loss &nbsp; \(L(y,\hat y)=(y-\hat y)^2\)</h5>
+                    <p>Optimal predictor: \(F^*(x)=\mathbb{E}[Y\mid X=x]\)</p>
+                    <div class="derivation-block">
+                        <p><strong>Derivation:</strong> Minimise \(\mathbb{E}[(Y-c)^2\mid X=x]\) over constant \(c\):</p>
+                        <div class="equation">
+                            $$\frac{\partial}{\partial c}\mathbb{E}[(Y-c)^2\mid X=x]
+                              = -2\mathbb{E}[Y-c\mid X=x]
+                              = -2\bigl(\mathbb{E}[Y\mid X=x]-c\bigr)=0$$
+                        </div>
+                        <div class="equation">
+                            $$\Longrightarrow \quad c = \mathbb{E}[Y\mid X=x] \quad \checkmark$$
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Absolute Error -->
+                <div class="loss-card">
+                    <h5>📏 Absolute Error Loss &nbsp; \(L(y,\hat y)=|y-\hat y|\)</h5>
+                    <p>Optimal predictor: \(F^*(x)=\operatorname{Median}(Y\mid X=x)\)</p>
+                    <div class="derivation-block">
+                        <p><strong>Derivation:</strong> The subgradient condition:</p>
+                        <div class="equation">
+                            $$\frac{\partial}{\partial c}\mathbb{E}[|Y-c|\mid X=x]
+                              = \mathbb{E}[\operatorname{sign}(c-Y)\mid X=x] = 0$$
+                        </div>
+                        <p>This equals zero when \(P(Y\le c\mid X=x)=0.5\), i.e.\ \(c\) is the conditional median. \(\checkmark\)</p>
+                    </div>
+                </div>
+
+                <!-- 0-1 Loss -->
+                <div class="loss-card">
+                    <h5>🎯 0-1 Loss (Classification) &nbsp; \(L(y,\hat y)=\mathbf{1}[y\ne\hat y]\)</h5>
+                    <p>Optimal predictor (Bayes classifier):</p>
+                    <div class="equation">
+                        $$F^*(x)=\arg\max_k\;P(Y=k\mid X=x)$$
+                    </div>
+                </div>
+
+                <h4 class="subsection-heading">2.2 The Approximation Problem</h4>
+                <p>
+                    We cannot achieve \(F^*\) because (1) \(P(X,Y)\) is unknown, (2) we restrict \(F\)
+                    to a hypothesis class \(\mathcal{H}\), and (3) we have only finite data. Gradient
+                    Boosting addresses all three by building \(\mathcal{H}\) as an additive ensemble
+                    and optimising empirically.
+                </p>
+            </section>
+
+
+            <!-- ══════════════════════════════════════════════════════════════════
+                 SECTION 3 — ERM
+            ══════════════════════════════════════════════════════════════════ -->
+            <section id="sec-erm">
+                <h2 class="section-heading">3. Empirical Risk Minimization</h2>
+
+                <h4 class="subsection-heading">3.1 The Empirical Risk</h4>
+                <p>
+                    Since we cannot compute \(\mathcal{R}[F]=\mathbb{E}[L(Y,F(X))]\), we approximate it
+                    with training data:
+                </p>
+                <div class="equation">
+                    $$\hat{\mathcal{R}}[F] = \frac{1}{n}\sum_{i=1}^{n}L(y_i,\,F(x_i))$$
+                </div>
+                <p>
+                    By the <strong>Law of Large Numbers</strong>, as \(n\to\infty\):
+                    \(\hat{\mathcal{R}}[F]\xrightarrow{a.s.}\mathcal{R}[F]\).
+                </p>
+                <p><strong>ERM:</strong></p>
+                <div class="equation">
+                    $$\hat F = \arg\min_{F\in\mathcal{H}}\;\hat{\mathcal{R}}[F]
+                      = \arg\min_{F\in\mathcal{H}}\sum_{i=1}^{n}L(y_i,\,F(x_i))$$
+                </div>
+
+                <h4 class="subsection-heading">3.2 The Challenge of Function Optimisation</h4>
+                <p>
+                    For parametric models (e.g.\ \(F(x;\theta)=\theta^Tx\)) we minimise over
+                    \(\theta\in\mathbb{R}^p\) — a finite-dimensional problem solvable by gradient descent.
+                    But what if \(F\) cannot be parameterised easily (decision trees, heterogeneous ensembles)?
+                    This motivates <strong>functional optimisation</strong> — optimising directly in the space
+                    of functions.
+                </p>
+            </section>
+
+
+            <!-- ══════════════════════════════════════════════════════════════════
+                 SECTION 4 — FROM GD TO FUNCTIONAL GD
+            ══════════════════════════════════════════════════════════════════ -->
+            <section id="sec-functional-gd">
+                <h2 class="section-heading">4. From Gradient Descent to Functional Gradient Descent</h2>
+
+                <h4 class="subsection-heading">4.1 Review: Gradient Descent in Parameter Space</h4>
+                <p>Given \(\mathcal{L}(\theta)=\sum_i L(y_i,F(x_i;\theta))\), gradient descent updates:</p>
+                <div class="equation">
+                    $$\theta^{(t+1)} = \theta^{(t)} - \eta\,\nabla_\theta\mathcal{L}(\theta^{(t)})$$
+                </div>
+                <p>The gradient component for parameter \(\theta_j\) is:</p>
+                <div class="equation">
+                    $$\frac{\partial\mathcal{L}}{\partial\theta_j}
+                      = \sum_{i=1}^n \frac{\partial L(y_i,F_i)}{\partial\theta_j}
+                      = \sum_{i=1}^n \frac{\partial L}{\partial F_i}\cdot\frac{\partial F_i}{\partial\theta_j}$$
+                </div>
+
+                <h4 class="subsection-heading">4.2 The Key Insight: Treat Predictions as Variables</h4>
+                <p>Instead of thinking about parameters, think of the <strong>prediction vector</strong>:</p>
+                <div class="equation">
+                    $$\mathbf{F} = \bigl(F(x_1),\,F(x_2),\,\ldots,\,F(x_n)\bigr)\in\mathbb{R}^n$$
+                </div>
+                <p>The empirical risk is a function of this vector:</p>
+                <div class="equation">
+                    $$\mathcal{L}(\mathbf{F}) = \sum_{i=1}^n L(y_i,\,F_i)$$
+                </div>
+                <p>The <strong>negative gradient</strong> at each training point, called the <strong>pseudo-residual</strong>, is:</p>
+                <div class="equation" style="border-color:#e74c3c;background:#fff8f8;">
+                    $$\boxed{r_i = -\frac{\partial L(y_i,\,F(x_i))}{\partial F(x_i)}}$$
+                </div>
+
+                <h4 class="subsection-heading">4.3 Functional Gradient Descent</h4>
+                <p>
+                    In parameter-space gradient descent we move \(\theta\) in direction \(-\nabla_\theta\mathcal{L}\).
+                    In <strong>functional space</strong> we want to move \(F\) in the direction that most reduces
+                    the loss — the negative functional gradient:
+                </p>
+                <div class="equation">
+                    $$\nabla_F\mathcal{L}[F]\big|_{x=x_i} = \frac{\partial L(y_i,F(x_i))}{\partial F(x_i)} = -r_i$$
+                </div>
+                <p>
+                    The functional gradient is only defined at training points \(\{x_i\}\). To generalise
+                    to new \(x\) values we <strong>fit a weak learner \(h_m\) to the pseudo-residuals</strong>
+                    \(\{(x_i,r_i)\}\). This learner approximates the negative functional gradient everywhere.
+                </p>
+
+                <div class="important-box">
+                    💡 <strong>Core Connection:</strong> Just as gradient descent moves parameters in direction
+                    \(-\nabla_\theta\mathcal{L}\), gradient boosting moves the prediction function in direction
+                    \(-\nabla_F\mathcal{L}\) by fitting a tree to pseudo-residuals.
+                </div>
+
+                <h4 class="subsection-heading">4.4 Why Fitting to Negative Gradients Works</h4>
+                <p>For MSE loss \(L(y,F)=\tfrac{1}{2}(y-F)^2\):</p>
+                <div class="equation">
+                    $$r_i = -\frac{\partial L}{\partial F_i}
+                      = -\frac{\partial}{\partial F}\Bigl[\tfrac{1}{2}(y_i-F)^2\Bigr]
+                      = y_i - F(x_i)$$
+                </div>
+                <p>
+                    The pseudo-residual is the ordinary residual — the current prediction error. Fitting the
+                    next model to these residuals corrects the current model. For other losses, \(r_i\) is a
+                    <em>generalised residual</em> indicating the direction and magnitude of needed adjustment.
+                </p>
+
+                <div class="proof-box">
+                    <strong>Proof: Pseudo-residuals always reduce the loss.</strong><br>
+                    The directional derivative of \(\mathcal{L}\) in direction \(r=(r_1,\ldots,r_n)\):
+                    <div class="equation" style="background:transparent;border:none;padding:6px 0;">
+                        $$\lim_{\epsilon\to 0}\frac{\mathcal{L}(F+\epsilon r)-\mathcal{L}(F)}{\epsilon}
+                          = \sum_{i=1}^n\frac{\partial L(y_i,F_i)}{\partial F_i}\cdot r_i
+                          = \sum_{i=1}^n(-r_i)\cdot r_i = -\|r\|^2 \;\le\; 0 \quad\square$$
+                    </div>
+                    Moving in direction \(r\) always decreases \(\mathcal{L}\) for small enough \(\epsilon\).
+                </div>
+            </section>
+
+
+            <!-- ══════════════════════════════════════════════════════════════════
+                 SECTION 5 — ADDITIVE MODEL
+            ══════════════════════════════════════════════════════════════════ -->
+            <section id="sec-additive-model">
+                <h2 class="section-heading">5. The Additive Model</h2>
+
+                <h4 class="subsection-heading">5.1 Forward Stagewise Additive Modeling (FSAM)</h4>
+                <p>Gradient Boosting builds:</p>
+                <div class="equation">
+                    $$F_M(x) = F_0(x) + \sum_{m=1}^{M}\nu_m\,h_m(x)$$
+                </div>
+                <p>
+                    where \(F_0\) is the initial model, \(h_m\in\mathcal{H}\) is the \(m\)-th weak learner,
+                    \(\nu_m\ge 0\) is a step size, and \(M\) is the number of boosting rounds.
+                    <em>Stagewise</em> means at each step \(m\) we fix all previous \(h_1,\ldots,h_{m-1}\)
+                    and only optimise for \(h_m,\nu_m\).
+                </p>
+
+                <h4 class="subsection-heading">5.2 The Initialisation \(F_0\)</h4>
+                <p>The initial model is the best constant prediction:</p>
+                <div class="equation">
+                    $$F_0(x) = \arg\min_{c\in\mathbb{R}}\sum_{i=1}^n L(y_i,\,c)$$
+                </div>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr><th>Loss</th><th>Formula</th><th>\(F_0\)</th><th>Derivation note</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>MSE</td>
+                            <td>\(\tfrac{1}{2}(y-F)^2\)</td>
+                            <td>\(\bar y = \tfrac{1}{n}\sum_i y_i\)</td>
+                            <td>Set \(\sum(y_i-c)=0\)</td>
+                        </tr>
+                        <tr>
+                            <td>MAE</td>
+                            <td>\(|y-F|\)</td>
+                            <td>\(\operatorname{median}(y_1,\ldots,y_n)\)</td>
+                            <td>Median minimises L1</td>
+                        </tr>
+                        <tr>
+                            <td>Log-loss</td>
+                            <td>\(\log(1+e^F)-yF\)</td>
+                            <td>\(\log\dfrac{\bar p}{1-\bar p}\) where \(\bar p=\tfrac{1}{n}\sum y_i\)</td>
+                            <td>Set \(\tfrac{e^c}{1+e^c}=\bar p\)</td>
+                        </tr>
+                        <tr>
+                            <td>Poisson</td>
+                            <td>\(e^F - yF\)</td>
+                            <td>\(\log\bar y\)</td>
+                            <td>Set \(e^c=\bar y\)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="derivation-block">
+                    <p><strong>Full derivation for Log-loss initialisation:</strong></p>
+                    <div class="equation">
+                        $$\sum_{i=1}^n L(y_i,c) = -\sum_i\bigl[y_i c - \log(1+e^c)\bigr]$$
+                    </div>
+                    <div class="equation">
+                        $$\frac{\partial}{\partial c} = -\sum_i y_i + n\cdot\frac{e^c}{1+e^c} = 0
+                          \quad\Rightarrow\quad \frac{e^c}{1+e^c}=\bar p
+                          \quad\Rightarrow\quad c = \log\frac{\bar p}{1-\bar p} \quad\checkmark$$
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- ══════════════════════════════════════════════════════════════════
+                 SECTION 6 — THE ALGORITHM
+            ══════════════════════════════════════════════════════════════════ -->
+            <section id="sec-algorithm">
+                <h2 class="section-heading">6. Gradient Boosting Algorithm — General Form</h2>
+
+                <div class="algorithm-box">
+<span class="cmt">────────────────────────────────────────────────────────</span><br>
+<span class="kw">Algorithm:</span> Gradient Boosting (General Form)<br>
+<span class="cmt">────────────────────────────────────────────────────────</span><br>
+<span class="kw">Input:</span>  data {(xᵢ,yᵢ)}ⁿᵢ₌₁,  loss L,  weak learner class 𝓗,  rounds M,  lr ν<br>
+<br>
+<span class="kw">Step 0 — Initialise:</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;F₀(x) = argmin<sub>c</sub> Σ L(yᵢ, c)<br>
+<br>
+<span class="kw">For</span> m = <span class="num">1</span> <span class="kw">to</span> M:<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">Step 1 — Pseudo-residuals</span> (negative gradient):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rᵢₘ = −∂L(yᵢ, F(xᵢ))/∂F(xᵢ) |<sub>F=Fₘ₋₁</sub>,  ∀ i<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">Step 2 — Fit weak learner</span> to pseudo-residuals:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hₘ = argmin<sub>h∈𝓗</sub>  Σᵢ (rᵢₘ − h(xᵢ))²<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmt"># Always use squared error here, regardless of original L</span><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">Step 3 — Line search</span> (optimal step size):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;νₘ = argmin<sub>ν&gt;0</sub>  Σᵢ L(yᵢ, Fₘ₋₁(xᵢ) + ν·hₘ(xᵢ))<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">Step 4 — Update:</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fₘ(x) = Fₘ₋₁(x) + νₘ · hₘ(x)<br>
+<br>
+<span class="kw">Output:</span> F_M(x)
+                </div>
+
+                <div class="important-box">
+                    ⚠️ <strong>Why always MSE in Step 2?</strong>
+                    Pseudo-residuals \(r_{im}\) are real-valued "direction signals" that have already encoded
+                    the choice of \(L\). We want the weak learner to point in that direction — squared error is
+                    the natural measure of how well \(h_m(x_i)\) matches \(r_{im}\).
+                </div>
+
+                <h4 class="subsection-heading">6.1 Fixed Shrinkage</h4>
+                <p>In practice we often use a fixed learning rate \(\nu\in(0,1]\) instead of an exact line search:</p>
+                <div class="equation">
+                    $$F_m(x) = F_{m-1}(x) + \nu\cdot h_m(x)$$
+                </div>
+                <p>
+                    Smaller \(\nu\) means each tree contributes less, requiring more trees \(M\) but giving
+                    better generalisation. Empirically \(\nu\in[0.01,\,0.1]\) with large \(M\) (controlled by
+                    early stopping) gives optimal results.
+                </p>
+
+                <h4 class="subsection-heading">6.2 Geometric Interpretation</h4>
+                <p>At each step the algorithm:</p>
+                <ol>
+                    <li>Computes the <strong>direction</strong> of steepest descent in function space: \(-g_i=r_{im}\)</li>
+                    <li><strong>Projects</strong> this direction onto hypothesis class \(\mathcal{H}\) by fitting \(h_m\)</li>
+                    <li>Moves the ensemble <strong>one step</strong> in that direction</li>
+                </ol>
+                <div class="equation">
+                    $$F_m = F_{m-1} + \nu_m\;\underbrace{\operatorname{proj}_{\mathcal{H}}\bigl[-\nabla_F\mathcal{L}\bigr]}_{h_m}$$
+                </div>
+            </section>
+
+
+            <!-- ══════════════════════════════════════════════════════════════════
+                 SECTION 7 — LOSS FUNCTIONS
+            ══════════════════════════════════════════════════════════════════ -->
+            <section id="sec-losses">
+                <h2 class="section-heading">7. Loss Functions — Full Derivations</h2>
+
+                <!-- L2 -->
+                <div class="loss-card">
+                    <h5>7.1 Squared Error (L2) — Regression</h5>
+                    <div class="equation">$$L(y,F)=\tfrac{1}{2}(y-F)^2$$</div>
+                    <p><strong>Gradient:</strong></p>
+                    <div class="equation">$$g_i=\frac{\partial L}{\partial F_i}=-(y_i-F_i)=F_i-y_i$$</div>
+                    <p><strong>Pseudo-residual:</strong></p>
+                    <div class="equation">$$r_i = -g_i = y_i - F_i \quad\text{(ordinary residual)}$$</div>
+                    <p><strong>Properties:</strong> Differentiable everywhere ✓ | Sensitive to outliers (quadratic) ✗ | Optimal \(F^*=\mathbb{E}[Y|X]\) ✓</p>
+                </div>
+
+                <!-- L1 -->
+                <div class="loss-card">
+                    <h5>7.2 Absolute Error (L1) — Robust Regression</h5>
+                    <div class="equation">$$L(y,F)=|y-F|$$</div>
+                    <p><strong>Subgradient:</strong></p>
+                    <div class="equation">
+                        $$g_i = \operatorname{sign}(F_i-y_i)
+                          = \begin{cases}+1 & F_i>y_i \\ -1 & F_i&lt;y_i \\ 0 & F_i=y_i\end{cases}$$
+                    </div>
+                    <p><strong>Pseudo-residual:</strong></p>
+                    <div class="equation">$$r_i = \operatorname{sign}(y_i-F_i)$$</div>
+                    <p>
+                        Pseudo-residuals are \(\pm 1\) — only the <em>sign</em> of the error matters, not the
+                        magnitude. This makes gradient boosting with L1 loss very robust to outliers.
+                    </p>
+                </div>
+
+                <!-- Huber -->
+                <div class="loss-card">
+                    <h5>7.3 Huber Loss — Balanced Robustness</h5>
+                    <div class="equation">
+                        $$L_\delta(y,F)=\begin{cases}\tfrac{1}{2}(y-F)^2 & |y-F|\le\delta \\
+                          \delta\bigl(|y-F|-\tfrac{\delta}{2}\bigr) & |y-F|>\delta\end{cases}$$
+                    </div>
+                    <p><strong>Gradient:</strong></p>
+                    <div class="equation">
+                        $$g_i=\begin{cases}F_i-y_i & |y_i-F_i|\le\delta \\
+                          \delta\cdot\operatorname{sign}(F_i-y_i) & |y_i-F_i|>\delta\end{cases}$$
+                    </div>
+                    <p>
+                        Quadratic (efficient) for small errors, linear (robust) for large errors. \(\delta\)
+                        controls the transition — errors within \(\delta\) are treated as L2; beyond \(\delta\)
+                        as L1.
+                    </p>
+                </div>
+
+                <!-- Log-loss -->
+                <div class="loss-card">
+                    <h5>7.4 Binary Cross-Entropy (Log-Loss) — Binary Classification</h5>
+                    <p>Model outputs log-odds \(F(x)\in\mathbb{R}\); probability via sigmoid:</p>
+                    <div class="equation">
+                        $$p=\sigma(F)=\frac{1}{1+e^{-F}},\qquad F=\log\frac{p}{1-p}$$
+                    </div>
+                    <div class="equation">
+                        $$L(y,F)=\log(1+e^F)-yF$$
+                    </div>
+                    <p><strong>Full gradient derivation:</strong></p>
+                    <div class="derivation-block">
+                        <div class="equation">
+                            $$\frac{\partial L}{\partial F}
+                              = \frac{\partial}{\partial F}\bigl[\log(1+e^F)-yF\bigr]
+                              = \frac{e^F}{1+e^F}-y
+                              = \sigma(F)-y
+                              = p-y$$
+                        </div>
+                        <div class="equation">
+                            $$\boxed{g_i = p_i - y_i, \qquad r_i = y_i - p_i}$$
+                        </div>
+                        <p>
+                            The pseudo-residual is the <em>difference between true label and predicted probability</em>.
+                            Verify at extremes: if \(y_i=1,\,p_i=0.99\) then \(r_i=0.01\) (tiny correction);
+                            if \(y_i=1,\,p_i=0.01\) then \(r_i=0.99\) (large correction). ✓
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Exponential -->
+                <div class="loss-card">
+                    <h5>7.5 Exponential Loss — AdaBoost Connection</h5>
+                    <div class="equation">
+                        $$L(y,F)=\exp(-y\cdot F),\quad y\in\{-1,+1\}$$
+                    </div>
+                    <div class="equation">
+                        $$g_i=-y_i\exp(-y_iF_i), \qquad r_i=y_i\exp(-y_iF_i)$$
+                    </div>
+                    <p>
+                        When used with decision stumps, gradient boosting with exponential loss is
+                        <strong>exactly AdaBoost</strong>. The sample weight in AdaBoost is
+                        \(w_i\propto\exp(-y_iF_{m-1}(x_i))=|r_i|\) — AdaBoost's reweighting is
+                        the gradient boosting negative gradient!
+                    </p>
+                </div>
+
+                <!-- Softmax -->
+                <div class="loss-card">
+                    <h5>7.6 Softmax Deviance — Multi-class Classification</h5>
+                    <p>For \(K\) classes, model \(K\) functions \(F_1(x),\ldots,F_K(x)\):</p>
+                    <div class="equation">
+                        $$p_k(x)=\frac{\exp(F_k(x))}{\sum_{k'}\exp(F_{k'}(x))}$$
+                    </div>
+                    <div class="equation">
+                        $$L(y,F_1,\ldots,F_K)=-\log p_y
+                          =-F_y+\log\sum_{k=1}^K\exp(F_k)$$
+                    </div>
+                    <p><strong>Gradient w.r.t. \(F_k\):</strong></p>
+                    <div class="equation">
+                        $$g_{ik}=\frac{\partial L}{\partial F_k}=p_{ik}-\mathbf{1}[y_i=k]$$
+                    </div>
+                    <div class="equation">
+                        $$r_{ik}=\mathbf{1}[y_i=k]-p_{ik}$$
+                    </div>
+                    <p>At each boosting round, fit <strong>\(K\) separate trees</strong> — one per class residual vector.</p>
+                </div>
+
+                <!-- Poisson -->
+                <div class="loss-card">
+                    <h5>7.7 Poisson Deviance — Count Data</h5>
+                    <p>Model \(\mu=e^F\) ensures positivity:</p>
+                    <div class="equation">$$L(y,F)=e^F - y\cdot F$$</div>
+                    <div class="equation">
+                        $$g_i=e^{F_i}-y_i=\mu_i-y_i, \qquad r_i=y_i-\mu_i=y_i-e^{F_i}$$
+                    </div>
+                </div>
+
+                <!-- Quantile -->
+                <div class="loss-card">
+                    <h5>7.8 Quantile (Pinball) Loss — Quantile Regression</h5>
+                    <p>To predict the \(\tau\)-th quantile (\(\tau\in(0,1)\)):</p>
+                    <div class="equation">
+                        $$L_\tau(y,F)=\begin{cases}\tau(y-F) & y\ge F \\
+                          (1-\tau)(F-y) & y&lt;F\end{cases}$$
+                    </div>
+                    <div class="equation">
+                        $$r_i=\begin{cases}\tau & y_i\ge F_i \\ -(1-\tau) & y_i&lt;F_i\end{cases}$$
+                    </div>
+                    <p>
+                        For \(\tau=0.5\): \(r_i=0.5\cdot\operatorname{sign}(y_i-F_i)\) — recovers L1/median regression.
+                        Running separate models with different \(\tau\) gives the full conditional distribution of \(Y|X\).
+                    </p>
+                </div>
+
+                <!-- Summary table -->
+                <h4 class="subsection-heading" style="margin-top:30px;">7.9 Summary Table</h4>
+                <table class="comparison-table ref-table">
+                    <thead>
+                        <tr><th>Loss \(L(y,F)\)</th><th>Gradient \(g_i\)</th><th>Pseudo-residual \(r_i\)</th><th>Optimal \(F^*\)</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>MSE \(\tfrac{1}{2}(y-F)^2\)</td><td>\(F_i-y_i\)</td><td>\(y_i-F_i\)</td><td>\(\mathbb{E}[Y|X]\)</td></tr>
+                        <tr><td>MAE \(|y-F|\)</td><td>\(\operatorname{sign}(F_i-y_i)\)</td><td>\(\operatorname{sign}(y_i-F_i)\)</td><td>\(\operatorname{Median}(Y|X)\)</td></tr>
+                        <tr><td>Huber\(_\delta\)</td><td>Piecewise (§7.3)</td><td>Piecewise (§7.3)</td><td>Robust mean</td></tr>
+                        <tr><td>Log-loss</td><td>\(p_i-y_i\)</td><td>\(y_i-p_i\)</td><td>\(\log\tfrac{p}{1-p}\)</td></tr>
+                        <tr><td>Softmax</td><td>\(p_{ik}-\mathbf{1}[y_i{=}k]\)</td><td>\(\mathbf{1}[y_i{=}k]-p_{ik}\)</td><td>\(\log p_k\)</td></tr>
+                        <tr><td>Poisson \(e^F-yF\)</td><td>\(e^{F_i}-y_i\)</td><td>\(y_i-e^{F_i}\)</td><td>\(\log\mu\)</td></tr>
+                        <tr><td>Quantile \(L_\tau\)</td><td>Piecewise (§7.8)</td><td>Piecewise (§7.8)</td><td>\(Q_\tau(Y|X)\)</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+
+            <!-- ══════════════════════════════════════════════════════════════════
+                 SECTION 8 — WEAK LEARNERS
+            ══════════════════════════════════════════════════════════════════ -->
+            <section id="sec-weak-learners">
+                <h2 class="section-heading">8. Weak Learners — What Can \(h_m\) Be?</h2>
+
+                <p>
+                    Gradient boosting is <strong>agnostic to the choice of weak learner</strong>.
+                    Requirements: (1) \(h_m:\mathcal{X}\to\mathbb{R}\); (2) fitted by minimising squared
+                    error to pseudo-residuals. Any regression model qualifies.
+                </p>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="loss-card">
+                            <h5>🌳 Regression Trees (Most Common)</h5>
+                            <p>A tree with \(J\) leaves partitions \(\mathcal{X}\) into regions \(R_1,\ldots,R_J\):</p>
+                            <div class="equation" style="font-size:0.92rem;">
+                                $$h_m(x)=\sum_{j=1}^J c_{mj}\cdot\mathbf{1}[x\in R_{mj}]$$
+                            </div>
+                            <p>Leaf value (MSE): \(c_{mj}=\tfrac{1}{|R_{mj}|}\sum_{x_i\in R_{mj}}r_{im}\)</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="loss-card">
+                            <h5>📈 Linear Models</h5>
+                            <p>If \(\mathcal{H}=\{x\mapsto\theta^Tx\}\):</p>
+                            <div class="equation" style="font-size:0.92rem;">
+                                $$h_m(x)=\hat\theta_m^T x,\quad
+                                  \hat\theta_m=\arg\min_\theta\sum_i(r_{im}-\theta^Tx_i)^2$$
+                            </div>
+                            <p>The ensemble becomes gradient descent on a linear model — showing GBM generalises GD.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="loss-card">
+                            <h5>🔮 Kernel Ridge Regression</h5>
+                            <div class="equation" style="font-size:0.92rem;">
+                                $$h_m(x)=\sum_{i=1}^n\alpha_i k(x,x_i),\quad
+                                  \alpha=(K+\lambda I)^{-1}r_m$$
+                            </div>
+                            <p>Gradient boosting in a reproducing kernel Hilbert space (RKHS).</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="loss-card">
+                            <h5>🧠 Small Neural Networks</h5>
+                            <p>
+                                One-hidden-layer networks as weak learners. Each round fits a new small network
+                                to residuals. The ensemble can express richer functions than any single network
+                                with the same total parameter count.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    ⚠️ <strong>Why "Weak"?</strong> A learner that perfectly fits \(\{(x_i,r_{im})\}\)
+                    memorises noise. A <em>weak</em> learner (shallow tree) captures the main signal without
+                    overfitting. The ensemble of many weak learners achieves low bias; variance is controlled
+                    by learner capacity and shrinkage \(\nu\).
+                </div>
+            </section>
+
+
+            <!-- ══════════════════════════════════════════════════════════════════
+                 SECTION 9 — LINE SEARCH
+            ══════════════════════════════════════════════════════════════════ -->
+            <section id="sec-line-search">
+                <h2 class="section-heading">9. The Line Search and Optimal Step Size</h2>
+
+                <h4 class="subsection-heading">9.1 Exact Line Search</h4>
+                <p>After fitting \(h_m\), the optimal step size is:</p>
+                <div class="equation">
+                    $$\nu_m = \arg\min_{\nu>0}\sum_{i=1}^n L\bigl(y_i,\,F_{m-1}(x_i)+\nu\cdot h_m(x_i)\bigr)$$
+                </div>
+                <p>This is a <strong>1-dimensional</strong> optimisation — much simpler than the original problem.</p>
+
+                <h4 class="subsection-heading">9.2 Closed-Form for MSE</h4>
+                <div class="derivation-block">
+                    <div class="equation">
+                        $$\mathcal{L}(\nu)=\sum_{i=1}^n\tfrac{1}{2}(y_i-F_{m-1}(x_i)-\nu h_m(x_i))^2$$
+                    </div>
+                    <div class="equation">
+                        $$\frac{\partial\mathcal{L}}{\partial\nu}
+                          =-\sum_{i=1}^n(y_i-F_{m-1}(x_i)-\nu h_m(x_i))\,h_m(x_i)=0$$
+                    </div>
+                    <div class="equation">
+                        $$\sum_{i=1}^n r_{im}\,h_m(x_i) = \nu\sum_{i=1}^n h_m(x_i)^2$$
+                    </div>
+                    <div class="equation" style="border-color:#27ae60;background:#f0fff4;">
+                        $$\boxed{\nu_m = \frac{\sum_{i=1}^n r_{im}\,h_m(x_i)}{\sum_{i=1}^n h_m(x_i)^2}}$$
+                    </div>
+                    <p>This is the OLS projection of residuals \(r_{im}\) onto direction \(h_m(x_i)\).</p>
+                </div>
+
+                <h4 class="subsection-heading">9.3 Per-Leaf Line Search (Tree Base Learners)</h4>
+                <p>For tree-based weak learners we can do a separate line search for each leaf region \(R_{mj}\):</p>
+                <div class="equation">
+                    $$\nu_{mj}=\arg\min_{\nu>0}\sum_{x_i\in R_{mj}}L(y_i,\,F_{m-1}(x_i)+\nu)$$
+                </div>
+                <div class="equation">
+                    $$F_m(x)=F_{m-1}(x)+\sum_{j=1}^J\nu_{mj}\cdot\mathbf{1}[x\in R_{mj}]$$
+                </div>
+
+                <h4 class="subsection-heading">9.4 Newton Step Per Leaf</h4>
+                <p>A one-step Newton approximation to the per-leaf 1D optimisation:</p>
+                <div class="equation">
+                    $$\nu_{mj}\approx-\frac{f'(0)}{f''(0)}
+                      = -\frac{\displaystyle\sum_{x_i\in R_j}g_i}{\displaystyle\sum_{x_i\in R_j}h_i}
+                      = \frac{\displaystyle\sum_{x_i\in R_j}r_i}{\displaystyle\sum_{x_i\in R_j}h_i}$$
+                </div>
+                <p>
+                    where \(g_i=\partial L/\partial F_i\) and \(h_i=\partial^2 L/\partial F_i^2\).
+                    For MSE: \(h_i=1\), so \(\nu_{mj}=\bar r_j\) — the mean residual in the leaf.
+                    This Newton step is the foundation of XGBoost and LightGBM.
+                </p>
+            </section>
+
+
+            <!-- ══════════════════════════════════════════════════════════════════
+                 SECTION 10 — REGULARIZATION
+            ══════════════════════════════════════════════════════════════════ -->
+            <section id="sec-regularization">
+                <h2 class="section-heading">10. Regularization in Gradient Boosting</h2>
+
+                <h4 class="subsection-heading">10.1 Shrinkage (Learning Rate)</h4>
+                <div class="equation">
+                    $$F_m(x) = F_{m-1}(x) + \nu\cdot h_m(x), \quad \nu\in(0,1]$$
+                </div>
+                <p>
+                    Each weak learner contributes only \(\nu\) times its prediction. The model uses more
+                    trees to achieve the same training fit, but each tree is less committed — reducing variance.
+                </p>
+                <div class="equation">
+                    $$\operatorname{Var}(F_M)\propto \nu^2\cdot M\cdot\operatorname{Var}(h_m)$$
+                </div>
+                <p>
+                    Keeping \(\nu\cdot M\) constant while decreasing \(\nu\) (and increasing \(M\)) reduces
+                    variance while maintaining bias.
+                </p>
+
+                <h4 class="subsection-heading">10.2 Subsampling</h4>
+                <p>
+                    At each round, fit \(h_m\) using a random subsample of fraction \(\eta\in(0,1]\) (without
+                    replacement):
+                </p>
+                <div class="equation">
+                    $$h_m=\arg\min_{h}\sum_{i\in\mathcal{S}_m}(r_{im}-h(x_i))^2, \quad
+                      |\mathcal{S}_m|=\lfloor\eta n\rfloor$$
+                </div>
+                <p>Introduces randomness → reduces correlation between trees. Optimal \(\eta\in[0.5,0.8]\).</p>
+
+                <h4 class="subsection-heading">10.3 Tree-Specific Regularization</h4>
+                <p>For tree-based weak learners:</p>
+                <table class="comparison-table">
+                    <thead>
+                        <tr><th>Technique</th><th>Effect</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Max depth \(D\)</td><td>Limits tree complexity. Typical \(D\in[3,8]\).</td></tr>
+                        <tr><td>Min leaf size \(n_{min}\)</td><td>Prevents fitting to small noisy groups.</td></tr>
+                        <tr><td>Min split gain \(\gamma\)</td><td>Only split if Gain \(>\gamma\). Equivalent to \(\gamma\) per leaf penalty.</td></tr>
+                        <tr><td>L2 on leaf weights \(\lambda\)</td><td>Penalises large leaf predictions: \(\Omega(h)=\gamma J+\tfrac{\lambda}{2}\sum_j w_j^2\)</td></tr>
+                    </tbody>
+                </table>
+                <p>With L2 regularization, the optimal leaf weight becomes:</p>
+                <div class="equation" style="border-color:#e74c3c;background:#fff8f8;">
+                    $$\boxed{w_j^* = -\frac{G_j}{H_j+\lambda}}$$
+                </div>
+
+                <h4 class="subsection-heading">10.4 Early Stopping</h4>
+                <div class="algorithm-box">
+<span class="kw">for</span> m = <span class="num">1</span> <span class="kw">to</span> M_max:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;F_m = F_{m-1} + ν·h_m<br>
+&nbsp;&nbsp;&nbsp;&nbsp;val_loss_m = Σ L(y_i, F_m(x_i)) over validation set<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">if</span> val_loss has not improved <span class="kw">for</span> k rounds:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> F_{m−k}   <span class="cmt"># best model so far</span>
+                </div>
+                <p>
+                    Combined with small \(\nu\) and large \(M_{max}\), early stopping automatically selects
+                    the right model complexity for the given dataset.
+                </p>
+
+                <h4 class="subsection-heading">10.5 Feature Subsampling</h4>
+                <p>
+                    At each round, use only a random subset of features
+                    \(\mathcal{F}_m\subset\{1,\ldots,d\}\) with \(|\mathcal{F}_m|=\lfloor p\cdot d\rfloor\).
+                    Reduces correlation between trees (each uses different features). Typical \(p\in[0.5,0.8]\).
+                </p>
+
+                <h4 class="subsection-heading">10.6 Bias-Variance Tradeoff Summary</h4>
+                <table class="comparison-table">
+                    <thead>
+                        <tr><th>To reduce <strong>Overfitting</strong> (high variance)</th><th>To reduce <strong>Underfitting</strong> (high bias)</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Decrease num_leaves / max_depth</td><td>Increase num_leaves / max_depth</td></tr>
+                        <tr><td>Increase min_data_in_leaf</td><td>Decrease min_data_in_leaf</td></tr>
+                        <tr><td>Decrease learning rate + more trees</td><td>Increase learning rate</td></tr>
+                        <tr><td>Increase \(\lambda\), \(\gamma\)</td><td>Decrease regularization</td></tr>
+                        <tr><td>Decrease feature/row fraction</td><td>Increase fractions toward 1.0</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+
+            <!-- ══════════════════════════════════════════════════════════════════
+                 SECTION 11 — NEWTON BOOSTING
+            ══════════════════════════════════════════════════════════════════ -->
+            <section id="sec-newton">
+                <h2 class="section-heading">11. Second-Order Gradient Boosting — Newton Boosting</h2>
+
+                <h4 class="subsection-heading">11.1 Motivation</h4>
+                <p>
+                    Standard gradient boosting uses only the first derivative \(g_i\). Newton's method uses
+                    both first and second derivatives for faster, more accurate optimisation:
+                </p>
+                <div class="equation">
+                    $$F \leftarrow F - \frac{g_i}{h_i}$$
+                </div>
+                <p>The Hessian \(h_i\) (curvature) tells us how quickly the loss changes — higher curvature means smaller, safer steps.</p>
+
+                <h4 class="subsection-heading">11.2 Taylor Approximation of the Loss</h4>
+                <p>Around \(\hat y_i=F_{m-1}(x_i)\), expand the loss to second order with \(\delta=h_m(x_i)\):</p>
+                <div class="equation">
+                    $$L(y_i,\hat y_i+\delta)\approx L(y_i,\hat y_i)+g_i\delta+\tfrac{1}{2}h_i\delta^2$$
+                </div>
+                <p>Dropping constants, the total objective for the new tree:</p>
+                <div class="equation">
+                    $$\tilde{\mathcal{L}}^{(m)}
+                      =\sum_{i=1}^n\Bigl[g_i h_m(x_i)+\tfrac{1}{2}h_i h_m(x_i)^2\Bigr]+\Omega(h_m)$$
+                </div>
+                <p>where \(\Omega(h)=\gamma J+\tfrac{\lambda}{2}\sum_{j=1}^J w_j^2\) is the regularisation term.</p>
+
+                <h4 class="subsection-heading">11.3 Optimal Leaf Weights — Full Derivation</h4>
+                <p>Group by leaves — let \(I_j=\{i:q(i)=j\}\):</p>
+                <div class="equation">
+                    $$\tilde{\mathcal{L}}^{(m)}
+                      =\sum_{j=1}^J\Bigl[\underbrace{\textstyle\sum_{i\in I_j}g_i}_{G_j}w_j
+                        +\tfrac{1}{2}\underbrace{\Bigl(\textstyle\sum_{i\in I_j}h_i+\lambda\Bigr)}_{H_j+\lambda}w_j^2\Bigr]+\gamma J$$
+                </div>
+                <p>Define: \(G_j=\sum_{i\in I_j}g_i\) (gradient sum) and \(H_j=\sum_{i\in I_j}h_i\) (Hessian sum).</p>
+                <p>The objective is separable and quadratic in each \(w_j\). Minimise:</p>
+                <div class="equation">
+                    $$\frac{\partial\tilde{\mathcal{L}}}{\partial w_j}=G_j+(H_j+\lambda)w_j=0$$
+                </div>
+                <div class="equation" style="border-color:#e74c3c;background:#fff8f8;">
+                    $$\boxed{w_j^*=-\frac{G_j}{H_j+\lambda}}$$
+                </div>
+                <p>
+                    This is the <strong>Newton step</strong>: gradient \(G_j\) divided by curvature \(H_j\),
+                    with \(\lambda\) stabilising the denominator.
+                </p>
+
+                <h4 class="subsection-heading">11.4 Tree Quality Score</h4>
+                <p>Substituting \(w_j^*\) back into the objective:</p>
+                <div class="equation">
+                    $$\tilde{\mathcal{L}}^*
+                      =\sum_{j=1}^J\Bigl[G_j\cdot\Bigl(-\tfrac{G_j}{H_j+\lambda}\Bigr)
+                        +\tfrac{1}{2}(H_j+\lambda)\cdot\tfrac{G_j^2}{(H_j+\lambda)^2}\Bigr]+\gamma J$$
+                </div>
+                <div class="equation" style="border-color:#e74c3c;background:#fff8f8;">
+                    $$\boxed{\tilde{\mathcal{L}}^*=-\frac{1}{2}\sum_{j=1}^J\frac{G_j^2}{H_j+\lambda}+\gamma J}$$
+                </div>
+                <p>Lower (more negative) = better tree structure.</p>
+
+                <h4 class="subsection-heading">11.5 Split Gain Formula</h4>
+                <p>
+                    For a candidate split dividing leaf \((G,H)\) into left \((G_L,H_L)\) and right
+                    \((G_R,H_R)\):
+                </p>
+                <div class="equation">
+                    $$\text{Before split (1 leaf):}\quad
+                      \mathcal{L}^*_{\text{before}}=-\tfrac{1}{2}\frac{G^2}{H+\lambda}+\gamma$$
+                </div>
+                <div class="equation">
+                    $$\text{After split (2 leaves):}\quad
+                      \mathcal{L}^*_{\text{after}}=-\tfrac{1}{2}\frac{G_L^2}{H_L+\lambda}
+                        -\tfrac{1}{2}\frac{G_R^2}{H_R+\lambda}+2\gamma$$
+                </div>
+                <div class="equation" style="border-color:#e74c3c;background:#fff8f8;">
+                    $$\boxed{\text{Gain}
+                      =\frac{1}{2}\left[\frac{G_L^2}{H_L+\lambda}+\frac{G_R^2}{H_R+\lambda}
+                        -\frac{G^2}{H+\lambda}\right]-\gamma}$$
+                </div>
+                <p>A split is made only if Gain \(>0\) (improvement exceeds the \(\gamma\) regularisation penalty).</p>
+
+                <h4 class="subsection-heading">11.6 Why the Hessian Matters — Intuition</h4>
+                <p>Consider two leaves both with gradient sum \(G_j=10\):</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="grey-box">
+                            <strong>Leaf A:</strong> \(H_j=100\) (many samples, high curvature)<br>
+                            \(w_A^*=-10/(100+0)\approx-0.10\) → small, cautious update
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="grey-box">
+                            <strong>Leaf B:</strong> \(H_j=1\) (few samples, low curvature)<br>
+                            \(w_B^*=-10/(1+0)=-10\) → large, confident update
+                        </div>
+                    </div>
+                </div>
+                <p>
+                    The Hessian correctly gives Leaf A a smaller update (conflicting gradient signals from
+                    many samples) and Leaf B a larger update (confident signal). Without the Hessian, both
+                    leaves would get the same weight — a clear mistake.
+                </p>
+            </section>
+
+
+            <!-- ══════════════════════════════════════════════════════════════════
+                 SECTION 12 — STOCHASTIC GBM
+            ══════════════════════════════════════════════════════════════════ -->
+            <section id="sec-stochastic">
+                <h2 class="section-heading">12. Stochastic Gradient Boosting</h2>
+
+                <h4 class="subsection-heading">12.1 The Algorithm with Subsampling</h4>
+                <p>At each round draw \(\mathcal{S}_m\subset\{1,\ldots,n\}\) of size \(\lfloor\eta n\rfloor\):</p>
+                <div class="equation">
+                    $$h_m=\arg\min_h\frac{1}{|\mathcal{S}_m|}\sum_{i\in\mathcal{S}_m}(r_{im}-h(x_i))^2$$
+                </div>
+
+                <h4 class="subsection-heading">12.2 Unbiasedness</h4>
+                <p>
+                    The stochastic functional gradient estimate is <strong>unbiased</strong>:
+                </p>
+                <div class="equation">
+                    $$\mathbb{E}_{\mathcal{S}_m}[r_{im}^{stoch}]=r_{im}^{full}$$
+                </div>
+                <p>
+                    The variance introduced by subsampling acts as regularization — it prevents overfitting
+                    to any particular subset of training points.
+                </p>
+
+                <h4 class="subsection-heading">12.3 Bagging vs Boosting vs Stochastic Boosting</h4>
+                <table class="comparison-table">
+                    <thead>
+                        <tr><th>Method</th><th>Trees trained</th><th>Data per tree</th><th>Correction?</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Bagging / Random Forest</td><td>Parallel (independent)</td><td>Bootstrap sample</td><td>No</td></tr>
+                        <tr><td>Gradient Boosting</td><td>Sequential</td><td>Full dataset</td><td>Yes (residuals)</td></tr>
+                        <tr><td>Stochastic GBM</td><td>Sequential</td><td>Random subsample</td><td>Yes (residuals)</td></tr>
+                    </tbody>
+                </table>
+                <p>
+                    Friedman showed stochastic gradient boosting with \(\eta\approx 0.5\) often outperforms
+                    deterministic gradient boosting — it benefits from both sequential correction and the
+                    variance reduction from subsampling.
+                </p>
+            </section>
+
+
+            <!-- ══════════════════════════════════════════════════════════════════
+                 SECTION 13 — CONVERGENCE
+            ══════════════════════════════════════════════════════════════════ -->
+            <section id="sec-convergence">
+                <h2 class="section-heading">13. Convergence and Bias-Variance Analysis</h2>
+
+                <h4 class="subsection-heading">13.1 Error Decomposition</h4>
+                <div class="equation">
+                    $$\mathbb{E}\bigl[(Y-\hat F_M(X))^2\bigr]
+                      = \underbrace{\sigma^2}_{\text{irreducible}}
+                      + \underbrace{\operatorname{Bias}^2(\hat F_M)}_{\text{approx. + estimation}}
+                      + \underbrace{\operatorname{Var}(\hat F_M)}_{\text{estimation variance}}$$
+                </div>
+
+                <h4 class="subsection-heading">13.2 Training Loss Decreases Monotonically</h4>
+                <div class="equation">
+                    $$\sum_{i=1}^n L(y_i,F_M(x_i))\;\le\;\sum_{i=1}^n L(y_i,F_m(x_i))\quad\text{for }M>m$$
+                </div>
+                <p>Each new tree is chosen to reduce the loss — training loss cannot increase.</p>
+
+                <h4 class="subsection-heading">13.3 Variance via Shrinkage</h4>
+                <div class="equation">
+                    $$\operatorname{Var}(F_M)\approx \nu^2 M\cdot\operatorname{Var}(h)$$
+                </div>
+                <p>
+                    With subsampling: \(\operatorname{Cov}(h_m,h_{m'})\approx 0\), so
+                    \(\operatorname{Var}(F_M)\approx\nu^2 M\cdot\operatorname{Var}(h)=\nu\cdot C\cdot\operatorname{Var}(h)\),
+                    which decreases as \(\nu\to 0\).
+                </p>
+
+                <h4 class="subsection-heading">13.4 Convergence Rates</h4>
+                <p>Under mild conditions (convex loss, rich enough \(\mathcal{H}\)):</p>
+                <div class="equation">
+                    $$\mathcal{L}(F_M)-\mathcal{L}(F^*)=O\!\left(\frac{1}{M}\right)\quad\text{(sublinear)}$$
+                </div>
+                <p>For <strong>strongly convex</strong> losses with strong convexity constant \(\mu\) and Lipschitz constant \(L_{lip}\):</p>
+                <div class="equation">
+                    $$\mathcal{L}(F_M)-\mathcal{L}(F^*)
+                      \le\left(1-\frac{\mu}{L_{lip}}\right)^{\!M}\!\bigl(\mathcal{L}(F_0)-\mathcal{L}(F^*)\bigr)
+                      \quad\text{(linear / geometric decay)}$$
+                </div>
+            </section>
+
+
+            <!-- ══════════════════════════════════════════════════════════════════
+                 SECTION 14 — TASKS
+            ══════════════════════════════════════════════════════════════════ -->
+            <section id="sec-tasks">
+                <h2 class="section-heading">14. Gradient Boosting for Different Tasks</h2>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr><th>Task</th><th>Loss</th><th>Output transform</th><th>Prediction</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Regression</td><td>MSE / Huber</td><td>Identity</td><td>\(F_M(x)\)</td></tr>
+                        <tr><td>Count data</td><td>Poisson deviance</td><td>\(\exp\)</td><td>\(e^{F_M(x)}\)</td></tr>
+                        <tr><td>Binary classification</td><td>Log-loss</td><td>Sigmoid</td><td>\(\sigma(F_M(x))\)</td></tr>
+                        <tr><td>Multi-class</td><td>Softmax deviance</td><td>Softmax</td><td>\(\text{softmax}(F_1,\ldots,F_K)\)</td></tr>
+                        <tr><td>Ranking</td><td>LambdaRank</td><td>Rank scores</td><td>Item ordering</td></tr>
+                        <tr><td>Quantile regression</td><td>Pinball \(L_\tau\)</td><td>Identity</td><td>\(Q_\tau(Y\mid X)\)</td></tr>
+                        <tr><td>Survival analysis</td><td>Cox partial likelihood</td><td>Log-hazard</td><td>Survival curve</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="grey-box">
+                    <strong>LambdaRank / LambdaMART:</strong> For ranking the loss is listwise — it depends
+                    on the ordering of all items in a query. Pseudo-gradients (\(\lambda\)-gradients) incorporate
+                    the ranking metric (e.g.\ NDCG):
+                    <div class="equation" style="background:transparent;border:none;padding:6px 0;">
+                        $$\lambda_{ij}=-\frac{1}{1+e^{F_i-F_j}}\cdot|\Delta\text{NDCG}_{ij}|$$
+                    </div>
+                    LambdaMART = Gradient Boosting with Trees + Lambda gradients = state-of-the-art ranking.
+                </div>
+            </section>
+
+
+            <!-- ══════════════════════════════════════════════════════════════════
+                 SECTION 15 — CONNECTIONS
+            ══════════════════════════════════════════════════════════════════ -->
+            <section id="sec-connections">
+                <h2 class="section-heading">15. Connections to Other Methods</h2>
+
+                <h4 class="subsection-heading">15.1 Gradient Boosting ↔ Gradient Descent</h4>
+                <table class="comparison-table">
+                    <thead>
+                        <tr><th>Concept</th><th>Gradient Descent</th><th>Gradient Boosting</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Optimisation space</td><td>Parameter space \(\mathbb{R}^p\)</td><td>Function space \(\mathcal{F}\)</td></tr>
+                        <tr><td>Step</td><td>\(\theta\leftarrow\theta-\eta\nabla_\theta\mathcal{L}\)</td><td>\(F\leftarrow F+\nu h_m\)</td></tr>
+                        <tr><td>Direction</td><td>\(-\nabla_\theta\mathcal{L}\)</td><td>\(-\nabla_F\mathcal{L}\) projected onto \(\mathcal{H}\)</td></tr>
+                        <tr><td>Line search</td><td>Backtracking / Wolfe</td><td>1D optimisation</td></tr>
+                        <tr><td>Convergence</td><td>\(O(1/M)\)</td><td>\(O(1/M)\)</td></tr>
+                    </tbody>
+                </table>
+                <div class="important-box">
+                    💡 Gradient Boosting <em>is</em> gradient descent, but in function space.
+                </div>
+
+                <h4 class="subsection-heading">15.2 Gradient Boosting ↔ AdaBoost (Formal Proof)</h4>
+                <p>AdaBoost uses sample weights \(w_i^{(m)}\) and classifiers \(h_m:\mathcal{X}\to\{-1,+1\}\):</p>
+                <div class="equation">
+                    $$w_i^{(1)}=\frac{1}{n},\quad
+                      w_i^{(m+1)}=\frac{w_i^{(m)}e^{-\alpha_m y_i h_m(x_i)}}{Z_m}$$
+                </div>
+                <p>With exponential loss \(L(y,F)=e^{-yF}\):</p>
+                <div class="equation">
+                    $$r_i=-g_i=y_i e^{-y_i F_{m-1}(x_i)}=y_i w_i^{(m)}n$$
+                </div>
+                <p>
+                    Pseudo-residuals are proportional to \(y_i w_i^{(m)}\) — exactly AdaBoost's weighted labels.
+                    The optimal step size \(\alpha_m\) matches the gradient boosting line search for exponential
+                    loss. <strong>∴ AdaBoost = Gradient Boosting with exponential loss. ∎</strong>
+                </p>
+
+                <h4 class="subsection-heading">15.3 Gradient Boosting ↔ Random Forest</h4>
+                <table class="comparison-table">
+                    <thead>
+                        <tr><th>Aspect</th><th>Random Forest</th><th>Gradient Boosting</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Training order</td><td>Parallel (independent)</td><td>Sequential (each corrects the last)</td></tr>
+                        <tr><td>Residuals</td><td>No — each tree fits \(y\) directly</td><td>Yes — each tree fits pseudo-residuals</td></tr>
+                        <tr><td>Tree depth</td><td>Deep (low bias, high variance)</td><td>Shallow (high bias, low variance)</td></tr>
+                        <tr><td>Bias reduction</td><td>By averaging</td><td>By sequential correction</td></tr>
+                        <tr><td>Variance reduction</td><td>By averaging</td><td>By shrinkage + shallow trees</td></tr>
+                        <tr><td>Overfitting risk</td><td>Low (more trees = better)</td><td>Needs early stopping</td></tr>
+                    </tbody>
+                </table>
+
+                <h4 class="subsection-heading">15.4 Gradient Boosting ↔ Neural Networks</h4>
+                <table class="comparison-table">
+                    <thead>
+                        <tr><th>Aspect</th><th>Neural Networks</th><th>Gradient Boosting</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Base functions</td><td>Neurons (parametric)</td><td>Trees (non-parametric)</td></tr>
+                        <tr><td>Optimisation</td><td>Backprop + SGD (end-to-end)</td><td>Greedy stagewise</td></tr>
+                        <tr><td>Tabular data</td><td>Often inferior</td><td>Usually superior</td></tr>
+                        <tr><td>Image / text</td><td>Superior</td><td>Usually inferior</td></tr>
+                        <tr><td>Training time</td><td>Long (GPU needed)</td><td>Fast (CPU sufficient)</td></tr>
+                        <tr><td>Interpretability</td><td>Low</td><td>Medium (feature importance)</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+
+            <!-- ══════════════════════════════════════════════════════════════════
+                 SECTION 16 — MASTER EQUATION SUMMARY
+            ══════════════════════════════════════════════════════════════════ -->
+            <section id="sec-summary">
+                <h2 class="section-heading">16. Master Equation Summary</h2>
+
+                <h4 class="subsection-heading">16.1 The Complete Algorithm</h4>
+                <div class="algorithm-box">
+<span class="kw">GRADIENT BOOSTING — COMPLETE FORM</span><br>
+<span class="cmt">══════════════════════════════════════════════════════════</span><br>
+<span class="kw">Input:</span>  {(xᵢ,yᵢ)}ⁿᵢ₌₁,  L,  𝓗,  M,  ν,  λ,  γ<br>
+<br>
+<span class="kw">Initialise:</span><br>
+&nbsp;&nbsp;F₀(x) = argmin_c Σ L(yᵢ, c)<br>
+<br>
+<span class="kw">For</span> m = 1 … M:<br>
+&nbsp;&nbsp;<span class="cmt">① Statistics</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;gᵢ = ∂L(yᵢ,F̂ᵢ)/∂F̂ᵢ |_{F̂=Fₘ₋₁}      <span class="cmt">(1st derivative)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;hᵢ = ∂²L(yᵢ,F̂ᵢ)/∂F̂ᵢ² |_{F̂=Fₘ₋₁}     <span class="cmt">(2nd derivative)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;rᵢ = −gᵢ                               <span class="cmt">(pseudo-residual)</span><br>
+<br>
+&nbsp;&nbsp;<span class="cmt">② Fit weak learner</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;hₘ = argmin_{h∈𝓗} Σ (rᵢ − h(xᵢ))²<br>
+<br>
+&nbsp;&nbsp;<span class="cmt">③ Line search (or fixed ν)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;νₘ = argmin_ν Σ L(yᵢ, Fₘ₋₁(xᵢ) + ν·hₘ(xᵢ))<br>
+<br>
+&nbsp;&nbsp;<span class="cmt">④ [Newton] Leaf weights</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;wⱼ* = −Gⱼ / (Hⱼ + λ)     where  Gⱼ=Σᵢ∈ⱼ gᵢ,  Hⱼ=Σᵢ∈ⱼ hᵢ<br>
+<br>
+&nbsp;&nbsp;<span class="cmt">⑤ Update</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;Fₘ(x) = Fₘ₋₁(x) + νₘ · hₘ(x)<br>
+<br>
+<span class="kw">Output:</span>  F_M(x)
+                </div>
+
+                <h4 class="subsection-heading">16.2 Quick Reference Card</h4>
+                <table class="comparison-table ref-table">
+                    <thead>
+                        <tr><th>Concept</th><th>Equation</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Ensemble model</td><td>\(F_M(x)=F_0(x)+\sum_{m=1}^M\nu_m h_m(x)\)</td></tr>
+                        <tr><td>Empirical risk</td><td>\(\hat{\mathcal{R}}[F]=\frac{1}{n}\sum_{i=1}^n L(y_i,F(x_i))\)</td></tr>
+                        <tr><td>1st-order gradient</td><td>\(g_i=\partial L(y_i,F_i)/\partial F_i\)</td></tr>
+                        <tr><td>2nd-order gradient</td><td>\(h_i=\partial^2 L(y_i,F_i)/\partial F_i^2\)</td></tr>
+                        <tr><td>Pseudo-residual</td><td>\(r_i=-g_i\)</td></tr>
+                        <tr><td>Shrinkage update</td><td>\(F_m=F_{m-1}+\nu\cdot h_m\)</td></tr>
+                        <tr><td>MSE line search</td><td>\(\nu_m=\frac{\sum_i r_{im}h_m(x_i)}{\sum_i h_m(x_i)^2}\)</td></tr>
+                        <tr><td>Newton leaf weight</td><td>\(w_j^*=-G_j/(H_j+\lambda)\)</td></tr>
+                        <tr><td>Tree score</td><td>\(-\frac{1}{2}\sum_j G_j^2/(H_j+\lambda)+\gamma J\)</td></tr>
+                        <tr><td>Split gain</td><td>\(\frac{1}{2}\!\left[\frac{G_L^2}{H_L+\lambda}+\frac{G_R^2}{H_R+\lambda}-\frac{G^2}{H+\lambda}\right]-\gamma\)</td></tr>
+                        <tr><td>GD convergence</td><td>\(\mathcal{L}(F_M)-\mathcal{L}(F^*)=O(1/M)\)</td></tr>
+                    </tbody>
+                </table>
+
+                <h4 class="subsection-heading">16.3 Conceptual Hierarchy</h4>
+                <div class="algorithm-box">
+GRADIENT BOOSTING FAMILY<br>
+│<br>
+├── <span class="kw">Base Concept:</span> Functional Gradient Descent<br>
+│   └── Build ensemble F_M(x) = Σ ν·hₘ(x) to minimise Σ L(yᵢ, F(xᵢ))<br>
+│<br>
+├── <span class="kw">First-Order Methods</span> (fit gradients only)<br>
+│   └── Classic GBM (Friedman 2001) — pseudo-residuals rᵢ = −∂L/∂F<br>
+│<br>
+├── <span class="kw">Second-Order Methods</span> (fit gradients + Hessians)<br>
+│   ├── XGBoost (Chen 2016)    — exact splits, level-wise growth<br>
+│   └── LightGBM (Ke 2017)    — histogram splits, leaf-wise growth, GOSS, EFB<br>
+│<br>
+└── <span class="kw">Variants</span><br>
+    ├── DART           — Dropout regularization<br>
+    ├── Stochastic GBM — Row / column subsampling<br>
+    └── LambdaMART     — Listwise ranking loss
+                </div>
+            </section>
+
+
+            <!-- ══════════════════════════════════════════════════════════════════
+                 NEXT CHAPTER PREVIEW
+            ══════════════════════════════════════════════════════════════════ -->
+            <section id="next-chapter-preview" style="margin-top:40px;">
+                <div class="important-box" style="background:#d1ecf1;">
+                    📘 <strong>Next Chapter:</strong> Decision Trees — The Building Blocks of Gradient Boosting
+                </div>
+            </section>
+
+
+            <!-- ══════════════════════════════════════════════════════════════════
+                 REFERENCES
+            ══════════════════════════════════════════════════════════════════ -->
+            <section id="reference" style="margin-top:40px;">
+                <h2 class="section-heading">References &amp; Further Reading</h2>
+                <ul>
+                    <li>Friedman, J. H. (2001). <em>Greedy Function Approximation: A Gradient Boosting Machine.</em> The Annals of Statistics.</li>
+                    <li>Friedman, J. H. (1999). <em>Stochastic Gradient Boosting.</em></li>
+                    <li>Chen, T. &amp; Guestrin, C. (2016). <em>XGBoost: A Scalable Tree Boosting System.</em> KDD.</li>
+                    <li>Ke, G. et al. (2017). <em>LightGBM: A Highly Efficient Gradient Boosting Decision Tree.</em> NeurIPS.</li>
+                    <li>Hastie, T., Tibshirani, R. &amp; Friedman, J. (2009). <em>The Elements of Statistical Learning</em> (Chapter 10 on Boosting). <a href="https://hastie.su.domains/Papers/ESLII.pdf" target="_blank">PDF</a></li>
+                    <li>My GitHub: <a href="https://github.com/arunp77/Machine-Learning/" target="_blank">Machine Learning repository</a></li>
+                    <li><a href="https://www.geeksforgeeks.org/machine-learning/gradient-descent-algorithm-and-its-variants/" target="_blank">Gradient Descent Algorithm in Machine Learning</a></li>
+                </ul>
+            </section>
+
+            <!-- Other topics -->
+            <div style="background:#f0f0f0;padding:15px;border-radius:5px;margin:20px 0;">
+                <h3>📌 Other interesting topics:</h3>
+                <ul>
+                    <li><a href="sql-project.html">Data, Big Data, Data Modeling, Datawarehouse, SQL, Cloud Computing</a></li>
+                    <li><a href="Data-engineering.html">Data Engineering</a></li>
+                </ul>
+            </div>
+
+            <!-- Navigation -->
+            <div class="navigation" style="display:flex;justify-content:space-between;margin-top:30px;">
+                <a href="lightgbm.html" class="clickable-box">
+                    ← LightGBM Content
+                </a>
+                <a href="lightgbm-ch2.html" class="clickable-box">
+                    Chapter 2: Decision Tree →
+                </a>
+            </div>
+
+        </div>
+    </section>
+</main>
+
+<!-- ═══════════════════════════════════ FOOTER ══════════════════════════════════════════ -->
+<footer id="footer">
+    <div class="container">
+        <div class="copyright">
+            &copy; Copyright <strong><span>Arun</span></strong>
+        </div>
+    </div>
+</footer>
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+</a>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="assets/vendor/typed.js/typed.umd.js"></script>
+<script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+<script src="assets/js/main.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        if (typeof hljs !== 'undefined') { hljs.initHighlightingOnLoad(); }
+    });
+</script>
+
+</body>
+</html>
