@@ -354,7 +354,7 @@
             <!-- 1.4 AdaBoost: The Predecessor -->
             <!-- ============================================================ -->
             <section id="adaboost">
-                <h2>1.4 AdaBoost: The Predecessor</h2>
+                <h2>1.4 AdaBoost family (Adaptive boosting): The Predecessor</h2>
 
                 <p>
                     <strong>AdaBoost</strong> (Adaptive Boosting), proposed by Freund &amp; Schapire (1997), was the first successful boosting algorithm. 
@@ -362,6 +362,26 @@
                 </p>
 
                 <h4>AdaBoost Algorithm</h4>
+                Main boosting algorithms of this family are as follows: 
+                <ol>
+                    <li>AdaBoost</li>
+                    <li>Real AdaBoost</li>
+                    <li>Gentle AdaBoost</li>
+                    <li>LogitBoost</li>
+                </ol>
+
+                <p><b>Common weak learner:</b></p>
+                <ol>
+                    <li>Decision stump</li>
+                    <li>Shallow decision tree</li>
+                </ol>
+
+                <p>This family works best for simple classification problems and educational demostration purpose. </p>
+
+                <figure style="text-align: center;">
+                    <img src="assets/img/machine-ln/adaboosting.png" alt="" style="max-width: 40%; max-height: 40%;">
+                    <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://arunp77.github.io/" target="_blank"> © Arun Kumar Pandey.</a></figcaption>
+                </figure>
 
                 <div class="algorithm-box">
                     <strong>Algorithm: AdaBoost</strong><br><br>
@@ -400,13 +420,36 @@
             <!-- 1.5 Gradient Boosting: The Unifying Framework -->
             <!-- ============================================================ -->
             <section id="gradient-boosting-framework">
-                <h2>1.5 Gradient Boosting: The Unifying Framework</h2>
+                <h2>1.5 Gradient Boosting (GB) family: The Unifying Framework</h2>
+                <p>This family is the most important and widely used boosting method today. Each new tree learns the residual errors (gradients) of the previous ensemble.
+                    Common GB algo's are: 
+                </p>
+                <ol>
+                    <li>Gradient Boosting (GB)</li>
+                    <li>Gradient Boosted Decision Trees</li>
+                    <li>Stochastic Gradient Boosting</li>
+                </ol>
+
+                <p>This family works best for regression problems and can be used for classification problems as well on a structured/tabular data. 
+                    Some real world applications of this algo are: 
+                    <ol>
+                        <li>Credit scoring</li>
+                        <li>Recommendation systems</li>
+                        <li>Risk modeling</li>
+                        <li>Ad Click-Through Rate (CTR) prediction</li>
+                    </ol>
+                </p>
 
                 <p>
-                    <strong>Gradient Boosting</strong>, introduced by Jerome Friedman (2001), generalizes the boosting idea by framing it as 
+                    <strong>Gradient Boosting (GB)</strong>, introduced by Jerome Friedman (2001), generalizes the boosting idea by framing it as 
                     <strong>gradient descent in function space</strong>. Instead of being tied to exponential loss (like AdaBoost), 
                     it works with any differentiable loss function.
-                </p>
+                </p> 
+
+                <figure style="text-align: center;">
+                    <img src="assets/img/machine-ln/gradient_boosting.png" alt="" style="max-width: 40%; max-height: 40%;">
+                    <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://arunp77.github.io/" target="_blank"> © Arun Kumar Pandey.</a></figcaption>
+                </figure>
 
                 <h4>Forward Stagewise Additive Modeling</h4>
 
@@ -972,6 +1015,11 @@
                     For a given tree structure, the objective is approximated as:
                 </p>
 
+                <figure style="text-align: center;">
+                    <img src="assets/img/machine-ln/xgboosting.png" alt="" style="max-width: 40%; max-height: 40%;">
+                    <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://arunp77.github.io/" target="_blank"> © Arun Kumar Pandey.</a></figcaption>
+                </figure>
+
                 <div class="equation">
                     $$\mathcal{L}^{(m)} \approx \sum_{i=1}^N \left[g_i\; h_m(\mathbf{x}_i) + \frac{1}{2} h_i\; h_m(\mathbf{x}_i)^2\right] + \Omega(h_m)$$
                 </div>
@@ -1001,7 +1049,13 @@
                     This gain formula elegantly combines the reduction in loss from splitting with the regularization penalty \( \gamma \) for adding a new leaf.
                 </p>
 
+                <!-- LightGBM -- Leaf Wise Growth and Histogram-Based Splitting -->
                 <h4>LightGBM — Leaf-Wise Growth &amp; Histogram-Based Splitting</h4>
+
+                <figure style="text-align: center;">
+                    <img src="assets/img/machine-ln/lightgbm_new.png" alt="" style="max-width: 40%; max-height: 40%;">
+                    <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://arunp77.github.io/" target="_blank"> © Arun Kumar Pandey.</a></figcaption>
+                </figure>
 
                 <p>
                     LightGBM (Ke et al., 2017) introduces two key innovations:
@@ -1018,6 +1072,47 @@
                     LightGBM also introduces <strong>Gradient-based One-Side Sampling (GOSS)</strong> — keeping samples with large gradients 
                     and randomly sampling from those with small gradients — and <strong>Exclusive Feature Bundling (EFB)</strong> for high-dimensional sparse data.
                 </p>
+
+                <!-- Catboosting -->
+                <h4>CatBoost (Categorical Boosting) Family</h4>
+
+                <p>A gradient boosting algorithm specially designed to handle categorical data efficiently and reduce prediction bias.</p>
+
+                
+                <p><b>How CatBoost Works?</b>
+                    <ul>
+                        <li>Start with training data</li>
+                        <li>Automatically encode categorical features</li>
+                        <li>Compute residual errors</li>
+                        <li>Train decision trees sequentially</li>
+                        <li>Use Ordered Boosting to reduce overfitting and target leakage</li>
+                        <li>Combine all trees into the final prediction model</li>
+                    </ul>
+                </p>
+
+                <p><b>Key Features:</b>
+                    <ul>
+                        <li>Handles categorical variables automatically</li>
+                        <li>Reduces overfitting</li>
+                        <li>Requires less preprocessing</li>
+                        <li>High accuracy with minimal tuning</li>
+                    </ul>
+                </p>
+
+                <p><b>Core Idea</b> Instead of manually converting categories into numbers, CatBoost intelligently processes categorical features during boosting, improving both speed and accuracy.</p>
+
+                <figure style="text-align: center;">
+                    <img src="assets/img/machine-ln/catboost.png" alt="" style="max-width: 40%; max-height: 40%;">
+                    <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://arunp77.github.io/" target="_blank"> © Arun Kumar Pandey.</a></figcaption>
+                </figure>
+                
+
+
+
+
+
+
+
             </section>
 
             <!-- ============================================================ -->
