@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Gradient Boosting</title>
+    <meta content="Complete tutorial on Gradient Boosting fundamentals: from gradient descent to functional gradient boosting, pseudo-residuals, and the unified boosting framework." name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="assets/img/Favicon-1.png" rel="icon">
+    <link href="assets/img/Favicon-1.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/prism.css">
+    <script src="assets/js/prism.js"></script>
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/5d25c1efd3.js" crossorigin="anonymous"></script>
+
+    <!-- MathJax for LaTeX rendering -->
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <style>
+        .equation {
+            background: #f4f4f4;
+            padding: 10px 15px;
+            border-left: 4px solid #149ddd;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: monospace;
+            font-size: 1.05rem;
+        }
+        .algorithm-box {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #149ddd;
+            color: white;
+        }
+        .grey-box {
+            background-color: #f9f9f9;
+            border-left: 4px solid #149ddd;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .important-box {
+            background-color: #e7f3fe;
+            border-left: 6px solid #2196F3;
+            padding: 10px 15px;
+            margin: 20px 0;
+            font-weight: 500;
+        }
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 20px;
+        }
+        .nav-btn {
+            display: inline-block;
+            background-color: #149ddd;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+        .nav-btn:hover {
+            background-color: #0f6f8c;
+            color: white;
+        }
+        .nav-btn i {
+            margin-right: 8px;
+        }
+        .clickable-box {
+            background-color: #149ddd;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+        .clickable-box:hover {
+            background-color: #0f6f8c;
+            color: white;
+        }
+        .highlight {
+            background-color: #fff3e0;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        .content-list {
+            column-count: 2;
+            column-gap: 30px;
+        }
+        .content-list li {
+            break-inside: avoid;
+            margin-bottom: 8px;
+        }
+        @media (max-width: 768px) {
+            .content-list {
+                column-count: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Mobile nav toggle button -->
+<i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+<!-- Header -->
+<header id="header">
+    <div class="d-flex flex-column">
+        <div class="profile">
+            <img src="assets/img/myphoto.jpeg" alt="" class="img-fluid rounded-circle">
+            <h1 class="text-light"><a href="index.html">Arun</a></h1>
+            <div class="social-links mt-3 text-center">
+                <a href="https://www.linkedin.com/in/arunp77/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                <a href="https://github.com/arunp77" target="_blank" class="github"><i class="bx bxl-github"></i></a>
+                <a href="https://twitter.com/arunp77_" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="https://www.instagram.com/arunp77/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="https://arunp77.medium.com/" target="_blank" class="medium"><i class="bx bxl-medium"></i></a>
+            </div>
+        </div>
+        <nav id="navbar" class="nav-menu navbar">
+            <ul>
+                <li><a href="index.html#hero" class="nav-link scrollto"><i class="bx bx-home"></i> <span>Home</span></a></li>
+                <li><a href="index.html#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
+                <li><a href="index.html#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+                <li><a href="index.html#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+                <li><a href="index.html#skills-and-tools" class="nav-link scrollto"><i class="bx bx-wrench"></i> <span>Skills and Tools</span></a></li>
+                <li><a href="index.html#language" class="nav-link scrollto"><i class="bi bi-menu-up"></i> <span>Languages</span></a></li>
+                <li><a href="index.html#awards" class="nav-link scrollto"><i class="bi bi-award-fill"></i> <span>Awards</span></a></li>
+                <li><a href="index.html#professionalcourses" class="nav-link scrollto"><i class="bx bx-book-alt"></i> <span>Professional Certification</span></a></li>
+                <li><a href="index.html#publications" class="nav-link scrollto"><i class="bx bx-news"></i> <span>Publications</span></a></li>
+                <li><a href="index.html#extra-curricular" class="nav-link scrollto"><i class="bx bx-rocket"></i> <span>Extra-Curricular Activities</span></a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main id="main">
+
+    <!-- Breadcrumbs -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Gradient Boosting in ML</h2>
+                <ol>
+                    <li><a href="index.html#portfolio" class="clickable-box">Portfolio</a></li>
+                    <li><a href="machine-learning.html" class="clickable-box">Machine learning content</a></li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <!-- Right dropdown shortcuts -->
+    <div class="right-side-list">
+        <div class="dropdown">
+            <button class="dropbtn"><strong>Shortcuts:</strong></button>
+            <div class="dropdown-content">
+                <ul>
+                    <li><a href="cloud-compute.html"><i class="fas fa-cloud"></i> Cloud</a></li>
+                    <li><a href="AWS-GCP.html"><i class="fas fa-cloud"></i> AWS-GCP</a></li>
+                    <li><a href="amazon-s3.html"><i class="fas fa-cloud"></i> AWS S3</a></li>
+                    <li><a href="ec2-confi.html"><i class="fas fa-server"></i> EC2</a></li>
+                    <li><a href="Docker-Container.html"><i class="fab fa-docker"></i> Docker</a></li>
+                    <li><a href="Jupyter-nifi.html"><i class="fab fa-python"></i> Jupyter-nifi</a></li>
+                    <li><a href="snowflake-task-stream.html"><i class="fas fa-snowflake"></i> Snowflake</a></li>
+                    <li><a href="data-model.html"><i class="fas fa-database"></i> Data modeling</a></li>
+                    <li><a href="sql-basics.html"><i class="fas fa-table"></i> SQL basics</a></li>
+                    <li><a href="sql-basic-details.html"><i class="fas fa-database"></i> SQL details</a></li>
+                    <li><a href="Bigquerry-sql.html"><i class="fas fa-database"></i> BigQuery</a></li>
+                    <li><a href="scd.html"><i class="fas fa-archive"></i> SCD</a></li>
+                    <li><a href="sql-project.html"><i class="fas fa-database"></i> SQL project</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main tutorial content -->
+    <section id="portfolio-details" class="portfolio-details">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-8">
+                    <div class="portfolio-details-slider swiper">
+                        <div class="swiper-wrapper align-items-center">
+                            <div class="swiper-slide">
+                                <figure>
+                                    <img src="assets/img/machine-ln/gradient_boostings.png" alt="Gradient Descent to Gradient Boosting" style="max-width: 50%; max-height: auto;">
+                                    <figcaption style="text-align: center;">From Parameter Space to Function Space: The Journey to Gradient Boosting</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 grey-box">
+                    <div class="section-title">
+                        <h3>Chapter 1: Contents</h3>
+                        <ol class="content-list">
+                            <li><a href="#what-you-know">1.1 What We Already Know: Gradient Descent</a></li>
+                            <li><a href="#the-problem">1.2 The Problem: What if You Can't Parameterize Your Model?</a></li>
+                            <li><a href="#core-idea">1.3 The Core Idea: Boosting</a></li>
+                            <li><a href="#adaboost">1.4 AdaBoost: The Predecessor</a></li>
+                            <li><a href="#gradient-boosting-framework">1.5 Gradient Boosting: The Unifying Framework</a></li>
+                            <li><a href="#functional-gd">1.6 Functional Gradient Descent &mdash; The Key Insight</a></li>
+                            <li><a href="#algorithm">1.7 Gradient Boosting Algorithm &mdash; Step by Step</a></li>
+                            <li><a href="#mse-example">1.8 Worked Example: MSE Loss</a></li>
+                            <li><a href="#logloss-example">1.9 Worked Example: Log-Loss (Binary Classification)</a></li>
+                            <li><a href="#comparison">1.10 Gradient Boosting vs Gradient Descent &mdash; Summary Table</a></li>
+                            <li><a href="#why-not-big-tree">1.11 Why Not Just Use One Big Tree?</a></li>
+                            <li><a href="#regularization">1.12 Regularization in Gradient Boosting</a></li>
+                            <li><a href="#variants">1.13 Variants: XGBoost, LightGBM, CatBoost</a></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- 1.1 What You Already Know: Gradient Descent -->
+            <!-- ============================================================ -->
+            <section id="what-you-know">
+                <h2>Introduction</h2>                
+                <p>AdaBoost (Adaptive Boosting) is a sequential ensemble method that combines many weak learners (typically shallow decision trees) into a strong classifier by focusing more and more on the hard-to-classify points.</p>
+                
+                <h4>What makes it Adaptive?</h4>                
+                <p>Instead of training all models on the same data, AdaBoost:</p>
+                <ul>
+                    <li>Starts with equal weights for all data points.</li>
+                    <li>Trains a weak learner (e.g., a decision stump — a tree with one split).</li>
+                    <li>Increases the weights of misclassified points.</li>
+                    <li>Trains the next learner to focus on those difficult points.</li>
+                    <li>Repeats for a fixed number of iterations or until performance stops improving.</li>
+                </ul>
+
+                <h4>Why "Weak" Learners?</h4>                
+                <p>AdaBoost works with models that are only slightly better than random guessing (e.g., error rate < 50% on binary classification). The power comes from the ensemble, not the individual learners. Each tree corrects the mistakes of the previous ones.</p> 
+
+                <h4>The Boosting Process</h4>                
+                <p>Imagine a dataset of 10 data points. AdaBoost goes through these steps:</p>
+                <ul>
+                    <li><strong>Step 1:</strong> Train the first tree. Let's say it correctly classifies 7 points but misclassifies 3.</li>
+                    <li><strong>Step 2:</strong> Increase the weights of the 3 misclassified points.</li>
+                    <li><strong>Step 3:</strong> Train the second tree, forcing it to focus more on those 3 points. It might correctly classify 2 of them, but misclassify 1.</li>
+                    <li><strong>Step 4:</strong> Increase the weight of the remaining misclassified point.</li>
+                    <li><strong>Step 5:</strong> Train the third tree to focus on that last point.</li>
+                    <li><strong>Final Model:</strong> Combine all 3 trees with different weights (the ones that performed better get higher weights).</li>
+                </ul> 
+
+                <h4>AdaBoost Algorithm Steps</h4>                
+                <p>Here's the step-by-step breakdown of the AdaBoost algorithm:</p>
+                <ol>
+                    <li><strong>Initialize Weights:</strong> Start with equal weights for all data points: </li>
+                    <li><strong>Loop for T Iterations:</strong></li>
+                        <ul>
+                            <li><b>Train Weak Learner</b>: Train a weak learner (e.g., decision stump) on the current weighted data.</li>
+                            <li><b>Calculate Weighted Error</b>: Calculate the weighted error rate of the learner.</li>
+                            <li><b>Calculate Learner Weight</b>: Calculate the weight for this learner (more error = lower weight).</li>
+                            <li><b>Update Data Weights</b>: Increase weights for misclassified points, decrease for correctly classified points.</li>
+                            <li><b>Normalize Weights</b>: Rescale weights so they sum to 1.</li>
+                        </ul>
+                    <li><strong>Final Prediction:</strong> Combine all learners using their weights (weighted majority vote for classification, weighted sum for regression).</li>
+                </ol>
+
+                <h4>AdaBoost Mathematics (for the curious mind)</h4>                
+                <p>Here are the core formulas used in AdaBoost:</p>
+                <div class="equation">Initializing Weights: $$ w_i = \frac{1}{N} \quad \text{for all } i = 1, \dots, N $$
+                </div>
+                <div class="equation">Learner Weight Calculation: $$ \alpha_t = \frac{1}{2} \ln \left( \frac{1 - \epsilon_t}{\epsilon_t} \right) $$
+                </div>
+                <p>The larger \(\alpha_t\), the more weight is given to the learner.</p>
+                <div class="equation">Updating Data Weights: $$ w_{i, t+1} = \frac{w_{i, t}}{Z_t} \times \begin{cases} e^{-\alpha_t} & \text{if misclassified} \\ e^{\alpha_t} & \text{if correctly classified} \end{cases} $$
+                </div>
+                <p>where \(Z_t\) is the normalization factor to ensure weights sum to 1.</p>
+                <div class="equation">Final Prediction: $$ y_{final}(x) = \text{sign} \left( \sum_{t=1}^{T} \alpha_t h_t(x) \right) $$
+                </div>  
+
+                <h3>Step-by-Step Algorithm</h3>
+
+                <ol>
+                    <li><b>Step 1: Initialize weights: </b>
+                    Initially, all data points are equally important: 
+                    $$w_i^{(1)} = \frac{1}{n}$$
+                    </li>
+                    <li><b>Step 2: Train weak learner: </b>
+                    Train a weak classifier \(h_t(x)\) using the weighted dataset. The learner focus more on points with higher weights. 
+                    </li>
+                    <li><b>Step 3: Compute weighted error: </b>
+                    $$\epsilon_t = \sum_{i=1}^n w_i^{(t)} \cdot I(y_i \neq h_t(x_i))$$
+                    This is not simple accuracy, it's weighted error.
+                    </li>
+                    <li><b>Step 4: Compute model weight: </b>
+                    $$\alpha_t = \frac{1}{2} \ln \left( \frac{1 - \epsilon_t}{\epsilon_t} \right)$$
+                    Interpretation:
+                        <ul>
+                            <li>If error is small \(\rightarrow \alpha_t\) is large \(\rightarrow\) strong learner</li>
+                            <li>If error is \(\sim 0.5 \rightarrow \alpha_t \approx 0 \rightarrow\) useless learner</li>
+                            <li>If error is close to 1 \(\rightarrow \alpha_t \approx -\infty \rightarrow\) overfitting - giving more weight to the mistakes.</li>
+                        </ul>
+                    </li>
+                    <li><b>Step 5: Update sample weights:</b>
+                    $$w_i^{(t+1)} = w_i^{(t)} \cdot \exp\left(-\alpha_t y_i h_t(x_i)\right)$$
+                    This is the key idea: 
+                        <ul>
+                            <li>If correctly classfied \(\rightarrow y_i h_t(x_i) = +1 \rightarrow \) weight decreases.</li>
+                            <li>If misclassified \(\rightarrow y_i h_t(x_i) = -1 \rightarrow \) weight increases.</li>
+                        </ul>
+                    </li>
+                    <li><b>Step 6: Normalize weights:</b>
+                    $$w_i^{(t+1)} = \frac{w_i^{(t+1)}}{\sum_{j=1}^n w_j^{(t+1)}}$$
+                    so weights remain a probability distribution.
+                    </li>
+                    <li><b>Step 7: Repeat</b> until desired accuracy or max iterations reached.</li>
+                    <li><b>Step 8: Final prediction:</b>
+                    $$y_{final}(x) = \text{sign} \left( \sum_{t=1}^{T} \alpha_t h_t(x) \right)$$
+                    so:
+                    <ul>
+                        <li>Each weak learner votes</li>
+                        <li>Stronger learners (low error) get higher weights</li>
+                        <li>Final prediction is weighted majority vote</li>
+                    </ul>
+                    </li>
+                    <li><b>Step 6: Intuition Behind the Math:</b>
+                    <p>Why exponential update?  </p>     
+                    <p>The term: \(\exp(-\alpha_t y_i h_t(x_i))\)  </p>
+                    <p>
+                        creates:
+                        <ul>
+                            <li>smooth penalty </li>
+                            <li>stronger updates for misclassified points</li>
+                            <li>connections to exponential loss minimization</li>
+                        </ul>
+                    </p>    
+                    <p>AdaBoost minimizes this loss:</p>
+                    $$\sum_{i=1}^n \exp\left(-y_i F(x_i)\right)$$
+                    where $F(x)$ is the final predictor and is given by \(F(x) =\sum_{t=1}^T \alpha_t h_t(x)\).  
+                    So AdaBoost is actually doing stage-wise additive modeling.     
+                    </li>
+                </ol>
+
+                <figure style="text-align: center;">
+                    <img src="assets/img/machine-ln/adaboosting_example.png" alt="" style="max-width: 80%; max-height: auto;">
+                    <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://arunp77.github.io/" target="_blank"> © Arun Kumar Pandey.</a></figcaption>
+                </figure>
+
+            </section>
+
+            <!-- Next Chapter Preview -->
+            <section id="next-chapter-preview">
+                <div class="important-box" style="background: #d1ecf1;">
+                    <strong>📘 Next Chapter:</strong> <a href="decision-tree.html" target="_blank">Decision Trees</a> — The Building Blocks of Gradient Boosting. 
+                    We will dive into how trees split data, the impurity measures (Gini, entropy, MSE), 
+                    and how the split-finding algorithm works — the foundation for understanding XGBoost and LightGBM internals.
+                </div>
+            </section>
+
+            <!-- References -->
+            <section id="reference">
+                <h2>References &amp; Further Reading</h2>
+                <ul>
+                    <li>Friedman, J. H. (2001). Greedy Function Approximation: A Gradient Boosting Machine. <em>The Annals of Statistics</em>, 29(5), 1189–1232.</li>
+                    <li>Friedman, J. H. (1999). Stochastic Gradient Boosting. <em>Computational Statistics &amp; Data Analysis</em>.</li>
+                    <li>Chen, T., &amp; Guestrin, C. (2016). XGBoost: A Scalable Tree Boosting System. <em>Proc. 22nd ACM SIGKDD</em>.</li>
+                    <li>Ke, G., et al. (2017). LightGBM: A Highly Efficient Gradient Boosting Decision Tree. <em>Advances in Neural Information Processing Systems (NeurIPS)</em>.</li>
+                    <li>Prokhorenkova, L., et al. (2018). CatBoost: Unbiased Boosting with Categorical Features. <em>NeurIPS</em>.</li>
+                    <li>Freund, Y., &amp; Schapire, R. E. (1997). A Decision-Theoretic Generalization of On-Line Learning. <em>JCSS</em>, 55(1), 119–139.</li>
+                    <li><a href="https://hastie.su.domains/Papers/ESLII.pdf" target="_blank">The Elements of Statistical Learning</a> — Chapter 10: Boosting and Additive Trees.</li>
+                    <li>My GitHub: <a href="https://github.com/arunp77/Machine-Learning/" target="_blank">Machine Learning repository</a></li>
+                </ul>
+            </section>
+
+            <div style="background-color: #f0f0f0; padding: 15px; border-radius: 5px; margin: 20px 0;">
+                <h3>📌 Other interesting topics:</h3>
+                <ul>
+                    <li><a href="sql-project.html">Data, Big Data, Data Modeling, Datawarehouse, SQL, Cloud Computing</a></li>
+                    <li><a href="Data-engineering.html">Data Engineering</a></li>
+                </ul>
+            </div>
+
+            <!-- Navigation Buttons: Previous (Portfolio) and Next (Chapter 2) -->
+            <div class="navigation" style="display: flex; justify-content: space-between; margin-top: 30px;">
+                <a href="index.html" class="clickable-box">
+                    <span class="arrow-left">Home</span>
+                </a>
+                <a href="machine-learning.html" class="clickable-box">
+                    <span class="arrow-right">Machine learning content</span>
+                </a>
+            </div>
+
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="container">
+        <div class="copyright">
+            &copy; Copyright <strong><span>Arun</span></strong>
+        </div>
+    </div>
+</footer>
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="assets/vendor/typed.js/typed.umd.js"></script>
+<script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        if (typeof hljs !== 'undefined') {
+            hljs.initHighlightingOnLoad();
+        }
+    });
+</script>
+
+</body>
+</html>
