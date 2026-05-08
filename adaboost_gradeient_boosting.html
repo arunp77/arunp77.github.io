@@ -3,7 +3,12 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>adaboost_gradeient_boosting</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>AdaBoost &amp; Gradient Boosting</title>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+
+
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -2735,6 +2740,15 @@ button.jp-ToolbarButtonComponent .jp-ToolbarButtonComponent-label {
 |----------------------------------------------------------------------------*/
 
 /* Sibling imports */
+
+
+
+.subtitle {
+    font-size: 16px;
+    color: #555;
+    margin-top: -10px;
+}
+
 
 body {
   color: var(--jp-ui-font-color1);
@@ -7802,6 +7816,13 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="-Problem-Statement">
+<p class="subtitle">
+      © <a href="index.html" target="_blank">Arun Kumar Pandey (2025)</a>
+</p>
+<hr>
+  
+
 <h1 id="%F0%9F%9A%80-Project:-Classification-with-AdaBoost-&amp;-Gradient-Boosting">🚀 Project: Classification with AdaBoost &amp; Gradient Boosting<a class="anchor-link" href="#%F0%9F%9A%80-Project:-Classification-with-AdaBoost-&amp;-Gradient-Boosting">¶</a></h1><h2 id="%F0%9F%8E%AF-Problem-Statement">🎯 Problem Statement<a class="anchor-link" href="#%F0%9F%8E%AF-Problem-Statement">¶</a></h2><p>We’ll solve a binary classification problem:</p>
 <blockquote>
 <p>👉 Predict whether a customer will default (0/1)
@@ -8074,17 +8095,20 @@ We’ll use a structured dataset (similar to finance/tabular problems).</p>
 </div>
 </div>
 </div>
+
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+  <div class="jp-Cell-inputWrapper" tabindex="0">
+    <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser"></div>
+      <div class="jp-InputArea jp-Cell-inputArea">
+        <div class="jp-InputPrompt jp-InputArea-prompt"></div>
+        <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+          <h2 id="3%EF%B8%8F%E2%83%A3-Train-Test-Split">3️⃣ Train-Test Split<a class="anchor-link" href="#3%EF%B8%8F%E2%83%A3-Train-Test-Split">¶</a></h2>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="3%EF%B8%8F%E2%83%A3-Train-Test-Split">3️⃣ Train-Test Split<a class="anchor-link" href="#3%EF%B8%8F%E2%83%A3-Train-Test-Split">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
