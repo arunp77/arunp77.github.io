@@ -57,11 +57,11 @@
         <img src="assets/img/myphoto.jpeg" alt="" class="img-fluid rounded-circle">
         <h1 class="text-light"><a href="index.html">Arun</a></h1>
         <div class="social-links mt-3 text-center">
-          <a href="https://www.linkedin.com/in/arunp77/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-          <a href="https://github.com/arunp77" target="_blank" class="github"><i class="bx bxl-github"></i></a>
-          <a href="https://twitter.com/arunp77_" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
-          <a href="https://www.instagram.com/arunp77/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
-          <a href="https://arunp77.medium.com/" target="_blank" class="medium"><i class="bx bxl-medium"></i></a>
+          <a href="https://www.linkedin.com/in/arunp77/" target="_blank" rel="noopener noreferrer" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+          <a href="https://github.com/arunp77" target="_blank" rel="noopener noreferrer" class="github"><i class="bx bxl-github"></i></a>
+          <a href="https://twitter.com/arunp77_" target="_blank" rel="noopener noreferrer" class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="https://www.instagram.com/arunp77/" target="_blank" rel="noopener noreferrer" class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="https://arunp77.medium.com/" target="_blank" rel="noopener noreferrer" class="medium"><i class="bx bxl-medium"></i></a>
         </div>
       </div>
 
@@ -141,16 +141,16 @@
               <p>Before diving into the project, you'll need the following prerequisites:</p>
               <ul style="list-style-type: disc; margin-left: 30px;">
                 <li>Access to <a href="amazon-s3.html">AWS services</a>.</li>
-                <li>An <a href="https://docs.aws.amazon.com/ec2/" target="_blank">EC2 instance</a> with specific configurations: 8GB RAM, 100GB memory space.</li>
-                <li><a href="https://docs.docker.com/desktop/" target="_blank">Docker container</a> expertise.</li>
-                <li>Proficiency in <a href="https://github.com/arunp77/Python-programming" target="_blank"> Python</a>, including the 
-                  '<a href="https://faker.readthedocs.io/en/master/" target="_blank">Faker</a>' library.</li>
-                <li>Familiarity with <a href="https://docs.snowflake.com/en/user-guide/intro-key-concepts" target="_blank">Snowflake for cloud data warehousing</a>.</li>
-                <li><a href="https://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-zookeeper.html" target="_blank">Basic understaidng of Apache ZooKeeper</a>.</li>
-                <li><a href="https://nifi.apache.org/docs.html" target="_blank">Apache Nifi</a> setup and configuration.</li>
-                <li><a href="https://quickstarts.snowflake.com/guide/getting_started_with_streams_and_tasks/index.html#0" target="_blank">Streaming & Task Processing</a>.</li>
-                <li>Understanding of <a href="https://github.com/arunp77/Learning-git" target="_blank"> Version Control (Git)</a>.</li>
-                <li>Basic understanding of <a href="https://github.com/arunp77/SQL" target="_blank">SQL</a> for Data Manipulation</li>
+                <li>An <a href="https://docs.aws.amazon.com/ec2/" target="_blank" rel="noopener noreferrer">EC2 instance</a> with specific configurations: 8GB RAM, 100GB memory space.</li>
+                <li><a href="https://docs.docker.com/desktop/" target="_blank" rel="noopener noreferrer">Docker container</a> expertise.</li>
+                <li>Proficiency in <a href="https://github.com/arunp77/Python-programming" target="_blank" rel="noopener noreferrer"> Python</a>, including the 
+                  '<a href="https://faker.readthedocs.io/en/master/" target="_blank" rel="noopener noreferrer">Faker</a>' library.</li>
+                <li>Familiarity with <a href="https://docs.snowflake.com/en/user-guide/intro-key-concepts" target="_blank" rel="noopener noreferrer">Snowflake for cloud data warehousing</a>.</li>
+                <li><a href="https://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-zookeeper.html" target="_blank" rel="noopener noreferrer">Basic understaidng of Apache ZooKeeper</a>.</li>
+                <li><a href="https://nifi.apache.org/docs.html" target="_blank" rel="noopener noreferrer">Apache Nifi</a> setup and configuration.</li>
+                <li><a href="https://quickstarts.snowflake.com/guide/getting_started_with_streams_and_tasks/index.html#0" target="_blank" rel="noopener noreferrer">Streaming & Task Processing</a>.</li>
+                <li>Understanding of <a href="https://github.com/arunp77/Learning-git" target="_blank" rel="noopener noreferrer"> Version Control (Git)</a>.</li>
+                <li>Basic understanding of <a href="https://github.com/arunp77/SQL" target="_blank" rel="noopener noreferrer">SQL</a> for Data Manipulation</li>
               </ul>
           </div>
           <div class="image">
@@ -172,7 +172,7 @@
           <li><b>EC2 Instance</b>: This serves as the foundation of the project, where we deploy our Docker container and essential tools.</li>
           <li><b>Docker Container</b>: Housed within the EC2 instance, this container contains Python, Apache Nifi, and Apache ZooKeeper, ensuring a consistent and easily replicable environment.</li>
           <li><b>JupyterLab and Apache Nifi</b>: These are the workstations for data engineers. JupyterLab is accessible at 'IP/4888,' and Apache Nifi is reachable at 'IP/2080' (where IP is the
-            <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html" target="_blank">EC2 machine IP</a>).</li>
+            <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html" target="_blank" rel="noopener noreferrer">EC2 machine IP</a>).</li>
           <li><b>Data Generation</b>: Using Python in JupyterLab, we utilized the 'Faker' library to create random data records, including customer information.</li>
           <li><b>Data Streaming to <a href="amazon-s3.html">AWS S3</a></b>: Apache Nifi was used to establish connections for transferring the generated data to an AWS S3 bucket, providing scalable storage and real-time access.</li>
           <li><b>Real-Time Data Processing with Snowflake</b>: Leveraging Snowpipe, we ensured that any new data or changes in existing data were automatically incorporated into the dataset. Slowly changing dimensions were used to track these changes.</li>
@@ -330,6 +330,7 @@
       </div>
     </section><!-- End Portfolio Details Section -->
   </main><!-- End #main -->
+>
 
   <!-- ======= Footer ======= -->
   <footer id="footer">

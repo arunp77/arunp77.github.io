@@ -1812,6 +1812,15 @@ code, kbd, pre, samp {
   margin-top: 10px;
 }
 
+/* Ensure portfolio sections stack vertically and don't sit side-by-side */
+.portfolio {
+  clear: both;
+}
+.portfolio + .container {
+  clear: both;
+  width: 100%;
+}
+
 
 /* Timeline Styles */
 .timeline-container-wide {

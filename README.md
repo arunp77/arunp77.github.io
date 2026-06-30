@@ -6,6 +6,6 @@ This is Arun Kumar Pandey and here you can explor my journey, skills, and the pr
 
 I'm passionate about data science, data analytics, finance, and data engineering.
 
-Let's connect on <a href="https://www.linkedin.com/in/arunp77/" target="_blank">Linkedin</a>.
+Let's connect on <a href="https://www.linkedin.com/in/arunp77/" target="_blank" rel="noopener noreferrer">Linkedin</a>.
 
 

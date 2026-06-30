@@ -61,11 +61,11 @@
     <img src="assets/img/myphoto.jpeg" alt="" class="img-fluid rounded-circle">
     <h1 class="text-light"><a href="index.html">Arun</a></h1>
     <div class="social-links mt-3 text-center">
-        <a href="https://www.linkedin.com/in/arunp77/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-        <a href="https://github.com/arunp77" target="_blank" class="github"><i class="bx bxl-github"></i></a>
-        <a href="https://twitter.com/arunp77_" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="https://www.instagram.com/arunp77/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="https://arunp77.medium.com/" target="_blank" class="medium"><i class="bx bxl-medium"></i></a>
+        <a href="https://www.linkedin.com/in/arunp77/" target="_blank" rel="noopener noreferrer" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        <a href="https://github.com/arunp77" target="_blank" rel="noopener noreferrer" class="github"><i class="bx bxl-github"></i></a>
+        <a href="https://twitter.com/arunp77_" target="_blank" rel="noopener noreferrer" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="https://www.instagram.com/arunp77/" target="_blank" rel="noopener noreferrer" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="https://arunp77.medium.com/" target="_blank" rel="noopener noreferrer" class="medium"><i class="bx bxl-medium"></i></a>
     </div>
     </div>
 
@@ -302,7 +302,7 @@
     <figure>
         <img src="assets/img/machine-ln/classification-binary.png" alt="" style="max-width: 90%; max-height: auto;">
         <figcaption style="text-align: center;">Here \(x\) represents out input image. \(y\) denotes the output and it can have two values, 1 or 0.if \(y=1 \), there is a mango in an image; else, if \(y=0 \), there is no mango in the image. (<strong>Image credit:</strong> Left image is credited to @ <a href="index.html">arunp77</a> and the
-            right image is taken from <a href="https://datahacker.rs/004-machine-learning-logistic-regression-model/" target="_blank">datahacker.rs</a> (a nice description))</figcaption>
+            right image is taken from <a href="https://datahacker.rs/004-machine-learning-logistic-regression-model/" target="_blank" rel="noopener noreferrer">datahacker.rs</a> (a nice description))</figcaption>
     </figure>
     <p>In this image, it is clear that we first calculate the output of a linear function \(z\). This output \(z\) will be the input to the Sigmoid Function. </p>
     <p>Next, for calculated \(z \) we will produce prediction \(\hat{y} \) which will be determined by the \(z \). Then, if \(z \) is large positive value, the \(\hat{y} \) will be close to 1. On the other hand, if \(z \) is a large negative value, the \(\hat{y} \) will be close to 0. Therefore, the \(\hat{y} \) will always be in the range between 0 to 1.</p>
@@ -360,7 +360,7 @@
 
     <figure>
         <img src="assets/img/machine-ln/log-cost-function.png" alt="" style="max-width: 90%; max-height: auto;">
-        <figcaption style="text-align: center;">For code to plot these, see <a href="https://colab.research.google.com/drive/1uHyINYEHJtEA-ootSQ6MarzXB3rR1KKY#scrollTo=kkE1kG6Oz0h_" target="_blank">code</a> (<strong>Image credit:</strong> @ <a href="index.html">arunp77</a>)</figcaption>
+        <figcaption style="text-align: center;">For code to plot these, see <a href="https://colab.research.google.com/drive/1uHyINYEHJtEA-ootSQ6MarzXB3rR1KKY#scrollTo=kkE1kG6Oz0h_" target="_blank" rel="noopener noreferrer">code</a> (<strong>Image credit:</strong> @ <a href="index.html">arunp77</a>)</figcaption>
     </figure>
 
     In training, the goal is to find the parameter vector \(\theta\) that minimizes the cost function. This is often done using optimization algorithms like gradient descent or Maximum Likelihood Estimation (MLE) method.
@@ -435,7 +435,7 @@
         </ul>
         </li>
     </ol>
-    <h4 id="mle"><strong><a href="https://arunp77.github.io/Arun-Kumar-Pandey/Linear-reg.html#Maximum-likelihood-estimation" target="_blank">Maximum Likelihood Estimation (MLE)</a></strong></h4>
+    <h4 id="mle"><strong><a href="https://arunp77.github.io/Arun-Kumar-Pandey/Linear-reg.html#Maximum-likelihood-estimation" target="_blank" rel="noopener noreferrer">Maximum Likelihood Estimation (MLE)</a></strong></h4>
     Maximum Likelihood Estimation (MLE) is a statistical method used to calculate the parameters. In the case of logistic regression, MLE aims to find the set of parameters that maximizes the likelihood function, which measures how well the model explains the observed data.
     <p><strong>Mathematical Description:</strong>
     For logistic regression, let's denote the likelihood function as \(L(\theta)\), where \(\theta\) represents the parameters of the logistic regression model. The likelihood function is given by the product of the 
@@ -562,7 +562,7 @@
 
             X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
         </code></pre>
-        and setting the parameters for the Logistic regression (for more details, we can look at <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html" target="_blank">Official scikit-learn documentation on Logistic Regression</a>):
+        and setting the parameters for the Logistic regression (for more details, we can look at <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html" target="_blank" rel="noopener noreferrer">Official scikit-learn documentation on Logistic Regression</a>):
         <pre><code class="language-python">params = [{'C': [1,5,10]}, {'max_iter': [100,150]}]</code></pre>
         Now the logistic Regression function is 
         <pre><code class="language-python">model1 = LogisticRegression(C=100, max_iter=100)</code></pre>
@@ -601,7 +601,7 @@
             <li><strong>Weighted Avg:</strong> The weighted average calculates the average metric (precision, recall, F1-score) across all classes, weighted by the number of true instances for each class. In this case, the weighted average precision, recall, and F1-score are all 0.97, indicating good overall performance considering the class imbalance.</li>
         </ul>
         <div class="important-box">
-            You can go to <a href="https://github.com/arunp77/Machine-Learning/tree/main/Projects-ML" target="_blank">following project</a> for a reference for linear regression analysis.
+            You can go to <a href="https://github.com/arunp77/Machine-Learning/tree/main/Projects-ML" target="_blank" rel="noopener noreferrer">following project</a> for a reference for linear regression analysis.
         </div>
     </section>
 
@@ -609,12 +609,12 @@
     <section id="reference">
     <h2>References</h2>
     <ul>
-        <li>My github Repositories on Remote sensing <a href="https://github.com/arunp77/Machine-Learning/" target="_blank">Machine learning</a></li>
-        <li><a href="https://mlu-explain.github.io/linear-regression/" target="_blank">A Visual Introduction To Linear regression</a> (Best reference for theory and visualization).</li>
-        <li>Book on Regression model: <a href="https://avehtari.github.io/ROS-Examples/" target="_blank">Regression and Other Stories</a></li>
-        <li>Book on Statistics: <a href="https://hastie.su.domains/Papers/ESLII.pdf" target="_blank">The Elements of Statistical Learning</a></li>
+        <li>My github Repositories on Remote sensing <a href="https://github.com/arunp77/Machine-Learning/" target="_blank" rel="noopener noreferrer">Machine learning</a></li>
+        <li><a href="https://mlu-explain.github.io/linear-regression/" target="_blank" rel="noopener noreferrer">A Visual Introduction To Linear regression</a> (Best reference for theory and visualization).</li>
+        <li>Book on Regression model: <a href="https://avehtari.github.io/ROS-Examples/" target="_blank" rel="noopener noreferrer">Regression and Other Stories</a></li>
+        <li>Book on Statistics: <a href="https://hastie.su.domains/Papers/ESLII.pdf" target="_blank" rel="noopener noreferrer">The Elements of Statistical Learning</a></li>
         <li><a href="https://www.colorado.edu/amath/sites/default/files/attached-files/ch12_0.pdf">https://www.colorado.edu/amath/sites/default/files/attached-files/ch12_0.pdf</a></li>
-        <li><a href="https://datahacker.rs/002-machine-learning-linear-regression-model/" target="_blank">One of the best description on Linear regression</a>.</li>
+        <li><a href="https://datahacker.rs/002-machine-learning-linear-regression-model/" target="_blank" rel="noopener noreferrer">One of the best description on Linear regression</a>.</li>
     </ul>
     </section>
 
@@ -642,8 +642,7 @@
 </div>
 </div>
 </section><!-- End Portfolio Details Section -->
-</main><!-- End #main --
-
+</main><!-- End #main -->
 <!-- ======= Footer ======= -->
 <footer id="footer">
   <div class="container">

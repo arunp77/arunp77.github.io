@@ -58,11 +58,11 @@
         <img src="assets/img/myphoto.jpeg" alt="" class="img-fluid rounded-circle">
         <h1 class="text-light"><a href="index.html">Arun</a></h1>
         <div class="social-links mt-3 text-center">
-          <a href="https://www.linkedin.com/in/arunp77/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-          <a href="https://github.com/arunp77" target="_blank" class="github"><i class="bx bxl-github"></i></a>
-          <a href="https://twitter.com/arunp77_" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
-          <a href="https://www.instagram.com/arunp77/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
-          <a href="https://arunp77.medium.com/" target="_blank" class="medium"><i class="bx bxl-medium"></i></a>
+          <a href="https://www.linkedin.com/in/arunp77/" target="_blank" rel="noopener noreferrer" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+          <a href="https://github.com/arunp77" target="_blank" rel="noopener noreferrer" class="github"><i class="bx bxl-github"></i></a>
+          <a href="https://twitter.com/arunp77_" target="_blank" rel="noopener noreferrer" class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="https://www.instagram.com/arunp77/" target="_blank" rel="noopener noreferrer" class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="https://arunp77.medium.com/" target="_blank" rel="noopener noreferrer" class="medium"><i class="bx bxl-medium"></i></a>
         </div>
       </div>
 
@@ -152,7 +152,7 @@
                     </div>
 
                     <!-- setting up the Jupyterlab -->
-                    <h2><a href="https://jupyter.org/" target="_blank"><strong>Introduction to Jupterlab</strong></a></h2>
+                    <h2><a href="https://jupyter.org/" target="_blank" rel="noopener noreferrer"><strong>Introduction to Jupterlab</strong></a></h2>
                     <p>JupyterLab is a web-based user interface for working with Jupyter notebooks, code, data, and other documents. 
                       It allows you to create, edit, run, and share your notebooks, as well as explore and visualize your data in various
                       ways. JupyterLab is designed to be flexible, integrated, and extensible, with a modular architecture that supports 
@@ -170,7 +170,7 @@
                             <pre><code>sudo yum update -y</code></pre>
                             <li>Install docker</li>
                             <pre><code>sudo yum install docker</code></pre>
-                            <li>Transfer the docker-compose.yml file to ec2 instance (for more details see <a href="Docker-Container.html" target="_blank">Docker configuration page</a>).</li>
+                            <li>Transfer the docker-compose.yml file to ec2 instance (for more details see <a href="Docker-Container.html" target="_blank" rel="noopener noreferrer">Docker configuration page</a>).</li>
                             <pre><code>scp -i [your-key.pem] docker-compose.yml ec2-user@[your-ec2-instance-ip]:/path/to/destination</code></pre>
                             <li>Create a docker container and docker user:</li>
                             <pre><code>sudo gpasswd -a $USER docker</code></pre>
@@ -243,14 +243,14 @@
                     </ul>
                     
                     <!-- setting up the Apache Nifi --> 
-                    <h2><a href="https://nifi.apache.org/docs.html" target="_blank"><strong>Introduction to Apache Nifi</strong></a></h2>
+                    <h2><a href="https://nifi.apache.org/docs.html" target="_blank" rel="noopener noreferrer"><strong>Introduction to Apache Nifi</strong></a></h2>
                     <ul>
                     <p>Apache NiFi is an open-source data integration tool that provides an intuitive and powerful way to automate the flow of data between systems. It was 
                       developed by the Apache Software Foundation and is designed to solve the challenges of data routing, transformation, and system connectivity in a 
                       scalable and extensible manner. NiFi's primary goal is to enable the automation of data flow, making it an essential tool for data ingestion, 
                       transformation, and routing in various scenarios.</p>
                       <p>Apache NiFi is a real time data ingestion platform, which can transfer and manage data transfer between different sources and destination systems.
-                        For configuration, you can look at <a href="https://www.tutorialspoint.com/apache_nifi/index.htm" target="_blank">Apache Nifi Tutorials</a>,
+                        For configuration, you can look at <a href="https://www.tutorialspoint.com/apache_nifi/index.htm" target="_blank" rel="noopener noreferrer">Apache Nifi Tutorials</a>,
                       </p>
                     </ul>
 
@@ -388,7 +388,7 @@
                               <li>Specify the input directory where your JupyterLab generated CSV files are located (e.g., "FakeDataset").</li>
                               <li>Set a polling schedule to check for new files at regular intervals.</li>
                               <li>You have to provide few of these from the table, inside the configuration processor.</li>
-                              <li>(<a href="https://nifi.apache.org/docs/nifi-docs/components/org.apache.nifi/nifi-standard-nar/1.23.2/org.apache.nifi.processors.standard.GetFile/index.html" target="_blank">More information</a>)</li>
+                              <li>(<a href="https://nifi.apache.org/docs/nifi-docs/components/org.apache.nifi/nifi-standard-nar/1.23.2/org.apache.nifi.processors.standard.GetFile/index.html" target="_blank" rel="noopener noreferrer">More information</a>)</li>
                           </ul>
                           <table>
                             <tr>
@@ -497,7 +497,7 @@
                             <li>Specify the S3 bucket name where you want to upload the files.</li>
                             <li>Configure the destination directory within the S3 bucket.</li>
                             <li>Map the incoming flow file attributes to the S3 object properties.</li>
-                            <li>(<a href="https://nifi.apache.org/docs/nifi-docs/components/org.apache.nifi/nifi-aws-nar/1.23.2/org.apache.nifi.processors.aws.s3.PutS3Object/index.html" target="_blank">More infromation</a>)</li>
+                            <li>(<a href="https://nifi.apache.org/docs/nifi-docs/components/org.apache.nifi/nifi-aws-nar/1.23.2/org.apache.nifi.processors.aws.s3.PutS3Object/index.html" target="_blank" rel="noopener noreferrer">More infromation</a>)</li>
                           </ul>
 
                           <table>
@@ -618,6 +618,7 @@
         </div>
     </section><!-- End Portfolio Details Section -->
 </main><!-- End #main -->
+>
 
 <!-- ======= Footer ======= -->
 <footer id="footer">
