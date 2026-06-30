@@ -59,11 +59,11 @@
             <img src="assets/img/myphoto.jpeg" alt="" class="img-fluid rounded-circle">
             <h1 class="text-light"><a href="index.html">Arun</a></h1>
             <div class="social-links mt-3 text-center">
-                <a href="https://www.linkedin.com/in/arunp77/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-                <a href="https://github.com/arunp77" target="_blank" class="github"><i class="bx bxl-github"></i></a>
-                <a href="https://twitter.com/arunp77_" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
-                <a href="https://www.instagram.com/arunp77/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
-                <a href="https://arunp77.medium.com/" target="_blank" class="medium"><i class="bx bxl-medium"></i></a>
+                <a href="https://www.linkedin.com/in/arunp77/" target="_blank" rel="noopener noreferrer" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                <a href="https://github.com/arunp77" target="_blank" rel="noopener noreferrer" class="github"><i class="bx bxl-github"></i></a>
+                <a href="https://twitter.com/arunp77_" target="_blank" rel="noopener noreferrer" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="https://www.instagram.com/arunp77/" target="_blank" rel="noopener noreferrer" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="https://arunp77.medium.com/" target="_blank" rel="noopener noreferrer" class="medium"><i class="bx bxl-medium"></i></a>
             </div>
         </div>
 
@@ -163,7 +163,7 @@
 
             <section>
             <h3 id="introduction">Getting started with Flask</h3>
-            <a href="https://flask.palletsprojects.com/en/2.0.x/" target="_blank">Flask</a> is a famous Python framework for building web applications. Released in 2011, Flask has established itself as a reference for creating an API on Python. It stands out from <a href="https://www.djangoproject.com/" target="_blank">Django</a>, another famous framework used in Python, because of its lightness. Indeed, Flask is considered as a micro framework, you do not have to define the databases to use or the formatting. However with Flask, you create the core of your web application, then according to your need you add different services. That's why, in a few lines, we can easily display a Hello World on a web page without using an HTML file. (For more details on the flask, please checkout the repostiroy: <a href="https://github.com/arunp77/Data-engineering-tools/tree/main/Flask-application" target="_blank">Flask repository</a>.)
+            <a href="https://flask.palletsprojects.com/en/2.0.x/" target="_blank" rel="noopener noreferrer">Flask</a> is a famous Python framework for building web applications. Released in 2011, Flask has established itself as a reference for creating an API on Python. It stands out from <a href="https://www.djangoproject.com/" target="_blank" rel="noopener noreferrer">Django</a>, another famous framework used in Python, because of its lightness. Indeed, Flask is considered as a micro framework, you do not have to define the databases to use or the formatting. However with Flask, you create the core of your web application, then according to your need you add different services. That's why, in a few lines, we can easily display a Hello World on a web page without using an HTML file. (For more details on the flask, please checkout the repostiroy: <a href="https://github.com/arunp77/Data-engineering-tools/tree/main/Flask-application" target="_blank" rel="noopener noreferrer">Flask repository</a>.)
 
             <!--------------->
             <h4 id="steps">Flask application</h4>
@@ -195,7 +195,7 @@
                         └── .env
                     </pre>
                     <p>Let's see in detail what we have done here. First, we instantiated an object of the Flask class. Then, with this object named app, we use it in the decorator <code>@app.route("/")</code>, to create a route (endpoint). Going to <code>/</code>, we get the result of the <code>hello</code> function, which simply returns a <code>Hello World !</code>. Thus, we can create several routes using the `<code>app</code>' variable.</p>
-                    <p>Then set the environment variable FLASK_APP with the name of your python file : <code>export FLASK_APP=first_app.py </code> or you can also save the environment variables in <code>.env</code> file and Load the environment variables from <code>.env</code> file using: <code>load_dotenv()</code> (For better understanding, you can see my <a href="https://github.com/arunp77/Data-engineering-tools/tree/main/FLask" target="_blank">github repo</a>). To run the application, use following command in your terminal:</p>
+                    <p>Then set the environment variable FLASK_APP with the name of your python file : <code>export FLASK_APP=first_app.py </code> or you can also save the environment variables in <code>.env</code> file and Load the environment variables from <code>.env</code> file using: <code>load_dotenv()</code> (For better understanding, you can see my <a href="https://github.com/arunp77/Data-engineering-tools/tree/main/FLask" target="_blank" rel="noopener noreferrer">github repo</a>). To run the application, use following command in your terminal:</p>
                     <pre><code class="language-bash">flask run --host=0.0.0.0</code></pre>
                     On a web browser go to the address <code>ip_address:5000</code> (localhost:5000 if you are using your home machine), you should see a <code>"Hello World !"</code> message. Port <code>5000</code> is used by default on Flask, you can change the port via the <code>--port</code> flag when using <code>flask run</code>.
                 </li>
@@ -218,7 +218,7 @@
 
 
             <h4 id="types-functions">Types of the Flask functions</h4> 
-            Flask is a lightweight and flexible web framework for Python, designed to make building web applications quick and easy. It follows the <a href="https://wsgi.tutorial.codepoint.net/intro" target="_blank">WSGI toolkit</a> and <a href="https://jinja.palletsprojects.com/en/3.1.x/" target="_blank">Jinja2</a> templating engine, providing developers with the tools needed to create web applications in a simple and elegant manner.
+            Flask is a lightweight and flexible web framework for Python, designed to make building web applications quick and easy. It follows the <a href="https://wsgi.tutorial.codepoint.net/intro" target="_blank" rel="noopener noreferrer">WSGI toolkit</a> and <a href="https://jinja.palletsprojects.com/en/3.1.x/" target="_blank" rel="noopener noreferrer">Jinja2</a> templating engine, providing developers with the tools needed to create web applications in a simple and elegant manner.
             <ul>
                 <li><strong>Route Functions:</strong> These are the heart of a Flask application, handling incoming HTTP requests and returning appropriate responses. Route functions are decorated with <code>@app.route()</code> and are responsible for defining the behavior of specific URLs in the application.</li>
                     <pre><code class="language-python">
@@ -609,7 +609,7 @@
                     </figure>
                 </li>
                 <li><strong>Header: </strong>
-                    Data is present on the response header. Sometimes you need to retrieve this information. To do this, you need to go through the <code>request</code> object which has many attributes related to this header, such as <code>User_agent</code> accessible by the <code>user_agent</code> attribute. The list of attributes is available <a href="https://tedboy.github.io/flask/generated/generated/flask.Request.html#attributes" target="_blank">here</a>.
+                    Data is present on the response header. Sometimes you need to retrieve this information. To do this, you need to go through the <code>request</code> object which has many attributes related to this header, such as <code>User_agent</code> accessible by the <code>user_agent</code> attribute. The list of attributes is available <a href="https://tedboy.github.io/flask/generated/generated/flask.Request.html#attributes" target="_blank" rel="noopener noreferrer">here</a>.
                     <p>If you do not want to go through the attributes of <code>request</code>, you can simply use the <code>headers</code> attribute of <code>request</code>, which will tell you the <code>User-Agent</code> as follows <code>request.headers["User-Agent"]</code>.</p>
                     <p>Even though the <code>headers</code> attribute behaves like a dictionary, its type is not, it is <code>werkzeug.datastructures.EnvironHeaders</code>. You can see this by creating a route that displays the type of <code>request.headers</code> and using curl.</p>
                     <pre class="language-python"><code>
@@ -791,14 +791,14 @@
             <section id="reference">
                 <h2>References</h2>
                 <ol>
-                    <li><a href="https://spark.apache.org/documentation.html" target="_blank"> Official Documentation</a></li>
-                    <li><a href="https://www.databricks.com/learn/training/login" target="_blank">Databricks Learning Academy</a></li>
-                    <li><a href="https://sparkbyexamples.com/" target="_blank">Spark by Examples</a></li>
-                    <li><a href="https://www.datacamp.com/tutorial/pyspark-tutorial-getting-started-with-pyspark" target="_blank">Datacamp tutorial</a>.</li>
-                    <li>For databricks, you can look at tutorial videos on youtube at <a href="https://www.youtube.com/watch?v=ChISx0-cMpU" target="_blank">youtube video by Bryan Cafferky</a>, 
+                    <li><a href="https://spark.apache.org/documentation.html" target="_blank" rel="noopener noreferrer"> Official Documentation</a></li>
+                    <li><a href="https://www.databricks.com/learn/training/login" target="_blank" rel="noopener noreferrer">Databricks Learning Academy</a></li>
+                    <li><a href="https://sparkbyexamples.com/" target="_blank" rel="noopener noreferrer">Spark by Examples</a></li>
+                    <li><a href="https://www.datacamp.com/tutorial/pyspark-tutorial-getting-started-with-pyspark" target="_blank" rel="noopener noreferrer">Datacamp tutorial</a>.</li>
+                    <li>For databricks, you can look at tutorial videos on youtube at <a href="https://www.youtube.com/watch?v=ChISx0-cMpU" target="_blank" rel="noopener noreferrer">youtube video by Bryan Cafferky</a>, 
                         writer of the book "Master Azure Databricks". A great playlist for someone who just want to learn about the big data analytics at Databricks Azure cloud platform.</li>
-                    <li>See the video for <a href="https://www.youtube.com/watch?v=_C8kWso4ne4" target="_blank">pyspark basics by Krish Naik</a>. Great video for starter.</li>
-                    <li><a href="https://www.youtube.com/watch?v=QLGrLFOzMRw" target="_blank">Great youtube on Apache spark</a> one premise working.</li>
+                    <li>See the video for <a href="https://www.youtube.com/watch?v=_C8kWso4ne4" target="_blank" rel="noopener noreferrer">pyspark basics by Krish Naik</a>. Great video for starter.</li>
+                    <li><a href="https://www.youtube.com/watch?v=QLGrLFOzMRw" target="_blank" rel="noopener noreferrer">Great youtube on Apache spark</a> one premise working.</li>
                 </ol> 
             </section>
 
@@ -827,9 +827,8 @@
             </div>
         </div>
         </section><!-- End Portfolio Details Section -->
-    </main><!-- End #main --
-
-    <!-- ======= Footer ======= -->
+    </main><!-- End #main -->
+<!-- ======= Footer ======= -->
     <footer id="footer">
     <div class="container">
         <div class="copyright">

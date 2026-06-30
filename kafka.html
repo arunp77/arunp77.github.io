@@ -57,11 +57,11 @@
             <img src="assets/img/myphoto.jpeg" alt="" class="img-fluid rounded-circle">
             <h1 class="text-light"><a href="index.html">Arun</a></h1>
             <div class="social-links mt-3 text-center">
-                <a href="https://www.linkedin.com/in/arunp77/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-                <a href="https://github.com/arunp77" target="_blank" class="github"><i class="bx bxl-github"></i></a>
-                <a href="https://twitter.com/arunp77_" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
-                <a href="https://www.instagram.com/arunp77/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
-                <a href="https://arunp77.medium.com/" target="_blank" class="medium"><i class="bx bxl-medium"></i></a>
+                <a href="https://www.linkedin.com/in/arunp77/" target="_blank" rel="noopener noreferrer" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                <a href="https://github.com/arunp77" target="_blank" rel="noopener noreferrer" class="github"><i class="bx bxl-github"></i></a>
+                <a href="https://twitter.com/arunp77_" target="_blank" rel="noopener noreferrer" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="https://www.instagram.com/arunp77/" target="_blank" rel="noopener noreferrer" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="https://arunp77.medium.com/" target="_blank" rel="noopener noreferrer" class="medium"><i class="bx bxl-medium"></i></a>
             </div>
         </div>
 
@@ -164,7 +164,7 @@
 
                 <section>
                     <h3 id="introduction">Introduction to Kafka</h3>
-                    <p><a href="https://kafka.apache.org/quickstart" target="_blank">Apache Kafka</a> is an open-source distributed event streaming platform initially developed by LinkedIn in 2011 and later open-sourced as an Apache Software Foundation project. It is designed to handle real-time data feeds, allowing for the building of robust and scalable streaming data pipelines. Kafka is widely used in various industries for applications such as real-time analytics, log aggregation, monitoring, and messaging.</p>
+                    <p><a href="https://kafka.apache.org/quickstart" target="_blank" rel="noopener noreferrer">Apache Kafka</a> is an open-source distributed event streaming platform initially developed by LinkedIn in 2011 and later open-sourced as an Apache Software Foundation project. It is designed to handle real-time data feeds, allowing for the building of robust and scalable streaming data pipelines. Kafka is widely used in various industries for applications such as real-time analytics, log aggregation, monitoring, and messaging.</p>
 
                     <div class="box-background1">
                         <h5>Apache Kafka in Layman Language</h5>
@@ -581,9 +581,9 @@
 
 
                     <h4 id="kafka-connect">Kafka Connect</h4>
-                    <p>Advantage of Kafka is its connector system <a href="https://kafka.apache.org/documentation.html#connect" target="_blank">Kafka Connect</a>. Connectors are reusable components which, as the name suggests, allow different systems to be connected to Kafka.</p>
+                    <p>Advantage of Kafka is its connector system <a href="https://kafka.apache.org/documentation.html#connect" target="_blank" rel="noopener noreferrer">Kafka Connect</a>. Connectors are reusable components which, as the name suggests, allow different systems to be connected to Kafka.</p>
 
-                    <p>Thus, many technologies provide connectors to transfer data to or from Kafka. For example, if you want to ingest data from a MongoDB database, you can simply install and configure the <a href="https://www.mongodb.com/docs/kafka-connector/current/" target="_blank">official MongoDB connector</a> for Kafka. You can see a list of <a href="https://docs.confluent.io/platform/current/connect/kafka_connectors.html" target="_blank">Kafka connectors</a> on the Confluent website (the main contributor of Kafka).</p>
+                    <p>Thus, many technologies provide connectors to transfer data to or from Kafka. For example, if you want to ingest data from a MongoDB database, you can simply install and configure the <a href="https://www.mongodb.com/docs/kafka-connector/current/" target="_blank" rel="noopener noreferrer">official MongoDB connector</a> for Kafka. You can see a list of <a href="https://docs.confluent.io/platform/current/connect/kafka_connectors.html" target="_blank" rel="noopener noreferrer">Kafka connectors</a> on the Confluent website (the main contributor of Kafka).</p>
                     
                     <p>So you can use Kafka Connect to transfer data between two databases through Kafka, for example to load data from an enterprise application using a relational database into a data lake, without having to code connectors for the source and target systems (sink).</p>
                     <figure>
@@ -594,7 +594,7 @@
 
                     <!------------------------>
                     <h4 id="kafka-stream">Kafka Streams</h4>
-                    <p>The  <a href="https://kafka.apache.org/documentation/streams/" target="_blank">Kafka Streams API</a> allows us to create derived topics from other topics, by performing transformations on them. This is known as stream processing.</p>
+                    <p>The  <a href="https://kafka.apache.org/documentation/streams/" target="_blank" rel="noopener noreferrer">Kafka Streams API</a> allows us to create derived topics from other topics, by performing transformations on them. This is known as stream processing.</p>
 
                     <p>In concrete terms, Kafka Streams allows you to perform operations such as filters, aggregations (averages, sums, etc.), but also joins between different streams. The resulting stream is persisted in a new topic.</p>
                     <p>Kafka Streams can be used in conjunction with Kafka Connect to perform ETL:</p>
@@ -602,16 +602,16 @@
                         <img src="assets/img/data-engineering/kafka-stream.png" alt="" style="max-width: 70%; max-height: 50%;">
                         <figcaption style="text-align: center;"><strong>&#169; Image credit:</strong> <a href="https://datascientest.com/en/">Datascienitst.com</a></figcaption>
                     </figure>
-                    <p>However, it should be noted that Kafka Streams applications must be developed in Java or Scala programming languages, which can be complex to learn. However, there are alternative solutions for stream processing, such as <a href="https://spark.apache.org/docs/latest/streaming-programming-guide.html" target="_blank">Spark Streaming</a> which has an API in Python.</p>
+                    <p>However, it should be noted that Kafka Streams applications must be developed in Java or Scala programming languages, which can be complex to learn. However, there are alternative solutions for stream processing, such as <a href="https://spark.apache.org/docs/latest/streaming-programming-guide.html" target="_blank" rel="noopener noreferrer">Spark Streaming</a> which has an API in Python.</p>
 
                     <!------------------------>
                     <h3 id="instalation">Kafka installation: set in local machine</h3>
                     <p>Installing Apache Kafka involves several steps, including downloading the Kafka distribution, configuring the environment, starting the Kafka server, and verifying the installation. Below is a guide to help you with the installation process:</p>
                     <ol>
-                        <li><strong>Prerequisites::</strong> Java: Kafka requires Java to be installed on your system. Make sure you have Java installed (To install go to linl and install <a href="https://www.java.com/en/download/help/download_options.html" target="_blank"> preferably Java 8 or later</a>)</li>
+                        <li><strong>Prerequisites::</strong> Java: Kafka requires Java to be installed on your system. Make sure you have Java installed (To install go to linl and install <a href="https://www.java.com/en/download/help/download_options.html" target="_blank" rel="noopener noreferrer"> preferably Java 8 or later</a>)</li>
                         <li><strong>Download Kafka:</strong>
                             <ul>
-                                <li>Visit the Apache Kafka website (<a href="https://kafka.apache.org/downloads" target="_blank">Kafka download page</a> ) and download the latest stable version of Kafka.</li>
+                                <li>Visit the Apache Kafka website (<a href="https://kafka.apache.org/downloads" target="_blank" rel="noopener noreferrer">Kafka download page</a> ) and download the latest stable version of Kafka.</li>
                                 <li>Choose the appropriate binary distribution based on your operating system (e.g., Kafka for Scala 2.13 if you're using Scala 2.13).</li>
                             </ul>
                             <p>Once the download is complete, extract the Kafka archive to a directory of your choice using a file extraction tool (e.g., tar for Linux/Mac or 7-Zip for Windows).</p>
@@ -642,16 +642,16 @@
                 <section id="reference">
                     <h3>References</h3>
                     <ol>
-                        <li><a href="https://www.youtube.com/watch?v=dq-ZACSt_gA&t=28s" target="_blank">Youtube Kafka tutorial videos (I specially followed this one. Great playlist).</a></li>
-                        <li><a href="https://kafka.apache.org/documentation/" target="_blank">Apache</a></li>
-                        <li><a href="https://spark.apache.org/documentation.html" target="_blank"> Official Documentation</a></li>
-                        <li><a href="https://www.databricks.com/learn/training/login" target="_blank">Databricks Learning Academy</a></li>
-                        <li><a href="https://sparkbyexamples.com/" target="_blank">Spark by Examples</a></li>
-                        <li><a href="https://www.datacamp.com/tutorial/pyspark-tutorial-getting-started-with-pyspark" target="_blank">Datacamp tutorial</a>.</li>
-                        <li>For databricks, you can look at tutorial videos on youtube at <a href="https://www.youtube.com/watch?v=ChISx0-cMpU" target="_blank">youtube video by Bryan Cafferky</a>, 
+                        <li><a href="https://www.youtube.com/watch?v=dq-ZACSt_gA&t=28s" target="_blank" rel="noopener noreferrer">Youtube Kafka tutorial videos (I specially followed this one. Great playlist).</a></li>
+                        <li><a href="https://kafka.apache.org/documentation/" target="_blank" rel="noopener noreferrer">Apache</a></li>
+                        <li><a href="https://spark.apache.org/documentation.html" target="_blank" rel="noopener noreferrer"> Official Documentation</a></li>
+                        <li><a href="https://www.databricks.com/learn/training/login" target="_blank" rel="noopener noreferrer">Databricks Learning Academy</a></li>
+                        <li><a href="https://sparkbyexamples.com/" target="_blank" rel="noopener noreferrer">Spark by Examples</a></li>
+                        <li><a href="https://www.datacamp.com/tutorial/pyspark-tutorial-getting-started-with-pyspark" target="_blank" rel="noopener noreferrer">Datacamp tutorial</a>.</li>
+                        <li>For databricks, you can look at tutorial videos on youtube at <a href="https://www.youtube.com/watch?v=ChISx0-cMpU" target="_blank" rel="noopener noreferrer">youtube video by Bryan Cafferky</a>, 
                             writer of the book "Master Azure Databricks". A great playlist for someone who just want to learn about the big data analytics at Databricks Azure cloud platform.</li>
-                        <li>See the video for <a href="https://www.youtube.com/watch?v=_C8kWso4ne4" target="_blank">pyspark basics by Krish Naik</a>. Great video for starter.</li>
-                        <li><a href="https://www.youtube.com/watch?v=QLGrLFOzMRw" target="_blank">Great youtube on Apache spark</a> one premise working.</li>
+                        <li>See the video for <a href="https://www.youtube.com/watch?v=_C8kWso4ne4" target="_blank" rel="noopener noreferrer">pyspark basics by Krish Naik</a>. Great video for starter.</li>
+                        <li><a href="https://www.youtube.com/watch?v=QLGrLFOzMRw" target="_blank" rel="noopener noreferrer">Great youtube on Apache spark</a> one premise working.</li>
                     </ol> 
                 </section>
 
@@ -680,9 +680,8 @@
                 </div>
             </div>
         </section><!-- End Portfolio Details Section -->
-    </main><!-- End #main --
-
-    <!-- ======= Footer ======= -->
+    </main><!-- End #main -->
+<!-- ======= Footer ======= -->
     <footer id="footer">
     <div class="container">
         <div class="copyright">

@@ -56,11 +56,11 @@
         <img src="assets/img/myphoto.jpeg" alt="" class="img-fluid rounded-circle">
         <h1 class="text-light"><a href="index.html">Arun</a></h1>
         <div class="social-links mt-3 text-center">
-          <a href="https://www.linkedin.com/in/arunp77/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-          <a href="https://github.com/arunp77" target="_blank" class="github"><i class="bx bxl-github"></i></a>
-          <a href="https://twitter.com/arunp77_" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
-          <a href="https://www.instagram.com/arunp77/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
-          <a href="https://arunp77.medium.com/" target="_blank" class="medium"><i class="bx bxl-medium"></i></a>
+          <a href="https://www.linkedin.com/in/arunp77/" target="_blank" rel="noopener noreferrer" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+          <a href="https://github.com/arunp77" target="_blank" rel="noopener noreferrer" class="github"><i class="bx bxl-github"></i></a>
+          <a href="https://twitter.com/arunp77_" target="_blank" rel="noopener noreferrer" class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="https://www.instagram.com/arunp77/" target="_blank" rel="noopener noreferrer" class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="https://arunp77.medium.com/" target="_blank" rel="noopener noreferrer" class="medium"><i class="bx bxl-medium"></i></a>
         </div>
       </div>
 
@@ -172,9 +172,9 @@
 
           <p><strong>Some examples:</strong> There are many types of APIs possible. Some of them are:</p>
           <ul>
-            <li>the <a href="https://pandas.pydata.org/docs/reference/index.html#api" target="_blank">pandas</a> library can actually be seen as an API. There is a set of rules that allow to use complex functions from a simplified documentation.</li>
-            <li>the <a href="https://openweathermap.org/current" target="_blank">OpenWeatherMap API</a> is a data API. From an HTTP request, we receive weather data in the requested location, at the requested date.</li>
-            <li>the API <a href="https://cloud.google.com/translate?hl=en" target="_blank">Google Cloud Translate</a> allows to use the translation function of Google to easily translate the texts we use.</li>
+            <li>the <a href="https://pandas.pydata.org/docs/reference/index.html#api" target="_blank" rel="noopener noreferrer">pandas</a> library can actually be seen as an API. There is a set of rules that allow to use complex functions from a simplified documentation.</li>
+            <li>the <a href="https://openweathermap.org/current" target="_blank" rel="noopener noreferrer">OpenWeatherMap API</a> is a data API. From an HTTP request, we receive weather data in the requested location, at the requested date.</li>
+            <li>the API <a href="https://cloud.google.com/translate?hl=en" target="_blank" rel="noopener noreferrer">Google Cloud Translate</a> allows to use the translation function of Google to easily translate the texts we use.</li>
           </ul>
 
           <h4 id="types-api">Types of APIs:</h4>
@@ -213,7 +213,7 @@
         </ol>
         <figure>
             <img src="assets/img/data-engineering/who-when-what.png" alt="" style="max-width: 90%; max-height: auto;">
-            <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://datascientest.com/" target="_blank">Datascientist.com</a></figcaption>
+            <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="https://datascientest.com/" target="_blank" rel="noopener noreferrer">Datascientist.com</a></figcaption>
         </figure>
         Getting information on the source of the request can help add security to your API. For example, you could restrict IP addresses to given countries: if you are a U.S. company with servers, employees and clients in the U.S., a query from somewhere else could be suspicious. 
         Another approach is to validate a few IP addresses that corresponds to the machines using your service and reject any other IP.
@@ -236,7 +236,7 @@
           </ul>
           <figure>
             <img src="assets/img/data-engineering/endpoint-https.png" alt="" style="max-width: 90%; max-height: auto;">
-            <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="index.html" target="_blank">Arun Kumar Pandey</a></figcaption>
+            <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="index.html" target="_blank" rel="noopener noreferrer">Arun Kumar Pandey</a></figcaption>
         </figure>
           <p>Note that a URI can also have parameters. For example, the URI <span style="color: blue;">http://example.org/resource?key1=value1&key2=value2</span> allows to pass the keys <code>key1</code> and <code>key2</code> which have respectively the values <code>value1</code> and <code>value2</code> to the server. This is called a query string or query parameters.</p>
 
@@ -278,7 +278,7 @@
           <p>With this request, we receive a "stringified" JSON object containing information about a post.</p>
           <figure>
             <img src="assets/img/data-engineering/curl-get1.png" alt="" style="max-width: 90%; max-height: auto;">
-            <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="index.html" target="_blank">Arun Kumar Pandey</a></figcaption>
+            <figcaption style="text-align: center;"><strong>Image credit: </strong><a href="index.html" target="_blank" rel="noopener noreferrer">Arun Kumar Pandey</a></figcaption>
           </figure>
           <p>Here, we have requested the post with ID 1. We can get all posts with a GET request to the <code>/posts</code> endpoint. This is a case we commonly encounter: the endpoint with an ID returns an individual observation while without any ID it returns all observations.</p>
           
@@ -296,7 +296,7 @@
             Here, we indicate in the header the type of data sent (JSON), and in the body the data in question. cURL is undoubtedly the simplest tool to use.
           </li>
         </ul>
-        <h5 id="postman"><a href="https://www.postman.com/" target="_blank">Postman</a></h5>
+        <h5 id="postman"><a href="https://www.postman.com/" target="_blank" rel="noopener noreferrer">Postman</a></h5>
         Postman is a collaborative platform for API development. It allows to build and execute HTTP requests, to store them in a history so that they can be replayed, and to organize them in collections. Among other things, Postman allows us to:
         <ul>
           <li>Quickly and easily send REST, SOAP and GraphQL requests</li>
@@ -309,7 +309,7 @@
         Postman offers a very simple interface to make complex HTTP requests. It is a very useful tool for testing/exploring an API. Moreover, Postman's features allow us to easily export a request made with Postman in the language of our choice.
         
         <h4 id="python-libraries">Python HTTP libraries</h4>
-        The simplest library to make requests with Python is probably the <a href="https://docs.python-requests.org/en/latest/" target="_blank">Requests</a> library and it can be installed using:
+        The simplest library to make requests with Python is probably the <a href="https://docs.python-requests.org/en/latest/" target="_blank" rel="noopener noreferrer">Requests</a> library and it can be installed using:
         <pre class="language-python"><code>
           pip3 install requests
           # or conda install requests
@@ -332,7 +332,7 @@
             headers={"Content-Type": "application/json"}
             )
         </code></pre>
-        Another popular library is the <a href="https://docs.python.org/3/library/urllib.html" target="_blank">Urllib library</a> installed natively with Python but more difficult to use.
+        Another popular library is the <a href="https://docs.python.org/3/library/urllib.html" target="_blank" rel="noopener noreferrer">Urllib library</a> installed natively with Python but more difficult to use.
       </section>
 
 
@@ -361,15 +361,15 @@
         This standard is not the only one and is not mandatory to implement to get an efficient API but it is probably the most known.
 
         <h3 id="fastapi">FastAPI</h3>
-        <a href="https://fastapi.tiangolo.com/" target="_blank">FastApi</a> is a modern, fast (high-performance), web framework for building APIs with Python 3.7+ based on standard Python type hints. It is designed to be easy to use, fast to develop with, and provide high performance, making it an excellent choice for building RESTful APIs. Here's a brief overview and key features of FastAPI:
+        <a href="https://fastapi.tiangolo.com/" target="_blank" rel="noopener noreferrer">FastApi</a> is a modern, fast (high-performance), web framework for building APIs with Python 3.7+ based on standard Python type hints. It is designed to be easy to use, fast to develop with, and provide high performance, making it an excellent choice for building RESTful APIs. Here's a brief overview and key features of FastAPI:
         <ol>
-            <li><strong>Fast: </strong>As the name suggests, FastAPI is designed to be high-performance. It is built on top of <a href="https://www.starlette.io/" target="_blank">Starlette</a> and <a href="https://docs.pydantic.dev/latest/" target="_blank">Pydantic</a>, which contribute to its speed.</li>
+            <li><strong>Fast: </strong>As the name suggests, FastAPI is designed to be high-performance. It is built on top of <a href="https://www.starlette.io/" target="_blank" rel="noopener noreferrer">Starlette</a> and <a href="https://docs.pydantic.dev/latest/" target="_blank" rel="noopener noreferrer">Pydantic</a>, which contribute to its speed.</li>
             <li><strong>Type Annotations: </strong>One of the standout features is the use of Python type hints to define the types of request and response data. This not only serves as documentation but also enables automatic data validation and serialization.</li>
-            <li><strong>Automatic Documentation: </strong>FastAPI generates <a href="https://www.openapis.org/" target="_blank">OpenAPI</a> and <a href="https://json-schema.org/learn/getting-started-step-by-step" target="_blank">JSON Schema documentation</a> automatically based on your Python type hints. 
-                You can explore and interact with your API using <a href="https://swagger.io/tools/swagger-ui/" target="_blank">Swagger UI</a> or ReDoc.</li>
+            <li><strong>Automatic Documentation: </strong>FastAPI generates <a href="https://www.openapis.org/" target="_blank" rel="noopener noreferrer">OpenAPI</a> and <a href="https://json-schema.org/learn/getting-started-step-by-step" target="_blank" rel="noopener noreferrer">JSON Schema documentation</a> automatically based on your Python type hints. 
+                You can explore and interact with your API using <a href="https://swagger.io/tools/swagger-ui/" target="_blank" rel="noopener noreferrer">Swagger UI</a> or ReDoc.</li>
             <li><strong>Asynchronous Support: </strong>FastAPI fully supports asynchronous programming using Python's async and await keywords. This allows for efficient handling of I/O-bound operations.</li>
             <li><strong>Dependency Injection System: </strong>FastAPI has a built-in dependency injection system that makes it easy to manage dependencies and share common resources across different parts of your application.</li>
-            <li><strong>OAuth2 and JWT Authentication: </strong>It provides built-in support for <a href="https://oauth.net/2/" target="_blank">OAuth2</a> and <a href="https://jwt.io/introduction" target="_blank">JWT</a> authentication, making it easier to secure your APIs.</li>
+            <li><strong>OAuth2 and JWT Authentication: </strong>It provides built-in support for <a href="https://oauth.net/2/" target="_blank" rel="noopener noreferrer">OAuth2</a> and <a href="https://jwt.io/introduction" target="_blank" rel="noopener noreferrer">JWT</a> authentication, making it easier to secure your APIs.</li>
             <li><strong>Data Validation and Serialization: </strong>FastAPI uses Pydantic models for data validation and serialization. This allows you to define data models with type hints, and FastAPI will automatically handle validation and serialization/deserialization.</li>
             <li><strong>WebSocket Support: </strong> In addition to traditional HTTP APIs, FastAPI supports WebSocket communication, allowing for real-time bidirectional communication.</li>
             <li><strong>Cors (Cross-Origin Resource Sharing) Middleware: </strong>FastAPI includes middleware for handling Cross-Origin Resource Sharing, making it easy to control which domains can access your API.</li>
@@ -398,7 +398,7 @@
         
         We can run the app with Uvicorn:
         <pre class="language-bash"><code>uvicorn main:app --reload</code></pre>
-        Visit <a href="https://127.0.0.1:8000" target="_blank">https://127.0.0.1:8000</a> in your browser, and you should see the automatically generated Swagger documentation. In the conolse, the folloing line should be observed:
+        Visit <a href="https://127.0.0.1:8000" target="_blank" rel="noopener noreferrer">https://127.0.0.1:8000</a> in your browser, and you should see the automatically generated Swagger documentation. In the conolse, the folloing line should be observed:
         <pre>INFO: Uvicorn running on http://127.0.0.1:8000(Press CTRL+C to quit)</pre>
         This line gives us the address at which the API works.
         <p>In another console, issue the following command to query the endpoint <code>/</code>:</p>
@@ -469,12 +469,12 @@
           <p>We notice that the interface to use these requests allows to pass arguments for dynamic routing :</p>
           <figure>
             <img src="assets/img/data-engineering/fastapi-doc.png" alt="" style="max-width: 90%; max-height: auto;">
-            <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a></figcaption>
+            <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank" rel="noopener noreferrer"></a></figcaption>
           </figure>
           <p>We can see below, how dynamic routing works here:</p>
           <figure>
             <img src="assets/img/data-engineering/fastapi-doc1.png" alt="" style="max-width: 90%; max-height: auto;">
-            <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a> We need to provide the entries to get the output.</figcaption>
+            <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank" rel="noopener noreferrer"></a> We need to provide the entries to get the output.</figcaption>
           </figure>
           </li>
           <li><strong>Request string:</strong> We have seen how to pass data to the API using dynamic routing. In this part, we will see how to do it using the query string. FastAPI makes it easy to specify which arguments can be passed via the query string. In the following example, we will define a function that can take an argument <code>argument1</code>. This argument must be passed in the query string.
@@ -490,7 +490,7 @@
           <p>When using the curl command in the command prompt, we can interact with web servers by sending HTTP requests. Let's break down two scenarios:</p>
           <figure>
             <img src="assets/img/data-engineering/fastapi-doc2.png" alt="" style="max-width: 90%; max-height: auto;">
-            <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a> We need to provide the entries to get the output.</figcaption>
+            <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank" rel="noopener noreferrer"></a> We need to provide the entries to get the output.</figcaption>
           </figure>
           <p>In the first case, with the command, we're sending a GET request (<code>-X GET</code>) to <span style="color: blue;">http://127.0.0.1:8000/</span> with an additional query parameter <code>argument1</code> set to <code>hello world</code>. The server processes this request and returns the value of the <code>argument1</code> parameter, which in this case is "hello world" (in first case). Whereas in second case, we're sending a GET request to the same server but without any query parameters. However, the server expects the <code>argument1</code> parameter to be present. Since it's missing, the server responds with a <code>422 Unprocessable Entity</code> error. This error indicates that the request couldn't be processed because the required field (<code>argument1</code>) is missing.</p>
           <p>We can see this beahviour through the <code>docs/</code> documentation. We need to provide the argument otherwise, when executed it will produce an error. We see in the interface that the <code>argument1</code> field is required. Going down the interface, we can also see the codes that this route can return: 200 if the request succeeds and 422 if the request does not have the required field.</p>
@@ -506,7 +506,7 @@
               This basically gives error, if provide not an integer as argument. However, when provided a strong, it gives our output as <code>{"data" : 123}</code> when <code>argument1 = 123</code>
               <figure>
                 <img src="assets/img/data-engineering/fastapi-doc3.png" alt="" style="max-width: 90%; max-height: auto;">
-                <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a> We need to provide an integer entry to get the output.</figcaption>
+                <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank" rel="noopener noreferrer"></a> We need to provide an integer entry to get the output.</figcaption>
               </figure>
               </li>
               <li><strong>Example on Optional class:</strong> Finally, we can choose to have an optional argument. For this we can use the Optional class of the typing library. However, a default value must be provided.
@@ -548,7 +548,7 @@
             <p>Here the Item class has the attributes itemid which must be an integer, description which must be a string and owner which is an optional string. We are going to create a route for which we will have to associate a query body containing these attributes. We can open the OpenAPI and inspect the route description <code>POST /item</code>:</p>
             <figure>
               <img src="assets/img/data-engineering/fastapi-doc4.png" alt="" style="max-width: 90%; max-height: auto;">
-              <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a> We need to provide an 'Request body' to get the output.</figcaption>
+              <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank" rel="noopener noreferrer"></a> We need to provide an 'Request body' to get the output.</figcaption>
             </figure>
             We can see that the annotations given here are no longer counted as parameters (arguments to be specified in the query string). On the other hand, we must now specify the request body ("Request body required"). Thanks to the inheritance of the BaseModel class, we could change the interpretation of the annotation by FastAPI. The use of this BaseModel class as a parent class thus allows a route to accept a body. We force the body of the request to respect a certain schema with certain values that can be optional. Moreover, the use of this class allows to ignore fields which are not predefined. Finally, the BaseModel class allows to easily return all the attributes of the body of a query that have been created in JSON format without having to specify this definition. Note that we can use the <code>typing</code> and <code>pydantic</code> libraries to give more complex types to our data. The following example shows a use of these libraries:
             <pre class="language-bash"><code>
@@ -564,7 +564,7 @@
                   ratings: List[float]
                   available: bool
             </code></pre>
-            Pydantic also allows to use "exotic" types like http URLs, IP addresses, ... If you want to explore these data types, you can go to this <a href="https://docs.pydantic.dev/latest/concepts/types/" target="_blank">https://docs.pydantic.dev/latest/concepts/types/</a>.
+            Pydantic also allows to use "exotic" types like http URLs, IP addresses, ... If you want to explore these data types, you can go to this <a href="https://docs.pydantic.dev/latest/concepts/types/" target="_blank" rel="noopener noreferrer">https://docs.pydantic.dev/latest/concepts/types/</a>.
           </li>
           <li><strong>Headers: </strong>In this part, we will see how to pass data to the server via the request headers. This command can be very useful to pass authentication tokens or to check the content type, the origin of the request, ... For this, we can use the <code>Header</code> class of <code>fastapi</code>. For example, the following function checks the value of <code>User-Agent</code>. This header is used to determine the source of a request :
             <pre class="language-bash"><code>
@@ -577,7 +577,7 @@
             </code></pre>
             <figure>
               <img src="assets/img/data-engineering/fastapi-doc5.png" alt="" style="max-width: 90%; max-height: auto;">
-              <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a> We see in this case that the returned user-agent is the browser user-agent.</figcaption>
+              <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank" rel="noopener noreferrer"></a> We see in this case that the returned user-agent is the browser user-agent.</figcaption>
             </figure>
           </li>
         </ol>
@@ -593,7 +593,7 @@
         We will choose to return an empty dictionary in the case of an internal error and we will use a User class inherited from BaseModel.
         <figure>
           <img src="assets/img/data-engineering/fastapi-doc6.png" alt="" style="max-width: 90%; max-height: auto;">
-          <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a> We need to provide an integer entry to get the output.</figcaption>
+          <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank" rel="noopener noreferrer"></a> We need to provide an integer entry to get the output.</figcaption>
         </figure>
         The correspodning main.py file is:
         <pre><code class="language-bash">
@@ -685,7 +685,7 @@
             </code></pre>
             <figure>
               <img src="assets/img/data-engineering/fastapi-doc0.png" alt="" style="max-width: 90%; max-height: auto;">
-              <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a></figcaption>
+              <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank" rel="noopener noreferrer"></a></figcaption>
             </figure>
             </li>
               <ul>
@@ -699,7 +699,7 @@
                   </code></pre>
                   <figure>
                     <img src="assets/img/data-engineering/fastapi-doc-docstring.png" alt="" style="max-width: 90%; max-height: auto;">
-                    <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a></figcaption>
+                    <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank" rel="noopener noreferrer"></a></figcaption>
                   </figure>
                 </li>
               </ul>
@@ -721,7 +721,7 @@
               </code></pre>
               <figure>
                 <img src="assets/img/data-engineering/fastapi-doc7.png" alt="" style="max-width: 90%; max-height: auto;">
-                <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a></figcaption>
+                <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank" rel="noopener noreferrer"></a></figcaption>
               </figure>
               In the Schemas tab, the description of the Computer class is now available. Here we have also added description on the headers. You can see in the function description that the header is documented.
             </li>
@@ -762,7 +762,7 @@
               Now note down the various parts added here. 
               <figure>
                 <img src="assets/img/data-engineering/fastapi-doc8.png" alt="" style="max-width: 90%; max-height: auto;">
-                <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a></figcaption>
+                <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank" rel="noopener noreferrer"></a></figcaption>
               </figure>
               The functions are now divided into different parts. The same function can be put in several parts. We could add a description for the different parts using the openapi_tags argument of the FastAPI class constructor. We can also change the address of the OpenAPI and Redoc documentations using the <code>docs_url</code> or <code>redoc_url</code> arguments. If these arguments are set to None, these endpoints are disabled. Finally, one can choose to change the address of the OpenAPI manifest with the <code>openapi_url</code> argument.
               <pre><code class="language-python">
@@ -905,7 +905,7 @@
 
         <h5>JSON Schema:</h5>
         JSON Schema is a vocabulary that allows you to annotate and validate JSON documents. It provides a way to describe the structure of JSON data for documentation, validation, and interaction.
-        <p>For creating JSON schema from scratch, see the <a href="https://json-schema.org/learn/getting-started-step-by-step" target="_blank">Create a nested data structure</a>.</p>
+        <p>For creating JSON schema from scratch, see the <a href="https://json-schema.org/learn/getting-started-step-by-step" target="_blank" rel="noopener noreferrer">Create a nested data structure</a>.</p>
         <strong>Example:</strong>  the expected structure and constraints for a JSON object representing information about an individual, particularly someone's personal details, such as a student. Let's break down the schema:
         <ol>
             <li><strong>Person Details:</strong>
@@ -1018,10 +1018,10 @@
       <section id="reference">
         <h2>References</h2>
         <ul>
-          <li><a href="https://arunp77.medium.com/ensuring-data-integrity-and-continuity-for-machine-learning-projects-c4335eb1e9f9" target="_blank">Ensuring Data Integrity and 
+          <li><a href="https://arunp77.medium.com/ensuring-data-integrity-and-continuity-for-machine-learning-projects-c4335eb1e9f9" target="_blank" rel="noopener noreferrer">Ensuring Data Integrity and 
             Continuity for Machine Learning Projects.</a></li>
-          <li><a href="https://www.jenkins.io/doc/tutorials/" target="_blank">Jenkins documentation</a></li>
-          <li><a href="https://softwaresennin.medium.com/creating-our-first-complete-jenkins-ci-cd-pipeline-995a22934a35" target="_blank">Blogpost: Creating our First Complete 
+          <li><a href="https://www.jenkins.io/doc/tutorials/" target="_blank" rel="noopener noreferrer">Jenkins documentation</a></li>
+          <li><a href="https://softwaresennin.medium.com/creating-our-first-complete-jenkins-ci-cd-pipeline-995a22934a35" target="_blank" rel="noopener noreferrer">Blogpost: Creating our First Complete 
             Jenkins CI/CD Pipeline</a></li>
         </ul>
       </section>
@@ -1050,8 +1050,7 @@
   </div>
 </div>
 </section><!-- End Portfolio Details Section -->
-</main><!-- End #main --
-
+</main><!-- End #main -->
 <!-- ======= Footer ======= -->
 <footer id="footer">
   <div class="container">

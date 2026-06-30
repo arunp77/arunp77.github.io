@@ -56,11 +56,11 @@
         <img src="assets/img/myphoto.jpeg" alt="" class="img-fluid rounded-circle">
         <h1 class="text-light"><a href="index.html">Arun</a></h1>
         <div class="social-links mt-3 text-center">
-          <a href="https://www.linkedin.com/in/arunp77/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-          <a href="https://github.com/arunp77" target="_blank" class="github"><i class="bx bxl-github"></i></a>
-          <a href="https://twitter.com/arunp77_" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
-          <a href="https://www.instagram.com/arunp77/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
-          <a href="https://arunp77.medium.com/" target="_blank" class="medium"><i class="bx bxl-medium"></i></a>
+          <a href="https://www.linkedin.com/in/arunp77/" target="_blank" rel="noopener noreferrer" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+          <a href="https://github.com/arunp77" target="_blank" rel="noopener noreferrer" class="github"><i class="bx bxl-github"></i></a>
+          <a href="https://twitter.com/arunp77_" target="_blank" rel="noopener noreferrer" class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="https://www.instagram.com/arunp77/" target="_blank" rel="noopener noreferrer" class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="https://arunp77.medium.com/" target="_blank" rel="noopener noreferrer" class="medium"><i class="bx bxl-medium"></i></a>
         </div>
       </div>
 
@@ -132,7 +132,7 @@
           <div class="image">
             <figure style="text-align: center;">
                 <img src="assets/img/portfolio/docker-logo.png" alt="" style="max-width: 40%; max-height: auto;">
-                <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://www.docker.com/company/newsroom/media-resources/" target="_blank"> docker.com</a></figcaption>
+                <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://www.docker.com/company/newsroom/media-resources/" target="_blank" rel="noopener noreferrer"> docker.com</a></figcaption>
             </figure>            
           </div>
 
@@ -171,7 +171,7 @@
             <p>When we create a Docker container, we’re adding a writable layer on top of the Docker image. We can run many Docker containers from the same Docker image. We can see a Docker container as a runtime instance of a Docker image.</p>
             <figure style="text-align: center;">
               <img src="assets/img/data-engineering/container-image.png" alt="" style="max-width: 40%; max-height: auto;">
-              <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://stackify.com/docker-build-a-beginners-guide-to-building-docker-images/?s=03" target="_blank"> stackify</a></figcaption>
+              <figcaption style="text-align: center;"><strong>Image credit:</strong><a href="https://stackify.com/docker-build-a-beginners-guide-to-building-docker-images/?s=03" target="_blank" rel="noopener noreferrer"> stackify</a></figcaption>
             </figure>   
 
             <!------------------------>
@@ -321,10 +321,10 @@
           <!-------------------Step by step guide to learn Docker conterization ------------------------->
           <h4>Learn Docker: A Step-by-Step Guide</h4>
           <ol>
-            <li>Start by visiting the <a href="https://www.docker.com/products/docker-desktop/" target="_blank">Docker desktop</a> download page to acquire the latest version compatible with your operating system, whether it's Windows, Linux, or macOS.</li>
+            <li>Start by visiting the <a href="https://www.docker.com/products/docker-desktop/" target="_blank" rel="noopener noreferrer">Docker desktop</a> download page to acquire the latest version compatible with your operating system, whether it's Windows, Linux, or macOS.</li>
             <li>Download the installer provided on the Docker Desktop download page and execute it. Follow the on-screen instructions to complete the installation process. It's a straightforward process, and the installer will guide you through the necessary steps.</li>
             <li>After the installation is complete, you can find Docker Desktop by searching for "docker" in your system's search bar. Launch Docker Desktop, and it will run on your local machine.</li>
-            <li>To fully utilize Docker's capabilities, consider creating an account on <a href="https://hub.docker.com/" target="_blank">docker hub</a>. This step is optional but recommended, as it allows you to manage and view the repositories associated with your Docker images on Docker Hub.</li>
+            <li>To fully utilize Docker's capabilities, consider creating an account on <a href="https://hub.docker.com/" target="_blank" rel="noopener noreferrer">docker hub</a>. This step is optional but recommended, as it allows you to manage and view the repositories associated with your Docker images on Docker Hub.</li>
             <li>Now create a project and hence image and push it to docker repository.</li>
           </ol>
 
@@ -332,7 +332,7 @@
           <!------------------------------>
           <section id ="project">
             <h3>Simple Flask application</h3>
-            You can find the Docker hub repository at: <a href="https://hub.docker.com/r/arunp77/welcome-app" target="_blank">https://hub.docker.com/r/arunp77/welcome-app</a>.
+            You can find the Docker hub repository at: <a href="https://hub.docker.com/r/arunp77/welcome-app" target="_blank" rel="noopener noreferrer">https://hub.docker.com/r/arunp77/welcome-app</a>.
             <ul>
               <li><strong>Step-1:</strong>Create a simple Flask application. For example, create a file named app.py with the following content:
               <pre class="language-python"><code>
@@ -372,7 +372,7 @@
                 <pre class="language-bash"><code>$ docker build -t welcome-app .</code></pre>
                 <figure style="text-align: center;">
                   <img src="assets/img/data-engineering/docker-images.png" alt="" style="max-width: 90%; max-height: auto;">
-                  <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a></figcaption>
+                  <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank" rel="noopener noreferrer"></a></figcaption>
                 </figure>
                 Here you will find all available images that you have created along with the image just you created.  
               </li>
@@ -381,14 +381,14 @@
                 <pre class="language-bash"><code>$ docker run -p 5000:5000 welcome-app</code></pre>
                 This command runs the Docker container and maps port 5000 from the container to port 5000 on your host machine.
               </li>
-              <li><strong>Step-6:</strong>Open a web browser and go to <a href="http://localhost:5000" target="_blank">http://localhost:5000</a>. You should see the message "Hello, world!".</li>
+              <li><strong>Step-6:</strong>Open a web browser and go to <a href="http://localhost:5000" target="_blank" rel="noopener noreferrer">http://localhost:5000</a>. You should see the message "Hello, world!".</li>
               <li>Once you have already created the docker image, you should push it to docker hub.
                 <pre><code class="language-bash">$ docker push dockerusername/welcome-app:latest</code></pre>
                 replace 'dockerusername' with your actual docker username. The pushed repostory can be seen in your dockerhub as follows:
               </li>
               <figure style="text-align: center;">
                 <img src="assets/img/data-engineering/docker-welcom-app.png" alt="" style="max-width: 100%; max-height: auto;">
-                <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank"></a></figcaption>
+                <figcaption style="text-align: center;"><strong></strong><a href="" target="_blank" rel="noopener noreferrer"></a></figcaption>
               </figure>  
             </ul>
             To stop a container just use, find the container id using <code>docker ps</code> (it will list all the images running). Then use following command to stop it:
@@ -400,7 +400,7 @@
             <h3>Multi-container docker image</h3>
             <figure style="text-align: center;">
               <img src="assets/img/data-engineering/docker-webapp.png" alt="" style="max-width: 100%; max-height: auto;">
-              <figcaption style="text-align: center;"><strong>Docker hub home </strong><a href="" target="_blank"></a></figcaption>
+              <figcaption style="text-align: center;"><strong>Docker hub home </strong><a href="" target="_blank" rel="noopener noreferrer"></a></figcaption>
             </figure>  
             <ul>
               <li>A multi-container Docker image is an image that consists of multiple software components or services, each running in its own container within the same image. This allows you to package and distribute applications with their dependencies and services, ensuring consistency and ease of deployment.</li>
@@ -417,7 +417,7 @@
             
             <h5>Project Overview:</h5>
             he Flask-Redis Hello World App is a simple web application built using Flask, a micro web framework for Python, and Redis, an in-memory data structure store. The project demonstrates how to create a basic web application that displays a "Hello World!" message and keeps track of the number of times the page has been accessed using a Redis database.
-            More details on the projects can be found at the <a href="https://hub.docker.com/r/arunp77/web-application" target="_blank">Docker hub repository</a>.
+            More details on the projects can be found at the <a href="https://hub.docker.com/r/arunp77/web-application" target="_blank" rel="noopener noreferrer">Docker hub repository</a>.
             <h5>Components and files:</h5>
             <ol>
               <li><strong>app.py</strong>
@@ -524,7 +524,7 @@ if __name__ == "__main__":
           <section id="reference">
             <h3>Reference </h3>
             <ul>
-              <li>For a best description of docker basics, you can look at youtube video: <a href="https://www.youtube.com/watch?v=8vmKtS8W7IQ&t=1861s" target="_blank">Youtube video</a>.</li>
+              <li>For a best description of docker basics, you can look at youtube video: <a href="https://www.youtube.com/watch?v=8vmKtS8W7IQ&t=1861s" target="_blank" rel="noopener noreferrer">Youtube video</a>.</li>
             </ul>
 
           </section>
@@ -541,6 +541,7 @@ if __name__ == "__main__":
         </div>
     </section><!-- End Portfolio Details Section -->
 </main><!-- End #main -->
+>
 
 <!-- ======= Footer ======= -->
 <footer id="footer">
