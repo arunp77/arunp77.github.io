@@ -8,4 +8,6 @@ I'm passionate about data science, data analytics, finance, and data engineering
 
 Let's connect on <a href="https://www.linkedin.com/in/arunp77/" target="_blank" rel="noopener noreferrer">Linkedin</a>.
 
+Thanks
+
 
