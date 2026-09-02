@@ -172,3 +172,27 @@ pre { border-color: #d7ded7; border-radius: 10px; font-size: 12px; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+/* Shared shortcut placement: centered on the right edge, panel opens inward. */
+.right-side-list {
+  top: 50%;
+  right: 12px;
+  bottom: auto;
+  transform: translateY(-50%);
+}
+.right-side-list .dropdown-content {
+  top: 50%;
+  right: calc(100% + 9px);
+  bottom: auto;
+  transform: translateY(-50%);
+}
+@media (max-width: 768px) {
+  .right-side-list { top: 50%; right: 8px; bottom: auto; }
+  .right-side-list .dropdown-content {
+    top: 50%;
+    right: calc(100% + 7px);
+    bottom: auto;
+    transform: translateY(-50%);
+    max-height: min(72vh, 520px);
+  }
+}
