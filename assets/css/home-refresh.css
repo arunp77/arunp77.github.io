@@ -496,3 +496,47 @@ h4 { font-size: 16px; }
     max-height: min(72vh, 520px);
   }
 }
+
+/* Stable hero geometry: keep copy inside the content area at every zoom level. */
+@media (min-width: 1200px) {
+  #hero {
+    width: calc(100% - 248px);
+    margin-left: 248px;
+    align-items: flex-start !important;
+  }
+  #hero .hero-container {
+    width: min(650px, calc(100% - 64px));
+    margin: 0;
+    padding-left: clamp(32px, 5vw, 88px);
+  }
+}
+@media (min-width: 769px) and (max-width: 1199px) {
+  #hero {
+    width: 100%;
+    margin-left: 0;
+    align-items: flex-start !important;
+  }
+  #hero .hero-container {
+    width: min(650px, calc(100% - 48px));
+    margin: 0;
+    padding-left: clamp(28px, 7vw, 80px);
+  }
+}
+#hero h1,
+#hero .hero-greeting,
+#hero .hero-role {
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+@media (max-width: 768px) {
+  #hero {
+    width: 100%;
+    margin-left: 0;
+    align-items: center !important;
+  }
+  #hero .hero-container {
+    width: calc(100% - 36px);
+    margin: 0;
+    padding-left: 0;
+  }
+}
