@@ -124,8 +124,8 @@
     <!------  right dropdown menue ------->
     <div class="right-side-list">
       <div class="dropdown">
-        <button class="dropbtn"><strong>Shortcuts:</strong></button>
-        <div class="dropdown-content">
+        <button class="dropbtn" type="button" aria-expanded="false" aria-controls="shortcut-links"><strong>Shortcuts</strong></button>
+        <div class="dropdown-content" id="shortcut-links">
           <ul>
             <li><a href="cloud-compute.html"><i class="fas fa-cloud"></i> Cloud</a></li>
             <li><a href="AWS-GCP.html"><i class="fas fa-cloud"></i> AWS-GCP</a></li>
@@ -1543,6 +1543,7 @@
   <script src="assets/vendor/php-email-form/validate.js"></script>
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/home-refresh.js"></script>
   <script>
 
 const publications = [

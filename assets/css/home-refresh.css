@@ -292,3 +292,50 @@ h4 { font-size: 16px; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+/* Hero contrast and viewport-safe shortcut menu */
+#hero::before {
+  background: linear-gradient(90deg, rgba(15, 25, 22, .88) 0%, rgba(15, 25, 22, .72) 38%, rgba(15, 25, 22, .34) 68%, rgba(15, 25, 22, .2) 100%);
+}
+#hero h1 {
+  color: #fff;
+  text-shadow: 0 3px 18px rgba(0, 0, 0, .35);
+}
+#hero .hero-greeting { color: #f4e7ad; }
+#hero .hero-role { color: #e7eee9; }
+
+.right-side-list {
+  top: auto;
+  right: 18px;
+  bottom: 70px;
+  padding: 0;
+  transform: none;
+  background: transparent;
+}
+.right-side-list .dropdown { display: block; }
+.right-side-list .dropdown-content {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 9px);
+  top: auto;
+  display: none;
+  margin: 0;
+}
+.right-side-list .dropdown-content.is-open { display: block; }
+.right-side-list .dropbtn[aria-expanded="true"] {
+  color: #fff;
+  background: var(--home-green-dark);
+  border-color: var(--home-green-dark);
+}
+/* Override the legacy hover rule; this menu is controlled by click. */
+.right-side-list .dropdown:hover .dropdown-content { display: none; }
+.right-side-list .dropdown:hover .dropdown-content.is-open { display: block; }
+
+@media (max-width: 768px) {
+  #hero::before { background: rgba(12, 22, 19, .67); }
+  .right-side-list { top: auto; right: 12px; bottom: 66px; }
+  .right-side-list .dropdown-content {
+    width: min(220px, calc(100vw - 24px));
+    max-height: min(62vh, 440px);
+  }
+}
