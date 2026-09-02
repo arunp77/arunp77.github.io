@@ -339,3 +339,136 @@ h4 { font-size: 16px; }
     max-height: min(62vh, 440px);
   }
 }
+
+/* Modern contact close */
+#contact.contact-modern {
+  position: relative;
+  padding: 82px 0;
+  background: linear-gradient(135deg, #eaf2e7 0%, #f8f5df 55%, #eef3ec 100%) !important;
+}
+#contact.contact-modern::before {
+  content: "";
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  right: 3%;
+  top: -170px;
+  border: 1px solid rgba(85, 122, 99, .16);
+  border-radius: 50%;
+  box-shadow: 0 0 0 70px rgba(85, 122, 99, .035), 0 0 0 140px rgba(85, 122, 99, .025);
+  pointer-events: none;
+}
+.contact-panel {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(300px, .65fr);
+  gap: clamp(45px, 7vw, 100px);
+  align-items: center;
+  padding: clamp(35px, 5vw, 68px);
+  overflow: hidden;
+  background: rgba(255, 255, 255, .88);
+  border: 1px solid rgba(85, 122, 99, .18);
+  border-radius: 24px;
+  box-shadow: 0 24px 65px rgba(45, 67, 55, .1);
+  backdrop-filter: blur(12px);
+}
+.contact-kicker {
+  margin: 0 0 14px;
+  color: var(--home-green);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.contact-copy h2 {
+  max-width: 760px;
+  margin: 0 0 20px;
+  color: var(--home-green-dark);
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 600;
+  line-height: 1.16;
+  letter-spacing: -.025em;
+}
+.contact-intro {
+  max-width: 690px;
+  margin: 0;
+  color: var(--home-muted);
+  font-size: 15px;
+}
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 30px;
+}
+.contact-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 46px;
+  padding: 9px 17px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform .2s, background .2s, border-color .2s;
+}
+.contact-actions a:hover { transform: translateY(-2px); }
+.contact-primary { color: #fff; background: var(--home-green-dark); border: 1px solid var(--home-green-dark); }
+.contact-primary:hover { color: #fff; background: #284635; }
+.contact-secondary { color: var(--home-green-dark); background: #fff; border: 1px solid #b8c8bc; }
+.contact-secondary:hover { color: var(--home-ink); border-color: #d0b654; background: var(--home-yellow-soft); }
+.contact-details {
+  padding: 22px;
+  background: #f5f8f3;
+  border: 1px solid var(--home-line);
+  border-radius: 18px;
+}
+.contact-status {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 4px 20px;
+  border-bottom: 1px solid var(--home-line);
+}
+.status-dot {
+  width: 10px;
+  height: 10px;
+  background: #58a66f;
+  border: 3px solid #d7ebdc;
+  border-radius: 50%;
+  box-sizing: content-box;
+}
+.contact-status div { display: grid; }
+.contact-status small { color: var(--home-muted); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; }
+.contact-status strong { color: var(--home-ink); font-size: 13px; }
+.contact-detail-links { display: grid; }
+.contact-detail-links a {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 15px 4px;
+  color: var(--home-ink);
+  border-bottom: 1px solid var(--home-line);
+  font-size: 12px;
+  text-decoration: none;
+}
+.contact-detail-links a:last-child { border-bottom: 0; padding-bottom: 4px; }
+.contact-detail-links a span { color: var(--home-muted); }
+.contact-detail-links a strong { color: var(--home-green-dark); font-weight: 700; white-space: nowrap; }
+.contact-detail-links a:hover strong { color: #a18628; }
+
+@media (max-width: 900px) {
+  .contact-panel { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  #contact.contact-modern { padding: 55px 0; }
+  .contact-panel { gap: 32px; padding: 27px 20px; border-radius: 18px; }
+  .contact-copy h2 { font-size: 27px; }
+  .contact-intro { font-size: 13px; }
+  .contact-actions { align-items: stretch; flex-direction: column; }
+  .contact-actions a { width: 100%; }
+}
