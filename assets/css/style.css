@@ -2114,3 +2114,344 @@ code, kbd, pre, samp {
 .clickable-box:hover {
   background: #117bb8;
 }
+
+
+/* ==========================================
+   PUBLICATIONS
+   ========================================== */
+
+.publications {
+  padding: 60px 0;
+}
+
+/* Research profile buttons */
+
+.publication-profile-links {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin: 25px 0 35px;
+}
+
+.profile-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 16px;
+
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+
+  background: #fff;
+
+  text-decoration: none;
+  color: #333;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  transition: all 0.25s ease;
+}
+
+.profile-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  text-decoration: none;
+}
+
+.profile-icon {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+
+  padding: 4px 7px;
+
+  background: #f1f3f5;
+  border-radius: 6px;
+}
+
+
+/* Toolbar */
+
+.publication-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 15px;
+  flex-wrap: wrap;
+
+  margin-bottom: 12px;
+}
+
+.publication-search {
+  flex: 1;
+  min-width: 240px;
+}
+
+.publication-search input {
+  width: 100%;
+  height: 46px;
+
+  padding: 0 16px;
+
+  border: 1px solid #dfe3e8;
+  border-radius: 12px;
+
+  background: #fff;
+
+  font-size: 14px;
+
+  outline: none;
+
+  transition: border-color 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.publication-search input:focus {
+  border-color: #149ddd;
+  box-shadow: 0 0 0 3px rgba(20, 157, 221, 0.12);
+}
+
+
+/* Filters */
+
+.publication-filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.publication-filters select {
+  height: 46px;
+
+  padding: 0 35px 0 14px;
+
+  border: 1px solid #dfe3e8;
+  border-radius: 12px;
+
+  background: #fff;
+
+  font-size: 14px;
+
+  cursor: pointer;
+}
+
+
+/* Count */
+
+.publication-summary {
+  margin: 14px 0 18px;
+
+  font-size: 14px;
+  color: #777;
+}
+
+
+/* Publication list */
+
+.publication-list {
+  display: grid;
+  gap: 16px;
+}
+
+
+/* Individual card */
+
+.publication-card {
+  padding: 22px 24px;
+
+  background: #fff;
+
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 16px;
+
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.03);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.publication-card:hover {
+  transform: translateY(-3px);
+
+  border-color: rgba(20, 157, 221, 0.3);
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.07);
+}
+
+
+/* Card top */
+
+.publication-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 10px;
+
+  gap: 15px;
+}
+
+
+/* Year badge */
+
+.publication-year {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 5px 10px;
+
+  background: rgba(20, 157, 221, 0.10);
+
+  color: #149ddd;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+/* Authorship label */
+
+.publication-role {
+  font-size: 12px;
+
+  color: #888;
+
+  background: #f6f7f8;
+
+  padding: 5px 9px;
+
+  border-radius: 999px;
+}
+
+
+/* Title */
+
+.publication-title {
+  margin: 0 0 10px;
+
+  font-size: 18px;
+
+  line-height: 1.45;
+
+  color: #222;
+
+  font-weight: 600;
+}
+
+
+/* Authors */
+
+.publication-authors {
+  margin-bottom: 8px;
+
+  color: #666;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+}
+
+
+/* Journal */
+
+.publication-journal {
+  margin-bottom: 14px;
+
+  font-size: 13px;
+
+  color: #888;
+
+  line-height: 1.6;
+}
+
+
+/* Links */
+
+.publication-links {
+  display: flex;
+  gap: 8px;
+
+  flex-wrap: wrap;
+}
+
+.publication-links a {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 7px 11px;
+
+  border: 1px solid #dde2e6;
+
+  border-radius: 9px;
+
+  text-decoration: none;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  color: #149ddd;
+
+  transition: all 0.2s ease;
+}
+
+.publication-links a:hover {
+  background: #149ddd;
+
+  color: #fff;
+
+  border-color: #149ddd;
+
+  text-decoration: none;
+}
+
+
+/* No results */
+
+.publication-no-results {
+  padding: 40px;
+
+  text-align: center;
+
+  border: 1px dashed #ccd2d8;
+
+  border-radius: 16px;
+
+  color: #888;
+}
+
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+  .publication-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .publication-filters {
+    width: 100%;
+  }
+
+  .publication-filters select {
+    flex: 1;
+    min-width: 140px;
+  }
+
+  .publication-card {
+    padding: 18px;
+  }
+
+  .publication-title {
+    font-size: 16px;
+  }
+
+}
